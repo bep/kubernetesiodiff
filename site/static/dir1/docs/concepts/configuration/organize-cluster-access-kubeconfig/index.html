@@ -1,0 +1,462 @@
+<html>
+  <body>
+    <h1>
+      Organizing Cluster Access Using kubeconfig Files
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/configuration/organize-cluster-access-kubeconfig.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Organizing Cluster Access Using kubeconfig Files
+    </h1>
+    <p>
+      Use kubeconfig files to organize information about clusters, users, namespaces, and
+      authentication mechanisms. The
+      <code>
+        kubectl
+      </code>
+      command-line tool uses kubeconfig files to
+      find the information it needs to choose a cluster and communicate with the API server
+      of a cluster.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        A file that is used to configure access to clusters is called
+        a
+        <em>
+          kubeconfig file
+        </em>
+        . This is a generic way of referring to configuration files.
+        It does not mean that there is a file named
+        <code>
+          kubeconfig
+        </code>
+        .
+      </div>
+    </blockquote>
+    <p>
+      By default,
+      <code>
+        kubectl
+      </code>
+      looks for a file named
+      <code>
+        config
+      </code>
+      in the
+      <code>
+        $HOME/.kube
+      </code>
+      directory.
+      You can specify other kubeconfig files by setting the
+      <code>
+        KUBECONFIG
+      </code>
+      environment
+      variable or by setting the
+      <a href="/docs/reference/generated/kubectl/kubectl/">
+        <code>
+          --kubeconfig
+        </code>
+      </a>
+      flag.
+    </p>
+    <p>
+      For step-by-step instructions on creating and specifying kubeconfig files, see
+      <a href="/docs/tasks/access-application-cluster/configure-access-multiple-clusters">
+        Configure Access to Multiple Clusters
+      </a>
+      .
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#supporting-multiple-clusters-users-and-authentication-mechanisms">
+          Supporting multiple clusters, users, and authentication mechanisms
+        </a>
+      </li>
+      <li>
+        <a href="#context">
+          Context
+        </a>
+      </li>
+      <li>
+        <a href="#the-kubeconfig-environment-variable">
+          The KUBECONFIG environment variable
+        </a>
+      </li>
+      <li>
+        <a href="#merging-kubeconfig-files">
+          Merging kubeconfig files
+        </a>
+      </li>
+      <li>
+        <a href="#file-references">
+          File references
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="supporting-multiple-clusters-users-and-authentication-mechanisms">
+      Supporting multiple clusters, users, and authentication mechanisms
+    </h2>
+    <p>
+      Suppose you have several clusters, and your users and components authenticate
+      in a variety of ways. For example:
+    </p>
+    <ul>
+      <li>
+        A running kubelet might authenticate using certificates.
+      </li>
+      <li>
+        A user might authenticate using tokens.
+      </li>
+      <li>
+        Administrators might have sets of certificates that they provide to individual users.
+      </li>
+    </ul>
+    <p>
+      With kubeconfig files, you can organize your clusters, users, and namespaces.
+      You can also define contexts to quickly and easily switch between
+      clusters and namespaces.
+    </p>
+    <h2 id="context">
+      Context
+    </h2>
+    <p>
+      A
+      <em>
+        context
+      </em>
+      element in a kubeconfig file is used to group access parameters
+      under a convenient name. Each context has three parameters: cluster, namespace, and user.
+      By default, the
+      <code>
+        kubectl
+      </code>
+      command-line tool uses parameters from
+      the
+      <em>
+        current context
+      </em>
+      to communicate with the cluster.
+    </p>
+    <p>
+      To choose the current context:
+    </p>
+    <pre><code>kubectl config use-context</code></pre>
+    <h2 id="the-kubeconfig-environment-variable">
+      The KUBECONFIG environment variable
+    </h2>
+    <p>
+      The
+      <code>
+        KUBECONFIG
+      </code>
+      environment variable holds a list of kubeconfig files.
+      For Linux and Mac, the list is colon-delimited. For Windows, the list
+      is semicolon-delimited. The
+      <code>
+        KUBECONFIG
+      </code>
+      environment variable is not
+      required. If the
+      <code>
+        KUBECONFIG
+      </code>
+      environment variable doesn&rsquo;t exist,
+      <code>
+        kubectl
+      </code>
+      uses the default kubeconfig file,
+      <code>
+        $HOME/.kube/config
+      </code>
+      .
+    </p>
+    <p>
+      If the
+      <code>
+        KUBECONFIG
+      </code>
+      environment variable does exist,
+      <code>
+        kubectl
+      </code>
+      uses
+      an effective configuration that is the result of merging the files
+      listed in the
+      <code>
+        KUBECONFIG
+      </code>
+      environment variable.
+    </p>
+    <h2 id="merging-kubeconfig-files">
+      Merging kubeconfig files
+    </h2>
+    <p>
+      To see your configuration, enter this command:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl config view</code></pre>
+    </div>
+    <p>
+      As described previously, the output might be from a single kubeconfig file,
+      or it might be the result of merging several kubeconfig files.
+    </p>
+    <p>
+      Here are the rules that
+      <code>
+        kubectl
+      </code>
+      uses when it merges kubeconfig files:
+    </p>
+    <ol>
+      <li>
+        If the
+        <code>
+          --kubeconfig
+        </code>
+        flag is set, use only the specified file. Do not merge.
+        Only one instance of this flag is allowed.
+      </li>
+    </ol>
+    <p>
+      Otherwise, if the
+      <code>
+        KUBECONFIG
+      </code>
+      environment variable is set, use it as a
+      list of files that should be merged.
+      Merge the files listed in the
+      <code>
+        KUBECONFIG
+      </code>
+      environment variable
+      according to these rules:
+    </p>
+    <ul>
+      <li>
+        Ignore empty filenames.
+      </li>
+      <li>
+        Produce errors for files with content that cannot be deserialized.
+      </li>
+      <li>
+        The first file to set a particular value or map key wins.
+      </li>
+      <li>
+        Never change the value or map key.
+        Example: Preserve the context of the first file to set
+        <code>
+          current-context
+        </code>
+        .
+        Example: If two files specify a
+        <code>
+          red-user
+        </code>
+        , use only values from the first file&rsquo;s
+        <code>
+          red-user
+        </code>
+        .
+        Even if the second file has non-conflicting entries under
+        <code>
+          red-user
+        </code>
+        , discard them.
+      </li>
+    </ul>
+    <p>
+      For an example of setting the
+      <code>
+        KUBECONFIG
+      </code>
+      environment variable, see
+      <a href="/docs/tasks/access-application-cluster/configure-access-multiple-clusters/#set-the-kubeconfig-environment-variable">
+        Setting the KUBECONFIG environment variable
+      </a>
+      .
+    </p>
+    <p>
+      Otherwise, use the default kubeconfig file,
+      <code>
+        $HOME/.kube/config
+      </code>
+      , with no merging.
+    </p>
+    <ol>
+      <li>
+        <p>
+          Determine the context to use based on the first hit in this chain:
+        </p>
+        <ol>
+          <li>
+            Use the
+            <code>
+              --context
+            </code>
+            command-line flag if it exists.
+          </li>
+          <li>
+            Use the
+            <code>
+              current-context
+            </code>
+            from the merged kubeconfig files.
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <p>
+      An empty context is allowed at this point.
+    </p>
+    <ol>
+      <li>
+        <p>
+          Determine the cluster and user. At this point, there might or might not be a context.
+          Determine the cluster and user based on the first hit in this chain,
+          which is run twice: once for user and once for cluster:
+        </p>
+        <ol>
+          <li>
+            Use a command-line flag if it exists:
+            <code>
+              --user
+            </code>
+            or
+            <code>
+              --cluster
+            </code>
+            .
+          </li>
+          <li>
+            If the context is non-empty, take the user or cluster from the context.
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <p>
+      The user and cluster can be empty at this point.
+    </p>
+    <ol>
+      <li>
+        <p>
+          Determine the actual cluster information to use. At this point, there might or
+          might not be cluster information.
+          Build each piece of the cluster information based on this chain; the first hit wins:
+        </p>
+        <ol>
+          <li>
+            Use command line flags if they exist:
+            <code>
+              --server
+            </code>
+            ,
+            <code>
+              --certificate-authority
+            </code>
+            ,
+            <code>
+              --insecure-skip-tls-verify
+            </code>
+            .
+          </li>
+          <li>
+            If any cluster information attributes exist from the merged kubeconfig files, use them.
+          </li>
+          <li>
+            If there is no server location, fail.
+          </li>
+        </ol>
+      </li>
+      <li>
+        <p>
+          Determine the actual user information to use. Build user information using the same
+          rules as cluster information, except allow only one authentication
+          technique per user:
+        </p>
+        <ol>
+          <li>
+            Use command line flags if they exist:
+            <code>
+              --client-certificate
+            </code>
+            ,
+            <code>
+              --client-key
+            </code>
+            ,
+            <code>
+              --username
+            </code>
+            ,
+            <code>
+              --password
+            </code>
+            ,
+            <code>
+              --token
+            </code>
+            .
+          </li>
+          <li>
+            Use the
+            <code>
+              user
+            </code>
+            fields from the merged kubeconfig files.
+          </li>
+          <li>
+            If there are two conflicting techniques, fail.
+          </li>
+        </ol>
+      </li>
+      <li>
+        <p>
+          For any information still missing, use default values and potentially
+          prompt for authentication information.
+        </p>
+      </li>
+    </ol>
+    <h2 id="file-references">
+      File references
+    </h2>
+    <p>
+      File and path references in a kubeconfig file are relative to the location of the kubeconfig file.
+      File references on the command line are relative to the current working directory.
+      In
+      <code>
+        $HOME/.kube/config
+      </code>
+      , relative paths are stored relatively, and absolute paths
+      are stored absolutely.
+    </p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        <a href="/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">
+          Configure Access to Multiple Clusters
+        </a>
+      </li>
+      <li>
+        <a href="/docs/reference/generated/kubectl/kubectl-commands#config">
+          <code>
+            kubectl config
+          </code>
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

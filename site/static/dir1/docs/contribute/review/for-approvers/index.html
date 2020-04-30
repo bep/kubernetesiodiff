@@ -1,0 +1,711 @@
+<html>
+  <body>
+    <h1>
+      Reviewing for approvers and reviewers
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/contribute/review/for-approvers.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Reviewing for approvers and reviewers
+    </h1>
+    <p>
+      SIG Docs
+      <a href="/docs/contribute/participating/#reviewers">
+        Reviewers
+      </a>
+      and
+      <a href="/docs/contribute/participating/#approvers">
+        Approvers
+      </a>
+      do a few extra things when reviewing a change.
+    </p>
+    <p>
+      Every week a specific docs approver volunteers to triage
+      and review pull requests. This
+      person is the &ldquo;PR Wrangler&rdquo; for the week. See the
+      <a href="https://github.com/kubernetes/website/wiki/PR-Wranglers">
+        PR Wrangler scheduler
+      </a>
+      for more information. To become a PR Wrangler, attend the weekly SIG Docs meeting and volunteer. Even if you are not on the schedule for the current week, you can still review pull
+      requests (PRs) that are not already under active review.
+    </p>
+    <p>
+      In addition to the rotation, a bot assigns reviewers and approvers
+      for the PR based on the owners for the affected files.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#reviewing-a-pr">
+          Reviewing a PR
+        </a>
+      </li>
+      <li>
+        <a href="#commit-into-another-person-s-pr">
+          Commit into another person’s PR
+        </a>
+      </li>
+      <li>
+        <a href="#prow-commands-for-reviewing">
+          Prow commands for reviewing
+        </a>
+      </li>
+      <li>
+        <a href="#triage-and-categorize-issues">
+          Triage and categorize issues
+        </a>
+      </li>
+      <li>
+        <a href="#adding-and-removing-issue-labels">
+          Adding and removing issue labels
+        </a>
+      </li>
+      <li>
+        <a href="#handling-special-issue-types">
+          Handling special issue types
+        </a>
+      </li>
+    </ul>
+    <h2 id="reviewing-a-pr">
+      Reviewing a PR
+    </h2>
+    <p>
+      Kubernetes documentation follows the
+      <a href="https://github.com/kubernetes/community/blob/master/contributors/guide/owners.md#the-code-review-process">
+        Kubernetes code review process
+      </a>
+      .
+    </p>
+    <p>
+      Everything described in
+      <a href="/docs/contribute/review/reviewing-prs">
+        Reviewing a pull request
+      </a>
+      applies, but Reviewers and Approvers should also do the following:
+    </p>
+    <ul>
+      <li>
+        Using the
+        <code>
+          /assign
+        </code>
+        Prow command to assign a specific reviewer to a PR as needed. This is extra important
+        when it comes to requesting technical review from code contributors.
+      </li>
+    </ul>
+    <p>
+      <blockquote class="note">
+        <div>
+          <strong>
+            Note:
+          </strong>
+          Look at the
+          <code>
+            reviewers
+          </code>
+          field in the front-matter at the top of a Markdown file to see who can
+          provide technical review.
+        </div>
+      </blockquote>
+    </p>
+    <ul>
+      <li>
+        Making sure the PR follows the
+        <a href="/docs/contribute/style/content-guide/">
+          Content
+        </a>
+        and
+        <a href="/docs/contribute/style/style-guide/">
+          Style
+        </a>
+        guides; link the author to the relevant part of the guide(s) if it doesn&rsquo;t.
+      </li>
+      <li>
+        Using the GitHub
+        <strong>
+          Request Changes
+        </strong>
+        option when applicable to suggest changes to the PR author.
+      </li>
+      <li>
+        Changing your review status in GitHub using the
+        <code>
+          /approve
+        </code>
+        or
+        <code>
+          /lgtm
+        </code>
+        Prow commands, if your suggestions are implemented.
+      </li>
+    </ul>
+    <h2 id="commit-into-another-person-s-pr">
+      Commit into another person&rsquo;s PR
+    </h2>
+    <p>
+      Leaving PR comments is helpful, but there might be times when you need to commit
+      into another person&rsquo;s PR instead.
+    </p>
+    <p>
+      Do not &ldquo;take over&rdquo; for another person unless they explicitly ask
+      you to, or you want to resurrect a long-abandoned PR. While it may be faster
+      in the short term, it deprives the person of the chance to contribute.
+    </p>
+    <p>
+      The process you use depends on whether you need to edit a file that is already
+      in the scope of the PR, or a file that the PR has not yet touched.
+    </p>
+    <p>
+      You can&rsquo;t commit into someone else&rsquo;s PR if either of the following things is
+      true:
+    </p>
+    <ul>
+      <li>
+        If the PR author pushed their branch directly to the
+        <a href="https://github.com/kubernetes/website/">
+          https://github.com/kubernetes/website/
+        </a>
+        repository. Only a reviewer with push access can commit to another user&rsquo;s PR.
+      </li>
+    </ul>
+    <p>
+      <blockquote class="note">
+        <div>
+          <strong>
+            Note:
+          </strong>
+          Encourage the author to push their branch to their fork before
+          opening the PR next time.
+        </div>
+      </blockquote>
+    </p>
+    <ul>
+      <li>
+        The PR author explicitly disallows edits from approvers.
+      </li>
+    </ul>
+    <h2 id="prow-commands-for-reviewing">
+      Prow commands for reviewing
+    </h2>
+    <p>
+      <a href="https://github.com/kubernetes/test-infra/blob/master/prow/README.md">
+        Prow
+      </a>
+      is
+      the Kubernetes-based CI/CD system that runs jobs against pull requests (PRs). Prow
+      enables chatbot-style commands to handle GitHub actions across the Kubernetes
+      organization, like
+      <a href="#add-and-remove-labels">
+        adding and removing
+        labels
+      </a>
+      , closing issues, and assigning an approver. Enter Prow commands as GitHub comments using the
+      <code>
+        /&lt;command-name&gt;
+      </code>
+      format.
+    </p>
+    <p>
+      The most common prow commands reviewers and approvers use are:
+    </p>
+    <table>
+      <caption style="display: none;">
+        Prow commands for reviewing
+      </caption>
+      <thead>
+        <tr>
+          <th align="left">
+            Prow Command
+          </th>
+          <th align="left">
+            Role Restrictions
+          </th>
+          <th align="left">
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td align="left">
+            <code>
+              /lgtm
+            </code>
+          </td>
+          <td align="left">
+            Anyone, but triggers automation if a Reviewer or Approver uses it
+          </td>
+          <td align="left">
+            Signals that you&rsquo;ve finished reviewing a PR and are satisfied with the changes.
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            <code>
+              /approve
+            </code>
+          </td>
+          <td align="left">
+            Approvers
+          </td>
+          <td align="left">
+            Approves a PR for merging.
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            <code>
+              /assign
+            </code>
+          </td>
+          <td align="left">
+            Reviewers or Approvers
+          </td>
+          <td align="left">
+            Assigns a person to review or approve a PR
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            <code>
+              /close
+            </code>
+          </td>
+          <td align="left">
+            Reviewers or Approvers
+          </td>
+          <td align="left">
+            Closes an issue or PR.
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            <code>
+              /hold
+            </code>
+          </td>
+          <td align="left">
+            Anyone
+          </td>
+          <td align="left">
+            Adds the
+            <code>
+              do-not-merge/hold
+            </code>
+            label, indicating the PR cannot be automatically merged.
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            <code>
+              /hold cancel
+            </code>
+          </td>
+          <td align="left">
+            Anyone
+          </td>
+          <td align="left">
+            Removes the
+            <code>
+              do-not-merge/hold
+            </code>
+            label.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      See
+      <a href="https://prow.k8s.io/command-help">
+        the Prow command reference
+      </a>
+      to see the full list
+      of commands you can use in a PR.
+    </p>
+    <h2 id="triage-and-categorize-issues">
+      Triage and categorize issues
+    </h2>
+    <p>
+      In general, SIG Docs follows the
+      <a href="https://github.com/kubernetes/community/blob/master/contributors/guide/issue-triage.md">
+        Kubernetes issue triage
+      </a>
+      process and uses the same labels.
+    </p>
+    <p>
+      This GitHub Issue
+      <a href="https://github.com/kubernetes/website/issues?q=is%3Aissue+is%3Aopen+-label%3Apriority%2Fbacklog+-label%3Apriority%2Fimportant-longterm+-label%3Apriority%2Fimportant-soon+-label%3Atriage%2Fneeds-information+-label%3Atriage%2Fsupport+sort%3Acreated-asc">
+        filter
+      </a>
+      finds issues that might need triage.
+    </p>
+    <h3 id="triaging-an-issue">
+      Triaging an issue
+    </h3>
+    <ol>
+      <li>
+        <p>
+          Validate the issue
+        </p>
+        <ul>
+          <li>
+            Make sure the issue is about website documentation. Some issues can be closed quickly by
+            answering a question or pointing the reporter to a resource. See the
+            <a href="#support-requests-or-code-bug-reports">
+              Support requests or code bug reports
+            </a>
+            section for details.
+          </li>
+          <li>
+            Assess whether the issue has merit.
+          </li>
+          <li>
+            Add the
+            <code>
+              triage/needs-information
+            </code>
+            label if the issue doesn&rsquo;t have enough
+            detail to be actionable or the template is not filled out adequately.
+          </li>
+          <li>
+            Close the issue if it has both the
+            <code>
+              lifecycle/stale
+            </code>
+            and
+            <code>
+              triage/needs-information
+            </code>
+            labels.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>
+          Add a priority label (the
+          <a href="https://github.com/kubernetes/community/blob/master/contributors/guide/issue-triage.md#define-priority">
+            Issue Triage Guidelines
+          </a>
+          define priority labels in detail)
+        </p>
+      </li>
+    </ol>
+    <table>
+      <caption style="display: none;">
+        Issue labels
+      </caption>
+      <thead>
+        <tr>
+          <th align="left">
+            Label
+          </th>
+          <th align="left">
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td align="left">
+            <code>
+              priority/critical-urgent
+            </code>
+          </td>
+          <td align="left">
+            Do this right now.
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            <code>
+              priority/important-soon
+            </code>
+          </td>
+          <td align="left">
+            Do this within 3 months.
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            <code>
+              priority/important-longterm
+            </code>
+          </td>
+          <td align="left">
+            Do this within 6 months.
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            <code>
+              priority/backlog
+            </code>
+          </td>
+          <td align="left">
+            Deferrable indefinitely. Do when resources are available.
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            <code>
+              priority/awaiting-more-evidence
+            </code>
+          </td>
+          <td align="left">
+            Placeholder for a potentially good issue so it doesn&rsquo;t get lost.
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            <code>
+              help
+            </code>
+            or
+            <code>
+              good first issue
+            </code>
+          </td>
+          <td align="left">
+            Suitable for someone with very little Kubernetes or SIG Docs experience. See
+            <a href="https://github.com/kubernetes/community/blob/master/contributors/guide/help-wanted.md">
+              Help Wanted and Good First Issue Labels
+            </a>
+            for more information.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      At your discretion, take ownership of an issue and submit a PR for it
+      (especially if it&rsquo;s quick or relates to work you&rsquo;re already doing).
+    </p>
+    <p>
+      If you have questions about triaging an issue, ask in
+      <code>
+        #sig-docs
+      </code>
+      on Slack or
+      the
+      <a href="https://groups.google.com/forum/#!forum/kubernetes-sig-docs">
+        kubernetes-sig-docs mailing list
+      </a>
+      .
+    </p>
+    <h2 id="adding-and-removing-issue-labels">
+      Adding and removing issue labels
+    </h2>
+    <p>
+      To add a label, leave a comment in one of the following formats:
+    </p>
+    <ul>
+      <li>
+        <code>
+          /&lt;label-to-add&gt;
+        </code>
+        (for example,
+        <code>
+          /good-first-issue
+        </code>
+        )
+      </li>
+      <li>
+        <code>
+          /&lt;label-category&gt; &lt;label-to-add&gt;
+        </code>
+        (for example,
+        <code>
+          /triage needs-information
+        </code>
+        or
+        <code>
+          /language ja
+        </code>
+        )
+      </li>
+    </ul>
+    <p>
+      To remove a label, leave a comment in one of the following formats:
+    </p>
+    <ul>
+      <li>
+        <code>
+          /remove-&lt;label-to-remove&gt;
+        </code>
+        (for example,
+        <code>
+          /remove-help
+        </code>
+        )
+      </li>
+      <li>
+        <code>
+          /remove-&lt;label-category&gt; &lt;label-to-remove&gt;
+        </code>
+        (for example,
+        <code>
+          /remove-triage needs-information
+        </code>
+        )`
+      </li>
+    </ul>
+    <p>
+      In both cases, the label must already exist. If you try to add a label that does not exist, the command is
+      silently ignored.
+    </p>
+    <p>
+      For a list of all labels, see the
+      <a href="https://github.com/kubernetes/website/labels">
+        website repository&rsquo;s Labels section
+      </a>
+      . Not all labels are used by SIG Docs.
+    </p>
+    <h3 id="issue-lifecycle-labels">
+      Issue lifecycle labels
+    </h3>
+    <p>
+      Issues are generally opened and closed quickly.
+      However, sometimes an issue is inactive after its opened.
+      Other times, an issue may need to remain open for longer than 90 days.
+    </p>
+    <table>
+      <caption style="display: none;">
+        Issue lifecycle labels
+      </caption>
+      <thead>
+        <tr>
+          <th align="left">
+            Label
+          </th>
+          <th align="left">
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td align="left">
+            <code>
+              lifecycle/stale
+            </code>
+          </td>
+          <td align="left">
+            After 90 days with no activity, an issue is automatically labeled as stale. The issue will be automatically closed if the lifecycle is not manually reverted using the
+            <code>
+              /remove-lifecycle stale
+            </code>
+            command.
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            <code>
+              lifecycle/frozen
+            </code>
+          </td>
+          <td align="left">
+            An issue with this label will not become stale after 90 days of inactivity. A user manually adds this label to issues that need to remain open for much longer than 90 days, such as those with a
+            <code>
+              priority/important-longterm
+            </code>
+            label.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="handling-special-issue-types">
+      Handling special issue types
+    </h2>
+    <p>
+      SIG Docs encounters the following types of issues often enough to document how
+      to handle them.
+    </p>
+    <h3 id="duplicate-issues">
+      Duplicate issues
+    </h3>
+    <p>
+      If a single problem has one or more issues open for it, combine them into a single issue.
+      You should decide which issue to keep open (or
+      open a new issue), then move over all relevant information and link related issues.
+      Finally, label all other issues that describe the same problem with
+      <code>
+        triage/duplicate
+      </code>
+      and close them. Only having a single issue to work on reduces confusion
+      and avoids duplicate work on the same problem.
+    </p>
+    <h3 id="dead-link-issues">
+      Dead link issues
+    </h3>
+    <p>
+      If the dead link issue is in the API or
+      <code>
+        kubectl
+      </code>
+      documentation, assign them
+      <code>
+        /priority critical-urgent
+      </code>
+      until the problem is fully understood. Assign all other dead link issues
+      <code>
+        /priority important-longterm
+      </code>
+      , as they must be manually fixed.
+    </p>
+    <h3 id="blog-issues">
+      Blog issues
+    </h3>
+    <p>
+      We expect
+      <a href="https://kubernetes.io/blog/">
+        Kubernetes Blog
+      </a>
+      entries to become
+      outdated over time. Therefore, we only maintain blog entries less than a year old.
+      If an issue is related to a blog entry that is more than one year old,
+      close the issue without fixing.
+    </p>
+    <h3 id="support-requests-or-code-bug-reports">
+      Support requests or code bug reports
+    </h3>
+    <p>
+      Some docs issues are actually issues with the underlying code, or requests for
+      assistance when something, for example a tutorial, doesn&rsquo;t work.
+      For issues unrelated to docs, close the issue with the
+      <code>
+        triage/support
+      </code>
+      label and a comment
+      directing the requester to support venues (Slack, Stack Overflow) and, if
+      relevant, the repository to file an issue for bugs with features (
+      <code>
+        kubernetes/kubernetes
+      </code>
+      is a great place to start).
+    </p>
+    <p>
+      Sample response to a request for support:
+    </p>
+    <pre><code class="language-none" data-lang="none">This issue sounds more like a request for support and less
+like an issue specifically for docs. I encourage you to bring
+your question to the `#kubernetes-users` channel in
+[Kubernetes slack](http://slack.k8s.io/). You can also search
+resources like
+[Stack Overflow](http://stackoverflow.com/questions/tagged/kubernetes)
+for answers to similar questions.
+
+You can also open issues for Kubernetes functionality in
+https://github.com/kubernetes/kubernetes.
+
+If this is a documentation issue, please re-open this issue.</code></pre>
+    <p>
+      Sample code bug report response:
+    </p>
+    <pre><code class="language-none" data-lang="none">This sounds more like an issue with the code than an issue with
+the documentation. Please open an issue at
+https://github.com/kubernetes/kubernetes/issues.
+
+If this is a documentation issue, please re-open this issue.</code></pre>
+  </body>
+</html>

@@ -1,0 +1,240 @@
+<html>
+  <body>
+    <h1>
+      Contributing new content overview
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/contribute/new-content/overview.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Contributing new content overview
+    </h1>
+    <p>
+      This section contains information you should know before contributing new content.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#contributing-basics">
+          Contributing basics
+        </a>
+      </li>
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+    </ul>
+    <h2 id="contributing-basics">
+      Contributing basics
+    </h2>
+    <ul>
+      <li>
+        Write Kubernetes documentation in Markdown and build the Kubernetes site using
+        <a href="https://gohugo.io/">
+          Hugo
+        </a>
+        .
+      </li>
+      <li>
+        The source is in
+        <a href="https://github.com/kubernetes/website">
+          GitHub
+        </a>
+        . You can find Kubernetes documentation at
+        <code>
+          /content/en/docs/
+        </code>
+        . Some of the reference documentation is automatically generated from scripts in the
+        <code>
+          update-imported-docs/
+        </code>
+        directory.
+      </li>
+      <li>
+        <a href="/docs/contribute/style/page-templates/">
+          Page templates
+        </a>
+        control the presentation of documentation content in Hugo.
+      </li>
+      <li>
+        In addition to the standard Hugo shortcodes, we use a number of
+        <a href="/docs/contribute/style/hugo-shortcodes/">
+          custom Hugo shortcodes
+        </a>
+        in our documentation to control the presentation of content.
+      </li>
+      <li>
+        Documentation source is available in multiple languages in
+        <code>
+          /content/
+        </code>
+        . Each language has its own folder with a two-letter code determined by the
+        <a href="https://www.loc.gov/standards/iso639-2/php/code_list.php">
+          ISO 639-1 standard
+        </a>
+        . For example, English documentation source is stored in
+        <code>
+          /content/en/docs/
+        </code>
+        .
+      </li>
+      <li>
+        For more information about contributing to documentation in multiple languages or starting a new translation, see
+        <a href="/docs/contribute/localization">
+          localization
+        </a>
+        .
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <h3 id="sign-the-cla">
+      Sign the CNCF CLA
+    </h3>
+    <p>
+      All Kubernetes contributors
+      <strong>
+        must
+      </strong>
+      read the
+      <a href="https://github.com/kubernetes/community/blob/master/contributors/guide/README.md">
+        Contributor guide
+      </a>
+      and
+      <a href="https://github.com/kubernetes/community/blob/master/CLA.md">
+        sign the Contributor License Agreement (CLA)
+      </a>
+      .
+    </p>
+    <p>
+      Pull requests from contributors who haven&rsquo;t signed the CLA fail the automated tests.
+    </p>
+    <h3 id="configure-commit-signoffs">
+      Configure commit signoffs
+    </h3>
+    <p>
+      All commits to Kubernetes repositories must be
+      <em>
+        signed off
+      </em>
+      using the Git
+      <code>
+        --signoff
+      </code>
+      or
+      <code>
+        -s
+      </code>
+      flag.
+      The signoff acknowledges that you have the rights to submit contributions under the same
+      license and
+      <a href="https://developercertificate.org/">
+        Developer Certificate of Origin
+      </a>
+      .
+    </p>
+    <p>
+      If you&rsquo;re using a Git UI app, you can use the app&rsquo;s commit template functionality if it
+      exists, or add the following to your commit message body:
+    </p>
+    <pre><code>Signed-off-by: Your Name &lt;youremail@domain.com&gt;</code></pre>
+    <p>
+      In both cases, the name and email you provide must match those found in your
+      <code>
+        git config
+      </code>
+      , and your git name and email must match those used for the CNCF CLA.
+    </p>
+    <h3 id="choose-which-git-branch-to-use">
+      Choose which Git branch to use
+    </h3>
+    <p>
+      When opening a pull request, you need to know in advance which branch to base your work on.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th align="left">
+            Scenario
+          </th>
+          <th align="left">
+            Branch
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td align="left">
+            Existing or new English language content for the current release
+          </td>
+          <td align="left">
+            <code>
+              master
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            Content for a feature change release
+          </td>
+          <td align="left">
+            The branch which corresponds to the major and minor version the feature change is in, using the pattern
+            <code>
+              dev-release-&lt;version&gt;
+            </code>
+            . For example, if a feature changes in the `v1.18
+          </td>
+        </tr>
+        <tr>
+          <td align="left">
+            ` release, then add documentation changes to the ``dev-release-1.18
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td align="left">
+            `` branch.
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td align="left">
+            Content in other languages (localizations)
+          </td>
+          <td align="left">
+            Use the localization&rsquo;s convention. See the
+            <a href="/docs/contribute/localization/#branching-strategy">
+              Localization branching strategy
+            </a>
+            for more information.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      If you&rsquo;re still not sure which branch to choose, ask in
+      <code>
+        #sig-docs
+      </code>
+      on Slack.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        If you already submitted your pull request and you know that the base branch
+        was wrong, you (and only you, the submitter) can change it.
+      </div>
+    </blockquote>
+    <h3 id="languages-per-pr">
+      Languages per PR
+    </h3>
+    <p>
+      Limit pull requests to one language per PR. If you need to make an identical change to the same code sample in multiple languages, open a separate PR for each language.
+    </p>
+  </body>
+</html>

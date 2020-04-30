@@ -1,0 +1,388 @@
+<html>
+  <body>
+    <h1>
+      Pod Overhead
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/configuration/pod-overhead.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Pod Overhead
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        beta
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+        <p>
+          This feature is currently in a
+          <em>
+            beta
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain beta (e.g. v2beta3).
+          </li>
+          <li>
+            Code is well tested. Enabling the feature is considered safe. Enabled by default.
+          </li>
+          <li>
+            Support for the overall feature will not be dropped, though details may change.
+          </li>
+          <li>
+            The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+          </li>
+          <li>
+            Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+          </li>
+          <li>
+            <strong>
+              Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+            </strong>
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      When you run a Pod on a Node, the Pod itself takes an amount of system resources. These
+      resources are additional to the resources needed to run the container(s) inside the Pod.
+      <em>
+        Pod Overhead
+      </em>
+      is a feature for accounting for the resources consumed by the Pod infrastructure
+      on top of the container requests &amp; limits.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#set-up">
+          Enabling Pod Overhead
+        </a>
+      </li>
+      <li>
+        <a href="#usage-example">
+          Usage example
+        </a>
+      </li>
+      <li>
+        <a href="#verify-pod-cgroup-limits">
+          Verify Pod cgroup limits
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <p>
+      In Kubernetes, the Pod&rsquo;s overhead is set at
+      <a href="/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks">
+        admission
+      </a>
+      time according to the overhead associated with the Pod&rsquo;s
+      <a href="/docs/concepts/containers/runtime-class/">
+        RuntimeClass
+      </a>
+      .
+    </p>
+    <p>
+      When Pod Overhead is enabled, the overhead is considered in addition to the sum of container
+      resource requests when scheduling a Pod. Similarly, Kubelet will include the Pod overhead when sizing
+      the Pod cgroup, and when carrying out Pod eviction ranking.
+    </p>
+    <h2 id="set-up">
+      Enabling Pod Overhead
+    </h2>
+    <p>
+      You need to make sure that the
+      <code>
+        PodOverhead
+      </code>
+      <a href="/docs/reference/command-line-tools-reference/feature-gates/">
+        feature gate
+      </a>
+      is enabled (it is on by default as of 1.18)
+      across your cluster, and a
+      <code>
+        RuntimeClass
+      </code>
+      is utilized which defines the
+      <code>
+        overhead
+      </code>
+      field.
+    </p>
+    <h2 id="usage-example">
+      Usage example
+    </h2>
+    <p>
+      To use the PodOverhead feature, you need a RuntimeClass that defines the
+      <code>
+        overhead
+      </code>
+      field. As
+      an example, you could use the following RuntimeClass definition with a virtualizing container runtime
+      that uses around 120MiB per Pod for the virtual machine and the guest OS:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>RuntimeClass<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>node.k8s.io/v1beta1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>kata-fc<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">handler</span>:<span style="color:#bbb"> </span>kata-fc<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">overhead</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">podFixed</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;120Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;250m&#34;</span></code></pre>
+    </div>
+    <p>
+      Workloads which are created which specify the
+      <code>
+        kata-fc
+      </code>
+      RuntimeClass handler will take the memory and
+      cpu overheads into account for resource quota calculations, node scheduling, as well as Pod cgroup sizing.
+    </p>
+    <p>
+      Consider running the given example workload, test-pod:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>test-pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">runtimeClassName</span>:<span style="color:#bbb"> </span>kata-fc<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>busybox-ctr<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>busybox<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">stdin</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">tty</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span>500m<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span>100Mi<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx-ctr<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span>1500m<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span>100Mi</code></pre>
+    </div>
+    <p>
+      At admission time the RuntimeClass
+      <a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/">
+        admission controller
+      </a>
+      updates the workload&rsquo;s PodSpec to include the
+      <code>
+        overhead
+      </code>
+      as described in the RuntimeClass. If the PodSpec already has this field defined,
+      the Pod will be rejected. In the given example, since only the RuntimeClass name is specified, the admission controller mutates the Pod
+      to include an
+      <code>
+        overhead
+      </code>
+      .
+    </p>
+    <p>
+      After the RuntimeClass admission controller, you can check the updated PodSpec:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get pod test-pod -o <span style="color:#b8860b">jsonpath</span><span style="color:#666">=</span><span style="color:#b44">&#39;{.spec.overhead}&#39;</span></code></pre>
+    </div>
+    <p>
+      The output is:
+    </p>
+    <pre><code>map[cpu:250m memory:120Mi]</code></pre>
+    <p>
+      If a ResourceQuota is defined, the sum of container requests as well as the
+      <code>
+        overhead
+      </code>
+      field are counted.
+    </p>
+    <p>
+      When the kube-scheduler is deciding which node should run a new Pod, the scheduler considers that Pod&rsquo;s
+      <code>
+        overhead
+      </code>
+      as well as the sum of container requests for that Pod. For this example, the scheduler adds the
+      requests and the overhead, then looks for a node that has 2.25 CPU and 320 MiB of memory available.
+    </p>
+    <p>
+      Once a Pod is scheduled to a node, the kubelet on that node creates a new
+      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-cgroup' target='_blank'>
+        cgroup
+        <span class='tooltip-text'>
+          A group of Linux processes with optional resource isolation, accounting and limits.
+        </span>
+      </a>
+      for the Pod. It is within this pod that the underlying container runtime will create containers.
+    </p>
+    <p>
+      If the resource has a limit defined for each container (Guaranteed QoS or Bustrable QoS with limits defined),
+      the kubelet will set an upper limit for the pod cgroup associated with that resource (cpu.cfs_quota_us for CPU
+      and memory.limit_in_bytes memory). This upper limit is based on the sum of the container limits plus the
+      <code>
+        overhead
+      </code>
+      defined in the PodSpec.
+    </p>
+    <p>
+      For CPU, if the Pod is Guaranteed or Burstable QoS, the kubelet will set
+      <code>
+        cpu.shares
+      </code>
+      based on the sum of container
+      requests plus the
+      <code>
+        overhead
+      </code>
+      defined in the PodSpec.
+    </p>
+    <p>
+      Looking at our example, verify the container requests for the workload:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get pod test-pod -o <span style="color:#b8860b">jsonpath</span><span style="color:#666">=</span><span style="color:#b44">&#39;{.spec.containers[*].resources.limits}&#39;</span></code></pre>
+    </div>
+    <p>
+      The total container requests are 2000m CPU and 200MiB of memory:
+    </p>
+    <pre><code>map[cpu: 500m memory:100Mi] map[cpu:1500m memory:100Mi]</code></pre>
+    <p>
+      Check this against what is observed by the node:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl describe node | grep test-pod -B2</code></pre>
+    </div>
+    <p>
+      The output shows 2250m CPU and 320MiB of memory are requested, which includes PodOverhead:
+    </p>
+    <pre><code>  Namespace                   Name                CPU Requests  CPU Limits   Memory Requests  Memory Limits  AGE
+  ---------                   ----                ------------  ----------   ---------------  -------------  ---
+  default                     test-pod            2250m (56%)   2250m (56%)  320Mi (1%)       320Mi (1%)     36m</code></pre>
+    <h2 id="verify-pod-cgroup-limits">
+      Verify Pod cgroup limits
+    </h2>
+    <p>
+      Check the Pod&rsquo;s memory cgroups on the node where the workload is running. In the following example,
+      <a href="https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md">
+        <code>
+          crictl
+        </code>
+      </a>
+      is used on the node, which provides a CLI for CRI-compatible container runtimes. This is an
+      advanced example to show PodOverhead behavior, and it is not expected that users should need to check
+      cgroups directly on the node.
+    </p>
+    <p>
+      First, on the particular node, determine the Pod identifier:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Run this on the node where the Pod is scheduled</span>
+<span style="color:#b8860b">POD_ID</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#a2f;font-weight:bold">$(</span>sudo crictl pods --name test-pod -q<span style="color:#a2f;font-weight:bold">)</span><span style="color:#b44">&#34;</span></code></pre>
+    </div>
+    <p>
+      From this, you can determine the cgroup path for the Pod:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Run this on the node where the Pod is scheduled</span>
+sudo crictl inspectp -o<span style="color:#666">=</span>json <span style="color:#b8860b">$POD_ID</span> | grep cgroupsPath</code></pre>
+    </div>
+    <p>
+      The resulting cgroup path includes the Pod&rsquo;s
+      <code>
+        pause
+      </code>
+      container. The Pod level cgroup is one directory above.
+    </p>
+    <pre><code>        &#34;cgroupsPath&#34;: &#34;/kubepods/podd7f4b509-cf94-4951-9417-d1087c92a5b2/7ccf55aee35dd16aca4189c952d83487297f3cd760f1bbf09620e206e7d0c27a&#34;</code></pre>
+    <p>
+      In this specific case, the pod cgroup path is
+      <code>
+        kubepods/podd7f4b509-cf94-4951-9417-d1087c92a5b2
+      </code>
+      . Verify the Pod level cgroup setting for memory:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080;font-style:italic"># Run this on the node where the Pod is scheduled.</span>
+<span style="color:#080;font-style:italic"># Also, change the name of the cgroup to match the cgroup allocated for your pod.</span>
+ cat /sys/fs/cgroup/memory/kubepods/podd7f4b509-cf94-4951-9417-d1087c92a5b2/memory.limit_in_bytes</code></pre>
+    </div>
+    <p>
+      This is 320 MiB, as expected:
+    </p>
+    <pre><code>335544320</code></pre>
+    <h3 id="observability">
+      Observability
+    </h3>
+    <p>
+      A
+      <code>
+        kube_pod_overhead
+      </code>
+      metric is available in
+      <a href="https://github.com/kubernetes/kube-state-metrics">
+        kube-state-metrics
+      </a>
+      to help identify when PodOverhead is being utilized and to help observe stability of workloads
+      running with a defined Overhead. This functionality is not available in the 1.9 release of
+      kube-state-metrics, but is expected in a following release. Users will need to build kube-state-metrics
+      from source in the meantime.
+    </p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        <a href="/docs/concepts/containers/runtime-class/">
+          RuntimeClass
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/20190226-pod-overhead.md">
+          PodOverhead Design
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

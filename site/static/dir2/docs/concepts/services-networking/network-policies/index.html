@@ -1,0 +1,846 @@
+<html>
+<body>
+<h1>
+  Network Policies
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/services-networking/network-policies.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Network Policies
+</h1>
+<p>
+  A network policy is a specification of how groups of
+  <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+    pods
+    <span class='tooltip-text'>
+      The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
+    </span>
+  </a>
+  are allowed to communicate with each other and other network endpoints.
+</p>
+<p>
+  NetworkPolicy resources use
+  <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels' target='_blank'>
+    labels
+    <span class='tooltip-text'>
+      Tags objects with identifying attributes that are meaningful and relevant to users.
+    </span>
+  </a>
+  to select pods and define rules which specify what traffic is allowed to the selected pods.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#prerequisites">
+      Prerequisites
+    </a>
+  </li>
+  <li>
+    <a href="#isolated-and-non-isolated-pods">
+      Isolated and Non-isolated Pods
+    </a>
+  </li>
+  <li>
+    <a href="#networkpolicy-resource">
+      The NetworkPolicy resource
+    </a>
+  </li>
+  <li>
+    <a href="#behavior-of-to-and-from-selectors">
+      Behavior of
+      <code>
+        to
+      </code>
+      and
+      <code>
+        from
+      </code>
+      selectors
+    </a>
+  </li>
+  <li>
+    <a href="#default-policies">
+      Default policies
+    </a>
+  </li>
+  <li>
+    <a href="#sctp-support">
+      SCTP support
+    </a>
+  </li>
+  <li>
+    <a href="#what-s-next">
+      What's next
+    </a>
+  </li>
+</ul>
+<h2 id="prerequisites">
+  Prerequisites
+</h2>
+<p>
+  Network policies are implemented by the
+  <a href="/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/">
+    network plugin
+  </a>
+  . To use network policies, you must be using a networking solution which supports NetworkPolicy. Creating a NetworkPolicy resource without a controller that implements it will have no effect.
+</p>
+<h2 id="isolated-and-non-isolated-pods">
+  Isolated and Non-isolated Pods
+</h2>
+<p>
+  By default, pods are non-isolated; they accept traffic from any source.
+</p>
+<p>
+  Pods become isolated by having a NetworkPolicy that selects them. Once there is any NetworkPolicy in a namespace selecting a particular pod, that pod will reject any connections that are not allowed by any NetworkPolicy. (Other pods in the namespace that are not selected by any NetworkPolicy will continue to accept all traffic.)
+</p>
+<p>
+  Network policies do not conflict, they are additive. If any policy or policies select a pod, the pod is restricted to what is allowed by the union of those policies&rsquo; ingress/egress rules. Thus, order of evaluation does not affect the policy result.
+</p>
+<h2 id="networkpolicy-resource">
+  The NetworkPolicy resource
+</h2>
+<p>
+  See the
+  <a href="/docs/reference/generated/kubernetes-api/v1.18/#networkpolicy-v1-networking-k8s-io">
+    NetworkPolicy
+  </a>
+  reference for a full definition of the resource.
+</p>
+<p>
+  An example NetworkPolicy might look like this:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>networking.k8s.io/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>NetworkPolicy<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>test-network-policy<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>default<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">podSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">role</span>:<span style="color:#bbb"> </span>db<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">policyTypes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- Ingress<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- Egress<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ingress</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">from</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">ipBlock</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cidr</span>:<span style="color:#bbb"> </span><span style="color:#666">172.17.0.0</span>/<span style="color:#666">16</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">except</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#666">172.17.1.0</span>/<span style="color:#666">24</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">namespaceSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">project</span>:<span style="color:#bbb"> </span>myproject<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">podSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">role</span>:<span style="color:#bbb"> </span>frontend<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">6379</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">egress</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">to</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">ipBlock</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cidr</span>:<span style="color:#bbb"> </span><span style="color:#666">10.0.0.0</span>/<span style="color:#666">24</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">5978</span><span style="color:#bbb">
+</span></code></pre>
+</div>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    POSTing this to the API server for your cluster will have no effect unless your chosen networking solution supports network policy.
+  </div>
+</blockquote>
+<p>
+  <strong>
+    Mandatory Fields
+  </strong>
+  : As with all other Kubernetes config, a NetworkPolicy
+  needs
+  <code>
+    apiVersion
+  </code>
+  ,
+  <code>
+    kind
+  </code>
+  , and
+  <code>
+    metadata
+  </code>
+  fields.  For general information
+  about working with config files, see
+  <a href="/docs/tasks/configure-pod-container/configure-pod-configmap/">
+    Configure Containers Using a ConfigMap
+  </a>
+  ,
+  and
+  <a href="/docs/concepts/overview/working-with-objects/object-management">
+    Object Management
+  </a>
+  .
+</p>
+<p>
+  <strong>
+    spec
+  </strong>
+  : NetworkPolicy
+  <a href="https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status">
+    spec
+  </a>
+  has all the information needed to define a particular network policy in the given namespace.
+</p>
+<p>
+  <strong>
+    podSelector
+  </strong>
+  : Each NetworkPolicy includes a
+  <code>
+    podSelector
+  </code>
+  which selects the grouping of pods to which the policy applies. The example policy selects pods with the label &ldquo;role=db&rdquo;. An empty
+  <code>
+    podSelector
+  </code>
+  selects all pods in the namespace.
+</p>
+<p>
+  <strong>
+    policyTypes
+  </strong>
+  : Each NetworkPolicy includes a
+  <code>
+    policyTypes
+  </code>
+  list which may include either
+  <code>
+    Ingress
+  </code>
+  ,
+  <code>
+    Egress
+  </code>
+  , or both. The
+  <code>
+    policyTypes
+  </code>
+  field indicates whether or not the given policy applies to ingress traffic to selected pod, egress traffic from selected pods, or both. If no
+  <code>
+    policyTypes
+  </code>
+  are specified on a NetworkPolicy then by default
+  <code>
+    Ingress
+  </code>
+  will always be set and
+  <code>
+    Egress
+  </code>
+  will be set if the NetworkPolicy has any egress rules.
+</p>
+<p>
+  <strong>
+    ingress
+  </strong>
+  : Each NetworkPolicy may include a list of whitelist
+  <code>
+    ingress
+  </code>
+  rules.  Each rule allows traffic which matches both the
+  <code>
+    from
+  </code>
+  and
+  <code>
+    ports
+  </code>
+  sections. The example policy contains a single rule, which matches traffic on a single port, from one of three sources, the first specified via an
+  <code>
+    ipBlock
+  </code>
+  , the second via a
+  <code>
+    namespaceSelector
+  </code>
+  and the third via a
+  <code>
+    podSelector
+  </code>
+  .
+</p>
+<p>
+  <strong>
+    egress
+  </strong>
+  : Each NetworkPolicy may include a list of whitelist
+  <code>
+    egress
+  </code>
+  rules.  Each rule allows traffic which matches both the
+  <code>
+    to
+  </code>
+  and
+  <code>
+    ports
+  </code>
+  sections. The example policy contains a single rule, which matches traffic on a single port to any destination in
+  <code>
+    10.0.0.0/24
+  </code>
+  .
+</p>
+<p>
+  So, the example NetworkPolicy:
+</p>
+<ol>
+  <li>
+    <p>
+      isolates &ldquo;role=db&rdquo; pods in the &ldquo;default&rdquo; namespace for both ingress and egress traffic (if they weren&rsquo;t already isolated)
+    </p>
+  </li>
+  <li>
+    <p>
+      (Ingress rules) allows connections to all pods in the “default” namespace with the label “role=db” on TCP port 6379 from:
+    </p>
+    <ul>
+      <li>
+        any pod in the &ldquo;default&rdquo; namespace with the label &ldquo;role=frontend&rdquo;
+      </li>
+      <li>
+        any pod in a namespace with the label &ldquo;project=myproject&rdquo;
+      </li>
+      <li>
+        IP addresses in the ranges 172.17.0.0–172.17.0.255 and 172.17.2.0–172.17.255.255 (ie, all of 172.17.0.0/16 except 172.17.1.0/24)
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      (Egress rules) allows connections from any pod in the &ldquo;default&rdquo; namespace with the label &ldquo;role=db&rdquo; to CIDR 10.0.0.0/24 on TCP port 5978
+    </p>
+  </li>
+</ol>
+<p>
+  See the
+  <a href="/docs/tasks/administer-cluster/declare-network-policy/">
+    Declare Network Policy
+  </a>
+  walkthrough for further examples.
+</p>
+<h2 id="behavior-of-to-and-from-selectors">
+  Behavior of
+  <code>
+    to
+  </code>
+  and
+  <code>
+    from
+  </code>
+  selectors
+</h2>
+<p>
+  There are four kinds of selectors that can be specified in an
+  <code>
+    ingress
+  </code>
+  <code>
+    from
+  </code>
+  section or
+  <code>
+    egress
+  </code>
+  <code>
+    to
+  </code>
+  section:
+</p>
+<p>
+  <strong>
+    podSelector
+  </strong>
+  : This selects particular Pods in the same namespace as the NetworkPolicy which should be allowed as ingress sources or egress destinations.
+</p>
+<p>
+  <strong>
+    namespaceSelector
+  </strong>
+  : This selects particular namespaces for which all Pods should be allowed as ingress sources or egress destinations.
+</p>
+<p>
+  <strong>
+    namespaceSelector
+  </strong>
+  <em>
+    and
+  </em>
+  <strong>
+    podSelector
+  </strong>
+  : A single
+  <code>
+    to
+  </code>
+  /
+  <code>
+    from
+  </code>
+  entry that specifies both
+  <code>
+    namespaceSelector
+  </code>
+  and
+  <code>
+    podSelector
+  </code>
+  selects particular Pods within particular namespaces. Be careful to use correct YAML syntax; this policy:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ingress</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">from</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">namespaceSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">user</span>:<span style="color:#bbb"> </span>alice<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">podSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">role</span>:<span style="color:#bbb"> </span>client<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  contains a single
+  <code>
+    from
+  </code>
+  element allowing connections from Pods with the label
+  <code>
+    role=client
+  </code>
+  in namespaces with the label
+  <code>
+    user=alice
+  </code>
+  . But
+  <em>
+    this
+  </em>
+  policy:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ingress</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">from</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">namespaceSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">user</span>:<span style="color:#bbb"> </span>alice<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">podSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">role</span>:<span style="color:#bbb"> </span>client<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  contains two elements in the
+  <code>
+    from
+  </code>
+  array, and allows connections from Pods in the local Namespace with the label
+  <code>
+    role=client
+  </code>
+  ,
+  <em>
+    or
+  </em>
+  from any Pod in any namespace with the label
+  <code>
+    user=alice
+  </code>
+  .
+</p>
+<p>
+  When in doubt, use
+  <code>
+    kubectl describe
+  </code>
+  to see how Kubernetes has interpreted the policy.
+</p>
+<p>
+  <strong>
+    ipBlock
+  </strong>
+  : This selects particular IP CIDR ranges to allow as ingress sources or egress destinations. These should be cluster-external IPs, since Pod IPs are ephemeral and unpredictable.
+</p>
+<p>
+  Cluster ingress and egress mechanisms often require rewriting the source or destination IP
+  of packets. In cases where this happens, it is not defined whether this happens before or
+  after NetworkPolicy processing, and the behavior may be different for different
+  combinations of network plugin, cloud provider,
+  <code>
+    Service
+  </code>
+  implementation, etc.
+</p>
+<p>
+  In the case of ingress, this means that in some cases you may be able to filter incoming
+  packets based on the actual original source IP, while in other cases, the &ldquo;source IP&rdquo; that
+  the NetworkPolicy acts on may be the IP of a
+  <code>
+    LoadBalancer
+  </code>
+  or of the Pod&rsquo;s node, etc.
+</p>
+<p>
+  For egress, this means that connections from pods to
+  <code>
+    Service
+  </code>
+  IPs that get rewritten to
+  cluster-external IPs may or may not be subject to
+  <code>
+    ipBlock
+  </code>
+  -based policies.
+</p>
+<h2 id="default-policies">
+  Default policies
+</h2>
+<p>
+  By default, if no policies exist in a namespace, then all ingress and egress traffic is allowed to and from pods in that namespace. The following examples let you change the default behavior
+  in that namespace.
+</p>
+<h3 id="default-deny-all-ingress-traffic">
+  Default deny all ingress traffic
+</h3>
+<p>
+  You can create a &ldquo;default&rdquo; isolation policy for a namespace by creating a NetworkPolicy that selects all pods but does not allow any ingress traffic to those pods.
+</p>
+<table class="includecode" id="service-networking-network-policy-default-deny-ingress-yaml">
+  <thead>
+    <tr>
+      <th>
+        <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/networking/network-policy-default-deny-ingress.yaml" download="service/networking/network-policy-default-deny-ingress.yaml">
+          <code>
+            service/networking/network-policy-default-deny-ingress.yaml
+          </code>
+        </a>
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-network-policy-default-deny-ingress-yaml')" title="Copy service/networking/network-policy-default-deny-ingress.yaml to clipboard">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>networking.k8s.io/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>NetworkPolicy<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>default-deny-ingress<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">podSelector</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">policyTypes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- Ingress<span style="color:#bbb">
+</span></code></pre>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  This ensures that even pods that aren&rsquo;t selected by any other NetworkPolicy will still be isolated. This policy does not change the default egress isolation behavior.
+</p>
+<h3 id="default-allow-all-ingress-traffic">
+  Default allow all ingress traffic
+</h3>
+<p>
+  If you want to allow all traffic to all pods in a namespace (even if policies are added that cause some pods to be treated as &ldquo;isolated&rdquo;), you can create a policy that explicitly allows all traffic in that namespace.
+</p>
+<table class="includecode" id="service-networking-network-policy-allow-all-ingress-yaml">
+  <thead>
+    <tr>
+      <th>
+        <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/networking/network-policy-allow-all-ingress.yaml" download="service/networking/network-policy-allow-all-ingress.yaml">
+          <code>
+            service/networking/network-policy-allow-all-ingress.yaml
+          </code>
+        </a>
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-network-policy-allow-all-ingress-yaml')" title="Copy service/networking/network-policy-allow-all-ingress.yaml to clipboard">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>networking.k8s.io/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>NetworkPolicy<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>allow-all-ingress<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">podSelector</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ingress</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- {}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">policyTypes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- Ingress<span style="color:#bbb">
+</span></code></pre>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="default-deny-all-egress-traffic">
+  Default deny all egress traffic
+</h3>
+<p>
+  You can create a &ldquo;default&rdquo; egress isolation policy for a namespace by creating a NetworkPolicy that selects all pods but does not allow any egress traffic from those pods.
+</p>
+<table class="includecode" id="service-networking-network-policy-default-deny-egress-yaml">
+  <thead>
+    <tr>
+      <th>
+        <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/networking/network-policy-default-deny-egress.yaml" download="service/networking/network-policy-default-deny-egress.yaml">
+          <code>
+            service/networking/network-policy-default-deny-egress.yaml
+          </code>
+        </a>
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-network-policy-default-deny-egress-yaml')" title="Copy service/networking/network-policy-default-deny-egress.yaml to clipboard">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>networking.k8s.io/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>NetworkPolicy<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>default-deny-egress<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">podSelector</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">policyTypes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- Egress<span style="color:#bbb">
+</span></code></pre>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  This ensures that even pods that aren&rsquo;t selected by any other NetworkPolicy will not be allowed egress traffic. This policy does not
+  change the default ingress isolation behavior.
+</p>
+<h3 id="default-allow-all-egress-traffic">
+  Default allow all egress traffic
+</h3>
+<p>
+  If you want to allow all traffic from all pods in a namespace (even if policies are added that cause some pods to be treated as &ldquo;isolated&rdquo;), you can create a policy that explicitly allows all egress traffic in that namespace.
+</p>
+<table class="includecode" id="service-networking-network-policy-allow-all-egress-yaml">
+  <thead>
+    <tr>
+      <th>
+        <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/networking/network-policy-allow-all-egress.yaml" download="service/networking/network-policy-allow-all-egress.yaml">
+          <code>
+            service/networking/network-policy-allow-all-egress.yaml
+          </code>
+        </a>
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-network-policy-allow-all-egress-yaml')" title="Copy service/networking/network-policy-allow-all-egress.yaml to clipboard">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>networking.k8s.io/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>NetworkPolicy<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>allow-all-egress<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">podSelector</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">egress</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- {}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">policyTypes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- Egress<span style="color:#bbb">
+</span></code></pre>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="default-deny-all-ingress-and-all-egress-traffic">
+  Default deny all ingress and all egress traffic
+</h3>
+<p>
+  You can create a &ldquo;default&rdquo; policy for a namespace which prevents all ingress AND egress traffic by creating the following NetworkPolicy in that namespace.
+</p>
+<table class="includecode" id="service-networking-network-policy-default-deny-all-yaml">
+  <thead>
+    <tr>
+      <th>
+        <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/networking/network-policy-default-deny-all.yaml" download="service/networking/network-policy-default-deny-all.yaml">
+          <code>
+            service/networking/network-policy-default-deny-all.yaml
+          </code>
+        </a>
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-network-policy-default-deny-all-yaml')" title="Copy service/networking/network-policy-default-deny-all.yaml to clipboard">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>networking.k8s.io/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>NetworkPolicy<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>default-deny-all<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">podSelector</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">policyTypes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- Ingress<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- Egress<span style="color:#bbb">
+</span></code></pre>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  This ensures that even pods that aren&rsquo;t selected by any other NetworkPolicy will not be allowed ingress or egress traffic.
+</p>
+<h2 id="sctp-support">
+  SCTP support
+</h2>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.12
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    alpha
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+  <p>
+    This feature is currently in a
+    <em>
+      alpha
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain alpha (e.g. v1alpha1).
+    </li>
+    <li>
+      Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+    </li>
+    <li>
+      Support for feature may be dropped at any time without notice.
+    </li>
+    <li>
+      The API may change in incompatible ways in a later software release without notice.
+    </li>
+    <li>
+      Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  To use this feature, you (or your cluster administrator) will need to enable the
+  <code>
+    SCTPSupport
+  </code>
+  <a href="/docs/reference/command-line-tools-reference/feature-gates/">
+    feature gate
+  </a>
+  for the API server with
+  <code>
+    --feature-gates=SCTPSupport=true,…
+  </code>
+  .
+  When the feature gate is enabled, you can set the
+  <code>
+    protocol
+  </code>
+  field of a NetworkPolicy to
+  <code>
+    SCTP
+  </code>
+  .
+</p>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    You must be using a
+    <a class='glossary-tooltip' href='/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni' target='_blank'>
+      CNI
+      <span class='tooltip-text'>
+        Container network interface (CNI) plugins are a type of Network plugin that adheres to the appc/CNI specification.
+      </span>
+    </a>
+    plugin that supports SCTP protocol NetworkPolicies.
+  </div>
+</blockquote>
+<h2 id="what-s-next">
+  What&#39;s next
+</h2>
+<ul>
+  <li>
+    See the
+    <a href="/docs/tasks/administer-cluster/declare-network-policy/">
+      Declare Network Policy
+    </a>
+    walkthrough for further examples.
+  </li>
+  <li>
+    See more
+    <a href="https://github.com/ahmetb/kubernetes-network-policy-recipes">
+      recipes
+    </a>
+    for common scenarios enabled by the NetworkPolicy resource.
+  </li>
+</ul>

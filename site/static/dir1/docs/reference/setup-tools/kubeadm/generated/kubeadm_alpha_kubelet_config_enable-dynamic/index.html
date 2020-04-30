@@ -1,0 +1,151 @@
+<html>
+<body>
+<h1></h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_kubelet_config_enable-dynamic.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1></h1>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <a href="#synopsis">
+                Synopsis
+              </a>
+            </li>
+            <li>
+              <a href="#examples">
+                Examples
+              </a>
+            </li>
+            <li>
+              <a href="#options">
+                Options
+              </a>
+            </li>
+            <li>
+              <a href="#options-inherited-from-parent-commands">
+                Options inherited from parent commands
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h3 id="synopsis">
+  Synopsis
+</h3>
+<p>
+  Enable or update dynamic kubelet configuration for a Node, against the kubelet-config-1.X ConfigMap in the cluster, where X is the minor version of the desired kubelet version.
+</p>
+<p>
+  WARNING: This feature is still experimental, and disabled by default. Enable only if you know what you are doing, as it may have surprising side-effects at this stage.
+</p>
+<p>
+  Alpha Disclaimer: this command is currently alpha.
+</p>
+<pre><code>kubeadm alpha kubelet config enable-dynamic [flags]</code></pre>
+<h3 id="examples">
+  Examples
+</h3>
+<pre><code>  # Enable dynamic kubelet configuration for a Node.
+  kubeadm alpha phase kubelet enable-dynamic-config --node-name node-1 --kubelet-version 1.18.0
+  
+  WARNING: This feature is still experimental, and disabled by default. Enable only if you know what you are doing, as it
+  may have surprising side-effects at this stage.</code></pre>
+<h3 id="options">
+  Options
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -h, &ndash;help
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      help for enable-dynamic
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;kubelet-version string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The desired version for the kubelet
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;node-name string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Name of the node that should enable the dynamic kubelet configuration
+    </td>
+  </tr>
+</p>
+<p>
+<h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+    </td>
+  </tr>
+</p>
+<p>

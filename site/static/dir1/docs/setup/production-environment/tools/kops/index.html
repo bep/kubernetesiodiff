@@ -1,0 +1,616 @@
+<html>
+<body>
+<h1>
+  Installing Kubernetes with kops
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/setup/production-environment/tools/kops.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Installing Kubernetes with kops
+</h1>
+<p>
+  This quickstart shows you how to easily install a Kubernetes cluster on AWS.
+  It uses a tool called
+  <a href="https://github.com/kubernetes/kops">
+    <code>
+      kops
+    </code>
+  </a>
+  .
+</p>
+<p>
+  kops is an automated provisioning system:
+</p>
+<ul>
+  <li>
+    Fully automated installation
+  </li>
+  <li>
+    Uses DNS to identify clusters
+  </li>
+  <li>
+    Self-healing: everything runs in Auto-Scaling Groups
+  </li>
+  <li>
+    Multiple OS support (Debian, Ubuntu 16.04 supported, CentOS &amp; RHEL, Amazon Linux and CoreOS) - see the
+    <a href="https://github.com/kubernetes/kops/blob/master/docs/operations/images.md">
+      images.md
+    </a>
+  </li>
+  <li>
+    High-Availability support - see the
+    <a href="https://github.com/kubernetes/kops/blob/master/docs/operations/high_availability.md">
+      high_availability.md
+    </a>
+  </li>
+  <li>
+    Can directly provision, or generate terraform manifests - see the
+    <a href="https://github.com/kubernetes/kops/blob/master/docs/terraform.md">
+      terraform.md
+    </a>
+  </li>
+</ul>
+<ul id="markdown-toc">
+  <li>
+    <a href="#before-you-begin">
+      Before you begin
+    </a>
+  </li>
+  <li>
+    <a href="#creating-a-cluster">
+      Creating a cluster
+    </a>
+  </li>
+  <li>
+    <a href="#cleanup">
+      Cleanup
+    </a>
+  </li>
+  <li>
+    <a href="#what-s-next">
+      What's next
+    </a>
+  </li>
+</ul>
+<h2 id="before-you-begin">
+  Before you begin
+</h2>
+<ul>
+  <li>
+    <p>
+      You must have
+      <a href="/docs/tasks/tools/install-kubectl/">
+        kubectl
+      </a>
+      installed.
+    </p>
+  </li>
+  <li>
+    <p>
+      You must
+      <a href="https://github.com/kubernetes/kops#installing">
+        install
+      </a>
+      <code>
+        kops
+      </code>
+      on a 64-bit (AMD64 and Intel 64) device architecture.
+    </p>
+  </li>
+  <li>
+    <p>
+      You must have an
+      <a href="https://docs.aws.amazon.com/polly/latest/dg/setting-up.html">
+        AWS account
+      </a>
+      , generate
+      <a href="https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys">
+        IAM keys
+      </a>
+      and
+      <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration">
+        configure
+      </a>
+      them.
+    </p>
+  </li>
+</ul>
+<h2 id="creating-a-cluster">
+  Creating a cluster
+</h2>
+<h3 id="1-5-install-kops">
+  (
+  <sup>
+    1
+  </sup>
+  &frasl;
+  <sub>
+    5
+  </sub>
+  ) Install kops
+</h3>
+<h4 id="installation">
+  Installation
+</h4>
+<p>
+  Download kops from the
+  <a href="https://github.com/kubernetes/kops/releases">
+    releases page
+  </a>
+  (it is also easy to build from source):
+</p>
+<div id="kops-installation">
+<ul>
+  <li>
+    <a href="#kops-installation-0">
+      macOS
+    </a>
+  </li>
+  <li>
+    <a href="#kops-installation-1">
+      Linux
+    </a>
+  </li>
+</ul>
+<div id="kops-installation-0">
+  <p>
+    Download the latest release with the command:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -LO https://github.com/kubernetes/kops/releases/download/<span style="color:#a2f;font-weight:bold">$(</span>curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d <span style="color:#b44">&#39;&#34;&#39;</span> -f 4<span style="color:#a2f;font-weight:bold">)</span>/kops-darwin-amd64</code></pre>
+  </div>
+  <p>
+    To download a specific version, replace the following portion of the command with the specific kops version.
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f;font-weight:bold">$(</span>curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d <span style="color:#b44">&#39;&#34;&#39;</span> -f 4<span style="color:#a2f;font-weight:bold">)</span></code></pre>
+  </div>
+  <p>
+    For example, to download kops version v1.15.0 type:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -LO  https://github.com/kubernetes/kops/releases/download/1.15.0/kops-darwin-amd64</code></pre>
+  </div>
+  <p>
+    Make the kops binary executable.
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">chmod +x kops-darwin-amd64</code></pre>
+  </div>
+  <p>
+    Move the kops binary in to your PATH.
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo mv kops-darwin-amd64 /usr/local/bin/kops</code></pre>
+  </div>
+  <p>
+    You can also install kops using
+    <a href="https://brew.sh/">
+      Homebrew
+    </a>
+    .
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">brew update <span style="color:#666">&amp;&amp;</span> brew install kops</code></pre>
+  </div>
+  <p>
+</div>
+<div id="kops-installation-1">
+  <p>
+    Download the latest release with the command:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -LO https://github.com/kubernetes/kops/releases/download/<span style="color:#a2f;font-weight:bold">$(</span>curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d <span style="color:#b44">&#39;&#34;&#39;</span> -f 4<span style="color:#a2f;font-weight:bold">)</span>/kops-linux-amd64</code></pre>
+  </div>
+  <p>
+    To download a specific version of kops, replace the following portion of the command with the specific kops version.
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f;font-weight:bold">$(</span>curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d <span style="color:#b44">&#39;&#34;&#39;</span> -f 4<span style="color:#a2f;font-weight:bold">)</span></code></pre>
+  </div>
+  <p>
+    For example, to download kops version v1.15.0 type:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -LO  https://github.com/kubernetes/kops/releases/download/1.15.0/kops-linux-amd64</code></pre>
+  </div>
+  <p>
+    Make the kops binary executable
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">chmod +x kops-linux-amd64</code></pre>
+  </div>
+  <p>
+    Move the kops binary in to your PATH.
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo mv kops-linux-amd64 /usr/local/bin/kops</code></pre>
+  </div>
+  <p>
+    You can also install kops using
+    <a href="https://docs.brew.sh/Homebrew-on-Linux">
+      Homebrew
+    </a>
+    .
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">brew update <span style="color:#666">&amp;&amp;</span> brew install kops</code></pre>
+  </div>
+  <p>
+</div>
+<p>
+<script>
+  $(function(){$("#kops-installation").tabs();});
+</script>
+<h3 id="2-5-create-a-route53-domain-for-your-cluster">
+  (
+  <sup>
+    2
+  </sup>
+  &frasl;
+  <sub>
+    5
+  </sub>
+  ) Create a route53 domain for your cluster
+</h3>
+<p>
+  kops uses DNS for discovery, both inside the cluster and outside, so that you can reach the kubernetes API server
+  from clients.
+</p>
+<p>
+  kops has a strong opinion on the cluster name: it should be a valid DNS name.  By doing so you will
+  no longer get your clusters confused, you can share clusters with your colleagues unambiguously,
+  and you can reach them without relying on remembering an IP address.
+</p>
+<p>
+  You can, and probably should, use subdomains to divide your clusters.  As our example we will use
+  <code>
+    useast1.dev.example.com
+  </code>
+  .  The API server endpoint will then be
+  <code>
+    api.useast1.dev.example.com
+  </code>
+  .
+</p>
+<p>
+  A Route53 hosted zone can serve subdomains.  Your hosted zone could be
+  <code>
+    useast1.dev.example.com
+  </code>
+  ,
+  but also
+  <code>
+    dev.example.com
+  </code>
+  or even
+  <code>
+    example.com
+  </code>
+  .  kops works with any of these, so typically
+  you choose for organization reasons (e.g. you are allowed to create records under
+  <code>
+    dev.example.com
+  </code>
+  ,
+  but not under
+  <code>
+    example.com
+  </code>
+  ).
+</p>
+<p>
+  Let&rsquo;s assume you&rsquo;re using
+  <code>
+    dev.example.com
+  </code>
+  as your hosted zone.  You create that hosted zone using
+  the
+  <a href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html">
+    normal process
+  </a>
+  , or
+  with a command such as
+  <code>
+    aws route53 create-hosted-zone --name dev.example.com --caller-reference 1
+  </code>
+  .
+</p>
+<p>
+  You must then set up your NS records in the parent domain, so that records in the domain will resolve.  Here,
+  you would create NS records in
+  <code>
+    example.com
+  </code>
+  for
+  <code>
+    dev
+  </code>
+  .  If it is a root domain name you would configure the NS
+  records at your domain registrar (e.g.
+  <code>
+    example.com
+  </code>
+  would need to be configured where you bought
+  <code>
+    example.com
+  </code>
+  ).
+</p>
+<p>
+  This step is easy to mess up (it is the #1 cause of problems!)  You can double-check that
+  your cluster is configured correctly if you have the dig tool by running:
+</p>
+<p>
+  <code>
+    dig NS dev.example.com
+  </code>
+</p>
+<p>
+  You should see the 4 NS records that Route53 assigned your hosted zone.
+</p>
+<h3 id="3-5-create-an-s3-bucket-to-store-your-clusters-state">
+  (
+  <sup>
+    3
+  </sup>
+  &frasl;
+  <sub>
+    5
+  </sub>
+  ) Create an S3 bucket to store your clusters state
+</h3>
+<p>
+  kops lets you manage your clusters even after installation.  To do this, it must keep track of the clusters
+  that you have created, along with their configuration, the keys they are using etc.  This information is stored
+  in an S3 bucket.  S3 permissions are used to control access to the bucket.
+</p>
+<p>
+  Multiple clusters can use the same S3 bucket, and you can share an S3 bucket between your colleagues that
+  administer the same clusters - this is much easier than passing around kubecfg files.  But anyone with access
+  to the S3 bucket will have administrative access to all your clusters, so you don&rsquo;t want to share it beyond
+  the operations team.
+</p>
+<p>
+  So typically you have one S3 bucket for each ops team (and often the name will correspond
+  to the name of the hosted zone above!)
+</p>
+<p>
+  In our example, we chose
+  <code>
+    dev.example.com
+  </code>
+  as our hosted zone, so let&rsquo;s pick
+  <code>
+    clusters.dev.example.com
+  </code>
+  as
+  the S3 bucket name.
+</p>
+<ul>
+  <li>
+    <p>
+      Export
+      <code>
+        AWS_PROFILE
+      </code>
+      (if you need to select a profile for the AWS CLI to work)
+    </p>
+  </li>
+  <li>
+    <p>
+      Create the S3 bucket using
+      <code>
+        aws s3 mb s3://clusters.dev.example.com
+      </code>
+    </p>
+  </li>
+  <li>
+    <p>
+      You can
+      <code>
+        export KOPS_STATE_STORE=s3://clusters.dev.example.com
+      </code>
+      and then kops will use this location by default.
+      We suggest putting this in your bash profile or similar.
+    </p>
+  </li>
+</ul>
+<h3 id="4-5-build-your-cluster-configuration">
+  (
+  <sup>
+    4
+  </sup>
+  &frasl;
+  <sub>
+    5
+  </sub>
+  ) Build your cluster configuration
+</h3>
+<p>
+  Run
+  <code>
+    kops create cluster
+  </code>
+  to create your cluster configuration:
+</p>
+<p>
+  <code>
+    kops create cluster --zones=us-east-1c useast1.dev.example.com
+  </code>
+</p>
+<p>
+  kops will create the configuration for your cluster.  Note that it
+  <em>
+    only
+  </em>
+  creates the configuration, it does
+  not actually create the cloud resources - you&rsquo;ll do that in the next step with a
+  <code>
+    kops update cluster
+  </code>
+  .  This
+  give you an opportunity to review the configuration or change it.
+</p>
+<p>
+  It prints commands you can use to explore further:
+</p>
+<ul>
+  <li>
+    List your clusters with:
+    <code>
+      kops get cluster
+    </code>
+  </li>
+  <li>
+    Edit this cluster with:
+    <code>
+      kops edit cluster useast1.dev.example.com
+    </code>
+  </li>
+  <li>
+    Edit your node instance group:
+    <code>
+      kops edit ig --name=useast1.dev.example.com nodes
+    </code>
+  </li>
+  <li>
+    Edit your master instance group:
+    <code>
+      kops edit ig --name=useast1.dev.example.com master-us-east-1c
+    </code>
+  </li>
+</ul>
+<p>
+  If this is your first time using kops, do spend a few minutes to try those out!  An instance group is a
+  set of instances, which will be registered as kubernetes nodes.  On AWS this is implemented via auto-scaling-groups.
+  You can have several instance groups, for example if you wanted nodes that are a mix of spot and on-demand instances, or
+  GPU and non-GPU instances.
+</p>
+<h3 id="5-5-create-the-cluster-in-aws">
+  (
+  <sup>
+    5
+  </sup>
+  &frasl;
+  <sub>
+    5
+  </sub>
+  ) Create the cluster in AWS
+</h3>
+<p>
+  Run &ldquo;kops update cluster&rdquo; to create your cluster in AWS:
+</p>
+<p>
+  <code>
+    kops update cluster useast1.dev.example.com --yes
+  </code>
+</p>
+<p>
+  That takes a few seconds to run, but then your cluster will likely take a few minutes to actually be ready.
+  <code>
+    kops update cluster
+  </code>
+  will be the tool you&rsquo;ll use whenever you change the configuration of your cluster; it
+  applies the changes you have made to the configuration to your cluster - reconfiguring AWS or kubernetes as needed.
+</p>
+<p>
+  For example, after you
+  <code>
+    kops edit ig nodes
+  </code>
+  , then
+  <code>
+    kops update cluster --yes
+  </code>
+  to apply your configuration, and
+  sometimes you will also have to
+  <code>
+    kops rolling-update cluster
+  </code>
+  to roll out the configuration immediately.
+</p>
+<p>
+  Without
+  <code>
+    --yes
+  </code>
+  ,
+  <code>
+    kops update cluster
+  </code>
+  will show you a preview of what it is going to do.  This is handy
+  for production clusters!
+</p>
+<h3 id="explore-other-add-ons">
+  Explore other add-ons
+</h3>
+<p>
+  See the
+  <a href="/docs/concepts/cluster-administration/addons/">
+    list of add-ons
+  </a>
+  to explore other add-ons, including tools for logging, monitoring, network policy, visualization, and control of your Kubernetes cluster.
+</p>
+<h2 id="cleanup">
+  Cleanup
+</h2>
+<ul>
+  <li>
+    To delete your cluster:
+    <code>
+      kops delete cluster useast1.dev.example.com --yes
+    </code>
+  </li>
+</ul>
+<h2 id="what-s-next">
+  What&#39;s next
+</h2>
+<ul>
+  <li>
+    Learn more about Kubernetes
+    <a href="/docs/concepts/">
+      concepts
+    </a>
+    and
+    <a href="/docs/user-guide/kubectl-overview/">
+      <code>
+        kubectl
+      </code>
+    </a>
+    .
+  </li>
+  <li>
+    Learn more about
+    <code>
+      kops
+    </code>
+    <a href="https://kops.sigs.k8s.io/">
+      advanced usage
+    </a>
+    for tutorials, best practices and advanced configuration options.
+  </li>
+  <li>
+    Follow
+    <code>
+      kops
+    </code>
+    community discussions on Slack:
+    <a href="https://github.com/kubernetes/kops#other-ways-to-communicate-with-the-contributors">
+      community discussions
+    </a>
+  </li>
+  <li>
+    Contribute to
+    <code>
+      kops
+    </code>
+    by addressing or raising an issue
+    <a href="https://github.com/kubernetes/kops/issues">
+      GitHub Issues
+    </a>
+  </li>
+</ul>

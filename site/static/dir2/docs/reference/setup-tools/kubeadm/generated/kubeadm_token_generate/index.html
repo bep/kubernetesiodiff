@@ -1,0 +1,117 @@
+<html>
+  <body>
+    <h1></h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_token_generate.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1></h1>
+    <nav id="TableOfContents">
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <a href="#synopsis">
+                Synopsis
+              </a>
+            </li>
+            <li>
+              <a href="#options">
+                Options
+              </a>
+            </li>
+            <li>
+              <a href="#options-inherited-from-parent-commands">
+                Options inherited from parent commands
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <h3 id="synopsis">
+      Synopsis
+    </h3>
+    <p>
+      This command will print out a randomly-generated bootstrap token that can be used with
+      the &ldquo;init&rdquo; and &ldquo;join&rdquo; commands.
+    </p>
+    <p>
+      You don&rsquo;t have to use this command in order to generate a token. You can do so
+      yourself as long as it is in the format &ldquo;[a-z0-9]{6}.[a-z0-9]{16}&quot;. This
+      command is provided for convenience to generate tokens in the given format.
+    </p>
+    <p>
+      You can also use &ldquo;kubeadm init&rdquo; without specifying a token and it will
+      generate and print one for you.
+    </p>
+    <pre><code>kubeadm token generate [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for generate
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --dry-run
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Whether to enable dry-run mode or not
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

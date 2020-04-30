@@ -1,0 +1,591 @@
+<html>
+  <body>
+    <h1>
+      Configure Multiple Schedulers
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/administer-cluster/configure-multiple-schedulers.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Configure Multiple Schedulers
+    </h1>
+    <p>
+      Kubernetes ships with a default scheduler that is described
+      <a href="/docs/admin/kube-scheduler/">
+        here
+      </a>
+      .
+      If the default scheduler does not suit your needs you can implement your own scheduler.
+      Not just that, you can even run multiple schedulers simultaneously alongside the default
+      scheduler and instruct Kubernetes what scheduler to use for each of your pods. Let&rsquo;s
+      learn how to run multiple schedulers in Kubernetes with an example.
+    </p>
+    <p>
+      A detailed description of how to implement a scheduler is outside the scope of this
+      document. Please refer to the kube-scheduler implementation in
+      <a href="https://github.com/kubernetes/kubernetes/tree/master/pkg/scheduler">
+        pkg/scheduler
+      </a>
+      in the Kubernetes source directory for a canonical example.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#package-the-scheduler">
+          Package the scheduler
+        </a>
+      </li>
+      <li>
+        <a href="#define-a-kubernetes-deployment-for-the-scheduler">
+          Define a Kubernetes Deployment for the scheduler
+        </a>
+      </li>
+      <li>
+        <a href="#run-the-second-scheduler-in-the-cluster">
+          Run the second scheduler in the cluster
+        </a>
+      </li>
+      <li>
+        <a href="#specify-schedulers-for-pods">
+          Specify schedulers for pods
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="package-the-scheduler">
+      Package the scheduler
+    </h2>
+    <p>
+      Package your scheduler binary into a container image. For the purposes of this example,
+      let&rsquo;s just use the default scheduler (kube-scheduler) as our second scheduler as well.
+      Clone the
+      <a href="https://github.com/kubernetes/kubernetes">
+        Kubernetes source code from GitHub
+      </a>
+      and build the source.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/kubernetes/kubernetes.git
+<span style="color:#a2f">cd</span> kubernetes
+make</code></pre>
+    </div>
+    <p>
+      Create a container image containing the kube-scheduler binary. Here is the
+      <code>
+        Dockerfile
+      </code>
+      to build the image:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#a2f;font-weight:bold">FROM</span><span style="color:#b44"> busybox</span><span style="">
+</span><span style=""></span><span style="color:#a2f;font-weight:bold">ADD</span> ./_output/local/bin/linux/amd64/kube-scheduler /usr/local/bin/kube-scheduler</code></pre>
+    </div>
+    <p>
+      Save the file as
+      <code>
+        Dockerfile
+      </code>
+      , build the image and push it to a registry. This example
+      pushes the image to
+      <a href="https://cloud.google.com/container-registry/">
+        Google Container Registry (GCR)
+      </a>
+      .
+      For more details, please read the GCR
+      <a href="https://cloud.google.com/container-registry/docs/">
+        documentation
+      </a>
+      .
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker build -t gcr.io/my-gcp-project/my-kube-scheduler:1.0 .
+gcloud docker -- push gcr.io/my-gcp-project/my-kube-scheduler:1.0</code></pre>
+    </div>
+    <h2 id="define-a-kubernetes-deployment-for-the-scheduler">
+      Define a Kubernetes Deployment for the scheduler
+    </h2>
+    <p>
+      Now that we have our scheduler in a container image, we can just create a pod
+      config for it and run it in our Kubernetes cluster. But instead of creating a pod
+      directly in the cluster, let&rsquo;s use a
+      <a href="/docs/concepts/workloads/controllers/deployment/">
+        Deployment
+      </a>
+      for this example. A
+      <a href="/docs/concepts/workloads/controllers/deployment/">
+        Deployment
+      </a>
+      manages a
+      <a href="/docs/concepts/workloads/controllers/replicaset/">
+        Replica Set
+      </a>
+      which in turn manages the pods,
+      thereby making the scheduler resilient to failures. Here is the deployment
+      config. Save it as
+      <code>
+        my-scheduler.yaml
+      </code>
+      :
+    </p>
+    <table class="includecode" id="admin-sched-my-scheduler-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/admin/sched/my-scheduler.yaml" download="admin/sched/my-scheduler.yaml">
+              <code>
+                admin/sched/my-scheduler.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-sched-my-scheduler-yaml')" title="Copy admin/sched/my-scheduler.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ServiceAccount<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-system<span style="color:#bbb">
+</span><span style="color:#bbb"></span>---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>rbac.authorization.k8s.io/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ClusterRoleBinding<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-scheduler-as-kube-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">subjects</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ServiceAccount<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-system<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">roleRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ClusterRole<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>system:kube-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">apiGroup</span>:<span style="color:#bbb"> </span>rbac.authorization.k8s.io<span style="color:#bbb">
+</span><span style="color:#bbb"></span>---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">component</span>:<span style="color:#bbb"> </span>scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>control-plane<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-system<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">component</span>:<span style="color:#bbb"> </span>scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>control-plane<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">component</span>:<span style="color:#bbb"> </span>scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>control-plane<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">version</span>:<span style="color:#bbb"> </span>second<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">serviceAccountName</span>:<span style="color:#bbb"> </span>my-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- /usr/local/bin/kube-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- --address=<span style="color:#666">0.0.0.0</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- --leader-elect=<span style="color:#a2f;font-weight:bold">false</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- --scheduler-name=my-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/my-gcp-project/my-kube-scheduler:<span style="color:#666">1.0</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">livenessProbe</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">httpGet</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">path</span>:<span style="color:#bbb"> </span>/healthz<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">10251</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">initialDelaySeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">15</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>kube-second-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">readinessProbe</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">httpGet</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">path</span>:<span style="color:#bbb"> </span>/healthz<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">10251</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#39;0.1&#39;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">securityContext</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">privileged</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">false</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">volumeMounts</span>:<span style="color:#bbb"> </span>[]<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">hostNetwork</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">false</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">hostPID</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">false</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">volumes</span>:<span style="color:#bbb"> </span>[]<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      An important thing to note here is that the name of the scheduler specified as an
+      argument to the scheduler command in the container spec should be unique. This is the name that is matched against the value of the optional
+      <code>
+        spec.schedulerName
+      </code>
+      on pods, to determine whether this scheduler is responsible for scheduling a particular pod.
+    </p>
+    <p>
+      Note also that we created a dedicated service account
+      <code>
+        my-scheduler
+      </code>
+      and bind the cluster role
+      <code>
+        system:kube-scheduler
+      </code>
+      to it so that it can acquire the same privileges as
+      <code>
+        kube-scheduler
+      </code>
+      .
+    </p>
+    <p>
+      Please see the
+      <a href="/docs/admin/kube-scheduler/">
+        kube-scheduler documentation
+      </a>
+      for
+      detailed description of other command line arguments.
+    </p>
+    <h2 id="run-the-second-scheduler-in-the-cluster">
+      Run the second scheduler in the cluster
+    </h2>
+    <p>
+      In order to run your scheduler in a Kubernetes cluster, just create the deployment
+      specified in the config above in a Kubernetes cluster:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f my-scheduler.yaml</code></pre>
+    </div>
+    <p>
+      Verify that the scheduler pod is running:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods --namespace<span style="color:#666">=</span>kube-system</code></pre>
+    </div>
+    <pre><code>NAME                                           READY     STATUS    RESTARTS   AGE
+....
+my-scheduler-lnf4s-4744f                       1/1       Running   0          2m
+...</code></pre>
+    <p>
+      You should see a &ldquo;Running&rdquo; my-scheduler pod, in addition to the default kube-scheduler
+      pod in this list.
+    </p>
+    <p>
+      To run multiple-scheduler with leader election enabled, you must do the following:
+    </p>
+    <p>
+      First, update the following fields in your YAML file:
+    </p>
+    <ul>
+      <li>
+        <code>
+          --leader-elect=true
+        </code>
+      </li>
+      <li>
+        <code>
+          --lock-object-namespace=lock-object-namespace
+        </code>
+      </li>
+      <li>
+        <code>
+          --lock-object-name=lock-object-name
+        </code>
+      </li>
+    </ul>
+    <p>
+      If RBAC is enabled on your cluster, you must update the
+      <code>
+        system:kube-scheduler
+      </code>
+      cluster role. Add your scheduler name to the resourceNames of the rule applied for endpoints resources, as in the following example:
+    </p>
+    <pre><code>kubectl edit clusterrole system:kube-scheduler</code></pre>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>rbac.authorization.k8s.io/v1<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ClusterRole<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">rbac.authorization.kubernetes.io/autoupdate</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;true&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">kubernetes.io/bootstrapping</span>:<span style="color:#bbb"> </span>rbac-defaults<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>system:kube-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">rules</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">apiGroups</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resourceNames</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- kube-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- my-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- endpoints<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">verbs</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- delete<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- get<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- patch<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- update</code></pre>
+    </div>
+    <h2 id="specify-schedulers-for-pods">
+      Specify schedulers for pods
+    </h2>
+    <p>
+      Now that our second scheduler is running, let&rsquo;s create some pods, and direct them to be scheduled by either the default scheduler or the one we just deployed. In order to schedule a given pod using a specific scheduler, we specify the name of the
+      scheduler in that pod spec. Let&rsquo;s look at three examples.
+    </p>
+    <ul>
+      <li>
+        Pod spec without any scheduler name
+        <br />
+      </li>
+    </ul>
+    <table class="includecode" id="admin-sched-pod1-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/admin/sched/pod1.yaml" download="admin/sched/pod1.yaml">
+              <code>
+                admin/sched/pod1.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-sched-pod1-yaml')" title="Copy admin/sched/pod1.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>no-annotation<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>multischeduler-example<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>pod-with-no-annotation-container<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>k8s.gcr.io/pause:<span style="color:#666">2.0</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      When no scheduler name is supplied, the pod is automatically scheduled using the
+      default-scheduler.
+    </p>
+    <p>
+      Save this file as
+      <code>
+        pod1.yaml
+      </code>
+      and submit it to the Kubernetes cluster.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f pod1.yaml</code></pre>
+    </div>
+    <ul>
+      <li>
+        Pod spec with
+        <code>
+          default-scheduler
+        </code>
+        <br />
+      </li>
+    </ul>
+    <table class="includecode" id="admin-sched-pod2-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/admin/sched/pod2.yaml" download="admin/sched/pod2.yaml">
+              <code>
+                admin/sched/pod2.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-sched-pod2-yaml')" title="Copy admin/sched/pod2.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>annotation-default-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>multischeduler-example<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">schedulerName</span>:<span style="color:#bbb"> </span>default-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>pod-with-default-annotation-container<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>k8s.gcr.io/pause:<span style="color:#666">2.0</span><span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      A scheduler is specified by supplying the scheduler name as a value to
+      <code>
+        spec.schedulerName
+      </code>
+      . In this case, we supply the name of the
+      default scheduler which is
+      <code>
+        default-scheduler
+      </code>
+      .
+    </p>
+    <p>
+      Save this file as
+      <code>
+        pod2.yaml
+      </code>
+      and submit it to the Kubernetes cluster.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f pod2.yaml</code></pre>
+    </div>
+    <ul>
+      <li>
+        Pod spec with
+        <code>
+          my-scheduler
+        </code>
+        <br />
+      </li>
+    </ul>
+    <table class="includecode" id="admin-sched-pod3-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/admin/sched/pod3.yaml" download="admin/sched/pod3.yaml">
+              <code>
+                admin/sched/pod3.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-sched-pod3-yaml')" title="Copy admin/sched/pod3.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>annotation-second-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>multischeduler-example<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">schedulerName</span>:<span style="color:#bbb"> </span>my-scheduler<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>pod-with-second-annotation-container<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>k8s.gcr.io/pause:<span style="color:#666">2.0</span><span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      In this case, we specify that this pod should be scheduled using the scheduler that we
+      deployed -
+      <code>
+        my-scheduler
+      </code>
+      . Note that the value of
+      <code>
+        spec.schedulerName
+      </code>
+      should match the name supplied to the scheduler
+      command as an argument in the deployment config for the scheduler.
+    </p>
+    <p>
+      Save this file as
+      <code>
+        pod3.yaml
+      </code>
+      and submit it to the Kubernetes cluster.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f pod3.yaml</code></pre>
+    </div>
+    <p>
+      Verify that all three pods are running.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods</code></pre>
+    </div>
+    <h3 id="verifying-that-the-pods-were-scheduled-using-the-desired-schedulers">
+      Verifying that the pods were scheduled using the desired schedulers
+    </h3>
+    <p>
+      In order to make it easier to work through these examples, we did not verify that the
+      pods were actually scheduled using the desired schedulers. We can verify that by
+      changing the order of pod and deployment config submissions above. If we submit all the
+      pod configs to a Kubernetes cluster before submitting the scheduler deployment config,
+      we see that the pod
+      <code>
+        annotation-second-scheduler
+      </code>
+      remains in &ldquo;Pending&rdquo; state forever
+      while the other two pods get scheduled. Once we submit the scheduler deployment config
+      and our new scheduler starts running, the
+      <code>
+        annotation-second-scheduler
+      </code>
+      pod gets
+      scheduled as well.
+    </p>
+    <p>
+      Alternatively, one could just look at the &ldquo;Scheduled&rdquo; entries in the event logs to
+      verify that the pods were scheduled by the desired schedulers.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get events</code></pre>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,848 @@
+<html>
+  <body>
+    <h1>
+      Configure Service Accounts for Pods
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/configure-pod-container/configure-service-account.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Configure Service Accounts for Pods
+    </h1>
+    <p>
+      A service account provides an identity for processes that run in a Pod.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        This document is a user introduction to Service Accounts and describes how service accounts behave in a cluster set up
+        as recommended by the Kubernetes project. Your cluster administrator may have
+        customized the behavior in your cluster, in which case this documentation may
+        not apply.
+      </div>
+    </blockquote>
+    <p>
+      When you (a human) access the cluster (for example, using
+      <code>
+        kubectl
+      </code>
+      ), you are
+      authenticated by the apiserver as a particular User Account (currently this is
+      usually
+      <code>
+        admin
+      </code>
+      , unless your cluster administrator has customized your cluster). Processes in containers inside pods can also contact the apiserver.
+      When they do, they are authenticated as a particular Service Account (for example,
+      <code>
+        default
+      </code>
+      ).
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#use-the-default-service-account-to-access-the-api-server">
+          Use the Default Service Account to access the API server.
+        </a>
+      </li>
+      <li>
+        <a href="#use-multiple-service-accounts">
+          Use Multiple Service Accounts.
+        </a>
+      </li>
+      <li>
+        <a href="#manually-create-a-service-account-api-token">
+          Manually create a service account API token.
+        </a>
+      </li>
+      <li>
+        <a href="#add-imagepullsecrets-to-a-service-account">
+          Add ImagePullSecrets to a service account
+        </a>
+      </li>
+      <li>
+        <a href="#service-account-token-volume-projection">
+          Service Account Token Volume Projection
+        </a>
+      </li>
+      <li>
+        <a href="#service-account-issuer-discovery">
+          Service Account Issuer Discovery
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="use-the-default-service-account-to-access-the-api-server">
+      Use the Default Service Account to access the API server.
+    </h2>
+    <p>
+      When you create a pod, if you do not specify a service account, it is
+      automatically assigned the
+      <code>
+        default
+      </code>
+      service account in the same namespace.
+      If you get the raw json or yaml for a pod you have created (for example,
+      <code>
+        kubectl get pods/&lt;podname&gt; -o yaml
+      </code>
+      ), you can see the
+      <code>
+        spec.serviceAccountName
+      </code>
+      field has been
+      <a href="/docs/user-guide/working-with-resources/#resources-are-automatically-modified">
+        automatically set
+      </a>
+      .
+    </p>
+    <p>
+      You can access the API from inside a pod using automatically mounted service account credentials, as described in
+      <a href="/docs/user-guide/accessing-the-cluster/#accessing-the-api-from-a-pod">
+        Accessing the Cluster
+      </a>
+      .
+      The API permissions of the service account depend on the
+      <a href="/docs/reference/access-authn-authz/authorization/#authorization-modules">
+        authorization plugin and policy
+      </a>
+      in use.
+    </p>
+    <p>
+      In version 1.6+, you can opt out of automounting API credentials for a service account by setting
+      <code>
+        automountServiceAccountToken: false
+      </code>
+      on the service account:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ServiceAccount<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>build-robot<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">automountServiceAccountToken</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">false</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>...</code></pre>
+    </div>
+    <p>
+      In version 1.6+, you can also opt out of automounting API credentials for a particular pod:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">serviceAccountName</span>:<span style="color:#bbb"> </span>build-robot<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">automountServiceAccountToken</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">false</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span>...</code></pre>
+    </div>
+    <p>
+      The pod spec takes precedence over the service account if both specify a
+      <code>
+        automountServiceAccountToken
+      </code>
+      value.
+    </p>
+    <h2 id="use-multiple-service-accounts">
+      Use Multiple Service Accounts.
+    </h2>
+    <p>
+      Every namespace has a default service account resource called
+      <code>
+        default
+      </code>
+      .
+      You can list this and any other serviceAccount resources in the namespace with this command:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get serviceaccounts</code></pre>
+    </div>
+    <p>
+      The output is similar to this:
+    </p>
+    <pre><code>NAME      SECRETS    AGE
+default   1          1d</code></pre>
+    <p>
+      You can create additional ServiceAccount objects like this:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f - <span style="color:#b44">&lt;&lt;EOF
+</span><span style="color:#b44">apiVersion: v1
+</span><span style="color:#b44">kind: ServiceAccount
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: build-robot
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      The name of a ServiceAccount object must be a valid
+      <a href="/docs/concepts/overview/working-with-objects/names#dns-subdomain-names">
+        DNS subdomain name
+      </a>
+      .
+    </p>
+    <p>
+      If you get a complete dump of the service account object, like this:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get serviceaccounts/build-robot -o yaml</code></pre>
+    </div>
+    <p>
+      The output is similar to this:
+    </p>
+    <pre><code>apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: 2015-06-16T00:12:59Z
+  name: build-robot
+  namespace: default
+  resourceVersion: &#34;272500&#34;
+  uid: 721ab723-13bc-11e5-aec2-42010af0021e
+secrets:
+- name: build-robot-token-bvbk5</code></pre>
+    <p>
+      then you will see that a token has automatically been created and is referenced by the service account.
+    </p>
+    <p>
+      You may use authorization plugins to
+      <a href="/docs/reference/access-authn-authz/rbac/#service-account-permissions">
+        set permissions on service accounts
+      </a>
+      .
+    </p>
+    <p>
+      To use a non-default service account, simply set the
+      <code>
+        spec.serviceAccountName
+      </code>
+      field of a pod to the name of the service account you wish to use.
+    </p>
+    <p>
+      The service account has to exist at the time the pod is created, or it will be rejected.
+    </p>
+    <p>
+      You cannot update the service account of an already created pod.
+    </p>
+    <p>
+      You can clean up the service account from this example like this:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete serviceaccount/build-robot</code></pre>
+    </div>
+    <h2 id="manually-create-a-service-account-api-token">
+      Manually create a service account API token.
+    </h2>
+    <p>
+      Suppose we have an existing service account named &ldquo;build-robot&rdquo; as mentioned above, and we create
+      a new secret manually.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f - <span style="color:#b44">&lt;&lt;EOF
+</span><span style="color:#b44">apiVersion: v1
+</span><span style="color:#b44">kind: Secret
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: build-robot-secret
+</span><span style="color:#b44">  annotations:
+</span><span style="color:#b44">    kubernetes.io/service-account.name: build-robot
+</span><span style="color:#b44">type: kubernetes.io/service-account-token
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      Now you can confirm that the newly built secret is populated with an API token for the &ldquo;build-robot&rdquo; service account.
+    </p>
+    <p>
+      Any tokens for non-existent service accounts will be cleaned up by the token controller.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl describe secrets/build-robot-secret</code></pre>
+    </div>
+    <p>
+      The output is similar to this:
+    </p>
+    <pre><code>Name:           build-robot-secret
+Namespace:      default
+Labels:         &lt;none&gt;
+Annotations:    kubernetes.io/service-account.name=build-robot
+                kubernetes.io/service-account.uid=da68f9c6-9d26-11e7-b84e-002dc52800da
+
+Type:   kubernetes.io/service-account-token
+
+Data
+====
+ca.crt:         1338 bytes
+namespace:      7 bytes
+token:          ...</code></pre>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        The content of
+        <code>
+          token
+        </code>
+        is elided here.
+      </div>
+    </blockquote>
+    <h2 id="add-imagepullsecrets-to-a-service-account">
+      Add ImagePullSecrets to a service account
+    </h2>
+    <p>
+      First, create an imagePullSecret, as described
+      <a href="/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod">
+        here
+      </a>
+      .
+      Next, verify it has been created. For example:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get secrets myregistrykey</code></pre>
+    </div>
+    <p>
+      The output is similar to this:
+    </p>
+    <pre><code>NAME             TYPE                              DATA    AGE
+myregistrykey    kubernetes.io/.dockerconfigjson   1       1d</code></pre>
+    <p>
+      Next, modify the default service account for the namespace to use this secret as an imagePullSecret.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl patch serviceaccount default -p <span style="color:#b44">&#39;{&#34;imagePullSecrets&#34;: [{&#34;name&#34;: &#34;myregistrykey&#34;}]}&#39;</span></code></pre>
+    </div>
+    <p>
+      Interactive version requires manual edit:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get serviceaccounts default -o yaml &gt; ./sa.yaml</code></pre>
+    </div>
+    <p>
+      The output of the
+      <code>
+        sa.yaml
+      </code>
+      file is similar to this:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: 2015-08-07T22:02:39Z
+  name: default
+  namespace: default
+  resourceVersion: <span style="color:#b44">&#34;243024&#34;</span>
+  uid: 052fb0f4-3d50-11e5-b066-42010af0d7b6
+secrets:
+- name: default-token-uudge</code></pre>
+    </div>
+    <p>
+      Using your editor of choice (for example
+      <code>
+        vi
+      </code>
+      ), open the
+      <code>
+        sa.yaml
+      </code>
+      file, delete line with key
+      <code>
+        resourceVersion
+      </code>
+      , add lines with
+      <code>
+        imagePullSecrets:
+      </code>
+      and save.
+    </p>
+    <p>
+      The output of the
+      <code>
+        sa.yaml
+      </code>
+      file is similar to this:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: 2015-08-07T22:02:39Z
+  name: default
+  namespace: default
+  uid: 052fb0f4-3d50-11e5-b066-42010af0d7b6
+secrets:
+- name: default-token-uudge
+imagePullSecrets:
+- name: myregistrykey</code></pre>
+    </div>
+    <p>
+      Finally replace the serviceaccount with the new updated
+      <code>
+        sa.yaml
+      </code>
+      file
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl replace serviceaccount default -f ./sa.yaml</code></pre>
+    </div>
+    <p>
+      Now, any new pods created in the current namespace will have this added to their spec:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">imagePullSecrets</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>myregistrykey</code></pre>
+    </div>
+    <!--## Adding Secrets to a service account.
+
+TODO: Test and explain how to use additional non-K8s secrets with an existing service account.
+-->
+    <h2 id="service-account-token-volume-projection">
+      Service Account Token Volume Projection
+    </h2>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.12
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        beta
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+        <p>
+          This feature is currently in a
+          <em>
+            beta
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain beta (e.g. v2beta3).
+          </li>
+          <li>
+            Code is well tested. Enabling the feature is considered safe. Enabled by default.
+          </li>
+          <li>
+            Support for the overall feature will not be dropped, though details may change.
+          </li>
+          <li>
+            The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+          </li>
+          <li>
+            Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+          </li>
+          <li>
+            <strong>
+              Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+            </strong>
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        <p>
+          This ServiceAccountTokenVolumeProjection is
+          <strong>
+            beta
+          </strong>
+          in 1.12 and
+          enabled by passing all of the following flags to the API server:
+        </p>
+        <ul>
+          <li>
+            <code>
+              --service-account-issuer
+            </code>
+          </li>
+          <li>
+            <code>
+              --service-account-signing-key-file
+            </code>
+          </li>
+          <li>
+            <code>
+              --service-account-api-audiences
+            </code>
+          </li>
+        </ul>
+      </div>
+    </blockquote>
+    <p>
+      The kubelet can also project a service account token into a Pod. You can
+      specify desired properties of the token, such as the audience and the validity
+      duration. These properties are not configurable on the default service account
+      token. The service account token will also become invalid against the API when
+      the Pod or the ServiceAccount is deleted.
+    </p>
+    <p>
+      This behavior is configured on a PodSpec using a ProjectedVolume type called
+      <a href="/docs/concepts/storage/volumes/#projected">
+        ServiceAccountToken
+      </a>
+      . To provide a
+      pod with a token with an audience of &ldquo;vault&rdquo; and a validity duration of two
+      hours, you would configure the following in your PodSpec:
+    </p>
+    <table class="includecode" id="pods-pod-projected-svc-token-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/pod-projected-svc-token.yaml" download="pods/pod-projected-svc-token.yaml">
+              <code>
+                pods/pod-projected-svc-token.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-projected-svc-token-yaml')" title="Copy pods/pod-projected-svc-token.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">volumeMounts</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">mountPath</span>:<span style="color:#bbb"> </span>/var/run/secrets/tokens<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>vault-token<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">serviceAccountName</span>:<span style="color:#bbb"> </span>build-robot<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">volumes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>vault-token<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">projected</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">sources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">serviceAccountToken</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">path</span>:<span style="color:#bbb"> </span>vault-token<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">expirationSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">7200</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">audience</span>:<span style="color:#bbb"> </span>vault<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Create the Pod:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://k8s.io/examples/pods/pod-projected-svc-token.yaml</code></pre>
+    </div>
+    <p>
+      The kubelet will request and store the token on behalf of the pod, make the
+      token available to the pod at a configurable file path, and refresh the token as it approaches expiration. Kubelet proactively rotates the token if it is older than 80% of its total TTL, or if the token is older than 24 hours.
+    </p>
+    <p>
+      The application is responsible for reloading the token when it rotates. Periodic reloading (e.g. once every 5 minutes) is sufficient for most usecases.
+    </p>
+    <h2 id="service-account-issuer-discovery">
+      Service Account Issuer Discovery
+    </h2>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        alpha
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+        <p>
+          This feature is currently in a
+          <em>
+            alpha
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain alpha (e.g. v1alpha1).
+          </li>
+          <li>
+            Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+          </li>
+          <li>
+            Support for feature may be dropped at any time without notice.
+          </li>
+          <li>
+            The API may change in incompatible ways in a later software release without notice.
+          </li>
+          <li>
+            Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      The Service Account Issuer Discovery feature is enabled by enabling the
+      <code>
+        ServiceAccountIssuerDiscovery
+      </code>
+      <a href="/docs/reference/command-line-tools-reference/feature">
+        feature gate
+      </a>
+      and then enabling the Service Account Token Projection feature as described
+      <a href="#service-account-token-volume-projection">
+        above
+      </a>
+      .
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        <p>
+          The issuer URL must comply with the
+          <a href="https://openid.net/specs/openid-connect-discovery-1_0.html">
+            OIDC Discovery Spec
+          </a>
+          . In
+          practice, this means it must use the
+          <code>
+            https
+          </code>
+          scheme, and should serve an OpenID
+          provider configuration at
+          <code>
+            {service-account-issuer}/.well-known/openid-configuration
+          </code>
+          .
+        </p>
+        <p>
+          If the URL does not comply, the
+          <code>
+            ServiceAccountIssuerDiscovery
+          </code>
+          endpoints will
+          not be registered, even if the feature is enabled.
+        </p>
+      </div>
+    </blockquote>
+    <p>
+      The Service Account Issuer Discovery feature enables federation of Kubernetes
+      service account tokens issued by a cluster (the
+      <em>
+        identity provider
+      </em>
+      ) with
+      external systems (
+      <em>
+        relying parties
+      </em>
+      ).
+    </p>
+    <p>
+      When enabled, the Kubernetes API server provides an OpenID Provider
+      Configuration document at
+      <code>
+        /.well-known/openid-configuration
+      </code>
+      and the associated
+      JSON Web Key Set (JWKS) at
+      <code>
+        /openid/v1/jwks
+      </code>
+      . The OpenID Provider Configuration
+      is sometimes referred to as the
+      <em>
+        discovery document
+      </em>
+      .
+    </p>
+    <p>
+      When enabled, the cluster is also configured with a default RBAC ClusterRole
+      called
+      <code>
+        system:service-account-issuer-discovery
+      </code>
+      . No role bindings are provided
+      by default. Administrators may, for example, choose whether to bind the role to
+      <code>
+        system:authenticated
+      </code>
+      or
+      <code>
+        system:unauthenticated
+      </code>
+      depending on their security
+      requirements and which external systems they intend to federate with.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        The responses served at
+        <code>
+          /.well-known/openid-configuration
+        </code>
+        and
+        <code>
+          /openid/v1/jwks
+        </code>
+        are designed to be OIDC compatible, but not strictly OIDC
+        compliant. Those documents contain only the parameters necessary to perform
+        validation of Kubernetes service account tokens.
+      </div>
+    </blockquote>
+    <p>
+      The JWKS response contains public keys that a relying party can use to validate
+      the Kubernetes service account tokens. Relying parties first query for the
+      OpenID Provider Configuration, and use the
+      <code>
+        jwks_uri
+      </code>
+      field in the response to
+      find the JWKS.
+    </p>
+    <p>
+      In many cases, Kubernetes API servers are not available on the public internet,
+      but public endpoints that serve cached responses from the API server can be made
+      available by users or service providers. In these cases, it is possible to
+      override the
+      <code>
+        jwks_uri
+      </code>
+      in the OpenID Provider Configuration so that it points
+      to the public endpoint, rather than the API server&rsquo;s address, by passing the
+      <code>
+        --service-account-jwks-uri
+      </code>
+      flag to the API server. Like the issuer URL, the
+      JWKS URI is required to use the
+      <code>
+        https
+      </code>
+      scheme.
+    </p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <p>
+      See also:
+    </p>
+    <ul>
+      <li>
+        <a href="/docs/reference/access-authn-authz/service-accounts-admin/">
+          Cluster Admin Guide to Service Accounts
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-auth/20190730-oidc-discovery.md">
+          Service Account Signing Key Retrieval KEP
+        </a>
+      </li>
+      <li>
+        <a href="https://openid.net/specs/openid-connect-discovery-1_0.html">
+          OIDC Discovery Spec
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

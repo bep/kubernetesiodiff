@@ -1,0 +1,1228 @@
+<html>
+<body>
+<h1>
+  kubectl
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/kubectl/kubectl.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  kubectl
+</h1>
+<ul id="markdown-toc">
+  <li>
+    <a href="#synopsis">
+      Synopsis
+    </a>
+  </li>
+  <li>
+    <a href="#options">
+      Options
+    </a>
+  </li>
+  <li>
+    <a href="#see-also">
+      See Also
+    </a>
+  </li>
+</ul>
+<h2 id="synopsis">
+  Synopsis
+</h2>
+<p>
+  kubectl controls the Kubernetes cluster manager.
+</p>
+<p>
+  Find more information at:
+  <a href="https://kubernetes.io/docs/reference/kubectl/overview/">
+    https://kubernetes.io/docs/reference/kubectl/overview/
+  </a>
+</p>
+<pre><code>kubectl [flags]</code></pre>
+<h2 id="options">
+  Options
+</h2>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;add-dir-header
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      If true, adds the file directory to the header
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;alsologtostderr
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      log to standard error as well as files
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;application-metrics-count-limit int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 100
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Max number of application metrics to store (per container)
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;as string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Username to impersonate for the operation
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;as-group stringArray
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;azure-container-registry-config string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Path to the file containing Azure container registry configuration information.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;boot-id-file string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/proc/sys/kernel/random/boot_id&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Comma-separated list of files to check for boot-id. Use the first one that exists.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;cache-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;$HOME/.kube/http-cache&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Default HTTP cache directory
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;certificate-authority string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Path to a cert file for the certificate authority
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;client-certificate string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Path to a client certificate file for TLS
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;client-key string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Path to a client key file for TLS
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;cloud-provider-gce-l7lb-src-cidrs cidrs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 130.211.0.0/22,35.191.0.0/16
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      CIDRs opened in GCE firewall for L7 LB traffic proxy &amp; health checks
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;cloud-provider-gce-lb-src-cidrs cidrs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 130.211.0.0/22,209.85.152.0/22,209.85.204.0/22,35.191.0.0/16
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      CIDRs opened in GCE firewall for L4 LB traffic proxy &amp; health checks
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;cluster string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The name of the kubeconfig cluster to use
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;container-hints string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/cadvisor/container_hints.json&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      location of the container hints file
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;containerd string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/run/containerd/containerd.sock&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      containerd endpoint
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;containerd-namespace string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;k8s.io&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      containerd namespace
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;context string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The name of the kubeconfig context to use
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;default-not-ready-toleration-seconds int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 300
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Indicates the tolerationSeconds of the toleration for notReady:NoExecute that is added by default to every pod that does not already have such a toleration.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;default-unreachable-toleration-seconds int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 300
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Indicates the tolerationSeconds of the toleration for unreachable:NoExecute that is added by default to every pod that does not already have such a toleration.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;disable-root-cgroup-stats
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Disable collecting root Cgroup stats
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;docker string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;unix:///var/run/docker.sock&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      docker endpoint
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;docker-env-metadata-whitelist string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      a comma-separated list of environment variable keys that needs to be collected for docker containers
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;docker-only
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Only report docker containers in addition to root stats
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;docker-root string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/var/lib/docker&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      DEPRECATED: docker root is read from docker info (this is a fallback, default: /var/lib/docker)
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;docker-tls
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      use TLS to connect to docker
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;docker-tls-ca string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;ca.pem&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      path to trusted CA
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;docker-tls-cert string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;cert.pem&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      path to client certificate
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;docker-tls-key string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;key.pem&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      path to private key
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;enable-load-reader
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Whether to enable cpu load reader
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;event-storage-age-limit string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;default=0&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Max length of time for which to store events (per type). Value is a comma separated list of key values, where the keys are event types (e.g.: creation, oom) or &ldquo;default&rdquo; and the value is a duration. Default is applied to all non-specified event types
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;event-storage-event-limit string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;default=0&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Max number of events to store (per type). Value is a comma separated list of key values, where the keys are event types (e.g.: creation, oom) or &ldquo;default&rdquo; and the value is an integer. Default is applied to all non-specified event types
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;global-housekeeping-interval duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 1m0s
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Interval between global housekeepings
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -h, &ndash;help
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      help for kubectl
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;housekeeping-interval duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 10s
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Interval between container housekeepings
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;insecure-skip-tls-verify
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      If true, the server&rsquo;s certificate will not be checked for validity. This will make your HTTPS connections insecure
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;kubeconfig string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Path to the kubeconfig file to use for CLI requests.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;log-backtrace-at traceLocation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: :0
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      when logging hits line file:N, emit a stack trace
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;log-cadvisor-usage
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Whether to log the usage of the cAdvisor container
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;log-dir string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      If non-empty, write log files in this directory
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;log-file string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      If non-empty, use this log file
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;log-file-max-size uint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 1800
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Defines the maximum size a log file can grow to. Unit is megabytes. If the value is 0, the maximum file size is unlimited.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;log-flush-frequency duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5s
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Maximum number of seconds between log flushes
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;logtostderr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      log to standard error instead of files
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;machine-id-file string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/machine-id,/var/lib/dbus/machine-id&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Comma-separated list of files to check for machine-id. Use the first one that exists.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;match-server-version
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Require server version to match client version
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -n, &ndash;namespace string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      If present, the namespace scope for this CLI request
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;password string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Password for basic authentication to the API server
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;profile string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;none&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Name of profile to capture. One of (none|cpu|heap|goroutine|threadcreate|block|mutex)
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;profile-output string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;profile.pprof&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Name of the file to write the profile to
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;request-timeout string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;0&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&rsquo;t timeout requests.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -s, &ndash;server string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The address and port of the Kubernetes API server
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;skip-headers
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      If true, avoid header prefixes in the log messages
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;skip-log-headers
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      If true, avoid headers when opening log files
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;stderrthreshold severity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 2
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      logs at or above this threshold go to stderr
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;storage-driver-buffer-duration duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 1m0s
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Writes in the storage driver will be buffered for this duration, and committed to the non memory backends as a single transaction
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;storage-driver-db string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;cadvisor&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      database name
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;storage-driver-host string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;localhost:8086&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      database host:port
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;storage-driver-password string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;root&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      database password
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;storage-driver-secure
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      use secure connection with database
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;storage-driver-table string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;stats&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      table name
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;storage-driver-user string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;root&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      database username
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;tls-server-name string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;token string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Bearer token for authentication to the API server
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;update-machine-info-interval duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5m0s
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Interval between machine info updates.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;user string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The name of the kubeconfig user to use
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;username string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Username for basic authentication to the API server
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -v, &ndash;v Level
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      number for the log level verbosity
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;version version[=true]
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Print version information and quit
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;vmodule moduleSpec
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      comma-separated list of pattern=N settings for file-filtered logging
+    </td>
+  </tr>
+</p>
+<p>
+<h2 id="see-also">
+  See Also
+</h2>
+<ul>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#alpha">
+      kubectl alpha
+    </a>
+    - Commands for features in alpha
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#annotate">
+      kubectl annotate
+    </a>
+    - Update the annotations on a resource
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#api-resources">
+      kubectl api-resources
+    </a>
+    - Print the supported API resources on the server
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#api-versions">
+      kubectl api-versions
+    </a>
+    - Print the supported API versions on the server, in the form of &ldquo;group/version&rdquo;
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#apply">
+      kubectl apply
+    </a>
+    - Apply a configuration to a resource by filename or stdin
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#attach">
+      kubectl attach
+    </a>
+    - Attach to a running container
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#auth">
+      kubectl auth
+    </a>
+    - Inspect authorization
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#autoscale">
+      kubectl autoscale
+    </a>
+    - Auto-scale a Deployment, ReplicaSet, or ReplicationController
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#certificate">
+      kubectl certificate
+    </a>
+    - Modify certificate resources.
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#cluster-info">
+      kubectl cluster-info
+    </a>
+    - Display cluster info
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#completion">
+      kubectl completion
+    </a>
+    - Output shell completion code for the specified shell (bash or zsh)
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#config">
+      kubectl config
+    </a>
+    - Modify kubeconfig files
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#convert">
+      kubectl convert
+    </a>
+    - Convert config files between different API versions
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#cordon">
+      kubectl cordon
+    </a>
+    - Mark node as unschedulable
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#cp">
+      kubectl cp
+    </a>
+    - Copy files and directories to and from containers.
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#create">
+      kubectl create
+    </a>
+    - Create a resource from a file or from stdin.
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#delete">
+      kubectl delete
+    </a>
+    - Delete resources by filenames, stdin, resources and names, or by resources and label selector
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#describe">
+      kubectl describe
+    </a>
+    - Show details of a specific resource or group of resources
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#diff">
+      kubectl diff
+    </a>
+    - Diff live version against would-be applied version
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#drain">
+      kubectl drain
+    </a>
+    - Drain node in preparation for maintenance
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#edit">
+      kubectl edit
+    </a>
+    - Edit a resource on the server
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#exec">
+      kubectl exec
+    </a>
+    - Execute a command in a container
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#explain">
+      kubectl explain
+    </a>
+    - Documentation of resources
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#expose">
+      kubectl expose
+    </a>
+    - Take a replication controller, service, deployment or pod and expose it as a new Kubernetes Service
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#get">
+      kubectl get
+    </a>
+    - Display one or many resources
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#kustomize">
+      kubectl kustomize
+    </a>
+    - Build a kustomization target from a directory or a remote url.
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#label">
+      kubectl label
+    </a>
+    - Update the labels on a resource
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#logs">
+      kubectl logs
+    </a>
+    - Print the logs for a container in a pod
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#options">
+      kubectl options
+    </a>
+    - Print the list of flags inherited by all commands
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#patch">
+      kubectl patch
+    </a>
+    - Update field(s) of a resource using strategic merge patch
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#plugin">
+      kubectl plugin
+    </a>
+    - Provides utilities for interacting with plugins.
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#port-forward">
+      kubectl port-forward
+    </a>
+    - Forward one or more local ports to a pod
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#proxy">
+      kubectl proxy
+    </a>
+    - Run a proxy to the Kubernetes API server
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#replace">
+      kubectl replace
+    </a>
+    - Replace a resource by filename or stdin
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#rollout">
+      kubectl rollout
+    </a>
+    - Manage the rollout of a resource
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#run">
+      kubectl run
+    </a>
+    - Run a particular image on the cluster
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#scale">
+      kubectl scale
+    </a>
+    - Set a new size for a Deployment, ReplicaSet or Replication Controller
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#set">
+      kubectl set
+    </a>
+    - Set specific features on objects
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#taint">
+      kubectl taint
+    </a>
+    - Update the taints on one or more nodes
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#top">
+      kubectl top
+    </a>
+    - Display Resource (CPU/Memory/Storage) usage.
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#uncordon">
+      kubectl uncordon
+    </a>
+    - Mark node as schedulable
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#version">
+      kubectl version
+    </a>
+    - Print the client and server version information
+  </li>
+  <li>
+    <a href="/docs/reference/generated/kubectl/kubectl-commands#wait">
+      kubectl wait
+    </a>
+    - Experimental: Wait for a specific condition on one or many resources.
+  </li>
+</ul>

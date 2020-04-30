@@ -1,0 +1,1397 @@
+<html>
+  <body>
+    <h1>
+      Declarative Management of Kubernetes Objects Using Kustomize
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/manage-kubernetes-objects/kustomization.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Declarative Management of Kubernetes Objects Using Kustomize
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes-sigs/kustomize">
+        Kustomize
+      </a>
+      is a standalone tool
+      to customize Kubernetes objects
+      through a
+      <a href="https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#kustomization">
+        kustomization file
+      </a>
+      .
+    </p>
+    <p>
+      Since 1.14, Kubectl also
+      supports the management of Kubernetes objects using a kustomization file.
+      To view Resources found in a directory containing a kustomization file, run the following command:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl kustomize &lt;kustomization_directory&gt;</code></pre>
+    </div>
+    <p>
+      To apply those Resources, run
+      <code>
+        kubectl apply
+      </code>
+      with
+      <code>
+        --kustomize
+      </code>
+      or
+      <code>
+        -k
+      </code>
+      flag:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -k &lt;kustomization_directory&gt;</code></pre>
+    </div>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#overview-of-kustomize">
+          Overview of Kustomize
+        </a>
+      </li>
+      <li>
+        <a href="#bases-and-overlays">
+          Bases and Overlays
+        </a>
+      </li>
+      <li>
+        <a href="#how-to-apply-view-delete-objects-using-kustomize">
+          How to apply/view/delete objects using Kustomize
+        </a>
+      </li>
+      <li>
+        <a href="#kustomize-feature-list">
+          Kustomize Feature List
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      Install
+      <a href="/docs/tasks/tools/install-kubectl/">
+        <code>
+          kubectl
+        </code>
+      </a>
+      .
+    </p>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="overview-of-kustomize">
+      Overview of Kustomize
+    </h2>
+    <p>
+      Kustomize is a tool for customizing Kubernetes configurations. It has the following features to manage application configuration files:
+    </p>
+    <ul>
+      <li>
+        generating resources from other sources
+      </li>
+      <li>
+        setting cross-cutting fields for resources
+      </li>
+      <li>
+        composing and customizing collections of resources
+      </li>
+    </ul>
+    <h3 id="generating-resources">
+      Generating Resources
+    </h3>
+    <p>
+      ConfigMap and Secret hold config or sensitive data that are used by other Kubernetes objects, such as Pods. The source
+      of truth of ConfigMap or Secret are usually from somewhere else, such as a
+      <code>
+        .properties
+      </code>
+      file or a ssh key file.
+      Kustomize has
+      <code>
+        secretGenerator
+      </code>
+      and
+      <code>
+        configMapGenerator
+      </code>
+      , which generate Secret and ConfigMap from files or literals.
+    </p>
+    <h4 id="configmapgenerator">
+      configMapGenerator
+    </h4>
+    <p>
+      To generate a ConfigMap from a file, add an entry to
+      <code>
+        files
+      </code>
+      list in
+      <code>
+        configMapGenerator
+      </code>
+      . Here is an example of generating a ConfigMap with a data item from a file content.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Create a application.properties file</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt;application.properties
+</span><span style="color:#b44">FOO=Bar
+</span><span style="color:#b44">EOF</span>
+
+cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">configMapGenerator:
+</span><span style="color:#b44">- name: example-configmap-1
+</span><span style="color:#b44">  files:
+</span><span style="color:#b44">  - application.properties
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      The generated ConfigMap can be checked by the following command:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl kustomize ./</code></pre>
+    </div>
+    <p>
+      The generated ConfigMap is:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">application.properties</span>:<span style="color:#bbb"> </span><span style="color:#b44;font-style:italic">|
+</span><span style="color:#b44;font-style:italic">    FOO=Bar</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ConfigMap<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>example-configmap<span style="color:#666">-1</span>-8mbdf7882g</code></pre>
+    </div>
+    <p>
+      ConfigMap can also be generated from literal key-value pairs. To generate a ConfigMap from a literal key-value pair, add an entry to
+      <code>
+        literals
+      </code>
+      list in configMapGenerator. Here is an example of generating a ConfigMap with a data item from a key-value pair.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">configMapGenerator:
+</span><span style="color:#b44">- name: example-configmap-2
+</span><span style="color:#b44">  literals:
+</span><span style="color:#b44">  - FOO=Bar
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      The generated ConfigMap can be checked by the following command:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl kustomize ./</code></pre>
+    </div>
+    <p>
+      The generated ConfigMap is
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">FOO</span>:<span style="color:#bbb"> </span>Bar<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ConfigMap<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>example-configmap<span style="color:#666">-2</span>-g2hdhfc6tk</code></pre>
+    </div>
+    <h4 id="secretgenerator">
+      secretGenerator
+    </h4>
+    <p>
+      You can generate Secrets from files or literal key-value pairs. To generate a Secret from a file, add an entry to
+      <code>
+        files
+      </code>
+      list in
+      <code>
+        secretGenerator
+      </code>
+      . Here is an example of generating a Secret with a data item from a file.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Create a password.txt file</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt;./password.txt
+</span><span style="color:#b44">username=admin
+</span><span style="color:#b44">password=secret
+</span><span style="color:#b44">EOF</span>
+
+cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">secretGenerator:
+</span><span style="color:#b44">- name: example-secret-1
+</span><span style="color:#b44">  files:
+</span><span style="color:#b44">  - password.txt
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      The generated Secret is as follows:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">password.txt</span>:<span style="color:#bbb"> </span>dXNlcm5hbWU9YWRtaW4KcGFzc3dvcmQ9c2VjcmV0Cg==<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Secret<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>example-secret<span style="color:#666">-1</span>-t2kt65hgtb<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Opaque</code></pre>
+    </div>
+    <p>
+      To generate a Secret from a literal key-value pair, add an entry to
+      <code>
+        literals
+      </code>
+      list in
+      <code>
+        secretGenerator
+      </code>
+      . Here is an example of generating a Secret with a data item from a key-value pair.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">secretGenerator:
+</span><span style="color:#b44">- name: example-secret-2
+</span><span style="color:#b44">  literals:
+</span><span style="color:#b44">  - username=admin
+</span><span style="color:#b44">  - password=secret
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      The generated Secret is as follows:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">password</span>:<span style="color:#bbb"> </span>c2VjcmV0<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">username</span>:<span style="color:#bbb"> </span>YWRtaW4=<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Secret<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>example-secret<span style="color:#666">-2</span>-t52t6g96d8<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Opaque</code></pre>
+    </div>
+    <h4 id="generatoroptions">
+      generatorOptions
+    </h4>
+    <p>
+      The generated ConfigMaps and Secrets have a suffix appended by hashing the contents. This ensures that a new ConfigMap or Secret is generated when the content is changed. To disable the behavior of appending a suffix, one can use
+      <code>
+        generatorOptions
+      </code>
+      . Besides that, it is also possible to specify cross-cutting options for generated ConfigMaps and Secrets.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">configMapGenerator:
+</span><span style="color:#b44">- name: example-configmap-3
+</span><span style="color:#b44">  literals:
+</span><span style="color:#b44">  - FOO=Bar
+</span><span style="color:#b44">generatorOptions:
+</span><span style="color:#b44">  disableNameSuffixHash: true
+</span><span style="color:#b44">  labels:
+</span><span style="color:#b44">    type: generated
+</span><span style="color:#b44">  annotations:
+</span><span style="color:#b44">    note: generated
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      Run
+      <code>
+        kubectl kustomize ./
+      </code>
+      to view the generated ConfigMap:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">FOO</span>:<span style="color:#bbb"> </span>Bar<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ConfigMap<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">note</span>:<span style="color:#bbb"> </span>generated<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>generated<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>example-configmap<span style="color:#666">-3</span></code></pre>
+    </div>
+    <h3 id="setting-cross-cutting-fields">
+      Setting cross-cutting fields
+    </h3>
+    <p>
+      It is quite common to set cross-cutting fields for all Kubernetes resources in a project.
+      Some use cases for setting cross-cutting fields:
+    </p>
+    <ul>
+      <li>
+        setting the same namespace for all Resource
+      </li>
+      <li>
+        adding the same name prefix or suffix
+      </li>
+      <li>
+        adding the same set of labels
+      </li>
+      <li>
+        adding the same set of annotations
+      </li>
+    </ul>
+    <p>
+      Here is an example:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Create a deployment.yaml</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt;./deployment.yaml
+</span><span style="color:#b44">apiVersion: apps/v1
+</span><span style="color:#b44">kind: Deployment
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: nginx-deployment
+</span><span style="color:#b44">  labels:
+</span><span style="color:#b44">    app: nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  selector:
+</span><span style="color:#b44">    matchLabels:
+</span><span style="color:#b44">      app: nginx
+</span><span style="color:#b44">  template:
+</span><span style="color:#b44">    metadata:
+</span><span style="color:#b44">      labels:
+</span><span style="color:#b44">        app: nginx
+</span><span style="color:#b44">    spec:
+</span><span style="color:#b44">      containers:
+</span><span style="color:#b44">      - name: nginx
+</span><span style="color:#b44">        image: nginx
+</span><span style="color:#b44">EOF</span>
+
+cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">namespace: my-namespace
+</span><span style="color:#b44">namePrefix: dev-
+</span><span style="color:#b44">nameSuffix: &#34;-001&#34;
+</span><span style="color:#b44">commonLabels:
+</span><span style="color:#b44">  app: bingo
+</span><span style="color:#b44">commonAnnotations:
+</span><span style="color:#b44">  oncallPager: 800-555-1212
+</span><span style="color:#b44">resources:
+</span><span style="color:#b44">- deployment.yaml
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      Run
+      <code>
+        kubectl kustomize ./
+      </code>
+      to view those fields are all set in the Deployment Resource:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">oncallPager</span>:<span style="color:#bbb"> </span><span style="color:#666">800-555-1212</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>bingo<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>dev-nginx-deployment<span style="color:#666">-001</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>my-namespace<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>bingo<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">oncallPager</span>:<span style="color:#bbb"> </span><span style="color:#666">800-555-1212</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>bingo<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx</code></pre>
+    </div>
+    <h3 id="composing-and-customizing-resources">
+      Composing and Customizing Resources
+    </h3>
+    <p>
+      It is common to compose a set of Resources in a project and manage them inside
+      the same file or directory.
+      Kustomize offers composing Resources from different files and applying patches or other customization to them.
+    </p>
+    <h4 id="composing">
+      Composing
+    </h4>
+    <p>
+      Kustomize supports composition of different resources. The
+      <code>
+        resources
+      </code>
+      field, in the
+      <code>
+        kustomization.yaml
+      </code>
+      file, defines the list of resources to include in a configuration. Set the path to a resource&rsquo;s configuration file in the
+      <code>
+        resources
+      </code>
+      list.
+      Here is an example for an nginx application with a Deployment and a Service.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Create a deployment.yaml file</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; deployment.yaml
+</span><span style="color:#b44">apiVersion: apps/v1
+</span><span style="color:#b44">kind: Deployment
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  selector:
+</span><span style="color:#b44">    matchLabels:
+</span><span style="color:#b44">      run: my-nginx
+</span><span style="color:#b44">  replicas: 2
+</span><span style="color:#b44">  template:
+</span><span style="color:#b44">    metadata:
+</span><span style="color:#b44">      labels:
+</span><span style="color:#b44">        run: my-nginx
+</span><span style="color:#b44">    spec:
+</span><span style="color:#b44">      containers:
+</span><span style="color:#b44">      - name: my-nginx
+</span><span style="color:#b44">        image: nginx
+</span><span style="color:#b44">        ports:
+</span><span style="color:#b44">        - containerPort: 80
+</span><span style="color:#b44">EOF</span>
+
+<span style="color:#080;font-style:italic"># Create a service.yaml file</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; service.yaml
+</span><span style="color:#b44">apiVersion: v1
+</span><span style="color:#b44">kind: Service
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">  labels:
+</span><span style="color:#b44">    run: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  ports:
+</span><span style="color:#b44">  - port: 80
+</span><span style="color:#b44">    protocol: TCP
+</span><span style="color:#b44">  selector:
+</span><span style="color:#b44">    run: my-nginx
+</span><span style="color:#b44">EOF</span>
+
+<span style="color:#080;font-style:italic"># Create a kustomization.yaml composing them</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">resources:
+</span><span style="color:#b44">- deployment.yaml
+</span><span style="color:#b44">- service.yaml
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      The Resources from
+      <code>
+        kubectl kustomize ./
+      </code>
+      contains both the Deployment and the Service objects.
+    </p>
+    <h4 id="customizing">
+      Customizing
+    </h4>
+    <p>
+      On top of Resources, one can apply different customizations by applying patches. Kustomize supports different patching
+      mechanisms through
+      <code>
+        patchesStrategicMerge
+      </code>
+      and
+      <code>
+        patchesJson6902
+      </code>
+      .
+      <code>
+        patchesStrategicMerge
+      </code>
+      is a list of file paths. Each file should be resolved to a
+      <a href="https://github.com/kubernetes/community/blob/master/contributors/devel/sig-api-machinery/strategic-merge-patch.md">
+        strategic merge patch
+      </a>
+      . The names inside the patches must match Resource names that are already loaded. Small patches that do one thing are recommended. For example, create one patch for increasing the deployment replica number and another patch for setting the memory limit.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Create a deployment.yaml file</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; deployment.yaml
+</span><span style="color:#b44">apiVersion: apps/v1
+</span><span style="color:#b44">kind: Deployment
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  selector:
+</span><span style="color:#b44">    matchLabels:
+</span><span style="color:#b44">      run: my-nginx
+</span><span style="color:#b44">  replicas: 2
+</span><span style="color:#b44">  template:
+</span><span style="color:#b44">    metadata:
+</span><span style="color:#b44">      labels:
+</span><span style="color:#b44">        run: my-nginx
+</span><span style="color:#b44">    spec:
+</span><span style="color:#b44">      containers:
+</span><span style="color:#b44">      - name: my-nginx
+</span><span style="color:#b44">        image: nginx
+</span><span style="color:#b44">        ports:
+</span><span style="color:#b44">        - containerPort: 80
+</span><span style="color:#b44">EOF</span>
+
+<span style="color:#080;font-style:italic"># Create a patch increase_replicas.yaml</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; increase_replicas.yaml
+</span><span style="color:#b44">apiVersion: apps/v1
+</span><span style="color:#b44">kind: Deployment
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  replicas: 3
+</span><span style="color:#b44">EOF</span>
+
+<span style="color:#080;font-style:italic"># Create another patch set_memory.yaml</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; set_memory.yaml
+</span><span style="color:#b44">apiVersion: apps/v1
+</span><span style="color:#b44">kind: Deployment
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  template:
+</span><span style="color:#b44">    spec:
+</span><span style="color:#b44">      containers:
+</span><span style="color:#b44">      - name: my-nginx
+</span><span style="color:#b44">        resources:
+</span><span style="color:#b44">        limits:
+</span><span style="color:#b44">          memory: 512Mi
+</span><span style="color:#b44">EOF</span>
+
+cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">resources:
+</span><span style="color:#b44">- deployment.yaml
+</span><span style="color:#b44">patchesStrategicMerge:
+</span><span style="color:#b44">- increase_replicas.yaml
+</span><span style="color:#b44">- set_memory.yaml
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      Run
+      <code>
+        kubectl kustomize ./
+      </code>
+      to view the Deployment:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">run</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">run</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span>512Mi<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span></code></pre>
+    </div>
+    <p>
+      Not all Resources or fields support strategic merge patches. To support modifying arbitrary fields in arbitrary Resources,
+      Kustomize offers applying
+      <a href="https://tools.ietf.org/html/rfc6902">
+        JSON patch
+      </a>
+      through
+      <code>
+        patchesJson6902
+      </code>
+      .
+      To find the correct Resource for a Json patch, the group, version, kind and name of that Resource need to be
+      specified in
+      <code>
+        kustomization.yaml
+      </code>
+      . For example, increasing the replica number of a Deployment object can also be done
+      through
+      <code>
+        patchesJson6902
+      </code>
+      .
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Create a deployment.yaml file</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; deployment.yaml
+</span><span style="color:#b44">apiVersion: apps/v1
+</span><span style="color:#b44">kind: Deployment
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  selector:
+</span><span style="color:#b44">    matchLabels:
+</span><span style="color:#b44">      run: my-nginx
+</span><span style="color:#b44">  replicas: 2
+</span><span style="color:#b44">  template:
+</span><span style="color:#b44">    metadata:
+</span><span style="color:#b44">      labels:
+</span><span style="color:#b44">        run: my-nginx
+</span><span style="color:#b44">    spec:
+</span><span style="color:#b44">      containers:
+</span><span style="color:#b44">      - name: my-nginx
+</span><span style="color:#b44">        image: nginx
+</span><span style="color:#b44">        ports:
+</span><span style="color:#b44">        - containerPort: 80
+</span><span style="color:#b44">EOF</span>
+
+<span style="color:#080;font-style:italic"># Create a json patch</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; patch.yaml
+</span><span style="color:#b44">- op: replace
+</span><span style="color:#b44">  path: /spec/replicas
+</span><span style="color:#b44">  value: 3
+</span><span style="color:#b44">EOF</span>
+
+<span style="color:#080;font-style:italic"># Create a kustomization.yaml</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">resources:
+</span><span style="color:#b44">- deployment.yaml
+</span><span style="color:#b44">
+</span><span style="color:#b44">patchesJson6902:
+</span><span style="color:#b44">- target:
+</span><span style="color:#b44">    group: apps
+</span><span style="color:#b44">    version: v1
+</span><span style="color:#b44">    kind: Deployment
+</span><span style="color:#b44">    name: my-nginx
+</span><span style="color:#b44">  path: patch.yaml
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      Run
+      <code>
+        kubectl kustomize ./
+      </code>
+      to see the
+      <code>
+        replicas
+      </code>
+      field is updated:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">run</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">run</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span></code></pre>
+    </div>
+    <p>
+      In addition to patches, Kustomize also offers customizing container images or injecting field values from other objects into containers
+      without creating patches. For example, you can change the image used inside containers by specifying the new image in
+      <code>
+        images
+      </code>
+      field in
+      <code>
+        kustomization.yaml
+      </code>
+      .
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cat <span style="color:#b44">&lt;&lt;EOF &gt; deployment.yaml
+</span><span style="color:#b44">apiVersion: apps/v1
+</span><span style="color:#b44">kind: Deployment
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  selector:
+</span><span style="color:#b44">    matchLabels:
+</span><span style="color:#b44">      run: my-nginx
+</span><span style="color:#b44">  replicas: 2
+</span><span style="color:#b44">  template:
+</span><span style="color:#b44">    metadata:
+</span><span style="color:#b44">      labels:
+</span><span style="color:#b44">        run: my-nginx
+</span><span style="color:#b44">    spec:
+</span><span style="color:#b44">      containers:
+</span><span style="color:#b44">      - name: my-nginx
+</span><span style="color:#b44">        image: nginx
+</span><span style="color:#b44">        ports:
+</span><span style="color:#b44">        - containerPort: 80
+</span><span style="color:#b44">EOF</span>
+
+cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">resources:
+</span><span style="color:#b44">- deployment.yaml
+</span><span style="color:#b44">images:
+</span><span style="color:#b44">- name: nginx
+</span><span style="color:#b44">  newName: my.image.registry/nginx
+</span><span style="color:#b44">  newTag: 1.4.0
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      Run
+      <code>
+        kubectl kustomize ./
+      </code>
+      to see that the image being used is updated:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">2</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">run</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">run</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>my.image.registry/nginx:<span style="color:#666">1.4.0</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span></code></pre>
+    </div>
+    <p>
+      Sometimes, the application running in a Pod may need to use configuration values from other objects. For example,
+      a Pod from a Deployment object need to read the corresponding Service name from Env or as a command argument.
+      Since the Service name may change as
+      <code>
+        namePrefix
+      </code>
+      or
+      <code>
+        nameSuffix
+      </code>
+      is added in the
+      <code>
+        kustomization.yaml
+      </code>
+      file. It is
+      not recommended to hard code the Service name in the command argument. For this usage, Kustomize can inject the Service name into containers through
+      <code>
+        vars
+      </code>
+      .
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Create a deployment.yaml file</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; deployment.yaml
+</span><span style="color:#b44">apiVersion: apps/v1
+</span><span style="color:#b44">kind: Deployment
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  selector:
+</span><span style="color:#b44">    matchLabels:
+</span><span style="color:#b44">      run: my-nginx
+</span><span style="color:#b44">  replicas: 2
+</span><span style="color:#b44">  template:
+</span><span style="color:#b44">    metadata:
+</span><span style="color:#b44">      labels:
+</span><span style="color:#b44">        run: my-nginx
+</span><span style="color:#b44">    spec:
+</span><span style="color:#b44">      containers:
+</span><span style="color:#b44">      - name: my-nginx
+</span><span style="color:#b44">        image: nginx
+</span><span style="color:#b44">        command: [&#34;start&#34;, &#34;--host&#34;, &#34;\$(MY_SERVICE_NAME)&#34;]
+</span><span style="color:#b44">EOF</span>
+
+<span style="color:#080;font-style:italic"># Create a service.yaml file</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; service.yaml
+</span><span style="color:#b44">apiVersion: v1
+</span><span style="color:#b44">kind: Service
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">  labels:
+</span><span style="color:#b44">    run: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  ports:
+</span><span style="color:#b44">  - port: 80
+</span><span style="color:#b44">    protocol: TCP
+</span><span style="color:#b44">  selector:
+</span><span style="color:#b44">    run: my-nginx
+</span><span style="color:#b44">EOF</span>
+
+cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">namePrefix: dev-
+</span><span style="color:#b44">nameSuffix: &#34;-001&#34;
+</span><span style="color:#b44">
+</span><span style="color:#b44">resources:
+</span><span style="color:#b44">- deployment.yaml
+</span><span style="color:#b44">- service.yaml
+</span><span style="color:#b44">
+</span><span style="color:#b44">vars:
+</span><span style="color:#b44">- name: MY_SERVICE_NAME
+</span><span style="color:#b44">  objref:
+</span><span style="color:#b44">    kind: Service
+</span><span style="color:#b44">    name: my-nginx
+</span><span style="color:#b44">    apiVersion: v1
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      Run
+      <code>
+        kubectl kustomize ./
+      </code>
+      to see that the Service name injected into containers is
+      <code>
+        dev-my-nginx-001
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>dev-my-nginx<span style="color:#666">-001</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">2</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">run</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">run</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- start<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- --host<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- dev-my-nginx<span style="color:#666">-001</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-nginx</code></pre>
+    </div>
+    <h2 id="bases-and-overlays">
+      Bases and Overlays
+    </h2>
+    <p>
+      Kustomize has the concepts of
+      <strong>
+        bases
+      </strong>
+      and
+      <strong>
+        overlays
+      </strong>
+      . A
+      <strong>
+        base
+      </strong>
+      is a directory with a
+      <code>
+        kustomization.yaml
+      </code>
+      , which contains a
+      set of resources and associated customization. A base could be either a local directory or a directory from a remote repo,
+      as long as a
+      <code>
+        kustomization.yaml
+      </code>
+      is present inside. An
+      <strong>
+        overlay
+      </strong>
+      is a directory with a
+      <code>
+        kustomization.yaml
+      </code>
+      that refers to other
+      kustomization directories as its
+      <code>
+        bases
+      </code>
+      . A
+      <strong>
+        base
+      </strong>
+      has no knowledge of an overlay and can be used in multiple overlays.
+      An overlay may have multiple bases and it composes all resources
+      from bases and may also have customization on top of them.
+    </p>
+    <p>
+      Here is an example of a base:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Create a directory to hold the base</span>
+mkdir base
+<span style="color:#080;font-style:italic"># Create a base/deployment.yaml</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; base/deployment.yaml
+</span><span style="color:#b44">apiVersion: apps/v1
+</span><span style="color:#b44">kind: Deployment
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  selector:
+</span><span style="color:#b44">    matchLabels:
+</span><span style="color:#b44">      run: my-nginx
+</span><span style="color:#b44">  replicas: 2
+</span><span style="color:#b44">  template:
+</span><span style="color:#b44">    metadata:
+</span><span style="color:#b44">      labels:
+</span><span style="color:#b44">        run: my-nginx
+</span><span style="color:#b44">    spec:
+</span><span style="color:#b44">      containers:
+</span><span style="color:#b44">      - name: my-nginx
+</span><span style="color:#b44">        image: nginx
+</span><span style="color:#b44">EOF</span>
+
+<span style="color:#080;font-style:italic"># Create a base/service.yaml file</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; base/service.yaml
+</span><span style="color:#b44">apiVersion: v1
+</span><span style="color:#b44">kind: Service
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">  labels:
+</span><span style="color:#b44">    run: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  ports:
+</span><span style="color:#b44">  - port: 80
+</span><span style="color:#b44">    protocol: TCP
+</span><span style="color:#b44">  selector:
+</span><span style="color:#b44">    run: my-nginx
+</span><span style="color:#b44">EOF</span>
+<span style="color:#080;font-style:italic"># Create a base/kustomization.yaml</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; base/kustomization.yaml
+</span><span style="color:#b44">resources:
+</span><span style="color:#b44">- deployment.yaml
+</span><span style="color:#b44">- service.yaml
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      This base can be used in multiple overlays. You can add different
+      <code>
+        namePrefix
+      </code>
+      or other cross-cutting fields
+      in different overlays. Here are two overlays using the same base.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mkdir dev
+cat <span style="color:#b44">&lt;&lt;EOF &gt; dev/kustomization.yaml
+</span><span style="color:#b44">bases:
+</span><span style="color:#b44">- ../base
+</span><span style="color:#b44">namePrefix: dev-
+</span><span style="color:#b44">EOF</span>
+
+mkdir prod
+cat <span style="color:#b44">&lt;&lt;EOF &gt; prod/kustomization.yaml
+</span><span style="color:#b44">bases:
+</span><span style="color:#b44">- ../base
+</span><span style="color:#b44">namePrefix: prod-
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <h2 id="how-to-apply-view-delete-objects-using-kustomize">
+      How to apply/view/delete objects using Kustomize
+    </h2>
+    <p>
+      Use
+      <code>
+        --kustomize
+      </code>
+      or
+      <code>
+        -k
+      </code>
+      in
+      <code>
+        kubectl
+      </code>
+      commands to recognize Resources managed by
+      <code>
+        kustomization.yaml
+      </code>
+      .
+      Note that
+      <code>
+        -k
+      </code>
+      should point to a kustomization directory, such as
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -k &lt;kustomization directory&gt;/</code></pre>
+    </div>
+    <p>
+      Given the following
+      <code>
+        kustomization.yaml
+      </code>
+      ,
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Create a deployment.yaml file</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt; deployment.yaml
+</span><span style="color:#b44">apiVersion: apps/v1
+</span><span style="color:#b44">kind: Deployment
+</span><span style="color:#b44">metadata:
+</span><span style="color:#b44">  name: my-nginx
+</span><span style="color:#b44">spec:
+</span><span style="color:#b44">  selector:
+</span><span style="color:#b44">    matchLabels:
+</span><span style="color:#b44">      run: my-nginx
+</span><span style="color:#b44">  replicas: 2
+</span><span style="color:#b44">  template:
+</span><span style="color:#b44">    metadata:
+</span><span style="color:#b44">      labels:
+</span><span style="color:#b44">        run: my-nginx
+</span><span style="color:#b44">    spec:
+</span><span style="color:#b44">      containers:
+</span><span style="color:#b44">      - name: my-nginx
+</span><span style="color:#b44">        image: nginx
+</span><span style="color:#b44">        ports:
+</span><span style="color:#b44">        - containerPort: 80
+</span><span style="color:#b44">EOF</span>
+
+<span style="color:#080;font-style:italic"># Create a kustomization.yaml</span>
+cat <span style="color:#b44">&lt;&lt;EOF &gt;./kustomization.yaml
+</span><span style="color:#b44">namePrefix: dev-
+</span><span style="color:#b44">commonLabels:
+</span><span style="color:#b44">  app: my-nginx
+</span><span style="color:#b44">resources:
+</span><span style="color:#b44">- deployment.yaml
+</span><span style="color:#b44">EOF</span></code></pre>
+    </div>
+    <p>
+      Run the following command to apply the Deployment object
+      <code>
+        dev-my-nginx
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt; kubectl apply -k ./
+deployment.apps/dev-my-nginx created</code></pre>
+    </div>
+    <p>
+      Run one of the following commands to view the Deployment object
+      <code>
+        dev-my-nginx
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get -k ./</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl describe -k ./</code></pre>
+    </div>
+    <p>
+      Run the following command to compare the Deployment object
+      <code>
+        dev-my-nginx
+      </code>
+      against the state that the cluster would be in if the manifest was applied:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl diff -k ./</code></pre>
+    </div>
+    <p>
+      Run the following command to delete the Deployment object
+      <code>
+        dev-my-nginx
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt; kubectl delete -k ./
+deployment.apps <span style="color:#b44">&#34;dev-my-nginx&#34;</span> deleted</code></pre>
+    </div>
+    <h2 id="kustomize-feature-list">
+      Kustomize Feature List
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Type
+          </th>
+          <th>
+            Explanation
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            namespace
+          </td>
+          <td>
+            string
+          </td>
+          <td>
+            add namespace to all resources
+          </td>
+        </tr>
+        <tr>
+          <td>
+            namePrefix
+          </td>
+          <td>
+            string
+          </td>
+          <td>
+            value of this field is prepended to the names of all resources
+          </td>
+        </tr>
+        <tr>
+          <td>
+            nameSuffix
+          </td>
+          <td>
+            string
+          </td>
+          <td>
+            value of this field is appended to the names of all resources
+          </td>
+        </tr>
+        <tr>
+          <td>
+            commonLabels
+          </td>
+          <td>
+            map[string]string
+          </td>
+          <td>
+            labels to add to all resources and selectors
+          </td>
+        </tr>
+        <tr>
+          <td>
+            commonAnnotations
+          </td>
+          <td>
+            map[string]string
+          </td>
+          <td>
+            annotations to add to all resources
+          </td>
+        </tr>
+        <tr>
+          <td>
+            resources
+          </td>
+          <td>
+            []string
+          </td>
+          <td>
+            each entry in this list must resolve to an existing resource configuration file
+          </td>
+        </tr>
+        <tr>
+          <td>
+            configmapGenerator
+          </td>
+          <td>
+            []
+            <a href="https://github.com/kubernetes-sigs/kustomize/blob/release-kustomize-v4.0/api/types/kustomization.go#L99">
+              ConfigMapArgs
+            </a>
+          </td>
+          <td>
+            Each entry in this list generates a ConfigMap
+          </td>
+        </tr>
+        <tr>
+          <td>
+            secretGenerator
+          </td>
+          <td>
+            []
+            <a href="https://github.com/kubernetes-sigs/kustomize/blob/release-kustomize-v4.0/api/types/kustomization.go#L106">
+              SecretArgs
+            </a>
+          </td>
+          <td>
+            Each entry in this list generates a Secret
+          </td>
+        </tr>
+        <tr>
+          <td>
+            generatorOptions
+          </td>
+          <td>
+            <a href="https://github.com/kubernetes-sigs/kustomize/blob/release-kustomize-v4.0/api/types/kustomization.go#L109">
+              GeneratorOptions
+            </a>
+          </td>
+          <td>
+            Modify behaviors of all ConfigMap and Secret generator
+          </td>
+        </tr>
+        <tr>
+          <td>
+            bases
+          </td>
+          <td>
+            []string
+          </td>
+          <td>
+            Each entry in this list should resolve to a directory containing a kustomization.yaml file
+          </td>
+        </tr>
+        <tr>
+          <td>
+            patchesStrategicMerge
+          </td>
+          <td>
+            []string
+          </td>
+          <td>
+            Each entry in this list should resolve a strategic merge patch of a Kubernetes object
+          </td>
+        </tr>
+        <tr>
+          <td>
+            patchesJson6902
+          </td>
+          <td>
+            []
+            <a href="https://github.com/kubernetes-sigs/kustomize/blob/release-kustomize-v4.0/api/types/patchjson6902.go#L8">
+              Json6902
+            </a>
+          </td>
+          <td>
+            Each entry in this list should resolve to a Kubernetes object and a Json Patch
+          </td>
+        </tr>
+        <tr>
+          <td>
+            vars
+          </td>
+          <td>
+            []
+            <a href="https://github.com/kubernetes-sigs/kustomize/blob/master/api/types/var.go#L31">
+              Var
+            </a>
+          </td>
+          <td>
+            Each entry is to capture text from one resource&rsquo;s field
+          </td>
+        </tr>
+        <tr>
+          <td>
+            images
+          </td>
+          <td>
+            []
+            <a href="https://github.com/kubernetes-sigs/kustomize/tree/master/api/types/image.go#L23">
+              Image
+            </a>
+          </td>
+          <td>
+            Each entry is to modify the name, tags and/or digest for one image without creating patches
+          </td>
+        </tr>
+        <tr>
+          <td>
+            configurations
+          </td>
+          <td>
+            []string
+          </td>
+          <td>
+            Each entry in this list should resolve to a file containing
+            <a href="https://github.com/kubernetes-sigs/kustomize/tree/master/examples/transformerconfigs">
+              Kustomize transformer configurations
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            crds
+          </td>
+          <td>
+            []string
+          </td>
+          <td>
+            Each entry in this list should resolve to an OpenAPI definition file for Kubernetes types
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        <a href="https://github.com/kubernetes-sigs/kustomize">
+          Kustomize
+        </a>
+      </li>
+      <li>
+        <a href="https://kubectl.docs.kubernetes.io">
+          Kubectl Book
+        </a>
+      </li>
+      <li>
+        <a href="/docs/reference/generated/kubectl/kubectl/">
+          Kubectl Command Reference
+        </a>
+      </li>
+      <li>
+        <a href="/docs/reference/generated/kubernetes-api/v1.18/">
+          Kubernetes API Reference
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

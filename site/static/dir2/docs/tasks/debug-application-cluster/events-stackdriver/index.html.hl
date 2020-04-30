@@ -1,0 +1,415 @@
+<div style="background-color:#f0f3f3">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">113
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">114
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">115
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">116
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">117
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">118
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">119
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">120
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">121
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">122
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">123
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">129
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">130
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">131
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">132
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">133
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">134
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">135
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">136
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">137
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">138
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">139
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">140
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">141
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">142
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">143
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">144
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">145
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">146
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">147
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">148
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">149
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">150
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">151
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">152
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">153
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">154
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">155
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">156
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">157
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">158
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">159
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">160
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">161
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">162
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">163
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">164
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">165
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">166
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">167
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">168
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">169
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">170
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">171
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">172
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">173
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">174
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">175
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">176
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">177
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">178
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">179
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">180
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">181
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">182
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">183
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">184
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">185
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">186
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">187
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">188
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">189
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">190
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">191
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">192
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">193
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">194
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">195
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">196
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">197
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">198
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">199
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">200
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">201
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">202
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">203
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">204
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">205
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3">&lt;<span style="color:#309;font-weight:bold">html</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">body</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Events in Stackdriver
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/debug-application-cluster/events-stackdriver.md&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;editPageButton&#34;</span> <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#34;_blank&#34;</span>&gt;
+        Edit This Page
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Events in Stackdriver
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Kubernetes events are objects that provide insight into what is happening
+      inside a cluster, such as what decisions were made by scheduler or why some
+      pods were evicted from the node. You can read more about using events
+      for debugging your application in the
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/tasks/debug-application-cluster/debug-application-introspection/&#34;</span>&gt;
+        Application Introspection and Debugging
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      section.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Since events are API objects, they are stored in the apiserver on master. To
+      avoid filling up master<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s disk, a retention policy is enforced: events are
+      removed one hour after the last occurrence. To provide longer history
+      and aggregation capabilities, a third party solution should be installed
+      to capture events.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      This article describes a solution that exports Kubernetes events to
+      Stackdriver Logging, where they can be processed and analyzed.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">blockquote</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;note&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">div</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+          Note:
+        &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+        It is not guaranteed that all events happening in a cluster will be
+        exported to Stackdriver. One possible scenario when events will not be
+        exported is when event exporter is not running (e.g. during restart or
+        upgrade). In most cases it<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s fine to use events for purposes like setting up
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://cloud.google.com/logging/docs/logs-based-metrics/&#34;</span>&gt;
+          metrics
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        and
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://cloud.google.com/logging/docs/logs-based-metrics/charts-and-alerts&#34;</span>&gt;
+          alerts
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        , but you should be aware
+        of the potential inaccuracy.
+      &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">blockquote</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;markdown-toc&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#deployment&#34;</span>&gt;
+          Deployment
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#user-guide&#34;</span>&gt;
+          User Guide
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;deployment&#34;</span>&gt;
+      Deployment
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;google-kubernetes-engine&#34;</span>&gt;
+      Google Kubernetes Engine
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      In Google Kubernetes Engine, if cloud logging is enabled, event exporter
+      is deployed by default to the clusters with master running version 1.7 and
+      higher. To prevent disturbing your workloads, event exporter does not have
+      resources set and is in the best effort QOS class, which means that it will
+      be the first to be killed in the case of resource starvation. If you want
+      your events to be exported, make sure you have enough resources to facilitate
+      the event exporter pod. This may vary depending on the workload, but on
+      average, approximately 100Mb RAM and 100m CPU is needed.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;deploying-to-the-existing-cluster&#34;</span>&gt;
+      Deploying to the Existing Cluster
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Deploy event exporter to your cluster using the following command:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl apply -f https://k8s.io/examples/debug/event-exporter.yaml&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Since event exporter accesses the Kubernetes API, it requires permissions to
+      do so. The following deployment is configured to work with RBAC
+      authorization. It sets up a service account and a cluster role binding
+      to allow event exporter to read events. To make sure that event exporter
+      pod will not be evicted from the node, you can additionally set up resource
+      requests. As mentioned earlier, 100Mb RAM and 100m CPU should be enough.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">table</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;includecode&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;debug-event-exporter-yaml&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">thead</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">tr</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">th</span>&gt;
+            &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/debug/event-exporter.yaml&#34;</span> <span style="color:#309">download</span><span style="color:#555">=</span><span style="color:#c30">&#34;debug/event-exporter.yaml&#34;</span>&gt;
+              &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+                debug/event-exporter.yaml
+              &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+            &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+            &lt;<span style="color:#309;font-weight:bold">img</span> <span style="color:#309">src</span><span style="color:#555">=</span><span style="color:#c30">&#34;/dir2/images/copycode.svg&#34;</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;max-height:24px; cursor: pointer&#34;</span> <span style="color:#309">onclick</span><span style="color:#555">=</span><span style="color:#c30">&#34;copyCode(&#39;debug-event-exporter-yaml&#39;)&#34;</span> <span style="color:#309">title</span><span style="color:#555">=</span><span style="color:#c30">&#34;Copy debug/event-exporter.yaml to clipboard&#34;</span>&gt;
+          &lt;/<span style="color:#309;font-weight:bold">th</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">tr</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">thead</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">tbody</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">tr</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">td</span>&gt;
+            &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+              &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiVersion&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;v1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;ServiceAccount&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;event-exporter-sa&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;namespace&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;default&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;labels&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;app&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;event-exporter&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;---&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiVersion&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;rbac.authorization.k8s.io/v1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;ClusterRoleBinding&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;event-exporter-rb&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;labels&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;app&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;event-exporter&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;roleRef&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiGroup&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;rbac.authorization.k8s.io&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;ClusterRole&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;view&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;subjects&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;ServiceAccount&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;event-exporter-sa&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;namespace&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;default&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;---&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiVersion&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;apps/v1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;Deployment&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;event-exporter-v0&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;.2.3&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;namespace&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;default&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;labels&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;app&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;event-exporter&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;selector&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;matchLabels&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;app&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;event-exporter&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;replicas&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;1&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;template&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;labels&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;app&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;event-exporter&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;serviceAccountName&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;event-exporter-sa&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;containers&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;event-exporter&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;image&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;k8s.gcr.io/event-exporter:v0&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;.2.3&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;command&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b44&#34;</span>&gt;<span style="color:#999;font-weight:bold">&amp;#39;</span>/event-exporter<span style="color:#999;font-weight:bold">&amp;#39;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;terminationGracePeriodSeconds&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;30&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+            &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+          &lt;/<span style="color:#309;font-weight:bold">td</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">tr</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">tbody</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">table</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;user-guide&#34;</span>&gt;
+      User Guide
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Events are exported to the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        GKE Cluster
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      resource in Stackdriver Logging.
+      You can find them by selecting an appropriate option from a drop-down menu
+      of available resources:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">img</span> <span style="color:#309">src</span><span style="color:#555">=</span><span style="color:#c30">&#34;/images/docs/stackdriver-event-exporter-resource.png&#34;</span> <span style="color:#309">alt</span><span style="color:#555">=</span><span style="color:#c30">&#34;Events location in the Stackdriver Logging interface&#34;</span> <span style="color:#309">width</span><span style="color:#555">=</span><span style="color:#c30">&#34;500&#34;</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      You can filter based on the event object fields using Stackdriver Logging
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://cloud.google.com/logging/docs/view/advanced_filters&#34;</span>&gt;
+        filtering mechanism
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      .
+      For example, the following query will show events from the scheduler
+      about pods from deployment
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        nginx-deployment
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      :
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">pre</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span>&gt;resource.type=<span style="color:#999;font-weight:bold">&amp;quot;</span>gke_cluster<span style="color:#999;font-weight:bold">&amp;quot;</span>
+jsonPayload.kind=<span style="color:#999;font-weight:bold">&amp;quot;</span>Event<span style="color:#999;font-weight:bold">&amp;quot;</span>
+jsonPayload.source.component=<span style="color:#999;font-weight:bold">&amp;quot;</span>default-scheduler<span style="color:#999;font-weight:bold">&amp;quot;</span>
+jsonPayload.involvedObject.name:<span style="color:#999;font-weight:bold">&amp;quot;</span>nginx-deployment<span style="color:#999;font-weight:bold">&amp;quot;</span>&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">figure</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">img</span> <span style="color:#309">src</span><span style="color:#555">=</span><span style="color:#c30">&#34;/images/docs/stackdriver-event-exporter-filter.png&#34;</span>
+         <span style="color:#309">alt</span><span style="color:#555">=</span><span style="color:#c30">&#34;Filtered events in the Stackdriver Logging interface&#34;</span> <span style="color:#309">width</span><span style="color:#555">=</span><span style="color:#c30">&#34;500&#34;</span>/&gt;
+    &lt;/<span style="color:#309;font-weight:bold">figure</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">html</span>&gt;</pre></td></tr></table>
+</div>

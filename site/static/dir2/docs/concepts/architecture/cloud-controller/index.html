@@ -1,0 +1,481 @@
+<html>
+  <body>
+    <h1>
+      Concepts Underlying the Cloud Controller Manager
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/architecture/cloud-controller.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Concepts Underlying the Cloud Controller Manager
+    </h1>
+    <p>
+      The cloud controller manager (CCM) concept (not to be confused with the binary) was originally created to allow cloud specific vendor code and the Kubernetes core to evolve independent of one another. The cloud controller manager runs alongside other master components such as the Kubernetes controller manager, the API server, and scheduler. It can also be started as a Kubernetes addon, in which case it runs on top of Kubernetes.
+    </p>
+    <p>
+      The cloud controller manager&rsquo;s design is based on a plugin mechanism that allows new cloud providers to integrate with Kubernetes easily by using plugins. There are plans in place for on-boarding new cloud providers on Kubernetes and for migrating cloud providers from the old model to the new CCM model.
+    </p>
+    <p>
+      This document discusses the concepts behind the cloud controller manager and gives details about its associated functions.
+    </p>
+    <p>
+      Here&rsquo;s the architecture of a Kubernetes cluster without the cloud controller manager:
+    </p>
+    <p>
+      <img src="/images/docs/pre-ccm-arch.png" alt="Pre CCM Kube Arch">
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#design">
+          Design
+        </a>
+      </li>
+      <li>
+        <a href="#components-of-the-ccm">
+          Components of the CCM
+        </a>
+      </li>
+      <li>
+        <a href="#functions-of-the-ccm">
+          Functions of the CCM
+        </a>
+      </li>
+      <li>
+        <a href="#plugin-mechanism">
+          Plugin mechanism
+        </a>
+      </li>
+      <li>
+        <a href="#authorization">
+          Authorization
+        </a>
+      </li>
+      <li>
+        <a href="#vendor-implementations">
+          Vendor Implementations
+        </a>
+      </li>
+      <li>
+        <a href="#cluster-administration">
+          Cluster Administration
+        </a>
+      </li>
+    </ul>
+    <h2 id="design">
+      Design
+    </h2>
+    <p>
+      In the preceding diagram, Kubernetes and the cloud provider are integrated through several different components:
+    </p>
+    <ul>
+      <li>
+        Kubelet
+      </li>
+      <li>
+        Kubernetes controller manager
+      </li>
+      <li>
+        Kubernetes API server
+      </li>
+    </ul>
+    <p>
+      The CCM consolidates all of the cloud-dependent logic from the preceding three components to create a single point of integration with the cloud. The new architecture with the CCM looks like this:
+    </p>
+    <p>
+      <img src="/images/docs/post-ccm-arch.png" alt="CCM Kube Arch">
+    </p>
+    <h2 id="components-of-the-ccm">
+      Components of the CCM
+    </h2>
+    <p>
+      The CCM breaks away some of the functionality of Kubernetes controller manager (KCM) and runs it as a separate process. Specifically, it breaks away those controllers in the KCM that are cloud dependent. The KCM has the following cloud dependent controller loops:
+    </p>
+    <ul>
+      <li>
+        Node controller
+      </li>
+      <li>
+        Volume controller
+      </li>
+      <li>
+        Route controller
+      </li>
+      <li>
+        Service controller
+      </li>
+    </ul>
+    <p>
+      In version 1.9, the CCM runs the following controllers from the preceding list:
+    </p>
+    <ul>
+      <li>
+        Node controller
+      </li>
+      <li>
+        Route controller
+      </li>
+      <li>
+        Service controller
+      </li>
+    </ul>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        Volume controller was deliberately chosen to not be a part of CCM. Due to the complexity involved and due to the existing efforts to abstract away vendor specific volume logic, it was decided that volume controller will not be moved to CCM.
+      </div>
+    </blockquote>
+    <p>
+      The original plan to support volumes using CCM was to use
+      <a href="/docs/concepts/storage/volumes/#flexVolume">
+        Flex
+      </a>
+      volumes to support pluggable volumes. However, a competing effort known as
+      <a href="/docs/concepts/storage/volumes/#csi">
+        CSI
+      </a>
+      is being planned to replace Flex.
+    </p>
+    <p>
+      Considering these dynamics, we decided to have an intermediate stop gap measure until CSI becomes ready.
+    </p>
+    <h2 id="functions-of-the-ccm">
+      Functions of the CCM
+    </h2>
+    <p>
+      The CCM inherits its functions from components of Kubernetes that are dependent on a cloud provider. This section is structured based on those components.
+    </p>
+    <h3 id="1-kubernetes-controller-manager">
+      1. Kubernetes controller manager
+    </h3>
+    <p>
+      The majority of the CCM&rsquo;s functions are derived from the KCM. As mentioned in the previous section, the CCM runs the following control loops:
+    </p>
+    <ul>
+      <li>
+        Node controller
+      </li>
+      <li>
+        Route controller
+      </li>
+      <li>
+        Service controller
+      </li>
+    </ul>
+    <h4 id="node-controller">
+      Node controller
+    </h4>
+    <p>
+      The Node controller is responsible for initializing a node by obtaining information about the nodes running in the cluster from the cloud provider. The node controller performs the following functions:
+    </p>
+    <ol>
+      <li>
+        Initialize a node with cloud specific zone/region labels.
+      </li>
+      <li>
+        Initialize a node with cloud specific instance details, for example, type and size.
+      </li>
+      <li>
+        Obtain the node&rsquo;s network addresses and hostname.
+      </li>
+      <li>
+        In case a node becomes unresponsive, check the cloud to see if the node has been deleted from the cloud.
+        If the node has been deleted from the cloud, delete the Kubernetes Node object.
+      </li>
+    </ol>
+    <h4 id="route-controller">
+      Route controller
+    </h4>
+    <p>
+      The Route controller is responsible for configuring routes in the cloud appropriately so that containers on different nodes in the Kubernetes cluster can communicate with each other. The route controller is only applicable for Google Compute Engine clusters.
+    </p>
+    <h4 id="service-controller">
+      Service Controller
+    </h4>
+    <p>
+      The Service controller is responsible for listening to service create, update, and delete events. Based on the current state of the services in Kubernetes, it configures cloud load balancers (such as ELB , Google LB, or Oracle Cloud Infrastructure LB) to reflect the state of the services in Kubernetes. Additionally, it ensures that service backends for cloud load balancers are up to date.
+    </p>
+    <h3 id="2-kubelet">
+      2. Kubelet
+    </h3>
+    <p>
+      The Node controller contains the cloud-dependent functionality of the kubelet. Prior to the introduction of the CCM, the kubelet was responsible for initializing a node with cloud-specific details such as IP addresses, region/zone labels and instance type information. The introduction of the CCM has moved this initialization operation from the kubelet into the CCM.
+    </p>
+    <p>
+      In this new model, the kubelet initializes a node without cloud-specific information. However, it adds a taint to the newly created node that makes the node unschedulable until the CCM initializes the node with cloud-specific information. It then removes this taint.
+    </p>
+    <h2 id="plugin-mechanism">
+      Plugin mechanism
+    </h2>
+    <p>
+      The cloud controller manager uses Go interfaces to allow implementations from any cloud to be plugged in. Specifically, it uses the CloudProvider Interface defined
+      <a href="https://github.com/kubernetes/cloud-provider/blob/9b77dc1c384685cb732b3025ed5689dd597a5971/cloud.go#L42-L62">
+        here
+      </a>
+      .
+    </p>
+    <p>
+      The implementation of the four shared controllers highlighted above, and some scaffolding along with the shared cloudprovider interface, will stay in the Kubernetes core. Implementations specific to cloud providers will be built outside of the core and implement interfaces defined in the core.
+    </p>
+    <p>
+      For more information about developing plugins, see
+      <a href="/docs/tasks/administer-cluster/developing-cloud-controller-manager/">
+        Developing Cloud Controller Manager
+      </a>
+      .
+    </p>
+    <h2 id="authorization">
+      Authorization
+    </h2>
+    <p>
+      This section breaks down the access required on various API objects by the CCM to perform its operations.
+    </p>
+    <h3 id="node-controller-1">
+      Node Controller
+    </h3>
+    <p>
+      The Node controller only works with Node objects. It requires full access to get, list, create, update, patch, watch, and delete Node objects.
+    </p>
+    <p>
+      v1/Node:
+    </p>
+    <ul>
+      <li>
+        Get
+      </li>
+      <li>
+        List
+      </li>
+      <li>
+        Create
+      </li>
+      <li>
+        Update
+      </li>
+      <li>
+        Patch
+      </li>
+      <li>
+        Watch
+      </li>
+      <li>
+        Delete
+      </li>
+    </ul>
+    <h3 id="route-controller-1">
+      Route controller
+    </h3>
+    <p>
+      The route controller listens to Node object creation and configures routes appropriately. It requires get access to Node objects.
+    </p>
+    <p>
+      v1/Node:
+    </p>
+    <ul>
+      <li>
+        Get
+      </li>
+    </ul>
+    <h3 id="service-controller-1">
+      Service controller
+    </h3>
+    <p>
+      The service controller listens to Service object create, update and delete events and then configures endpoints for those Services appropriately.
+    </p>
+    <p>
+      To access Services, it requires list, and watch access. To update Services, it requires patch and update access.
+    </p>
+    <p>
+      To set up endpoints for the Services, it requires access to create, list, get, watch, and update.
+    </p>
+    <p>
+      v1/Service:
+    </p>
+    <ul>
+      <li>
+        List
+      </li>
+      <li>
+        Get
+      </li>
+      <li>
+        Watch
+      </li>
+      <li>
+        Patch
+      </li>
+      <li>
+        Update
+      </li>
+    </ul>
+    <h3 id="others">
+      Others
+    </h3>
+    <p>
+      The implementation of the core of CCM requires access to create events, and to ensure secure operation, it requires access to create ServiceAccounts.
+    </p>
+    <p>
+      v1/Event:
+    </p>
+    <ul>
+      <li>
+        Create
+      </li>
+      <li>
+        Patch
+      </li>
+      <li>
+        Update
+      </li>
+    </ul>
+    <p>
+      v1/ServiceAccount:
+    </p>
+    <ul>
+      <li>
+        Create
+      </li>
+    </ul>
+    <p>
+      The RBAC ClusterRole for the CCM looks like this:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>rbac.authorization.k8s.io/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ClusterRole<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>cloud-controller-manager<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">rules</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">apiGroups</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- events<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">verbs</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- create<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- patch<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- update<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">apiGroups</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- nodes<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">verbs</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#b44">&#39;*&#39;</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">apiGroups</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- nodes/status<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">verbs</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- patch<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">apiGroups</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- services<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">verbs</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- list<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- patch<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- update<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- watch<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">apiGroups</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- serviceaccounts<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">verbs</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- create<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">apiGroups</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- persistentvolumes<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">verbs</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- get<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- list<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- update<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- watch<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">apiGroups</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- endpoints<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">verbs</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- create<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- get<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- list<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- watch<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- update<span style="color:#bbb">
+</span></code></pre>
+    </div>
+    <h2 id="vendor-implementations">
+      Vendor Implementations
+    </h2>
+    <p>
+      The following cloud providers have implemented CCMs:
+    </p>
+    <ul>
+      <li>
+        <a href="https://github.com/kubernetes/cloud-provider-alibaba-cloud">
+          Alibaba Cloud
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/kubernetes/cloud-provider-aws">
+          AWS
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/kubernetes/cloud-provider-azure">
+          Azure
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/baidu/cloud-provider-baiducloud">
+          BaiduCloud
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/digitalocean/digitalocean-cloud-controller-manager">
+          DigitalOcean
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/kubernetes/cloud-provider-gcp">
+          GCP
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/hetznercloud/hcloud-cloud-controller-manager">
+          Hetzner
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/linode/linode-cloud-controller-manager">
+          Linode
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/kubernetes/cloud-provider-openstack">
+          OpenStack
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/oracle/oci-cloud-controller-manager">
+          Oracle
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/TencentCloud/tencentcloud-cloud-controller-manager">
+          TencentCloud
+        </a>
+      </li>
+    </ul>
+    <h2 id="cluster-administration">
+      Cluster Administration
+    </h2>
+    <p>
+      Complete instructions for configuring and running the CCM are provided
+      <a href="/docs/tasks/administer-cluster/running-cloud-controller/#cloud-controller-manager">
+        here
+      </a>
+      .
+    </p>
+  </body>
+</html>

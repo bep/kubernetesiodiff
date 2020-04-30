@@ -1,0 +1,297 @@
+<div style="background-color:#f0f3f3">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">113
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">114
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">115
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">116
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">117
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">118
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">119
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">120
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">121
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">122
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">123
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">129
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">130
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">131
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">132
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">133
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">134
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">135
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">136
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">137
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">138
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">139
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">140
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">141
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">142
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">143
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">144
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">145
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">146
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3">&lt;<span style="color:#309;font-weight:bold">html</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">body</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Example Task Template
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/example-task-template.md&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;editPageButton&#34;</span> <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#34;_blank&#34;</span>&gt;
+        Edit This Page
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Example Task Template
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">blockquote</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;note&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">div</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+          Note:
+        &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+        Be sure to also
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/home/contribute/write-new-topic/#creating-an-entry-in-the-table-of-contents&#34;</span>&gt;
+          create an entry in the table of contents
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        for your new document.
+      &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">blockquote</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      This page shows how to <span style="color:#999;font-weight:bold">&amp;hellip;</span>
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;markdown-toc&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#before-you-begin&#34;</span>&gt;
+          Before you begin
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#doing&#34;</span>&gt;
+          Doing …
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#understanding&#34;</span>&gt;
+          Understanding …
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#what-s-next&#34;</span>&gt;
+          What&#39;s next
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;before-you-begin&#34;</span>&gt;
+      Before you begin
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          You need to have a Kubernetes cluster, and the kubectl command-line tool must
+          be configured to communicate with your cluster. If you do not already have a
+          cluster, you can create one by using
+          &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/setup/learning-environment/minikube/&#34;</span>&gt;
+            Minikube
+          &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+          ,
+          or you can use one of these Kubernetes playgrounds:
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://www.katacoda.com/courses/kubernetes/playground&#34;</span>&gt;
+          Katacoda
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;http://labs.play-with-k8s.com/&#34;</span>&gt;
+          Play with Kubernetes
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      To check the version, enter
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        kubectl version
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      .
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Do this.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Do this too.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;doing&#34;</span>&gt;
+      Doing <span style="color:#999;font-weight:bold">&amp;hellip;</span>
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ol</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Do this.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Do this next. Possibly read this
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;...&#34;</span>&gt;
+          related explanation
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        .
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ol</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;understanding&#34;</span>&gt;
+      Understanding <span style="color:#999;font-weight:bold">&amp;hellip;</span>
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+        [Optional Section]
+      &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Here<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s an interesting thing to know about the steps you just did.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;what-s-next&#34;</span>&gt;
+      What<span style="color:#999;font-weight:bold">&amp;#39;</span>s next
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+        [Optional Section]
+      &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Learn more about
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/home/contribute/write-new-topic/&#34;</span>&gt;
+          Writing a New Topic
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        .
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        See
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/home/contribute/page-templates/#task_template&#34;</span>&gt;
+          Using Page Templates - Task template
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        for how to use this template.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">html</span>&gt;</pre></td></tr></table>
+</div>

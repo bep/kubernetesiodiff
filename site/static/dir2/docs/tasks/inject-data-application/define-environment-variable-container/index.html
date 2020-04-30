@@ -1,0 +1,305 @@
+<html>
+  <body>
+    <h1>
+      Define Environment Variables for a Container
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/inject-data-application/define-environment-variable-container.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Define Environment Variables for a Container
+    </h1>
+    <p>
+      This page shows how to define environment variables for a container
+      in a Kubernetes Pod.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#define-an-environment-variable-for-a-container">
+          Define an environment variable for a container
+        </a>
+      </li>
+      <li>
+        <a href="#using-environment-variables-inside-of-your-config">
+          Using environment variables inside of your config
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="define-an-environment-variable-for-a-container">
+      Define an environment variable for a container
+    </h2>
+    <p>
+      When you create a Pod, you can set environment variables for the containers
+      that run in the Pod. To set environment variables, include the
+      <code>
+        env
+      </code>
+      or
+      <code>
+        envFrom
+      </code>
+      field in the configuration file.
+    </p>
+    <p>
+      In this exercise, you create a Pod that runs one container. The configuration
+      file for the Pod defines an environment variable with name
+      <code>
+        DEMO_GREETING
+      </code>
+      and
+      value
+      <code>
+        &quot;Hello from the environment&quot;
+      </code>
+      . Here is the configuration file for the
+      Pod:
+    </p>
+    <table class="includecode" id="pods-inject-envars-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/inject/envars.yaml" download="pods/inject/envars.yaml">
+              <code>
+                pods/inject/envars.yaml
+              </code>
+            </a>
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-inject-envars-yaml')" title="Copy pods/inject/envars.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>envar-demo<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">purpose</span>:<span style="color:#bbb"> </span>demonstrate-envars<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>envar-demo-container<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/google-samples/node-hello:<span style="color:#666">1.0</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">env</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>DEMO_GREETING<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Hello from the environment&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>DEMO_FAREWELL<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Such a sweet sorrow&#34;</span><span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ol>
+      <li>
+        <p>
+          Create a Pod based on the YAML configuration file:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/pods/inject/envars.yaml</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          List the running Pods:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -l <span style="color:#b8860b">purpose</span><span style="color:#666">=</span>demonstrate-envars</code></pre>
+        </div>
+        <p>
+          The output is similar to this:
+        </p>
+        <pre><code>NAME            READY     STATUS    RESTARTS   AGE
+envar-demo      1/1       Running   0          9s</code></pre>
+      </li>
+      <li>
+        <p>
+          Get a shell to the container running in your Pod:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl <span style="color:#a2f">exec</span> -it envar-demo -- /bin/bash</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          In your shell, run the
+          <code>
+            printenv
+          </code>
+          command to list the environment variables.
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@envar-demo:/# printenv</code></pre>
+        </div>
+        <p>
+          The output is similar to this:
+        </p>
+        <pre><code>NODE_VERSION=4.4.2
+EXAMPLE_SERVICE_PORT_8080_TCP_ADDR=10.3.245.237
+HOSTNAME=envar-demo
+...
+DEMO_GREETING=Hello from the environment
+DEMO_FAREWELL=Such a sweet sorrow</code></pre>
+      </li>
+      <li>
+        <p>
+          To exit the shell, enter
+          <code>
+            exit
+          </code>
+          .
+        </p>
+      </li>
+    </ol>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        The environment variables set using the
+        <code>
+          env
+        </code>
+        or
+        <code>
+          envFrom
+        </code>
+        field
+        will override any environment variables specified in the container image.
+      </div>
+    </blockquote>
+    <h2 id="using-environment-variables-inside-of-your-config">
+      Using environment variables inside of your config
+    </h2>
+    <p>
+      Environment variables that you define in a Pod&rsquo;s configuration can be used elsewhere in the configuration, for example in commands and arguments that you set for the Pod&rsquo;s containers. In the example configuration below, the
+      <code>
+        GREETING
+      </code>
+      ,
+      <code>
+        HONORIFIC
+      </code>
+      , and
+      <code>
+        NAME
+      </code>
+      environment variables are set to
+      <code>
+        Warm greetings to
+      </code>
+      ,
+      <code>
+        The Most Honorable
+      </code>
+      , and
+      <code>
+        Kubernetes
+      </code>
+      , respectively. Those environment variables are then used in the CLI arguments passed to the
+      <code>
+        env-print-demo
+      </code>
+      container.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>print-greeting<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>env-print-demo<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>bash<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">env</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>GREETING<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Warm greetings to&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>HONORIFIC<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;The Most Honorable&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>NAME<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Kubernetes&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;echo&#34;</span>]<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">args</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;$(GREETING) $(HONORIFIC) $(NAME)&#34;</span>]<span style="color:#bbb">
+</span></code></pre>
+    </div>
+    <p>
+      Upon creation, the command
+      <code>
+        echo Warm greetings to The Most Honorable Kubernetes
+      </code>
+      is run on the container.
+    </p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        Learn more about
+        <a href="/docs/tasks/inject-data-application/environment-variable-expose-pod-information/">
+          environment variables
+        </a>
+        .
+      </li>
+      <li>
+        Learn about
+        <a href="/docs/user-guide/secrets/#using-secrets-as-environment-variables">
+          using secrets as environment variables
+        </a>
+        .
+      </li>
+      <li>
+        See
+        <a href="/docs/reference/generated/kubernetes-api/v1.18/#envvarsource-v1-core">
+          EnvVarSource
+        </a>
+        .
+      </li>
+    </ul>
+  </body>
+</html>

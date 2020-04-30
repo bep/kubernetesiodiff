@@ -1,0 +1,267 @@
+<html>
+<body>
+<h1>
+  kubeadm reset
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/kubeadm-reset.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  kubeadm reset
+</h1>
+<p>
+  Performs a best effort revert of changes made by
+  <code>
+    kubeadm init
+  </code>
+  or
+  <code>
+    kubeadm join
+  </code>
+  .
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#what-s-next">
+      What's next
+    </a>
+  </li>
+</ul>
+<h3 id="synopsis">
+  Synopsis
+</h3>
+<p>
+  Performs a best effort revert of changes made to this host by &lsquo;kubeadm init&rsquo; or &lsquo;kubeadm join&rsquo;
+</p>
+<p>
+  The &ldquo;reset&rdquo; command executes the following phases:
+</p>
+<pre><code>preflight              Run reset pre-flight checks
+update-cluster-status  Remove this node from the ClusterStatus object.
+remove-etcd-member     Remove a local etcd member.
+cleanup-node           Run cleanup node.</code></pre>
+<pre><code>kubeadm reset [flags]</code></pre>
+<h3 id="options">
+  Options
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The path to the directory where the certificates are stored. If specified, clean this directory.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;cri-socket string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -f, &ndash;force
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Reset the node without prompting for confirmation.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -h, &ndash;help
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      help for reset
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;ignore-preflight-errors stringSlice
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      A list of checks whose errors will be shown as warnings. Example: &lsquo;IsPrivilegedUser,Swap&rsquo;. Value &lsquo;all&rsquo; ignores errors from all checks.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;skip-phases stringSlice
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      List of phases to be skipped
+    </td>
+  </tr>
+</p>
+<p>
+<h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+    </td>
+  </tr>
+</p>
+<p>
+<h3 id="reset-workflow">
+  Reset workflow
+</h3>
+<p>
+  <code>
+    kubeadm reset
+  </code>
+  is responsible for cleaning up a node local file system from files that were created using
+  the
+  <code>
+    kubeadm init
+  </code>
+  or
+  <code>
+    kubeadm join
+  </code>
+  commands. For control-plane nodes
+  <code>
+    reset
+  </code>
+  also removes the local stacked
+  etcd member of this node from the etcd cluster and also removes this node&rsquo;s information from the kubeadm
+  <code>
+    ClusterStatus
+  </code>
+  object.
+  <code>
+    ClusterStatus
+  </code>
+  is a kubeadm managed Kubernetes API object that holds a list of kube-apiserver endpoints.
+</p>
+<p>
+  <code>
+    kubeadm reset phase
+  </code>
+  can be used to execute the separate phases of the above workflow.
+  To skip a list of phases you can use the
+  <code>
+    --skip-phases
+  </code>
+  flag, which works in a similar way to
+  the
+  <code>
+    kubeadm join
+  </code>
+  and
+  <code>
+    kubeadm init
+  </code>
+  phase runners.
+</p>
+<h3 id="external-etcd-clean-up">
+  External etcd clean up
+</h3>
+<p>
+  <code>
+    kubeadm reset
+  </code>
+  will not delete any etcd data if external etcd is used. This means that if you run
+  <code>
+    kubeadm init
+  </code>
+  again using the same etcd endpoints, you will see state from previous clusters.
+</p>
+<p>
+  To wipe etcd data it is recommended you use a client like etcdctl, such as:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">etcdctl del <span style="color:#b44">&#34;&#34;</span> --prefix</code></pre>
+</div>
+<p>
+  See the
+  <a href="https://github.com/coreos/etcd/tree/master/etcdctl">
+    etcd documentation
+  </a>
+  for more information.
+</p>
+<h2 id="what-s-next">
+  What&#39;s next
+</h2>
+<ul>
+  <li>
+    <a href="/docs/reference/setup-tools/kubeadm/kubeadm-init/">
+      kubeadm init
+    </a>
+    to bootstrap a Kubernetes control-plane node
+  </li>
+  <li>
+    <a href="/docs/reference/setup-tools/kubeadm/kubeadm-join/">
+      kubeadm join
+    </a>
+    to bootstrap a Kubernetes worker node and join it to the cluster
+  </li>
+</ul>

@@ -1,0 +1,801 @@
+<div style="background-color:#f0f3f3">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">113
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">114
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">115
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">116
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">117
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">118
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">119
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">120
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">121
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">122
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">123
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">129
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">130
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">131
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">132
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">133
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">134
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">135
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">136
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">137
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">138
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">139
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">140
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">141
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">142
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">143
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">144
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">145
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">146
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">147
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">148
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">149
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">150
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">151
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">152
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">153
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">154
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">155
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">156
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">157
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">158
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">159
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">160
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">161
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">162
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">163
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">164
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">165
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">166
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">167
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">168
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">169
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">170
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">171
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">172
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">173
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">174
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">175
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">176
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">177
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">178
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">179
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">180
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">181
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">182
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">183
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">184
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">185
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">186
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">187
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">188
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">189
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">190
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">191
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">192
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">193
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">194
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">195
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">196
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">197
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">198
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">199
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">200
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">201
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">202
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">203
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">204
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">205
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">206
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">207
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">208
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">209
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">210
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">211
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">212
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">213
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">214
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">215
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">216
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">217
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">218
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">219
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">220
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">221
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">222
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">223
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">224
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">225
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">226
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">227
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">228
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">229
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">230
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">231
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">232
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">233
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">234
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">235
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">236
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">237
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">238
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">239
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">240
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">241
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">242
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">243
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">244
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">245
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">246
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">247
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">248
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">249
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">250
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">251
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">252
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">253
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">254
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">255
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">256
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">257
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">258
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">259
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">260
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">261
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">262
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">263
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">264
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">265
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">266
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">267
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">268
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">269
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">270
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">271
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">272
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">273
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">274
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">275
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">276
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">277
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">278
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">279
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">280
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">281
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">282
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">283
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">284
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">285
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">286
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">287
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">288
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">289
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">290
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">291
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">292
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">293
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">294
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">295
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">296
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">297
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">298
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">299
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">300
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">301
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">302
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">303
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">304
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">305
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">306
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">307
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">308
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">309
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">310
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">311
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">312
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">313
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">314
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">315
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">316
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">317
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">318
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">319
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">320
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">321
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">322
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">323
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">324
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">325
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">326
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">327
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">328
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">329
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">330
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">331
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">332
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">333
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">334
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">335
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">336
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">337
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">338
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">339
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">340
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">341
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">342
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">343
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">344
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">345
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">346
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">347
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">348
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">349
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">350
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">351
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">352
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">353
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">354
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">355
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">356
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">357
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">358
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">359
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">360
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">361
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">362
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">363
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">364
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">365
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">366
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">367
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">368
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">369
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">370
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">371
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">372
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">373
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">374
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">375
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">376
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">377
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">378
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">379
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">380
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">381
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">382
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">383
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">384
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">385
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">386
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">387
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">388
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">389
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">390
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">391
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">392
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">393
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">394
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">395
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">396
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">397
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">398
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3">&lt;<span style="color:#309;font-weight:bold">html</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">body</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Troubleshoot Applications
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/debug-application-cluster/debug-application.md&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;editPageButton&#34;</span> <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#34;_blank&#34;</span>&gt;
+        Edit This Page
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Troubleshoot Applications
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      This guide is to help users debug applications that are deployed into Kubernetes and not behaving correctly.
+      This is
+      &lt;<span style="color:#309;font-weight:bold">em</span>&gt;
+        not
+      &lt;/<span style="color:#309;font-weight:bold">em</span>&gt;
+      a guide for people who want to debug their cluster.  For that you should check out
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/admin/cluster-troubleshooting&#34;</span>&gt;
+        this guide
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      .
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;markdown-toc&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#diagnosing-the-problem&#34;</span>&gt;
+          Diagnosing the problem
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#what-s-next&#34;</span>&gt;
+          What&#39;s next
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;diagnosing-the-problem&#34;</span>&gt;
+      Diagnosing the problem
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The first step in troubleshooting is triage.  What is the problem?  Is it your Pods, your Replication Controller or
+      your Service?
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#debugging-pods&#34;</span>&gt;
+          Debugging Pods
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#debugging-replication-controllers&#34;</span>&gt;
+          Debugging Replication Controllers
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#debugging-services&#34;</span>&gt;
+          Debugging Services
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;debugging-pods&#34;</span>&gt;
+      Debugging Pods
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The first step in debugging a Pod is taking a look at it.  Check the current state of the Pod and recent events with the following command:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl describe pods &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b68;font-weight:bold&#34;</span>&gt;${&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b8860b&#34;</span>&gt;POD_NAME&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b68;font-weight:bold&#34;</span>&gt;}&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Look at the state of the containers in the pod.  Are they all
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        Running
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      ?  Have there been recent restarts?
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Continue debugging depending on the state of the pods.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h4</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;my-pod-stays-pending&#34;</span>&gt;
+      My pod stays pending
+    &lt;/<span style="color:#309;font-weight:bold">h4</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If a Pod is stuck in
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        Pending
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      it means that it can not be scheduled onto a node.  Generally this is because
+      there are insufficient resources of one type or another that prevent scheduling.  Look at the output of the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        kubectl describe ...
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      command above.  There should be messages from the scheduler about why it can not schedule
+      your pod.  Reasons include:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+            You don<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t have enough resources
+          &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+          :  You may have exhausted the supply of CPU or Memory in your cluster, in this case
+          you need to delete Pods, adjust resource requests, or add new nodes to your cluster. See
+          &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/user-guide/compute-resources/#my-pods-are-pending-with-event-message-failedscheduling&#34;</span>&gt;
+            Compute Resources document
+          &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+          for more information.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+            You are using
+            &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+              hostPort
+            &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+          :  When you bind a Pod to a
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            hostPort
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          there are a limited number of places that pod can be
+          scheduled.  In most cases,
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            hostPort
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          is unnecessary, try using a Service object to expose your Pod.  If you do require
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            hostPort
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          then you can only schedule as many Pods as there are nodes in your Kubernetes cluster.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h4</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;my-pod-stays-waiting&#34;</span>&gt;
+      My pod stays waiting
+    &lt;/<span style="color:#309;font-weight:bold">h4</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If a Pod is stuck in the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        Waiting
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      state, then it has been scheduled to a worker node, but it can<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t run on that machine.
+      Again, the information from
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        kubectl describe ...
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      should be informative.  The most common cause of
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        Waiting
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      pods is a failure to pull the image.  There are three things to check:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Make sure that you have the name of the image correct.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Have you pushed the image to the repository?
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Run a manual
+        &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+          docker pull <span style="color:#999;font-weight:bold">&amp;lt;</span>image<span style="color:#999;font-weight:bold">&amp;gt;</span>
+        &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+        on your machine to see if the image can be pulled.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h4</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;my-pod-is-crashing-or-otherwise-unhealthy&#34;</span>&gt;
+      My pod is crashing or otherwise unhealthy
+    &lt;/<span style="color:#309;font-weight:bold">h4</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Once your pod has been scheduled, the methods described in
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/tasks/debug-application-cluster/debug-running-pod/&#34;</span>&gt;
+        Debug Running Pods
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      are available for debugging.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h4</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;my-pod-is-running-but-not-doing-what-i-told-it-to-do&#34;</span>&gt;
+      My pod is running but not doing what I told it to do
+    &lt;/<span style="color:#309;font-weight:bold">h4</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If your pod is not behaving as you expected, it may be that there was an error in your
+      pod description (e.g.
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        mypod.yaml
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      file on your local machine), and that the error
+      was silently ignored when you created the pod.  Often a section of the pod description
+      is nested incorrectly, or a key name is typed incorrectly, and so the key is ignored.
+      For example, if you misspelled
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        command
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      as
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        commnd
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      then the pod will be created but
+      will not use the command line you intended it to use.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The first thing to do is to delete your pod and try creating it again with the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        --validate
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      option.
+      For example, run
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        kubectl apply --validate -f mypod.yaml
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      .
+      If you misspelled
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        command
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      as
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        commnd
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      then will give an error like this:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;I0805 10:43:25.129850   &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;46757&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; schema.go:126&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;]&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; unknown field: commnd
+I0805 10:43:25.129973   &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;46757&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; schema.go:129&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;]&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; this may be a &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f&#34;</span>&gt;false&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; alarm, see https://github.com/kubernetes/kubernetes/issues/6842
+pods/mypod&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    <span style="color:#09f;font-style:italic">&lt;!--</span><span style="color:#09f;font-style:italic"> TODO: Now that #11914 is merged, this advice may need to be updated </span><span style="color:#09f;font-style:italic">--&gt;</span>
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The next thing to check is whether the pod on the apiserver
+      matches the pod you meant to create (e.g. in a yaml file on your local machine).
+      For example, run
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        kubectl get pods/mypod -o yaml <span style="color:#999;font-weight:bold">&amp;gt;</span> mypod-on-apiserver.yaml
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      and then
+      manually compare the original pod description,
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        mypod.yaml
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      with the one you got
+      back from apiserver,
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        mypod-on-apiserver.yaml
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      .  There will typically be some
+      lines on the <span style="color:#999;font-weight:bold">&amp;ldquo;</span>apiserver<span style="color:#999;font-weight:bold">&amp;rdquo;</span> version that are not on the original version.  This is
+      expected.  However, if there are lines on the original that are not on the apiserver
+      version, then this may indicate a problem with your pod spec.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;debugging-replication-controllers&#34;</span>&gt;
+      Debugging Replication Controllers
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Replication controllers are fairly straightforward.  They can either create Pods or they can<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t.  If they can<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t
+      create pods, then please refer to the
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#debugging-pods&#34;</span>&gt;
+        instructions above
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      to debug your pods.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      You can also use
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        kubectl describe rc ${CONTROLLER_NAME}
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      to introspect events related to the replication
+      controller.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;debugging-services&#34;</span>&gt;
+      Debugging Services
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Services provide load balancing across a set of pods.  There are several common problems that can make Services
+      not work properly.  The following instructions should help debug Service problems.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      First, verify that there are endpoints for the service. For every Service object, the apiserver makes an
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        endpoints
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      resource available.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      You can view this resource with:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl get endpoints &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b68;font-weight:bold&#34;</span>&gt;${&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b8860b&#34;</span>&gt;SERVICE_NAME&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b68;font-weight:bold&#34;</span>&gt;}&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Make sure that the endpoints match up with the number of containers that you expect to be a member of your service.
+      For example, if your Service is for an nginx container with 3 replicas, you would expect to see three different
+      IP addresses in the Service<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s endpoints.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h4</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;my-service-is-missing-endpoints&#34;</span>&gt;
+      My service is missing endpoints
+    &lt;/<span style="color:#309;font-weight:bold">h4</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If you are missing endpoints, try listing pods using the labels that Service uses.  Imagine that you have
+      a Service where the labels are:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;...&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;selector&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;     &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;nginx&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;     &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;type&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;frontend&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      You can use:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl get pods --selector&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b8860b&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;nginx,type&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;frontend&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      to list pods that match this selector.  Verify that the list matches the Pods that you expect to provide your Service.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If the list of pods matches expectations, but your endpoints are still empty, it<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s possible that you don<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t
+      have the right ports exposed.  If your service has a
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        containerPort
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      specified, but the Pods that are
+      selected don<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t have that port listed, then they won<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t be added to the endpoints list.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Verify that the pod<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        containerPort
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      matches up with the Service<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        targetPort
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h4</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;network-traffic-is-not-forwarded&#34;</span>&gt;
+      Network traffic is not forwarded
+    &lt;/<span style="color:#309;font-weight:bold">h4</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If you can connect to the service, but the connection is immediately dropped, and there are endpoints
+      in the endpoints list, it<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s likely that the proxy can<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t contact your pods.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      There are three things to
+      check:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Are your pods working correctly?  Look for restart count, and
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#debugging-pods&#34;</span>&gt;
+          debug pods
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        .
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Can you connect to your pods directly?  Get the IP address for the Pod, and try to connect directly to that IP.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Is your application serving on the port that you configured?  Kubernetes doesn<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t do port remapping, so if your application serves on 8080, the
+        &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+          containerPort
+        &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+        field needs to be 8080.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;what-s-next&#34;</span>&gt;
+      What<span style="color:#999;font-weight:bold">&amp;#39;</span>s next
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If none of the above solves your problem, follow the instructions in
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/user-guide/debugging-services&#34;</span>&gt;
+        Debugging Service document
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      to make sure that your
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        Service
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      is running, has
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        Endpoints
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      , and your
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        Pods
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      are actually serving; you have DNS working, iptables rules installed, and kube-proxy does not seem to be misbehaving.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      You may also visit
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/troubleshooting/&#34;</span>&gt;
+        troubleshooting document
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      for more information.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">html</span>&gt;</pre></td></tr></table>
+</div>

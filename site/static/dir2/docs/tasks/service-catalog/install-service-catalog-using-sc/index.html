@@ -1,0 +1,227 @@
+<html>
+  <body>
+    <h1>
+      Install Service Catalog using SC
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/service-catalog/install-service-catalog-using-sc.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Install Service Catalog using SC
+    </h1>
+    <p>
+      <p>
+        Service Catalog is an extension API that enables applications running in Kubernetes clusters to easily use external managed software offerings, such as a datastore service offered by a cloud provider.
+      </p>
+    </p>
+    <p>
+      It provides a way to list, provision, and bind with external
+      <a class='glossary-tooltip' href='/dir2/docs/reference/glossary/?all=true#term-managed-service' target='_blank'>
+        Managed Services
+        <span class='tooltip-text'>
+          A software offering maintained by a third-party provider.
+        </span>
+      </a>
+      from
+      <a class='glossary-tooltip' href='/dir2/docs/reference/glossary/?all=true#term-service-broker' target='_blank'>
+        Service Brokers
+        <span class='tooltip-text'>
+          An endpoint for a set of Managed Services offered and maintained by a third-party.
+        </span>
+      </a>
+      without needing detailed knowledge about how those services are created or managed.
+    </p>
+    <p>
+      You can use the GCP
+      <a href="https://github.com/GoogleCloudPlatform/k8s-service-catalog#installation">
+        Service Catalog Installer
+      </a>
+      tool to easily install or uninstall Service Catalog on your Kubernetes cluster, linking it to
+      Google Cloud projects.
+    </p>
+    <p>
+      Service Catalog itself can work with any kind of managed service, not just Google Cloud.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#install-sc-in-your-local-environment">
+          Install
+          <code>
+            sc
+          </code>
+          in your local environment
+        </a>
+      </li>
+      <li>
+        <a href="#install-service-catalog-in-your-kubernetes-cluster">
+          Install Service Catalog in your Kubernetes cluster
+        </a>
+      </li>
+      <li>
+        <a href="#uninstall-service-catalog">
+          Uninstall Service Catalog
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <ul>
+      <li>
+        <p>
+          Understand the key concepts of
+          <a href="/docs/concepts/service-catalog/">
+            Service Catalog
+          </a>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          Install
+          <a href="https://golang.org/dl/">
+            Go 1.6+
+          </a>
+          and set the
+          <code>
+            GOPATH
+          </code>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          Install the
+          <a href="https://github.com/cloudflare/cfssl">
+            cfssl
+          </a>
+          tool needed for generating SSL artifacts.
+        </p>
+      </li>
+      <li>
+        <p>
+          Service Catalog requires Kubernetes version 1.7+.
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="/docs/tasks/tools/install-kubectl/">
+            Install and setup kubectl
+          </a>
+          so that it is configured to connect to a Kubernetes v1.7+ cluster.
+        </p>
+      </li>
+      <li>
+        <p>
+          The kubectl user must be bound to the
+          <em>
+            cluster-admin
+          </em>
+          role for it to install Service Catalog. To ensure that this is true, run the following command:
+        </p>
+        <pre><code>  kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=&lt;user-name&gt;</code></pre>
+      </li>
+    </ul>
+    <h2 id="install-sc-in-your-local-environment">
+      Install
+      <code>
+        sc
+      </code>
+      in your local environment
+    </h2>
+    <p>
+      The installer runs on your local computer as a CLI tool named
+      <code>
+        sc
+      </code>
+      .
+    </p>
+    <p>
+      Install using
+      <code>
+        go get
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">go get github.com/GoogleCloudPlatform/k8s-service-catalog/installer/cmd/sc</code></pre>
+    </div>
+    <p>
+      <code>
+        sc
+      </code>
+      should now be installed in your
+      <code>
+        GOPATH/bin
+      </code>
+      directory.
+    </p>
+    <h2 id="install-service-catalog-in-your-kubernetes-cluster">
+      Install Service Catalog in your Kubernetes cluster
+    </h2>
+    <p>
+      First, verify that all dependencies have been installed. Run:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sc check</code></pre>
+    </div>
+    <p>
+      If the check is successful, it should return:
+    </p>
+    <pre><code>Dependency check passed. You are good to go.</code></pre>
+    <p>
+      Next, run the install command and specify the
+      <code>
+        storageclass
+      </code>
+      that you want to use for the backup:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sc install --etcd-backup-storageclass <span style="color:#b44">&#34;standard&#34;</span></code></pre>
+    </div>
+    <h2 id="uninstall-service-catalog">
+      Uninstall Service Catalog
+    </h2>
+    <p>
+      If you would like to uninstall Service Catalog from your Kubernetes cluster using the
+      <code>
+        sc
+      </code>
+      tool, run:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sc uninstall</code></pre>
+    </div>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        View
+        <a href="https://github.com/openservicebrokerapi/servicebroker/blob/master/gettingStarted.md#sample-service-brokers">
+          sample service brokers
+        </a>
+        .
+      </li>
+      <li>
+        Explore the
+        <a href="https://github.com/kubernetes-incubator/service-catalog">
+          kubernetes-incubator/service-catalog
+        </a>
+        project.
+      </li>
+    </ul>
+  </body>
+</html>

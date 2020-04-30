@@ -1,0 +1,272 @@
+<html>
+<body>
+<h1>
+  Master-Node Communication
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/architecture/master-node-communication.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Master-Node Communication
+</h1>
+<p>
+  This document catalogs the communication paths between the master (really the
+  apiserver) and the Kubernetes cluster. The intent is to allow users to
+  customize their installation to harden the network configuration such that
+  the cluster can be run on an untrusted network (or on fully public IPs on a
+  cloud provider).
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#cluster-to-master">
+      Cluster to Master
+    </a>
+  </li>
+  <li>
+    <a href="#master-to-cluster">
+      Master to Cluster
+    </a>
+  </li>
+</ul>
+<h2 id="cluster-to-master">
+  Cluster to Master
+</h2>
+<p>
+  All communication paths from the cluster to the master terminate at the
+  apiserver (none of the other master components are designed to expose remote
+  services). In a typical deployment, the apiserver is configured to listen for
+  remote connections on a secure HTTPS port (443) with one or more forms of
+  client
+  <a href="/docs/reference/access-authn-authz/authentication/">
+    authentication
+  </a>
+  enabled.
+  One or more forms of
+  <a href="/docs/reference/access-authn-authz/authorization/">
+    authorization
+  </a>
+  should be enabled, especially if
+  <a href="/docs/reference/access-authn-authz/authentication/#anonymous-requests">
+    anonymous requests
+  </a>
+  or
+  <a href="/docs/reference/access-authn-authz/authentication/#service-account-tokens">
+    service account tokens
+  </a>
+  are allowed.
+</p>
+<p>
+  Nodes should be provisioned with the public root certificate for the cluster
+  such that they can connect securely to the apiserver along with valid client
+  credentials. For example, on a default GKE deployment, the client credentials
+  provided to the kubelet are in the form of a client certificate. See
+  <a href="/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/">
+    kubelet TLS bootstrapping
+  </a>
+  for automated provisioning of kubelet client certificates.
+</p>
+<p>
+  Pods that wish to connect to the apiserver can do so securely by leveraging a
+  service account so that Kubernetes will automatically inject the public root
+  certificate and a valid bearer token into the pod when it is instantiated.
+  The
+  <code>
+    kubernetes
+  </code>
+  service (in all namespaces) is configured with a virtual IP
+  address that is redirected (via kube-proxy) to the HTTPS endpoint on the
+  apiserver.
+</p>
+<p>
+  The master components also communicate with the cluster apiserver over the secure port.
+</p>
+<p>
+  As a result, the default operating mode for connections from the cluster
+  (nodes and pods running on the nodes) to the master is secured by default
+  and can run over untrusted and/or public networks.
+</p>
+<h2 id="master-to-cluster">
+  Master to Cluster
+</h2>
+<p>
+  There are two primary communication paths from the master (apiserver) to the
+  cluster. The first is from the apiserver to the kubelet process which runs on
+  each node in the cluster. The second is from the apiserver to any node, pod,
+  or service through the apiserver&rsquo;s proxy functionality.
+</p>
+<h3 id="apiserver-to-kubelet">
+  apiserver to kubelet
+</h3>
+<p>
+  The connections from the apiserver to the kubelet are used for:
+</p>
+<ul>
+  <li>
+    Fetching logs for pods.
+  </li>
+  <li>
+    Attaching (through kubectl) to running pods.
+  </li>
+  <li>
+    Providing the kubelet&rsquo;s port-forwarding functionality.
+  </li>
+</ul>
+<p>
+  These connections terminate at the kubelet&rsquo;s HTTPS endpoint. By default,
+  the apiserver does not verify the kubelet&rsquo;s serving certificate,
+  which makes the connection subject to man-in-the-middle attacks, and
+  <strong>
+    unsafe
+  </strong>
+  to run over untrusted and/or public networks.
+</p>
+<p>
+  To verify this connection, use the
+  <code>
+    --kubelet-certificate-authority
+  </code>
+  flag to
+  provide the apiserver with a root certificate bundle to use to verify the
+  kubelet&rsquo;s serving certificate.
+</p>
+<p>
+  If that is not possible, use
+  <a href="/docs/concepts/architecture/master-node-communication/#ssh-tunnels">
+    SSH tunneling
+  </a>
+  between the apiserver and kubelet if required to avoid connecting over an
+  untrusted or public network.
+</p>
+<p>
+  Finally,
+  <a href="/docs/admin/kubelet-authentication-authorization/">
+    Kubelet authentication and/or authorization
+  </a>
+  should be enabled to secure the kubelet API.
+</p>
+<h3 id="apiserver-to-nodes-pods-and-services">
+  apiserver to nodes, pods, and services
+</h3>
+<p>
+  The connections from the apiserver to a node, pod, or service default to plain
+  HTTP connections and are therefore neither authenticated nor encrypted. They
+  can be run over a secure HTTPS connection by prefixing
+  <code>
+    https:
+  </code>
+  to the node,
+  pod, or service name in the API URL, but they will not validate the certificate
+  provided by the HTTPS endpoint nor provide client credentials so while the
+  connection will be encrypted, it will not provide any guarantees of integrity.
+  These connections
+  <strong>
+    are not currently safe
+  </strong>
+  to run over untrusted and/or
+  public networks.
+</p>
+<h3 id="ssh-tunnels">
+  SSH Tunnels
+</h3>
+<p>
+  Kubernetes supports SSH tunnels to protect the Master → Cluster communication
+  paths. In this configuration, the apiserver initiates an SSH tunnel to each node
+  in the cluster (connecting to the ssh server listening on port 22) and passes
+  all traffic destined for a kubelet, node, pod, or service through the tunnel.
+  This tunnel ensures that the traffic is not exposed outside of the network in
+  which the nodes are running.
+</p>
+<p>
+  SSH tunnels are currently deprecated so you shouldn&rsquo;t opt to use them unless you
+  know what you are doing. The Konnectivity service is a replacement for this
+  communication channel.
+</p>
+<h3 id="konnectivity-service">
+  Konnectivity service
+</h3>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.18
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    beta
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+  <p>
+    This feature is currently in a
+    <em>
+      beta
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain beta (e.g. v2beta3).
+    </li>
+    <li>
+      Code is well tested. Enabling the feature is considered safe. Enabled by default.
+    </li>
+    <li>
+      Support for the overall feature will not be dropped, though details may change.
+    </li>
+    <li>
+      The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+    </li>
+    <li>
+      Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+    </li>
+    <li>
+      <strong>
+        Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+      </strong>
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  As a replacement to the SSH tunnels, the Konnectivity service provides TCP
+  level proxy for the Master → Cluster communication. The Konnectivity consists of
+  two parts, the Konnectivity server and the Konnectivity agents, running in the
+  Master network and the Cluster network respectively. The Konnectivity agents
+  initiate connections to the Konnectivity server and maintain the connections.
+  All Master → Cluster traffic then goes through these connections.
+</p>
+<p>
+  See
+  <a href="/docs/tasks/setup-konnectivity/">
+    Konnectivity Service Setup
+  </a>
+  on how to set
+  it up in your cluster.
+</p>

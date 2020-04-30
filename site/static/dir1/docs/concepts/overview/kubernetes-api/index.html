@@ -1,0 +1,538 @@
+<html>
+  <body>
+    <h1>
+      The Kubernetes API
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/overview/kubernetes-api.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      The Kubernetes API
+    </h1>
+    <p>
+      Overall API conventions are described in the
+      <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md">
+        API conventions doc
+      </a>
+      .
+    </p>
+    <p>
+      API endpoints, resource types and samples are described in
+      <a href="/docs/reference">
+        API Reference
+      </a>
+      .
+    </p>
+    <p>
+      Remote access to the API is discussed in the
+      <a href="/docs/reference/access-authn-authz/controlling-access/">
+        Controlling API Access doc
+      </a>
+      .
+    </p>
+    <p>
+      The Kubernetes API also serves as the foundation for the declarative configuration schema for the system. The
+      <a href="/docs/reference/kubectl/overview/">
+        kubectl
+      </a>
+      command-line tool can be used to create, update, delete, and get API objects.
+    </p>
+    <p>
+      Kubernetes also stores its serialized state (currently in
+      <a href="https://coreos.com/docs/distributed-configuration/getting-started-with-etcd/">
+        etcd
+      </a>
+      ) in terms of the API resources.
+    </p>
+    <p>
+      Kubernetes itself is decomposed into multiple components, which interact through its API.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#api-changes">
+          API changes
+        </a>
+      </li>
+      <li>
+        <a href="#openapi-and-swagger-definitions">
+          OpenAPI and Swagger definitions
+        </a>
+      </li>
+      <li>
+        <a href="#api-versioning">
+          API versioning
+        </a>
+      </li>
+      <li>
+        <a href="#api-groups">
+          API groups
+        </a>
+      </li>
+      <li>
+        <a href="#enabling-or-disabling-api-groups">
+          Enabling or disabling API groups
+        </a>
+      </li>
+      <li>
+        <a href="#enabling-specific-resources-in-the-extensions-v1beta1-group">
+          Enabling specific resources in the extensions/v1beta1 group
+        </a>
+      </li>
+    </ul>
+    <h2 id="api-changes">
+      API changes
+    </h2>
+    <p>
+      In our experience, any system that is successful needs to grow and change as new use cases emerge or existing ones change. Therefore, we expect the Kubernetes API to continuously change and grow. However, we intend to not break compatibility with existing clients, for an extended period of time. In general, new API resources and new resource fields can be expected to be added frequently. Elimination of resources or fields will require following the
+      <a href="/docs/reference/using-api/deprecation-policy/">
+        API deprecation policy
+      </a>
+      .
+    </p>
+    <p>
+      What constitutes a compatible change and how to change the API are detailed by the
+      <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api_changes.md">
+        API change document
+      </a>
+      .
+    </p>
+    <h2 id="openapi-and-swagger-definitions">
+      OpenAPI and Swagger definitions
+    </h2>
+    <p>
+      Complete API details are documented using
+      <a href="https://www.openapis.org/">
+        OpenAPI
+      </a>
+      .
+    </p>
+    <p>
+      Starting with Kubernetes 1.10, the Kubernetes API server serves an OpenAPI spec via the
+      <code>
+        /openapi/v2
+      </code>
+      endpoint.
+      The requested format is specified by setting HTTP headers:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Header
+          </th>
+          <th>
+            Possible Values
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Accept
+          </td>
+          <td>
+            <code>
+              application/json
+            </code>
+            ,
+            <code>
+              application/com.github.proto-openapi.spec.v2@v1.0+protobuf
+            </code>
+            (the default content-type is
+            <code>
+              application/json
+            </code>
+            for
+            <code>
+              */*
+            </code>
+            or not passing this header)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Accept-Encoding
+          </td>
+          <td>
+            <code>
+              gzip
+            </code>
+            (not passing this header is acceptable)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Prior to 1.14, format-separated endpoints (
+      <code>
+        /swagger.json
+      </code>
+      ,
+      <code>
+        /swagger-2.0.0.json
+      </code>
+      ,
+      <code>
+        /swagger-2.0.0.pb-v1
+      </code>
+      ,
+      <code>
+        /swagger-2.0.0.pb-v1.gz
+      </code>
+      )
+      serve the OpenAPI spec in different formats. These endpoints are deprecated, and are removed in Kubernetes 1.14.
+    </p>
+    <p>
+      <strong>
+        Examples of getting OpenAPI spec
+      </strong>
+      :
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Before 1.10
+          </th>
+          <th>
+            Starting with Kubernetes 1.10
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            GET /swagger.json
+          </td>
+          <td>
+            GET /openapi/v2
+            <strong>
+              Accept
+            </strong>
+            : application/json
+          </td>
+        </tr>
+        <tr>
+          <td>
+            GET /swagger-2.0.0.pb-v1
+          </td>
+          <td>
+            GET /openapi/v2
+            <strong>
+              Accept
+            </strong>
+            : application/com.github.proto-openapi.spec.v2@v1.0+protobuf
+          </td>
+        </tr>
+        <tr>
+          <td>
+            GET /swagger-2.0.0.pb-v1.gz
+          </td>
+          <td>
+            GET /openapi/v2
+            <strong>
+              Accept
+            </strong>
+            : application/com.github.proto-openapi.spec.v2@v1.0+protobuf
+            <strong>
+              Accept-Encoding
+            </strong>
+            : gzip
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Kubernetes implements an alternative Protobuf based serialization format for the API that is primarily intended for intra-cluster communication, documented in the
+      <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/protobuf.md">
+        design proposal
+      </a>
+      and the IDL files for each schema are located in the Go packages that define the API objects.
+    </p>
+    <p>
+      Prior to 1.14, the Kubernetes apiserver also exposes an API that can be used to retrieve
+      the
+      <a href="http://swagger.io/">
+        Swagger v1.2
+      </a>
+      Kubernetes API spec at
+      <code>
+        /swaggerapi
+      </code>
+      .
+      This endpoint is deprecated, and was removed in Kubernetes 1.14.
+    </p>
+    <h2 id="api-versioning">
+      API versioning
+    </h2>
+    <p>
+      To make it easier to eliminate fields or restructure resource representations, Kubernetes supports
+      multiple API versions, each at a different API path, such as
+      <code>
+        /api/v1
+      </code>
+      or
+      <code>
+        /apis/extensions/v1beta1
+      </code>
+      .
+    </p>
+    <p>
+      We chose to version at the API level rather than at the resource or field level to ensure that the API presents a clear, consistent view of system resources and behavior, and to enable controlling access to end-of-life and/or experimental APIs. The JSON and Protobuf serialization schemas follow the same guidelines for schema changes - all descriptions below cover both formats.
+    </p>
+    <p>
+      Note that API versioning and Software versioning are only indirectly related.  The
+      <a href="https://git.k8s.io/community/contributors/design-proposals/release/versioning.md">
+        API and release
+        versioning proposal
+      </a>
+      describes the relationship between API versioning and
+      software versioning.
+    </p>
+    <p>
+      Different API versions imply different levels of stability and support.  The criteria for each level are described
+      in more detail in the
+      <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api_changes.md#alpha-beta-and-stable-versions">
+        API Changes documentation
+      </a>
+      .  They are summarized here:
+    </p>
+    <ul>
+      <li>
+        Alpha level:
+        <ul>
+          <li>
+            The version names contain
+            <code>
+              alpha
+            </code>
+            (e.g.
+            <code>
+              v1alpha1
+            </code>
+            ).
+          </li>
+          <li>
+            May be buggy.  Enabling the feature may expose bugs.  Disabled by default.
+          </li>
+          <li>
+            Support for feature may be dropped at any time without notice.
+          </li>
+          <li>
+            The API may change in incompatible ways in a later software release without notice.
+          </li>
+          <li>
+            Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Beta level:
+        <ul>
+          <li>
+            The version names contain
+            <code>
+              beta
+            </code>
+            (e.g.
+            <code>
+              v2beta3
+            </code>
+            ).
+          </li>
+          <li>
+            Code is well tested.  Enabling the feature is considered safe.  Enabled by default.
+          </li>
+          <li>
+            Support for the overall feature will not be dropped, though details may change.
+          </li>
+          <li>
+            The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release.  When this happens,
+            we will provide instructions for migrating to the next version.  This may require deleting, editing, and re-creating
+            API objects.  The editing process may require some thought.   This may require downtime for applications that rely on the feature.
+          </li>
+          <li>
+            Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases.  If you have
+            multiple clusters which can be upgraded independently, you may be able to relax this restriction.
+          </li>
+          <li>
+            <strong>
+              Please do try our beta features and give feedback on them!  Once they exit beta, it may not be practical for us to make more changes.
+            </strong>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Stable level:
+        <ul>
+          <li>
+            The version name is
+            <code>
+              vX
+            </code>
+            where
+            <code>
+              X
+            </code>
+            is an integer.
+          </li>
+          <li>
+            Stable versions of features will appear in released software for many subsequent versions.
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="api-groups">
+      API groups
+    </h2>
+    <p>
+      To make it easier to extend the Kubernetes API, we implemented
+      <a href="https://git.k8s.io/community/contributors/design-proposals/api-machinery/api-group.md">
+        <em>
+          API groups
+        </em>
+      </a>
+      .
+      The API group is specified in a REST path and in the
+      <code>
+        apiVersion
+      </code>
+      field of a serialized object.
+    </p>
+    <p>
+      Currently there are several API groups in use:
+    </p>
+    <ol>
+      <li>
+        <p>
+          The
+          <em>
+            core
+          </em>
+          group, often referred to as the
+          <em>
+            legacy group
+          </em>
+          , is at the REST path
+          <code>
+            /api/v1
+          </code>
+          and uses
+          <code>
+            apiVersion: v1
+          </code>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          The named groups are at REST path
+          <code>
+            /apis/$GROUP_NAME/$VERSION
+          </code>
+          , and use
+          <code>
+            apiVersion: $GROUP_NAME/$VERSION
+          </code>
+          (e.g.
+          <code>
+            apiVersion: batch/v1
+          </code>
+          ).  Full list of supported API groups can be seen in
+          <a href="/docs/reference/">
+            Kubernetes API reference
+          </a>
+          .
+        </p>
+      </li>
+    </ol>
+    <p>
+      There are two supported paths to extending the API with
+      <a href="/docs/concepts/api-extension/custom-resources/">
+        custom resources
+      </a>
+      :
+    </p>
+    <ol>
+      <li>
+        <a href="/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/">
+          CustomResourceDefinition
+        </a>
+        is for users with very basic CRUD needs.
+      </li>
+      <li>
+        Users needing the full set of Kubernetes API semantics can implement their own apiserver
+        and use the
+        <a href="/docs/tasks/access-kubernetes-api/configure-aggregation-layer/">
+          aggregator
+        </a>
+        to make it seamless for clients.
+      </li>
+    </ol>
+    <h2 id="enabling-or-disabling-api-groups">
+      Enabling or disabling API groups
+    </h2>
+    <p>
+      Certain resources and API groups are enabled by default.  They can be enabled or disabled by setting
+      <code>
+        --runtime-config
+      </code>
+      on apiserver.
+      <code>
+        --runtime-config
+      </code>
+      accepts comma separated values. For example: to disable batch/v1, set
+      <code>
+        --runtime-config=batch/v1=false
+      </code>
+      , to enable batch/v2alpha1, set
+      <code>
+        --runtime-config=batch/v2alpha1
+      </code>
+      .
+      The flag accepts comma separated set of key=value pairs describing runtime configuration of the apiserver.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        Enabling or disabling groups or resources requires restarting apiserver and controller-manager
+        to pick up the
+        <code>
+          --runtime-config
+        </code>
+        changes.
+      </div>
+    </blockquote>
+    <h2 id="enabling-specific-resources-in-the-extensions-v1beta1-group">
+      Enabling specific resources in the extensions/v1beta1 group
+    </h2>
+    <p>
+      DaemonSets, Deployments, StatefulSet, NetworkPolicies, PodSecurityPolicies and ReplicaSets in the
+      <code>
+        extensions/v1beta1
+      </code>
+      API group are disabled by default.
+      For example: to enable deployments and daemonsets, set
+      <code>
+        --runtime-config=extensions/v1beta1/deployments=true,extensions/v1beta1/daemonsets=true
+      </code>
+      .
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        Individual resource enablement/disablement is only supported in the
+        <code>
+          extensions/v1beta1
+        </code>
+        API group for legacy reasons.
+      </div>
+    </blockquote>
+  </body>
+</html>

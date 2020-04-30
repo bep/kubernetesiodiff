@@ -1,0 +1,159 @@
+<html>
+  <body>
+    <h1>
+      Delete a StatefulSet
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/run-application/delete-stateful-set.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Delete a StatefulSet
+    </h1>
+    <p>
+      This task shows you how to delete a
+      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/statefulset/' target='_blank'>
+        StatefulSet
+        <span class='tooltip-text'>
+          Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.
+        </span>
+      </a>
+      .
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#deleting-a-statefulset">
+          Deleting a StatefulSet
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <ul>
+      <li>
+        This task assumes you have an application running on your cluster represented by a StatefulSet.
+      </li>
+    </ul>
+    <h2 id="deleting-a-statefulset">
+      Deleting a StatefulSet
+    </h2>
+    <p>
+      You can delete a StatefulSet in the same way you delete other resources in Kubernetes: use the
+      <code>
+        kubectl delete
+      </code>
+      command, and specify the StatefulSet either by file or by name.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete -f &lt;file.yaml&gt;</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete statefulsets &lt;statefulset-name&gt;</code></pre>
+    </div>
+    <p>
+      You may need to delete the associated headless service separately after the StatefulSet itself is deleted.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete service &lt;service-name&gt;</code></pre>
+    </div>
+    <p>
+      Deleting a StatefulSet through kubectl will scale it down to 0, thereby deleting all pods that are a part of it.
+      If you want to delete just the StatefulSet and not the pods, use
+      <code>
+        --cascade=false
+      </code>
+      .
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete -f &lt;file.yaml&gt; --cascade<span style="color:#666">=</span><span style="color:#a2f">false</span></code></pre>
+    </div>
+    <p>
+      By passing
+      <code>
+        --cascade=false
+      </code>
+      to
+      <code>
+        kubectl delete
+      </code>
+      , the Pods managed by the StatefulSet are left behind even after the StatefulSet object itself is deleted. If the pods have a label
+      <code>
+        app=myapp
+      </code>
+      , you can then delete them as follows:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete pods -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>myapp</code></pre>
+    </div>
+    <h3 id="persistent-volumes">
+      Persistent Volumes
+    </h3>
+    <p>
+      Deleting the Pods in a StatefulSet will not delete the associated volumes. This is to ensure that you have the chance to copy data off the volume before deleting it. Deleting the PVC after the pods have left the
+      <a href="/docs/concepts/workloads/pods/pod/#termination-of-pods">
+        terminating state
+      </a>
+      might trigger deletion of the backing Persistent Volumes depending on the storage class and reclaim policy. You should never assume ability to access a volume after claim deletion.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        Use caution when deleting a PVC, as it may lead to data loss.
+      </div>
+    </blockquote>
+    <h3 id="complete-deletion-of-a-statefulset">
+      Complete deletion of a StatefulSet
+    </h3>
+    <p>
+      To simply delete everything in a StatefulSet, including the associated pods, you can run a series of commands similar to the following:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#b8860b">grace</span><span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">$(</span>kubectl get pods &lt;stateful-set-pod&gt; --template <span style="color:#b44">&#39;{{.spec.terminationGracePeriodSeconds}}&#39;</span><span style="color:#a2f;font-weight:bold">)</span>
+kubectl delete statefulset -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>myapp
+sleep <span style="color:#b8860b">$grace</span>
+kubectl delete pvc -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>myapp
+</code></pre>
+    </div>
+    <p>
+      In the example above, the Pods have the label
+      <code>
+        app=myapp
+      </code>
+      ; substitute your own label as appropriate.
+    </p>
+    <h3 id="force-deletion-of-statefulset-pods">
+      Force deletion of StatefulSet pods
+    </h3>
+    <p>
+      If you find that some pods in your StatefulSet are stuck in the &lsquo;Terminating&rsquo; or &lsquo;Unknown&rsquo; states for an extended period of time, you may need to manually intervene to forcefully delete the pods from the apiserver. This is a potentially dangerous task. Refer to
+      <a href="/docs/tasks/run-application/force-delete-stateful-set-pod/">
+        Force Delete StatefulSet Pods
+      </a>
+      for details.
+    </p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <p>
+      Learn more about
+      <a href="/docs/tasks/run-application/force-delete-stateful-set-pod/">
+        force deleting StatefulSet Pods
+      </a>
+      .
+    </p>
+  </body>
+</html>

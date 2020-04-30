@@ -1,0 +1,459 @@
+<html>
+  <body>
+    <h1>
+      Set up High-Availability Kubernetes Masters
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/administer-cluster/highly-available-master.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Set up High-Availability Kubernetes Masters
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.5
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        alpha
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+        <p>
+          This feature is currently in a
+          <em>
+            alpha
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain alpha (e.g. v1alpha1).
+          </li>
+          <li>
+            Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+          </li>
+          <li>
+            Support for feature may be dropped at any time without notice.
+          </li>
+          <li>
+            The API may change in incompatible ways in a later software release without notice.
+          </li>
+          <li>
+            Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      You can replicate Kubernetes masters in
+      <code>
+        kube-up
+      </code>
+      or
+      <code>
+        kube-down
+      </code>
+      scripts for Google Compute Engine.
+      This document describes how to use kube-up/down scripts to manage highly available (HA) masters and how HA masters are implemented for use with GCE.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#starting-an-ha-compatible-cluster">
+          Starting an HA-compatible cluster
+        </a>
+      </li>
+      <li>
+        <a href="#adding-a-new-master-replica">
+          Adding a new master replica
+        </a>
+      </li>
+      <li>
+        <a href="#removing-a-master-replica">
+          Removing a master replica
+        </a>
+      </li>
+      <li>
+        <a href="#handling-master-replica-failures">
+          Handling master replica failures
+        </a>
+      </li>
+      <li>
+        <a href="#best-practices-for-replicating-masters-for-ha-clusters">
+          Best practices for replicating masters for HA clusters
+        </a>
+      </li>
+      <li>
+        <a href="#implementation-notes">
+          Implementation notes
+        </a>
+      </li>
+      <li>
+        <a href="#additional-reading">
+          Additional reading
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="starting-an-ha-compatible-cluster">
+      Starting an HA-compatible cluster
+    </h2>
+    <p>
+      To create a new HA-compatible cluster, you must set the following flags in your
+      <code>
+        kube-up
+      </code>
+      script:
+    </p>
+    <ul>
+      <li>
+        <p>
+          <code>
+            MULTIZONE=true
+          </code>
+          - to prevent removal of master replicas kubelets from zones different than server&rsquo;s default zone.
+          Required if you want to run master replicas in different zones, which is recommended.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>
+            ENABLE_ETCD_QUORUM_READ=true
+          </code>
+          - to ensure that reads from all API servers will return most up-to-date data.
+          If true, reads will be directed to leader etcd replica.
+          Setting this value to true is optional: reads will be more reliable but will also be slower.
+        </p>
+      </li>
+    </ul>
+    <p>
+      Optionally, you can specify a GCE zone where the first master replica is to be created.
+      Set the following flag:
+    </p>
+    <ul>
+      <li>
+        <code>
+          KUBE_GCE_ZONE=zone
+        </code>
+        - zone where the first master replica will run.
+      </li>
+    </ul>
+    <p>
+      The following sample command sets up a HA-compatible cluster in the GCE zone europe-west1-b:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#b8860b">MULTIZONE</span><span style="color:#666">=</span><span style="color:#a2f">true</span> <span style="color:#b8860b">KUBE_GCE_ZONE</span><span style="color:#666">=</span>europe-west1-b  <span style="color:#b8860b">ENABLE_ETCD_QUORUM_READS</span><span style="color:#666">=</span><span style="color:#a2f">true</span> ./cluster/kube-up.sh</code></pre>
+    </div>
+    <p>
+      Note that the commands above create a cluster with one master;
+      however, you can add new master replicas to the cluster with subsequent commands.
+    </p>
+    <h2 id="adding-a-new-master-replica">
+      Adding a new master replica
+    </h2>
+    <p>
+      After you have created an HA-compatible cluster, you can add master replicas to it.
+      You add master replicas by using a
+      <code>
+        kube-up
+      </code>
+      script with the following flags:
+    </p>
+    <ul>
+      <li>
+        <p>
+          <code>
+            KUBE_REPLICATE_EXISTING_MASTER=true
+          </code>
+          - to create a replica of an existing
+          master.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>
+            KUBE_GCE_ZONE=zone
+          </code>
+          - zone where the master replica will run.
+          Must be in the same region as other replicas&rsquo; zones.
+        </p>
+      </li>
+    </ul>
+    <p>
+      You don&rsquo;t need to set the
+      <code>
+        MULTIZONE
+      </code>
+      or
+      <code>
+        ENABLE_ETCD_QUORUM_READS
+      </code>
+      flags,
+      as those are inherited from when you started your HA-compatible cluster.
+    </p>
+    <p>
+      The following sample command replicates the master on an existing HA-compatible cluster:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#b8860b">KUBE_GCE_ZONE</span><span style="color:#666">=</span>europe-west1-c <span style="color:#b8860b">KUBE_REPLICATE_EXISTING_MASTER</span><span style="color:#666">=</span><span style="color:#a2f">true</span> ./cluster/kube-up.sh</code></pre>
+    </div>
+    <h2 id="removing-a-master-replica">
+      Removing a master replica
+    </h2>
+    <p>
+      You can remove a master replica from an HA cluster by using a
+      <code>
+        kube-down
+      </code>
+      script with the following flags:
+    </p>
+    <ul>
+      <li>
+        <p>
+          <code>
+            KUBE_DELETE_NODES=false
+          </code>
+          - to restrain deletion of kubelets.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>
+            KUBE_GCE_ZONE=zone
+          </code>
+          - the zone from where master replica will be removed.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>
+            KUBE_REPLICA_NAME=replica_name
+          </code>
+          - (optional) the name of master replica to remove.
+          If empty: any replica from the given zone will be removed.
+        </p>
+      </li>
+    </ul>
+    <p>
+      The following sample command removes a master replica from an existing HA cluster:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#b8860b">KUBE_DELETE_NODES</span><span style="color:#666">=</span><span style="color:#a2f">false</span> <span style="color:#b8860b">KUBE_GCE_ZONE</span><span style="color:#666">=</span>europe-west1-c ./cluster/kube-down.sh</code></pre>
+    </div>
+    <h2 id="handling-master-replica-failures">
+      Handling master replica failures
+    </h2>
+    <p>
+      If one of the master replicas in your HA cluster fails,
+      the best practice is to remove the replica from your cluster and add a new replica in the same zone.
+      The following sample commands demonstrate this process:
+    </p>
+    <ol>
+      <li>
+        <p>
+          Remove the broken replica:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#b8860b">KUBE_DELETE_NODES</span><span style="color:#666">=</span><span style="color:#a2f">false</span> <span style="color:#b8860b">KUBE_GCE_ZONE</span><span style="color:#666">=</span>replica_zone <span style="color:#b8860b">KUBE_REPLICA_NAME</span><span style="color:#666">=</span>replica_name ./cluster/kube-down.sh</code></pre>
+        </div>
+      </li>
+    </ol>
+    <ol start="2">
+      <li>
+        Add a new replica in place of the old one:
+      </li>
+    </ol>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#b8860b">KUBE_GCE_ZONE</span><span style="color:#666">=</span>replica-zone <span style="color:#b8860b">KUBE_REPLICATE_EXISTING_MASTER</span><span style="color:#666">=</span><span style="color:#a2f">true</span> ./cluster/kube-up.sh</code></pre>
+    </div>
+    <h2 id="best-practices-for-replicating-masters-for-ha-clusters">
+      Best practices for replicating masters for HA clusters
+    </h2>
+    <ul>
+      <li>
+        <p>
+          Try to place master replicas in different zones. During a zone failure, all masters placed inside the zone will fail.
+          To survive zone failure, also place nodes in multiple zones
+          (see
+          <a href="/docs/setup/best-practices/multiple-zones/">
+            multiple-zones
+          </a>
+          for details).
+        </p>
+      </li>
+      <li>
+        <p>
+          Do not use a cluster with two master replicas. Consensus on a two-replica cluster requires both replicas running when changing persistent state.
+          As a result, both replicas are needed and a failure of any replica turns cluster into majority failure state.
+          A two-replica cluster is thus inferior, in terms of HA, to a single replica cluster.
+        </p>
+      </li>
+      <li>
+        <p>
+          When you add a master replica, cluster state (etcd) is copied to a new instance.
+          If the cluster is large, it may take a long time to duplicate its state.
+          This operation may be sped up by migrating etcd data directory, as described
+          <a href="https://coreos.com/etcd/docs/latest/admin_guide.html#member-migration">
+            here
+          </a>
+          (we are considering adding support for etcd data dir migration in future).
+        </p>
+      </li>
+    </ul>
+    <h2 id="implementation-notes">
+      Implementation notes
+    </h2>
+    <p>
+      <img src="/images/docs/ha-master-gce.png" alt="ha-master-gce" />
+    </p>
+    <h3 id="overview">
+      Overview
+    </h3>
+    <p>
+      Each of master replicas will run the following components in the following mode:
+    </p>
+    <ul>
+      <li>
+        <p>
+          etcd instance: all instances will be clustered together using consensus;
+        </p>
+      </li>
+      <li>
+        <p>
+          API server: each server will talk to local etcd - all API servers in the cluster will be available;
+        </p>
+      </li>
+      <li>
+        <p>
+          controllers, scheduler, and cluster auto-scaler: will use lease mechanism - only one instance of each of them will be active in the cluster;
+        </p>
+      </li>
+      <li>
+        <p>
+          add-on manager: each manager will work independently trying to keep add-ons in sync.
+        </p>
+      </li>
+    </ul>
+    <p>
+      In addition, there will be a load balancer in front of API servers that will route external and internal traffic to them.
+    </p>
+    <h3 id="load-balancing">
+      Load balancing
+    </h3>
+    <p>
+      When starting the second master replica, a load balancer containing the two replicas will be created
+      and the IP address of the first replica will be promoted to IP address of load balancer.
+      Similarly, after removal of the penultimate master replica, the load balancer will be removed and its IP address will be assigned to the last remaining replica.
+      Please note that creation and removal of load balancer are complex operations and it may take some time (~20 minutes) for them to propagate.
+    </p>
+    <h3 id="master-service-kubelets">
+      Master service &amp; kubelets
+    </h3>
+    <p>
+      Instead of trying to keep an up-to-date list of Kubernetes apiserver in the Kubernetes service,
+      the system directs all traffic to the external IP:
+    </p>
+    <ul>
+      <li>
+        <p>
+          in one master cluster the IP points to the single master,
+        </p>
+      </li>
+      <li>
+        <p>
+          in multi-master cluster the IP points to the load balancer in-front of the masters.
+        </p>
+      </li>
+    </ul>
+    <p>
+      Similarly, the external IP will be used by kubelets to communicate with master.
+    </p>
+    <h3 id="master-certificates">
+      Master certificates
+    </h3>
+    <p>
+      Kubernetes generates Master TLS certificates for the external public IP and local IP for each replica.
+      There are no certificates for the ephemeral public IP for replicas;
+      to access a replica via its ephemeral public IP, you must skip TLS verification.
+    </p>
+    <h3 id="clustering-etcd">
+      Clustering etcd
+    </h3>
+    <p>
+      To allow etcd clustering, ports needed to communicate between etcd instances will be opened (for inside cluster communication).
+      To make such deployment secure, communication between etcd instances is authorized using SSL.
+    </p>
+    <h2 id="additional-reading">
+      Additional reading
+    </h2>
+    <p>
+      <a href="https://git.k8s.io/community/contributors/design-proposals/cluster-lifecycle/ha_master.md">
+        Automated HA master deployment - design doc
+      </a>
+    </p>
+  </body>
+</html>

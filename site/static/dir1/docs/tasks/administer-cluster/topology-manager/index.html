@@ -1,0 +1,558 @@
+<html>
+  <body>
+    <h1>
+      Control Topology Management Policies on a node
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/administer-cluster/topology-manager.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Control Topology Management Policies on a node
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        beta
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+        <p>
+          This feature is currently in a
+          <em>
+            beta
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain beta (e.g. v2beta3).
+          </li>
+          <li>
+            Code is well tested. Enabling the feature is considered safe. Enabled by default.
+          </li>
+          <li>
+            Support for the overall feature will not be dropped, though details may change.
+          </li>
+          <li>
+            The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+          </li>
+          <li>
+            Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+          </li>
+          <li>
+            <strong>
+              Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+            </strong>
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      An increasing number of systems leverage a combination of CPUs and hardware accelerators to support latency-critical execution and high-throughput parallel computation. These include workloads in fields such as telecommunications, scientific computing, machine learning, financial services and data analytics. Such hybrid systems comprise a high performance environment.
+    </p>
+    <p>
+      In order to extract the best performance, optimizations related to CPU isolation, memory and device locality are required. However, in Kubernetes, these optimizations are handled by a disjoint set of components.
+    </p>
+    <p>
+      <em>
+        Topology Manager
+      </em>
+      is a Kubelet component that aims to co-ordinate the set of components that are responsible for these optimizations.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#how-topology-manager-works">
+          How Topology Manager Works
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      Your Kubernetes server must be version v1.18.
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="how-topology-manager-works">
+      How Topology Manager Works
+    </h2>
+    <p>
+      Prior to the introduction of Topology Manager, the CPU and Device Manager in Kubernetes make resource allocation decisions independently of each other.
+      This can result in undesirable allocations on multiple-socketed systems, performance/latency sensitive applications will suffer due to these undesirable allocations.
+      Undesirable in this case meaning for example, CPUs and devices being allocated from different NUMA Nodes thus, incurring additional latency.
+    </p>
+    <p>
+      The Topology Manager is a Kubelet component, which acts as a source of truth so that other Kubelet components can make topology aligned resource allocation choices.
+    </p>
+    <p>
+      The Topology Manager provides an interface for components, called
+      <em>
+        Hint Providers
+      </em>
+      , to send and receive topology information. Topology Manager has a set of node level policies which are explained below.
+    </p>
+    <p>
+      The Topology manager receives Topology information from the
+      <em>
+        Hint Providers
+      </em>
+      as a bitmask denoting NUMA Nodes available and a preferred allocation indication. The Topology Manager policies perform a set of operations on the hints provided and converge on the hint determined by the policy to give the optimal result, if an undesirable hint is stored the preferred field for the hint will be set to false. In the current policies preferred is the narrowest preferred mask.
+      The selected hint is stored as part of the Topology Manager. Depending on the policy configured the pod can be accepted or rejected from the node based on the selected hint.
+      The hint is then stored in the Topology Manager for use by the
+      <em>
+        Hint Providers
+      </em>
+      when making the resource allocation decisions.
+    </p>
+    <h3 id="enable-the-topology-manager-feature">
+      Enable the Topology Manager feature
+    </h3>
+    <p>
+      Support for the Topology Manager requires
+      <code>
+        TopologyManager
+      </code>
+      <a href="/docs/reference/command-line-tools-reference/feature-gates/">
+        feature gate
+      </a>
+      to be enabled. It is enabled by default starting with Kubernetes 1.18.
+    </p>
+    <h3 id="topology-manager-policies">
+      Topology Manager Policies
+    </h3>
+    <p>
+      The Topology Manager currently:
+    </p>
+    <ul>
+      <li>
+        Aligns Pods of all QoS classes.
+      </li>
+      <li>
+        Aligns the requested resources that Hint Provider provides topology hints for.
+      </li>
+    </ul>
+    <p>
+      If these conditions are met, Topology Manager will align the requested resources.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        To align CPU resources with other requested resources in a Pod Spec, the CPU Manager should be enabled and proper CPU Manager policy should be configured on a Node. See
+        <a href="/docs/tasks/administer-cluster/cpu-management-policies/">
+          control CPU Management Policies
+        </a>
+        .
+      </div>
+    </blockquote>
+    <p>
+      Topology Manager supports four allocation policies. You can set a policy via a Kubelet flag,
+      <code>
+        --topology-manager-policy
+      </code>
+      .
+      There are four supported policies:
+    </p>
+    <ul>
+      <li>
+        <code>
+          none
+        </code>
+        (default)
+      </li>
+      <li>
+        <code>
+          best-effort
+        </code>
+      </li>
+      <li>
+        <code>
+          restricted
+        </code>
+      </li>
+      <li>
+        <code>
+          single-numa-node
+        </code>
+      </li>
+    </ul>
+    <h3 id="policy-none">
+      none policy
+    </h3>
+    <p>
+      This is the default policy and does not perform any topology alignment.
+    </p>
+    <h3 id="policy-best-effort">
+      best-effort policy
+    </h3>
+    <p>
+      For each container in a Pod, the kubelet, with
+      <code>
+        best-effort
+      </code>
+      topology
+      management policy, calls each Hint Provider to discover their resource availability.
+      Using this information, the Topology Manager stores the
+      preferred NUMA Node affinity for that container. If the affinity is not preferred,
+      Topology Manager will store this and admit the pod to the node anyway.
+    </p>
+    <p>
+      The
+      <em>
+        Hint Providers
+      </em>
+      can then use this information when making the
+      resource allocation decision.
+    </p>
+    <h3 id="policy-restricted">
+      restricted policy
+    </h3>
+    <p>
+      For each container in a Pod, the kubelet, with
+      <code>
+        restricted
+      </code>
+      topology
+      management policy, calls each Hint Provider to discover their resource availability.
+      Using this information, the Topology Manager stores the
+      preferred NUMA Node affinity for that container. If the affinity is not preferred,
+      Topology Manager will reject this pod from the node. This will result in a pod in a
+      <code>
+        Terminated
+      </code>
+      state with a pod admission failure.
+    </p>
+    <p>
+      Once the pod is in a
+      <code>
+        Terminated
+      </code>
+      state, the Kubernetes scheduler will
+      <strong>
+        not
+      </strong>
+      attempt to reschedule the pod. It is recommended to use a ReplicaSet or Deployment to trigger a redeploy of the pod.
+      An external control loop could be also implemented to trigger a redeployment of pods that have the
+      <code>
+        Topology Affinity
+      </code>
+      error.
+    </p>
+    <p>
+      If the pod is admitted, the
+      <em>
+        Hint Providers
+      </em>
+      can then use this information when making the
+      resource allocation decision.
+    </p>
+    <h3 id="policy-single-numa-node">
+      single-numa-node policy
+    </h3>
+    <p>
+      For each container in a Pod, the kubelet, with
+      <code>
+        single-numa-node
+      </code>
+      topology
+      management policy, calls each Hint Provider to discover their resource availability.
+      Using this information, the Topology Manager determines if a single NUMA Node affinity is possible.
+      If it is, Topology Manager will store this and the
+      <em>
+        Hint Providers
+      </em>
+      can then use this information when making the
+      resource allocation decision.
+      If, however, this is not possible then the Topology Manager will reject the pod from the node. This will result in a pod in a
+      <code>
+        Terminated
+      </code>
+      state with a pod admission failure.
+    </p>
+    <p>
+      Once the pod is in a
+      <code>
+        Terminated
+      </code>
+      state, the Kubernetes scheduler will
+      <strong>
+        not
+      </strong>
+      attempt to reschedule the pod. It is recommended to use a Deployment with replicas to trigger a redeploy of the Pod.
+      An external control loop could be also implemented to trigger a redeployment of pods that have the
+      <code>
+        Topology Affinity
+      </code>
+      error.
+    </p>
+    <h3 id="pod-interactions-with-topology-manager-policies">
+      Pod Interactions with Topology Manager Policies
+    </h3>
+    <p>
+      Consider the containers in the following pod specs:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx</code></pre>
+    </div>
+    <p>
+      This pod runs in the
+      <code>
+        BestEffort
+      </code>
+      QoS class because no resource
+      <code>
+        requests
+      </code>
+      or
+      <code>
+        limits
+      </code>
+      are specified.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;100Mi&#34;</span></code></pre>
+    </div>
+    <p>
+      This pod runs in the
+      <code>
+        Burstable
+      </code>
+      QoS class because requests are less than limits.
+    </p>
+    <p>
+      If the selected policy is anything other than
+      <code>
+        none
+      </code>
+      , Topology Manager would consider these Pod specifications. The Topology Manager would consult the Hint Providers to get topology hints. In the case of the
+      <code>
+        static
+      </code>
+      , the CPU Manager policy would return default topology hint, because these Pods do not have explicity request CPU resources.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;2&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/device</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;2&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/device</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1&#34;</span></code></pre>
+    </div>
+    <p>
+      This pod with integer CPU request runs in the
+      <code>
+        Guaranteed
+      </code>
+      QoS class because
+      <code>
+        requests
+      </code>
+      are equal to
+      <code>
+        limits
+      </code>
+      .
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;300m&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/device</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;300m&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/device</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1&#34;</span></code></pre>
+    </div>
+    <p>
+      This pod with sharing CPU request runs in the
+      <code>
+        Guaranteed
+      </code>
+      QoS class because
+      <code>
+        requests
+      </code>
+      are equal to
+      <code>
+        limits
+      </code>
+      .
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/deviceA</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/deviceB</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/deviceA</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/deviceB</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1&#34;</span></code></pre>
+    </div>
+    <p>
+      This pod runs in the
+      <code>
+        BestEffort
+      </code>
+      QoS class because there are no CPU and memory requests.
+    </p>
+    <p>
+      The Topology Manager would consider the above pods. The Topology Manager would consult the Hint Providers, which are CPU and Device Manager to get topology hints for the pods.
+    </p>
+    <p>
+      In the case of the
+      <code>
+        Guaranteed
+      </code>
+      pod with integer CPU request, the
+      <code>
+        static
+      </code>
+      CPU Manager policy would return topology hints relating to the exclusive CPU and the Device Manager would send back hints for the requested device.
+    </p>
+    <p>
+      In the case of the
+      <code>
+        Guaranteed
+      </code>
+      pod with sharing CPU request, the
+      <code>
+        static
+      </code>
+      CPU Manager policy would return default topology hint as there is no exclusive CPU request and the Device Manager would send back hints for the requested device.
+    </p>
+    <p>
+      In the above two cases of the
+      <code>
+        Guaranteed
+      </code>
+      pod, the
+      <code>
+        none
+      </code>
+      CPU Manager policy would return default topology hint.
+    </p>
+    <p>
+      In the case of the
+      <code>
+        BestEffort
+      </code>
+      pod, the
+      <code>
+        static
+      </code>
+      CPU Manager policy would send back the default topology hint as there is no CPU request and the Device Manager would send back the hints for each of the requested devices.
+    </p>
+    <p>
+      Using this information the Topology Manager calculates the optimal hint for the pod and stores this information, which will be used by the Hint Providers when they are making their resource assignments.
+    </p>
+    <h3 id="known-limitations">
+      Known Limitations
+    </h3>
+    <ol>
+      <li>
+        <p>
+          The maximum number of NUMA nodes that Topology Manager allows is 8. With more than 8 NUMA nodes there will be a state explosion when trying to enumerate the possible NUMA affinities and generating their hints.
+        </p>
+      </li>
+      <li>
+        <p>
+          The scheduler is not topology-aware, so it is possible to be scheduled on a node and then fail on the node due to the Topology Manager.
+        </p>
+      </li>
+      <li>
+        <p>
+          The Device Manager and the CPU Manager are the only components to adopt the Topology Manager&rsquo;s HintProvider interface. This means that NUMA alignment can only be achieved for resources managed by the CPU Manager and the Device Manager. Memory or Hugepages are not considered by the Topology Manager for NUMA alignment.
+        </p>
+      </li>
+    </ol>
+  </body>
+</html>

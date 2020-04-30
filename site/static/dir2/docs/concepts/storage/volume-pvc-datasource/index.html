@@ -1,0 +1,164 @@
+<html>
+  <body>
+    <h1>
+      CSI Volume Cloning
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/storage/volume-pvc-datasource.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      CSI Volume Cloning
+    </h1>
+    <p>
+      This document describes the concept of cloning existing CSI Volumes in Kubernetes.  Familiarity with
+      <a href="/docs/concepts/storage/volumes">
+        Volumes
+      </a>
+      is suggested.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#introduction">
+          Introduction
+        </a>
+      </li>
+      <li>
+        <a href="#provisioning">
+          Provisioning
+        </a>
+      </li>
+      <li>
+        <a href="#usage">
+          Usage
+        </a>
+      </li>
+    </ul>
+    <h2 id="introduction">
+      Introduction
+    </h2>
+    <p>
+      The
+      <a class='glossary-tooltip' href='/docs/concepts/storage/volumes/#csi' target='_blank'>
+        CSI
+        <span class='tooltip-text'>
+          The Container Storage Interface (CSI) defines a standard interface to expose storage systems to containers.
+        </span>
+      </a>
+      Volume Cloning feature adds support for specifying existing
+      <a class='glossary-tooltip' href='/docs/concepts/storage/persistent-volumes/' target='_blank'>
+        PVC
+        <span class='tooltip-text'>
+          Claims storage resources defined in a PersistentVolume so that it can be mounted as a volume in a container.
+        </span>
+      </a>
+      s in the
+      <code>
+        dataSource
+      </code>
+      field to indicate a user would like to clone a
+      <a class='glossary-tooltip' href='/docs/concepts/storage/volumes/' target='_blank'>
+        Volume
+        <span class='tooltip-text'>
+          A directory containing data, accessible to the containers in a pod.
+        </span>
+      </a>
+      .
+    </p>
+    <p>
+      A Clone is defined as a duplicate of an existing Kubernetes Volume that can be consumed as any standard Volume would be.  The only difference is that upon provisioning, rather than creating a &ldquo;new&rdquo; empty Volume, the back end device creates an exact duplicate of the specified Volume.
+    </p>
+    <p>
+      The implementation of cloning, from the perspective of the Kubernetes API, simply adds the ability to specify an existing PVC as a dataSource during new PVC creation. The source PVC must be bound and available (not in use).
+    </p>
+    <p>
+      Users need to be aware of the following when using this feature:
+    </p>
+    <ul>
+      <li>
+        Cloning support (
+        <code>
+          VolumePVCDataSource
+        </code>
+        ) is only available for CSI drivers.
+      </li>
+      <li>
+        Cloning support is only available for dynamic provisioners.
+      </li>
+      <li>
+        CSI drivers may or may not have implemented the volume cloning functionality.
+      </li>
+      <li>
+        You can only clone a PVC when it exists in the same namespace as the destination PVC (source and destination must be in the same namespace).
+      </li>
+      <li>
+        Cloning is only supported within the same Storage Class.
+        <ul>
+          <li>
+            Destination volume must be the same storage class as the source
+          </li>
+          <li>
+            Default storage class can be used and storageClassName omitted in the spec
+          </li>
+        </ul>
+      </li>
+      <li>
+        Cloning can only be performed between two volumes that use the same VolumeMode setting (if you request a block mode volume, the source MUST also be block mode)
+      </li>
+    </ul>
+    <h2 id="provisioning">
+      Provisioning
+    </h2>
+    <p>
+      Clones are provisioned just like any other PVC with the exception of adding a dataSource that references an existing PVC in the same namespace.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>PersistentVolumeClaim<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>clone-of-pvc<span style="color:#666">-1</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>myns<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">accessModes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- ReadWriteOnce<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">storageClassName</span>:<span style="color:#bbb"> </span>cloning<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">storage</span>:<span style="color:#bbb"> </span>5Gi<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">dataSource</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>PersistentVolumeClaim<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>pvc<span style="color:#666">-1</span><span style="color:#bbb">
+</span></code></pre>
+    </div>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        You must specify a capacity value for
+        <code>
+          spec.resources.requests.storage
+        </code>
+        , and the value you specify must be the same or larger than the capacity of the source volume.
+      </div>
+    </blockquote>
+    <p>
+      The result is a new PVC with the name
+      <code>
+        clone-of-pvc-1
+      </code>
+      that has the exact same content as the specified source
+      <code>
+        pvc-1
+      </code>
+      .
+    </p>
+    <h2 id="usage">
+      Usage
+    </h2>
+    <p>
+      Upon availability of the new PVC, the cloned PVC is consumed the same as other PVC.  It&rsquo;s also expected at this point that the newly created PVC is an independent object.  It can be consumed, cloned, snapshotted, or deleted independently and without consideration for it&rsquo;s original dataSource PVC.  This also implies that the source is not linked in any way to the newly created clone, it may also be modified or deleted without affecting the newly created clone.
+    </p>
+  </body>
+</html>

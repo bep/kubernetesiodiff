@@ -1,0 +1,159 @@
+<div style="background-color:#f0f3f3">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">77
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3">&lt;<span style="color:#309;font-weight:bold">html</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">body</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Running Kubernetes on Tencent Kubernetes Engine
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/website/edit/master/content/en/docs/setup/production-environment/turnkey/tencent.md&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;editPageButton&#34;</span> <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#34;_blank&#34;</span>&gt;
+        Edit This Page
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Running Kubernetes on Tencent Kubernetes Engine
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">nav</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;TableOfContents&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#tencent-kubernetes-engine&#34;</span>&gt;
+            Tencent Kubernetes Engine
+          &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#custom-deployment&#34;</span>&gt;
+            Custom Deployment
+          &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#what-s-next&#34;</span>&gt;
+            What<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s Next
+          &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">nav</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;tencent-kubernetes-engine&#34;</span>&gt;
+      Tencent Kubernetes Engine
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://intl.cloud.tencent.com/product/tke&#34;</span>&gt;
+        Tencent Cloud Tencent Kubernetes Engine (TKE)
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      provides native Kubernetes container management services. You can deploy and manage a Kubernetes cluster with TKE in just a few steps. For detailed directions, see
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://intl.cloud.tencent.com/document/product/457/11741&#34;</span>&gt;
+        Deploy Tencent Kubernetes Engine
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      .
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      TKE is a
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://www.cncf.io/certification/software-conformance/&#34;</span>&gt;
+        Certified Kubernetes product
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      .It is fully compatible with the native Kubernetes API.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;custom-deployment&#34;</span>&gt;
+      Custom Deployment
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The core of Tencent Kubernetes Engine is open source and available
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/TencentCloud/tencentcloud-cloud-controller-manager/&#34;</span>&gt;
+        on GitHub
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      .
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      When using TKE to create a Kubernetes cluster, you can choose managed mode or independent deployment mode. In addition, you can customize the deployment as needed; for example, you can choose an existing Cloud Virtual Machine instance for cluster creation or enable Kube-proxy in IPVS mode.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;what-s-next&#34;</span>&gt;
+      What<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s Next
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      To learn more, see the
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://intl.cloud.tencent.com/document/product/457&#34;</span>&gt;
+        TKE documentation
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      .
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">html</span>&gt;</pre></td></tr></table>
+</div>

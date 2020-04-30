@@ -1,0 +1,465 @@
+<div style="background-color:#f0f3f3">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">113
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">114
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">115
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">116
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">117
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">118
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">119
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">120
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">121
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">122
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">123
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">129
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">130
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">131
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">132
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">133
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">134
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">135
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">136
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">137
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">138
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">139
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">140
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">141
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">142
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">143
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">144
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">145
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">146
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">147
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">148
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">149
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">150
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">151
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">152
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">153
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">154
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">155
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">156
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">157
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">158
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">159
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">160
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">161
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">162
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">163
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">164
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">165
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">166
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">167
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">168
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">169
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">170
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">171
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">172
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">173
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">174
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">175
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">176
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">177
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">178
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">179
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">180
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">181
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">182
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">183
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">184
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">185
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">186
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">187
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">188
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">189
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">190
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">191
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">192
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">193
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">194
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">195
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">196
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">197
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">198
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">199
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">200
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">201
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">202
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">203
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">204
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">205
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">206
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">207
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">208
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">209
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">210
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">211
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">212
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">213
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">214
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">215
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">216
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">217
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">218
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">219
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">220
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">221
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">222
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">223
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">224
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">225
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">226
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">227
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">228
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">229
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">230
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3">&lt;<span style="color:#309;font-weight:bold">html</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">body</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Contributing new content overview
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/website/edit/master/content/en/docs/contribute/new-content/overview.md&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;editPageButton&#34;</span> <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#34;_blank&#34;</span>&gt;
+        Edit This Page
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Contributing new content overview
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      This section contains information you should know before contributing new content.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;markdown-toc&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#contributing-basics&#34;</span>&gt;
+          Contributing basics
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#before-you-begin&#34;</span>&gt;
+          Before you begin
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;contributing-basics&#34;</span>&gt;
+      Contributing basics
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Write Kubernetes documentation in Markdown and build the Kubernetes site using
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://gohugo.io/&#34;</span>&gt;
+          Hugo
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        .
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        The source is in
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/website&#34;</span>&gt;
+          GitHub
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        . You can find Kubernetes documentation at
+        &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+          /content/en/docs/
+        &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+        . Some of the reference documentation is automatically generated from scripts in the
+        &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+          update-imported-docs/
+        &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+        directory.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/contribute/style/page-templates/&#34;</span>&gt;
+          Page templates
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        control the presentation of documentation content in Hugo.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        In addition to the standard Hugo shortcodes, we use a number of
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/contribute/style/hugo-shortcodes/&#34;</span>&gt;
+          custom Hugo shortcodes
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        in our documentation to control the presentation of content.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        Documentation source is available in multiple languages in
+        &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+          /content/
+        &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+        . Each language has its own folder with a two-letter code determined by the
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://www.loc.gov/standards/iso639-2/php/code_list.php&#34;</span>&gt;
+          ISO 639-1 standard
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        . For example, English documentation source is stored in
+        &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+          /content/en/docs/
+        &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+        .
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        For more information about contributing to documentation in multiple languages or starting a new translation, see
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/contribute/localization&#34;</span>&gt;
+          localization
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        .
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;before-you-begin&#34;</span>&gt;
+      Before you begin
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;sign-the-cla&#34;</span>&gt;
+      Sign the CNCF CLA
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      All Kubernetes contributors
+      &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+        must
+      &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+      read the
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/community/blob/master/contributors/guide/README.md&#34;</span>&gt;
+        Contributor guide
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      and
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/community/blob/master/CLA.md&#34;</span>&gt;
+        sign the Contributor License Agreement (CLA)
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      .
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Pull requests from contributors who haven<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t signed the CLA fail the automated tests.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;configure-commit-signoffs&#34;</span>&gt;
+      Configure commit signoffs
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      All commits to Kubernetes repositories must be
+      &lt;<span style="color:#309;font-weight:bold">em</span>&gt;
+        signed off
+      &lt;/<span style="color:#309;font-weight:bold">em</span>&gt;
+      using the Git
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        --signoff
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      or
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        -s
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      flag.
+      The signoff acknowledges that you have the rights to submit contributions under the same
+      license and
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://developercertificate.org/&#34;</span>&gt;
+        Developer Certificate of Origin
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      .
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If you<span style="color:#999;font-weight:bold">&amp;rsquo;</span>re using a Git UI app, you can use the app<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s commit template functionality if it
+      exists, or add the following to your commit message body:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">pre</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span>&gt;Signed-off-by: Your Name <span style="color:#999;font-weight:bold">&amp;lt;</span>youremail@domain.com<span style="color:#999;font-weight:bold">&amp;gt;</span>&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      In both cases, the name and email you provide must match those found in your
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        git config
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      , and your git name and email must match those used for the CNCF CLA.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;choose-which-git-branch-to-use&#34;</span>&gt;
+      Choose which Git branch to use
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      When opening a pull request, you need to know in advance which branch to base your work on.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">table</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">thead</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">tr</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">th</span> <span style="color:#309">align</span><span style="color:#555">=</span><span style="color:#c30">&#34;left&#34;</span>&gt;
+            Scenario
+          &lt;/<span style="color:#309;font-weight:bold">th</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">th</span> <span style="color:#309">align</span><span style="color:#555">=</span><span style="color:#c30">&#34;left&#34;</span>&gt;
+            Branch
+          &lt;/<span style="color:#309;font-weight:bold">th</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">tr</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">thead</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">tbody</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">tr</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">td</span> <span style="color:#309">align</span><span style="color:#555">=</span><span style="color:#c30">&#34;left&#34;</span>&gt;
+            Existing or new English language content for the current release
+          &lt;/<span style="color:#309;font-weight:bold">td</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">td</span> <span style="color:#309">align</span><span style="color:#555">=</span><span style="color:#c30">&#34;left&#34;</span>&gt;
+            &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+              master
+            &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          &lt;/<span style="color:#309;font-weight:bold">td</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">tr</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">tr</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">td</span> <span style="color:#309">align</span><span style="color:#555">=</span><span style="color:#c30">&#34;left&#34;</span>&gt;
+            Content for a feature change release
+          &lt;/<span style="color:#309;font-weight:bold">td</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">td</span> <span style="color:#309">align</span><span style="color:#555">=</span><span style="color:#c30">&#34;left&#34;</span>&gt;
+            The branch which corresponds to the major and minor version the feature change is in, using the pattern
+            &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+              dev-release-<span style="color:#999;font-weight:bold">&amp;lt;</span>version<span style="color:#999;font-weight:bold">&amp;gt;</span>
+            &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+            . For example, if a feature changes in the `v1.18
+          &lt;/<span style="color:#309;font-weight:bold">td</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">tr</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">tbody</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">table</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        release, then add documentation changes to the
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        dev-release-1.18
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      ` branch.
+      Content in other languages (localizations) | Use the localization<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s convention. See the
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/contribute/localization/#branching-strategy&#34;</span>&gt;
+        Localization branching strategy
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      for more information.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If you<span style="color:#999;font-weight:bold">&amp;rsquo;</span>re still not sure which branch to choose, ask in
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        #sig-docs
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      on Slack.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">blockquote</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;note&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">div</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+          Note:
+        &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+        If you already submitted your pull request and you know that the base branch
+        was wrong, you (and only you, the submitter) can change it.
+      &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">blockquote</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;languages-per-pr&#34;</span>&gt;
+      Languages per PR
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Limit pull requests to one language per PR. If you need to make an identical change to the same code sample in multiple languages, open a separate PR for each language.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">html</span>&gt;</pre></td></tr></table>
+</div>

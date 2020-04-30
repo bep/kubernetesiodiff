@@ -1,0 +1,415 @@
+<html>
+  <body>
+    <h1>
+      Garbage Collection
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/workloads/controllers/garbage-collection.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Garbage Collection
+    </h1>
+    <p>
+      The role of the Kubernetes garbage collector is to delete certain objects
+      that once had an owner, but no longer have an owner.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#owners-and-dependents">
+          Owners and dependents
+        </a>
+      </li>
+      <li>
+        <a href="#controlling-how-the-garbage-collector-deletes-dependents">
+          Controlling how the garbage collector deletes dependents
+        </a>
+      </li>
+      <li>
+        <a href="#known-issues">
+          Known issues
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="owners-and-dependents">
+      Owners and dependents
+    </h2>
+    <p>
+      Some Kubernetes objects are owners of other objects. For example, a ReplicaSet
+      is the owner of a set of Pods. The owned objects are called
+      <em>
+        dependents
+      </em>
+      of the
+      owner object. Every dependent object has a
+      <code>
+        metadata.ownerReferences
+      </code>
+      field that
+      points to the owning object.
+    </p>
+    <p>
+      Sometimes, Kubernetes sets the value of
+      <code>
+        ownerReference
+      </code>
+      automatically. For
+      example, when you create a ReplicaSet, Kubernetes automatically sets the
+      <code>
+        ownerReference
+      </code>
+      field of each Pod in the ReplicaSet. In 1.8, Kubernetes
+      automatically sets the value of
+      <code>
+        ownerReference
+      </code>
+      for objects created or adopted
+      by ReplicationController, ReplicaSet, StatefulSet, DaemonSet, Deployment, Job
+      and CronJob.
+    </p>
+    <p>
+      You can also specify relationships between owners and dependents by manually
+      setting the
+      <code>
+        ownerReference
+      </code>
+      field.
+    </p>
+    <p>
+      Here&rsquo;s a configuration file for a ReplicaSet that has three Pods:
+    </p>
+    <table class="includecode" id="controllers-replicaset-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/controllers/replicaset.yaml" download="controllers/replicaset.yaml">
+              <code>
+                controllers/replicaset.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('controllers-replicaset-yaml')" title="Copy controllers/replicaset.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ReplicaSet<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-repset<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">pod-is-for</span>:<span style="color:#bbb"> </span>garbage-collection-example<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">pod-is-for</span>:<span style="color:#bbb"> </span>garbage-collection-example<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      If you create the ReplicaSet and then view the Pod metadata, you can see
+      OwnerReferences field:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/controllers/replicaset.yaml
+kubectl get pods --output<span style="color:#666">=</span>yaml</code></pre>
+    </div>
+    <p>
+      The output shows that the Pod owner is a ReplicaSet named
+      <code>
+        my-repset
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ownerReferences</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">controller</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">blockOwnerDeletion</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ReplicaSet<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-repset<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">uid</span>:<span style="color:#bbb"> </span>d9607e19-f88f<span style="color:#666">-11e6</span>-a518-42010a800195<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>...</code></pre>
+    </div>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        Cross-namespace owner references are disallowed by design. This means:
+        1) Namespace-scoped dependents can only specify owners in the same namespace,
+        and owners that are cluster-scoped.
+        2) Cluster-scoped dependents can only specify cluster-scoped owners, but not
+        namespace-scoped owners.
+      </div>
+    </blockquote>
+    <h2 id="controlling-how-the-garbage-collector-deletes-dependents">
+      Controlling how the garbage collector deletes dependents
+    </h2>
+    <p>
+      When you delete an object, you can specify whether the object&rsquo;s dependents are
+      also deleted automatically. Deleting dependents automatically is called
+      <em>
+        cascading
+        deletion
+      </em>
+      .  There are two modes of
+      <em>
+        cascading deletion
+      </em>
+      :
+      <em>
+        background
+      </em>
+      and
+      <em>
+        foreground
+      </em>
+      .
+    </p>
+    <p>
+      If you delete an object without deleting its dependents
+      automatically, the dependents are said to be
+      <em>
+        orphaned
+      </em>
+      .
+    </p>
+    <h3 id="foreground-cascading-deletion">
+      Foreground cascading deletion
+    </h3>
+    <p>
+      In
+      <em>
+        foreground cascading deletion
+      </em>
+      , the root object first
+      enters a &ldquo;deletion in progress&rdquo; state. In the &ldquo;deletion in progress&rdquo; state,
+      the following things are true:
+    </p>
+    <ul>
+      <li>
+        The object is still visible via the REST API
+      </li>
+      <li>
+        The object&rsquo;s
+        <code>
+          deletionTimestamp
+        </code>
+        is set
+      </li>
+      <li>
+        The object&rsquo;s
+        <code>
+          metadata.finalizers
+        </code>
+        contains the value &ldquo;foregroundDeletion&rdquo;.
+      </li>
+    </ul>
+    <p>
+      Once the &ldquo;deletion in progress&rdquo; state is set, the garbage
+      collector deletes the object&rsquo;s dependents. Once the garbage collector has deleted all
+      &ldquo;blocking&rdquo; dependents (objects with
+      <code>
+        ownerReference.blockOwnerDeletion=true
+      </code>
+      ), it deletes
+      the owner object.
+    </p>
+    <p>
+      Note that in the &ldquo;foregroundDeletion&rdquo;, only dependents with
+      <code>
+        ownerReference.blockOwnerDeletion=true
+      </code>
+      block the deletion of the owner object.
+      Kubernetes version 1.7 added an
+      <a href="/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement">
+        admission controller
+      </a>
+      that controls user access to set
+      <code>
+        blockOwnerDeletion
+      </code>
+      to true based on delete permissions on the owner object, so that
+      unauthorized dependents cannot delay deletion of an owner object.
+    </p>
+    <p>
+      If an object&rsquo;s
+      <code>
+        ownerReferences
+      </code>
+      field is set by a controller (such as Deployment or ReplicaSet),
+      blockOwnerDeletion is set automatically and you do not need to manually modify this field.
+    </p>
+    <h3 id="background-cascading-deletion">
+      Background cascading deletion
+    </h3>
+    <p>
+      In
+      <em>
+        background cascading deletion
+      </em>
+      , Kubernetes deletes the owner object
+      immediately and the garbage collector then deletes the dependents in
+      the background.
+    </p>
+    <h3 id="setting-the-cascading-deletion-policy">
+      Setting the cascading deletion policy
+    </h3>
+    <p>
+      To control the cascading deletion policy, set the
+      <code>
+        propagationPolicy
+      </code>
+      field on the
+      <code>
+        deleteOptions
+      </code>
+      argument when deleting an Object. Possible values include &ldquo;Orphan&rdquo;,
+      &ldquo;Foreground&rdquo;, or &ldquo;Background&rdquo;.
+    </p>
+    <p>
+      Prior to Kubernetes 1.9, the default garbage collection policy for many controller resources was
+      <code>
+        orphan
+      </code>
+      .
+      This included ReplicationController, ReplicaSet, StatefulSet, DaemonSet, and
+      Deployment. For kinds in the
+      <code>
+        extensions/v1beta1
+      </code>
+      ,
+      <code>
+        apps/v1beta1
+      </code>
+      , and
+      <code>
+        apps/v1beta2
+      </code>
+      group versions, unless you
+      specify otherwise, dependent objects are orphaned by default. In Kubernetes 1.9, for all kinds in the
+      <code>
+        apps/v1
+      </code>
+      group version, dependent objects are deleted by default.
+    </p>
+    <p>
+      Here&rsquo;s an example that deletes dependents in background:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl proxy --port<span style="color:#666">=</span><span style="color:#666">8080</span>
+curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-repset <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  -d <span style="color:#b44">&#39;{&#34;kind&#34;:&#34;DeleteOptions&#34;,&#34;apiVersion&#34;:&#34;v1&#34;,&#34;propagationPolicy&#34;:&#34;Background&#34;}&#39;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  -H <span style="color:#b44">&#34;Content-Type: application/json&#34;</span></code></pre>
+    </div>
+    <p>
+      Here&rsquo;s an example that deletes dependents in foreground:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl proxy --port<span style="color:#666">=</span><span style="color:#666">8080</span>
+curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-repset <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  -d <span style="color:#b44">&#39;{&#34;kind&#34;:&#34;DeleteOptions&#34;,&#34;apiVersion&#34;:&#34;v1&#34;,&#34;propagationPolicy&#34;:&#34;Foreground&#34;}&#39;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  -H <span style="color:#b44">&#34;Content-Type: application/json&#34;</span></code></pre>
+    </div>
+    <p>
+      Here&rsquo;s an example that orphans dependents:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl proxy --port<span style="color:#666">=</span><span style="color:#666">8080</span>
+curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-repset <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  -d <span style="color:#b44">&#39;{&#34;kind&#34;:&#34;DeleteOptions&#34;,&#34;apiVersion&#34;:&#34;v1&#34;,&#34;propagationPolicy&#34;:&#34;Orphan&#34;}&#39;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>  -H <span style="color:#b44">&#34;Content-Type: application/json&#34;</span></code></pre>
+    </div>
+    <p>
+      kubectl also supports cascading deletion.
+      To delete dependents automatically using kubectl, set
+      <code>
+        --cascade
+      </code>
+      to true.  To
+      orphan dependents, set
+      <code>
+        --cascade
+      </code>
+      to false. The default value for
+      <code>
+        --cascade
+      </code>
+      is true.
+    </p>
+    <p>
+      Here&rsquo;s an example that orphans the dependents of a ReplicaSet:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete replicaset my-repset --cascade<span style="color:#666">=</span>false</code></pre>
+    </div>
+    <h3 id="additional-note-on-deployments">
+      Additional note on Deployments
+    </h3>
+    <p>
+      Prior to 1.7, When using cascading deletes with Deployments you
+      <em>
+        must
+      </em>
+      use
+      <code>
+        propagationPolicy: Foreground
+      </code>
+      to delete not only the ReplicaSets created, but also their Pods. If this type of
+      <em>
+        propagationPolicy
+      </em>
+      is not used, only the ReplicaSets will be deleted, and the Pods will be orphaned.
+      See
+      <a href="https://github.com/kubernetes/kubeadm/issues/149#issuecomment-284766613">
+        kubeadm/#149
+      </a>
+      for more information.
+    </p>
+    <h2 id="known-issues">
+      Known issues
+    </h2>
+    <p>
+      Tracked at
+      <a href="https://github.com/kubernetes/kubernetes/issues/26120">
+        #26120
+      </a>
+    </p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <p>
+      <a href="https://git.k8s.io/community/contributors/design-proposals/api-machinery/garbage-collection.md">
+        Design Doc 1
+      </a>
+    </p>
+    <p>
+      <a href="https://git.k8s.io/community/contributors/design-proposals/api-machinery/synchronous-garbage-collection.md">
+        Design Doc 2
+      </a>
+    </p>
+  </body>
+</html>

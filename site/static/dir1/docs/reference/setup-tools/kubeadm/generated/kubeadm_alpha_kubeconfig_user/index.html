@@ -1,0 +1,184 @@
+<html>
+<body>
+<h1></h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_kubeconfig_user.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1></h1>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <a href="#synopsis">
+                Synopsis
+              </a>
+            </li>
+            <li>
+              <a href="#examples">
+                Examples
+              </a>
+            </li>
+            <li>
+              <a href="#options">
+                Options
+              </a>
+            </li>
+            <li>
+              <a href="#options-inherited-from-parent-commands">
+                Options inherited from parent commands
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h3 id="synopsis">
+  Synopsis
+</h3>
+<p>
+  Output a kubeconfig file for an additional user.
+</p>
+<p>
+  Alpha Disclaimer: this command is currently alpha.
+</p>
+<pre><code>kubeadm alpha kubeconfig user [flags]</code></pre>
+<h3 id="examples">
+  Examples
+</h3>
+<pre><code>  # Output a kubeconfig file for an additional user named foo
+  kubeadm alpha kubeconfig user --client-name=foo</code></pre>
+<h3 id="options">
+  Options
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;apiserver-advertise-address string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The IP address the API server is accessible on
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;apiserver-bind-port int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 6443
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The port the API server is accessible on
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The path where certificates are stored
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;client-name string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The name of user. It will be used as the CN if client certificates are created
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -h, &ndash;help
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      help for user
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;org stringSlice
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The orgnizations of the client certificate. It will be used as the O if client certificates are created
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;token string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The token that should be used as the authentication mechanism for this kubeconfig, instead of client certificates
+    </td>
+  </tr>
+</p>
+<p>
+<h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+    </td>
+  </tr>
+</p>
+<p>

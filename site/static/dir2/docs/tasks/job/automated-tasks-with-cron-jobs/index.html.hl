@@ -1,0 +1,1153 @@
+<div style="background-color:#f0f3f3">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">113
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">114
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">115
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">116
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">117
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">118
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">119
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">120
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">121
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">122
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">123
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">129
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">130
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">131
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">132
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">133
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">134
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">135
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">136
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">137
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">138
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">139
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">140
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">141
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">142
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">143
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">144
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">145
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">146
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">147
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">148
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">149
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">150
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">151
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">152
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">153
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">154
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">155
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">156
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">157
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">158
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">159
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">160
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">161
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">162
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">163
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">164
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">165
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">166
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">167
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">168
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">169
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">170
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">171
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">172
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">173
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">174
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">175
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">176
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">177
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">178
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">179
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">180
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">181
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">182
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">183
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">184
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">185
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">186
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">187
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">188
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">189
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">190
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">191
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">192
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">193
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">194
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">195
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">196
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">197
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">198
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">199
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">200
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">201
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">202
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">203
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">204
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">205
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">206
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">207
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">208
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">209
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">210
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">211
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">212
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">213
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">214
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">215
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">216
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">217
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">218
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">219
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">220
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">221
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">222
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">223
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">224
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">225
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">226
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">227
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">228
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">229
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">230
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">231
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">232
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">233
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">234
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">235
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">236
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">237
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">238
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">239
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">240
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">241
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">242
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">243
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">244
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">245
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">246
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">247
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">248
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">249
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">250
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">251
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">252
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">253
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">254
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">255
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">256
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">257
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">258
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">259
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">260
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">261
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">262
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">263
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">264
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">265
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">266
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">267
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">268
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">269
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">270
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">271
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">272
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">273
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">274
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">275
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">276
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">277
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">278
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">279
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">280
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">281
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">282
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">283
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">284
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">285
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">286
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">287
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">288
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">289
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">290
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">291
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">292
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">293
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">294
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">295
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">296
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">297
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">298
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">299
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">300
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">301
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">302
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">303
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">304
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">305
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">306
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">307
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">308
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">309
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">310
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">311
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">312
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">313
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">314
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">315
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">316
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">317
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">318
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">319
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">320
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">321
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">322
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">323
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">324
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">325
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">326
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">327
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">328
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">329
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">330
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">331
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">332
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">333
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">334
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">335
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">336
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">337
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">338
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">339
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">340
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">341
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">342
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">343
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">344
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">345
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">346
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">347
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">348
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">349
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">350
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">351
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">352
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">353
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">354
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">355
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">356
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">357
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">358
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">359
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">360
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">361
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">362
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">363
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">364
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">365
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">366
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">367
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">368
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">369
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">370
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">371
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">372
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">373
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">374
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">375
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">376
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">377
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">378
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">379
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">380
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">381
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">382
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">383
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">384
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">385
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">386
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">387
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">388
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">389
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">390
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">391
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">392
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">393
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">394
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">395
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">396
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">397
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">398
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">399
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">400
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">401
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">402
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">403
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">404
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">405
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">406
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">407
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">408
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">409
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">410
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">411
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">412
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">413
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">414
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">415
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">416
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">417
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">418
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">419
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">420
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">421
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">422
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">423
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">424
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">425
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">426
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">427
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">428
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">429
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">430
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">431
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">432
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">433
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">434
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">435
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">436
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">437
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">438
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">439
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">440
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">441
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">442
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">443
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">444
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">445
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">446
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">447
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">448
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">449
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">450
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">451
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">452
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">453
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">454
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">455
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">456
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">457
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">458
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">459
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">460
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">461
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">462
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">463
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">464
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">465
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">466
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">467
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">468
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">469
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">470
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">471
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">472
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">473
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">474
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">475
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">476
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">477
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">478
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">479
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">480
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">481
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">482
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">483
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">484
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">485
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">486
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">487
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">488
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">489
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">490
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">491
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">492
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">493
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">494
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">495
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">496
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">497
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">498
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">499
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">500
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">501
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">502
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">503
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">504
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">505
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">506
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">507
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">508
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">509
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">510
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">511
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">512
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">513
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">514
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">515
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">516
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">517
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">518
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">519
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">520
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">521
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">522
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">523
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">524
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">525
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">526
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">527
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">528
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">529
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">530
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">531
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">532
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">533
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">534
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">535
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">536
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">537
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">538
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">539
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">540
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">541
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">542
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">543
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">544
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">545
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">546
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">547
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">548
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">549
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">550
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">551
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">552
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">553
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">554
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">555
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">556
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">557
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">558
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">559
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">560
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">561
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">562
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">563
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">564
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">565
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">566
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">567
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">568
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">569
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">570
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">571
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">572
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">573
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">574
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3">&lt;<span style="color:#309;font-weight:bold">html</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">body</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+  Running Automated Tasks with a CronJob
+&lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/job/automated-tasks-with-cron-jobs.md&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;editPageButton&#34;</span> <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#34;_blank&#34;</span>&gt;
+    Edit This Page
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+  Running Automated Tasks with a CronJob
+&lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  You can use a
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#39;glossary-tooltip&#39;</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#39;/docs/concepts/workloads/controllers/cron-jobs/&#39;</span> <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#39;_blank&#39;</span>&gt;
+    CronJob
+    &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#39;tooltip-text&#39;</span>&gt;
+      Manages a Job that runs on a periodic schedule.
+    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  to run
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#39;glossary-tooltip&#39;</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#39;/docs/concepts/workloads/controllers/jobs-run-to-completion&#39;</span> <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#39;_blank&#39;</span>&gt;
+    Jobs
+    &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#39;tooltip-text&#39;</span>&gt;
+      A finite or batch task that runs to completion.
+    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  on a time-based schedule.
+  These automated jobs run like
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://en.wikipedia.org/wiki/Cron&#34;</span>&gt;
+    Cron
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  tasks on a Linux or UNIX system.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  Cron jobs are useful for creating periodic and recurring tasks, like running backups or sending emails.
+  Cron jobs can also schedule individual tasks for a specific time, such as if you want to schedule a job for a low activity period.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  Cron jobs have limitations and idiosyncrasies.
+  For example, in certain circumstances, a single cron job can create multiple jobs.
+  Therefore, jobs should be idempotent.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  For more limitations, see
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/concepts/workloads/controllers/cron-jobs&#34;</span>&gt;
+    CronJobs
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  .
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">ul</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;markdown-toc&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#before-you-begin&#34;</span>&gt;
+      Before you begin
+    &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#creating-a-cron-job&#34;</span>&gt;
+      Creating a Cron Job
+    &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#deleting-a-cron-job&#34;</span>&gt;
+      Deleting a Cron Job
+    &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#writing-a-cron-job-spec&#34;</span>&gt;
+      Writing a Cron Job Spec
+    &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;before-you-begin&#34;</span>&gt;
+  Before you begin
+&lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+    You need to have a Kubernetes cluster, and the kubectl command-line tool must
+  &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  be configured to communicate with your cluster. If you do not already have a
+  cluster, you can create one by using
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/setup/learning-environment/minikube/&#34;</span>&gt;
+    Minikube
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  ,
+  or you can use one of these Kubernetes playgrounds:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://www.katacoda.com/courses/kubernetes/playground&#34;</span>&gt;
+      Katacoda
+    &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;http://labs.play-with-k8s.com/&#34;</span>&gt;
+      Play with Kubernetes
+    &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;creating-a-cron-job&#34;</span>&gt;
+  Creating a Cron Job
+&lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  Cron jobs require a config file.
+  This example cron job config
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  file prints the current time and a hello message every minute:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">table</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;includecode&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;application-job-cronjob-yaml&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">thead</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">tr</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">th</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/job/cronjob.yaml&#34;</span> <span style="color:#309">download</span><span style="color:#555">=</span><span style="color:#c30">&#34;application/job/cronjob.yaml&#34;</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            application/job/cronjob.yaml
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">img</span> <span style="color:#309">src</span><span style="color:#555">=</span><span style="color:#c30">&#34;/dir2/images/copycode.svg&#34;</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;max-height:24px; cursor: pointer&#34;</span> <span style="color:#309">onclick</span><span style="color:#555">=</span><span style="color:#c30">&#34;copyCode(&#39;application-job-cronjob-yaml&#39;)&#34;</span> <span style="color:#309">title</span><span style="color:#555">=</span><span style="color:#c30">&#34;Copy application/job/cronjob.yaml to clipboard&#34;</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">th</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">tr</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">thead</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">tbody</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">tr</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">td</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiVersion&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;batch/v1beta1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;CronJob&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;hello&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;schedule&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b44&#34;</span>&gt;<span style="color:#999;font-weight:bold">&amp;#34;</span>*/1 * * * *<span style="color:#999;font-weight:bold">&amp;#34;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;jobTemplate&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;template&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;          &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;containers&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;          &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;hello&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;            &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;image&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;busybox&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;            &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;args&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;            &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- /bin/sh&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;            &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- -c&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;            &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- date;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;echo&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;Hello&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;from&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;the&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;Kubernetes&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;cluster&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;          &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;restartPolicy&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;OnFailure&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">td</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">tr</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">tbody</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">table</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  Run the example CronJob by using this command:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl create -f https://k8s.io/examples/application/job/cronjob.yaml&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The output is similar to this:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;&lt;<span style="color:#309;font-weight:bold">pre</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span>&gt;cronjob.batch/hello created&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  Alternatively, you can use
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    kubectl run
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  to create a cron job without writing a full config:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl run hello --schedule&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b44&#34;</span>&gt;<span style="color:#999;font-weight:bold">&amp;#34;</span>*/1 * * * *<span style="color:#999;font-weight:bold">&amp;#34;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; --restart&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;OnFailure --image&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;busybox -- /bin/sh -c &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b44&#34;</span>&gt;<span style="color:#999;font-weight:bold">&amp;#34;</span>date; echo Hello from the Kubernetes cluster<span style="color:#999;font-weight:bold">&amp;#34;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  After creating the cron job, get its status using this command:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl get cronjob hello&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The output is similar to this:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;&lt;<span style="color:#309;font-weight:bold">pre</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span>&gt;NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+hello   */1 * * * *   False     0        <span style="color:#999;font-weight:bold">&amp;lt;</span>none<span style="color:#999;font-weight:bold">&amp;gt;</span>          10s&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  As you can see from the results of the command, the cron job has not scheduled or run any jobs yet.
+  Watch for the job to be created in around one minute:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl get &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f&#34;</span>&gt;jobs&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; --watch&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The output is similar to this:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;&lt;<span style="color:#309;font-weight:bold">pre</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span>&gt;NAME               COMPLETIONS   DURATION   AGE
+hello-4111706356   0/1                      0s
+hello-4111706356   0/1           0s         0s
+hello-4111706356   1/1           5s         5s&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  Now you<span style="color:#999;font-weight:bold">&amp;rsquo;</span>ve seen one running job scheduled by the <span style="color:#999;font-weight:bold">&amp;ldquo;</span>hello<span style="color:#999;font-weight:bold">&amp;rdquo;</span> cron job.
+  You can stop watching the job and view the cron job again to see that it scheduled the job:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl get cronjob hello&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The output is similar to this:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;&lt;<span style="color:#309;font-weight:bold">pre</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span>&gt;NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+hello   */1 * * * *   False     0        50s             75s&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  You should see that the cron job
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    hello
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  successfully scheduled a job at the time specified in
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    LAST SCHEDULE
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  . There are currently 0 active jobs, meaning that the job has completed or failed.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  Now, find the pods that the last scheduled job created and view the standard output of one of the pods.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">blockquote</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;note&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+      Note:
+    &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+    The job name and pod name are different.
+  &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">blockquote</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;# Replace <span style="color:#999;font-weight:bold">&amp;#34;</span>hello-4111706356<span style="color:#999;font-weight:bold">&amp;#34;</span> with the job name in your system&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b8860b&#34;</span>&gt;pods&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;$(&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;kubectl get pods --selector&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;job-name&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;hello-4111706356 --output&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b8860b&#34;</span>&gt;jsonpath&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;={&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;.items&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;[&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;*&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;]&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;.metadata.name&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;}&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;)&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  Show pod log:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl logs &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b8860b&#34;</span>&gt;$pods&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The output is similar to this:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;&lt;<span style="color:#309;font-weight:bold">pre</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span>&gt;Fri Feb 22 11:02:09 UTC 2019
+Hello from the Kubernetes cluster&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;deleting-a-cron-job&#34;</span>&gt;
+  Deleting a Cron Job
+&lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  When you don<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t need a cron job any more, delete it with
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    kubectl delete cronjob <span style="color:#999;font-weight:bold">&amp;lt;</span>cronjob name<span style="color:#999;font-weight:bold">&amp;gt;</span>
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  :
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl delete cronjob hello&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  Deleting the cron job removes all the jobs and pods it created and stops it from creating additional jobs.
+  You can read more about removing jobs in
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/concepts/workloads/controllers/garbage-collection/&#34;</span>&gt;
+    garbage collection
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  .
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;writing-a-cron-job-spec&#34;</span>&gt;
+  Writing a Cron Job Spec
+&lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  As with all other Kubernetes configs, a cron job needs
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    apiVersion
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  ,
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    kind
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  , and
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    metadata
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  fields. For general
+  information about working with config files, see
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/user-guide/deploying-applications&#34;</span>&gt;
+    deploying applications
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  ,
+  and
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/user-guide/working-with-resources&#34;</span>&gt;
+    using kubectl to manage resources
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  documents.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  A cron job config also needs a
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status&#34;</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      .spec
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    section
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  .
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">blockquote</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;note&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+      Note:
+    &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+    All modifications to a cron job, especially its
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      .spec
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    , are applied only to the following runs.
+  &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">blockquote</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;schedule&#34;</span>&gt;
+  Schedule
+&lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec.schedule
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  is a required field of the
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  .
+  It takes a
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://en.wikipedia.org/wiki/Cron&#34;</span>&gt;
+    Cron
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  format string, such as
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    0 * * * *
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  or
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    @hourly
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  , as schedule time of its jobs to be created and executed.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The format also includes extended
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    vixie cron
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  step values. As explained in the
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://www.freebsd.org/cgi/man.cgi?crontab%285%29&#34;</span>&gt;
+    FreeBSD manual
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  :
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">blockquote</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+    Step values can be	used in	conjunction with ranges.  Following a range
+    with
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      /<span style="color:#999;font-weight:bold">&amp;lt;</span>number<span style="color:#999;font-weight:bold">&amp;gt;</span>
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    specifies skips	of the number<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s	value through the
+    range.  For example,
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      0-23/2
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    can be used in the	hours field to specify
+    command execution every other hour	(the alternative in the	V7 standard is
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      0,2,4,6,8,10,12,14,16,18,20,22
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    ).  Steps are also permitted after an
+    asterisk, so if you want to say <span style="color:#999;font-weight:bold">&amp;ldquo;</span>every two hours<span style="color:#999;font-weight:bold">&amp;rdquo;</span>, just use
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      */2
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    .
+  &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">blockquote</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">blockquote</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;note&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+      Note:
+    &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+    A question mark (
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      ?
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    ) in the schedule has the same meaning as an asterisk
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      *
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    , that is, it stands for any of available value for a given field.
+  &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">blockquote</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;job-template&#34;</span>&gt;
+  Job Template
+&lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec.jobTemplate
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  is the template for the job, and it is required.
+  It has exactly the same schema as a
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/concepts/workloads/controllers/jobs-run-to-completion/&#34;</span>&gt;
+    Job
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  , except that it is nested and does not have an
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    apiVersion
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  or
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    kind
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  .
+  For information about writing a job
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  , see
+  &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/concepts/workloads/controllers/jobs-run-to-completion/#writing-a-job-spec&#34;</span>&gt;
+    Writing a Job Spec
+  &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+  .
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;starting-deadline&#34;</span>&gt;
+  Starting Deadline
+&lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec.startingDeadlineSeconds
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  field is optional.
+  It stands for the deadline in seconds for starting the job if it misses its scheduled time for any reason.
+  After the deadline, the cron job does not start the job.
+  Jobs that do not meet their deadline in this way count as failed jobs.
+  If this field is not specified, the jobs have no deadline.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The CronJob controller counts how many missed schedules happen for a cron job. If there are more than 100 missed schedules, the cron job is no longer scheduled. When
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec.startingDeadlineSeconds
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  is not set, the CronJob controller counts missed schedules from
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    status.lastScheduleTime
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  until now.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  For example, one cron job is supposed to run every minute, the
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    status.lastScheduleTime
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  of the cronjob is 5:00am, but now it<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s 7:00am. That means 120 schedules were missed, so the cron job is no longer scheduled.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  If the
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec.startingDeadlineSeconds
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  field is set (not null), the CronJob controller counts how many missed jobs occurred from the value of
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec.startingDeadlineSeconds
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  until now.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  For example, if it is set to
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    200
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  , it counts how many missed schedules occurred in the last 200 seconds. In that case, if there were more than 100 missed schedules in the last 200 seconds, the cron job is no longer scheduled.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;concurrency-policy&#34;</span>&gt;
+  Concurrency Policy
+&lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec.concurrencyPolicy
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  field is also optional.
+  It specifies how to treat concurrent executions of a job that is created by this cron job.
+  The spec may specify only one of the following concurrency policies:
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      Allow
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    (default): The cron job allows concurrently running jobs
+  &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      Forbid
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    : The cron job does not allow concurrent runs; if it is time for a new job run and the previous job run hasn<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t finished yet, the cron job skips the new job run
+  &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      Replace
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    : If it is time for a new job run and the previous job run hasn<span style="color:#999;font-weight:bold">&amp;rsquo;</span>t finished yet, the cron job replaces the currently running job run with a new job run
+  &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  Note that concurrency policy only applies to the jobs created by the same cron job.
+  If there are multiple cron jobs, their respective jobs are always allowed to run concurrently.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;suspend&#34;</span>&gt;
+  Suspend
+&lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec.suspend
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  field is also optional.
+  If it is set to
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    true
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  , all subsequent executions are suspended.
+  This setting does not apply to already started executions.
+  Defaults to false.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">blockquote</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;caution&#34;</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">strong</span>&gt;
+      Caution:
+    &lt;/<span style="color:#309;font-weight:bold">strong</span>&gt;
+    Executions that are suspended during their scheduled time count as missed jobs.
+    When
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      .spec.suspend
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    changes from
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      true
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    to
+    &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+      false
+    &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    on an existing cron job without a
+    &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#starting-deadline&#34;</span>&gt;
+      starting deadline
+    &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+    , the missed jobs are scheduled immediately.
+  &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">blockquote</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;jobs-history-limits&#34;</span>&gt;
+  Jobs History Limits
+&lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+&lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+  The
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec.successfulJobsHistoryLimit
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  and
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    .spec.failedJobsHistoryLimit
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  fields are optional.
+  These fields specify how many completed and failed jobs should be kept.
+  By default, they are set to 3 and 1 respectively.  Setting a limit to
+  &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+    0
+  &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+  corresponds to keeping none of the corresponding kind of jobs after they finish.
+&lt;/<span style="color:#309;font-weight:bold">p</span>&gt;</pre></td></tr></table>
+</div>

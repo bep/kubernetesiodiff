@@ -1,0 +1,752 @@
+<html>
+  <body>
+    <h1>
+      StatefulSets
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/workloads/controllers/statefulset.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      StatefulSets
+    </h1>
+    <p>
+      StatefulSet is the workload API object used to manage stateful applications.
+    </p>
+    <p>
+      Manages the deployment and scaling of a set of
+      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+        Pods
+        <span class='tooltip-text'>
+          The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
+        </span>
+      </a>
+      ,
+      <em>
+        and provides guarantees about the ordering and uniqueness
+      </em>
+      of these Pods.
+    </p>
+    <p>
+      Like a
+      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/deployment/' target='_blank'>
+        Deployment
+        <span class='tooltip-text'>
+          An API object that manages a replicated application.
+        </span>
+      </a>
+      , a StatefulSet manages Pods that are based on an identical container spec. Unlike a Deployment, a StatefulSet maintains a sticky identity for each of their Pods. These pods are created from the same spec, but are not interchangeable: each has a persistent identifier that it maintains across any rescheduling.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#using-statefulsets">
+          Using StatefulSets
+        </a>
+      </li>
+      <li>
+        <a href="#limitations">
+          Limitations
+        </a>
+      </li>
+      <li>
+        <a href="#components">
+          Components
+        </a>
+      </li>
+      <li>
+        <a href="#pod-selector">
+          Pod Selector
+        </a>
+      </li>
+      <li>
+        <a href="#pod-identity">
+          Pod Identity
+        </a>
+      </li>
+      <li>
+        <a href="#deployment-and-scaling-guarantees">
+          Deployment and Scaling Guarantees
+        </a>
+      </li>
+      <li>
+        <a href="#update-strategies">
+          Update Strategies
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="using-statefulsets">
+      Using StatefulSets
+    </h2>
+    <p>
+      StatefulSets are valuable for applications that require one or more of the
+      following.
+    </p>
+    <ul>
+      <li>
+        Stable, unique network identifiers.
+      </li>
+      <li>
+        Stable, persistent storage.
+      </li>
+      <li>
+        Ordered, graceful deployment and scaling.
+      </li>
+      <li>
+        Ordered, automated rolling updates.
+      </li>
+    </ul>
+    <p>
+      In the above, stable is synonymous with persistence across Pod (re)scheduling.
+      If an application doesn&rsquo;t require any stable identifiers or ordered deployment,
+      deletion, or scaling, you should deploy your application using a workload object
+      that provides a set of stateless replicas.
+      <a href="/docs/concepts/workloads/controllers/deployment/">
+        Deployment
+      </a>
+      or
+      <a href="/docs/concepts/workloads/controllers/replicaset/">
+        ReplicaSet
+      </a>
+      may be better suited to your stateless needs.
+    </p>
+    <h2 id="limitations">
+      Limitations
+    </h2>
+    <ul>
+      <li>
+        The storage for a given Pod must either be provisioned by a
+        <a href="https://github.com/kubernetes/examples/tree/master/staging/persistent-volume-provisioning/README.md">
+          PersistentVolume Provisioner
+        </a>
+        based on the requested
+        <code>
+          storage class
+        </code>
+        , or pre-provisioned by an admin.
+      </li>
+      <li>
+        Deleting and/or scaling a StatefulSet down will
+        <em>
+          not
+        </em>
+        delete the volumes associated with the StatefulSet. This is done to ensure data safety, which is generally more valuable than an automatic purge of all related StatefulSet resources.
+      </li>
+      <li>
+        StatefulSets currently require a
+        <a href="/docs/concepts/services-networking/service/#headless-services">
+          Headless Service
+        </a>
+        to be responsible for the network identity of the Pods. You are responsible for creating this Service.
+      </li>
+      <li>
+        StatefulSets do not provide any guarantees on the termination of pods when a StatefulSet is deleted. To achieve ordered and graceful termination of the pods in the StatefulSet, it is possible to scale the StatefulSet down to 0 prior to deletion.
+      </li>
+      <li>
+        When using
+        <a href="#rolling-updates">
+          Rolling Updates
+        </a>
+        with the default
+        <a href="#pod-management-policies">
+          Pod Management Policy
+        </a>
+        (
+        <code>
+          OrderedReady
+        </code>
+        ),
+        it&rsquo;s possible to get into a broken state that requires
+        <a href="#forced-rollback">
+          manual intervention to repair
+        </a>
+        .
+      </li>
+    </ul>
+    <h2 id="components">
+      Components
+    </h2>
+    <p>
+      The example below demonstrates the components of a StatefulSet.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>web<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">clusterIP</span>:<span style="color:#bbb"> </span>None<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb"></span>---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>StatefulSet<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>web<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb"> </span><span style="color:#080;font-style:italic"># has to match .spec.template.metadata.labels</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">serviceName</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;nginx&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb"> </span><span style="color:#080;font-style:italic"># by default is 1</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb"> </span><span style="color:#080;font-style:italic"># has to match .spec.selector.matchLabels</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">terminationGracePeriodSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">10</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>k8s.gcr.io/nginx-slim:<span style="color:#666">0.8</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>web<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">volumeMounts</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>www<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">mountPath</span>:<span style="color:#bbb"> </span>/usr/share/nginx/html<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">volumeClaimTemplates</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>www<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">accessModes</span>:<span style="color:#bbb"> </span>[<span style="color:#bbb"> </span><span style="color:#b44">&#34;ReadWriteOnce&#34;</span><span style="color:#bbb"> </span>]<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">storageClassName</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;my-storage-class&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">storage</span>:<span style="color:#bbb"> </span>1Gi<span style="color:#bbb">
+</span></code></pre>
+    </div>
+    <p>
+      In the above example:
+    </p>
+    <ul>
+      <li>
+        A Headless Service, named
+        <code>
+          nginx
+        </code>
+        , is used to control the network domain.
+      </li>
+      <li>
+        The StatefulSet, named
+        <code>
+          web
+        </code>
+        , has a Spec that indicates that 3 replicas of the nginx container will be launched in unique Pods.
+      </li>
+      <li>
+        The
+        <code>
+          volumeClaimTemplates
+        </code>
+        will provide stable storage using
+        <a href="/docs/concepts/storage/persistent-volumes/">
+          PersistentVolumes
+        </a>
+        provisioned by a PersistentVolume Provisioner.
+      </li>
+    </ul>
+    <p>
+      The name of a StatefulSet object must be a valid
+      <a href="/docs/concepts/overview/working-with-objects/names#dns-subdomain-names">
+        DNS subdomain name
+      </a>
+      .
+    </p>
+    <h2 id="pod-selector">
+      Pod Selector
+    </h2>
+    <p>
+      You must set the
+      <code>
+        .spec.selector
+      </code>
+      field of a StatefulSet to match the labels of its
+      <code>
+        .spec.template.metadata.labels
+      </code>
+      . Prior to Kubernetes 1.8, the
+      <code>
+        .spec.selector
+      </code>
+      field was defaulted when omitted. In 1.8 and later versions, failing to specify a matching Pod Selector will result in a validation error during StatefulSet creation.
+    </p>
+    <h2 id="pod-identity">
+      Pod Identity
+    </h2>
+    <p>
+      StatefulSet Pods have a unique identity that is comprised of an ordinal, a
+      stable network identity, and stable storage. The identity sticks to the Pod,
+      regardless of which node it&rsquo;s (re)scheduled on.
+    </p>
+    <h3 id="ordinal-index">
+      Ordinal Index
+    </h3>
+    <p>
+      For a StatefulSet with N replicas, each Pod in the StatefulSet will be
+      assigned an integer ordinal, from 0 up through N-1, that is unique over the Set.
+    </p>
+    <h3 id="stable-network-id">
+      Stable Network ID
+    </h3>
+    <p>
+      Each Pod in a StatefulSet derives its hostname from the name of the StatefulSet
+      and the ordinal of the Pod. The pattern for the constructed hostname
+      is
+      <code>
+        $(statefulset name)-$(ordinal)
+      </code>
+      . The example above will create three Pods
+      named
+      <code>
+        web-0,web-1,web-2
+      </code>
+      .
+      A StatefulSet can use a
+      <a href="/docs/concepts/services-networking/service/#headless-services">
+        Headless Service
+      </a>
+      to control the domain of its Pods. The domain managed by this Service takes the form:
+      <code>
+        $(service name).$(namespace).svc.cluster.local
+      </code>
+      , where &ldquo;cluster.local&rdquo; is the
+      cluster domain.
+      As each Pod is created, it gets a matching DNS subdomain, taking the form:
+      <code>
+        $(podname).$(governing service domain)
+      </code>
+      , where the governing service is defined
+      by the
+      <code>
+        serviceName
+      </code>
+      field on the StatefulSet.
+    </p>
+    <p>
+      As mentioned in the
+      <a href="#limitations">
+        limitations
+      </a>
+      section, you are responsible for
+      creating the
+      <a href="/docs/concepts/services-networking/service/#headless-services">
+        Headless Service
+      </a>
+      responsible for the network identity of the pods.
+    </p>
+    <p>
+      Here are some examples of choices for Cluster Domain, Service name,
+      StatefulSet name, and how that affects the DNS names for the StatefulSet&rsquo;s Pods.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Cluster Domain
+          </th>
+          <th>
+            Service (ns/name)
+          </th>
+          <th>
+            StatefulSet (ns/name)
+          </th>
+          <th>
+            StatefulSet Domain
+          </th>
+          <th>
+            Pod DNS
+          </th>
+          <th>
+            Pod Hostname
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            cluster.local
+          </td>
+          <td>
+            default/nginx
+          </td>
+          <td>
+            default/web
+          </td>
+          <td>
+            nginx.default.svc.cluster.local
+          </td>
+          <td>
+            web-{0..N-1}.nginx.default.svc.cluster.local
+          </td>
+          <td>
+            web-{0..N-1}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            cluster.local
+          </td>
+          <td>
+            foo/nginx
+          </td>
+          <td>
+            foo/web
+          </td>
+          <td>
+            nginx.foo.svc.cluster.local
+          </td>
+          <td>
+            web-{0..N-1}.nginx.foo.svc.cluster.local
+          </td>
+          <td>
+            web-{0..N-1}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            kube.local
+          </td>
+          <td>
+            foo/nginx
+          </td>
+          <td>
+            foo/web
+          </td>
+          <td>
+            nginx.foo.svc.kube.local
+          </td>
+          <td>
+            web-{0..N-1}.nginx.foo.svc.kube.local
+          </td>
+          <td>
+            web-{0..N-1}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        Cluster Domain will be set to
+        <code>
+          cluster.local
+        </code>
+        unless
+        <a href="/docs/concepts/services-networking/dns-pod-service/#how-it-works">
+          otherwise configured
+        </a>
+        .
+      </div>
+    </blockquote>
+    <h3 id="stable-storage">
+      Stable Storage
+    </h3>
+    <p>
+      Kubernetes creates one
+      <a href="/docs/concepts/storage/persistent-volumes/">
+        PersistentVolume
+      </a>
+      for each
+      VolumeClaimTemplate. In the nginx example above, each Pod will receive a single PersistentVolume
+      with a StorageClass of
+      <code>
+        my-storage-class
+      </code>
+      and 1 Gib of provisioned storage. If no StorageClass
+      is specified, then the default StorageClass will be used. When a Pod is (re)scheduled
+      onto a node, its
+      <code>
+        volumeMounts
+      </code>
+      mount the PersistentVolumes associated with its
+      PersistentVolume Claims. Note that, the PersistentVolumes associated with the
+      Pods&rsquo; PersistentVolume Claims are not deleted when the Pods, or StatefulSet are deleted.
+      This must be done manually.
+    </p>
+    <h3 id="pod-name-label">
+      Pod Name Label
+    </h3>
+    <p>
+      When the StatefulSet
+      <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+        Controller
+        <span class='tooltip-text'>
+          A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
+        </span>
+      </a>
+      creates a Pod,
+      it adds a label,
+      <code>
+        statefulset.kubernetes.io/pod-name
+      </code>
+      , that is set to the name of
+      the Pod. This label allows you to attach a Service to a specific Pod in
+      the StatefulSet.
+    </p>
+    <h2 id="deployment-and-scaling-guarantees">
+      Deployment and Scaling Guarantees
+    </h2>
+    <ul>
+      <li>
+        For a StatefulSet with N replicas, when Pods are being deployed, they are created sequentially, in order from {0..N-1}.
+      </li>
+      <li>
+        When Pods are being deleted, they are terminated in reverse order, from {N-1..0}.
+      </li>
+      <li>
+        Before a scaling operation is applied to a Pod, all of its predecessors must be Running and Ready.
+      </li>
+      <li>
+        Before a Pod is terminated, all of its successors must be completely shutdown.
+      </li>
+    </ul>
+    <p>
+      The StatefulSet should not specify a
+      <code>
+        pod.Spec.TerminationGracePeriodSeconds
+      </code>
+      of 0. This practice is unsafe and strongly discouraged. For further explanation, please refer to
+      <a href="/docs/tasks/run-application/force-delete-stateful-set-pod/">
+        force deleting StatefulSet Pods
+      </a>
+      .
+    </p>
+    <p>
+      When the nginx example above is created, three Pods will be deployed in the order
+      web-0, web-1, web-2. web-1 will not be deployed before web-0 is
+      <a href="/docs/user-guide/pod-states/">
+        Running and Ready
+      </a>
+      , and web-2 will not be deployed until
+      web-1 is Running and Ready. If web-0 should fail, after web-1 is Running and Ready, but before
+      web-2 is launched, web-2 will not be launched until web-0 is successfully relaunched and
+      becomes Running and Ready.
+    </p>
+    <p>
+      If a user were to scale the deployed example by patching the StatefulSet such that
+      <code>
+        replicas=1
+      </code>
+      , web-2 would be terminated first. web-1 would not be terminated until web-2
+      is fully shutdown and deleted. If web-0 were to fail after web-2 has been terminated and
+      is completely shutdown, but prior to web-1&rsquo;s termination, web-1 would not be terminated
+      until web-0 is Running and Ready.
+    </p>
+    <h3 id="pod-management-policies">
+      Pod Management Policies
+    </h3>
+    <p>
+      In Kubernetes 1.7 and later, StatefulSet allows you to relax its ordering guarantees while
+      preserving its uniqueness and identity guarantees via its
+      <code>
+        .spec.podManagementPolicy
+      </code>
+      field.
+    </p>
+    <h4 id="orderedready-pod-management">
+      OrderedReady Pod Management
+    </h4>
+    <p>
+      <code>
+        OrderedReady
+      </code>
+      pod management is the default for StatefulSets. It implements the behavior
+      described
+      <a href="#deployment-and-scaling-guarantees">
+        above
+      </a>
+      .
+    </p>
+    <h4 id="parallel-pod-management">
+      Parallel Pod Management
+    </h4>
+    <p>
+      <code>
+        Parallel
+      </code>
+      pod management tells the StatefulSet controller to launch or
+      terminate all Pods in parallel, and to not wait for Pods to become Running
+      and Ready or completely terminated prior to launching or terminating another
+      Pod. This option only affects the behavior for scaling operations. Updates are not
+      affected.
+    </p>
+    <h2 id="update-strategies">
+      Update Strategies
+    </h2>
+    <p>
+      In Kubernetes 1.7 and later, StatefulSet&rsquo;s
+      <code>
+        .spec.updateStrategy
+      </code>
+      field allows you to configure
+      and disable automated rolling updates for containers, labels, resource request/limits, and
+      annotations for the Pods in a StatefulSet.
+    </p>
+    <h3 id="on-delete">
+      On Delete
+    </h3>
+    <p>
+      The
+      <code>
+        OnDelete
+      </code>
+      update strategy implements the legacy (1.6 and prior) behavior. When a StatefulSet&rsquo;s
+      <code>
+        .spec.updateStrategy.type
+      </code>
+      is set to
+      <code>
+        OnDelete
+      </code>
+      , the StatefulSet controller will not automatically
+      update the Pods in a StatefulSet. Users must manually delete Pods to cause the controller to
+      create new Pods that reflect modifications made to a StatefulSet&rsquo;s
+      <code>
+        .spec.template
+      </code>
+      .
+    </p>
+    <h3 id="rolling-updates">
+      Rolling Updates
+    </h3>
+    <p>
+      The
+      <code>
+        RollingUpdate
+      </code>
+      update strategy implements automated, rolling update for the Pods in a
+      StatefulSet. It is the default strategy when
+      <code>
+        .spec.updateStrategy
+      </code>
+      is left unspecified. When a StatefulSet&rsquo;s
+      <code>
+        .spec.updateStrategy.type
+      </code>
+      is set to
+      <code>
+        RollingUpdate
+      </code>
+      , the
+      StatefulSet controller will delete and recreate each Pod in the StatefulSet. It will proceed
+      in the same order as Pod termination (from the largest ordinal to the smallest), updating
+      each Pod one at a time. It will wait until an updated Pod is Running and Ready prior to
+      updating its predecessor.
+    </p>
+    <h4 id="partitions">
+      Partitions
+    </h4>
+    <p>
+      The
+      <code>
+        RollingUpdate
+      </code>
+      update strategy can be partitioned, by specifying a
+      <code>
+        .spec.updateStrategy.rollingUpdate.partition
+      </code>
+      . If a partition is specified, all Pods with an
+      ordinal that is greater than or equal to the partition will be updated when the StatefulSet&rsquo;s
+      <code>
+        .spec.template
+      </code>
+      is updated. All Pods with an ordinal that is less than the partition will not
+      be updated, and, even if they are deleted, they will be recreated at the previous version. If a
+      StatefulSet&rsquo;s
+      <code>
+        .spec.updateStrategy.rollingUpdate.partition
+      </code>
+      is greater than its
+      <code>
+        .spec.replicas
+      </code>
+      ,
+      updates to its
+      <code>
+        .spec.template
+      </code>
+      will not be propagated to its Pods.
+      In most cases you will not need to use a partition, but they are useful if you want to stage an
+      update, roll out a canary, or perform a phased roll out.
+    </p>
+    <h4 id="forced-rollback">
+      Forced Rollback
+    </h4>
+    <p>
+      When using
+      <a href="#rolling-updates">
+        Rolling Updates
+      </a>
+      with the default
+      <a href="#pod-management-policies">
+        Pod Management Policy
+      </a>
+      (
+      <code>
+        OrderedReady
+      </code>
+      ),
+      it&rsquo;s possible to get into a broken state that requires manual intervention to repair.
+    </p>
+    <p>
+      If you update the Pod template to a configuration that never becomes Running and
+      Ready (for example, due to a bad binary or application-level configuration error),
+      StatefulSet will stop the rollout and wait.
+    </p>
+    <p>
+      In this state, it&rsquo;s not enough to revert the Pod template to a good configuration.
+      Due to a
+      <a href="https://github.com/kubernetes/kubernetes/issues/67250">
+        known issue
+      </a>
+      ,
+      StatefulSet will continue to wait for the broken Pod to become Ready
+      (which never happens) before it will attempt to revert it back to the working
+      configuration.
+    </p>
+    <p>
+      After reverting the template, you must also delete any Pods that StatefulSet had
+      already attempted to run with the bad configuration.
+      StatefulSet will then begin to recreate the Pods using the reverted template.
+    </p>
+    <p></p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        Follow an example of
+        <a href="/docs/tutorials/stateful-application/basic-stateful-set/">
+          deploying a stateful application
+        </a>
+        .
+      </li>
+      <li>
+        Follow an example of
+        <a href="/docs/tutorials/stateful-application/cassandra/">
+          deploying Cassandra with Stateful Sets
+        </a>
+        .
+      </li>
+      <li>
+        Follow an example of
+        <a href="/docs/tasks/run-application/run-replicated-stateful-application/">
+          running a replicated stateful application
+        </a>
+        .
+      </li>
+    </ul>
+  </body>
+</html>

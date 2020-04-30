@@ -1,0 +1,559 @@
+<html>
+  <body>
+    <h1>
+      Configuration Best Practices
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/configuration/overview.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Configuration Best Practices
+    </h1>
+    <p>
+      This document highlights and consolidates configuration best practices that are introduced throughout the user guide, Getting Started documentation, and examples.
+    </p>
+    <p>
+      This is a living document. If you think of something that is not on this list but might be useful to others, please don&rsquo;t hesitate to file an issue or submit a PR.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#general-configuration-tips">
+          General Configuration Tips
+        </a>
+      </li>
+      <li>
+        <a href="#naked-pods-vs-replicasets-deployments-and-jobs">
+          “Naked” Pods versus ReplicaSets, Deployments, and Jobs
+        </a>
+      </li>
+      <li>
+        <a href="#services">
+          Services
+        </a>
+      </li>
+      <li>
+        <a href="#using-labels">
+          Using Labels
+        </a>
+      </li>
+      <li>
+        <a href="#container-images">
+          Container Images
+        </a>
+      </li>
+      <li>
+        <a href="#using-kubectl">
+          Using kubectl
+        </a>
+      </li>
+    </ul>
+    <h2 id="general-configuration-tips">
+      General Configuration Tips
+    </h2>
+    <ul>
+      <li>
+        <p>
+          When defining configurations, specify the latest stable API version.
+        </p>
+      </li>
+      <li>
+        <p>
+          Configuration files should be stored in version control before being pushed to the cluster. This allows you to quickly roll back a configuration change if necessary. It also aids cluster re-creation and restoration.
+        </p>
+      </li>
+      <li>
+        <p>
+          Write your configuration files using YAML rather than JSON. Though these formats can be used interchangeably in almost all scenarios, YAML tends to be more user-friendly.
+        </p>
+      </li>
+      <li>
+        <p>
+          Group related objects into a single file whenever it makes sense. One file is often easier to manage than several. See the
+          <a href="https://github.com/kubernetes/examples/tree/master/guestbook/all-in-one/guestbook-all-in-one.yaml">
+            guestbook-all-in-one.yaml
+          </a>
+          file as an example of this syntax.
+        </p>
+      </li>
+      <li>
+        <p>
+          Note also that many
+          <code>
+            kubectl
+          </code>
+          commands can be called on a directory. For example, you can call
+          <code>
+            kubectl apply
+          </code>
+          on a directory of config files.
+        </p>
+      </li>
+      <li>
+        <p>
+          Don&rsquo;t specify default values unnecessarily: simple, minimal configuration will make errors less likely.
+        </p>
+      </li>
+      <li>
+        <p>
+          Put object descriptions in annotations, to allow better introspection.
+        </p>
+      </li>
+    </ul>
+    <h2 id="naked-pods-vs-replicasets-deployments-and-jobs">
+      &ldquo;Naked&rdquo; Pods versus ReplicaSets, Deployments, and Jobs
+    </h2>
+    <ul>
+      <li>
+        <p>
+          Don&rsquo;t use naked Pods (that is, Pods not bound to a
+          <a href="/docs/concepts/workloads/controllers/replicaset/">
+            ReplicaSet
+          </a>
+          or
+          <a href="/docs/concepts/workloads/controllers/deployment/">
+            Deployment
+          </a>
+          ) if you can avoid it. Naked Pods will not be rescheduled in the event of a node failure.
+        </p>
+        <p>
+          A Deployment, which both creates a ReplicaSet to ensure that the desired number of Pods is always available, and specifies a strategy to replace Pods (such as
+          <a href="/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment">
+            RollingUpdate
+          </a>
+          ), is almost always preferable to creating Pods directly, except for some explicit
+          <a href="/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy">
+            <code>
+              restartPolicy: Never
+            </code>
+          </a>
+          scenarios. A
+          <a href="/docs/concepts/workloads/controllers/jobs-run-to-completion/">
+            Job
+          </a>
+          may also be appropriate.
+        </p>
+      </li>
+    </ul>
+    <h2 id="services">
+      Services
+    </h2>
+    <ul>
+      <li>
+        <p>
+          Create a
+          <a href="/docs/concepts/services-networking/service/">
+            Service
+          </a>
+          before its corresponding backend workloads (Deployments or ReplicaSets), and before any workloads that need to access it. When Kubernetes starts a container, it provides environment variables pointing to all the Services which were running when the container was started. For example, if a Service named
+          <code>
+            foo
+          </code>
+          exists, all containers will get the following variables in their initial environment:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#b8860b">FOO_SERVICE_HOST</span><span style="color:#666">=</span>&lt;the host the Service is running on&gt;
+<span style="color:#b8860b">FOO_SERVICE_PORT</span><span style="color:#666">=</span>&lt;the port the Service is running on&gt;</code></pre>
+        </div>
+        <p>
+          <em>
+            This does imply an ordering requirement
+          </em>
+          - any
+          <code>
+            Service
+          </code>
+          that a
+          <code>
+            Pod
+          </code>
+          wants to access must be created before the
+          <code>
+            Pod
+          </code>
+          itself, or else the environment variables will not be populated.  DNS does not have this restriction.
+        </p>
+      </li>
+      <li>
+        <p>
+          An optional (though strongly recommended)
+          <a href="/docs/concepts/cluster-administration/addons/">
+            cluster add-on
+          </a>
+          is a DNS server.  The
+          DNS server watches the Kubernetes API for new
+          <code>
+            Services
+          </code>
+          and creates a set of DNS records for each.  If DNS has been enabled throughout the cluster then all
+          <code>
+            Pods
+          </code>
+          should be able to do name resolution of
+          <code>
+            Services
+          </code>
+          automatically.
+        </p>
+      </li>
+      <li>
+        <p>
+          Don&rsquo;t specify a
+          <code>
+            hostPort
+          </code>
+          for a Pod unless it is absolutely necessary. When you bind a Pod to a
+          <code>
+            hostPort
+          </code>
+          , it limits the number of places the Pod can be scheduled, because each &lt;
+          <code>
+            hostIP
+          </code>
+          ,
+          <code>
+            hostPort
+          </code>
+          ,
+          <code>
+            protocol
+          </code>
+          &gt; combination must be unique. If you don&rsquo;t specify the
+          <code>
+            hostIP
+          </code>
+          and
+          <code>
+            protocol
+          </code>
+          explicitly, Kubernetes will use
+          <code>
+            0.0.0.0
+          </code>
+          as the default
+          <code>
+            hostIP
+          </code>
+          and
+          <code>
+            TCP
+          </code>
+          as the default
+          <code>
+            protocol
+          </code>
+          .
+        </p>
+        <p>
+          If you only need access to the port for debugging purposes, you can use the
+          <a href="/docs/tasks/access-application-cluster/access-cluster/#manually-constructing-apiserver-proxy-urls">
+            apiserver proxy
+          </a>
+          or
+          <a href="/docs/tasks/access-application-cluster/port-forward-access-application-cluster/">
+            <code>
+              kubectl port-forward
+            </code>
+          </a>
+          .
+        </p>
+        <p>
+          If you explicitly need to expose a Pod&rsquo;s port on the node, consider using a
+          <a href="/docs/concepts/services-networking/service/#nodeport">
+            NodePort
+          </a>
+          Service before resorting to
+          <code>
+            hostPort
+          </code>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          Avoid using
+          <code>
+            hostNetwork
+          </code>
+          , for the same reasons as
+          <code>
+            hostPort
+          </code>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          Use [headless Services](/docs/concepts/services-networking/service/#headless-
+          services) (which have a
+          <code>
+            ClusterIP
+          </code>
+          of
+          <code>
+            None
+          </code>
+          ) for easy service discovery when you don&rsquo;t need
+          <code>
+            kube-proxy
+          </code>
+          load balancing.
+        </p>
+      </li>
+    </ul>
+    <h2 id="using-labels">
+      Using Labels
+    </h2>
+    <ul>
+      <li>
+        Define and use
+        <a href="/docs/concepts/overview/working-with-objects/labels/">
+          labels
+        </a>
+        that identify
+        <strong>
+          semantic attributes
+        </strong>
+        of your application or Deployment, such as
+        <code>
+          { app: myapp, tier: frontend, phase: test, deployment: v3 }
+        </code>
+        . You can use these labels to select the appropriate Pods for other resources; for example, a Service that selects all
+        <code>
+          tier: frontend
+        </code>
+        Pods, or all
+        <code>
+          phase: test
+        </code>
+        components of
+        <code>
+          app: myapp
+        </code>
+        . See the
+        <a href="https://github.com/kubernetes/examples/tree/master/guestbook/">
+          guestbook
+        </a>
+        app for examples of this approach.
+      </li>
+    </ul>
+    <p>
+      A Service can be made to span multiple Deployments by omitting release-specific labels from its selector.
+      <a href="/docs/concepts/workloads/controllers/deployment/">
+        Deployments
+      </a>
+      make it easy to update a running service without downtime.
+    </p>
+    <p>
+      A desired state of an object is described by a Deployment, and if changes to that spec are
+      <em>
+        applied
+      </em>
+      , the deployment controller changes the actual state to the desired state at a controlled rate.
+    </p>
+    <ul>
+      <li>
+        You can manipulate labels for debugging. Because Kubernetes controllers (such as ReplicaSet) and Services match to Pods using selector labels, removing the relevant labels from a Pod will stop it from being considered by a controller or from being served traffic by a Service. If you remove the labels of an existing Pod, its controller will create a new Pod to take its place. This is a useful way to debug a previously &ldquo;live&rdquo; Pod in a &ldquo;quarantine&rdquo; environment. To interactively remove or add labels, use
+        <a href="/docs/reference/generated/kubectl/kubectl-commands#label">
+          <code>
+            kubectl label
+          </code>
+        </a>
+        .
+      </li>
+    </ul>
+    <h2 id="container-images">
+      Container Images
+    </h2>
+    <p>
+      The
+      <a href="/docs/concepts/containers/images/#updating-images">
+        imagePullPolicy
+      </a>
+      and the tag of the image affect when the
+      <a href="/docs/admin/kubelet/">
+        kubelet
+      </a>
+      attempts to pull the specified image.
+    </p>
+    <ul>
+      <li>
+        <p>
+          <code>
+            imagePullPolicy: IfNotPresent
+          </code>
+          : the image is pulled only if it is not already present locally.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>
+            imagePullPolicy: Always
+          </code>
+          : the image is pulled every time the pod is started.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>
+            imagePullPolicy
+          </code>
+          is omitted and either the image tag is
+          <code>
+            :latest
+          </code>
+          or it is omitted:
+          <code>
+            Always
+          </code>
+          is applied.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>
+            imagePullPolicy
+          </code>
+          is omitted and the image tag is present but not
+          <code>
+            :latest
+          </code>
+          :
+          <code>
+            IfNotPresent
+          </code>
+          is applied.
+        </p>
+      </li>
+      <li>
+        <p>
+          <code>
+            imagePullPolicy: Never
+          </code>
+          : the image is assumed to exist locally. No attempt is made to pull the image.
+        </p>
+      </li>
+    </ul>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        To make sure the container always uses the same version of the image, you can specify its
+        <a href="https://docs.docker.com/engine/reference/commandline/pull/#pull-an-image-by-digest-immutable-identifier">
+          digest
+        </a>
+        ; replace
+        <code>
+          &lt;image-name&gt;:&lt;tag&gt;
+        </code>
+        with
+        <code>
+          &lt;image-name&gt;@&lt;digest&gt;
+        </code>
+        (for example,
+        <code>
+          image@sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2
+        </code>
+        ). The digest uniquely identifies a specific version of the image, so it is never updated by Kubernetes unless you change the digest value.
+      </div>
+    </blockquote>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        You should avoid using the
+        <code>
+          :latest
+        </code>
+        tag when deploying containers in production as it is harder to track which version of the image is running and more difficult to roll back properly.
+      </div>
+    </blockquote>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        The caching semantics of the underlying image provider make even
+        <code>
+          imagePullPolicy: Always
+        </code>
+        efficient. With Docker, for example, if the image already exists, the pull attempt is fast because all image layers are cached and no image download is needed.
+      </div>
+    </blockquote>
+    <h2 id="using-kubectl">
+      Using kubectl
+    </h2>
+    <ul>
+      <li>
+        <p>
+          Use
+          <code>
+            kubectl apply -f &lt;directory&gt;
+          </code>
+          . This looks for Kubernetes configuration in all
+          <code>
+            .yaml
+          </code>
+          ,
+          <code>
+            .yml
+          </code>
+          , and
+          <code>
+            .json
+          </code>
+          files in
+          <code>
+            &lt;directory&gt;
+          </code>
+          and passes it to
+          <code>
+            apply
+          </code>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          Use label selectors for
+          <code>
+            get
+          </code>
+          and
+          <code>
+            delete
+          </code>
+          operations instead of specific object names. See the sections on
+          <a href="/docs/concepts/overview/working-with-objects/labels/#label-selectors">
+            label selectors
+          </a>
+          and
+          <a href="/docs/concepts/cluster-administration/manage-deployment/#using-labels-effectively">
+            using labels effectively
+          </a>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          Use
+          <code>
+            kubectl run
+          </code>
+          and
+          <code>
+            kubectl expose
+          </code>
+          to quickly create single-container Deployments and Services. See
+          <a href="/docs/tasks/access-application-cluster/service-access-application-cluster/">
+            Use a Service to Access an Application in a Cluster
+          </a>
+          for an example.
+        </p>
+      </li>
+    </ul>
+  </body>
+</html>

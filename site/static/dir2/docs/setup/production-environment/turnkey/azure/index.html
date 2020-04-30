@@ -1,0 +1,123 @@
+<html>
+  <body>
+    <h1>
+      Running Kubernetes on Azure
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/setup/production-environment/turnkey/azure.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Running Kubernetes on Azure
+    </h1>
+    <nav id="TableOfContents">
+      <ul>
+        <li>
+          <a href="#azure-kubernetes-service-aks">
+            Azure Kubernetes Service (AKS)
+          </a>
+        </li>
+        <li>
+          <a href="#custom-deployments-aks-engine">
+            Custom Deployments: AKS-Engine
+          </a>
+        </li>
+        <li>
+          <a href="#coreos-tectonic-for-azure">
+            CoreOS Tectonic for Azure
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <h2 id="azure-kubernetes-service-aks">
+      Azure Kubernetes Service (AKS)
+    </h2>
+    <p>
+      The
+      <a href="https://azure.microsoft.com/en-us/services/kubernetes-service/">
+        Azure Kubernetes Service
+      </a>
+      offers simple
+      deployments for Kubernetes clusters.
+    </p>
+    <p>
+      For an example of deploying a Kubernetes cluster onto Azure via the Azure Kubernetes Service:
+    </p>
+    <p>
+      <strong>
+        <a href="https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes">
+          Microsoft Azure Kubernetes Service
+        </a>
+      </strong>
+    </p>
+    <h2 id="custom-deployments-aks-engine">
+      Custom Deployments: AKS-Engine
+    </h2>
+    <p>
+      The core of the Azure Kubernetes Service is
+      <strong>
+        open source
+      </strong>
+      and available on GitHub for the community
+      to use and contribute to:
+      <strong>
+        <a href="https://github.com/Azure/aks-engine">
+          AKS-Engine
+        </a>
+      </strong>
+      . The legacy
+      <a href="https://github.com/Azure/acs-engine">
+        ACS-Engine
+      </a>
+      codebase has been deprecated in favor of AKS-engine.
+    </p>
+    <p>
+      AKS-Engine is a good choice if you need to make customizations to the deployment beyond what the Azure Kubernetes
+      Service officially supports. These customizations include deploying into existing virtual networks, utilizing multiple
+      agent pools, and more. Some community contributions to AKS-Engine may even become features of the Azure Kubernetes Service.
+    </p>
+    <p>
+      The input to AKS-Engine is an apimodel JSON file describing the Kubernetes cluster. It is similar to the Azure Resource Manager (ARM) template syntax used to deploy a cluster directly with the Azure Kubernetes Service. The resulting output is an ARM template that can be checked into source control and used to deploy Kubernetes clusters to Azure.
+    </p>
+    <p>
+      You can get started by following the
+      <strong>
+        <a href="https://github.com/Azure/aks-engine/blob/master/docs/tutorials/README.md">
+          AKS-Engine Kubernetes Tutorial
+        </a>
+      </strong>
+      .
+    </p>
+    <h2 id="coreos-tectonic-for-azure">
+      CoreOS Tectonic for Azure
+    </h2>
+    <p>
+      The CoreOS Tectonic Installer for Azure is
+      <strong>
+        open source
+      </strong>
+      and available on GitHub for the community to use and contribute to:
+      <strong>
+        <a href="https://github.com/coreos/tectonic-installer">
+          Tectonic Installer
+        </a>
+      </strong>
+      .
+    </p>
+    <p>
+      Tectonic Installer is a good choice when you need to make cluster customizations as it is built on
+      <a href="https://www.terraform.io/docs/providers/azurerm/">
+        Hashicorp&rsquo;s Terraform
+      </a>
+      Azure Resource Manager (ARM) provider. This enables users to customize or integrate using familiar Terraform tooling.
+    </p>
+    <p>
+      You can get started using the
+      <a href="https://coreos.com/tectonic/docs/latest/install/azure/azure-terraform.html">
+        Tectonic Installer for Azure Guide
+      </a>
+      .
+    </p>
+  </body>
+</html>

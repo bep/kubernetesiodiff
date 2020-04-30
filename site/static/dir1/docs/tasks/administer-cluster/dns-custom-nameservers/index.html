@@ -1,0 +1,907 @@
+<html>
+  <body>
+    <h1>
+      Customizing DNS Service
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/administer-cluster/dns-custom-nameservers.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Customizing DNS Service
+    </h1>
+    <p>
+      This page explains how to configure your DNS Pod and customize the
+      DNS resolution process. In Kubernetes version 1.11 and later, CoreDNS is at GA
+      and is installed by default with kubeadm. See
+      <a href="#coredns-configmap-options">
+        CoreDNS ConfigMap options
+      </a>
+      and
+      <a href="/docs/tasks/administer-cluster/coredns/">
+        Using CoreDNS for Service Discovery
+      </a>
+      .
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#introduction">
+          Introduction
+        </a>
+      </li>
+      <li>
+        <a href="#coredns">
+          CoreDNS
+        </a>
+      </li>
+      <li>
+        <a href="#kube-dns">
+          Kube-dns
+        </a>
+      </li>
+      <li>
+        <a href="#coredns-configuration-equivalent-to-kube-dns">
+          CoreDNS configuration equivalent to kube-dns
+        </a>
+      </li>
+      <li>
+        <a href="#migration-to-coredns">
+          Migration to CoreDNS
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What’s next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <ul>
+      <li>
+        <p>
+          You need to have a Kubernetes cluster, and the kubectl command-line tool must
+          be configured to communicate with your cluster. If you do not already have a
+          cluster, you can create one by using
+          <a href="/docs/setup/learning-environment/minikube/">
+            Minikube
+          </a>
+          ,
+          or you can use one of these Kubernetes playgrounds:
+        </p>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <ul>
+      <li>
+        Kubernetes version 1.6 or later. To work with CoreDNS, version 1.9 or later.
+      </li>
+      <li>
+        The appropriate add-on: kube-dns or CoreDNS. To install with kubeadm,
+        see
+        <a href="/docs/reference/setup-tools/kubeadm/kubeadm-alpha/#cmd-phase-addon">
+          the kubeadm reference documentation
+        </a>
+        .
+      </li>
+    </ul>
+    <h2 id="introduction">
+      Introduction
+    </h2>
+    <p>
+      DNS is a built-in Kubernetes service launched automatically
+      using the addon manager
+      <a href="http://releases.k8s.io/master/cluster/addons/README.md">
+        cluster add-on
+      </a>
+      .
+    </p>
+    <p>
+      As of Kubernetes v1.12, CoreDNS is the recommended DNS Server, replacing kube-dns. However, kube-dns may still be installed by
+      default with certain Kubernetes installer tools. Refer to the documentation provided by your installer to know which DNS server is installed by default.
+    </p>
+    <p>
+      The CoreDNS Deployment is exposed as a Kubernetes Service with a static IP.
+      Both the CoreDNS and kube-dns Service are named
+      <code>
+        kube-dns
+      </code>
+      in the
+      <code>
+        metadata.name
+      </code>
+      field. This is done so that there is greater interoperability with workloads that relied on the legacy
+      <code>
+        kube-dns
+      </code>
+      Service name to resolve addresses internal to the cluster. It abstracts away the implementation detail of which DNS provider is running behind that common endpoint.
+      The kubelet passes DNS to each container with the
+      <code>
+        --cluster-dns=&lt;dns-service-ip&gt;
+      </code>
+      flag.
+    </p>
+    <p>
+      DNS names also need domains. You configure the local domain in the kubelet
+      with the flag
+      <code>
+        --cluster-domain=&lt;default-local-domain&gt;
+      </code>
+      .
+    </p>
+    <p>
+      The DNS server supports forward lookups (A records), port lookups (SRV records), reverse IP address lookups (PTR records),
+      and more. For more information see
+      <a href="/docs/concepts/services-networking/dns-pod-service/">
+        DNS for Services and Pods
+      </a>
+      .
+    </p>
+    <p>
+      If a Pod&rsquo;s
+      <code>
+        dnsPolicy
+      </code>
+      is set to &ldquo;
+      <code>
+        default
+      </code>
+      &rdquo;, it inherits the name resolution
+      configuration from the node that the Pod runs on. The Pod&rsquo;s DNS resolution
+      should behave the same as the node.
+      But see
+      <a href="/docs/tasks/administer-cluster/dns-debugging-resolution/#known-issues">
+        Known issues
+      </a>
+      .
+    </p>
+    <p>
+      If you don&rsquo;t want this, or if you want a different DNS config for pods, you can
+      use the kubelet&rsquo;s
+      <code>
+        --resolv-conf
+      </code>
+      flag.  Set this flag to &ldquo;&rdquo; to prevent Pods from
+      inheriting DNS. Set it to a valid file path to specify a file other than
+      <code>
+        /etc/resolv.conf
+      </code>
+      for DNS inheritance.
+    </p>
+    <h2 id="coredns">
+      CoreDNS
+    </h2>
+    <p>
+      CoreDNS is a general-purpose authoritative DNS server that can serve as cluster DNS, complying with the
+      <a href="https://github.com/kubernetes/dns/blob/master/docs/specification.md">
+        dns specifications
+      </a>
+      .
+    </p>
+    <h3 id="coredns-configmap-options">
+      CoreDNS ConfigMap options
+    </h3>
+    <p>
+      CoreDNS is a DNS server that is modular and pluggable, and each plugin adds new functionality to CoreDNS.
+      This can be configured by maintaining a
+      <a href="https://coredns.io/2017/07/23/corefile-explained/">
+        Corefile
+      </a>
+      , which is the CoreDNS
+      configuration file. A cluster administrator can modify the ConfigMap for the CoreDNS Corefile to change how service discovery works.
+    </p>
+    <p>
+      In Kubernetes, CoreDNS is installed with the following default Corefile configuration.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ConfigMap<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>coredns<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-system<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">Corefile</span>:<span style="color:#bbb"> </span><span style="color:#b44;font-style:italic">|
+</span><span style="color:#b44;font-style:italic">    .:53 {</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>errors<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>health<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>lameduck<span style="color:#bbb"> </span>5s<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>ready<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>kubernetes<span style="color:#bbb"> </span>cluster.local<span style="color:#bbb"> </span>in-addr.arpa<span style="color:#bbb"> </span>ip6.arpa<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>pods<span style="color:#bbb"> </span>insecure<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>fallthrough<span style="color:#bbb"> </span>in-addr.arpa<span style="color:#bbb"> </span>ip6.arpa<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>ttl<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>prometheus<span style="color:#bbb"> </span>:<span style="color:#666">9153</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>forward<span style="color:#bbb"> </span>.<span style="color:#bbb"> </span>/etc/resolv.conf<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>cache<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>loop<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>reload<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>loadbalance<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>}</code></pre>
+    </div>
+    <p>
+      The Corefile configuration includes the following
+      <a href="https://coredns.io/plugins/">
+        plugins
+      </a>
+      of CoreDNS:
+    </p>
+    <ul>
+      <li>
+        <a href="https://coredns.io/plugins/errors/">
+          errors
+        </a>
+        : Errors are logged to stdout.
+      </li>
+      <li>
+        <a href="https://coredns.io/plugins/health/">
+          health
+        </a>
+        : Health of CoreDNS is reported to
+        <a href="http://localhost:8080/health">
+          http://localhost:8080/health
+        </a>
+        . In this extended syntax
+        <code>
+          lameduck
+        </code>
+        will make the process unhealthy then wait for 5 seconds before the process is shut down.
+      </li>
+      <li>
+        <a href="https://coredns.io/plugins/ready/">
+          ready
+        </a>
+        : An HTTP endpoint on port 8181 will return 200 OK, when all plugins that are able to signal readiness have done so.
+      </li>
+      <li>
+        <a href="https://coredns.io/plugins/kubernetes/">
+          kubernetes
+        </a>
+        : CoreDNS will reply to DNS queries based on IP of the services and pods of Kubernetes. You can find more details
+        <a href="https://coredns.io/plugins/kubernetes/">
+          here
+        </a>
+        .
+        <code>
+          ttl
+        </code>
+        allows you to set a custom TTL for responses. The default is 5 seconds. The minimum TTL allowed is 0 seconds, and the maximum is capped at 3600 seconds. Setting TTL to 0 will prevent records from being cached.
+      </li>
+    </ul>
+    <blockquote>
+      <p>
+        The
+        <code>
+          pods insecure
+        </code>
+        option is provided for backward compatibility with kube-dns. You can use the
+        <code>
+          pods verified
+        </code>
+        option, which returns an A record only if there exists a pod in same namespace with matching IP. The
+        <code>
+          pods disabled
+        </code>
+        option can be used if you don&rsquo;t use pod records.
+      </p>
+    </blockquote>
+    <ul>
+      <li>
+        <a href="https://coredns.io/plugins/metrics/">
+          prometheus
+        </a>
+        : Metrics of CoreDNS are available at
+        <a href="http://localhost:9153/metrics">
+          http://localhost:9153/metrics
+        </a>
+        in
+        <a href="https://prometheus.io/">
+          Prometheus
+        </a>
+        format.
+      </li>
+      <li>
+        <a href="https://coredns.io/plugins/forward/">
+          forward
+        </a>
+        : Any queries that are not within the cluster domain of Kubernetes will be forwarded to predefined resolvers (/etc/resolv.conf).
+      </li>
+      <li>
+        <a href="https://coredns.io/plugins/cache/">
+          cache
+        </a>
+        : This enables a frontend cache.
+      </li>
+      <li>
+        <a href="https://coredns.io/plugins/loop/">
+          loop
+        </a>
+        : Detects simple forwarding loops and halts the CoreDNS process if a loop is found.
+      </li>
+      <li>
+        <a href="https://coredns.io/plugins/reload">
+          reload
+        </a>
+        : Allows automatic reload of a changed Corefile. After you edit the ConfigMap configuration, allow two minutes for your changes to take effect.
+      </li>
+      <li>
+        <a href="https://coredns.io/plugins/loadbalance">
+          loadbalance
+        </a>
+        : This is a round-robin DNS loadbalancer that randomizes the order of A, AAAA, and MX records in the answer.
+      </li>
+    </ul>
+    <p>
+      You can modify the default CoreDNS behavior by modifying the ConfigMap.
+    </p>
+    <h3 id="configuration-of-stub-domain-and-upstream-nameserver-using-coredns">
+      Configuration of Stub-domain and upstream nameserver using CoreDNS
+    </h3>
+    <p>
+      CoreDNS has the ability to configure stubdomains and upstream nameservers using the
+      <a href="https://coredns.io/plugins/forward/">
+        forward plugin
+      </a>
+      .
+    </p>
+    <h4 id="example">
+      Example
+    </h4>
+    <p>
+      If a cluster operator has a
+      <a href="https://www.consul.io/">
+        Consul
+      </a>
+      domain server located at 10.150.0.1, and all Consul names have the suffix .consul.local. To configure it in CoreDNS, the cluster administrator creates the following stanza in the CoreDNS ConfigMap.
+    </p>
+    <pre><code>consul.local:53 {
+        errors
+        cache 30
+        forward . 10.150.0.1
+    }</code></pre>
+    <p>
+      To explicitly force all non-cluster DNS lookups to go through a specific nameserver at 172.16.0.1, point the
+      <code>
+        forward
+      </code>
+      to the nameserver instead of
+      <code>
+        /etc/resolv.conf
+      </code>
+    </p>
+    <pre><code>forward .  172.16.0.1</code></pre>
+    <p>
+      The final ConfigMap along with the default
+      <code>
+        Corefile
+      </code>
+      configuration looks like:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ConfigMap<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>coredns<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-system<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">Corefile</span>:<span style="color:#bbb"> </span><span style="color:#b44;font-style:italic">|
+</span><span style="color:#b44;font-style:italic">    .:53 {</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>errors<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>health<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>kubernetes<span style="color:#bbb"> </span>cluster.local<span style="color:#bbb"> </span>in-addr.arpa<span style="color:#bbb"> </span>ip6.arpa<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">           </span>pods<span style="color:#bbb"> </span>insecure<span style="color:#bbb">
+</span><span style="color:#bbb">           </span>fallthrough<span style="color:#bbb"> </span>in-addr.arpa<span style="color:#bbb"> </span>ip6.arpa<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>prometheus<span style="color:#bbb"> </span>:<span style="color:#666">9153</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>forward<span style="color:#bbb"> </span>.<span style="color:#bbb"> </span><span style="color:#666">172.16.0.1</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>cache<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>loop<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>reload<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>loadbalance<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>consul.local:<span style="color:#666">53</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>errors<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>cache<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>forward<span style="color:#bbb"> </span>.<span style="color:#bbb"> </span><span style="color:#666">10.150.0.1</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>}</code></pre>
+    </div>
+    <p>
+      In Kubernetes version 1.10 and later, kubeadm supports automatic translation of the CoreDNS ConfigMap from the kube-dns ConfigMap.
+      <strong>
+        <em>
+          Note: While kube-dns accepts an FQDN for stubdomain and nameserver (eg: ns.foo.com), CoreDNS does not support this feature.
+          During translation, all FQDN nameservers will be omitted from the CoreDNS config.
+        </em>
+      </strong>
+    </p>
+    <h2 id="kube-dns">
+      Kube-dns
+    </h2>
+    <p>
+      Kube-dns is now available as an optional DNS server since CoreDNS is now the default.
+      The running DNS Pod holds 3 containers:
+    </p>
+    <ul>
+      <li>
+        &ldquo;
+        <code>
+          kubedns
+        </code>
+        &ldquo;: watches the Kubernetes master for changes
+        in Services and Endpoints, and maintains in-memory lookup structures to serve
+        DNS requests.
+      </li>
+      <li>
+        &ldquo;
+        <code>
+          dnsmasq
+        </code>
+        &ldquo;: adds DNS caching to improve performance.
+      </li>
+      <li>
+        &ldquo;
+        <code>
+          sidecar
+        </code>
+        &ldquo;: provides a single health check endpoint
+        to perform healthchecks for
+        <code>
+          dnsmasq
+        </code>
+        and
+        <code>
+          kubedns
+        </code>
+        .
+      </li>
+    </ul>
+    <h3 id="configure-stub-domain-and-upstream-dns-servers">
+      Configure stub-domain and upstream DNS servers
+    </h3>
+    <p>
+      Cluster administrators can specify custom stub domains and upstream nameservers
+      by providing a ConfigMap for kube-dns (
+      <code>
+        kube-system:kube-dns
+      </code>
+      ).
+    </p>
+    <p>
+      For example, the following ConfigMap sets up a DNS configuration with a single stub domain and two
+      upstream nameservers:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ConfigMap<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>kube-dns<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-system<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">stubDomains</span>:<span style="color:#bbb"> </span><span style="color:#b44;font-style:italic">|
+</span><span style="color:#b44;font-style:italic">    {&#34;acme.local&#34;: [&#34;1.2.3.4&#34;]}</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">upstreamNameservers</span>:<span style="color:#bbb"> </span><span style="color:#b44;font-style:italic">|
+</span><span style="color:#b44;font-style:italic">    [&#34;8.8.8.8&#34;, &#34;8.8.4.4&#34;]</span></code></pre>
+    </div>
+    <p>
+      DNS requests with the “.acme.local” suffix
+      are forwarded to a DNS listening at 1.2.3.4. Google Public DNS
+      serves the upstream queries.
+    </p>
+    <p>
+      The table below describes how queries with certain domain names map to
+      their destination DNS servers:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Domain name
+          </th>
+          <th>
+            Server answering the query
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            kubernetes.default.svc.cluster.local
+          </td>
+          <td>
+            kube-dns
+          </td>
+        </tr>
+        <tr>
+          <td>
+            foo.acme.local
+          </td>
+          <td>
+            custom DNS (1.2.3.4)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            widget.com
+          </td>
+          <td>
+            upstream DNS (one of 8.8.8.8, 8.8.4.4)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      See
+      <a href="#configmap-options">
+        ConfigMap options
+      </a>
+      for
+      details about the configuration option format.
+    </p>
+    <h4 id="effects-on-pods">
+      Effects on Pods
+    </h4>
+    <p>
+      Custom upstream nameservers and stub domains do not affect Pods with a
+      <code>
+        dnsPolicy
+      </code>
+      set to &ldquo;
+      <code>
+        Default
+      </code>
+      &rdquo; or &ldquo;
+      <code>
+        None
+      </code>
+      &rdquo;.
+    </p>
+    <p>
+      If a Pod&rsquo;s
+      <code>
+        dnsPolicy
+      </code>
+      is set to &ldquo;
+      <code>
+        ClusterFirst
+      </code>
+      &rdquo;, its name resolution is
+      handled differently, depending on whether stub-domain and upstream DNS servers
+      are configured.
+    </p>
+    <p>
+      <strong>
+        Without custom configurations
+      </strong>
+      : Any query that does not match the configured
+      cluster domain suffix, such as &ldquo;www.kubernetes.io&rdquo;, is forwarded to the upstream
+      nameserver inherited from the node.
+    </p>
+    <p>
+      <strong>
+        With custom configurations
+      </strong>
+      : If stub domains and upstream DNS servers are
+      configured,
+      DNS queries are routed according to the following flow:
+    </p>
+    <ol>
+      <li>
+        <p>
+          The query is first sent to the DNS caching layer in kube-dns.
+        </p>
+      </li>
+      <li>
+        <p>
+          From the caching layer, the suffix of the request is examined and then
+          forwarded to the appropriate DNS, based on the following cases:
+        </p>
+        <ul>
+          <li>
+            <p>
+              <em>
+                Names with the cluster suffix
+              </em>
+              , for example &ldquo;.cluster.local&rdquo;:
+              The request is sent to kube-dns.
+            </p>
+          </li>
+          <li>
+            <p>
+              <em>
+                Names with the stub domain suffix
+              </em>
+              , for example &ldquo;.acme.local&rdquo;:
+              The request is sent to the configured custom DNS resolver, listening for example at 1.2.3.4.
+            </p>
+          </li>
+          <li>
+            <p>
+              <em>
+                Names without a matching suffix
+              </em>
+              , for example &ldquo;widget.com&rdquo;:
+              The request is forwarded to the upstream DNS,
+              for example Google public DNS servers at 8.8.8.8 and 8.8.4.4.
+            </p>
+          </li>
+        </ul>
+      </li>
+    </ol>
+    <p>
+      <img src="/docs/tasks/administer-cluster/dns-custom-nameservers/dns.png" alt="DNS lookup flow" />
+    </p>
+    <h3 id="configmap-options">
+      ConfigMap options
+    </h3>
+    <p>
+      Options for the kube-dns
+      <code>
+        kube-system:kube-dns
+      </code>
+      ConfigMap:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Format
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code>
+              stubDomains
+            </code>
+            (optional)
+          </td>
+          <td>
+            A JSON map using a DNS suffix key such as “acme.local”, and a value consisting of a JSON array of DNS IPs.
+          </td>
+          <td>
+            The target nameserver can itself be a Kubernetes Service. For instance, you can run your own copy of dnsmasq to export custom DNS names into the ClusterDNS namespace.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>
+              upstreamNameservers
+            </code>
+            (optional)
+          </td>
+          <td>
+            A JSON array of DNS IPs.
+          </td>
+          <td>
+            If specified, the values replace the nameservers taken by default from the node’s
+            <code>
+              /etc/resolv.conf
+            </code>
+            . Limits: a maximum of three upstream nameservers can be specified.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h4 id="examples">
+      Examples
+    </h4>
+    <h5 id="example-stub-domain">
+      Example: Stub domain
+    </h5>
+    <p>
+      In this example, the user has a Consul DNS service discovery system they want to
+      integrate with kube-dns. The consul domain server is located at 10.150.0.1, and
+      all consul names have the suffix
+      <code>
+        .consul.local
+      </code>
+      .  To configure Kubernetes, the
+      cluster administrator creates the following ConfigMap:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ConfigMap<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>kube-dns<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-system<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">stubDomains</span>:<span style="color:#bbb"> </span><span style="color:#b44;font-style:italic">|
+</span><span style="color:#b44;font-style:italic">    {&#34;consul.local&#34;: [&#34;10.150.0.1&#34;]}</span></code></pre>
+    </div>
+    <p>
+      Note that the cluster administrator does not want to override the node’s
+      upstream nameservers, so they did not specify the optional
+      <code>
+        upstreamNameservers
+      </code>
+      field.
+    </p>
+    <h5 id="example-upstream-nameserver">
+      Example: Upstream nameserver
+    </h5>
+    <p>
+      In this example the cluster administrator wants to explicitly force all
+      non-cluster DNS lookups to go through their own nameserver at 172.16.0.1.
+      In this case, they create a ConfigMap with the
+      <code>
+        upstreamNameservers
+      </code>
+      field specifying the desired nameserver:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ConfigMap<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>kube-dns<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-system<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">upstreamNameservers</span>:<span style="color:#bbb"> </span><span style="color:#b44;font-style:italic">|
+</span><span style="color:#b44;font-style:italic">    [&#34;172.16.0.1&#34;]</span></code></pre>
+    </div>
+    <h2 id="coredns-configuration-equivalent-to-kube-dns">
+      CoreDNS configuration equivalent to kube-dns
+    </h2>
+    <p>
+      CoreDNS supports the features of kube-dns and more.
+      A ConfigMap created for kube-dns to support
+      <code>
+        StubDomains
+      </code>
+      and
+      <code>
+        upstreamNameservers
+      </code>
+      translates to the
+      <code>
+        forward
+      </code>
+      plugin in CoreDNS.
+      Similarly, the
+      <code>
+        Federations
+      </code>
+      plugin in kube-dns translates to the
+      <code>
+        federation
+      </code>
+      plugin in CoreDNS.
+    </p>
+    <h3 id="example">
+      Example
+    </h3>
+    <p>
+      This example ConfigMap for kubedns specifies federations, stubdomains and upstreamnameservers:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">federations</span>:<span style="color:#bbb"> </span><span style="color:#b44;font-style:italic">|
+</span><span style="color:#b44;font-style:italic">    {&#34;foo&#34; : &#34;foo.feddomain.com&#34;}</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">stubDomains</span>:<span style="color:#bbb"> </span><span style="color:#b44;font-style:italic">|
+</span><span style="color:#b44;font-style:italic">    {&#34;abc.com&#34; : [&#34;1.2.3.4&#34;], &#34;my.cluster.local&#34; : [&#34;2.3.4.5&#34;]}</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">upstreamNameservers</span>:<span style="color:#bbb"> </span><span style="color:#b44;font-style:italic">|
+</span><span style="color:#b44;font-style:italic">    [&#34;8.8.8.8&#34;, &#34;8.8.4.4&#34;]</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ConfigMap</code></pre>
+    </div>
+    <p>
+      The equivalent configuration in CoreDNS creates a Corefile:
+    </p>
+    <ul>
+      <li>
+        <p>
+          For federations:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">federation<span style="color:#bbb"> </span>cluster.local<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">       </span>foo<span style="color:#bbb"> </span>foo.feddomain.com<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>}</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          For stubDomains:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">abc.com:<span style="color:#666">53</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>errors<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>cache<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>forward<span style="color:#bbb"> </span>.<span style="color:#bbb"> </span><span style="color:#666">1.2.3.4</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>}<span style="color:#bbb">
+</span><span style="color:#bbb"></span>my.cluster.local:<span style="color:#666">53</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>errors<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>cache<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>forward<span style="color:#bbb"> </span>.<span style="color:#bbb"> </span><span style="color:#666">2.3.4.5</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>}</code></pre>
+        </div>
+      </li>
+    </ul>
+    <p>
+      The complete Corefile with the default plugins:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">.:<span style="color:#666">53</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>errors<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>health<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>kubernetes<span style="color:#bbb"> </span>cluster.local<span style="color:#bbb"> </span>in-addr.arpa<span style="color:#bbb"> </span>ip6.arpa<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">           </span>pods<span style="color:#bbb"> </span>insecure<span style="color:#bbb">
+</span><span style="color:#bbb">           </span>fallthrough<span style="color:#bbb"> </span>in-addr.arpa<span style="color:#bbb"> </span>ip6.arpa<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>federation<span style="color:#bbb"> </span>cluster.local<span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">           </span>foo<span style="color:#bbb"> </span>foo.feddomain.com<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>}<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>prometheus<span style="color:#bbb"> </span>:<span style="color:#666">9153</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>forward<span style="color:#bbb"> </span>.<span style="color:#bbb">  </span><span style="color:#666">8.8.8.8</span><span style="color:#bbb"> </span><span style="color:#666">8.8.4.4</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>cache<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>abc.com:<span style="color:#666">53</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>errors<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>cache<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>forward<span style="color:#bbb"> </span>.<span style="color:#bbb"> </span><span style="color:#666">1.2.3.4</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>}<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>my.cluster.local:<span style="color:#666">53</span><span style="color:#bbb"> </span>{<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>errors<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>cache<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>forward<span style="color:#bbb"> </span>.<span style="color:#bbb"> </span><span style="color:#666">2.3.4.5</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>}</code></pre>
+    </div>
+    <h2 id="migration-to-coredns">
+      Migration to CoreDNS
+    </h2>
+    <p>
+      To migrate from kube-dns to CoreDNS,
+      <a href="https://coredns.io/2018/05/21/migration-from-kube-dns-to-coredns/">
+        a detailed blog
+      </a>
+      is available to help users adapt CoreDNS in place of kube-dns.
+      A cluster administrator can also migrate using
+      <a href="https://github.com/coredns/deployment/blob/master/kubernetes/deploy.sh">
+        the deploy script
+      </a>
+      .
+    </p>
+    <h2 id="what-s-next">
+      What&rsquo;s next
+    </h2>
+    <ul>
+      <li>
+        <a href="/docs/tasks/administer-cluster/dns-debugging-resolution/">
+          Debugging DNS Resolution
+        </a>
+        .
+      </li>
+    </ul>
+  </body>
+</html>

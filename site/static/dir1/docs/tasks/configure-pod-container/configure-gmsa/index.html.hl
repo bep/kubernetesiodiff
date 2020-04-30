@@ -1,0 +1,1181 @@
+<div style="background-color:#f0f3f3">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">113
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">114
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">115
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">116
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">117
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">118
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">119
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">120
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">121
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">122
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">123
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">129
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">130
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">131
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">132
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">133
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">134
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">135
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">136
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">137
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">138
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">139
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">140
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">141
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">142
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">143
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">144
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">145
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">146
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">147
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">148
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">149
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">150
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">151
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">152
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">153
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">154
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">155
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">156
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">157
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">158
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">159
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">160
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">161
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">162
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">163
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">164
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">165
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">166
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">167
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">168
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">169
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">170
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">171
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">172
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">173
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">174
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">175
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">176
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">177
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">178
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">179
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">180
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">181
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">182
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">183
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">184
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">185
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">186
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">187
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">188
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">189
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">190
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">191
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">192
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">193
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">194
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">195
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">196
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">197
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">198
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">199
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">200
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">201
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">202
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">203
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">204
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">205
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">206
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">207
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">208
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">209
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">210
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">211
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">212
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">213
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">214
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">215
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">216
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">217
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">218
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">219
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">220
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">221
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">222
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">223
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">224
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">225
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">226
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">227
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">228
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">229
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">230
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">231
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">232
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">233
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">234
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">235
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">236
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">237
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">238
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">239
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">240
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">241
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">242
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">243
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">244
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">245
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">246
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">247
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">248
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">249
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">250
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">251
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">252
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">253
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">254
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">255
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">256
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">257
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">258
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">259
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">260
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">261
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">262
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">263
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">264
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">265
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">266
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">267
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">268
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">269
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">270
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">271
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">272
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">273
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">274
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">275
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">276
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">277
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">278
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">279
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">280
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">281
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">282
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">283
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">284
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">285
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">286
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">287
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">288
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">289
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">290
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">291
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">292
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">293
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">294
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">295
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">296
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">297
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">298
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">299
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">300
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">301
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">302
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">303
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">304
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">305
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">306
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">307
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">308
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">309
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">310
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">311
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">312
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">313
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">314
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">315
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">316
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">317
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">318
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">319
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">320
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">321
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">322
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">323
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">324
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">325
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">326
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">327
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">328
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">329
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">330
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">331
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">332
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">333
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">334
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">335
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">336
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">337
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">338
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">339
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">340
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">341
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">342
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">343
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">344
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">345
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">346
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">347
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">348
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">349
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">350
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">351
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">352
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">353
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">354
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">355
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">356
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">357
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">358
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">359
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">360
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">361
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">362
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">363
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">364
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">365
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">366
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">367
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">368
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">369
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">370
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">371
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">372
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">373
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">374
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">375
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">376
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">377
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">378
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">379
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">380
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">381
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">382
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">383
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">384
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">385
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">386
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">387
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">388
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">389
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">390
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">391
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">392
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">393
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">394
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">395
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">396
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">397
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">398
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">399
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">400
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">401
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">402
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">403
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">404
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">405
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">406
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">407
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">408
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">409
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">410
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">411
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">412
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">413
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">414
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">415
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">416
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">417
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">418
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">419
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">420
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">421
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">422
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">423
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">424
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">425
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">426
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">427
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">428
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">429
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">430
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">431
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">432
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">433
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">434
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">435
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">436
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">437
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">438
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">439
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">440
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">441
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">442
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">443
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">444
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">445
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">446
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">447
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">448
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">449
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">450
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">451
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">452
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">453
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">454
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">455
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">456
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">457
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">458
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">459
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">460
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">461
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">462
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">463
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">464
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">465
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">466
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">467
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">468
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">469
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">470
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">471
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">472
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">473
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">474
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">475
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">476
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">477
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">478
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">479
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">480
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">481
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">482
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">483
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">484
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">485
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">486
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">487
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">488
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">489
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">490
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">491
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">492
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">493
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">494
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">495
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">496
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">497
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">498
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">499
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">500
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">501
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">502
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">503
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">504
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">505
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">506
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">507
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">508
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">509
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">510
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">511
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">512
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">513
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">514
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">515
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">516
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">517
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">518
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">519
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">520
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">521
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">522
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">523
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">524
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">525
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">526
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">527
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">528
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">529
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">530
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">531
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">532
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">533
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">534
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">535
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">536
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">537
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">538
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">539
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">540
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">541
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">542
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">543
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">544
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">545
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">546
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">547
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">548
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">549
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">550
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">551
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">552
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">553
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">554
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">555
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">556
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">557
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">558
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">559
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">560
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">561
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">562
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">563
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">564
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">565
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">566
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">567
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">568
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">569
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">570
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">571
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">572
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">573
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">574
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">575
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">576
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">577
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">578
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">579
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">580
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">581
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">582
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">583
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">584
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">585
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">586
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">587
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">588
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3">&lt;<span style="color:#309;font-weight:bold">html</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">body</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Configure GMSA for Windows Pods and containers
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/configure-pod-container/configure-gmsa.md&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;editPageButton&#34;</span> <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#34;_blank&#34;</span>&gt;
+        Edit This Page
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Configure GMSA for Windows Pods and containers
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;margin-top: 10px; margin-bottom: 10px;&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">b</span>&gt;
+        FEATURE STATE:
+      &lt;/<span style="color:#309;font-weight:bold">b</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        Kubernetes v1.18
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;feature-state-dialog-link&#34;</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;ui-state-default ui-corner-all&#34;</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;ui-icon ui-icon-newwin&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;
+        stable
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;feature-state-dialog&#34;</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;ui-dialog-content&#34;</span> <span style="color:#309">title</span><span style="color:#555">=</span><span style="color:#c30">&#34;stable&#34;</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          This feature is
+          &lt;<span style="color:#309;font-weight:bold">em</span>&gt;
+            stable
+          &lt;/<span style="color:#309;font-weight:bold">em</span>&gt;
+          , meaning:
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+            The version name is vX where X is an integer.
+          &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+            Stable versions of features will appear in released software for many subsequent versions.
+          &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">script</span>&gt;
+        $(<span style="color:#069;font-weight:bold">function</span>(){
+
+        $( <span style="color:#c30">&#34;#feature-state-dialog&#34;</span> ).dialog({
+        autoOpen<span style="color:#555">:</span> <span style="color:#069;font-weight:bold">false</span>,
+        width<span style="color:#555">:</span> <span style="color:#c30">&#34;600&#34;</span>,
+        buttons<span style="color:#555">:</span> [
+        {
+        text<span style="color:#555">:</span> <span style="color:#c30">&#34;Ok&#34;</span>,
+        click<span style="color:#555">:</span> <span style="color:#069;font-weight:bold">function</span>() {
+        $( <span style="color:#069;font-weight:bold">this</span> ).dialog( <span style="color:#c30">&#34;close&#34;</span> );
+        }
+        }
+        ]
+        });
+
+
+        $( <span style="color:#c30">&#34;#feature-state-dialog-link&#34;</span> ).click(<span style="color:#069;font-weight:bold">function</span>( event ) {
+        $( <span style="color:#c30">&#34;#feature-state-dialog&#34;</span> ).dialog( <span style="color:#c30">&#34;open&#34;</span> );
+        event.preventDefault();
+        });
+
+        });
+      &lt;/<span style="color:#309;font-weight:bold">script</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      This page shows how to configure
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview&#34;</span>&gt;
+        Group Managed Service Accounts
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      (GMSA) for Pods and containers that will run on Windows nodes. Group Managed Service Accounts are a specific type of Active Directory account that provides automatic password management, simplified service principal name (SPN) management, and the ability to delegate the management to other administrators across multiple servers.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      In Kubernetes, GMSA credential specs are configured at a Kubernetes cluster-wide scope as Custom Resources. Windows Pods, as well as individual containers within a Pod, can be configured to use a GMSA for domain based functions (e.g. Kerberos authentication) when interacting with other Windows services. As of v1.16, the Docker runtime supports GMSA for Windows workloads.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;markdown-toc&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#before-you-begin&#34;</span>&gt;
+          Before you begin
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#configure-gmsas-and-windows-nodes-in-active-directory&#34;</span>&gt;
+          Configure GMSAs and Windows nodes in Active Directory
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#create-gmsa-credential-spec-resources&#34;</span>&gt;
+          Create GMSA credential spec resources
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#configure-cluster-role-to-enable-rbac-on-specific-gmsa-credential-specs&#34;</span>&gt;
+          Configure cluster role to enable RBAC on specific GMSA credential specs
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#assign-role-to-service-accounts-to-use-specific-gmsa-credspecs&#34;</span>&gt;
+          Assign role to service accounts to use specific GMSA credspecs
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#configure-gmsa-credential-spec-reference-in-pod-spec&#34;</span>&gt;
+          Configure GMSA credential spec reference in Pod spec
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#troubleshooting&#34;</span>&gt;
+          Troubleshooting
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;before-you-begin&#34;</span>&gt;
+      Before you begin
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      You need to have a Kubernetes cluster and the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        kubectl
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      command-line tool must be configured to communicate with your cluster. The cluster is expected to have Windows worker nodes. This section covers a set of initial steps required once for each cluster:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;install-the-gmsacredentialspec-crd&#34;</span>&gt;
+      Install the GMSACredentialSpec CRD
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      A
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/&#34;</span>&gt;
+        CustomResourceDefinition
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      (CRD) for GMSA credential spec resources needs to be configured on the cluster to define the custom resource type
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        GMSACredentialSpec
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      . Download the GMSA CRD
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes-sigs/windows-gmsa/blob/master/admission-webhook/deploy/gmsa-crd.yml&#34;</span>&gt;
+        YAML
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      and save it as gmsa-crd.yaml.
+      Next, install the CRD with
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        kubectl apply -f gmsa-crd.yaml
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;install-webhooks-to-validate-gmsa-users&#34;</span>&gt;
+      Install webhooks to validate GMSA users
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Two webhooks need to be configured on the Kubernetes cluster to populate and validate GMSA credential spec references at the Pod or container level:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ol</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          A mutating webhook that expands references to GMSAs (by name from a Pod specification) into the full credential spec in JSON form within the Pod spec.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          A validating webhook ensures all references to GMSAs are authorized to be used by the Pod service account.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ol</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Installing the above webhooks and associated objects require the steps below:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ol</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          Create a certificate key pair (that will be used to allow the webhook container to communicate to the cluster)
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          Install a secret with the certificate from above.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          Create a deployment for the core webhook logic.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          Create the validating and mutating webhook configurations referring to the deployment.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ol</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      A
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes-sigs/windows-gmsa/blob/master/admission-webhook/deploy/deploy-gmsa-webhook.sh&#34;</span>&gt;
+        script
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      can be used to deploy and configure the GMSA webhooks and associated objects mentioned above. The script can be run with a
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        --dry-run=server
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      option to allow you to review the changes that would be made to your cluster.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes-sigs/windows-gmsa/blob/master/admission-webhook/deploy/gmsa-webhook.yml.tpl&#34;</span>&gt;
+        YAML template
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      used by the script may also be used to deploy the webhooks and associated objects manually (with appropriate substitutions for the parameters)
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;configure-gmsas-and-windows-nodes-in-active-directory&#34;</span>&gt;
+      Configure GMSAs and Windows nodes in Active Directory
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Before Pods in Kubernetes can be configured to use GMSAs, the desired GMSAs need to be provisioned in Active Directory as described in the
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/getting-started-with-group-managed-service-accounts#BKMK_Step1&#34;</span>&gt;
+        Windows GMSA documentation
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      . Windows worker nodes (that are part of the Kubernetes cluster) need to be configured in Active Directory to access the secret credentials associated with the desired GMSA as described in the
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/getting-started-with-group-managed-service-accounts#to-add-member-hosts-using-the-set-adserviceaccount-cmdlet&#34;</span>&gt;
+        Windows GMSA documentation
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;create-gmsa-credential-spec-resources&#34;</span>&gt;
+      Create GMSA credential spec resources
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      With the GMSACredentialSpec CRD installed (as described earlier), custom resources containing GMSA credential specs can be configured. The GMSA credential spec does not contain secret or sensitive data. It is information that a container runtime can use to describe the desired GMSA of a container to Windows. GMSA credential specs can be generated in YAML format with a utility
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes-sigs/windows-gmsa/tree/master/scripts/GenerateCredentialSpecResource.ps1&#34;</span>&gt;
+        PowerShell script
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      .
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Following are the steps for generating a GMSA credential spec YAML manually in JSON format and then converting it:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ol</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          Import the CredentialSpec
+          &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/MicrosoftDocs/Virtualization-Documentation/blob/live/windows-server-container-tools/ServiceAccounts/CredentialSpec.psm1&#34;</span>&gt;
+            module
+          &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+          :
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            ipmo CredentialSpec.psm1
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          Create a credential spec in JSON format using
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            New-CredentialSpec
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          . To create a GMSA credential spec named WebApp1, invoke
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            New-CredentialSpec -Name WebApp1 -AccountName WebApp1 -Domain $(Get-ADDomain -Current LocalComputer)
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          Use
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            Get-CredentialSpec
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          to show the path of the JSON file.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          Convert the credspec file from JSON to YAML format and apply the necessary header fields
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            apiVersion
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          ,
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            kind
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          ,
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            metadata
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          and
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            credspec
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          to make it a GMSACredentialSpec custom resource that can be configured in Kubernetes.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ol</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The following YAML configuration describes a GMSA credential spec named
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        gmsa-WebApp1
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      :
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiVersion&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;windows.k8s.io/v1alpha1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;GMSACredentialSpec&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;gmsa-WebApp1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#This is an arbitrary name but it will be used as a reference&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;credspec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;ActiveDirectoryConfig&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;GroupManagedServiceAccounts&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;Name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;WebApp1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;   &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#Username of the GMSA account&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;Scope&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;CONTOSO&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#NETBIOS Domain Name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;Name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;WebApp1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;   &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#Username of the GMSA account&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;Scope&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;contoso.com&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#DNS Domain Name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;CmsPlugins&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- ActiveDirectory&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;DomainJoinConfig&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;DnsName&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;contoso.com&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#DNS Domain Name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;DnsTreeName&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;contoso.com&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#DNS Domain Name Root&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;Guid&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;244818ae-87ac-4fcd-92ec-e79e5252348a&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#GUID&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;MachineAccountName&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;WebApp1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#Username of the GMSA account&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;NetBiosName&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;CONTOSO&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#NETBIOS Domain Name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;Sid&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;S&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;-1-5-21-2126449477-2524075714-3094792973&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#SID of GMSA&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The above credential spec resource may be saved as
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        gmsa-Webapp1-credspec.yaml
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      and applied to the cluster using:
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        kubectl apply -f gmsa-Webapp1-credspec.yml
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;configure-cluster-role-to-enable-rbac-on-specific-gmsa-credential-specs&#34;</span>&gt;
+      Configure cluster role to enable RBAC on specific GMSA credential specs
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      A cluster role needs to be defined for each GMSA credential spec resource. This authorizes the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        use
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      verb on a specific GMSA resource by a subject which is typically a service account. The following example shows a cluster role that authorizes usage of the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        gmsa-WebApp1
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      credential spec from above. Save the file as gmsa-webapp1-role.yaml and apply using
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        kubectl apply -f gmsa-webapp1-role.yaml
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#080;font-style:italic&#34;</span>&gt;#Create the Role to read the credspec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiVersion&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;rbac.authorization.k8s.io/v1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;ClusterRole&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;webapp1-role&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;rules&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiGroups&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;[&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b44&#34;</span>&gt;<span style="color:#999;font-weight:bold">&amp;#34;</span>windows.k8s.io<span style="color:#999;font-weight:bold">&amp;#34;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;]&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;resources&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;[&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b44&#34;</span>&gt;<span style="color:#999;font-weight:bold">&amp;#34;</span>gmsacredentialspecs<span style="color:#999;font-weight:bold">&amp;#34;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;]&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;verbs&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;[&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b44&#34;</span>&gt;<span style="color:#999;font-weight:bold">&amp;#34;</span>use<span style="color:#999;font-weight:bold">&amp;#34;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;]&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;resourceNames&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;[&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b44&#34;</span>&gt;<span style="color:#999;font-weight:bold">&amp;#34;</span>gmsa-WebApp1<span style="color:#999;font-weight:bold">&amp;#34;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;]&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;assign-role-to-service-accounts-to-use-specific-gmsa-credspecs&#34;</span>&gt;
+      Assign role to service accounts to use specific GMSA credspecs
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      A service account (that Pods will be configured with) needs to be bound to the cluster role create above. This authorizes the service account to use the desired GMSA credential spec resource. The following shows the default service account being bound to a cluster role
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        webapp1-role
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      to use
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        gmsa-WebApp1
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      credential spec resource created above.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiVersion&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;rbac.authorization.k8s.io/v1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;RoleBinding&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;allow-default-svc-account-read-on-gmsa-WebApp1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;namespace&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;default&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;subjects&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;ServiceAccount&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;default&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;namespace&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;default&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;roleRef&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;ClusterRole&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;webapp1-role&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiGroup&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;rbac.authorization.k8s.io&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;configure-gmsa-credential-spec-reference-in-pod-spec&#34;</span>&gt;
+      Configure GMSA credential spec reference in Pod spec
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The Pod spec field
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        securityContext.windowsOptions.gmsaCredentialSpecName
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      is used to specify references to desired GMSA credential spec custom resources in Pod specs. This configures all containers in the Pod spec to use the specified GMSA. A sample Pod spec with the annotation populated to refer to
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        gmsa-WebApp1
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      :
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiVersion&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;apps/v1beta1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;Deployment&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;labels&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;run&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;with-creds&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;with-creds&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;namespace&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;default&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;replicas&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;1&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;selector&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;matchLabels&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;run&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;with-creds&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;template&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;labels&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;run&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;with-creds&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;securityContext&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;windowsOptions&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;          &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;gmsaCredentialSpecName&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;gmsa-webapp1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;containers&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;image&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;imagePullPolicy&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;Always&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;iis&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;nodeSelector&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;beta.kubernetes.io/os&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;windows&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Individual containers in a Pod spec can also specify the desired GMSA credspec using a per-container
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        securityContext.windowsOptions.gmsaCredentialSpecName
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      field. For example:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiVersion&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;apps/v1beta1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;Deployment&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;labels&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;run&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;with-creds&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;with-creds&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;namespace&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;default&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;replicas&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;1&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;selector&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;matchLabels&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;run&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;with-creds&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;template&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;labels&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;run&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;with-creds&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;containers&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;image&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;imagePullPolicy&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;Always&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;iis&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;securityContext&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;          &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;windowsOptions&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;            &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;gmsaCredentialSpecName&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;gmsa-Webapp1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;nodeSelector&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;beta.kubernetes.io/os&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;windows&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      As Pod specs with GMSA fields populated (as described above) are applied in a cluster, the following sequence of events take place:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ol</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          The mutating webhook resolves and expands all references to GMSA credential spec resources to the contents of the GMSA credential spec.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          The validating webhook ensures the service account associated with the Pod is authorized for the
+          &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+            use
+          &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+          verb on the specified GMSA credential spec.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          The container runtime configures each Windows container with the specified GMSA credential spec so that the container can assume the identity of the GMSA in Active Directory and access services in the domain using that identity.
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ol</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;troubleshooting&#34;</span>&gt;
+      Troubleshooting
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If you are having difficulties getting GMSA to work in your environment, there are a few troubleshooting steps you can take.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      First, make sure the credspec has been passed to the Pod.  To do this you will need to
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        exec
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      into one of your Pods and check the output of the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        nltest.exe /parentdomain
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      command.  In the example below the Pod did not get the credspec correctly:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f&#34;</span>&gt;exec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; -it iis-auth-7776966999-n5nzr powershell.exe
+
+Windows PowerShell
+Copyright &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;(&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;C&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;)&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; Microsoft Corporation. All rights reserved.
+
+PS C:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b62;font-weight:bold&#34;</span>&gt;\<span style="color:#999;font-weight:bold">&amp;gt;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; nltest.exe /parentdomain
+Getting parent domain failed: &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b8860b&#34;</span>&gt;Status&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;1722&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; 0x6ba RPC_S_SERVER_UNAVAILABLE
+PS C:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b62;font-weight:bold&#34;</span>&gt;\<span style="color:#999;font-weight:bold">&amp;gt;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If your Pod did get the credspec correctly, then next check communication with the domain.  First, from inside of your Pod, quickly do an nslookup to find the root of your domain.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      This will tell us 3 things:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ol</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        The Pod can reach the DC
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        The DC can reach the Pod
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        DNS is working correctly.
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ol</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If the DNS and communication test passes, next you will need to check if the Pod has established secure channel communication with the domain.  To do this, again,
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        exec
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      into your Pod and run the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        nltest.exe /query
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      command.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;PS C:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b62;font-weight:bold&#34;</span>&gt;\<span style="color:#999;font-weight:bold">&amp;gt;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; nltest.exe /query
+I_NetLogonControl failed: &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b8860b&#34;</span>&gt;Status&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;1722&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; 0x6ba RPC_S_SERVER_UNAVAILABLE&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      This tells us that for some reason, the Pod was unable to logon to the domain using the account specified in the credspec.  You can try to repair the secure channel by running the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        nltest.exe /sc_reset:domain.example
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      command.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;PS C:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b62;font-weight:bold&#34;</span>&gt;\<span style="color:#999;font-weight:bold">&amp;gt;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; nltest /sc_reset:domain.example
+Flags: &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;30&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; HAS_IP  HAS_TIMESERV
+Trusted DC Name &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b62;font-weight:bold&#34;</span>&gt;\\&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;dc10.domain.example
+Trusted DC Connection Status &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b8860b&#34;</span>&gt;Status&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;=&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;0&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; 0x0 NERR_Success
+The &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f&#34;</span>&gt;command&lt;/<span style="color:#309;font-weight:bold">span</span>&gt; completed successfully
+PS C:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b62;font-weight:bold&#34;</span>&gt;\<span style="color:#999;font-weight:bold">&amp;gt;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If the above command corrects the error, you can automate the step by adding the following lifecycle hook to your Pod spec.  If it did not correct the error, you will need to examine your credspec again and confirm that it is correct and complete.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;image&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;registry.domain.example/iis-auth:1809v1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;lifecycle&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;          &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;postStart&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;            &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;exec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;              &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;command&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;[&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b44&#34;</span>&gt;<span style="color:#999;font-weight:bold">&amp;#34;</span>powershell.exe<span style="color:#999;font-weight:bold">&amp;#34;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;,&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b44&#34;</span>&gt;<span style="color:#999;font-weight:bold">&amp;#34;</span>-command<span style="color:#999;font-weight:bold">&amp;#34;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;,&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#b44&#34;</span>&gt;<span style="color:#999;font-weight:bold">&amp;#34;</span>do { Restart-Service -Name netlogon } while ( $($Result = (nltest.exe /query); if ($Result -like <span style="color:#999;font-weight:bold">&amp;#39;</span>*0x0 NERR_Success*<span style="color:#999;font-weight:bold">&amp;#39;</span>) {return $true} else {return $false}) -eq $false)<span style="color:#999;font-weight:bold">&amp;#34;</span>&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;]&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;imagePullPolicy&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;IfNotPresent&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      If you add the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        lifecycle
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      section show above to your Pod spec, the Pod will execute the commands listed to restart the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        netlogon
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      service until the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        nltest.exe /query
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      command exits without error.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">html</span>&gt;</pre></td></tr></table>
+</div>

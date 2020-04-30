@@ -1,0 +1,464 @@
+<html>
+  <body>
+    <h1>
+      Using ABAC Authorization
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/access-authn-authz/abac.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Using ABAC Authorization
+    </h1>
+    <p>
+      Attribute-based access control (ABAC) defines an access control paradigm whereby access rights are granted to users through the use of policies which combine attributes together.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#policy-file-format">
+          Policy File Format
+        </a>
+      </li>
+      <li>
+        <a href="#authorization-algorithm">
+          Authorization Algorithm
+        </a>
+      </li>
+      <li>
+        <a href="#kubectl">
+          Kubectl
+        </a>
+      </li>
+      <li>
+        <a href="#examples">
+          Examples
+        </a>
+      </li>
+      <li>
+        <a href="#a-quick-note-on-service-accounts">
+          A quick note on service accounts
+        </a>
+      </li>
+    </ul>
+    <h2 id="policy-file-format">
+      Policy File Format
+    </h2>
+    <p>
+      To enable
+      <code>
+        ABAC
+      </code>
+      mode, specify
+      <code>
+        --authorization-policy-file=SOME_FILENAME
+      </code>
+      and
+      <code>
+        --authorization-mode=ABAC
+      </code>
+      on startup.
+    </p>
+    <p>
+      The file format is
+      <a href="http://jsonlines.org/">
+        one JSON object per line
+      </a>
+      .  There
+      should be no enclosing list or map, just one map per line.
+    </p>
+    <p>
+      Each line is a &ldquo;policy object&rdquo;, where each such object is a map with the following
+      properties:
+    </p>
+    <ul>
+      <li>
+        Versioning properties:
+        <ul>
+          <li>
+            <code>
+              apiVersion
+            </code>
+            , type string; valid values are &ldquo;abac.authorization.kubernetes.io/v1beta1&rdquo;. Allows versioning and conversion of the policy format.
+          </li>
+          <li>
+            <code>
+              kind
+            </code>
+            , type string: valid values are &ldquo;Policy&rdquo;. Allows versioning and conversion of the policy format.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <code>
+          spec
+        </code>
+        property set to a map with the following properties:
+        <ul>
+          <li>
+            Subject-matching properties:
+            <ul>
+              <li>
+                <code>
+                  user
+                </code>
+                , type string; the user-string from
+                <code>
+                  --token-auth-file
+                </code>
+                . If you specify
+                <code>
+                  user
+                </code>
+                , it must match the username of the authenticated user.
+              </li>
+              <li>
+                <code>
+                  group
+                </code>
+                , type string; if you specify
+                <code>
+                  group
+                </code>
+                , it must match one of the groups of the authenticated user.
+                <code>
+                  system:authenticated
+                </code>
+                matches all authenticated requests.
+                <code>
+                  system:unauthenticated
+                </code>
+                matches all unauthenticated requests.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Resource-matching properties:
+            <ul>
+              <li>
+                <code>
+                  apiGroup
+                </code>
+                , type string; an API group.
+              </li>
+              <li>
+                Ex:
+                <code>
+                  extensions
+                </code>
+              </li>
+              <li>
+                Wildcard:
+                <code>
+                  *
+                </code>
+                matches all API groups.
+              </li>
+              <li>
+                <code>
+                  namespace
+                </code>
+                , type string; a namespace.
+              </li>
+              <li>
+                Ex:
+                <code>
+                  kube-system
+                </code>
+              </li>
+              <li>
+                Wildcard:
+                <code>
+                  *
+                </code>
+                matches all resource requests.
+              </li>
+              <li>
+                <code>
+                  resource
+                </code>
+                , type string; a resource type
+              </li>
+              <li>
+                Ex:
+                <code>
+                  pods
+                </code>
+              </li>
+              <li>
+                Wildcard:
+                <code>
+                  *
+                </code>
+                matches all resource requests.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Non-resource-matching properties:
+            <ul>
+              <li>
+                <code>
+                  nonResourcePath
+                </code>
+                , type string; non-resource request paths.
+              </li>
+              <li>
+                Ex:
+                <code>
+                  /version
+                </code>
+                or
+                <code>
+                  /apis
+                </code>
+              </li>
+              <li>
+                Wildcard:
+                <ul>
+                  <li>
+                    <code>
+                      *
+                    </code>
+                    matches all non-resource requests.
+                  </li>
+                  <li>
+                    <code>
+                      /foo/*
+                    </code>
+                    matches all subpaths of
+                    <code>
+                      /foo/
+                    </code>
+                    .
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <code>
+              readonly
+            </code>
+            , type boolean, when true, means that the Resource-matching policy only applies to get, list, and watch operations, Non-resource-matching policy only applies to get operation.
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        <p>
+          An unset property is the same as a property set to the zero value for its type
+          (e.g. empty string, 0, false). However, unset should be preferred for
+          readability.
+        </p>
+        <p>
+          In the future, policies may be expressed in a JSON format, and managed via a
+          REST interface.
+        </p>
+      </div>
+    </blockquote>
+    <h2 id="authorization-algorithm">
+      Authorization Algorithm
+    </h2>
+    <p>
+      A request has attributes which correspond to the properties of a policy object.
+    </p>
+    <p>
+      When a request is received, the attributes are determined.  Unknown attributes
+      are set to the zero value of its type (e.g. empty string, 0, false).
+    </p>
+    <p>
+      A property set to
+      <code>
+        &quot;*&quot;
+      </code>
+      will match any value of the corresponding attribute.
+    </p>
+    <p>
+      The tuple of attributes is checked for a match against every policy in the
+      policy file. If at least one line matches the request attributes, then the
+      request is authorized (but may fail later validation).
+    </p>
+    <p>
+      To permit any authenticated user to do something, write a policy with the
+      group property set to
+      <code>
+        &quot;system:authenticated&quot;
+      </code>
+      .
+    </p>
+    <p>
+      To permit any unauthenticated user to do something, write a policy with the
+      group property set to
+      <code>
+        &quot;system:unauthenticated&quot;
+      </code>
+      .
+    </p>
+    <p>
+      To permit a user to do anything, write a policy with the apiGroup, namespace,
+      resource, and nonResourcePath properties set to
+      <code>
+        &quot;*&quot;
+      </code>
+      .
+    </p>
+    <h2 id="kubectl">
+      Kubectl
+    </h2>
+    <p>
+      Kubectl uses the
+      <code>
+        /api
+      </code>
+      and
+      <code>
+        /apis
+      </code>
+      endpoints of api-server to discover
+      served resource types, and validates objects sent to the API by create/update
+      operations using schema information located at
+      <code>
+        /openapi/v2
+      </code>
+      .
+    </p>
+    <p>
+      When using ABAC authorization, those special resources have to be explicitly
+      exposed via the
+      <code>
+        nonResourcePath
+      </code>
+      property in a policy (see
+      <a href="#examples">
+        examples
+      </a>
+      below):
+    </p>
+    <ul>
+      <li>
+        <code>
+          /api
+        </code>
+        ,
+        <code>
+          /api/*
+        </code>
+        ,
+        <code>
+          /apis
+        </code>
+        , and
+        <code>
+          /apis/*
+        </code>
+        for API version negotiation.
+      </li>
+      <li>
+        <code>
+          /version
+        </code>
+        for retrieving the server version via
+        <code>
+          kubectl version
+        </code>
+        .
+      </li>
+      <li>
+        <code>
+          /swaggerapi/*
+        </code>
+        for create/update operations.
+      </li>
+    </ul>
+    <p>
+      To inspect the HTTP calls involved in a specific kubectl operation you can turn
+      up the verbosity:
+    </p>
+    <pre><code>kubectl --v=8 version</code></pre>
+    <h2 id="examples">
+      Examples
+    </h2>
+    <ol>
+      <li>
+        <p>
+          Alice can do anything to all resources:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#008000;font-weight:bold">&#34;apiVersion&#34;</span>: <span style="color:#b44">&#34;abac.authorization.kubernetes.io/v1beta1&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;kind&#34;</span>: <span style="color:#b44">&#34;Policy&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;spec&#34;</span>: {<span style="color:#008000;font-weight:bold">&#34;user&#34;</span>: <span style="color:#b44">&#34;alice&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;namespace&#34;</span>: <span style="color:#b44">&#34;*&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;resource&#34;</span>: <span style="color:#b44">&#34;*&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;apiGroup&#34;</span>: <span style="color:#b44">&#34;*&#34;</span>}}</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          The Kubelet can read any pods:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#008000;font-weight:bold">&#34;apiVersion&#34;</span>: <span style="color:#b44">&#34;abac.authorization.kubernetes.io/v1beta1&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;kind&#34;</span>: <span style="color:#b44">&#34;Policy&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;spec&#34;</span>: {<span style="color:#008000;font-weight:bold">&#34;user&#34;</span>: <span style="color:#b44">&#34;kubelet&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;namespace&#34;</span>: <span style="color:#b44">&#34;*&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;resource&#34;</span>: <span style="color:#b44">&#34;pods&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;readonly&#34;</span>: <span style="color:#a2f;font-weight:bold">true</span>}}</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          The Kubelet can read and write events:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#008000;font-weight:bold">&#34;apiVersion&#34;</span>: <span style="color:#b44">&#34;abac.authorization.kubernetes.io/v1beta1&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;kind&#34;</span>: <span style="color:#b44">&#34;Policy&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;spec&#34;</span>: {<span style="color:#008000;font-weight:bold">&#34;user&#34;</span>: <span style="color:#b44">&#34;kubelet&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;namespace&#34;</span>: <span style="color:#b44">&#34;*&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;resource&#34;</span>: <span style="color:#b44">&#34;events&#34;</span>}}</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Bob can just read pods in namespace &ldquo;projectCaribou&rdquo;:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#008000;font-weight:bold">&#34;apiVersion&#34;</span>: <span style="color:#b44">&#34;abac.authorization.kubernetes.io/v1beta1&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;kind&#34;</span>: <span style="color:#b44">&#34;Policy&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;spec&#34;</span>: {<span style="color:#008000;font-weight:bold">&#34;user&#34;</span>: <span style="color:#b44">&#34;bob&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;namespace&#34;</span>: <span style="color:#b44">&#34;projectCaribou&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;resource&#34;</span>: <span style="color:#b44">&#34;pods&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;readonly&#34;</span>: <span style="color:#a2f;font-weight:bold">true</span>}}</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Anyone can make read-only requests to all non-resource paths:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#008000;font-weight:bold">&#34;apiVersion&#34;</span>: <span style="color:#b44">&#34;abac.authorization.kubernetes.io/v1beta1&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;kind&#34;</span>: <span style="color:#b44">&#34;Policy&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;spec&#34;</span>: {<span style="color:#008000;font-weight:bold">&#34;group&#34;</span>: <span style="color:#b44">&#34;system:authenticated&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;readonly&#34;</span>: <span style="color:#a2f;font-weight:bold">true</span>, <span style="color:#008000;font-weight:bold">&#34;nonResourcePath&#34;</span>: <span style="color:#b44">&#34;*&#34;</span>}}
+{<span style="color:#008000;font-weight:bold">&#34;apiVersion&#34;</span>: <span style="color:#b44">&#34;abac.authorization.kubernetes.io/v1beta1&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;kind&#34;</span>: <span style="color:#b44">&#34;Policy&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;spec&#34;</span>: {<span style="color:#008000;font-weight:bold">&#34;group&#34;</span>: <span style="color:#b44">&#34;system:unauthenticated&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;readonly&#34;</span>: <span style="color:#a2f;font-weight:bold">true</span>, <span style="color:#008000;font-weight:bold">&#34;nonResourcePath&#34;</span>: <span style="color:#b44">&#34;*&#34;</span>}}</code></pre>
+        </div>
+      </li>
+    </ol>
+    <p>
+      <a href="http://releases.k8s.io/master/pkg/auth/authorizer/abac/example_policy_file.jsonl">
+        Complete file example
+      </a>
+    </p>
+    <h2 id="a-quick-note-on-service-accounts">
+      A quick note on service accounts
+    </h2>
+    <p>
+      Every service account has a corresponding ABAC username, and that service account&rsquo;s user name is generated according to the naming convention:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">system:serviceaccount:&lt;namespace&gt;:&lt;serviceaccountname&gt;</code></pre>
+    </div>
+    <p>
+      Creating a new namespace leads to the creation of a new service account in the following format:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">system:serviceaccount:&lt;namespace&gt;:default</code></pre>
+    </div>
+    <p>
+      For example, if you wanted to grant the default service account (in the
+      <code>
+        kube-system
+      </code>
+      namespace) full
+      privilege to the API using ABAC, you would add this line to your policy file:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#008000;font-weight:bold">&#34;apiVersion&#34;</span>:<span style="color:#b44">&#34;abac.authorization.kubernetes.io/v1beta1&#34;</span>,<span style="color:#008000;font-weight:bold">&#34;kind&#34;</span>:<span style="color:#b44">&#34;Policy&#34;</span>,<span style="color:#008000;font-weight:bold">&#34;spec&#34;</span>:{<span style="color:#008000;font-weight:bold">&#34;user&#34;</span>:<span style="color:#b44">&#34;system:serviceaccount:kube-system:default&#34;</span>,<span style="color:#008000;font-weight:bold">&#34;namespace&#34;</span>:<span style="color:#b44">&#34;*&#34;</span>,<span style="color:#008000;font-weight:bold">&#34;resource&#34;</span>:<span style="color:#b44">&#34;*&#34;</span>,<span style="color:#008000;font-weight:bold">&#34;apiGroup&#34;</span>:<span style="color:#b44">&#34;*&#34;</span>}}</code></pre>
+    </div>
+    <p>
+      The apiserver will need to be restarted to pickup the new policy lines.
+    </p>
+  </body>
+</html>

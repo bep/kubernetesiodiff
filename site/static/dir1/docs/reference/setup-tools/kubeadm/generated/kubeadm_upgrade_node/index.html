@@ -1,0 +1,176 @@
+<html>
+<body>
+<h1></h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_upgrade_node.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1></h1>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <a href="#synopsis">
+                Synopsis
+              </a>
+            </li>
+            <li>
+              <a href="#options">
+                Options
+              </a>
+            </li>
+            <li>
+              <a href="#options-inherited-from-parent-commands">
+                Options inherited from parent commands
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h3 id="synopsis">
+  Synopsis
+</h3>
+<p>
+  Upgrade commands for a node in the cluster
+</p>
+<p>
+  The &ldquo;node&rdquo; command executes the following phases:
+</p>
+<pre><code>control-plane   Upgrade the control plane instance deployed on this node, if any
+kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
+<pre><code>kubeadm upgrade node [flags]</code></pre>
+<h3 id="options">
+  Options
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;certificate-renewal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Perform the renewal of certificates used by component changed during upgrades.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;dry-run
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Do not change any state, just output the actions that would be performed.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;etcd-upgrade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Perform the upgrade of etcd.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -k, &ndash;experimental-kustomize string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The path where kustomize patches for static pod manifests are stored.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -h, &ndash;help
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      help for node
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;skip-phases stringSlice
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      List of phases to be skipped
+    </td>
+  </tr>
+</p>
+<p>
+<h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+    </td>
+  </tr>
+</p>
+<p>

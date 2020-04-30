@@ -1,0 +1,249 @@
+<html>
+  <body>
+    <h1>
+      Node-specific Volume Limits
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/storage/storage-limits.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Node-specific Volume Limits
+    </h1>
+    <p>
+      This page describes the maximum number of volumes that can be attached
+      to a Node for various cloud providers.
+    </p>
+    <p>
+      Cloud providers like Google, Amazon, and Microsoft typically have a limit on
+      how many volumes can be attached to a Node. It is important for Kubernetes to
+      respect those limits. Otherwise, Pods scheduled on a Node could get stuck
+      waiting for volumes to attach.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#kubernetes-default-limits">
+          Kubernetes default limits
+        </a>
+      </li>
+      <li>
+        <a href="#custom-limits">
+          Custom limits
+        </a>
+      </li>
+      <li>
+        <a href="#dynamic-volume-limits">
+          Dynamic volume limits
+        </a>
+      </li>
+    </ul>
+    <h2 id="kubernetes-default-limits">
+      Kubernetes default limits
+    </h2>
+    <p>
+      The Kubernetes scheduler has default limits on the number of volumes
+      that can be attached to a Node:
+    </p>
+    <table>
+      <tr>
+        <th>
+          Cloud service
+        </th>
+        <th>
+          Maximum volumes per Node
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://aws.amazon.com/ebs/">
+            Amazon Elastic Block Store (EBS)
+          </a>
+        </td>
+        <td>
+          39
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://cloud.google.com/persistent-disk/">
+            Google Persistent Disk
+          </a>
+        </td>
+        <td>
+          16
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://azure.microsoft.com/en-us/services/storage/main-disks/">
+            Microsoft Azure Disk Storage
+          </a>
+        </td>
+        <td>
+          16
+        </td>
+      </tr>
+    </table>
+    <h2 id="custom-limits">
+      Custom limits
+    </h2>
+    <p>
+      You can change these limits by setting the value of the
+      <code>
+        KUBE_MAX_PD_VOLS
+      </code>
+      environment variable, and then starting the scheduler.
+      CSI drivers might have a different procedure, see their documentation
+      on how to customize their limits.
+    </p>
+    <p>
+      Use caution if you set a limit that is higher than the default limit. Consult
+      the cloud provider&rsquo;s documentation to make sure that Nodes can actually support
+      the limit you set.
+    </p>
+    <p>
+      The limit applies to the entire cluster, so it affects all Nodes.
+    </p>
+    <h2 id="dynamic-volume-limits">
+      Dynamic volume limits
+    </h2>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.17
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        stable
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+        <p>
+          This feature is
+          <em>
+            stable
+          </em>
+          , meaning:
+        </p>
+        <ul>
+          <li>
+            The version name is vX where X is an integer.
+          </li>
+          <li>
+            Stable versions of features will appear in released software for many subsequent versions.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      Dynamic volume limits are supported for following volume types.
+    </p>
+    <ul>
+      <li>
+        Amazon EBS
+      </li>
+      <li>
+        Google Persistent Disk
+      </li>
+      <li>
+        Azure Disk
+      </li>
+      <li>
+        CSI
+      </li>
+    </ul>
+    <p>
+      For volumes managed by in-tree volume plugins, Kubernetes automatically determines the Node
+      type and enforces the appropriate maximum number of volumes for the node. For example:
+    </p>
+    <ul>
+      <li>
+        <p>
+          On
+          <a href="https://cloud.google.com/compute/">
+            Google Compute Engine
+          </a>
+          ,
+          up to 127 volumes can be attached to a node,
+          <a href="https://cloud.google.com/compute/docs/disks/#pdnumberlimits">
+            depending on the node
+            type
+          </a>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          For Amazon EBS disks on M5,C5,R5,T3 and Z1D instance types, Kubernetes allows only 25
+          volumes to be attached to a Node. For other instance types on
+          <a href="https://aws.amazon.com/ec2/">
+            Amazon Elastic Compute Cloud (EC2)
+          </a>
+          ,
+          Kubernetes allows 39 volumes to be attached to a Node.
+        </p>
+      </li>
+      <li>
+        <p>
+          On Azure, up to 64 disks can be attached to a node, depending on the node type. For more details, refer to
+          <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes">
+            Sizes for virtual machines in Azure
+          </a>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          If a CSI storage driver advertises a maximum number of volumes for a Node (using
+          <code>
+            NodeGetInfo
+          </code>
+          ), the
+          <a class='glossary-tooltip' href='/docs/reference/generated/kube-scheduler/' target='_blank'>
+            kube-scheduler
+            <span class='tooltip-text'>
+              Control plane component that watches for newly created pods with no assigned node, and selects a node for them to run on.
+            </span>
+          </a>
+          honors that limit.
+          Refer to the
+          <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#nodegetinfo">
+            CSI specifications
+          </a>
+          for details.
+        </p>
+      </li>
+      <li>
+        <p>
+          For volumes managed by in-tree plugins that have been migrated to a CSI driver, the maximum number of volumes will be the one reported by the CSI driver.
+        </p>
+      </li>
+    </ul>
+  </body>
+</html>

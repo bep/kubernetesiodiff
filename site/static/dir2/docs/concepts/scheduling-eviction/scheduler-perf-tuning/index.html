@@ -1,0 +1,336 @@
+<html>
+<body>
+<h1>
+  Scheduler Performance Tuning
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/scheduling-eviction/scheduler-perf-tuning.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Scheduler Performance Tuning
+</h1>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.14
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    beta
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+  <p>
+    This feature is currently in a
+    <em>
+      beta
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain beta (e.g. v2beta3).
+    </li>
+    <li>
+      Code is well tested. Enabling the feature is considered safe. Enabled by default.
+    </li>
+    <li>
+      Support for the overall feature will not be dropped, though details may change.
+    </li>
+    <li>
+      The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+    </li>
+    <li>
+      Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+    </li>
+    <li>
+      <strong>
+        Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+      </strong>
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  <a href="/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler">
+    kube-scheduler
+  </a>
+  is the Kubernetes default scheduler. It is responsible for placement of Pods
+  on Nodes in a cluster.
+</p>
+<p>
+  Nodes in a cluster that meet the scheduling requirements of a Pod are
+  called
+  <em>
+    feasible
+  </em>
+  Nodes for the Pod. The scheduler finds feasible Nodes
+  for a Pod and then runs a set of functions to score the feasible Nodes,
+  picking a Node with the highest score among the feasible ones to run
+  the Pod. The scheduler then notifies the API server about this decision
+  in a process called
+  <em>
+    Binding
+  </em>
+  .
+</p>
+<p>
+  This page explains performance tuning optimizations that are relevant for
+  large Kubernetes clusters.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#percentage-of-nodes-to-score">
+      Node scoring threshold
+    </a>
+  </li>
+  <li>
+    <a href="#example">
+      Example
+    </a>
+  </li>
+  <li>
+    <a href="#tuning-percentageofnodestoscore">
+      Tuning percentageOfNodesToScore
+    </a>
+  </li>
+  <li>
+    <a href="#how-the-scheduler-iterates-over-nodes">
+      How the scheduler iterates over Nodes
+    </a>
+  </li>
+</ul>
+<p>
+  In large clusters, you can tune the scheduler&rsquo;s behaviour balancing
+  scheduling outcomes between latency (new Pods are placed quickly) and
+  accuracy (the scheduler rarely makes poor placement decisions).
+</p>
+<p>
+  You configure this tuning setting via kube-scheduler setting
+  <code>
+    percentageOfNodesToScore
+  </code>
+  . This KubeSchedulerConfiguration setting determines
+  a threshold for scheduling nodes in your cluster.
+</p>
+<h3 id="setting-the-threshold">
+  Setting the threshold
+</h3>
+<p>
+  The
+  <code>
+    percentageOfNodesToScore
+  </code>
+  option accepts whole numeric values between 0
+  and 100. The value 0 is a special number which indicates that the kube-scheduler
+  should use its compiled-in default.
+  If you set
+  <code>
+    percentageOfNodesToScore
+  </code>
+  above 100, kube-scheduler acts as if you
+  had set a value of 100.
+</p>
+<p>
+  To change the value, edit the kube-scheduler configuration file (this is likely
+  to be
+  <code>
+    /etc/kubernetes/config/kube-scheduler.yaml
+  </code>
+  ), then restart the scheduler.
+</p>
+<p>
+  After you have made this change, you can run
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get componentstatuses</code></pre>
+</div>
+<p>
+  to verify that the kube-scheduler component is healthy. The output is similar to:
+</p><pre><code>NAME                 STATUS    MESSAGE             ERROR
+controller-manager   Healthy   ok
+scheduler            Healthy   ok
+...</code></pre>
+<h2 id="percentage-of-nodes-to-score">
+  Node scoring threshold
+</h2>
+<p>
+  To improve scheduling performance, the kube-scheduler can stop looking for
+  feasible nodes once it has found enough of them. In large clusters, this saves
+  time compared to a naive approach that would consider every node.
+</p>
+<p>
+  You specify a threshold for how many nodes are enough, as a whole number percentage
+  of all the nodes in your cluster. The kube-scheduler converts this into an
+  integer number of nodes. During scheduling, if the kube-scheduler has identified
+  enough feasible nodes to exceed the configured percentage, the kube-scheduler
+  stops searching for more feasible nodes and moves on to the
+  <a href="/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler-implementation">
+    scoring phase
+  </a>
+  .
+</p>
+<p>
+  <a href="#how-the-scheduler-iterates-over-nodes">
+    How the scheduler iterates over Nodes
+  </a>
+  describes the process in detail.
+</p>
+<h3 id="default-threshold">
+  Default threshold
+</h3>
+<p>
+  If you don&rsquo;t specify a threshold, Kubernetes calculates a figure using a
+  linear formula that yields 50% for a 100-node cluster and yields 10%
+  for a 5000-node cluster. The lower bound for the automatic value is 5%.
+</p>
+<p>
+  This means that, the kube-scheduler always scores at least 5% of your cluster no
+  matter how large the cluster is, unless you have explicitly set
+  <code>
+    percentageOfNodesToScore
+  </code>
+  to be smaller than 5.
+</p>
+<p>
+  If you want the scheduler to score all nodes in your cluster, set
+  <code>
+    percentageOfNodesToScore
+  </code>
+  to 100.
+</p>
+<h2 id="example">
+  Example
+</h2>
+<p>
+  Below is an example configuration that sets
+  <code>
+    percentageOfNodesToScore
+  </code>
+  to 50%.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>kubescheduler.config.k8s.io/v1alpha1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>KubeSchedulerConfiguration<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">algorithmSource</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">provider</span>:<span style="color:#bbb"> </span>DefaultProvider<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>...<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">percentageOfNodesToScore</span>:<span style="color:#bbb"> </span><span style="color:#666">50</span><span style="color:#bbb">
+</span></code></pre>
+</div>
+<h2 id="tuning-percentageofnodestoscore">
+  Tuning percentageOfNodesToScore
+</h2>
+<p>
+  <code>
+    percentageOfNodesToScore
+  </code>
+  must be a value between 1 and 100 with the default
+  value being calculated based on the cluster size. There is also a hardcoded
+  minimum value of 50 nodes.
+</p>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    <p>
+      In clusters with less than 50 feasible nodes, the scheduler still
+      checks all the nodes, simply because there are not enough feasible nodes to stop
+      the scheduler&rsquo;s search early.
+    </p>
+    <p>
+      In a small cluster, if you set a low value for
+      <code>
+        percentageOfNodesToScore
+      </code>
+      , your
+      change will have no or little effect, for a similar reason.
+    </p>
+    <p>
+      If your cluster has several hundred Nodes or fewer, leave this configuration option
+      at its default value. Making changes is unlikely to improve the
+      scheduler&rsquo;s performance significantly.
+    </p>
+  </div>
+</blockquote>
+<p>
+  An important detail to consider when setting this value is that when a smaller
+  number of nodes in a cluster are checked for feasibility, some nodes are not
+  sent to be scored for a given Pod. As a result, a Node which could possibly
+  score a higher value for running the given Pod might not even be passed to the
+  scoring phase. This would result in a less than ideal placement of the Pod.
+</p>
+<p>
+  You should avoid setting
+  <code>
+    percentageOfNodesToScore
+  </code>
+  very low so that kube-scheduler
+  does not make frequent, poor Pod placement decisions. Avoid setting the
+  percentage to anything below 10%, unless the scheduler&rsquo;s throughput is critical
+  for your application and the score of nodes is not important. In other words, you
+  prefer to run the Pod on any Node as long as it is feasible.
+</p>
+<h2 id="how-the-scheduler-iterates-over-nodes">
+  How the scheduler iterates over Nodes
+</h2>
+<p>
+  This section is intended for those who want to understand the internal details
+  of this feature.
+</p>
+<p>
+  In order to give all the Nodes in a cluster a fair chance of being considered
+  for running Pods, the scheduler iterates over the nodes in a round robin
+  fashion. You can imagine that Nodes are in an array. The scheduler starts from
+  the start of the array and checks feasibility of the nodes until it finds enough
+  Nodes as specified by
+  <code>
+    percentageOfNodesToScore
+  </code>
+  . For the next Pod, the
+  scheduler continues from the point in the Node array that it stopped at when
+  checking feasibility of Nodes for the previous Pod.
+</p>
+<p>
+  If Nodes are in multiple zones, the scheduler iterates over Nodes in various
+  zones to ensure that Nodes from different zones are considered in the
+  feasibility checks. As an example, consider six nodes in two zones:
+</p><pre><code>Zone 1: Node 1, Node 2, Node 3, Node 4
+Zone 2: Node 5, Node 6</code></pre>
+<p>
+  The Scheduler evaluates feasibility of the nodes in this order:
+</p><pre><code>Node 1, Node 5, Node 2, Node 6, Node 3, Node 4</code></pre>
+<p>
+  After going over all the Nodes, it goes back to Node 1.
+</p>

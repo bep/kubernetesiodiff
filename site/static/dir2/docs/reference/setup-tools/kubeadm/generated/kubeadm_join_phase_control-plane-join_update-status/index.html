@@ -1,0 +1,129 @@
+<html>
+  <body>
+    <h1></h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_join_phase_control-plane-join_update-status.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1></h1>
+    <nav id="TableOfContents">
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <a href="#synopsis">
+                Synopsis
+              </a>
+            </li>
+            <li>
+              <a href="#options">
+                Options
+              </a>
+            </li>
+            <li>
+              <a href="#options-inherited-from-parent-commands">
+                Options inherited from parent commands
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <h3 id="synopsis">
+      Synopsis
+    </h3>
+    <p>
+      Register the new control-plane node into the ClusterStatus maintained in the kubeadm-config ConfigMap
+    </p>
+    <pre><code>kubeadm join phase control-plane-join update-status [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --apiserver-advertise-address string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            If the node should host a new control plane instance, the IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --config string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Path to kubeadm config file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --control-plane
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Create a new control plane instance on this node
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for update-status
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --node-name string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Specify the node name.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

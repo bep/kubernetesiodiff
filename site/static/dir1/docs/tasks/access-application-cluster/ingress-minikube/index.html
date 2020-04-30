@@ -1,0 +1,522 @@
+<html>
+  <body>
+    <h1>
+      Set up Ingress on Minikube with the NGINX Ingress Controller
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/access-application-cluster/ingress-minikube.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Set up Ingress on Minikube with the NGINX Ingress Controller
+    </h1>
+    <p>
+      An
+      <a href="/docs/concepts/services-networking/ingress/">
+        Ingress
+      </a>
+      is an API object that defines rules which allow external access
+      to services in a cluster. An
+      <a href="/docs/concepts/services-networking/ingress-controllers/">
+        Ingress controller
+      </a>
+      fulfills the rules set in the Ingress.
+    </p>
+    <p>
+      This page shows you how to set up a simple Ingress which routes requests to Service web or web2 depending on the HTTP URI.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#create-a-minikube-cluster">
+          Create a Minikube cluster
+        </a>
+      </li>
+      <li>
+        <a href="#enable-the-ingress-controller">
+          Enable the Ingress controller
+        </a>
+      </li>
+      <li>
+        <a href="#deploy-a-hello-world-app">
+          Deploy a hello, world app
+        </a>
+      </li>
+      <li>
+        <a href="#create-an-ingress-resource">
+          Create an Ingress resource
+        </a>
+      </li>
+      <li>
+        <a href="#create-second-deployment">
+          Create Second Deployment
+        </a>
+      </li>
+      <li>
+        <a href="#edit-ingress">
+          Edit Ingress
+        </a>
+      </li>
+      <li>
+        <a href="#test-your-ingress">
+          Test Your Ingress
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="create-a-minikube-cluster">
+      Create a Minikube cluster
+    </h2>
+    <ol>
+      <li>
+        <p>
+          Click
+          <strong>
+            Launch Terminal
+          </strong>
+        </p>
+        <p>
+          <div id="my-panel" data-katacoda-ondemand="true" data-katacoda-port="30000" data-katacoda-env="minikube" data-katacoda-command="start.sh" data-katacoda-ui="panel"></div>
+          <script src="https://katacoda.com/embed.js"></script>
+          <button class="button" onclick="window.katacoda.init(); ">
+            Launch Terminal
+          </button>
+        </p>
+      </li>
+      <li>
+        <p>
+          (Optional) If you installed Minikube locally, run the following command:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">minikube start</code></pre>
+        </div>
+      </li>
+    </ol>
+    <h2 id="enable-the-ingress-controller">
+      Enable the Ingress controller
+    </h2>
+    <ol>
+      <li>
+        <p>
+          To enable the NGINX Ingress controller, run the following command:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">minikube addons <span style="color:#a2f">enable</span> ingress</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Verify that the NGINX Ingress controller is running
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -n kube-system</code></pre>
+        </div>
+        <blockquote class="note">
+          <div>
+            <strong>
+              Note:
+            </strong>
+            This can take up to a minute.
+          </div>
+        </blockquote>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">NAME                                        READY     STATUS    RESTARTS   AGE
+default-http-backend-59868b7dd6-xb8tq       1/1       Running   <span style="color:#666">0</span>          1m
+kube-addon-manager-minikube                 1/1       Running   <span style="color:#666">0</span>          3m
+kube-dns-6dcb57bcc8-n4xd4                   3/3       Running   <span style="color:#666">0</span>          2m
+kubernetes-dashboard-5498ccf677-b8p5h       1/1       Running   <span style="color:#666">0</span>          2m
+nginx-ingress-controller-5984b97644-rnkrg   1/1       Running   <span style="color:#666">0</span>          1m
+storage-provisioner                         1/1       Running   <span style="color:#666">0</span>          2m</code></pre>
+        </div>
+      </li>
+    </ol>
+    <h2 id="deploy-a-hello-world-app">
+      Deploy a hello, world app
+    </h2>
+    <ol>
+      <li>
+        <p>
+          Create a Deployment using the following command:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl run web --image<span style="color:#666">=</span>gcr.io/google-samples/hello-app:1.0 --port<span style="color:#666">=</span><span style="color:#666">8080</span></code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">deployment.apps/web created</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Expose the Deployment:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl expose deployment web --target-port<span style="color:#666">=</span><span style="color:#666">8080</span> --type<span style="color:#666">=</span>NodePort</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">service/web exposed</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Verify the Service is created and is available on a node port:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get service web</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">NAME      TYPE       CLUSTER-IP       EXTERNAL-IP   PORT<span style="color:#666">(</span>S<span style="color:#666">)</span>          AGE
+web       NodePort   10.104.133.249   &lt;none&gt;        8080:31637/TCP   12m</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Visit the service via NodePort:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">minikube service web --url</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">http://172.17.0.15:31637</code></pre>
+        </div>
+        <blockquote class="note">
+          <div>
+            <strong>
+              Note:
+            </strong>
+            Katacoda environment only: at the top of the terminal panel, click the plus sign, and then click
+            <strong>
+              Select port to view on Host 1
+            </strong>
+            . Enter the NodePort, in this case
+            <code>
+              31637
+            </code>
+            , and then click
+            <strong>
+              Display Port
+            </strong>
+            .
+          </div>
+        </blockquote>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Hello, world!
+Version: 1.0.0
+Hostname: web-55b8c6998d-8k564</code></pre>
+        </div>
+        <p>
+          You can now access the sample app via the Minikube IP address and NodePort. The next step lets you access
+          the app using the Ingress resource.
+        </p>
+      </li>
+    </ol>
+    <h2 id="create-an-ingress-resource">
+      Create an Ingress resource
+    </h2>
+    <p>
+      The following file is an Ingress resource that sends traffic to your Service via hello-world.info.
+    </p>
+    <ol>
+      <li>
+        <p>
+          Create
+          <code>
+            example-ingress.yaml
+          </code>
+          from the following file:
+        </p>
+        <pre><code>apiVersion: networking.k8s.io/v1beta1 # for versions before 1.14 use extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+  - host: hello-world.info
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web
+          servicePort: 8080</code></pre>
+      </li>
+      <li>
+        <p>
+          Create the Ingress resource by running the following command:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f example-ingress.yaml</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ingress.networking.k8s.io/example-ingress created</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Verify the IP address is set:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get ingress</code></pre>
+        </div>
+        <blockquote class="note">
+          <div>
+            <strong>
+              Note:
+            </strong>
+            This can take a couple of minutes.
+          </div>
+        </blockquote>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">NAME              HOSTS              ADDRESS       PORTS     AGE
+example-ingress   hello-world.info   172.17.0.15   <span style="color:#666">80</span>        38s</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Add the following line to the bottom of the
+          <code>
+            /etc/hosts
+          </code>
+          file.
+        </p>
+        <blockquote class="note">
+          <div>
+            <strong>
+              Note:
+            </strong>
+            If you are running Minikube locally, use
+            <code>
+              minikube ip
+            </code>
+            to get the external IP. The IP address displayed within the ingress list will be the internal IP.
+          </div>
+        </blockquote>
+        <pre><code>172.17.0.15 hello-world.info</code></pre>
+        <p>
+          This sends requests from hello-world.info to Minikube.
+        </p>
+      </li>
+      <li>
+        <p>
+          Verify that the Ingress controller is directing traffic:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl hello-world.info</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Hello, world!
+Version: 1.0.0
+Hostname: web-55b8c6998d-8k564</code></pre>
+        </div>
+        <blockquote class="note">
+          <div>
+            <strong>
+              Note:
+            </strong>
+            If you are running Minikube locally, you can visit hello-world.info from your browser.
+          </div>
+        </blockquote>
+      </li>
+    </ol>
+    <h2 id="create-second-deployment">
+      Create Second Deployment
+    </h2>
+    <ol>
+      <li>
+        <p>
+          Create a v2 Deployment using the following command:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl run web2 --image<span style="color:#666">=</span>gcr.io/google-samples/hello-app:2.0 --port<span style="color:#666">=</span><span style="color:#666">8080</span></code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">deployment.apps/web2 created</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Expose the Deployment:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl expose deployment web2 --target-port<span style="color:#666">=</span><span style="color:#666">8080</span> --type<span style="color:#666">=</span>NodePort</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">service/web2 exposed</code></pre>
+        </div>
+      </li>
+    </ol>
+    <h2 id="edit-ingress">
+      Edit Ingress
+    </h2>
+    <ol>
+      <li>
+        <p>
+          Edit the existing
+          <code>
+            example-ingress.yaml
+          </code>
+          and add the following lines:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">path</span>:<span style="color:#bbb"> </span>/v2/*<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">backend</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">serviceName</span>:<span style="color:#bbb"> </span>web2<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">servicePort</span>:<span style="color:#bbb"> </span><span style="color:#666">8080</span></code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Apply the changes:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f example-ingress.yaml</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ingress.extensions/example-ingress configured</code></pre>
+        </div>
+      </li>
+    </ol>
+    <h2 id="test-your-ingress">
+      Test Your Ingress
+    </h2>
+    <ol>
+      <li>
+        <p>
+          Access the 1st version of the Hello World app.
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl hello-world.info</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Hello, world!
+Version: 1.0.0
+Hostname: web-55b8c6998d-8k564</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Access the 2nd version of the Hello World app.
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl hello-world.info/v2</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Hello, world!
+Version: 2.0.0
+Hostname: web2-75cd47646f-t8cjk</code></pre>
+        </div>
+        <blockquote class="note">
+          <div>
+            <strong>
+              Note:
+            </strong>
+            If you are running Minikube locally, you can visit hello-world.info and hello-world.info/v2 from your browser.
+          </div>
+        </blockquote>
+      </li>
+    </ol>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        Read more about
+        <a href="/docs/concepts/services-networking/ingress/">
+          Ingress
+        </a>
+      </li>
+      <li>
+        Read more about
+        <a href="/docs/concepts/services-networking/ingress-controllers/">
+          Ingress Controllers
+        </a>
+      </li>
+      <li>
+        Read more about
+        <a href="/docs/concepts/services-networking/service/">
+          Services
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

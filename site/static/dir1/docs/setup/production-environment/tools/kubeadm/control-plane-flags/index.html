@@ -1,0 +1,237 @@
+<html>
+  <body>
+    <h1>
+      Customizing control plane configuration with kubeadm
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/setup/production-environment/tools/kubeadm/control-plane-flags.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Customizing control plane configuration with kubeadm
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.12
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        stable
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+        <p>
+          This feature is
+          <em>
+            stable
+          </em>
+          , meaning:
+        </p>
+        <ul>
+          <li>
+            The version name is vX where X is an integer.
+          </li>
+          <li>
+            Stable versions of features will appear in released software for many subsequent versions.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      The kubeadm
+      <code>
+        ClusterConfiguration
+      </code>
+      object exposes the field
+      <code>
+        extraArgs
+      </code>
+      that can override the default flags passed to control plane
+      components such as the APIServer, ControllerManager and Scheduler. The components are defined using the following fields:
+    </p>
+    <ul>
+      <li>
+        <code>
+          apiServer
+        </code>
+      </li>
+      <li>
+        <code>
+          controllerManager
+        </code>
+      </li>
+      <li>
+        <code>
+          scheduler
+        </code>
+      </li>
+    </ul>
+    <p>
+      The
+      <code>
+        extraArgs
+      </code>
+      field consist of
+      <code>
+        key: value
+      </code>
+      pairs. To override a flag for a control plane component:
+    </p>
+    <ol>
+      <li>
+        Add the appropriate fields to your configuration.
+      </li>
+      <li>
+        Add the flags to override to the field.
+      </li>
+      <li>
+        Run
+        <code>
+          kubeadm init
+        </code>
+        with
+        <code>
+          --config &lt;YOUR CONFIG YAML&gt;
+        </code>
+        .
+      </li>
+    </ol>
+    <p>
+      For more details on each field in the configuration you can navigate to our
+      <a href="https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2#ClusterConfiguration">
+        API reference pages
+      </a>
+      .
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        You can generate a
+        <code>
+          ClusterConfiguration
+        </code>
+        object with default values by running
+        <code>
+          kubeadm config print init-defaults
+        </code>
+        and saving the output to a file of your choice.
+      </div>
+    </blockquote>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#apiserver-flags">
+          APIServer flags
+        </a>
+      </li>
+      <li>
+        <a href="#controllermanager-flags">
+          ControllerManager flags
+        </a>
+      </li>
+      <li>
+        <a href="#scheduler-flags">
+          Scheduler flags
+        </a>
+      </li>
+    </ul>
+    <h2 id="apiserver-flags">
+      APIServer flags
+    </h2>
+    <p>
+      For details, see the
+      <a href="/docs/reference/command-line-tools-reference/kube-apiserver/">
+        reference documentation for kube-apiserver
+      </a>
+      .
+    </p>
+    <p>
+      Example usage:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>kubeadm.k8s.io/v1beta2<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ClusterConfiguration<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kubernetesVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#666">.16.0</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiServer</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">extraArgs</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">advertise-address</span>:<span style="color:#bbb"> </span><span style="color:#666">192.168.0.103</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">anonymous-auth</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;false&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">enable-admission-plugins</span>:<span style="color:#bbb"> </span>AlwaysPullImages,DefaultStorageClass<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">audit-log-path</span>:<span style="color:#bbb"> </span>/home/johndoe/audit.log</code></pre>
+    </div>
+    <h2 id="controllermanager-flags">
+      ControllerManager flags
+    </h2>
+    <p>
+      For details, see the
+      <a href="/docs/reference/command-line-tools-reference/kube-controller-manager/">
+        reference documentation for kube-controller-manager
+      </a>
+      .
+    </p>
+    <p>
+      Example usage:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>kubeadm.k8s.io/v1beta2<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ClusterConfiguration<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kubernetesVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#666">.16.0</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">controllerManager</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">extraArgs</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">cluster-signing-key-file</span>:<span style="color:#bbb"> </span>/home/johndoe/keys/ca.key<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">bind-address</span>:<span style="color:#bbb"> </span><span style="color:#666">0.0.0.0</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">deployment-controller-sync-period</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;50&#34;</span></code></pre>
+    </div>
+    <h2 id="scheduler-flags">
+      Scheduler flags
+    </h2>
+    <p>
+      For details, see the
+      <a href="/docs/reference/command-line-tools-reference/kube-scheduler/">
+        reference documentation for kube-scheduler
+      </a>
+      .
+    </p>
+    <p>
+      Example usage:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>kubeadm.k8s.io/v1beta2<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ClusterConfiguration<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kubernetesVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#666">.16.0</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">scheduler</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">extraArgs</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">address</span>:<span style="color:#bbb"> </span><span style="color:#666">0.0.0.0</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">config</span>:<span style="color:#bbb"> </span>/home/johndoe/schedconfig.yaml<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">kubeconfig</span>:<span style="color:#bbb"> </span>/home/johndoe/kubeconfig.yaml</code></pre>
+    </div>
+  </body>
+</html>

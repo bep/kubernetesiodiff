@@ -1,0 +1,420 @@
+<html>
+<body>
+<h1>
+  Debug Running Pods
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/debug-application-cluster/debug-running-pod.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Debug Running Pods
+</h1>
+<p>
+  This page explains how to debug Pods running (or crashing) on a Node.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#before-you-begin">
+      Before you begin
+    </a>
+  </li>
+  <li>
+    <a href="#examine-pod-logs">
+      Examining pod logs
+    </a>
+  </li>
+  <li>
+    <a href="#container-exec">
+      Debugging with container exec
+    </a>
+  </li>
+  <li>
+    <a href="#ephemeral-container">
+      Debugging with an ephemeral debug container
+    </a>
+  </li>
+  <li>
+    <a href="#node-shell-session">
+      Debugging via a shell on the node
+    </a>
+  </li>
+</ul>
+<h2 id="before-you-begin">
+  Before you begin
+</h2>
+<ul>
+  <li>
+    Your
+    <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      Pod
+      <span class='tooltip-text'>
+        The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
+      </span>
+    </a>
+    should already be
+    scheduled and running. If your Pod is not yet running, start with
+    <a href="/docs/tasks/debug-application-cluster/debug-application/">
+      Troubleshoot
+      Applications
+    </a>
+    .
+  </li>
+  <li>
+    For some of the advanced debugging steps you need to know on which Node the
+    Pod is running and have shell access to run commands on that Node. You don&rsquo;t
+    need that access to run the standard debug steps that use
+    <code>
+      kubectl
+    </code>
+    .
+  </li>
+</ul>
+<h2 id="examine-pod-logs">
+  Examining pod logs
+</h2>
+<p>
+  First, look at the logs of the affected container:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl logs <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">POD_NAME</span><span style="color:#b68;font-weight:bold">}</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">CONTAINER_NAME</span><span style="color:#b68;font-weight:bold">}</span></code></pre>
+</div>
+<p>
+  If your container has previously crashed, you can access the previous container&rsquo;s crash log with:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl logs --previous <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">POD_NAME</span><span style="color:#b68;font-weight:bold">}</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">CONTAINER_NAME</span><span style="color:#b68;font-weight:bold">}</span></code></pre>
+</div>
+<h2 id="container-exec">
+  Debugging with container exec
+</h2>
+<p>
+  If the
+  <a class='glossary-tooltip' href='/dir2/docs/reference/glossary/?all=true#term-image' target='_blank'>
+    container image
+    <span class='tooltip-text'>
+      Stored instance of a container that holds a set of software needed to run an application.
+    </span>
+  </a>
+  includes
+  debugging utilities, as is the case with images built from Linux and Windows OS
+  base images, you can run commands inside a specific container with
+  <code>
+    kubectl exec
+  </code>
+  :
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl <span style="color:#a2f">exec</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">POD_NAME</span><span style="color:#b68;font-weight:bold">}</span> -c <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">CONTAINER_NAME</span><span style="color:#b68;font-weight:bold">}</span> -- <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">CMD</span><span style="color:#b68;font-weight:bold">}</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">ARG1</span><span style="color:#b68;font-weight:bold">}</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">ARG2</span><span style="color:#b68;font-weight:bold">}</span> ... <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">ARGN</span><span style="color:#b68;font-weight:bold">}</span></code></pre>
+</div>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    <code>
+      -c ${CONTAINER_NAME}
+    </code>
+    is optional. You can omit it for Pods that only contain a single container.
+  </div>
+</blockquote>
+<p>
+  As an example, to look at the logs from a running Cassandra pod, you might run
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl <span style="color:#a2f">exec</span> cassandra -- cat /var/log/cassandra/system.log</code></pre>
+</div>
+<p>
+  You can run a shell that&rsquo;s connected to your terminal using the
+  <code>
+    -i
+  </code>
+  and
+  <code>
+    -t
+  </code>
+  arguments to
+  <code>
+    kubectl exec
+  </code>
+  , for example:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl <span style="color:#a2f">exec</span> -it cassandra -- sh</code></pre>
+</div>
+<p>
+  For more details, see
+  <a href="/docs/tasks/debug-application-cluster/get-shell-running-container/">
+    Get a Shell to a Running Container
+  </a>
+  .
+</p>
+<h2 id="ephemeral-container">
+  Debugging with an ephemeral debug container
+</h2>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.18
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    alpha
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+  <p>
+    This feature is currently in a
+    <em>
+      alpha
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain alpha (e.g. v1alpha1).
+    </li>
+    <li>
+      Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+    </li>
+    <li>
+      Support for feature may be dropped at any time without notice.
+    </li>
+    <li>
+      The API may change in incompatible ways in a later software release without notice.
+    </li>
+    <li>
+      Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/ephemeral-containers/' target='_blank'>
+    Ephemeral containers
+    <span class='tooltip-text'>
+      A type of container type that you can temporarily run inside a Pod
+    </span>
+  </a>
+  are useful for interactive troubleshooting when
+  <code>
+    kubectl exec
+  </code>
+  is insufficient
+  because a container has crashed or a container image doesn&rsquo;t include debugging
+  utilities, such as with
+  <a href="https://github.com/GoogleContainerTools/distroless">
+    distroless images
+  </a>
+  .
+  <code>
+    kubectl
+  </code>
+  has an alpha
+  command that can create ephemeral containers for debugging beginning with version
+  <code>
+    v1.18
+  </code>
+  .
+</p>
+<h3 id="ephemeral-container-example">
+  Example debugging using ephemeral containers
+</h3>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    The examples in this section require the
+    <code>
+      EphemeralContainers
+    </code>
+    <a href="/docs/reference/command-line-tools-reference/feature-gates/">
+      feature gate
+    </a>
+    enabled in your
+    cluster and
+    <code>
+      kubectl
+    </code>
+    version v1.18 or later.
+  </div>
+</blockquote>
+<p>
+  You can use the
+  <code>
+    kubectl alpha debug
+  </code>
+  command to add ephemeral containers to a
+  running Pod. First, create a pod for the example:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl run ephemeral-demo --image<span style="color:#666">=</span>k8s.gcr.io/pause:3.1 --restart<span style="color:#666">=</span>Never</code></pre>
+</div>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    This section use the
+    <code>
+      pause
+    </code>
+    container image in examples because it does not
+    contain userland debugging utilities, but this method works with all container
+    images.
+  </div>
+</blockquote>
+<p>
+  If you attempt to use
+  <code>
+    kubectl exec
+  </code>
+  to create a shell you will see an error
+  because there is no shell in this container image.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl <span style="color:#a2f">exec</span> -it ephemeral-demo -- sh</code></pre>
+</div><pre><code>OCI runtime exec failed: exec failed: container_linux.go:346: starting container process caused &quot;exec: \&quot;sh\&quot;: executable file not found in $PATH&quot;: unknown</code></pre>
+<p>
+  You can instead add a debugging container using
+  <code>
+    kubectl alpha debug
+  </code>
+  . If you
+  specify the
+  <code>
+    -i
+  </code>
+  /
+  <code>
+    --interactive
+  </code>
+  argument,
+  <code>
+    kubectl
+  </code>
+  will automatically attach
+  to the console of the Ephemeral Container.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl alpha debug -it ephemeral-demo --image<span style="color:#666">=</span>busybox --target<span style="color:#666">=</span>ephemeral-demo</code></pre>
+</div><pre><code>Defaulting debug container name to debugger-8xzrl.
+If you don't see a command prompt, try pressing enter.
+/ #</code></pre>
+<p>
+  This command adds a new busybox container and attaches to it. The
+  <code>
+    --target
+  </code>
+  parameter targets the process namespace of another container. It&rsquo;s necessary
+  here because
+  <code>
+    kubectl run
+  </code>
+  does not enable
+  <a href="/docs/tasks/configure-pod-container/share-process-namespace/">
+    process namespace sharing
+  </a>
+  in the pod it
+  creates.
+</p>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    The
+    <code>
+      --target
+    </code>
+    parameter must be supported by the
+    <a class='glossary-tooltip' href='/docs/setup/production-environment/container-runtimes' target='_blank'>
+      Container Runtime
+      <span class='tooltip-text'>
+        The container runtime is the software that is responsible for running containers.
+      </span>
+    </a>
+    . When not supported,
+    the Ephemeral Container may not be started, or it may be started with an
+    isolated process namespace.
+  </div>
+</blockquote>
+<p>
+  You can view the state of the newly created ephemeral container using
+  <code>
+    kubectl describe
+  </code>
+  :
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl describe pod ephemeral-demo</code></pre>
+</div><pre><code>...
+Ephemeral Containers:
+  debugger-8xzrl:
+    Container ID:   docker://b888f9adfd15bd5739fefaa39e1df4dd3c617b9902082b1cfdc29c4028ffb2eb
+    Image:          busybox
+    Image ID:       docker-pullable://busybox@sha256:1828edd60c5efd34b2bf5dd3282ec0cc04d47b2ff9caa0b6d4f07a21d1c08084
+    Port:           &lt;none&gt;
+    Host Port:      &lt;none&gt;
+    State:          Running
+      Started:      Wed, 12 Feb 2020 14:25:42 +0100
+    Ready:          False
+    Restart Count:  0
+    Environment:    &lt;none&gt;
+    Mounts:         &lt;none&gt;
+...</code></pre>
+<p>
+  Use
+  <code>
+    kubectl delete
+  </code>
+  to remove the Pod when you&rsquo;re finished:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete pod ephemeral-demo</code></pre>
+</div>
+<!--
+Planned future sections include:
+
+* Debugging with a copy of the pod
+
+See https://git.k8s.io/enhancements/keps/sig-cli/20190805-kubectl-debug.md
+-->
+<h2 id="node-shell-session">
+  Debugging via a shell on the node
+</h2>
+<p>
+  If none of these approaches work, you can find the host machine that the pod is
+  running on and SSH into that host, but this should generally not be necessary
+  given tools in the Kubernetes API. Therefore, if you find yourself needing to
+  ssh into a machine, please file a feature request on GitHub describing your use
+  case and why these tools are insufficient.
+</p>

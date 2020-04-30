@@ -1,0 +1,239 @@
+<html>
+  <body>
+    <h1>
+      Upgrading Windows nodes
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/administer-cluster/kubeadm/upgrading-windows-nodes.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Upgrading Windows nodes
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        beta
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+        <p>
+          This feature is currently in a
+          <em>
+            beta
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain beta (e.g. v2beta3).
+          </li>
+          <li>
+            Code is well tested. Enabling the feature is considered safe. Enabled by default.
+          </li>
+          <li>
+            Support for the overall feature will not be dropped, though details may change.
+          </li>
+          <li>
+            The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+          </li>
+          <li>
+            Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+          </li>
+          <li>
+            <strong>
+              Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+            </strong>
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      This page explains how to upgrade a Windows node
+      <a href="/docs/tasks/administer-cluster/kubeadm/adding-windows-nodes">
+        created with kubeadm
+      </a>
+      .
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#upgrading-worker-nodes">
+          Upgrading worker nodes
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      Your Kubernetes server must be at or later than version 1.17.
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <ul>
+      <li>
+        Familiarize yourself with
+        <a href="/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade">
+          the process for upgrading the rest of your kubeadm
+          cluster
+        </a>
+        . You will want to
+        upgrade the control plane nodes before upgrading your Windows nodes.
+      </li>
+    </ul>
+    <h2 id="upgrading-worker-nodes">
+      Upgrading worker nodes
+    </h2>
+    <h3 id="upgrade-kubeadm">
+      Upgrade kubeadm
+    </h3>
+    <ol>
+      <li>
+        <p>
+          From the Windows node, upgrade kubeadm:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#080;font-style:italic"># replace v1.18.0 with your desired version</span>
+curl.exe -Lo C:\k\kubeadm.exe https<span style="">:</span>//dl.k8s.io/v1.18.0/bin/windows/amd64/kubeadm.exe</code></pre>
+        </div>
+      </li>
+    </ol>
+    <h3 id="drain-the-node">
+      Drain the node
+    </h3>
+    <ol>
+      <li>
+        <p>
+          From a machine with access to the Kubernetes API,
+          prepare the node for maintenance by marking it unschedulable and evicting the workloads:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># replace &lt;node-to-drain&gt; with the name of your node you are draining</span>
+kubectl drain &lt;node-to-drain&gt; --ignore-daemonsets</code></pre>
+        </div>
+        <p>
+          You should see output similar to this:
+        </p>
+        <pre><code>node/ip-172-31-85-18 cordoned
+node/ip-172-31-85-18 drained</code></pre>
+      </li>
+    </ol>
+    <h3 id="upgrade-the-kubelet-configuration">
+      Upgrade the kubelet configuration
+    </h3>
+    <ol>
+      <li>
+        <p>
+          From the Windows node, call the following command to sync new kubelet configuration:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">kubeadm upgrade node</code></pre>
+        </div>
+      </li>
+    </ol>
+    <h3 id="upgrade-kubelet">
+      Upgrade kubelet
+    </h3>
+    <ol>
+      <li>
+        <p>
+          From the Windows node, upgrade and restart the kubelet:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#a2f">stop-service</span> kubelet
+curl.exe -Lo C:\k\kubelet.exe https<span style="">:</span>//dl.k8s.io/v1.18.0/bin/windows/amd64/kubelet.exe
+<span style="color:#a2f">restart-service</span> kubelet</code></pre>
+        </div>
+      </li>
+    </ol>
+    <h3 id="uncordon-the-node">
+      Uncordon the node
+    </h3>
+    <ol>
+      <li>
+        <p>
+          From a machine with access to the Kubernetes API,
+          bring the node back online by marking it schedulable:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># replace &lt;node-to-drain&gt; with the name of your node</span>
+kubectl uncordon &lt;node-to-drain&gt;</code></pre>
+        </div>
+      </li>
+    </ol>
+    <h3 id="upgrade-kube-proxy">
+      Upgrade kube-proxy
+    </h3>
+    <ol>
+      <li>
+        <p>
+          From a machine with access to the Kubernetes API, run the following,
+          again replacing v1.18.0 with your desired version:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -L https://github.com/kubernetes-sigs/sig-windows-tools/releases/latest/download/kube-proxy.yml | sed <span style="color:#b44">&#39;s/VERSION/v1.18.0/g&#39;</span> | kubectl apply -f -</code></pre>
+        </div>
+      </li>
+    </ol>
+  </body>
+</html>

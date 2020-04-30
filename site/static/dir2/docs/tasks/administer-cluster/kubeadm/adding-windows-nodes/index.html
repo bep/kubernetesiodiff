@@ -1,0 +1,409 @@
+<html>
+<body>
+<h1>
+  Adding Windows nodes
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/administer-cluster/kubeadm/adding-windows-nodes.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Adding Windows nodes
+</h1>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.18
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    beta
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+  <p>
+    This feature is currently in a
+    <em>
+      beta
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain beta (e.g. v2beta3).
+    </li>
+    <li>
+      Code is well tested. Enabling the feature is considered safe. Enabled by default.
+    </li>
+    <li>
+      Support for the overall feature will not be dropped, though details may change.
+    </li>
+    <li>
+      The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+    </li>
+    <li>
+      Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+    </li>
+    <li>
+      <strong>
+        Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+      </strong>
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  You can use Kubernetes to run a mixture of Linux and Windows nodes, so you can mix Pods that run on Linux on with Pods that run on Windows. This page shows how to register Windows nodes to your cluster.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#objectives">
+      Objectives
+    </a>
+  </li>
+  <li>
+    <a href="#before-you-begin">
+      Before you begin
+    </a>
+  </li>
+  <li>
+    <a href="#getting-started-adding-a-windows-node-to-your-cluster">
+      Getting Started: Adding a Windows Node to Your Cluster
+    </a>
+  </li>
+  <li>
+    <a href="#what-s-next">
+      What's next
+    </a>
+  </li>
+</ul>
+<h2 id="objectives">
+  Objectives
+</h2>
+<ul>
+  <li>
+    Register a Windows node to the cluster
+  </li>
+  <li>
+    Configure networking so Pods and Services on Linux and Windows can communicate with each other
+  </li>
+</ul>
+<h2 id="before-you-begin">
+  Before you begin
+</h2>
+<p>
+  Your Kubernetes server must be at or later than version 1.17.
+  To check the version, enter
+  <code>
+    kubectl version
+  </code>
+  .
+</p>
+<ul>
+  <li>
+    <p>
+      Obtain a
+      <a href="https://www.microsoft.com/en-us/cloud-platform/windows-server-pricing">
+        Windows Server 2019 license
+      </a>
+      (or higher) in order to configure the Windows node that hosts Windows containers.
+      If you are using VXLAN/Overlay networking you must have also have
+      <a href="https://support.microsoft.com/help/4489899">
+        KB4489899
+      </a>
+      installed.
+    </p>
+  </li>
+  <li>
+    <p>
+      A Linux-based Kubernetes kubeadm cluster in which you have access to the control plane (see
+      <a href="/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/">
+        Creating a single control-plane cluster with kubeadm
+      </a>
+      ).
+    </p>
+  </li>
+</ul>
+<h2 id="getting-started-adding-a-windows-node-to-your-cluster">
+  Getting Started: Adding a Windows Node to Your Cluster
+</h2>
+<h3 id="networking-configuration">
+  Networking Configuration
+</h3>
+<p>
+  Once you have a Linux-based Kubernetes control-plane node you are ready to choose a networking solution. This guide illustrates using Flannel in VXLAN mode for simplicity.
+</p>
+<h4 id="configuring-flannel">
+  Configuring Flannel
+</h4>
+<ol>
+  <li>
+    <p>
+      Prepare Kubernetes control plane for Flannel
+    </p>
+    <p>
+      Some minor preparation is recommended on the Kubernetes control plane in our cluster. It is recommended to enable bridged IPv4 traffic to iptables chains when using Flannel. This can be done using the following command:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo sysctl net.bridge.bridge-nf-call-iptables<span style="color:#666">=</span><span style="color:#666">1</span></code></pre>
+    </div>
+  </li>
+  <li>
+    <p>
+      Download &amp; configure Flannel for Linux
+    </p>
+    <p>
+      Download the most recent Flannel manifest:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</code></pre>
+    </div>
+    <p>
+      Modify the
+      <code>
+        net-conf.json
+      </code>
+      section of the flannel manifest in order to set the VNI to 4096 and the Port to 4789. It should look as follows:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="">net-conf.json:</span> <span style="">|</span>
+    {
+      <span style="color:#008000;font-weight:bold">&#34;Network&#34;</span>: <span style="color:#b44">&#34;10.244.0.0/16&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;Backend&#34;</span>: {
+        <span style="color:#008000;font-weight:bold">&#34;Type&#34;</span>: <span style="color:#b44">&#34;vxlan&#34;</span>,
+        <span style="color:#008000;font-weight:bold">&#34;VNI&#34;</span> : <span style="color:#666">4096</span>,
+        <span style="color:#008000;font-weight:bold">&#34;Port&#34;</span>: <span style="color:#666">4789</span>
+      }
+    }</code></pre>
+    </div>
+    <blockquote class="note">
+  </li>
+</ol>
+<div>
+  <strong>
+    Note:
+  </strong>
+  The VNI must be set to 4096 and port 4789 for Flannel on Linux to interoperate with Flannel on Windows. See the
+  <a href="https://github.com/coreos/flannel/blob/master/Documentation/backends.md#vxlan">
+    VXLAN documentation
+  </a>
+  .
+  for an explanation of these fields.
+</div><pre><code>&lt;blockquote class=&quot;note&quot;&gt;</code></pre>
+<div>
+  <strong>
+    Note:
+  </strong>
+  To use L2Bridge/Host-gateway mode instead change the value of
+  <code>
+    Type
+  </code>
+  to
+  <code>
+    &quot;host-gw&quot;
+  </code>
+  and omit
+  <code>
+    VNI
+  </code>
+  and
+  <code>
+    Port
+  </code>
+  .
+</div>
+<ol>
+  <li>
+    <p>
+      Apply the Flannel manifest and validate
+    </p>
+    <p>
+      Let&rsquo;s apply the Flannel configuration:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f kube-flannel.yml</code></pre>
+    </div>
+    <p>
+      After a few minutes, you should see all the pods as running if the Flannel pod network was deployed.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get pods -n kube-system</code></pre>
+    </div>
+    <p>
+      The output should include the Linux flannel DaemonSet as running:
+    </p>
+    <pre><code>NAMESPACE     NAME                                      READY        STATUS    RESTARTS   AGE
+...
+kube-system   kube-flannel-ds-54954                     1/1          Running   0          1m</code></pre>
+  </li>
+  <li>
+    <p>
+      Add Windows Flannel and kube-proxy DaemonSets
+    </p>
+    <p>
+      Now you can add Windows-compatible versions of Flannel and kube-proxy. In order
+      to ensure that you get a compatible version of kube-proxy, you&rsquo;ll need to substitute
+      the tag of the image. The following example shows usage for Kubernetes v1.18.0,
+      but you should adjust the version for your own deployment.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -L https://github.com/kubernetes-sigs/sig-windows-tools/releases/latest/download/kube-proxy.yml | sed <span style="color:#b44">&#39;s/VERSION/v1.18.0/g&#39;</span> | kubectl apply -f -
+kubectl apply -f https://github.com/kubernetes-sigs/sig-windows-tools/releases/latest/download/flannel-overlay.yml</code></pre>
+    </div>
+    <blockquote class="note">
+  </li>
+</ol>
+<div>
+  <strong>
+    Note:
+  </strong>
+  If you&rsquo;re using host-gateway use
+  <a href="https://github.com/kubernetes-sigs/sig-windows-tools/releases/latest/download/flannel-host-gw.yml">
+    https://github.com/kubernetes-sigs/sig-windows-tools/releases/latest/download/flannel-host-gw.yml
+  </a>
+  instead
+</div><pre><code>&lt;blockquote class=&quot;note&quot;&gt;</code></pre>
+<div>
+  <strong>
+    Note:
+  </strong>
+  <p>
+    If you&rsquo;re using a different interface rather than Ethernet (i.e. &ldquo;Ethernet0 2&rdquo;) on the Windows nodes, you have to modify the line:
+  </p>
+  <pre><code>```powershell
+wins cli process run --path /k/flannel/setup.exe --args &quot;--mode=overlay --interface=Ethernet&quot;
+```
+in the flannel-host-gw.yml or flannel-overlay.yml file and specify your interface accordingly.</code></pre>
+</div><pre><code>```bash
+# Example
+curl -L https://github.com/kubernetes-sigs/sig-windows-tools/releases/latest/download/flannel-overlay.yml | sed 's/Ethernet/Ethernet0 2/g' | kubectl apply -f -
+```</code></pre>
+<h3 id="joining-a-windows-worker-node">
+  Joining a Windows worker node
+</h3>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    You must install the
+    <code>
+      Containers
+    </code>
+    feature and install Docker. Instructions
+    to do so are available at
+    <a href="https://docs.docker.com/ee/docker-ee/windows/docker-ee/#install-docker-engine---enterprise">
+      Install Docker Engine - Enterprise on Windows Servers
+    </a>
+    .
+  </div>
+</blockquote>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    All code snippets in Windows sections are to be run in a PowerShell environment
+    with elevated permissions (Administrator) on the Windows worker node.
+  </div>
+</blockquote>
+<ol>
+  <li>
+    <p>
+      Install wins, kubelet, and kubeadm.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PowerShell" data-lang="PowerShell">curl.exe -LO https<span style="">:</span>//github.com/kubernetes-sigs/sig-windows-tools/releases/latest/download/PrepareNode.ps1
+.\PrepareNode.ps1 -KubernetesVersion v1.18.0</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>
+      Run
+      <code>
+        kubeadm
+      </code>
+      to join the node
+    </p>
+    <p>
+      Use the command that was given to you when you ran
+      <code>
+        kubeadm init
+      </code>
+      on a control plane host.
+      If you no longer have this command, or the token has expired, you can run
+      <code>
+        kubeadm token create --print-join-command
+      </code>
+      (on a control plane host) to generate a new token and join command.
+    </p>
+  </li>
+</ol>
+<h4 id="verifying-your-installation">
+  Verifying your installation
+</h4>
+<p>
+  You should now be able to view the Windows node in your cluster by running:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get nodes -o wide</code></pre>
+</div>
+<p>
+  If your new node is in the
+  <code>
+    NotReady
+  </code>
+  state it is likely because the flannel image is still downloading.
+  You can check the progress as before by checking on the flannel pods in the
+  <code>
+    kube-system
+  </code>
+  namespace:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl -n kube-system get pods -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>flannel</code></pre>
+</div>
+<p>
+  Once the flannel Pod is running, your node should enter the
+  <code>
+    Ready
+  </code>
+  state and then be available to handle workloads.
+</p>
+<h2 id="what-s-next">
+  What&#39;s next
+</h2>
+<ul>
+  <li>
+    <a href="/docs/tasks/administer-cluster/kubeadm/upgrading-windows-nodes">
+      Upgrading Windows kubeadm nodes
+    </a>
+  </li>
+</ul>

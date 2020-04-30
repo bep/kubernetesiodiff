@@ -1,0 +1,266 @@
+<html>
+  <body>
+    <h1>
+      Pod Preset
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/workloads/pods/podpreset.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Pod Preset
+    </h1>
+    <p>
+      This page provides an overview of PodPresets, which are objects for injecting
+      certain information into pods at creation time. The information can include
+      secrets, volumes, volume mounts, and environment variables.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#understanding-pod-presets">
+          Understanding Pod Presets
+        </a>
+      </li>
+      <li>
+        <a href="#how-it-works">
+          How It Works
+        </a>
+      </li>
+      <li>
+        <a href="#enable-pod-preset">
+          Enable Pod Preset
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="understanding-pod-presets">
+      Understanding Pod Presets
+    </h2>
+    <p>
+      A
+      <code>
+        Pod Preset
+      </code>
+      is an API resource for injecting additional runtime requirements
+      into a Pod at creation time.
+      You use
+      <a href="/docs/concepts/overview/working-with-objects/labels/#label-selectors">
+        label selectors
+      </a>
+      to specify the Pods to which a given Pod Preset applies.
+    </p>
+    <p>
+      Using a Pod Preset allows pod template authors to not have to explicitly provide
+      all information for every pod. This way, authors of pod templates consuming a
+      specific service do not need to know all the details about that service.
+    </p>
+    <p>
+      For more information about the background, see the
+      <a href="https://git.k8s.io/community/contributors/design-proposals/service-catalog/pod-preset.md">
+        design proposal for PodPreset
+      </a>
+      .
+    </p>
+    <h2 id="how-it-works">
+      How It Works
+    </h2>
+    <p>
+      Kubernetes provides an admission controller (
+      <code>
+        PodPreset
+      </code>
+      ) which, when enabled,
+      applies Pod Presets to incoming pod creation requests.
+      When a pod creation request occurs, the system does the following:
+    </p>
+    <ol>
+      <li>
+        Retrieve all
+        <code>
+          PodPresets
+        </code>
+        available for use.
+      </li>
+      <li>
+        Check if the label selectors of any
+        <code>
+          PodPreset
+        </code>
+        matches the labels on the
+        pod being created.
+      </li>
+      <li>
+        Attempt to merge the various resources defined by the
+        <code>
+          PodPreset
+        </code>
+        into the
+        Pod being created.
+      </li>
+      <li>
+        On error, throw an event documenting the merge error on the pod, and create
+        the pod
+        <em>
+          without
+        </em>
+        any injected resources from the
+        <code>
+          PodPreset
+        </code>
+        .
+      </li>
+      <li>
+        Annotate the resulting modified Pod spec to indicate that it has been
+        modified by a
+        <code>
+          PodPreset
+        </code>
+        . The annotation is of the form
+        <code>
+          podpreset.admission.kubernetes.io/podpreset-&lt;pod-preset name&gt;: &quot;&lt;resource version&gt;&quot;
+        </code>
+        .
+      </li>
+    </ol>
+    <p>
+      Each Pod can be matched by zero or more Pod Presets; and each
+      <code>
+        PodPreset
+      </code>
+      can be
+      applied to zero or more pods. When a
+      <code>
+        PodPreset
+      </code>
+      is applied to one or more
+      Pods, Kubernetes modifies the Pod Spec. For changes to
+      <code>
+        Env
+      </code>
+      ,
+      <code>
+        EnvFrom
+      </code>
+      , and
+      <code>
+        VolumeMounts
+      </code>
+      , Kubernetes modifies the container spec for all containers in
+      the Pod; for changes to
+      <code>
+        Volume
+      </code>
+      , Kubernetes modifies the Pod Spec.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        A Pod Preset is capable of modifying the following fields in a Pod spec when appropriate:
+        - The
+        <code>
+          .spec.containers
+        </code>
+        field.
+        - The
+        <code>
+          initContainers
+        </code>
+        field (requires Kubernetes version 1.14.0 or later).
+      </div>
+    </blockquote>
+    <h3 id="disable-pod-preset-for-a-specific-pod">
+      Disable Pod Preset for a Specific Pod
+    </h3>
+    <p>
+      There may be instances where you wish for a Pod to not be altered by any Pod
+      Preset mutations. In these cases, you can add an annotation in the Pod Spec
+      of the form:
+      <code>
+        podpreset.admission.kubernetes.io/exclude: &quot;true&quot;
+      </code>
+      .
+    </p>
+    <h2 id="enable-pod-preset">
+      Enable Pod Preset
+    </h2>
+    <p>
+      In order to use Pod Presets in your cluster you must ensure the following:
+    </p>
+    <ol>
+      <li>
+        You have enabled the API type
+        <code>
+          settings.k8s.io/v1alpha1/podpreset
+        </code>
+        . For
+        example, this can be done by including
+        <code>
+          settings.k8s.io/v1alpha1=true
+        </code>
+        in
+        the
+        <code>
+          --runtime-config
+        </code>
+        option for the API server. In minikube add this flag
+        <code>
+          --extra-config=apiserver.runtime-config=settings.k8s.io/v1alpha1=true
+        </code>
+        while
+        starting the cluster.
+      </li>
+      <li>
+        <p>
+          You have enabled the admission controller
+          <code>
+            PodPreset
+          </code>
+          . One way to doing this
+          is to include
+          <code>
+            PodPreset
+          </code>
+          in the
+          <code>
+            --enable-admission-plugins
+          </code>
+          option value specified
+          for the API server. In minikube add this flag
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">--extra-config<span style="color:#666">=</span>apiserver.enable-admission-plugins<span style="color:#666">=</span>NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,NodeRestriction,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota,PodPreset</code></pre>
+        </div>
+        <p>
+          while starting the cluster.
+        </p>
+      </li>
+      <li>
+        <p>
+          You have defined your Pod Presets by creating
+          <code>
+            PodPreset
+          </code>
+          objects in the
+          namespace you will use.
+        </p>
+      </li>
+    </ol>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        <a href="/docs/tasks/inject-data-application/podpreset/">
+          Injecting data into a Pod using PodPreset
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

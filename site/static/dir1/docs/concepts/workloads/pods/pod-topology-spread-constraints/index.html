@@ -1,0 +1,810 @@
+<html>
+  <body>
+    <h1>
+      Pod Topology Spread Constraints
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/workloads/pods/pod-topology-spread-constraints.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Pod Topology Spread Constraints
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        beta
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+        <p>
+          This feature is currently in a
+          <em>
+            beta
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain beta (e.g. v2beta3).
+          </li>
+          <li>
+            Code is well tested. Enabling the feature is considered safe. Enabled by default.
+          </li>
+          <li>
+            Support for the overall feature will not be dropped, though details may change.
+          </li>
+          <li>
+            The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+          </li>
+          <li>
+            Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+          </li>
+          <li>
+            <strong>
+              Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+            </strong>
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      You can use
+      <em>
+        topology spread constraints
+      </em>
+      to control how
+      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+        Pods
+        <span class='tooltip-text'>
+          The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
+        </span>
+      </a>
+      are spread across your cluster among failure-domains such as regions, zones, nodes, and other user-defined topology domains. This can help to achieve high availability as well as efficient resource utilization.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#prerequisites">
+          Prerequisites
+        </a>
+      </li>
+      <li>
+        <a href="#spread-constraints-for-pods">
+          Spread Constraints for Pods
+        </a>
+      </li>
+      <li>
+        <a href="#comparison-with-podaffinity-podantiaffinity">
+          Comparison with PodAffinity/PodAntiAffinity
+        </a>
+      </li>
+      <li>
+        <a href="#known-limitations">
+          Known Limitations
+        </a>
+      </li>
+    </ul>
+    <h2 id="prerequisites">
+      Prerequisites
+    </h2>
+    <h3 id="enable-feature-gate">
+      Enable Feature Gate
+    </h3>
+    <p>
+      The
+      <code>
+        EvenPodsSpread
+      </code>
+      <a href="/docs/reference/command-line-tools-reference/feature-gates/">
+        feature gate
+      </a>
+      must be enabled for the
+      <a class='glossary-tooltip' href='/docs/reference/generated/kube-apiserver/' target='_blank'>
+        API Server
+        <span class='tooltip-text'>
+          Control plane component that serves the Kubernetes API.
+        </span>
+      </a>
+      <strong>
+        and
+      </strong>
+      <a class='glossary-tooltip' href='/docs/reference/generated/kube-scheduler/' target='_blank'>
+        scheduler
+        <span class='tooltip-text'>
+          Control plane component that watches for newly created pods with no assigned node, and selects a node for them to run on.
+        </span>
+      </a>
+      .
+    </p>
+    <h3 id="node-labels">
+      Node Labels
+    </h3>
+    <p>
+      Topology spread constraints rely on node labels to identify the topology domain(s) that each Node is in. For example, a Node might have labels:
+      <code>
+        node=node1,zone=us-east-1a,region=us-east-1
+      </code>
+    </p>
+    <p>
+      Suppose you have a 4-node cluster with the following labels:
+    </p>
+    <pre><code>NAME    STATUS   ROLES    AGE     VERSION   LABELS
+node1   Ready    &lt;none&gt;   4m26s   v1.16.0   node=node1,zone=zoneA
+node2   Ready    &lt;none&gt;   3m58s   v1.16.0   node=node2,zone=zoneA
+node3   Ready    &lt;none&gt;   3m17s   v1.16.0   node=node3,zone=zoneB
+node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></pre>
+    <p>
+      Then the cluster is logically viewed as below:
+    </p>
+    <pre><code>+---------------+---------------+
+|     zoneA     |     zoneB     |
++-------+-------+-------+-------+
+| node1 | node2 | node3 | node4 |
++-------+-------+-------+-------+</code></pre>
+    <p>
+      Instead of manually applying labels, you can also reuse the
+      <a href="/docs/reference/kubernetes-api/labels-annotations-taints/">
+        well-known labels
+      </a>
+      that are created and populated automatically on most clusters.
+    </p>
+    <h2 id="spread-constraints-for-pods">
+      Spread Constraints for Pods
+    </h2>
+    <h3 id="api">
+      API
+    </h3>
+    <p>
+      The field
+      <code>
+        pod.spec.topologySpreadConstraints
+      </code>
+      is introduced in 1.16 as below:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>mypod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">topologySpreadConstraints</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">maxSkew</span>:<span style="color:#bbb"> </span>&lt;integer<span style="color:#b44;font-style:italic">&gt;
+</span><span style="color:#b44;font-style:italic">      topologyKey: &lt;string&gt;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">whenUnsatisfiable</span>:<span style="color:#bbb"> </span>&lt;string<span style="color:#b44;font-style:italic">&gt;
+</span><span style="color:#b44;font-style:italic">      labelSelector: &lt;object&gt;</span></code></pre>
+    </div>
+    <p>
+      You can define one or multiple
+      <code>
+        topologySpreadConstraint
+      </code>
+      to instruct the kube-scheduler how to place each incoming Pod in relation to the existing Pods across your cluster. The fields are:
+    </p>
+    <ul>
+      <li>
+        <strong>
+          maxSkew
+        </strong>
+        describes the degree to which Pods may be unevenly distributed. It&rsquo;s the maximum permitted difference between the number of matching Pods in any two topology domains of a given topology type. It must be greater than zero.
+      </li>
+      <li>
+        <strong>
+          topologyKey
+        </strong>
+        is the key of node labels. If two Nodes are labelled with this key and have identical values for that label, the scheduler treats both Nodes as being in the same topology. The scheduler tries to place a balanced number of Pods into each topology domain.
+      </li>
+      <li>
+        <strong>
+          whenUnsatisfiable
+        </strong>
+        indicates how to deal with a Pod if it doesn&rsquo;t satisfy the spread constraint:
+        <ul>
+          <li>
+            <code>
+              DoNotSchedule
+            </code>
+            (default) tells the scheduler not to schedule it.
+          </li>
+          <li>
+            <code>
+              ScheduleAnyway
+            </code>
+            tells the scheduler to still schedule it while prioritizing nodes that minimize the skew.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>
+          labelSelector
+        </strong>
+        is used to find matching Pods. Pods that match this label selector are counted to determine the number of Pods in their corresponding topology domain. See
+        <a href="/docs/concepts/overview/working-with-objects/labels/#label-selectors">
+          Label Selectors
+        </a>
+        for more details.
+      </li>
+    </ul>
+    <p>
+      You can read more about this field by running
+      <code>
+        kubectl explain Pod.spec.topologySpreadConstraints
+      </code>
+      .
+    </p>
+    <h3 id="example-one-topologyspreadconstraint">
+      Example: One TopologySpreadConstraint
+    </h3>
+    <p>
+      Suppose you have a 4-node cluster where 3 Pods labeled
+      <code>
+        foo:bar
+      </code>
+      are located in node1, node2 and node3 respectively (
+      <code>
+        P
+      </code>
+      represents Pod):
+    </p>
+    <pre><code>+---------------+---------------+
+|     zoneA     |     zoneB     |
++-------+-------+-------+-------+
+| node1 | node2 | node3 | node4 |
++-------+-------+-------+-------+
+|   P   |   P   |   P   |       |
++-------+-------+-------+-------+</code></pre>
+    <p>
+      If we want an incoming Pod to be evenly spread with existing Pods across zones, the spec can be given as:
+    </p>
+    <table class="includecode" id="pods-topology-spread-constraints-one-constraint-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/topology-spread-constraints/one-constraint.yaml" download="pods/topology-spread-constraints/one-constraint.yaml">
+              <code>
+                pods/topology-spread-constraints/one-constraint.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-topology-spread-constraints-one-constraint-yaml')" title="Copy pods/topology-spread-constraints/one-constraint.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>mypod<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">foo</span>:<span style="color:#bbb"> </span>bar<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">topologySpreadConstraints</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">maxSkew</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">topologyKey</span>:<span style="color:#bbb"> </span>zone<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">whenUnsatisfiable</span>:<span style="color:#bbb"> </span>DoNotSchedule<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">labelSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">foo</span>:<span style="color:#bbb"> </span>bar<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>pause<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>k8s.gcr.io/pause:<span style="color:#666">3.1</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <code>
+        topologyKey: zone
+      </code>
+      implies the even distribution will only be applied to the nodes which have label pair &ldquo;zone:
+      <any value>
+      &rdquo; present.
+      <code>
+        whenUnsatisfiable: DoNotSchedule
+      </code>
+      tells the scheduler to let it stay pending if the incoming Pod can’t satisfy the constraint.
+    </p>
+    <p>
+      If the scheduler placed this incoming Pod into &ldquo;zoneA&rdquo;, the Pods distribution would become [3, 1], hence the actual skew is 2 (3 - 1) - which violates
+      <code>
+        maxSkew: 1
+      </code>
+      . In this example, the incoming Pod can only be placed onto &ldquo;zoneB&rdquo;:
+    </p>
+    <pre><code>+---------------+---------------+      +---------------+---------------+
+|     zoneA     |     zoneB     |      |     zoneA     |     zoneB     |
++-------+-------+-------+-------+      +-------+-------+-------+-------+
+| node1 | node2 | node3 | node4 |  OR  | node1 | node2 | node3 | node4 |
++-------+-------+-------+-------+      +-------+-------+-------+-------+
+|   P   |   P   |   P   |   P   |      |   P   |   P   |  P P  |       |
++-------+-------+-------+-------+      +-------+-------+-------+-------+</code></pre>
+    <p>
+      You can tweak the Pod spec to meet various kinds of requirements:
+    </p>
+    <ul>
+      <li>
+        Change
+        <code>
+          maxSkew
+        </code>
+        to a bigger value like &ldquo;2&rdquo; so that the incoming Pod can be placed onto &ldquo;zoneA&rdquo; as well.
+      </li>
+      <li>
+        Change
+        <code>
+          topologyKey
+        </code>
+        to &ldquo;node&rdquo; so as to distribute the Pods evenly across nodes instead of zones. In the above example, if
+        <code>
+          maxSkew
+        </code>
+        remains &ldquo;1&rdquo;, the incoming Pod can only be placed onto &ldquo;node4&rdquo;.
+      </li>
+      <li>
+        Change
+        <code>
+          whenUnsatisfiable: DoNotSchedule
+        </code>
+        to
+        <code>
+          whenUnsatisfiable: ScheduleAnyway
+        </code>
+        to ensure the incoming Pod to be always schedulable (suppose other scheduling APIs are satisfied). However, it’s preferred to be placed onto the topology domain which has fewer matching Pods. (Be aware that this preferability is jointly normalized with other internal scheduling priorities like resource usage ratio, etc.)
+      </li>
+    </ul>
+    <h3 id="example-multiple-topologyspreadconstraints">
+      Example: Multiple TopologySpreadConstraints
+    </h3>
+    <p>
+      This builds upon the previous example. Suppose you have a 4-node cluster where 3 Pods labeled
+      <code>
+        foo:bar
+      </code>
+      are located in node1, node2 and node3 respectively (
+      <code>
+        P
+      </code>
+      represents Pod):
+    </p>
+    <pre><code>+---------------+---------------+
+|     zoneA     |     zoneB     |
++-------+-------+-------+-------+
+| node1 | node2 | node3 | node4 |
++-------+-------+-------+-------+
+|   P   |   P   |   P   |       |
++-------+-------+-------+-------+</code></pre>
+    <p>
+      You can use 2 TopologySpreadConstraints to control the Pods spreading on both zone and node:
+    </p>
+    <table class="includecode" id="pods-topology-spread-constraints-two-constraints-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/topology-spread-constraints/two-constraints.yaml" download="pods/topology-spread-constraints/two-constraints.yaml">
+              <code>
+                pods/topology-spread-constraints/two-constraints.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-topology-spread-constraints-two-constraints-yaml')" title="Copy pods/topology-spread-constraints/two-constraints.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>mypod<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">foo</span>:<span style="color:#bbb"> </span>bar<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">topologySpreadConstraints</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">maxSkew</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">topologyKey</span>:<span style="color:#bbb"> </span>zone<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">whenUnsatisfiable</span>:<span style="color:#bbb"> </span>DoNotSchedule<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">labelSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">foo</span>:<span style="color:#bbb"> </span>bar<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">maxSkew</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">topologyKey</span>:<span style="color:#bbb"> </span>node<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">whenUnsatisfiable</span>:<span style="color:#bbb"> </span>DoNotSchedule<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">labelSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">foo</span>:<span style="color:#bbb"> </span>bar<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>pause<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>k8s.gcr.io/pause:<span style="color:#666">3.1</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      In this case, to match the first constraint, the incoming Pod can only be placed onto &ldquo;zoneB&rdquo;; while in terms of the second constraint, the incoming Pod can only be placed onto &ldquo;node4&rdquo;. Then the results of 2 constraints are ANDed, so the only viable option is to place on &ldquo;node4&rdquo;.
+    </p>
+    <p>
+      Multiple constraints can lead to conflicts. Suppose you have a 3-node cluster across 2 zones:
+    </p>
+    <pre><code>+---------------+-------+
+|     zoneA     | zoneB |
++-------+-------+-------+
+| node1 | node2 | node3 |
++-------+-------+-------+
+|  P P  |   P   |  P P  |
++-------+-------+-------+</code></pre>
+    <p>
+      If you apply &ldquo;two-constraints.yaml&rdquo; to this cluster, you will notice &ldquo;mypod&rdquo; stays in
+      <code>
+        Pending
+      </code>
+      state. This is because: to satisfy the first constraint, &ldquo;mypod&rdquo; can only be put to &ldquo;zoneB&rdquo;; while in terms of the second constraint, &ldquo;mypod&rdquo; can only put to &ldquo;node2&rdquo;. Then a joint result of &ldquo;zoneB&rdquo; and &ldquo;node2&rdquo; returns nothing.
+    </p>
+    <p>
+      To overcome this situation, you can either increase the
+      <code>
+        maxSkew
+      </code>
+      or modify one of the constraints to use
+      <code>
+        whenUnsatisfiable: ScheduleAnyway
+      </code>
+      .
+    </p>
+    <h3 id="conventions">
+      Conventions
+    </h3>
+    <p>
+      There are some implicit conventions worth noting here:
+    </p>
+    <ul>
+      <li>
+        <p>
+          Only the Pods holding the same namespace as the incoming Pod can be matching candidates.
+        </p>
+      </li>
+      <li>
+        <p>
+          Nodes without
+          <code>
+            topologySpreadConstraints[*].topologyKey
+          </code>
+          present will be bypassed. It implies that:
+        </p>
+        <ol>
+          <li>
+            the Pods located on those nodes do not impact
+            <code>
+              maxSkew
+            </code>
+            calculation - in the above example, suppose &ldquo;node1&rdquo; does not have label &ldquo;zone&rdquo;, then the 2 Pods will be disregarded, hence the incomingPod will be scheduled into &ldquo;zoneA&rdquo;.
+          </li>
+          <li>
+            the incoming Pod has no chances to be scheduled onto this kind of nodes - in the above example, suppose a &ldquo;node5&rdquo; carrying label
+            <code>
+              {zone-typo: zoneC}
+            </code>
+            joins the cluster, it will be bypassed due to the absence of label key &ldquo;zone&rdquo;.
+          </li>
+        </ol>
+      </li>
+      <li>
+        <p>
+          Be aware of what will happen if the incomingPod’s
+          <code>
+            topologySpreadConstraints[*].labelSelector
+          </code>
+          doesn’t match its own labels. In the above example, if we remove the incoming Pod’s labels, it can still be placed onto &ldquo;zoneB&rdquo; since the constraints are still satisfied. However, after the placement, the degree of imbalance of the cluster remains unchanged - it’s still zoneA having 2 Pods which hold label {foo:bar}, and zoneB having 1 Pod which holds label {foo:bar}. So if this is not what you expect, we recommend the workload’s
+          <code>
+            topologySpreadConstraints[*].labelSelector
+          </code>
+          to match its own labels.
+        </p>
+      </li>
+      <li>
+        <p>
+          If the incoming Pod has
+          <code>
+            spec.nodeSelector
+          </code>
+          or
+          <code>
+            spec.affinity.nodeAffinity
+          </code>
+          defined, nodes not matching them will be bypassed.
+        </p>
+        <p>
+          Suppose you have a 5-node cluster ranging from zoneA to zoneC:
+        </p>
+        <pre><code>+---------------+---------------+-------+
+|     zoneA     |     zoneB     | zoneC |
++-------+-------+-------+-------+-------+
+| node1 | node2 | node3 | node4 | node5 |
++-------+-------+-------+-------+-------+
+|   P   |   P   |   P   |       |       |
++-------+-------+-------+-------+-------+</code></pre>
+        <p>
+          and you know that &ldquo;zoneC&rdquo; must be excluded. In this case, you can compose the yaml as below, so that &ldquo;mypod&rdquo; will be placed onto &ldquo;zoneB&rdquo; instead of &ldquo;zoneC&rdquo;. Similarly
+          <code>
+            spec.nodeSelector
+          </code>
+          is also respected.
+        </p>
+      </li>
+    </ul>
+    <table class="includecode" id="pods-topology-spread-constraints-one-constraint-with-nodeaffinity-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/topology-spread-constraints/one-constraint-with-nodeaffinity.yaml" download="pods/topology-spread-constraints/one-constraint-with-nodeaffinity.yaml">
+              <code>
+                pods/topology-spread-constraints/one-constraint-with-nodeaffinity.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-topology-spread-constraints-one-constraint-with-nodeaffinity-yaml')" title="Copy pods/topology-spread-constraints/one-constraint-with-nodeaffinity.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>mypod<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">foo</span>:<span style="color:#bbb"> </span>bar<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">topologySpreadConstraints</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">maxSkew</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">topologyKey</span>:<span style="color:#bbb"> </span>zone<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">whenUnsatisfiable</span>:<span style="color:#bbb"> </span>DoNotSchedule<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">labelSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">foo</span>:<span style="color:#bbb"> </span>bar<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">affinity</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">nodeAffinity</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requiredDuringSchedulingIgnoredDuringExecution</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">nodeSelectorTerms</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">matchExpressions</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span>- <span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span>zone<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">operator</span>:<span style="color:#bbb"> </span>NotIn<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">values</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- zoneC<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>pause<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>k8s.gcr.io/pause:<span style="color:#666">3.1</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="cluster-level-default-constraints">
+      Cluster-level default constraints
+    </h3>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        alpha
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+        <p>
+          This feature is currently in a
+          <em>
+            alpha
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain alpha (e.g. v1alpha1).
+          </li>
+          <li>
+            Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+          </li>
+          <li>
+            Support for feature may be dropped at any time without notice.
+          </li>
+          <li>
+            The API may change in incompatible ways in a later software release without notice.
+          </li>
+          <li>
+            Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      It is possible to set default topology spread constraints for a cluster. Default
+      topology spread constraints are applied to a Pod if, and only if:
+    </p>
+    <ul>
+      <li>
+        It doesn&rsquo;t define any constraints in its
+        <code>
+          .spec.topologySpreadConstraints
+        </code>
+        .
+      </li>
+      <li>
+        It belongs to a service, replication controller, replica set or stateful set.
+      </li>
+    </ul>
+    <p>
+      Default constraints can be set as part of the
+      <code>
+        PodTopologySpread
+      </code>
+      plugin args
+      in a
+      <a href="/docs/reference/scheduling/profiles">
+        scheduling profile
+      </a>
+      .
+      The constraints are specified with the same
+      <a href="#api">
+        API above
+      </a>
+      , except that
+      <code>
+        labelSelector
+      </code>
+      must be empty. The selectors are calculated from the services,
+      replication controllers, replica sets or stateful sets that the Pod belongs to.
+    </p>
+    <p>
+      An example configuration might look like follows:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>kubescheduler.config.k8s.io/v1alpha2<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>KubeSchedulerConfiguration<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">profiles</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">pluginConfig</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>PodTopologySpread<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">args</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">defaultConstraints</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span>- <span style="color:#a2f;font-weight:bold">maxSkew</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">topologyKey</span>:<span style="color:#bbb"> </span>failure-domain.beta.kubernetes.io/zone<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">whenUnsatisfiable</span>:<span style="color:#bbb"> </span>ScheduleAnyway</code></pre>
+    </div>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        The score produced by default scheduling constraints might conflict with the
+        score produced by the
+        <a href="/docs/reference/scheduling/profiles/#scheduling-plugins">
+          <code>
+            DefaultPodTopologySpread
+          </code>
+          plugin
+        </a>
+        .
+        It is recommended that you disable this plugin in the scheduling profile when
+        using default constraints for
+        <code>
+          PodTopologySpread
+        </code>
+        .
+      </div>
+    </blockquote>
+    <h2 id="comparison-with-podaffinity-podantiaffinity">
+      Comparison with PodAffinity/PodAntiAffinity
+    </h2>
+    <p>
+      In Kubernetes, directives related to &ldquo;Affinity&rdquo; control how Pods are
+      scheduled - more packed or more scattered.
+    </p>
+    <ul>
+      <li>
+        For
+        <code>
+          PodAffinity
+        </code>
+        , you can try to pack any number of Pods into qualifying
+        topology domain(s)
+      </li>
+      <li>
+        For
+        <code>
+          PodAntiAffinity
+        </code>
+        , only one Pod can be scheduled into a
+        single topology domain.
+      </li>
+    </ul>
+    <p>
+      The &ldquo;EvenPodsSpread&rdquo; feature provides flexible options to distribute Pods evenly across different
+      topology domains - to achieve high availability or cost-saving. This can also help on rolling update
+      workloads and scaling out replicas smoothly.
+      See
+      <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-scheduling/20190221-pod-topology-spread.md#motivation">
+        Motivation
+      </a>
+      for more details.
+    </p>
+    <h2 id="known-limitations">
+      Known Limitations
+    </h2>
+    <p>
+      As of 1.18, at which this feature is Beta, there are some known limitations:
+    </p>
+    <ul>
+      <li>
+        Scaling down a Deployment may result in imbalanced Pods distribution.
+      </li>
+      <li>
+        Pods matched on tainted nodes are respected. See
+        <a href="https://github.com/kubernetes/kubernetes/issues/80921">
+          Issue 80921
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

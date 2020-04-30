@@ -1,0 +1,967 @@
+<html>
+  <body>
+    <h1>
+      Horizontal Pod Autoscaler
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/run-application/horizontal-pod-autoscale.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Horizontal Pod Autoscaler
+    </h1>
+    <p>
+      The Horizontal Pod Autoscaler automatically scales the number of pods
+      in a replication controller, deployment, replica set or stateful set based on observed CPU utilization (or, with
+      <a href="https://git.k8s.io/community/contributors/design-proposals/instrumentation/custom-metrics-api.md">
+        custom metrics
+      </a>
+      support, on some other application-provided metrics). Note that Horizontal
+      Pod Autoscaling does not apply to objects that can&rsquo;t be scaled, for example, DaemonSets.
+    </p>
+    <p>
+      The Horizontal Pod Autoscaler is implemented as a Kubernetes API resource and a controller.
+      The resource determines the behavior of the controller.
+      The controller periodically adjusts the number of replicas in a replication controller or deployment
+      to match the observed average CPU utilization to the target specified by user.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#how-does-the-horizontal-pod-autoscaler-work">
+          How does the Horizontal Pod Autoscaler work?
+        </a>
+      </li>
+      <li>
+        <a href="#api-object">
+          API Object
+        </a>
+      </li>
+      <li>
+        <a href="#support-for-horizontal-pod-autoscaler-in-kubectl">
+          Support for Horizontal Pod Autoscaler in kubectl
+        </a>
+      </li>
+      <li>
+        <a href="#autoscaling-during-rolling-update">
+          Autoscaling during rolling update
+        </a>
+      </li>
+      <li>
+        <a href="#support-for-cooldown-delay">
+          Support for cooldown/delay
+        </a>
+      </li>
+      <li>
+        <a href="#support-for-multiple-metrics">
+          Support for multiple metrics
+        </a>
+      </li>
+      <li>
+        <a href="#support-for-custom-metrics">
+          Support for custom metrics
+        </a>
+      </li>
+      <li>
+        <a href="#support-for-metrics-apis">
+          Support for metrics APIs
+        </a>
+      </li>
+      <li>
+        <a href="#support-for-configurable-scaling-behavior">
+          Support for configurable scaling behavior
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="how-does-the-horizontal-pod-autoscaler-work">
+      How does the Horizontal Pod Autoscaler work?
+    </h2>
+    <p>
+      <img src="/images/docs/horizontal-pod-autoscaler.svg" alt="Horizontal Pod Autoscaler diagram" />
+    </p>
+    <p>
+      The Horizontal Pod Autoscaler is implemented as a control loop, with a period controlled
+      by the controller manager&rsquo;s
+      <code>
+        --horizontal-pod-autoscaler-sync-period
+      </code>
+      flag (with a default
+      value of 15 seconds).
+    </p>
+    <p>
+      During each period, the controller manager queries the resource utilization against the
+      metrics specified in each HorizontalPodAutoscaler definition.  The controller manager
+      obtains the metrics from either the resource metrics API (for per-pod resource metrics),
+      or the custom metrics API (for all other metrics).
+    </p>
+    <ul>
+      <li>
+        For per-pod resource metrics (like CPU), the controller fetches the metrics
+        from the resource metrics API for each pod targeted by the HorizontalPodAutoscaler.
+        Then, if a target utilization value is set, the controller calculates the utilization
+        value as a percentage of the equivalent resource request on the containers in
+        each pod.  If a target raw value is set, the raw metric values are used directly.
+        The controller then takes the mean of the utilization or the raw value (depending on the type
+        of target specified) across all targeted pods, and produces a ratio used to scale
+        the number of desired replicas.
+      </li>
+    </ul>
+    <p>
+      Please note that if some of the pod&rsquo;s containers do not have the relevant resource request set,
+      CPU utilization for the pod will not be defined and the autoscaler will
+      not take any action for that metric. See the
+      <a href="#algorithm-details">
+        algorithm
+        details
+      </a>
+      section below for more information about
+      how the autoscaling algorithm works.
+    </p>
+    <ul>
+      <li>
+        <p>
+          For per-pod custom metrics, the controller functions similarly to per-pod resource metrics,
+          except that it works with raw values, not utilization values.
+        </p>
+      </li>
+      <li>
+        <p>
+          For object metrics and external metrics, a single metric is fetched, which describes
+          the object in question. This metric is compared to the target
+          value, to produce a ratio as above. In the
+          <code>
+            autoscaling/v2beta2
+          </code>
+          API
+          version, this value can optionally be divided by the number of pods before the
+          comparison is made.
+        </p>
+      </li>
+    </ul>
+    <p>
+      The HorizontalPodAutoscaler normally fetches metrics from a series of aggregated APIs (
+      <code>
+        metrics.k8s.io
+      </code>
+      ,
+      <code>
+        custom.metrics.k8s.io
+      </code>
+      , and
+      <code>
+        external.metrics.k8s.io
+      </code>
+      ).  The
+      <code>
+        metrics.k8s.io
+      </code>
+      API is usually provided by
+      metrics-server, which needs to be launched separately. See
+      <a href="/docs/tasks/debug-application-cluster/resource-metrics-pipeline/#metrics-server">
+        metrics-server
+      </a>
+      for instructions. The HorizontalPodAutoscaler can also fetch metrics directly from Heapster.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        <div style="margin-top: 10px; margin-bottom: 10px;">
+          <b>
+            FEATURE STATE:
+          </b>
+          <code>
+            Kubernetes v1.11
+          </code>
+          <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+            <span class="ui-icon ui-icon-newwin"></span>
+            deprecated
+          </a>
+          <div id="feature-state-dialog" class="ui-dialog-content" title="deprecated">
+            This feature is
+            <em>
+              deprecated
+            </em>
+            . For more information on this state, see the
+            <a href="/docs/reference/deprecation-policy/">
+              Kubernetes Deprecation Policy
+            </a>
+            .
+          </div>
+          <script>
+            $(function(){
+
+            $( "#feature-state-dialog" ).dialog({
+            autoOpen: false,
+            width: "600",
+            buttons: [
+            {
+            text: "Ok",
+            click: function() {
+            $( this ).dialog( "close" );
+            }
+            }
+            ]
+            });
+
+
+            $( "#feature-state-dialog-link" ).click(function( event ) {
+            $( "#feature-state-dialog" ).dialog( "open" );
+            event.preventDefault();
+            });
+
+            });
+          </script>
+        </div>
+        <p>
+        Fetching metrics from Heapster is deprecated as of Kubernetes 1.11.
+      </div>
+    </blockquote>
+    <p>
+      See
+      <a href="#support-for-metrics-apis">
+        Support for metrics APIs
+      </a>
+      for more details.
+    </p>
+    <p>
+      The autoscaler accesses corresponding scalable controllers (such as replication controllers, deployments, and replica sets)
+      by using the scale sub-resource. Scale is an interface that allows you to dynamically set the number of replicas and examine
+      each of their current states. More details on scale sub-resource can be found
+      <a href="https://git.k8s.io/community/contributors/design-proposals/autoscaling/horizontal-pod-autoscaler.md#scale-subresource">
+        here
+      </a>
+      .
+    </p>
+    <h3 id="algorithm-details">
+      Algorithm Details
+    </h3>
+    <p>
+      From the most basic perspective, the Horizontal Pod Autoscaler controller
+      operates on the ratio between desired metric value and current metric
+      value:
+    </p>
+    <pre><code>desiredReplicas = ceil[currentReplicas * ( currentMetricValue / desiredMetricValue )]</code></pre>
+    <p>
+      For example, if the current metric value is
+      <code>
+        200m
+      </code>
+      , and the desired value
+      is
+      <code>
+        100m
+      </code>
+      , the number of replicas will be doubled, since
+      <code>
+        200.0 / 100.0 ==
+        2.0
+      </code>
+      If the current value is instead
+      <code>
+        50m
+      </code>
+      , we&rsquo;ll halve the number of
+      replicas, since
+      <code>
+        50.0 / 100.0 == 0.5
+      </code>
+      .  We&rsquo;ll skip scaling if the ratio is
+      sufficiently close to 1.0 (within a globally-configurable tolerance, from
+      the
+      <code>
+        --horizontal-pod-autoscaler-tolerance
+      </code>
+      flag, which defaults to 0.1).
+    </p>
+    <p>
+      When a
+      <code>
+        targetAverageValue
+      </code>
+      or
+      <code>
+        targetAverageUtilization
+      </code>
+      is specified,
+      the
+      <code>
+        currentMetricValue
+      </code>
+      is computed by taking the average of the given
+      metric across all Pods in the HorizontalPodAutoscaler&rsquo;s scale target.
+      Before checking the tolerance and deciding on the final values, we take
+      pod readiness and missing metrics into consideration, however.
+    </p>
+    <p>
+      All Pods with a deletion timestamp set (i.e. Pods in the process of being
+      shut down) and all failed Pods are discarded.
+    </p>
+    <p>
+      If a particular Pod is missing metrics, it is set aside for later; Pods
+      with missing metrics will be used to adjust the final scaling amount.
+    </p>
+    <p>
+      When scaling on CPU, if any pod has yet to become ready (i.e. it&rsquo;s still
+      initializing)
+      <em>
+        or
+      </em>
+      the most recent metric point for the pod was before it
+      became ready, that pod is set aside as well.
+    </p>
+    <p>
+      Due to technical constraints, the HorizontalPodAutoscaler controller
+      cannot exactly determine the first time a pod becomes ready when
+      determining whether to set aside certain CPU metrics. Instead, it
+      considers a Pod &ldquo;not yet ready&rdquo; if it&rsquo;s unready and transitioned to
+      unready within a short, configurable window of time since it started.
+      This value is configured with the
+      <code>
+        --horizontal-pod-autoscaler-initial-readiness-delay
+      </code>
+      flag, and its default is 30
+      seconds.  Once a pod has become ready, it considers any transition to
+      ready to be the first if it occurred within a longer, configurable time
+      since it started. This value is configured with the
+      <code>
+        --horizontal-pod-autoscaler-cpu-initialization-period
+      </code>
+      flag, and its
+      default is 5 minutes.
+    </p>
+    <p>
+      The
+      <code>
+        currentMetricValue / desiredMetricValue
+      </code>
+      base scale ratio is then
+      calculated using the remaining pods not set aside or discarded from above.
+    </p>
+    <p>
+      If there were any missing metrics, we recompute the average more
+      conservatively, assuming those pods were consuming 100% of the desired
+      value in case of a scale down, and 0% in case of a scale up.  This dampens
+      the magnitude of any potential scale.
+    </p>
+    <p>
+      Furthermore, if any not-yet-ready pods were present, and we would have
+      scaled up without factoring in missing metrics or not-yet-ready pods, we
+      conservatively assume the not-yet-ready pods are consuming 0% of the
+      desired metric, further dampening the magnitude of a scale up.
+    </p>
+    <p>
+      After factoring in the not-yet-ready pods and missing metrics, we
+      recalculate the usage ratio.  If the new ratio reverses the scale
+      direction, or is within the tolerance, we skip scaling.  Otherwise, we use
+      the new ratio to scale.
+    </p>
+    <p>
+      Note that the
+      <em>
+        original
+      </em>
+      value for the average utilization is reported
+      back via the HorizontalPodAutoscaler status, without factoring in the
+      not-yet-ready pods or missing metrics, even when the new usage ratio is
+      used.
+    </p>
+    <p>
+      If multiple metrics are specified in a HorizontalPodAutoscaler, this
+      calculation is done for each metric, and then the largest of the desired
+      replica counts is chosen. If any of these metrics cannot be converted
+      into a desired replica count (e.g. due to an error fetching the metrics
+      from the metrics APIs) and a scale down is suggested by the metrics which
+      can be fetched, scaling is skipped. This means that the HPA is still capable
+      of scaling up if one or more metrics give a
+      <code>
+        desiredReplicas
+      </code>
+      greater than
+      the current value.
+    </p>
+    <p>
+      Finally, just before HPA scales the target, the scale recommendation is recorded.  The
+      controller considers all recommendations within a configurable window choosing the
+      highest recommendation from within that window. This value can be configured using the
+      <code>
+        --horizontal-pod-autoscaler-downscale-stabilization
+      </code>
+      flag, which defaults to 5 minutes.
+      This means that scaledowns will occur gradually, smoothing out the impact of rapidly
+      fluctuating metric values.
+    </p>
+    <h2 id="api-object">
+      API Object
+    </h2>
+    <p>
+      The Horizontal Pod Autoscaler is an API resource in the Kubernetes
+      <code>
+        autoscaling
+      </code>
+      API group.
+      The current stable version, which only includes support for CPU autoscaling,
+      can be found in the
+      <code>
+        autoscaling/v1
+      </code>
+      API version.
+    </p>
+    <p>
+      The beta version, which includes support for scaling on memory and custom metrics,
+      can be found in
+      <code>
+        autoscaling/v2beta2
+      </code>
+      . The new fields introduced in
+      <code>
+        autoscaling/v2beta2
+      </code>
+      are preserved as annotations when working with
+      <code>
+        autoscaling/v1
+      </code>
+      .
+    </p>
+    <p>
+      When you create a HorizontalPodAutoscaler API object, make sure the name specified is a valid
+      <a href="/docs/concepts/overview/working-with-objects/names#dns-subdomain-names">
+        DNS subdomain name
+      </a>
+      .
+      More details about the API object can be found at
+      <a href="https://git.k8s.io/community/contributors/design-proposals/autoscaling/horizontal-pod-autoscaler.md#horizontalpodautoscaler-object">
+        HorizontalPodAutoscaler Object
+      </a>
+      .
+    </p>
+    <h2 id="support-for-horizontal-pod-autoscaler-in-kubectl">
+      Support for Horizontal Pod Autoscaler in kubectl
+    </h2>
+    <p>
+      Horizontal Pod Autoscaler, like every API resource, is supported in a standard way by
+      <code>
+        kubectl
+      </code>
+      .
+      We can create a new autoscaler using
+      <code>
+        kubectl create
+      </code>
+      command.
+      We can list autoscalers by
+      <code>
+        kubectl get hpa
+      </code>
+      and get detailed description by
+      <code>
+        kubectl describe hpa
+      </code>
+      .
+      Finally, we can delete an autoscaler using
+      <code>
+        kubectl delete hpa
+      </code>
+      .
+    </p>
+    <p>
+      In addition, there is a special
+      <code>
+        kubectl autoscale
+      </code>
+      command for easy creation of a Horizontal Pod Autoscaler.
+      For instance, executing
+      <code>
+        kubectl autoscale rs foo --min=2 --max=5 --cpu-percent=80
+      </code>
+      will create an autoscaler for replication set
+      <em>
+        foo
+      </em>
+      , with target CPU utilization set to
+      <code>
+        80%
+      </code>
+      and the number of replicas between 2 and 5.
+      The detailed documentation of
+      <code>
+        kubectl autoscale
+      </code>
+      can be found
+      <a href="/docs/reference/generated/kubectl/kubectl-commands/#autoscale">
+        here
+      </a>
+      .
+    </p>
+    <h2 id="autoscaling-during-rolling-update">
+      Autoscaling during rolling update
+    </h2>
+    <p>
+      Currently in Kubernetes, it is possible to perform a rolling update by using the deployment object, which manages the underlying replica sets for you.
+      Horizontal Pod Autoscaler only supports the latter approach: the Horizontal Pod Autoscaler is bound to the deployment object,
+      it sets the size for the deployment object, and the deployment is responsible for setting sizes of underlying replica sets.
+    </p>
+    <p>
+      Horizontal Pod Autoscaler does not work with rolling update using direct manipulation of replication controllers,
+      i.e. you cannot bind a Horizontal Pod Autoscaler to a replication controller and do rolling update.
+      The reason this doesn&rsquo;t work is that when rolling update creates a new replication controller,
+      the Horizontal Pod Autoscaler will not be bound to the new replication controller.
+    </p>
+    <h2 id="support-for-cooldown-delay">
+      Support for cooldown/delay
+    </h2>
+    <p>
+      When managing the scale of a group of replicas using the Horizontal Pod Autoscaler,
+      it is possible that the number of replicas keeps fluctuating frequently due to the
+      dynamic nature of the metrics evaluated. This is sometimes referred to as
+      <em>
+        thrashing
+      </em>
+      .
+    </p>
+    <p>
+      Starting from v1.6, a cluster operator can mitigate this problem by tuning
+      the global HPA settings exposed as flags for the
+      <code>
+        kube-controller-manager
+      </code>
+      component:
+    </p>
+    <p>
+      Starting from v1.12, a new algorithmic update removes the need for the
+      upscale delay.
+    </p>
+    <ul>
+      <li>
+        <code>
+          --horizontal-pod-autoscaler-downscale-stabilization
+        </code>
+        : The value for this option is a
+        duration that specifies how long the autoscaler has to wait before another
+        downscale operation can be performed after the current one has completed.
+        The default value is 5 minutes (
+        <code>
+          5m0s
+        </code>
+        ).
+      </li>
+    </ul>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        When tuning these parameter values, a cluster operator should be aware of the possible
+        consequences. If the delay (cooldown) value is set too long, there could be complaints
+        that the Horizontal Pod Autoscaler is not responsive to workload changes. However, if
+        the delay value is set too short, the scale of the replicas set may keep thrashing as
+        usual.
+      </div>
+    </blockquote>
+    <h2 id="support-for-multiple-metrics">
+      Support for multiple metrics
+    </h2>
+    <p>
+      Kubernetes 1.6 adds support for scaling based on multiple metrics. You can use the
+      <code>
+        autoscaling/v2beta2
+      </code>
+      API
+      version to specify multiple metrics for the Horizontal Pod Autoscaler to scale on. Then, the Horizontal Pod
+      Autoscaler controller will evaluate each metric, and propose a new scale based on that metric. The largest of the
+      proposed scales will be used as the new scale.
+    </p>
+    <h2 id="support-for-custom-metrics">
+      Support for custom metrics
+    </h2>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        Kubernetes 1.2 added alpha support for scaling based on application-specific metrics using special annotations.
+        Support for these annotations was removed in Kubernetes 1.6 in favor of the new autoscaling API.  While the old method for collecting
+        custom metrics is still available, these metrics will not be available for use by the Horizontal Pod Autoscaler, and the former
+        annotations for specifying which custom metrics to scale on are no longer honored by the Horizontal Pod Autoscaler controller.
+      </div>
+    </blockquote>
+    <p>
+      Kubernetes 1.6 adds support for making use of custom metrics in the Horizontal Pod Autoscaler.
+      You can add custom metrics for the Horizontal Pod Autoscaler to use in the
+      <code>
+        autoscaling/v2beta2
+      </code>
+      API.
+      Kubernetes then queries the new custom metrics API to fetch the values of the appropriate custom metrics.
+    </p>
+    <p>
+      See
+      <a href="#support-for-metrics-apis">
+        Support for metrics APIs
+      </a>
+      for the requirements.
+    </p>
+    <h2 id="support-for-metrics-apis">
+      Support for metrics APIs
+    </h2>
+    <p>
+      By default, the HorizontalPodAutoscaler controller retrieves metrics from a series of APIs.  In order for it to access these
+      APIs, cluster administrators must ensure that:
+    </p>
+    <ul>
+      <li>
+        <p>
+          The
+          <a href="/docs/tasks/access-kubernetes-api/configure-aggregation-layer/">
+            API aggregation layer
+          </a>
+          is enabled.
+        </p>
+      </li>
+      <li>
+        <p>
+          The corresponding APIs are registered:
+        </p>
+        <ul>
+          <li>
+            <p>
+              For resource metrics, this is the
+              <code>
+                metrics.k8s.io
+              </code>
+              API, generally provided by
+              <a href="https://github.com/kubernetes-incubator/metrics-server">
+                metrics-server
+              </a>
+              .
+              It can be launched as a cluster addon.
+            </p>
+          </li>
+          <li>
+            <p>
+              For custom metrics, this is the
+              <code>
+                custom.metrics.k8s.io
+              </code>
+              API.  It&rsquo;s provided by &ldquo;adapter&rdquo; API servers provided by metrics solution vendors.
+              Check with your metrics pipeline, or the
+              <a href="https://github.com/kubernetes/metrics/blob/master/IMPLEMENTATIONS.md#custom-metrics-api">
+                list of known solutions
+              </a>
+              .
+              If you would like to write your own, check out the
+              <a href="https://github.com/kubernetes-incubator/custom-metrics-apiserver">
+                boilerplate
+              </a>
+              to get started.
+            </p>
+          </li>
+          <li>
+            <p>
+              For external metrics, this is the
+              <code>
+                external.metrics.k8s.io
+              </code>
+              API.  It may be provided by the custom metrics adapters provided above.
+            </p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>
+          The
+          <code>
+            --horizontal-pod-autoscaler-use-rest-clients
+          </code>
+          is
+          <code>
+            true
+          </code>
+          or unset.  Setting this to false switches to Heapster-based autoscaling, which is deprecated.
+        </p>
+      </li>
+    </ul>
+    <p>
+      For more information on these different metrics paths and how they differ please see the relevant design proposals for
+      <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/autoscaling/hpa-v2.md">
+        the HPA V2
+      </a>
+      ,
+      <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/instrumentation/custom-metrics-api.md">
+        custom.metrics.k8s.io
+      </a>
+      and
+      <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/instrumentation/external-metrics-api.md">
+        external.metrics.k8s.io
+      </a>
+      .
+    </p>
+    <p>
+      For examples of how to use them see
+      <a href="/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/#autoscaling-on-multiple-metrics-and-custom-metrics">
+        the walkthrough for using custom metrics
+      </a>
+      and
+      <a href="/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/#autoscaling-on-metrics-not-related-to-kubernetes-objects">
+        the walkthrough for using external metrics
+      </a>
+      .
+    </p>
+    <h2 id="support-for-configurable-scaling-behavior">
+      Support for configurable scaling behavior
+    </h2>
+    <p>
+      Starting from
+      <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-autoscaling/20190307-configurable-scale-velocity-for-hpa.md">
+        v1.18
+      </a>
+      the
+      <code>
+        v2beta2
+      </code>
+      API allows scaling behavior to be configured through the HPA
+      <code>
+        behavior
+      </code>
+      field. Behaviors are specified separately for scaling up and down in
+      <code>
+        scaleUp
+      </code>
+      or
+      <code>
+        scaleDown
+      </code>
+      section under the
+      <code>
+        behavior
+      </code>
+      field. A stabilization
+      window can be specified for both directions which prevents the flapping of the
+      number of the replicas in the scaling target. Similarly specifing scaling
+      policies controls the rate of change of replicas while scaling.
+    </p>
+    <h3 id="scaling-policies">
+      Scaling Policies
+    </h3>
+    <p>
+      One or more scaling policies can be specified in the
+      <code>
+        behavior
+      </code>
+      section of the spec.
+      When multiple policies are specified the policy which allows the highest amount of
+      change is the policy which is selected by default. The following example shows this behavior
+      while scaling down:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">behavior</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">scaleDown</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">policies</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Pods<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#666">4</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">periodSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">60</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Percent<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#666">10</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">periodSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">60</span></code></pre>
+    </div>
+    <p>
+      When the number of pods is more than 40 the second policy will be used for scaling down.
+      For instance if there are 80 replicas and the target has to be scaled down to 10 replicas
+      then during the first step 8 replicas will be reduced. In the next iteration when the number
+      of replicas is 72, 10% of the pods is 7.2 but the number is rounded up to 8. On each loop of
+      the autoscaler controller the number of pods to be change is re-calculated based on the number
+      of current replicas. When the number of replicas falls below 40 the first policy
+      <em>
+        (Pods)
+      </em>
+      is applied
+      and 4 replicas will be reduced at a time.
+    </p>
+    <p>
+      <code>
+        periodSeconds
+      </code>
+      indicates the length of time in the past for which the policy must hold true.
+      The first policy allows at most 4 replicas to be scaled down in one minute. The second policy
+      allows at most 10% of the current replicas to be scaled down in one minute.
+    </p>
+    <p>
+      The policy selection can be changed by specifying the
+      <code>
+        selectPolicy
+      </code>
+      field for a scaling
+      direction. By setting the value to
+      <code>
+        Min
+      </code>
+      which would select the policy which allows the
+      smallest change in the replica count. Setting the value to
+      <code>
+        Disabled
+      </code>
+      completely disabled
+      scaling in that direction.
+    </p>
+    <h3 id="stabilization-window">
+      Stabilization Window
+    </h3>
+    <p>
+      The stabilization window is used to retrict the flapping of replicas when the metrics
+      used for scaling keep fluctuating. The stabilization window is used by the autoscaling
+      algorithm to consider the computed desired state from the past to prevent scaling. In
+      the following example the stabilization window is specified for
+      <code>
+        scaleDown
+      </code>
+      .
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">scaleDown</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">stabilizationWindowSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">300</span></code></pre>
+    </div>
+    <p>
+      When the metrics indicate that the target should be scaled down the algorithm looks
+      into previously computed desired states and uses the highest value from the specified
+      interval. In above example all desired states from the past 5 minutes will be considered.
+    </p>
+    <h3 id="default-behavior">
+      Default Behavior
+    </h3>
+    <p>
+      To use the custom scaling not all fields have to be specified. Only values which need to be
+      customized can be specified. These custom values are merged with default values. The default values
+      match the existing behavior in the HPA algorithm.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">behavior</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">scaleDown</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">stabilizationWindowSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">300</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">policies</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Percent<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#666">100</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">periodSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">15</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">scaleUp</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">stabilizationWindowSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">0</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">policies</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Percent<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#666">100</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">periodSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">15</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Pods<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#666">4</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">periodSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">15</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">selectPolicy</span>:<span style="color:#bbb"> </span>Max</code></pre>
+    </div>
+    <p>
+      For scaling down the stabilization window is
+      <em>
+        300
+      </em>
+      seconds(or the value of the
+      <code>
+        --horizontal-pod-autoscaler-downscale-stabilization
+      </code>
+      flag if provided). There is only a single policy
+      for scaling down which allows a 100% of the currently running replicas to be removed which
+      means the scaling target can be scaled down to the minimum allowed replicas.
+      For scaling up there is no stabilization window. When the metrics indicate that the target should be
+      scaled up the target is scaled up immediately. There are 2 policies which. 4 pods or a 100% of the currently
+      running replicas will be added every 15 seconds till the HPA reaches its steady state.
+    </p>
+    <h3 id="example-change-downscale-stabilization-window">
+      Example: change downscale stabilization window
+    </h3>
+    <p>
+      To provide a custom downscale stabilization window of 1 minute, the following
+      behavior would be added to the HPA:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">behavior</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">scaleDown</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">stabilizationWindowSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">60</span></code></pre>
+    </div>
+    <h3 id="example-limit-scale-down-rate">
+      Example: limit scale down rate
+    </h3>
+    <p>
+      To limit the rate at which pods are removed by the HPA to 10% per minute, the
+      following behavior would be added to the HPA:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">behavior</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">scaleDown</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">policies</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Percent<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#666">10</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">periodSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">60</span></code></pre>
+    </div>
+    <p>
+      To allow a final drop of 5 pods, another policy can be added and a selection
+      strategy of minimum:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">behavior</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">scaleDown</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">policies</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Percent<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#666">10</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">periodSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">60</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Pods<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#666">5</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">periodSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">60</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">selectPolicy</span>:<span style="color:#bbb"> </span>Max</code></pre>
+    </div>
+    <h3 id="example-disable-scale-down">
+      Example: disable scale down
+    </h3>
+    <p>
+      The
+      <code>
+        selectPolicy
+      </code>
+      value of
+      <code>
+        Disabled
+      </code>
+      turns off scaling the given direction.
+      So to prevent downscaling the following policy would be used:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">behavior</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">scaleDown</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">selectPolicy</span>:<span style="color:#bbb"> </span>Disabled</code></pre>
+    </div>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        Design documentation:
+        <a href="https://git.k8s.io/community/contributors/design-proposals/autoscaling/horizontal-pod-autoscaler.md">
+          Horizontal Pod Autoscaling
+        </a>
+        .
+      </li>
+      <li>
+        kubectl autoscale command:
+        <a href="/docs/reference/generated/kubectl/kubectl-commands/#autoscale">
+          kubectl autoscale
+        </a>
+        .
+      </li>
+      <li>
+        Usage example of
+        <a href="/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/">
+          Horizontal Pod Autoscaler
+        </a>
+        .
+      </li>
+    </ul>
+  </body>
+</html>

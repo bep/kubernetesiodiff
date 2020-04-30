@@ -1,0 +1,547 @@
+<html>
+  <body>
+    <h1>
+      Connect a Front End to a Back End Using a Service
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/access-application-cluster/connecting-frontend-backend.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Connect a Front End to a Back End Using a Service
+    </h1>
+    <p>
+      This task shows how to create a frontend and a backend
+      microservice. The backend microservice is a hello greeter. The
+      frontend and backend are connected using a Kubernetes
+      <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+        Service
+        <span class='tooltip-text'>
+          A way to expose an application running on a set of Pods as a network service.
+        </span>
+      </a>
+      object.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#objectives">
+          Objectives
+        </a>
+      </li>
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#creating-the-backend-using-a-deployment">
+          Creating the backend using a Deployment
+        </a>
+      </li>
+      <li>
+        <a href="#creating-the-backend-service-object">
+          Creating the backend Service object
+        </a>
+      </li>
+      <li>
+        <a href="#creating-the-frontend">
+          Creating the frontend
+        </a>
+      </li>
+      <li>
+        <a href="#interact-with-the-frontend-service">
+          Interact with the frontend Service
+        </a>
+      </li>
+      <li>
+        <a href="#send-traffic-through-the-frontend">
+          Send traffic through the frontend
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="objectives">
+      Objectives
+    </h2>
+    <ul>
+      <li>
+        Create and run a microservice using a
+        <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/deployment/' target='_blank'>
+          Deployment
+          <span class='tooltip-text'>
+            An API object that manages a replicated application.
+          </span>
+        </a>
+        object.
+      </li>
+      <li>
+        Route traffic to the backend using a frontend.
+      </li>
+      <li>
+        Use a Service object to connect the frontend application to the
+        backend application.
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <ul>
+      <li>
+        <p>
+          You need to have a Kubernetes cluster, and the kubectl command-line tool must
+          be configured to communicate with your cluster. If you do not already have a
+          cluster, you can create one by using
+          <a href="/docs/setup/learning-environment/minikube/">
+            Minikube
+          </a>
+          ,
+          or you can use one of these Kubernetes playgrounds:
+        </p>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <ul>
+      <li>
+        This task uses
+        <a href="/docs/tasks/access-application-cluster/create-external-load-balancer/">
+          Services with external load balancers
+        </a>
+        , which
+        require a supported environment. If your environment does not
+        support this, you can use a Service of type
+        <a href="/docs/concepts/services-networking/service/#nodeport">
+          NodePort
+        </a>
+        instead.
+      </li>
+    </ul>
+    <h2 id="creating-the-backend-using-a-deployment">
+      Creating the backend using a Deployment
+    </h2>
+    <p>
+      The backend is a simple hello greeter microservice. Here is the configuration
+      file for the backend Deployment:
+    </p>
+    <table class="includecode" id="service-access-hello-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/access/hello.yaml" download="service/access/hello.yaml">
+              <code>
+                service/access/hello.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-access-hello-yaml')" title="Copy service/access/hello.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>backend<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">track</span>:<span style="color:#bbb"> </span>stable<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">7</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>backend<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">track</span>:<span style="color:#bbb"> </span>stable<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;gcr.io/google-samples/hello-go-gke:1.0&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>http<span style="color:#bbb">
+</span><span style="color:#bbb">              </span><span style="color:#a2f;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Create the backend Deployment:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/service/access/hello.yaml</code></pre>
+    </div>
+    <p>
+      View information about the backend Deployment:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl describe deployment hello</code></pre>
+    </div>
+    <p>
+      The output is similar to this:
+    </p>
+    <pre><code>Name:                           hello
+Namespace:                      default
+CreationTimestamp:              Mon, 24 Oct 2016 14:21:02 -0700
+Labels:                         app=hello
+                                tier=backend
+                                track=stable
+Annotations:                    deployment.kubernetes.io/revision=1
+Selector:                       app=hello,tier=backend,track=stable
+Replicas:                       7 desired | 7 updated | 7 total | 7 available | 0 unavailable
+StrategyType:                   RollingUpdate
+MinReadySeconds:                0
+RollingUpdateStrategy:          1 max unavailable, 1 max surge
+Pod Template:
+  Labels:       app=hello
+                tier=backend
+                track=stable
+  Containers:
+   hello:
+    Image:              &#34;gcr.io/google-samples/hello-go-gke:1.0&#34;
+    Port:               80/TCP
+    Environment:        &lt;none&gt;
+    Mounts:             &lt;none&gt;
+  Volumes:              &lt;none&gt;
+Conditions:
+  Type          Status  Reason
+  ----          ------  ------
+  Available     True    MinimumReplicasAvailable
+  Progressing   True    NewReplicaSetAvailable
+OldReplicaSets:                 &lt;none&gt;
+NewReplicaSet:                  hello-3621623197 (7/7 replicas created)
+Events:
+...</code></pre>
+    <h2 id="creating-the-backend-service-object">
+      Creating the backend Service object
+    </h2>
+    <p>
+      The key to connecting a frontend to a backend is the backend
+      Service. A Service creates a persistent IP address and DNS name entry
+      so that the backend microservice can always be reached. A Service uses
+      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels/' target='_blank'>
+        selectors
+        <span class='tooltip-text'>
+          Allows users to filter a list of resources based on labels.
+        </span>
+      </a>
+      to find
+      the Pods that it routes traffic to.
+    </p>
+    <p>
+      First, explore the Service configuration file:
+    </p>
+    <table class="includecode" id="service-access-hello-service-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/access/hello-service.yaml" download="service/access/hello-service.yaml">
+              <code>
+                service/access/hello-service.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-access-hello-service-yaml')" title="Copy service/access/hello-service.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>backend<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span>http<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      In the configuration file, you can see that the Service routes traffic to Pods
+      that have the labels
+      <code>
+        app: hello
+      </code>
+      and
+      <code>
+        tier: backend
+      </code>
+      .
+    </p>
+    <p>
+      Create the
+      <code>
+        hello
+      </code>
+      Service:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/service/access/hello-service.yaml</code></pre>
+    </div>
+    <p>
+      At this point, you have a backend Deployment running, and you have a
+      Service that can route traffic to it.
+    </p>
+    <h2 id="creating-the-frontend">
+      Creating the frontend
+    </h2>
+    <p>
+      Now that you have your backend, you can create a frontend that connects to the backend.
+      The frontend connects to the backend worker Pods by using the DNS name
+      given to the backend Service. The DNS name is &ldquo;hello&rdquo;, which is the value
+      of the
+      <code>
+        name
+      </code>
+      field in the preceding Service configuration file.
+    </p>
+    <p>
+      The Pods in the frontend Deployment run an nginx image that is configured
+      to find the hello backend Service. Here is the nginx configuration file:
+    </p>
+    <table class="includecode" id="service-access-frontend-conf">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/access/frontend.conf" download="service/access/frontend.conf">
+              <code>
+                service/access/frontend.conf
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-access-frontend-conf')" title="Copy service/access/frontend.conf to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <pre><code class="language-conf" data-lang="conf">upstream hello {
+    server hello;
+}
+
+server {
+    listen 80;
+
+    location / {
+        proxy_pass http://hello;
+    }
+}</code></pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Similar to the backend, the frontend has a Deployment and a Service. The
+      configuration for the Service has
+      <code>
+        type: LoadBalancer
+      </code>
+      , which means that
+      the Service uses the default load balancer of your cloud provider.
+    </p>
+    <table class="includecode" id="service-access-frontend-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/access/frontend.yaml" download="service/access/frontend.yaml">
+              <code>
+                service/access/frontend.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-access-frontend-yaml')" title="Copy service/access/frontend.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>frontend<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>frontend<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;TCP&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>LoadBalancer<span style="color:#bbb">
+</span><span style="color:#bbb"></span>---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>frontend<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>frontend<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">track</span>:<span style="color:#bbb"> </span>stable<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>frontend<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">track</span>:<span style="color:#bbb"> </span>stable<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;gcr.io/google-samples/hello-frontend:1.0&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">lifecycle</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">preStop</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">exec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">              </span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;/usr/sbin/nginx&#34;</span>,<span style="color:#b44">&#34;-s&#34;</span>,<span style="color:#b44">&#34;quit&#34;</span>]<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Create the frontend Deployment and Service:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/service/access/frontend.yaml</code></pre>
+    </div>
+    <p>
+      The output verifies that both resources were created:
+    </p>
+    <pre><code>deployment.apps/frontend created
+service/frontend created</code></pre>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        The nginx configuration is baked into the
+        <a href="/examples/service/access/Dockerfile">
+          container
+          image
+        </a>
+        . A better way to do this would
+        be to use a
+        <a href="/docs/tasks/configure-pod-container/configure-pod-configmap/">
+          ConfigMap
+        </a>
+        ,
+        so that you can change the configuration more easily.
+      </div>
+    </blockquote>
+    <h2 id="interact-with-the-frontend-service">
+      Interact with the frontend Service
+    </h2>
+    <p>
+      Once you’ve created a Service of type LoadBalancer, you can use this
+      command to find the external IP:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get service frontend --watch</code></pre>
+    </div>
+    <p>
+      This displays the configuration for the
+      <code>
+        frontend
+      </code>
+      Service and watches for
+      changes. Initially, the external IP is listed as
+      <code>
+        &lt;pending&gt;
+      </code>
+      :
+    </p>
+    <pre><code>NAME       TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)  AGE
+frontend   LoadBalancer   10.51.252.116   &lt;pending&gt;     80/TCP   10s</code></pre>
+    <p>
+      As soon as an external IP is provisioned, however, the configuration updates
+      to include the new IP under the
+      <code>
+        EXTERNAL-IP
+      </code>
+      heading:
+    </p>
+    <pre><code>NAME       TYPE           CLUSTER-IP      EXTERNAL-IP        PORT(S)  AGE
+frontend   LoadBalancer   10.51.252.116   XXX.XXX.XXX.XXX    80/TCP   1m</code></pre>
+    <p>
+      That IP can now be used to interact with the
+      <code>
+        frontend
+      </code>
+      service from outside the
+      cluster.
+    </p>
+    <h2 id="send-traffic-through-the-frontend">
+      Send traffic through the frontend
+    </h2>
+    <p>
+      The frontend and backends are now connected. You can hit the endpoint
+      by using the curl command on the external IP of your frontend Service.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl http://<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">EXTERNAL_IP</span><span style="color:#b68;font-weight:bold">}</span> <span style="color:#080;font-style:italic"># replace this with the EXTERNAL-IP you saw earlier</span></code></pre>
+    </div>
+    <p>
+      The output shows the message generated by the backend:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#008000;font-weight:bold">&#34;message&#34;</span>:<span style="color:#b44">&#34;Hello&#34;</span>}</code></pre>
+    </div>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        Learn more about
+        <a href="/docs/concepts/services-networking/service/">
+          Services
+        </a>
+      </li>
+      <li>
+        Learn more about
+        <a href="/docs/tasks/configure-pod-container/configure-pod-configmap/">
+          ConfigMaps
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

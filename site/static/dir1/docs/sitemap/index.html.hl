@@ -1,0 +1,267 @@
+<div style="background-color:#f0f3f3">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">113
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">114
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">115
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">116
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">117
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">118
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">119
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">120
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">121
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">122
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">123
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">129
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">130
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">131
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3">&lt;<span style="color:#309;font-weight:bold">html</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">body</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;&lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/website/edit/master/content/en/docs/sitemap.md&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;editPageButton&#34;</span> <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#34;_blank&#34;</span>&gt;
+        Edit This Page
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;&lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">script</span> <span style="color:#309">language</span><span style="color:#555">=</span><span style="color:#c30">&#34;JavaScript&#34;</span>&gt;
+        <span style="color:#069;font-weight:bold">var</span> dropDownsPopulated <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">false</span>;
+        $( <span style="color:#366">document</span> ).ready(<span style="color:#069;font-weight:bold">function</span>() {
+        <span style="color:#09f;font-style:italic">// When the document loads, get the metadata JSON, and kick off tbl render
+</span><span style="color:#09f;font-style:italic"></span>        $.get(<span style="color:#555">&amp;</span>ldquo;<span style="color:#a00;background-color:#faa">/</span><span style="color:#a00;background-color:#faa">m</span><span style="color:#a00;background-color:#faa">e</span><span style="color:#a00;background-color:#faa">t</span><span style="color:#a00;background-color:#faa">a</span><span style="color:#a00;background-color:#faa">d</span><span style="color:#a00;background-color:#faa">a</span><span style="color:#a00;background-color:#faa">t</span><span style="color:#a00;background-color:#faa">a</span><span style="color:#a00;background-color:#faa">.</span><span style="color:#a00;background-color:#faa">t</span><span style="color:#a00;background-color:#faa">x</span><span style="color:#a00;background-color:#faa">t</span><span style="color:#a00;background-color:#faa">&amp;</span><span style="color:#a00;background-color:#faa">r</span><span style="color:#a00;background-color:#faa">d</span><span style="color:#a00;background-color:#faa">q</span><span style="color:#a00;background-color:#faa">u</span><span style="color:#a00;background-color:#faa">o</span><span style="color:#a00;background-color:#faa">;</span><span style="color:#a00;background-color:#faa">,</span><span style="color:#a00;background-color:#faa"> </span><span style="color:#a00;background-color:#faa">f</span><span style="color:#a00;background-color:#faa">u</span><span style="color:#a00;background-color:#faa">n</span><span style="color:#a00;background-color:#faa">c</span><span style="color:#a00;background-color:#faa">t</span><span style="color:#a00;background-color:#faa">i</span><span style="color:#a00;background-color:#faa">o</span><span style="color:#a00;background-color:#faa">n</span><span style="color:#a00;background-color:#faa">(</span><span style="color:#a00;background-color:#faa">d</span><span style="color:#a00;background-color:#faa">a</span><span style="color:#a00;background-color:#faa">t</span><span style="color:#a00;background-color:#faa">a</span><span style="color:#a00;background-color:#faa">,</span><span style="color:#a00;background-color:#faa"> </span><span style="color:#a00;background-color:#faa">s</span><span style="color:#a00;background-color:#faa">t</span><span style="color:#a00;background-color:#faa">a</span><span style="color:#a00;background-color:#faa">t</span><span style="color:#a00;background-color:#faa">u</span><span style="color:#a00;background-color:#faa">s</span><span style="color:#a00;background-color:#faa">)</span><span style="color:#a00;background-color:#faa"> </span><span style="color:#a00;background-color:#faa">{</span>
+        metadata <span style="color:#555">=</span> $.parseJSON(data);
+        metadata.pages.sort(dynamicSort(<span style="color:#555">&amp;</span>ldquo;t<span style="color:#555">&amp;</span>rdquo;));
+        mainLogic()
+        $(<span style="color:#366">window</span>).bind( <span style="color:#555">&amp;</span>lsquo;hashchange<span style="color:#555">&amp;</span>rsquo;, <span style="color:#069;font-weight:bold">function</span>(e) {
+        mainLogic();
+        });
+        });
+        });
+        <span style="color:#069;font-weight:bold">function</span> mainLogic()
+        {
+        <span style="color:#09f;font-style:italic">// If there&amp;rsquo;s a tag filter, change the table/drop down output
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#069;font-weight:bold">if</span> (<span style="color:#555">!</span>dropDownsPopulated) populateDropdowns();
+        <span style="color:#069;font-weight:bold">var</span> tag<span style="color:#555">=</span><span style="color:#366">window</span>.location.hash.replace(<span style="color:#555">&amp;</span>ldquo;<span style="color:#a00;background-color:#faa">#</span><span style="color:#555">&amp;</span>rdquo;,<span style="color:#555">&amp;</span>ldquo;<span style="color:#555">&amp;</span>rdquo;);
+        <span style="color:#069;font-weight:bold">if</span>(tag) {
+        tag <span style="color:#555">=</span> $.trim(tag);
+        <span style="color:#069;font-weight:bold">for</span> (i<span style="color:#555">=</span><span style="color:#f60">0</span>;i<span style="color:#555">&lt;</span>tagName.length;i<span style="color:#555">++</span>) {
+        querystringTag <span style="color:#555">=</span> tagName[i] <span style="color:#555">+</span> <span style="color:#c30">&#34;=&#34;</span>;
+        <span style="color:#069;font-weight:bold">if</span> (tag.indexOf(querystringTag) <span style="color:#555">&gt;</span> <span style="color:#555">-</span><span style="color:#f60">1</span>)
+        {
+        console.log(<span style="color:#555">&amp;</span>ldquo;<span style="color:#069;font-weight:bold">in</span> mainLog<span style="color:#555">:</span> querystringTag <span style="color:#069;font-weight:bold">of</span> <span style="color:#555">&amp;</span>ldquo; <span style="color:#555">+</span> querystringTag <span style="color:#555">+</span> <span style="color:#555">&amp;</span>rdquo; matches tag <span style="color:#069;font-weight:bold">of</span> <span style="color:#555">&amp;</span>ldquo; <span style="color:#555">+</span> tag);
+        tag <span style="color:#555">=</span> tag.replace(querystringTag,<span style="color:#555">&amp;</span>ldquo;<span style="color:#555">&amp;</span>rdquo;);
+        selectDropDown(tagName[i],tag);
+        topicsFilter(tagName[i],tag,<span style="color:#555">&amp;</span>ldquo;output<span style="color:#555">&amp;</span>rdquo;);
+        }
+        }
+        } <span style="color:#069;font-weight:bold">else</span> {
+        currentTopics <span style="color:#555">=</span> metadata.pages;
+        }
+        renderTable(currentTopics,<span style="color:#555">&amp;</span>ldquo;output<span style="color:#555">&amp;</span>rdquo;);<span style="color:#555">&lt;</span><span style="color:#a00;background-color:#faa">/</span><span style="color:#a00;background-color:#faa">p</span><span style="color:#a00;background-color:#faa">&gt;</span>
+
+        <span style="color:#555">&lt;</span>p<span style="color:#555">&gt;</span>}
+        <span style="color:#069;font-weight:bold">function</span> populateDropdowns()
+        {
+        <span style="color:#09f;font-style:italic">// Keeping mainLogic() brief by functionalizing the initialization of the
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">// drop-down filter boxes&lt;/p&gt;
+</span><span style="color:#09f;font-style:italic"></span>
+        <span style="color:#555">&lt;</span>p<span style="color:#555">&gt;</span><span style="color:#069;font-weight:bold">for</span>(i<span style="color:#555">=</span><span style="color:#f60">0</span>;i<span style="color:#555">&lt;</span>metadata.pages.length;i<span style="color:#555">++</span>)
+        {
+        <span style="color:#069;font-weight:bold">var</span> metadataArrays <span style="color:#555">=</span> [metadata.pages[i].cr,metadata.pages[i].or,metadata.pages[i].mr];
+        <span style="color:#069;font-weight:bold">for</span>(j<span style="color:#555">=</span><span style="color:#f60">0</span>;j<span style="color:#555">&lt;</span>metadataArrays.length;j<span style="color:#555">++</span>)
+        {
+        <span style="color:#069;font-weight:bold">if</span> (metadataArrays[j]) {
+        <span style="color:#069;font-weight:bold">for</span> (k<span style="color:#555">=</span><span style="color:#f60">0</span>;k<span style="color:#555">&lt;</span>metadataArrays[j].length;k<span style="color:#555">++</span>) {
+        <span style="color:#069;font-weight:bold">if</span> (<span style="color:#069;font-weight:bold">typeof</span> storedTagsArrays[j] <span style="color:#555">==</span> <span style="color:#c30">&#39;undefined&#39;</span>) storedTagsArrays[j] <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> <span style="color:#366">Array</span>();
+        storedTagsArrays[j][metadataArrays[j][k][tagName[j]]] <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">true</span>;
+        <span style="color:#09f;font-style:italic">// ^ conceptList[metadata.pages[i].cr[k].concept] = true; (if rolling through concepts)
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">// ^ conceptList[&#39;container&#39;] = true; (ultimate result)
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">// ^ objectList[metadata.pages[i].or[k].object] = true; (if rolling through objects)
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">// ^ objectList[&#39;restartPolicy&#39;] = true; (ultimate result)
+</span><span style="color:#09f;font-style:italic"></span>        }
+        }
+        }
+        }
+        <span style="color:#069;font-weight:bold">var</span> output <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> <span style="color:#366">Array</span>();
+        <span style="color:#069;font-weight:bold">for</span>(i<span style="color:#555">=</span><span style="color:#f60">0</span>;i<span style="color:#555">&lt;</span>tagName.length;i<span style="color:#555">++</span>)
+        {
+        <span style="color:#09f;font-style:italic">// Phew! All tags in conceptList, objectList, and commandList!
+</span><span style="color:#09f;font-style:italic"></span>        <span style="color:#09f;font-style:italic">// Loop through them and populate those drop-downs through html() injection
+</span><span style="color:#09f;font-style:italic"></span>        output <span style="color:#555">=</span> [];
+        output.push(<span style="color:#c30">&#34;&lt;select id=&#39;&#34;</span> <span style="color:#555">+</span> tagName[i] <span style="color:#555">+</span> <span style="color:#c30">&#34;&#39; onchange=&#39;dropFilter(this)&#39;&gt;&amp;rdquo;);
+</span><span style="color:#c30">        output.push(&amp;rdquo;&lt;option&gt;&amp;mdash;&lt;/option&gt;&amp;rdquo;);
+</span><span style="color:#c30">        Object.keys(storedTagsArrays[i]).sort().forEach(function (key) {
+</span><span style="color:#c30">        output.push(&amp;rdquo;&lt;option&gt;&amp;rdquo; + key + &amp;ldquo;&lt;/option&gt;&amp;rdquo;);
+</span><span style="color:#c30">        });
+</span><span style="color:#c30">        output.push(&amp;rdquo;&lt;/select&gt;&amp;rdquo;)
+</span><span style="color:#c30">        $(dropDowns[i]).html(output.join(&amp;ldquo;&amp;rdquo;));
+</span><span style="color:#c30">        }
+</span><span style="color:#c30">        dropDownsPopulated = true;
+</span><span style="color:#c30">        }
+</span><span style="color:#c30">        function dropFilter(srcobj)
+</span><span style="color:#c30">        {
+</span><span style="color:#c30">        // process the change of a drop-down value
+</span><span style="color:#c30">        // the ID of the drop down is either command, object, or concept
+</span><span style="color:#c30">        // these exact values are what topicsFilter() expects, plus a filter val
+</span><span style="color:#c30">        // which we get from .text() of :selected
+</span><span style="color:#c30">        console.log(&amp;ldquo;dropFilter:&amp;rdquo; + $(srcobj).attr(&amp;lsquo;id&amp;rsquo;) + &amp;ldquo;:&amp;rdquo; + $(srcobj).find(&amp;rdquo;:selected&amp;rdquo;).text());
+</span><span style="color:#c30">        topicsFilter($(srcobj).attr(&amp;lsquo;id&amp;rsquo;).replace(&amp;ldquo;#&amp;rdquo;,&amp;ldquo;&amp;rdquo;),$(srcobj).find(&amp;rdquo;:selected&amp;rdquo;).text(),&amp;ldquo;output&amp;rdquo;);
+</span><span style="color:#c30">        for(i=0;i&lt;tagName.length;i++)
+</span><span style="color:#c30">        {
+</span><span style="color:#c30">        if($(srcobj).attr(&#39;id&#39;)!=tagName[i]) selectDropDown(tagName[i],&#34;</span><span style="color:#555">--</span><span style="color:#555">-</span><span style="color:#c30">&#34;);
+</span><span style="color:#c30">        }
+</span><span style="color:#c30">        }
+</span><span style="color:#c30">        function selectDropDown(type,tag)
+</span><span style="color:#c30">        {
+</span><span style="color:#c30">        // change drop-down selection w/o filtering
+</span><span style="color:#c30">        $(&#34;</span><span style="color:#a00;background-color:#faa">#</span><span style="color:#a00;background-color:#faa">&#34;</span> <span style="color:#555">+</span> type).val(tag);
+        }
+      &lt;/<span style="color:#309;font-weight:bold">script</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">style</span>&gt;
+        #<span style="color:#0cf;font-weight:bold">filters</span> <span style="color:#309;font-weight:bold">select</span>{
+        <span style="color:#069;font-weight:bold">font-size</span>: <span style="color:#f60">14</span><span style="color:#078;font-weight:bold">px</span>;
+        <span style="color:#069;font-weight:bold">border</span>: <span style="color:#f60">1</span><span style="color:#078;font-weight:bold">px</span> <span style="color:#f60">#000</span> <span style="color:#069;font-weight:bold">solid</span>;
+        }
+        #<span style="color:#0cf;font-weight:bold">filters</span> {
+        <span style="color:#069;font-weight:bold">padding-top</span>: <span style="color:#f60">20</span><span style="color:#078;font-weight:bold">px</span>;
+        }
+      &lt;/<span style="color:#309;font-weight:bold">style</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Click tags or use the drop downs to filter. Click table headers to sort or reverse sort.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;filters&#34;</span>&gt;
+      Filter by Concept:
+      &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;conceptFilter&#34;</span> /&gt;
+      &lt;<span style="color:#309;font-weight:bold">br</span>/&gt;
+      Filter by Object:
+      &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;objectFilter&#34;</span> /&gt;
+      &lt;<span style="color:#309;font-weight:bold">br</span>/&gt;
+      Filter by Command:
+      &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;commandFilter&#34;</span> /&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;output&#34;</span> /&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">html</span>&gt;</pre></td></tr></table>
+</div>

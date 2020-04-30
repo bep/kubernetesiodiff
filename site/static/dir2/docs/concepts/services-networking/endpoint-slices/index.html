@@ -1,0 +1,371 @@
+<html>
+<body>
+<h1>
+  EndpointSlices
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/services-networking/endpoint-slices.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  EndpointSlices
+</h1>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.17
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    beta
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+  <p>
+    This feature is currently in a
+    <em>
+      beta
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain beta (e.g. v2beta3).
+    </li>
+    <li>
+      Code is well tested. Enabling the feature is considered safe. Enabled by default.
+    </li>
+    <li>
+      Support for the overall feature will not be dropped, though details may change.
+    </li>
+    <li>
+      The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+    </li>
+    <li>
+      Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+    </li>
+    <li>
+      <strong>
+        Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+      </strong>
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  <em>
+    EndpointSlices
+  </em>
+  provide a simple way to track network endpoints within a
+  Kubernetes cluster. They offer a more scalable and extensible alternative to
+  Endpoints.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#motivation">
+      Motivation
+    </a>
+  </li>
+  <li>
+    <a href="#endpointslice-resource">
+      EndpointSlice resources
+    </a>
+  </li>
+  <li>
+    <a href="#endpointslice-controller">
+      EndpointSlice Controller
+    </a>
+  </li>
+  <li>
+    <a href="#what-s-next">
+      What's next
+    </a>
+  </li>
+</ul>
+<h2 id="motivation">
+  Motivation
+</h2>
+<p>
+  The Endpoints API has provided a simple and straightforward way of
+  tracking network endpoints in Kubernetes. Unfortunately as Kubernetes clusters
+  and Services have gotten larger, limitations of that API became more visible.
+  Most notably, those included challenges with scaling to larger numbers of
+  network endpoints.
+</p>
+<p>
+  Since all network endpoints for a Service were stored in a single Endpoints
+  resource, those resources could get quite large. That affected the performance
+  of Kubernetes components (notably the master control plane) and resulted in
+  significant amounts of network traffic and processing when Endpoints changed.
+  EndpointSlices help you mitigate those issues as well as provide an extensible
+  platform for additional features such as topological routing.
+</p>
+<h2 id="endpointslice-resource">
+  EndpointSlice resources
+</h2>
+<p>
+  In Kubernetes, an EndpointSlice contains references to a set of network
+  endpoints. The EndpointSlice controller automatically creates EndpointSlices
+  for a Kubernetes Service when a
+  <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels/' target='_blank'>
+    selector
+    <span class='tooltip-text'>
+      Allows users to filter a list of resources based on labels.
+    </span>
+  </a>
+  is specified. These EndpointSlices will include
+  references to any Pods that match the Service selector. EndpointSlices group
+  network endpoints together by unique Service and Port combinations.
+  The name of a EndpointSlice object must be a valid
+  <a href="/docs/concepts/overview/working-with-objects/names#dns-subdomain-names">
+    DNS subdomain name
+  </a>
+  .
+</p>
+<p>
+  As an example, here&rsquo;s a sample EndpointSlice resource for the
+  <code>
+    example
+  </code>
+  Kubernetes Service.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>discovery.k8s.io/v1beta1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>EndpointSlice<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>example-abc<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">kubernetes.io/service-name</span>:<span style="color:#bbb"> </span>example<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">addressType</span>:<span style="color:#bbb"> </span>IPv4<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>http<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">endpoints</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">addresses</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#b44">&#34;10.1.2.3&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">conditions</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">ready</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">hostname</span>:<span style="color:#bbb"> </span>pod<span style="color:#666">-1</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">topology</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">kubernetes.io/hostname</span>:<span style="color:#bbb"> </span>node<span style="color:#666">-1</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">topology.kubernetes.io/zone</span>:<span style="color:#bbb"> </span>us-west2-a<span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  By default, EndpointSlices managed by the EndpointSlice controller will have no
+  more than 100 endpoints each. Below this scale, EndpointSlices should map 1:1
+  with Endpoints and Services and have similar performance.
+</p>
+<p>
+  EndpointSlices can act as the source of truth for kube-proxy when it comes to
+  how to route internal traffic. When enabled, they should provide a performance
+  improvement for services with large numbers of endpoints.
+</p>
+<h3 id="address-types">
+  Address Types
+</h3>
+<p>
+  EndpointSlices support three address types:
+</p>
+<ul>
+  <li>
+    IPv4
+  </li>
+  <li>
+    IPv6
+  </li>
+  <li>
+    FQDN (Fully Qualified Domain Name)
+  </li>
+</ul>
+<h3 id="topology">
+  Topology
+</h3>
+<p>
+  Each endpoint within an EndpointSlice can contain relevant topology information.
+  This is used to indicate where an endpoint is, containing information about the
+  corresponding Node, zone, and region. When the values are available, the
+  following Topology labels will be set by the EndpointSlice controller:
+</p>
+<ul>
+  <li>
+    <code>
+      kubernetes.io/hostname
+    </code>
+    - The name of the Node this endpoint is on.
+  </li>
+  <li>
+    <code>
+      topology.kubernetes.io/zone
+    </code>
+    - The zone this endpoint is in.
+  </li>
+  <li>
+    <code>
+      topology.kubernetes.io/region
+    </code>
+    - The region this endpoint is in.
+  </li>
+</ul>
+<p>
+  The values of these labels are derived from resources associated with each
+  endpoint in a slice. The hostname label represents the value of the NodeName
+  field on the corresponding Pod. The zone and region labels represent the value
+  of the labels with the same names on the corresponding Node.
+</p>
+<h3 id="management">
+  Management
+</h3>
+<p>
+  By default, EndpointSlices are created and managed by the EndpointSlice
+  controller. There are a variety of other use cases for EndpointSlices, such as
+  service mesh implementations, that could result in other entities or controllers
+  managing additional sets of EndpointSlices. To ensure that multiple entities can
+  manage EndpointSlices without interfering with each other, a
+  <code>
+    endpointslice.kubernetes.io/managed-by
+  </code>
+  label is used to indicate the entity
+  managing an EndpointSlice. The EndpointSlice controller sets
+  <code>
+    endpointslice-controller.k8s.io
+  </code>
+  as the value for this label on all
+  EndpointSlices it manages. Other entities managing EndpointSlices should also
+  set a unique value for this label.
+</p>
+<h3 id="ownership">
+  Ownership
+</h3>
+<p>
+  In most use cases, EndpointSlices will be owned by the Service that it tracks
+  endpoints for. This is indicated by an owner reference on each EndpointSlice as
+  well as a
+  <code>
+    kubernetes.io/service-name
+  </code>
+  label that enables simple lookups of all
+  EndpointSlices belonging to a Service.
+</p>
+<h2 id="endpointslice-controller">
+  EndpointSlice Controller
+</h2>
+<p>
+  The EndpointSlice controller watches Services and Pods to ensure corresponding
+  EndpointSlices are up to date. The controller will manage EndpointSlices for
+  every Service with a selector specified. These will represent the IPs of Pods
+  matching the Service selector.
+</p>
+<h3 id="size-of-endpointslices">
+  Size of EndpointSlices
+</h3>
+<p>
+  By default, EndpointSlices are limited to a size of 100 endpoints each. You can
+  configure this with the
+  <code>
+    --max-endpoints-per-slice
+  </code>
+  <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-controller-manager/' target='_blank'>
+    kube-controller-manager
+    <span class='tooltip-text'>
+      Control Plane component that runs controller processes.
+    </span>
+  </a>
+  flag up to
+  a maximum of 1000.
+</p>
+<h3 id="distribution-of-endpointslices">
+  Distribution of EndpointSlices
+</h3>
+<p>
+  Each EndpointSlice has a set of ports that applies to all endpoints within the
+  resource. When named ports are used for a Service, Pods may end up with
+  different target port numbers for the same named port, requiring different
+  EndpointSlices. This is similar to the logic behind how subsets are grouped
+  with Endpoints.
+</p>
+<p>
+  The controller tries to fill EndpointSlices as full as possible, but does not
+  actively rebalance them. The logic of the controller is fairly straightforward:
+</p>
+<ol>
+  <li>
+    Iterate through existing EndpointSlices, remove endpoints that are no longer
+    desired and update matching endpoints that have changed.
+  </li>
+  <li>
+    Iterate through EndpointSlices that have been modified in the first step and
+    fill them up with any new endpoints needed.
+  </li>
+  <li>
+    If there&rsquo;s still new endpoints left to add, try to fit them into a previously
+    unchanged slice and/or create new ones.
+  </li>
+</ol>
+<p>
+  Importantly, the third step prioritizes limiting EndpointSlice updates over a
+  perfectly full distribution of EndpointSlices. As an example, if there are 10
+  new endpoints to add and 2 EndpointSlices with room for 5 more endpoints each,
+  this approach will create a new EndpointSlice instead of filling up the 2
+  existing EndpointSlices. In other words, a single EndpointSlice creation is
+  preferrable to multiple EndpointSlice updates.
+</p>
+<p>
+  With kube-proxy running on each Node and watching EndpointSlices, every change
+  to an EndpointSlice becomes relatively expensive since it will be transmitted to
+  every Node in the cluster. This approach is intended to limit the number of
+  changes that need to be sent to every Node, even if it may result with multiple
+  EndpointSlices that are not full.
+</p>
+<p>
+  In practice, this less than ideal distribution should be rare. Most changes
+  processed by the EndpointSlice controller will be small enough to fit in an
+  existing EndpointSlice, and if not, a new EndpointSlice is likely going to be
+  necessary soon anyway. Rolling updates of Deployments also provide a natural
+  repacking of EndpointSlices with all pods and their corresponding endpoints
+  getting replaced.
+</p>
+<h2 id="what-s-next">
+  What&#39;s next
+</h2>
+<ul>
+  <li>
+    <a href="/docs/tasks/administer-cluster/enabling-endpointslices">
+      Enabling EndpointSlices
+    </a>
+  </li>
+  <li>
+    Read
+    <a href="/docs/concepts/services-networking/connect-applications-service/">
+      Connecting Applications with Services
+    </a>
+  </li>
+</ul>

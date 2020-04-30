@@ -1,0 +1,800 @@
+<html>
+  <body>
+    <h1>
+      Labels and Selectors
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/overview/working-with-objects/labels.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Labels and Selectors
+    </h1>
+    <p>
+      <em>
+        Labels
+      </em>
+      are key/value pairs that are attached to objects, such as pods.
+      Labels are intended to be used to specify identifying attributes of objects that are meaningful and relevant to users, but do not directly imply semantics to the core system.
+      Labels can be used to organize and to select subsets of objects. Labels can be attached to objects at creation time and subsequently added and modified at any time.
+      Each object can have a set of key/value labels defined. Each Key must be unique for a given object.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#b44">&#34;metadata&#34;</span><span style="">:</span> {
+  <span style="color:#008000;font-weight:bold">&#34;labels&#34;</span>: {
+    <span style="color:#008000;font-weight:bold">&#34;key1&#34;</span> : <span style="color:#b44">&#34;value1&#34;</span>,
+    <span style="color:#008000;font-weight:bold">&#34;key2&#34;</span> : <span style="color:#b44">&#34;value2&#34;</span>
+  }
+}</code></pre>
+    </div>
+    <p>
+      Labels allow for efficient queries and watches and are ideal for use in UIs and CLIs. Non-identifying information should be recorded using
+      <a href="/docs/concepts/overview/working-with-objects/annotations/">
+        annotations
+      </a>
+      .
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#motivation">
+          Motivation
+        </a>
+      </li>
+      <li>
+        <a href="#syntax-and-character-set">
+          Syntax and character set
+        </a>
+      </li>
+      <li>
+        <a href="#label-selectors">
+          Label selectors
+        </a>
+      </li>
+      <li>
+        <a href="#api">
+          API
+        </a>
+      </li>
+    </ul>
+    <h2 id="motivation">
+      Motivation
+    </h2>
+    <p>
+      Labels enable users to map their own organizational structures onto system objects in a loosely coupled fashion, without requiring clients to store these mappings.
+    </p>
+    <p>
+      Service deployments and batch processing pipelines are often multi-dimensional entities (e.g., multiple partitions or deployments, multiple release tracks, multiple tiers, multiple micro-services per tier). Management often requires cross-cutting operations, which breaks encapsulation of strictly hierarchical representations, especially rigid hierarchies determined by the infrastructure rather than by users.
+    </p>
+    <p>
+      Example labels:
+    </p>
+    <ul>
+      <li>
+        <code>
+          &quot;release&quot; : &quot;stable&quot;
+        </code>
+        ,
+        <code>
+          &quot;release&quot; : &quot;canary&quot;
+        </code>
+      </li>
+      <li>
+        <code>
+          &quot;environment&quot; : &quot;dev&quot;
+        </code>
+        ,
+        <code>
+          &quot;environment&quot; : &quot;qa&quot;
+        </code>
+        ,
+        <code>
+          &quot;environment&quot; : &quot;production&quot;
+        </code>
+      </li>
+      <li>
+        <code>
+          &quot;tier&quot; : &quot;frontend&quot;
+        </code>
+        ,
+        <code>
+          &quot;tier&quot; : &quot;backend&quot;
+        </code>
+        ,
+        <code>
+          &quot;tier&quot; : &quot;cache&quot;
+        </code>
+      </li>
+      <li>
+        <code>
+          &quot;partition&quot; : &quot;customerA&quot;
+        </code>
+        ,
+        <code>
+          &quot;partition&quot; : &quot;customerB&quot;
+        </code>
+      </li>
+      <li>
+        <code>
+          &quot;track&quot; : &quot;daily&quot;
+        </code>
+        ,
+        <code>
+          &quot;track&quot; : &quot;weekly&quot;
+        </code>
+      </li>
+    </ul>
+    <p>
+      These are just examples of commonly used labels; you are free to develop your own conventions. Keep in mind that label Key must be unique for a given object.
+    </p>
+    <h2 id="syntax-and-character-set">
+      Syntax and character set
+    </h2>
+    <p>
+      <em>
+        Labels
+      </em>
+      are key/value pairs. Valid label keys have two segments: an optional prefix and name, separated by a slash (
+      <code>
+        /
+      </code>
+      ). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character (
+      <code>
+        [a-z0-9A-Z]
+      </code>
+      ) with dashes (
+      <code>
+        -
+      </code>
+      ), underscores (
+      <code>
+        _
+      </code>
+      ), dots (
+      <code>
+        .
+      </code>
+      ), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (
+      <code>
+        .
+      </code>
+      ), not longer than 253 characters in total, followed by a slash (
+      <code>
+        /
+      </code>
+      ).
+    </p>
+    <p>
+      If the prefix is omitted, the label Key is presumed to be private to the user. Automated system components (e.g.
+      <code>
+        kube-scheduler
+      </code>
+      ,
+      <code>
+        kube-controller-manager
+      </code>
+      ,
+      <code>
+        kube-apiserver
+      </code>
+      ,
+      <code>
+        kubectl
+      </code>
+      , or other third-party automation) which add labels to end-user objects must specify a prefix.
+    </p>
+    <p>
+      The
+      <code>
+        kubernetes.io/
+      </code>
+      and
+      <code>
+        k8s.io/
+      </code>
+      prefixes are reserved for Kubernetes core components.
+    </p>
+    <p>
+      Valid label values must be 63 characters or less and must be empty or begin and end with an alphanumeric character (
+      <code>
+        [a-z0-9A-Z]
+      </code>
+      ) with dashes (
+      <code>
+        -
+      </code>
+      ), underscores (
+      <code>
+        _
+      </code>
+      ), dots (
+      <code>
+        .
+      </code>
+      ), and alphanumerics between.
+    </p>
+    <p>
+      For example, here’s the configuration file for a Pod that has two labels
+      <code>
+        environment: production
+      </code>
+      and
+      <code>
+        app: nginx
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>label-demo<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">environment</span>:<span style="color:#bbb"> </span>production<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx:<span style="color:#666">1.14.2</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span></code></pre>
+    </div>
+    <h2 id="label-selectors">
+      Label selectors
+    </h2>
+    <p>
+      Unlike
+      <a href="/docs/user-guide/identifiers">
+        names and UIDs
+      </a>
+      , labels do not provide uniqueness. In general, we expect many objects to carry the same label(s).
+    </p>
+    <p>
+      Via a
+      <em>
+        label selector
+      </em>
+      , the client/user can identify a set of objects. The label selector is the core grouping primitive in Kubernetes.
+    </p>
+    <p>
+      The API currently supports two types of selectors:
+      <em>
+        equality-based
+      </em>
+      and
+      <em>
+        set-based
+      </em>
+      .
+      A label selector can be made of multiple
+      <em>
+        requirements
+      </em>
+      which are comma-separated. In the case of multiple requirements, all must be satisfied so the comma separator acts as a logical
+      <em>
+        AND
+      </em>
+      (
+      <code>
+        &amp;&amp;
+      </code>
+      ) operator.
+    </p>
+    <p>
+      The semantics of empty or non-specified selectors are dependent on the context,
+      and API types that use selectors should document the validity and meaning of
+      them.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        For some API types, such as ReplicaSets, the label selectors of two instances must not overlap within a namespace, or the controller can see that as conflicting instructions and fail to determine how many replicas should be present.
+      </div>
+    </blockquote>
+    <blockquote class="caution">
+      <div>
+        <strong>
+          Caution:
+        </strong>
+        For both equality-based and set-based conditions there is no logical
+        <em>
+          OR
+        </em>
+        (
+        <code>
+          ||
+        </code>
+        ) operator. Ensure your filter statements are structured accordingly.
+      </div>
+    </blockquote>
+    <h3 id="equality-based-requirement">
+      <em>
+        Equality-based
+      </em>
+      requirement
+    </h3>
+    <p>
+      <em>
+        Equality-
+      </em>
+      or
+      <em>
+        inequality-based
+      </em>
+      requirements allow filtering by label keys and values. Matching objects must satisfy all of the specified label constraints, though they may have additional labels as well.
+      Three kinds of operators are admitted
+      <code>
+        =
+      </code>
+      ,
+      <code>
+        ==
+      </code>
+      ,
+      <code>
+        !=
+      </code>
+      . The first two represent
+      <em>
+        equality
+      </em>
+      (and are simply synonyms), while the latter represents
+      <em>
+        inequality
+      </em>
+      . For example:
+    </p>
+    <pre><code>environment = production
+tier != frontend</code></pre>
+    <p>
+      The former selects all resources with key equal to
+      <code>
+        environment
+      </code>
+      and value equal to
+      <code>
+        production
+      </code>
+      .
+      The latter selects all resources with key equal to
+      <code>
+        tier
+      </code>
+      and value distinct from
+      <code>
+        frontend
+      </code>
+      , and all resources with no labels with the
+      <code>
+        tier
+      </code>
+      key.
+      One could filter for resources in
+      <code>
+        production
+      </code>
+      excluding
+      <code>
+        frontend
+      </code>
+      using the comma operator:
+      <code>
+        environment=production,tier!=frontend
+      </code>
+    </p>
+    <p>
+      One usage scenario for equality-based label requirement is for Pods to specify
+      node selection criteria. For example, the sample Pod below selects nodes with
+      the label &ldquo;
+      <code>
+        accelerator=nvidia-tesla-p100
+      </code>
+      &rdquo;.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>cuda-test<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>cuda-test<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;k8s.gcr.io/cuda-vector-add:v0.1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">nvidia.com/gpu</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">nodeSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">accelerator</span>:<span style="color:#bbb"> </span>nvidia-tesla-p100</code></pre>
+    </div>
+    <h3 id="set-based-requirement">
+      <em>
+        Set-based
+      </em>
+      requirement
+    </h3>
+    <p>
+      <em>
+        Set-based
+      </em>
+      label requirements allow filtering keys according to a set of values. Three kinds of operators are supported:
+      <code>
+        in
+      </code>
+      ,
+      <code>
+        notin
+      </code>
+      and
+      <code>
+        exists
+      </code>
+      (only the key identifier). For example:
+    </p>
+    <pre><code>environment in (production, qa)
+tier notin (frontend, backend)
+partition
+!partition</code></pre>
+    <p>
+      The first example selects all resources with key equal to
+      <code>
+        environment
+      </code>
+      and value equal to
+      <code>
+        production
+      </code>
+      or
+      <code>
+        qa
+      </code>
+      .
+      The second example selects all resources with key equal to
+      <code>
+        tier
+      </code>
+      and values other than
+      <code>
+        frontend
+      </code>
+      and
+      <code>
+        backend
+      </code>
+      , and all resources with no labels with the
+      <code>
+        tier
+      </code>
+      key.
+      The third example selects all resources including a label with key
+      <code>
+        partition
+      </code>
+      ; no values are checked.
+      The fourth example selects all resources without a label with key
+      <code>
+        partition
+      </code>
+      ; no values are checked.
+      Similarly the comma separator acts as an
+      <em>
+        AND
+      </em>
+      operator. So filtering resources with a
+      <code>
+        partition
+      </code>
+      key (no matter the value) and with
+      <code>
+        environment
+      </code>
+      different than
+      <code>
+        qa
+      </code>
+      can be achieved using
+      <code>
+        partition,environment notin (qa)
+      </code>
+      .
+      The
+      <em>
+        set-based
+      </em>
+      label selector is a general form of equality since
+      <code>
+        environment=production
+      </code>
+      is equivalent to
+      <code>
+        environment in (production)
+      </code>
+      ; similarly for
+      <code>
+        !=
+      </code>
+      and
+      <code>
+        notin
+      </code>
+      .
+    </p>
+    <p>
+      <em>
+        Set-based
+      </em>
+      requirements can be mixed with
+      <em>
+        equality-based
+      </em>
+      requirements. For example:
+      <code>
+        partition in (customerA, customerB),environment!=qa
+      </code>
+      .
+    </p>
+    <h2 id="api">
+      API
+    </h2>
+    <h3 id="list-and-watch-filtering">
+      LIST and WATCH filtering
+    </h3>
+    <p>
+      LIST and WATCH operations may specify label selectors to filter the sets of objects returned using a query parameter. Both requirements are permitted (presented here as they would appear in a URL query string):
+    </p>
+    <ul>
+      <li>
+        <em>
+          equality-based
+        </em>
+        requirements:
+        <code>
+          ?labelSelector=environment%3Dproduction,tier%3Dfrontend
+        </code>
+      </li>
+      <li>
+        <em>
+          set-based
+        </em>
+        requirements:
+        <code>
+          ?labelSelector=environment+in+%28production%2Cqa%29%2Ctier+in+%28frontend%29
+        </code>
+      </li>
+    </ul>
+    <p>
+      Both label selector styles can be used to list or watch resources via a REST client. For example, targeting
+      <code>
+        apiserver
+      </code>
+      with
+      <code>
+        kubectl
+      </code>
+      and using
+      <em>
+        equality-based
+      </em>
+      one may write:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -l <span style="color:#b8860b">environment</span><span style="color:#666">=</span>production,tier<span style="color:#666">=</span>frontend</code></pre>
+    </div>
+    <p>
+      or using
+      <em>
+        set-based
+      </em>
+      requirements:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -l <span style="color:#b44">&#39;environment in (production),tier in (frontend)&#39;</span></code></pre>
+    </div>
+    <p>
+      As already mentioned
+      <em>
+        set-based
+      </em>
+      requirements are more expressive.  For instance, they can implement the
+      <em>
+        OR
+      </em>
+      operator on values:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -l <span style="color:#b44">&#39;environment in (production, qa)&#39;</span></code></pre>
+    </div>
+    <p>
+      or restricting negative matching via
+      <em>
+        exists
+      </em>
+      operator:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -l <span style="color:#b44">&#39;environment,environment notin (frontend)&#39;</span></code></pre>
+    </div>
+    <h3 id="set-references-in-api-objects">
+      Set references in API objects
+    </h3>
+    <p>
+      Some Kubernetes objects, such as
+      <a href="/docs/user-guide/services">
+        <code>
+          services
+        </code>
+      </a>
+      and
+      <a href="/docs/user-guide/replication-controller">
+        <code>
+          replicationcontrollers
+        </code>
+      </a>
+      , also use label selectors to specify sets of other resources, such as
+      <a href="/docs/user-guide/pods">
+        pods
+      </a>
+      .
+    </p>
+    <h4 id="service-and-replicationcontroller">
+      Service and ReplicationController
+    </h4>
+    <p>
+      The set of pods that a
+      <code>
+        service
+      </code>
+      targets is defined with a label selector. Similarly, the population of pods that a
+      <code>
+        replicationcontroller
+      </code>
+      should manage is also defined with a label selector.
+    </p>
+    <p>
+      Labels selectors for both objects are defined in
+      <code>
+        json
+      </code>
+      or
+      <code>
+        yaml
+      </code>
+      files using maps, and only
+      <em>
+        equality-based
+      </em>
+      requirement selectors are supported:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#b44">&#34;selector&#34;</span><span style="">:</span> {
+    <span style="color:#008000;font-weight:bold">&#34;component&#34;</span> : <span style="color:#b44">&#34;redis&#34;</span>,
+}</code></pre>
+    </div>
+    <p>
+      or
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">component</span>:<span style="color:#bbb"> </span>redis</code></pre>
+    </div>
+    <p>
+      this selector (respectively in
+      <code>
+        json
+      </code>
+      or
+      <code>
+        yaml
+      </code>
+      format) is equivalent to
+      <code>
+        component=redis
+      </code>
+      or
+      <code>
+        component in (redis)
+      </code>
+      .
+    </p>
+    <h4 id="resources-that-support-set-based-requirements">
+      Resources that support set-based requirements
+    </h4>
+    <p>
+      Newer resources, such as
+      <a href="/docs/concepts/workloads/controllers/jobs-run-to-completion/">
+        <code>
+          Job
+        </code>
+      </a>
+      ,
+      <a href="/docs/concepts/workloads/controllers/deployment/">
+        <code>
+          Deployment
+        </code>
+      </a>
+      ,
+      <a href="/docs/concepts/workloads/controllers/replicaset/">
+        <code>
+          ReplicaSet
+        </code>
+      </a>
+      , and
+      <a href="/docs/concepts/workloads/controllers/daemonset/">
+        <code>
+          DaemonSet
+        </code>
+      </a>
+      , support
+      <em>
+        set-based
+      </em>
+      requirements as well.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">component</span>:<span style="color:#bbb"> </span>redis<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">matchExpressions</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- {<span style="color:#a2f;font-weight:bold">key: tier, operator: In, values</span>:<span style="color:#bbb"> </span>[cache]}<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- {<span style="color:#a2f;font-weight:bold">key: environment, operator: NotIn, values</span>:<span style="color:#bbb"> </span>[dev]}</code></pre>
+    </div>
+    <p>
+      <code>
+        matchLabels
+      </code>
+      is a map of
+      <code>
+        {key,value}
+      </code>
+      pairs. A single
+      <code>
+        {key,value}
+      </code>
+      in the
+      <code>
+        matchLabels
+      </code>
+      map is equivalent to an element of
+      <code>
+        matchExpressions
+      </code>
+      , whose
+      <code>
+        key
+      </code>
+      field is &ldquo;key&rdquo;, the
+      <code>
+        operator
+      </code>
+      is &ldquo;In&rdquo;, and the
+      <code>
+        values
+      </code>
+      array contains only &ldquo;value&rdquo;.
+      <code>
+        matchExpressions
+      </code>
+      is a list of pod selector requirements. Valid operators include In, NotIn, Exists, and DoesNotExist. The values set must be non-empty in the case of In and NotIn. All of the requirements, from both
+      <code>
+        matchLabels
+      </code>
+      and
+      <code>
+        matchExpressions
+      </code>
+      are ANDed together &ndash; they must all be satisfied in order to match.
+    </p>
+    <h4 id="selecting-sets-of-nodes">
+      Selecting sets of nodes
+    </h4>
+    <p>
+      One use case for selecting over labels is to constrain the set of nodes onto which a pod can schedule.
+      See the documentation on
+      <a href="/docs/concepts/configuration/assign-pod-node/">
+        node selection
+      </a>
+      for more information.
+    </p>
+  </body>
+</html>

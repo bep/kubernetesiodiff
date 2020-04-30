@@ -1,0 +1,493 @@
+<html>
+<body>
+<h1>
+  Schedule GPUs
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/manage-gpus/scheduling-gpus.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Schedule GPUs
+</h1>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.10
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    beta
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+  <p>
+    This feature is currently in a
+    <em>
+      beta
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain beta (e.g. v2beta3).
+    </li>
+    <li>
+      Code is well tested. Enabling the feature is considered safe. Enabled by default.
+    </li>
+    <li>
+      Support for the overall feature will not be dropped, though details may change.
+    </li>
+    <li>
+      The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+    </li>
+    <li>
+      Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+    </li>
+    <li>
+      <strong>
+        Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+      </strong>
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  Kubernetes includes
+  <strong>
+    experimental
+  </strong>
+  support for managing AMD and NVIDIA GPUs
+  (graphical processing units) across several nodes.
+</p>
+<p>
+  This page describes how users can consume GPUs across different Kubernetes versions
+  and the current limitations.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#using-device-plugins">
+      Using device plugins
+    </a>
+  </li>
+  <li>
+    <a href="#clusters-containing-different-types-of-gpus">
+      Clusters containing different types of GPUs
+    </a>
+  </li>
+  <li>
+    <a href="#node-labeller">
+      Automatic node labelling
+    </a>
+  </li>
+</ul>
+<h2 id="using-device-plugins">
+  Using device plugins
+</h2>
+<p>
+  Kubernetes implements
+  <a class='glossary-tooltip' href='/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/' target='_blank'>
+    Device Plugins
+    <span class='tooltip-text'>
+      Software extensions to let Pods access devices that need vendor-specific initialization or setup
+    </span>
+  </a>
+  to let Pods access specialized hardware features such as GPUs.
+</p>
+<p>
+  As an administrator, you have to install GPU drivers from the corresponding
+  hardware vendor on the nodes and run the corresponding device plugin from the
+  GPU vendor:
+</p>
+<ul>
+  <li>
+    <a href="#deploying-amd-gpu-device-plugin">
+      AMD
+    </a>
+  </li>
+  <li>
+    <a href="#deploying-nvidia-gpu-device-plugin">
+      NVIDIA
+    </a>
+  </li>
+</ul>
+<p>
+  When the above conditions are true, Kubernetes will expose
+  <code>
+    amd.com/gpu
+  </code>
+  or
+  <code>
+    nvidia.com/gpu
+  </code>
+  as a schedulable resource.
+</p>
+<p>
+  You can consume these GPUs from your containers by requesting
+  <code>
+    &lt;vendor&gt;.com/gpu
+  </code>
+  just like you request
+  <code>
+    cpu
+  </code>
+  or
+  <code>
+    memory
+  </code>
+  .
+  However, there are some limitations in how you specify the resource requirements
+  when using GPUs:
+</p>
+<ul>
+  <li>
+    GPUs are only supposed to be specified in the
+    <code>
+      limits
+    </code>
+    section, which means:
+    <ul>
+      <li>
+        You can specify GPU
+        <code>
+          limits
+        </code>
+        without specifying
+        <code>
+          requests
+        </code>
+        because
+        Kubernetes will use the limit as the request value by default.
+      </li>
+      <li>
+        You can specify GPU in both
+        <code>
+          limits
+        </code>
+        and
+        <code>
+          requests
+        </code>
+        but these two values
+        must be equal.
+      </li>
+      <li>
+        You cannot specify GPU
+        <code>
+          requests
+        </code>
+        without specifying
+        <code>
+          limits
+        </code>
+        .
+      </li>
+    </ul>
+  </li>
+  <li>
+    Containers (and Pods) do not share GPUs. There&rsquo;s no overcommitting of GPUs.
+  </li>
+  <li>
+    Each container can request one or more GPUs. It is not possible to request a
+    fraction of a GPU.
+  </li>
+</ul>
+<p>
+  Here&rsquo;s an example:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>cuda-vector-add<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">restartPolicy</span>:<span style="color:#bbb"> </span>OnFailure<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>cuda-vector-add<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#080;font-style:italic"># https://github.com/kubernetes/kubernetes/blob/v1.7.11/test/images/nvidia-cuda/Dockerfile</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;k8s.gcr.io/cuda-vector-add:v0.1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">nvidia.com/gpu</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb"> </span><span style="color:#080;font-style:italic"># requesting 1 GPU</span><span style="color:#bbb">
+</span></code></pre>
+</div>
+<h3 id="deploying-amd-gpu-device-plugin">
+  Deploying AMD GPU device plugin
+</h3>
+<p>
+  The
+  <a href="https://github.com/RadeonOpenCompute/k8s-device-plugin">
+    official AMD GPU device plugin
+  </a>
+  has the following requirements:
+</p>
+<ul>
+  <li>
+    Kubernetes nodes have to be pre-installed with AMD GPU Linux driver.
+  </li>
+</ul>
+<p>
+  To deploy the AMD device plugin once your cluster is running and the above
+  requirements are satisfied:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://raw.githubusercontent.com/RadeonOpenCompute/k8s-device-plugin/v1.10/k8s-ds-amdgpu-dp.yaml</code></pre>
+</div>
+<p>
+  You can report issues with this third-party device plugin by logging an issue in
+  <a href="https://github.com/RadeonOpenCompute/k8s-device-plugin">
+    RadeonOpenCompute/k8s-device-plugin
+  </a>
+  .
+</p>
+<h3 id="deploying-nvidia-gpu-device-plugin">
+  Deploying NVIDIA GPU device plugin
+</h3>
+<p>
+  There are currently two device plugin implementations for NVIDIA GPUs:
+</p>
+<h4 id="official-nvidia-gpu-device-plugin">
+  Official NVIDIA GPU device plugin
+</h4>
+<p>
+  The
+  <a href="https://github.com/NVIDIA/k8s-device-plugin">
+    official NVIDIA GPU device plugin
+  </a>
+  has the following requirements:
+</p>
+<ul>
+  <li>
+    Kubernetes nodes have to be pre-installed with NVIDIA drivers.
+  </li>
+  <li>
+    Kubernetes nodes have to be pre-installed with
+    <a href="https://github.com/NVIDIA/nvidia-docker">
+      nvidia-docker 2.0
+    </a>
+  </li>
+  <li>
+    Kubelet must use Docker as its container runtime
+  </li>
+  <li>
+    <code>
+      nvidia-container-runtime
+    </code>
+    must be configured as the
+    <a href="https://github.com/NVIDIA/k8s-device-plugin#preparing-your-gpu-nodes">
+      default runtime
+    </a>
+    for Docker, instead of runc.
+  </li>
+  <li>
+    The version of the NVIDIA drivers must match the constraint ~= 361.93
+  </li>
+</ul>
+<p>
+  To deploy the NVIDIA device plugin once your cluster is running and the above
+  requirements are satisfied:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta4/nvidia-device-plugin.yml</code></pre>
+</div>
+<p>
+  You can report issues with this third-party device plugin by logging an issue in
+  <a href="https://github.com/NVIDIA/k8s-device-plugin">
+    NVIDIA/k8s-device-plugin
+  </a>
+  .
+</p>
+<h4 id="nvidia-gpu-device-plugin-used-by-gce">
+  NVIDIA GPU device plugin used by GCE
+</h4>
+<p>
+  The
+  <a href="https://github.com/GoogleCloudPlatform/container-engine-accelerators/tree/master/cmd/nvidia_gpu">
+    NVIDIA GPU device plugin used by GCE
+  </a>
+  doesn&rsquo;t require using nvidia-docker and should work with any container runtime
+  that is compatible with the Kubernetes Container Runtime Interface (CRI). It&rsquo;s tested
+  on
+  <a href="https://cloud.google.com/container-optimized-os/">
+    Container-Optimized OS
+  </a>
+  and has experimental code for Ubuntu from 1.9 onwards.
+</p>
+<p>
+  You can use the following commands to install the NVIDIA drivers and device plugin:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Install NVIDIA drivers on Container-Optimized OS:</span>
+kubectl create -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/stable/daemonset.yaml
+
+<span style="color:#080;font-style:italic"># Install NVIDIA drivers on Ubuntu (experimental):</span>
+kubectl create -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/stable/nvidia-driver-installer/ubuntu/daemonset.yaml
+
+<span style="color:#080;font-style:italic"># Install the device plugin:</span>
+kubectl create -f https://raw.githubusercontent.com/kubernetes/kubernetes/release-1.14/cluster/addons/device-plugins/nvidia-gpu/daemonset.yaml</code></pre>
+</div>
+<p>
+  You can report issues with using or deploying this third-party device plugin by logging an issue in
+  <a href="https://github.com/GoogleCloudPlatform/container-engine-accelerators">
+    GoogleCloudPlatform/container-engine-accelerators
+  </a>
+  .
+</p>
+<p>
+  Google publishes its own
+  <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/gpus">
+    instructions
+  </a>
+  for using NVIDIA GPUs on GKE .
+</p>
+<h2 id="clusters-containing-different-types-of-gpus">
+  Clusters containing different types of GPUs
+</h2>
+<p>
+  If different nodes in your cluster have different types of GPUs, then you
+  can use
+  <a href="/docs/tasks/configure-pod-container/assign-pods-nodes/">
+    Node Labels and Node Selectors
+  </a>
+  to schedule pods to appropriate nodes.
+</p>
+<p>
+  For example:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Label your nodes with the accelerator type they have.</span>
+kubectl label nodes &lt;node-with-k80&gt; <span style="color:#b8860b">accelerator</span><span style="color:#666">=</span>nvidia-tesla-k80
+kubectl label nodes &lt;node-with-p100&gt; <span style="color:#b8860b">accelerator</span><span style="color:#666">=</span>nvidia-tesla-p100</code></pre>
+</div>
+<h2 id="node-labeller">
+  Automatic node labelling
+</h2>
+<p>
+  If you&rsquo;re using AMD GPU devices, you can deploy
+  <a href="https://github.com/RadeonOpenCompute/k8s-device-plugin/tree/master/cmd/k8s-node-labeller">
+    Node Labeller
+  </a>
+  .
+  Node Labeller is a
+  <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+    controller
+    <span class='tooltip-text'>
+      A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
+    </span>
+  </a>
+  that automatically
+  labels your nodes with GPU device properties.
+</p>
+<p>
+  At the moment, that controller can add labels for:
+</p>
+<ul>
+  <li>
+    Device ID (-device-id)
+  </li>
+  <li>
+    VRAM Size (-vram)
+  </li>
+  <li>
+    Number of SIMD (-simd-count)
+  </li>
+  <li>
+    Number of Compute Unit (-cu-count)
+  </li>
+  <li>
+    Firmware and Feature Versions (-firmware)
+  </li>
+  <li>
+    GPU Family, in two letters acronym (-family)
+    <ul>
+      <li>
+        SI - Southern Islands
+      </li>
+      <li>
+        CI - Sea Islands
+      </li>
+      <li>
+        KV - Kaveri
+      </li>
+      <li>
+        VI - Volcanic Islands
+      </li>
+      <li>
+        CZ - Carrizo
+      </li>
+      <li>
+        AI - Arctic Islands
+      </li>
+      <li>
+        RV - Raven
+      </li>
+    </ul>
+  </li>
+</ul>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl describe node cluster-node-23</code></pre>
+</div><pre><code>    Name:               cluster-node-23
+    Roles:              &lt;none&gt;
+    Labels:             beta.amd.com/gpu.cu-count.64=1
+                        beta.amd.com/gpu.device-id.6860=1
+                        beta.amd.com/gpu.family.AI=1
+                        beta.amd.com/gpu.simd-count.256=1
+                        beta.amd.com/gpu.vram.16G=1
+                        beta.kubernetes.io/arch=amd64
+                        beta.kubernetes.io/os=linux
+                        kubernetes.io/hostname=cluster-node-23
+    Annotations:        kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                        node.alpha.kubernetes.io/ttl: 0
+    …</code></pre>
+<p>
+  With the Node Labeller in use, you can specify the GPU type in the Pod spec:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>cuda-vector-add<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">restartPolicy</span>:<span style="color:#bbb"> </span>OnFailure<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>cuda-vector-add<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#080;font-style:italic"># https://github.com/kubernetes/kubernetes/blob/v1.7.11/test/images/nvidia-cuda/Dockerfile</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;k8s.gcr.io/cuda-vector-add:v0.1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">nvidia.com/gpu</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">nodeSelector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">accelerator</span>:<span style="color:#bbb"> </span>nvidia-tesla-p100<span style="color:#bbb"> </span><span style="color:#080;font-style:italic"># or nvidia-tesla-k80 etc.</span><span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  This will ensure that the Pod will be scheduled to a node that has the GPU type
+  you specified.
+</p>

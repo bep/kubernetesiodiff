@@ -1,0 +1,737 @@
+<html>
+<body>
+<h1>
+  Logging Using Stackdriver
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/debug-application-cluster/logging-stackdriver.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Logging Using Stackdriver
+</h1>
+<p>
+  Before reading this page, it&rsquo;s highly recommended to familiarize yourself
+  with the
+  <a href="/docs/concepts/cluster-administration/logging">
+    overview of logging in Kubernetes
+  </a>
+  .
+</p>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    By default, Stackdriver logging collects only your container&rsquo;s standard output and
+    standard error streams. To collect any logs your application writes to a file (for example),
+    see the
+    <a href="/docs/concepts/cluster-administration/logging#sidecar-container-with-a-logging-agent">
+      sidecar approach
+    </a>
+    in the Kubernetes logging overview.
+  </div>
+</blockquote>
+<ul id="markdown-toc">
+  <li>
+    <a href="#deploying">
+      Deploying
+    </a>
+  </li>
+  <li>
+    <a href="#verifying-your-logging-agent-deployment">
+      Verifying your Logging Agent Deployment
+    </a>
+  </li>
+  <li>
+    <a href="#viewing-logs">
+      Viewing logs
+    </a>
+  </li>
+  <li>
+    <a href="#configuring-stackdriver-logging-agents">
+      Configuring Stackdriver Logging Agents
+    </a>
+  </li>
+</ul>
+<h2 id="deploying">
+  Deploying
+</h2>
+<p>
+  To ingest logs, you must deploy the Stackdriver Logging agent to each node in your cluster.
+  The agent is a configured
+  <code>
+    fluentd
+  </code>
+  instance, where the configuration is stored in a
+  <code>
+    ConfigMap
+  </code>
+  and the instances are managed using a Kubernetes
+  <code>
+    DaemonSet
+  </code>
+  . The actual deployment of the
+  <code>
+    ConfigMap
+  </code>
+  and
+  <code>
+    DaemonSet
+  </code>
+  for your cluster depends on your individual cluster setup.
+</p>
+<h3 id="deploying-to-a-new-cluster">
+  Deploying to a new cluster
+</h3>
+<h4 id="google-kubernetes-engine">
+  Google Kubernetes Engine
+</h4>
+<p>
+  Stackdriver is the default logging solution for clusters deployed on Google Kubernetes Engine.
+  Stackdriver Logging is deployed to a new cluster by default unless you explicitly opt-out.
+</p>
+<h4 id="other-platforms">
+  Other platforms
+</h4>
+<p>
+  To deploy Stackdriver Logging on a
+  <em>
+    new
+  </em>
+  cluster that you&rsquo;re
+  creating using
+  <code>
+    kube-up.sh
+  </code>
+  , do the following:
+</p>
+<ol>
+  <li>
+    Set the
+    <code>
+      KUBE_LOGGING_DESTINATION
+    </code>
+    environment variable to
+    <code>
+      gcp
+    </code>
+    .
+  </li>
+  <li>
+    <strong>
+      If not running on GCE
+    </strong>
+    , include the
+    <code>
+      beta.kubernetes.io/fluentd-ds-ready=true
+    </code>
+    in the
+    <code>
+      KUBE_NODE_LABELS
+    </code>
+    variable.
+  </li>
+</ol>
+<p>
+  Once your cluster has started, each node should be running the Stackdriver Logging agent.
+  The
+  <code>
+    DaemonSet
+  </code>
+  and
+  <code>
+    ConfigMap
+  </code>
+  are configured as addons. If you&rsquo;re not using
+  <code>
+    kube-up.sh
+  </code>
+  ,
+  consider starting a cluster without a pre-configured logging solution and then deploying
+  Stackdriver Logging agents to the running cluster.
+</p>
+<blockquote class="warning">
+  <div>
+    <strong>
+      Warning:
+    </strong>
+    The Stackdriver logging daemon has known issues on platforms other
+    than Google Kubernetes Engine. Proceed at your own risk.
+  </div>
+</blockquote>
+<h3 id="deploying-to-an-existing-cluster">
+  Deploying to an existing cluster
+</h3>
+<ol>
+  <li>
+    <p>
+      Apply a label on each node, if not already present.
+    </p>
+    <p>
+      The Stackdriver Logging agent deployment uses node labels to determine to which nodes
+      it should be allocated. These labels were introduced to distinguish nodes with the
+      Kubernetes version 1.6 or higher. If the cluster was created with Stackdriver Logging
+      configured and node has version 1.5.X or lower, it will have fluentd as static pod. Node
+      cannot have more than one instance of fluentd, therefore only apply labels to the nodes
+      that don&rsquo;t have fluentd pod allocated already. You can ensure that your node is labelled
+      properly by running
+      <code>
+        kubectl describe
+      </code>
+      as follows:
+    </p>
+    <pre><code>kubectl describe node $NODE_NAME</code></pre>
+    <p>
+      The output should be similar to this:
+    </p>
+    <pre><code>Name:           NODE_NAME
+Role:
+Labels:         beta.kubernetes.io/fluentd-ds-ready=true
+...</code></pre>
+    <p>
+      Ensure that the output contains the label
+      <code>
+        beta.kubernetes.io/fluentd-ds-ready=true
+      </code>
+      . If it
+      is not present, you can add it using the
+      <code>
+        kubectl label
+      </code>
+      command as follows:
+    </p>
+    <pre><code>kubectl label node $NODE_NAME beta.kubernetes.io/fluentd-ds-ready=true</code></pre>
+    <blockquote class="note">
+  </li>
+</ol>
+<div>
+  <strong>
+    Note:
+  </strong>
+  If a node fails and has to be recreated, you must re-apply the label to
+  the recreated node. To make this easier, you can use Kubelet&rsquo;s command-line parameter
+  for applying node labels in your node startup script.
+</div>
+<ol>
+  <li>
+    <p>
+      Deploy a
+      <code>
+        ConfigMap
+      </code>
+      with the logging agent configuration by running the following command:
+    </p>
+    <pre><code>kubectl apply -f https://k8s.io/examples/debug/fluentd-gcp-configmap.yaml</code></pre>
+    <p>
+      The command creates the
+      <code>
+        ConfigMap
+      </code>
+      in the
+      <code>
+        default
+      </code>
+      namespace. You can download the file
+      manually and change it before creating the
+      <code>
+        ConfigMap
+      </code>
+      object.
+    </p>
+  </li>
+  <li>
+    <p>
+      Deploy the logging agent
+      <code>
+        DaemonSet
+      </code>
+      by running the following command:
+    </p>
+    <pre><code>kubectl apply -f https://k8s.io/examples/debug/fluentd-gcp-ds.yaml</code></pre>
+    <p>
+      You can download and edit this file before using it as well.
+    </p>
+  </li>
+</ol>
+<h2 id="verifying-your-logging-agent-deployment">
+  Verifying your Logging Agent Deployment
+</h2>
+<p>
+  After Stackdriver
+  <code>
+    DaemonSet
+  </code>
+  is deployed, you can discover logging agent deployment status
+  by running the following command:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get ds --all-namespaces</code></pre>
+</div>
+<p>
+  If you have 3 nodes in the cluster, the output should looks similar to this:
+</p><pre><code>NAMESPACE     NAME               DESIRED   CURRENT   READY     NODE-SELECTOR                              AGE
+...
+default       fluentd-gcp-v2.0   3         3         3         beta.kubernetes.io/fluentd-ds-ready=true   5m
+...</code></pre>
+<p>
+  To understand how logging with Stackdriver works, consider the following
+  synthetic log generator pod specification
+  <a href="/examples/debug/counter-pod.yaml">
+    counter-pod.yaml
+  </a>
+  :
+</p>
+<table class="includecode" id="debug-counter-pod-yaml">
+  <thead>
+    <tr>
+      <th>
+        <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/debug/counter-pod.yaml" download="debug/counter-pod.yaml">
+          <code>
+            debug/counter-pod.yaml
+          </code>
+        </a>
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('debug-counter-pod-yaml')" title="Copy debug/counter-pod.yaml to clipboard">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>counter<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>count<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>busybox<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">args</span>:<span style="color:#bbb"> </span>[/bin/sh,<span style="color:#bbb"> </span>-c,<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#b44">&#39;i=0; while true; do echo &#34;$i: $(date)&#34;; i=$((i+1)); sleep 1; done&#39;</span>]<span style="color:#bbb">
+</span></code></pre>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  This pod specification has one container that runs a bash script
+  that writes out the value of a counter and the datetime once per
+  second, and runs indefinitely. Let&rsquo;s create this pod in the default namespace.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/debug/counter-pod.yaml</code></pre>
+</div>
+<p>
+  You can observe the running pod:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods</code></pre>
+</div><pre><code>NAME                                           READY     STATUS    RESTARTS   AGE
+counter                                        1/1       Running   0          5m</code></pre>
+<p>
+  For a short period of time you can observe the &lsquo;Pending&rsquo; pod status, because the kubelet
+  has to download the container image first. When the pod status changes to
+  <code>
+    Running
+  </code>
+  you can use the
+  <code>
+    kubectl logs
+  </code>
+  command to view the output of this counter pod.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl logs counter</code></pre>
+</div><pre><code>0: Mon Jan  1 00:00:00 UTC 2001
+1: Mon Jan  1 00:00:01 UTC 2001
+2: Mon Jan  1 00:00:02 UTC 2001
+...</code></pre>
+<p>
+  As described in the logging overview, this command fetches log entries
+  from the container log file. If the container is killed and then restarted by
+  Kubernetes, you can still access logs from the previous container. However,
+  if the pod is evicted from the node, log files are lost. Let&rsquo;s demonstrate this
+  by deleting the currently running counter container:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete pod counter</code></pre>
+</div><pre><code>pod &quot;counter&quot; deleted</code></pre>
+<p>
+  and then recreating it:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://k8s.io/examples/debug/counter-pod.yaml</code></pre>
+</div><pre><code>pod/counter created</code></pre>
+<p>
+  After some time, you can access logs from the counter pod again:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl logs counter</code></pre>
+</div><pre><code>0: Mon Jan  1 00:01:00 UTC 2001
+1: Mon Jan  1 00:01:01 UTC 2001
+2: Mon Jan  1 00:01:02 UTC 2001
+...</code></pre>
+<p>
+  As expected, only recent log lines are present. However, for a real-world
+  application you will likely want to be able to access logs from all containers,
+  especially for the debug purposes. This is exactly when the previously enabled
+  Stackdriver Logging can help.
+</p>
+<h2 id="viewing-logs">
+  Viewing logs
+</h2>
+<p>
+  Stackdriver Logging agent attaches metadata to each log entry, for you to use later
+  in queries to select only the messages you&rsquo;re interested in: for example,
+  the messages from a particular pod.
+</p>
+<p>
+  The most important pieces of metadata are the resource type and log name.
+  The resource type of a container log is
+  <code>
+    container
+  </code>
+  , which is named
+  <code>
+    GKE Containers
+  </code>
+  in the UI (even if the Kubernetes cluster is not on Google Kubernetes Engine).
+  The log name is the name of the container, so that if you have a pod with
+  two containers, named
+  <code>
+    container_1
+  </code>
+  and
+  <code>
+    container_2
+  </code>
+  in the spec, their logs
+  will have log names
+  <code>
+    container_1
+  </code>
+  and
+  <code>
+    container_2
+  </code>
+  respectively.
+</p>
+<p>
+  System components have resource type
+  <code>
+    compute
+  </code>
+  , which is named
+  <code>
+    GCE VM Instance
+  </code>
+  in the interface. Log names for system components are fixed.
+  For a Google Kubernetes Engine node, every log entry from a system component has one of the following
+  log names:
+</p>
+<ul>
+  <li>
+    docker
+  </li>
+  <li>
+    kubelet
+  </li>
+  <li>
+    kube-proxy
+  </li>
+</ul>
+<p>
+  You can learn more about viewing logs on
+  <a href="https://cloud.google.com/logging/docs/view/logs_viewer">
+    the dedicated Stackdriver page
+  </a>
+  .
+</p>
+<p>
+  One of the possible ways to view logs is using the
+  <a href="https://cloud.google.com/logging/docs/api/gcloud-logging">
+    <code>
+      gcloud logging
+    </code>
+  </a>
+  command line interface from the
+  <a href="https://cloud.google.com/sdk/">
+    Google Cloud SDK
+  </a>
+  .
+  It uses Stackdriver Logging
+  <a href="https://cloud.google.com/logging/docs/view/advanced_filters">
+    filtering syntax
+  </a>
+  to query specific logs. For example, you can run the following command:
+</p><pre><code class="language-none" data-lang="none">gcloud beta logging read 'logName=&quot;projects/$YOUR_PROJECT_ID/logs/count&quot;' --format json | jq '.[].textPayload'</code></pre><pre><code>...
+&quot;2: Mon Jan  1 00:01:02 UTC 2001\n&quot;
+&quot;1: Mon Jan  1 00:01:01 UTC 2001\n&quot;
+&quot;0: Mon Jan  1 00:01:00 UTC 2001\n&quot;
+...
+&quot;2: Mon Jan  1 00:00:02 UTC 2001\n&quot;
+&quot;1: Mon Jan  1 00:00:01 UTC 2001\n&quot;
+&quot;0: Mon Jan  1 00:00:00 UTC 2001\n&quot;</code></pre>
+<p>
+  As you can see, it outputs messages for the count container from both
+  the first and second runs, despite the fact that the kubelet already deleted
+  the logs for the first container.
+</p>
+<h3 id="exporting-logs">
+  Exporting logs
+</h3>
+<p>
+  You can export logs to
+  <a href="https://cloud.google.com/storage/">
+    Google Cloud Storage
+  </a>
+  or to
+  <a href="https://cloud.google.com/bigquery/">
+    BigQuery
+  </a>
+  to run further
+  analysis. Stackdriver Logging offers the concept of sinks, where you can
+  specify the destination of log entries. More information is available on
+  the Stackdriver
+  <a href="https://cloud.google.com/logging/docs/export/configure_export_v2">
+    Exporting Logs page
+  </a>
+  .
+</p>
+<h2 id="configuring-stackdriver-logging-agents">
+  Configuring Stackdriver Logging Agents
+</h2>
+<p>
+  Sometimes the default installation of Stackdriver Logging may not suit your needs, for example:
+</p>
+<ul>
+  <li>
+    You may want to add more resources because default performance doesn&rsquo;t suit your needs.
+  </li>
+  <li>
+    You may want to introduce additional parsing to extract more metadata from your log messages,
+    like severity or source code reference.
+  </li>
+  <li>
+    You may want to send logs not only to Stackdriver or send it to Stackdriver only partially.
+  </li>
+</ul>
+<p>
+  In this case you need to be able to change the parameters of
+  <code>
+    DaemonSet
+  </code>
+  and
+  <code>
+    ConfigMap
+  </code>
+  .
+</p>
+<h3 id="prerequisites">
+  Prerequisites
+</h3>
+<p>
+  If you&rsquo;re using GKE and Stackdriver Logging is enabled in your cluster, you
+  cannot change its configuration, because it&rsquo;s managed and supported by GKE.
+  However, you can disable the default integration and deploy your own.
+</p>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    You will have to support and maintain a newly deployed configuration
+    yourself: update the image and configuration, adjust the resources and so on.
+  </div>
+</blockquote>
+<p>
+  To disable the default logging integration, use the following command:
+</p><pre><code>gcloud beta container clusters update --logging-service=none CLUSTER</code></pre>
+<p>
+  You can find notes on how to then install Stackdriver Logging agents into
+  a running cluster in the
+  <a href="#deploying">
+    Deploying section
+  </a>
+  .
+</p>
+<h3 id="changing-daemonset-parameters">
+  Changing
+  <code>
+    DaemonSet
+  </code>
+  parameters
+</h3>
+<p>
+  When you have the Stackdriver Logging
+  <code>
+    DaemonSet
+  </code>
+  in your cluster, you can just modify the
+  <code>
+    template
+  </code>
+  field in its spec, daemonset controller will update the pods for you. For example,
+  let&rsquo;s assume you&rsquo;ve just installed the Stackdriver Logging as described above. Now you want to
+  change the memory limit to give fluentd more memory to safely process more logs.
+</p>
+<p>
+  Get the spec of
+  <code>
+    DaemonSet
+  </code>
+  running in your cluster:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get ds fluentd-gcp-v2.0 --namespace kube-system -o yaml &gt; fluentd-gcp-ds.yaml</code></pre>
+</div>
+<p>
+  Then edit resource requirements in the spec file and update the
+  <code>
+    DaemonSet
+  </code>
+  object
+  in the apiserver using the following command:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl replace -f fluentd-gcp-ds.yaml</code></pre>
+</div>
+<p>
+  After some time, Stackdriver Logging agent pods will be restarted with the new configuration.
+</p>
+<h3 id="changing-fluentd-parameters">
+  Changing fluentd parameters
+</h3>
+<p>
+  Fluentd configuration is stored in the
+  <code>
+    ConfigMap
+  </code>
+  object. It is effectively a set of configuration
+  files that are merged together. You can learn about fluentd configuration on the
+  <a href="http://docs.fluentd.org">
+    official
+    site
+  </a>
+  .
+</p>
+<p>
+  Imagine you want to add a new parsing logic to the configuration, so that fluentd can understand
+  default Python logging format. An appropriate fluentd filter looks similar to this:
+</p><pre><code>&lt;filter reform.**&gt;
+  type parser
+  format /^(?&lt;severity&gt;\w):(?&lt;logger_name&gt;\w):(?&lt;log&gt;.*)/
+  reserve_data true
+  suppress_parse_error_log true
+  key_name log
+&lt;/filter&gt;</code></pre>
+<p>
+  Now you have to put it in the configuration and make Stackdriver Logging agents pick it up.
+  Get the current version of the Stackdriver Logging
+  <code>
+    ConfigMap
+  </code>
+  in your cluster
+  by running the following command:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get cm fluentd-gcp-config --namespace kube-system -o yaml &gt; fluentd-gcp-configmap.yaml</code></pre>
+</div>
+<p>
+  Then in the value of the key
+  <code>
+    containers.input.conf
+  </code>
+  insert a new filter right after
+  the
+  <code>
+    source
+  </code>
+  section.
+</p>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    Order is important.
+  </div>
+</blockquote>
+<p>
+  Updating
+  <code>
+    ConfigMap
+  </code>
+  in the apiserver is more complicated than updating
+  <code>
+    DaemonSet
+  </code>
+  . It&rsquo;s better
+  to consider
+  <code>
+    ConfigMap
+  </code>
+  to be immutable. Then, in order to update the configuration, you should
+  create
+  <code>
+    ConfigMap
+  </code>
+  with a new name and then change
+  <code>
+    DaemonSet
+  </code>
+  to point to it
+  using
+  <a href="#changing-daemonset-parameters">
+    guide above
+  </a>
+  .
+</p>
+<h3 id="adding-fluentd-plugins">
+  Adding fluentd plugins
+</h3>
+<p>
+  Fluentd is written in Ruby and allows to extend its capabilities using
+  <a href="http://www.fluentd.org/plugins">
+    plugins
+  </a>
+  . If you want to use a plugin, which is not included
+  in the default Stackdriver Logging container image, you have to build a custom image. Imagine
+  you want to add Kafka sink for messages from a particular container for additional processing.
+  You can re-use the default
+  <a href="https://git.k8s.io/contrib/fluentd/fluentd-gcp-image">
+    container image sources
+  </a>
+  with minor changes:
+</p>
+<ul>
+  <li>
+    Change Makefile to point to your container repository, for example
+    <code>
+      PREFIX=gcr.io/&lt;your-project-id&gt;
+    </code>
+    .
+  </li>
+  <li>
+    Add your dependency to the Gemfile, for example
+    <code>
+      gem 'fluent-plugin-kafka'
+    </code>
+    .
+  </li>
+</ul>
+<p>
+  Then run
+  <code>
+    make build push
+  </code>
+  from this directory. After updating
+  <code>
+    DaemonSet
+  </code>
+  to pick up the
+  new image, you can use the plugin you installed in the fluentd configuration.
+</p>

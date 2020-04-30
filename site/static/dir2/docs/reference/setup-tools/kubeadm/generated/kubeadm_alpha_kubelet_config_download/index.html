@@ -1,0 +1,105 @@
+<html>
+  <body>
+    <h1></h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_kubelet_config_download.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1></h1>
+    <nav id="TableOfContents">
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <a href="#synopsis">
+                Synopsis
+              </a>
+            </li>
+            <li>
+              <a href="#examples">
+                Examples
+              </a>
+            </li>
+            <li>
+              <a href="#options">
+                Options
+              </a>
+            </li>
+            <li>
+              <a href="#options-inherited-from-parent-commands">
+                Options inherited from parent commands
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <h3 id="synopsis">
+      Synopsis
+    </h3>
+    <p>
+      Download the kubelet configuration from a ConfigMap of the form &ldquo;kubelet-config-1.X&rdquo; in the cluster, where X is the minor version of the kubelet. Either kubeadm autodetects the kubelet version by exec-ing &ldquo;kubelet &ndash;version&rdquo; or respects the &ndash;kubelet-version parameter.
+    </p>
+    <p>
+      Alpha Disclaimer: this command is currently alpha.
+    </p>
+    <pre><code>kubeadm alpha kubelet config download [flags]</code></pre>
+    <h3 id="examples">
+      Examples
+    </h3>
+    <pre><code>  # Download the kubelet configuration from the ConfigMap in the cluster. Autodetect the kubelet version.
+  kubeadm alpha phase kubelet config download
+  
+  # Download the kubelet configuration from the ConfigMap in the cluster. Use a specific desired kubelet version.
+  kubeadm alpha phase kubelet config download --kubelet-version 1.17.0</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <pre><code>&lt;tr&gt;
+  &lt;td colspan=&quot;2&quot;&gt;-h, --help&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;&lt;/td&gt;&lt;td style=&quot;line-height: 130%; word-wrap: break-word;&quot;&gt;help for download&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td colspan=&quot;2&quot;&gt;--kubeconfig string&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Default: &quot;/etc/kubernetes/admin.conf&quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;&lt;/td&gt;&lt;td style=&quot;line-height: 130%; word-wrap: break-word;&quot;&gt;The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td colspan=&quot;2&quot;&gt;--kubelet-version string&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;&lt;/td&gt;&lt;td style=&quot;line-height: 130%; word-wrap: break-word;&quot;&gt;The desired version for the kubelet. Defaults to being autodetected from 'kubelet --version'.&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <pre><code>&lt;tr&gt;
+  &lt;td colspan=&quot;2&quot;&gt;--rootfs string&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;&lt;/td&gt;&lt;td style=&quot;line-height: 130%; word-wrap: break-word;&quot;&gt;[EXPERIMENTAL] The path to the 'real' host root filesystem.&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<html>
+  <body>
+    <h1></h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_reset_phase_cleanup-node.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1></h1>
+    <nav id="TableOfContents">
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <a href="#synopsis">
+                Synopsis
+              </a>
+            </li>
+            <li>
+              <a href="#options">
+                Options
+              </a>
+            </li>
+            <li>
+              <a href="#options-inherited-from-parent-commands">
+                Options inherited from parent commands
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <h3 id="synopsis">
+      Synopsis
+    </h3>
+    <p>
+      Run cleanup node.
+    </p>
+    <pre><code>kubeadm reset phase cleanup-node [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/pki"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The path to the directory where the certificates are stored. If specified, clean this directory.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --cri-socket string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for cleanup-node
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

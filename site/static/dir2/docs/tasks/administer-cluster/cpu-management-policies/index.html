@@ -1,0 +1,549 @@
+<html>
+<body>
+<h1>
+  Control CPU Management Policies on the Node
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/administer-cluster/cpu-management-policies.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Control CPU Management Policies on the Node
+</h1>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.12
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    beta
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+  <p>
+    This feature is currently in a
+    <em>
+      beta
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain beta (e.g. v2beta3).
+    </li>
+    <li>
+      Code is well tested. Enabling the feature is considered safe. Enabled by default.
+    </li>
+    <li>
+      Support for the overall feature will not be dropped, though details may change.
+    </li>
+    <li>
+      The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+    </li>
+    <li>
+      Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+    </li>
+    <li>
+      <strong>
+        Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+      </strong>
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  Kubernetes keeps many aspects of how pods execute on nodes abstracted
+  from the user. This is by design.  However, some workloads require
+  stronger guarantees in terms of latency and/or performance in order to operate
+  acceptably. The kubelet provides methods to enable more complex workload
+  placement policies while keeping the abstraction free from explicit placement
+  directives.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#before-you-begin">
+      Before you begin
+    </a>
+  </li>
+  <li>
+    <a href="#cpu-management-policies">
+      CPU Management Policies
+    </a>
+  </li>
+</ul>
+<h2 id="before-you-begin">
+  Before you begin
+</h2>
+<p>
+  You need to have a Kubernetes cluster, and the kubectl command-line tool must
+  be configured to communicate with your cluster. If you do not already have a
+  cluster, you can create one by using
+  <a href="/docs/setup/learning-environment/minikube/">
+    Minikube
+  </a>
+  ,
+  or you can use one of these Kubernetes playgrounds:
+</p>
+<ul>
+  <li>
+    <a href="https://www.katacoda.com/courses/kubernetes/playground">
+      Katacoda
+    </a>
+  </li>
+  <li>
+    <a href="http://labs.play-with-k8s.com/">
+      Play with Kubernetes
+    </a>
+  </li>
+</ul>
+<p>
+  To check the version, enter
+  <code>
+    kubectl version
+  </code>
+  .
+</p>
+<h2 id="cpu-management-policies">
+  CPU Management Policies
+</h2>
+<p>
+  By default, the kubelet uses
+  <a href="https://en.wikipedia.org/wiki/Completely_Fair_Scheduler">
+    CFS quota
+  </a>
+  to enforce pod CPU limits.  When the node runs many CPU-bound pods,
+  the workload can move to different CPU cores depending on
+  whether the pod is throttled and which CPU cores are available at
+  scheduling time.  Many workloads are not sensitive to this migration and thus
+  work fine without any intervention.
+</p>
+<p>
+  However, in workloads where CPU cache affinity and scheduling latency
+  significantly affect workload performance, the kubelet allows alternative CPU
+  management policies to determine some placement preferences on the node.
+</p>
+<h3 id="configuration">
+  Configuration
+</h3>
+<p>
+  The CPU Manager policy is set with the
+  <code>
+    --cpu-manager-policy
+  </code>
+  kubelet
+  option. There are two supported policies:
+</p>
+<ul>
+  <li>
+    <a href="#none-policy">
+      <code>
+        none
+      </code>
+    </a>
+    : the default policy.
+  </li>
+  <li>
+    <a href="#static-policy">
+      <code>
+        static
+      </code>
+    </a>
+    : allows pods with certain resource characteristics to be
+    granted increased CPU affinity and exclusivity on the node.
+  </li>
+</ul>
+<p>
+  The CPU manager periodically writes resource updates through the CRI in
+  order to reconcile in-memory CPU assignments with cgroupfs. The reconcile
+  frequency is set through a new Kubelet configuration value
+  <code>
+    --cpu-manager-reconcile-period
+  </code>
+  . If not specified, it defaults to the same
+  duration as
+  <code>
+    --node-status-update-frequency
+  </code>
+  .
+</p>
+<h3 id="none-policy">
+  None policy
+</h3>
+<p>
+  The
+  <code>
+    none
+  </code>
+  policy explicitly enables the existing default CPU
+  affinity scheme, providing no affinity beyond what the OS scheduler does
+  automatically.  Limits on CPU usage for
+  <a href="/docs/tasks/configure-pod-container/quality-service-pod/">
+    Guaranteed pods
+  </a>
+  are enforced using CFS quota.
+</p>
+<h3 id="static-policy">
+  Static policy
+</h3>
+<p>
+  The
+  <code>
+    static
+  </code>
+  policy allows containers in
+  <code>
+    Guaranteed
+  </code>
+  pods with integer CPU
+  <code>
+    requests
+  </code>
+  access to exclusive CPUs on the node. This exclusivity is enforced
+  using the
+  <a href="https://www.kernel.org/doc/Documentation/cgroup-v1/cpusets.txt">
+    cpuset cgroup controller
+  </a>
+  .
+</p>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    System services such as the container runtime and the kubelet itself can continue to run on these exclusive CPUs.  The exclusivity only extends to other pods.
+  </div>
+</blockquote>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    CPU Manager doesn&rsquo;t support offlining and onlining of
+    CPUs at runtime. Also, if the set of online CPUs changes on the node,
+    the node must be drained and CPU manager manually reset by deleting the
+    state file
+    <code>
+      cpu_manager_state
+    </code>
+    in the kubelet root directory.
+  </div>
+</blockquote>
+<p>
+  This policy manages a shared pool of CPUs that initially contains all CPUs in the
+  node. The amount of exclusively allocatable CPUs is equal to the total
+  number of CPUs in the node minus any CPU reservations by the kubelet
+  <code>
+    --kube-reserved
+  </code>
+  or
+  <code>
+    --system-reserved
+  </code>
+  options. From 1.17, the CPU reservation list can be specified
+  explicitly by kubelet
+  <code>
+    --reserved-cpus
+  </code>
+  option. The explicit CPU list specified by
+  <code>
+    --reserved-cpus
+  </code>
+  takes precedence over the CPU reservation specified by
+  <code>
+    --kube-reserved
+  </code>
+  and
+  <code>
+    --system-reserved
+  </code>
+  . CPUs reserved by these options are taken, in
+  integer quantity, from the initial shared pool in ascending order by physical
+  core ID.  This shared pool is the set of CPUs on which any containers in
+  <code>
+    BestEffort
+  </code>
+  and
+  <code>
+    Burstable
+  </code>
+  pods run. Containers in
+  <code>
+    Guaranteed
+  </code>
+  pods with fractional
+  CPU
+  <code>
+    requests
+  </code>
+  also run on CPUs in the shared pool. Only containers that are
+  both part of a
+  <code>
+    Guaranteed
+  </code>
+  pod and have integer CPU
+  <code>
+    requests
+  </code>
+  are assigned
+  exclusive CPUs.
+</p>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    The kubelet requires a CPU reservation greater than zero be made
+    using either
+    <code>
+      --kube-reserved
+    </code>
+    and/or
+    <code>
+      --system-reserved
+    </code>
+    or
+    <code>
+      --reserved-cpus
+    </code>
+    when
+    the static policy is enabled. This is because zero CPU reservation would allow the shared
+    pool to become empty.
+  </div>
+</blockquote>
+<p>
+  As
+  <code>
+    Guaranteed
+  </code>
+  pods whose containers fit the requirements for being statically
+  assigned are scheduled to the node, CPUs are removed from the shared pool and
+  placed in the cpuset for the container. CFS quota is not used to bound
+  the CPU usage of these containers as their usage is bound by the scheduling domain
+  itself. In others words, the number of CPUs in the container cpuset is equal to the integer
+  CPU
+  <code>
+    limit
+  </code>
+  specified in the pod spec. This static assignment increases CPU
+  affinity and decreases context switches due to throttling for the CPU-bound
+  workload.
+</p>
+<p>
+  Consider the containers in the following pod specs:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  This pod runs in the
+  <code>
+    BestEffort
+  </code>
+  QoS class because no resource
+  <code>
+    requests
+  </code>
+  or
+  <code>
+    limits
+  </code>
+  are specified. It runs in the shared pool.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;100Mi&#34;</span><span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  This pod runs in the
+  <code>
+    Burstable
+  </code>
+  QoS class because resource
+  <code>
+    requests
+  </code>
+  do not
+  equal
+  <code>
+    limits
+  </code>
+  and the
+  <code>
+    cpu
+  </code>
+  quantity is not specified. It runs in the shared
+  pool.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;2&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;100Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1&#34;</span><span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  This pod runs in the
+  <code>
+    Burstable
+  </code>
+  QoS class because resource
+  <code>
+    requests
+  </code>
+  do not
+  equal
+  <code>
+    limits
+  </code>
+  . It runs in the shared pool.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;2&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;2&#34;</span><span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  This pod runs in the
+  <code>
+    Guaranteed
+  </code>
+  QoS class because
+  <code>
+    requests
+  </code>
+  are equal to
+  <code>
+    limits
+  </code>
+  .
+  And the container&rsquo;s resource limit for the CPU resource is an integer greater than
+  or equal to one. The
+  <code>
+    nginx
+  </code>
+  container is granted 2 exclusive CPUs.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1.5&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1.5&#34;</span><span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  This pod runs in the
+  <code>
+    Guaranteed
+  </code>
+  QoS class because
+  <code>
+    requests
+  </code>
+  are equal to
+  <code>
+    limits
+  </code>
+  .
+  But the container&rsquo;s resource limit for the CPU resource is a fraction. It runs in
+  the shared pool.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;200Mi&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;2&#34;</span><span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  This pod runs in the
+  <code>
+    Guaranteed
+  </code>
+  QoS class because only
+  <code>
+    limits
+  </code>
+  are specified
+  and
+  <code>
+    requests
+  </code>
+  are set equal to
+  <code>
+    limits
+  </code>
+  when not explicitly specified. And the
+  container&rsquo;s resource limit for the CPU resource is an integer greater than or
+  equal to one. The
+  <code>
+    nginx
+  </code>
+  container is granted 2 exclusive CPUs.
+</p>

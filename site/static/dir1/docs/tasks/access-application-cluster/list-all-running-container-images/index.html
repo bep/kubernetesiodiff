@@ -1,0 +1,315 @@
+<html>
+  <body>
+    <h1>
+      List All Container Images Running in a Cluster
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/access-application-cluster/list-all-running-container-images.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      List All Container Images Running in a Cluster
+    </h1>
+    <p>
+      This page shows how to use kubectl to list all of the Container images
+      for Pods running in a cluster.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#list-all-container-images-in-all-namespaces">
+          List all Container images in all namespaces
+        </a>
+      </li>
+      <li>
+        <a href="#list-container-images-by-pod">
+          List Container images by Pod
+        </a>
+      </li>
+      <li>
+        <a href="#list-container-images-filtering-by-pod-label">
+          List Container images filtering by Pod label
+        </a>
+      </li>
+      <li>
+        <a href="#list-container-images-filtering-by-pod-namespace">
+          List Container images filtering by Pod namespace
+        </a>
+      </li>
+      <li>
+        <a href="#list-container-images-using-a-go-template-instead-of-jsonpath">
+          List Container images using a go-template instead of jsonpath
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <p>
+      In this exercise you will use kubectl to fetch all of the Pods
+      running in a cluster, and format the output to pull out the list
+      of Containers for each.
+    </p>
+    <h2 id="list-all-container-images-in-all-namespaces">
+      List all Container images in all namespaces
+    </h2>
+    <ul>
+      <li>
+        Fetch all Pods in all namespaces using
+        <code>
+          kubectl get pods --all-namespaces
+        </code>
+      </li>
+      <li>
+        Format the output to include only the list of Container image names
+        using
+        <code>
+          -o jsonpath={..image}
+        </code>
+        .  This will recursively parse out the
+        <code>
+          image
+        </code>
+        field from the returned json.
+        <ul>
+          <li>
+            See the
+            <a href="/docs/user-guide/jsonpath/">
+              jsonpath reference
+            </a>
+            for further information on how to use jsonpath.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>
+          Format the output using standard tools:
+          <code>
+            tr
+          </code>
+          ,
+          <code>
+            sort
+          </code>
+          ,
+          <code>
+            uniq
+          </code>
+        </p>
+        <ul>
+          <li>
+            Use
+            <code>
+              tr
+            </code>
+            to replace spaces with newlines
+          </li>
+          <li>
+            Use
+            <code>
+              sort
+            </code>
+            to sort the results
+          </li>
+          <li>
+            <p>
+              Use
+              <code>
+                uniq
+              </code>
+              to aggregate image counts
+            </p>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl get pods --all-namespaces -o <span style="color:#b8860b">jsonpath</span><span style="color:#666">=</span><span style="color:#b44">&#34;{..image}&#34;</span> |<span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>tr -s <span style="color:#b44">&#39;[[:space:]]&#39;</span> <span style="color:#b44">&#39;\n&#39;</span> |<span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>sort |<span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>uniq -c</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p>
+      The above command will recursively return all fields named
+      <code>
+        image
+      </code>
+      for all items returned.
+    </p>
+    <p>
+      As an alternative, it is possible to use the absolute path to the image
+      field within the Pod.  This ensures the correct field is retrieved
+      even when the field name is repeated,
+      e.g. many fields are called
+      <code>
+        name
+      </code>
+      within a given item:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl get pods --all-namespaces -o <span style="color:#b8860b">jsonpath</span><span style="color:#666">=</span><span style="color:#b44">&#34;{.items[*].spec.containers[*].image}&#34;</span></code></pre>
+    </div>
+    <p>
+      The jsonpath is interpreted as follows:
+    </p>
+    <ul>
+      <li>
+        <code>
+          .items[*]
+        </code>
+        : for each returned value
+      </li>
+      <li>
+        <code>
+          .spec
+        </code>
+        : get the spec
+      </li>
+      <li>
+        <code>
+          .containers[*]
+        </code>
+        : for each container
+      </li>
+      <li>
+        <code>
+          .image
+        </code>
+        : get the image
+      </li>
+    </ul>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        When fetching a single Pod by name, for example
+        <code>
+          kubectl get pod nginx
+        </code>
+        ,
+        the
+        <code>
+          .items[*]
+        </code>
+        portion of the path should be omitted because a single
+        Pod is returned instead of a list of items.
+      </div>
+    </blockquote>
+    <h2 id="list-container-images-by-pod">
+      List Container images by Pod
+    </h2>
+    <p>
+      The formatting can be controlled further by using the
+      <code>
+        range
+      </code>
+      operation to
+      iterate over elements individually.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl get pods --all-namespaces -o<span style="color:#666">=</span><span style="color:#b8860b">jsonpath</span><span style="color:#666">=</span><span style="color:#b44">&#39;{range .items[*]}{&#34;\n&#34;}{.metadata.name}{&#34;:\t&#34;}{range .spec.containers[*]}{.image}{&#34;, &#34;}{end}{end}&#39;</span> |<span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>sort</code></pre>
+    </div>
+    <h2 id="list-container-images-filtering-by-pod-label">
+      List Container images filtering by Pod label
+    </h2>
+    <p>
+      To target only Pods matching a specific label, use the -l flag.  The
+      following matches only Pods with labels matching
+      <code>
+        app=nginx
+      </code>
+      .
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl get pods --all-namespaces -o<span style="color:#666">=</span><span style="color:#b8860b">jsonpath</span><span style="color:#666">=</span><span style="color:#b44">&#34;{..image}&#34;</span> -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>nginx</code></pre>
+    </div>
+    <h2 id="list-container-images-filtering-by-pod-namespace">
+      List Container images filtering by Pod namespace
+    </h2>
+    <p>
+      To target only pods in a specific namespace, use the namespace flag. The
+      following matches only Pods in the
+      <code>
+        kube-system
+      </code>
+      namespace.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl get pods --namespace kube-system -o <span style="color:#b8860b">jsonpath</span><span style="color:#666">=</span><span style="color:#b44">&#34;{..image}&#34;</span></code></pre>
+    </div>
+    <h2 id="list-container-images-using-a-go-template-instead-of-jsonpath">
+      List Container images using a go-template instead of jsonpath
+    </h2>
+    <p>
+      As an alternative to jsonpath, Kubectl supports using
+      <a href="https://golang.org/pkg/text/template/">
+        go-templates
+      </a>
+      for formatting the output:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubectl get pods --all-namespaces -o go-template --template<span style="color:#666">=</span><span style="color:#b44">&#34;{{range .items}}{{range .spec.containers}}{{.image}} {{end}}{{end}}&#34;</span></code></pre>
+    </div>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <h3 id="reference">
+      Reference
+    </h3>
+    <ul>
+      <li>
+        <a href="/docs/user-guide/jsonpath/">
+          Jsonpath
+        </a>
+        reference guide
+      </li>
+      <li>
+        <a href="https://golang.org/pkg/text/template/">
+          Go template
+        </a>
+        reference guide
+      </li>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,721 @@
+<div style="background-color:#f0f3f3">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f3f3"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">113
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">114
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">115
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">116
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">117
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">118
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">119
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">120
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">121
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">122
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">123
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">129
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">130
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">131
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">132
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">133
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">134
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">135
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">136
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">137
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">138
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">139
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">140
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">141
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">142
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">143
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">144
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">145
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">146
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">147
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">148
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">149
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">150
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">151
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">152
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">153
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">154
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">155
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">156
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">157
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">158
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">159
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">160
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">161
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">162
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">163
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">164
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">165
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">166
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">167
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">168
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">169
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">170
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">171
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">172
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">173
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">174
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">175
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">176
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">177
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">178
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">179
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">180
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">181
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">182
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">183
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">184
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">185
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">186
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">187
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">188
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">189
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">190
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">191
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">192
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">193
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">194
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">195
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">196
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">197
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">198
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">199
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">200
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">201
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">202
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">203
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">204
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">205
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">206
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">207
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">208
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">209
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">210
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">211
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">212
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">213
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">214
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">215
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">216
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">217
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">218
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">219
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">220
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">221
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">222
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">223
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">224
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">225
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">226
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">227
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">228
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">229
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">230
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">231
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">232
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">233
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">234
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">235
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">236
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">237
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">238
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">239
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">240
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">241
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">242
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">243
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">244
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">245
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">246
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">247
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">248
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">249
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">250
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">251
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">252
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">253
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">254
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">255
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">256
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">257
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">258
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">259
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">260
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">261
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">262
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">263
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">264
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">265
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">266
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">267
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">268
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">269
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">270
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">271
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">272
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">273
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">274
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">275
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">276
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">277
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">278
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">279
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">280
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">281
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">282
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">283
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">284
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">285
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">286
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">287
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">288
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">289
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">290
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">291
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">292
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">293
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">294
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">295
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">296
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">297
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">298
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">299
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">300
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">301
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">302
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">303
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">304
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">305
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">306
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">307
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">308
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">309
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">310
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">311
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">312
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">313
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">314
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">315
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">316
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">317
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">318
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">319
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">320
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">321
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">322
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">323
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">324
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">325
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">326
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">327
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">328
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">329
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">330
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">331
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">332
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">333
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">334
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">335
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">336
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">337
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">338
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">339
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">340
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">341
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">342
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">343
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">344
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">345
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">346
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">347
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">348
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">349
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">350
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">351
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">352
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">353
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">354
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">355
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">356
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">357
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">358
+</span></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f3f3">&lt;<span style="color:#309;font-weight:bold">html</span>&gt;
+  &lt;<span style="color:#309;font-weight:bold">body</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Assign Extended Resources to a Container
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/configure-pod-container/extended-resource.md&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;editPageButton&#34;</span> <span style="color:#309">target</span><span style="color:#555">=</span><span style="color:#c30">&#34;_blank&#34;</span>&gt;
+        Edit This Page
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h1</span>&gt;
+      Assign Extended Resources to a Container
+    &lt;/<span style="color:#309;font-weight:bold">h1</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;margin-top: 10px; margin-bottom: 10px;&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">b</span>&gt;
+        FEATURE STATE:
+      &lt;/<span style="color:#309;font-weight:bold">b</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        Kubernetes v1.18
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;feature-state-dialog-link&#34;</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;ui-state-default ui-corner-all&#34;</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;ui-icon ui-icon-newwin&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;
+        stable
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;feature-state-dialog&#34;</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;ui-dialog-content&#34;</span> <span style="color:#309">title</span><span style="color:#555">=</span><span style="color:#c30">&#34;stable&#34;</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+          This feature is
+          &lt;<span style="color:#309;font-weight:bold">em</span>&gt;
+            stable
+          &lt;/<span style="color:#309;font-weight:bold">em</span>&gt;
+          , meaning:
+        &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+            The version name is vX where X is an integer.
+          &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+            Stable versions of features will appear in released software for many subsequent versions.
+          &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">script</span>&gt;
+        $(<span style="color:#069;font-weight:bold">function</span>(){
+
+        $( <span style="color:#c30">&#34;#feature-state-dialog&#34;</span> ).dialog({
+        autoOpen<span style="color:#555">:</span> <span style="color:#069;font-weight:bold">false</span>,
+        width<span style="color:#555">:</span> <span style="color:#c30">&#34;600&#34;</span>,
+        buttons<span style="color:#555">:</span> [
+        {
+        text<span style="color:#555">:</span> <span style="color:#c30">&#34;Ok&#34;</span>,
+        click<span style="color:#555">:</span> <span style="color:#069;font-weight:bold">function</span>() {
+        $( <span style="color:#069;font-weight:bold">this</span> ).dialog( <span style="color:#c30">&#34;close&#34;</span> );
+        }
+        }
+        ]
+        });
+
+
+        $( <span style="color:#c30">&#34;#feature-state-dialog-link&#34;</span> ).click(<span style="color:#069;font-weight:bold">function</span>( event ) {
+        $( <span style="color:#c30">&#34;#feature-state-dialog&#34;</span> ).dialog( <span style="color:#c30">&#34;open&#34;</span> );
+        event.preventDefault();
+        });
+
+        });
+      &lt;/<span style="color:#309;font-weight:bold">script</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      This page shows how to assign extended resources to a Container.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;markdown-toc&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#before-you-begin&#34;</span>&gt;
+          Before you begin
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#assign-an-extended-resource-to-a-pod&#34;</span>&gt;
+          Assign an extended resource to a Pod
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#attempt-to-create-a-second-pod&#34;</span>&gt;
+          Attempt to create a second Pod
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#clean-up&#34;</span>&gt;
+          Clean up
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;#what-s-next&#34;</span>&gt;
+          What&#39;s next
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;before-you-begin&#34;</span>&gt;
+      Before you begin
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/setup/learning-environment/minikube/&#34;</span>&gt;
+        Minikube
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://www.katacoda.com/courses/kubernetes/playground&#34;</span>&gt;
+          Katacoda
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;http://labs.play-with-k8s.com/&#34;</span>&gt;
+          Play with Kubernetes
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      To check the version, enter
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        kubectl version
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      .
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Before you do this exercise, do the exercise in
+      &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/tasks/administer-cluster/extended-resource-node/&#34;</span>&gt;
+        Advertise Extended Resources for a Node
+      &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      .
+      That will configure one of your Nodes to advertise a dongle resource.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;assign-an-extended-resource-to-a-pod&#34;</span>&gt;
+      Assign an extended resource to a Pod
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      To request an extended resource, include the
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        resources:requests
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      field in your
+      Container manifest. Extended resources are fully qualified with any domain outside of
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        *.kubernetes.io/
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      . Valid extended resource names have the form
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        example.com/foo
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      where
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        example.com
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      is replaced with your organization<span style="color:#999;font-weight:bold">&amp;rsquo;</span>s domain and
+      &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+        foo
+      &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+      is a
+      descriptive resource name.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Here is the configuration file for a Pod that has one Container:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">table</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;includecode&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;pods-resource-extended-resource-pod-yaml&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">thead</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">tr</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">th</span>&gt;
+            &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/resource/extended-resource-pod.yaml&#34;</span> <span style="color:#309">download</span><span style="color:#555">=</span><span style="color:#c30">&#34;pods/resource/extended-resource-pod.yaml&#34;</span>&gt;
+              &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+                pods/resource/extended-resource-pod.yaml
+              &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+            &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+            &lt;<span style="color:#309;font-weight:bold">img</span> <span style="color:#309">src</span><span style="color:#555">=</span><span style="color:#c30">&#34;/dir1/images/copycode.svg&#34;</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;max-height:24px; cursor: pointer&#34;</span> <span style="color:#309">onclick</span><span style="color:#555">=</span><span style="color:#c30">&#34;copyCode(&#39;pods-resource-extended-resource-pod-yaml&#39;)&#34;</span> <span style="color:#309">title</span><span style="color:#555">=</span><span style="color:#c30">&#34;Copy pods/resource/extended-resource-pod.yaml to clipboard&#34;</span>&gt;
+          &lt;/<span style="color:#309;font-weight:bold">th</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">tr</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">thead</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">tbody</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">tr</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">td</span>&gt;
+            &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+              &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiVersion&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;v1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;Pod&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;extended-resource-demo&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;containers&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;extended-resource-demo-ctr&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;image&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;nginx&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;resources&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;requests&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;example.com/dongle&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;3&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;limits&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;example.com/dongle&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;3&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+            &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+          &lt;/<span style="color:#309;font-weight:bold">td</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">tr</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">tbody</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">table</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      In the configuration file, you can see that the Container requests 3 dongles.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Create a Pod:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl apply -f https://k8s.io/examples/pods/resource/extended-resource-pod.yaml&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Verify that the Pod is running:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl get pod extended-resource-demo&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Describe the Pod:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl describe pod extended-resource-demo&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The output shows dongle requests:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;Limits&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;example.com/dongle&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;3&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;Requests&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;example.com/dongle&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;3&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;attempt-to-create-a-second-pod&#34;</span>&gt;
+      Attempt to create a second Pod
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Here is the configuration file for a Pod that has one Container. The Container requests
+      two dongles.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">table</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;includecode&#34;</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;pods-resource-extended-resource-pod-2-yaml&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">thead</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">tr</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">th</span>&gt;
+            &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/resource/extended-resource-pod-2.yaml&#34;</span> <span style="color:#309">download</span><span style="color:#555">=</span><span style="color:#c30">&#34;pods/resource/extended-resource-pod-2.yaml&#34;</span>&gt;
+              &lt;<span style="color:#309;font-weight:bold">code</span>&gt;
+                pods/resource/extended-resource-pod-2.yaml
+              &lt;/<span style="color:#309;font-weight:bold">code</span>&gt;
+            &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+            &lt;<span style="color:#309;font-weight:bold">img</span> <span style="color:#309">src</span><span style="color:#555">=</span><span style="color:#c30">&#34;/dir1/images/copycode.svg&#34;</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;max-height:24px; cursor: pointer&#34;</span> <span style="color:#309">onclick</span><span style="color:#555">=</span><span style="color:#c30">&#34;copyCode(&#39;pods-resource-extended-resource-pod-2-yaml&#39;)&#34;</span> <span style="color:#309">title</span><span style="color:#555">=</span><span style="color:#c30">&#34;Copy pods/resource/extended-resource-pod-2.yaml to clipboard&#34;</span>&gt;
+          &lt;/<span style="color:#309;font-weight:bold">th</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">tr</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">thead</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">tbody</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">tr</span>&gt;
+          &lt;<span style="color:#309;font-weight:bold">td</span>&gt;
+            &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+              &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;apiVersion&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;v1&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;kind&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;Pod&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;metadata&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;extended-resource-demo&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;-2&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;spec&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;containers&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;  &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;- &lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;name&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;extended-resource-demo&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;-2&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;-ctr&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;image&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;nginx&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;resources&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;requests&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;example.com/dongle&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;2&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;      &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;limits&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;        &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#a2f;font-weight:bold&#34;</span>&gt;example.com/dongle&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;:&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt; &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;2&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+            &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+          &lt;/<span style="color:#309;font-weight:bold">td</span>&gt;
+        &lt;/<span style="color:#309;font-weight:bold">tr</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">tbody</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">table</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Kubernetes will not be able to satisfy the request for two dongles, because the first Pod
+      used three of the four available dongles.
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Attempt to create a Pod:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl apply -f https://k8s.io/examples/pods/resource/extended-resource-pod-2.yaml&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Describe the Pod
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl describe pod extended-resource-demo-2&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The output shows that the Pod cannot be scheduled, because there is no Node that has
+      2 dongles available:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">pre</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span>&gt;Conditions:
+  Type    Status
+  PodScheduled  False
+...
+Events:
+  ...
+  ... Warning   FailedScheduling  pod (extended-resource-demo-2) failed to fit in any node
+fit failure summary on nodes : Insufficient example.com/dongle (1)&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      View the Pod status:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl get pod extended-resource-demo-2&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      The output shows that the Pod was created, but not scheduled to run on a Node.
+      It has a status of Pending:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-yaml&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;yaml&#34;</span>&gt;NAME&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;                       &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;READY&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;     &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;STATUS&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;    &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;RESTARTS&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;   &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;AGE&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;extended-resource-demo&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;-2&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;   &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;0&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;/&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;1&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;       &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;Pending&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;   &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#666&#34;</span>&gt;0&lt;/<span style="color:#309;font-weight:bold">span</span>&gt;&lt;<span style="color:#309;font-weight:bold">span</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;color:#bbb&#34;</span>&gt;          &lt;/<span style="color:#309;font-weight:bold">span</span>&gt;6m&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;clean-up&#34;</span>&gt;
+      Clean up
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">p</span>&gt;
+      Delete the Pods that you created for this exercise:
+    &lt;/<span style="color:#309;font-weight:bold">p</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">div</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;highlight&#34;</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">pre</span> <span style="color:#309">style</span><span style="color:#555">=</span><span style="color:#c30">&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;</span>&gt;&lt;<span style="color:#309;font-weight:bold">code</span> <span style="color:#309">class</span><span style="color:#555">=</span><span style="color:#c30">&#34;language-shell&#34;</span> <span style="color:#309">data-lang</span><span style="color:#555">=</span><span style="color:#c30">&#34;shell&#34;</span>&gt;kubectl delete pod extended-resource-demo
+kubectl delete pod extended-resource-demo-2&lt;/<span style="color:#309;font-weight:bold">code</span>&gt;&lt;/<span style="color:#309;font-weight:bold">pre</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">div</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h2</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;what-s-next&#34;</span>&gt;
+      What<span style="color:#999;font-weight:bold">&amp;#39;</span>s next
+    &lt;/<span style="color:#309;font-weight:bold">h2</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;for-application-developers&#34;</span>&gt;
+      For application developers
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/tasks/configure-pod-container/assign-memory-resource/&#34;</span>&gt;
+          Assign Memory Resources to Containers and Pods
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/tasks/configure-pod-container/assign-cpu-resource/&#34;</span>&gt;
+          Assign CPU Resources to Containers and Pods
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">h3</span> <span style="color:#309">id</span><span style="color:#555">=</span><span style="color:#c30">&#34;for-cluster-administrators&#34;</span>&gt;
+      For cluster administrators
+    &lt;/<span style="color:#309;font-weight:bold">h3</span>&gt;
+    &lt;<span style="color:#309;font-weight:bold">ul</span>&gt;
+      &lt;<span style="color:#309;font-weight:bold">li</span>&gt;
+        &lt;<span style="color:#309;font-weight:bold">a</span> <span style="color:#309">href</span><span style="color:#555">=</span><span style="color:#c30">&#34;/docs/tasks/administer-cluster/extended-resource-node/&#34;</span>&gt;
+          Advertise Extended Resources for a Node
+        &lt;/<span style="color:#309;font-weight:bold">a</span>&gt;
+      &lt;/<span style="color:#309;font-weight:bold">li</span>&gt;
+    &lt;/<span style="color:#309;font-weight:bold">ul</span>&gt;
+  &lt;/<span style="color:#309;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#309;font-weight:bold">html</span>&gt;</pre></td></tr></table>
+</div>

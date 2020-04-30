@@ -1,0 +1,1347 @@
+<html>
+<body>
+<h1>
+  Pod Lifecycle
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/workloads/pods/pod-lifecycle.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Pod Lifecycle
+</h1>
+<p>
+  This page describes the lifecycle of a Pod.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#pod-phase">
+      Pod phase
+    </a>
+  </li>
+  <li>
+    <a href="#pod-conditions">
+      Pod conditions
+    </a>
+  </li>
+  <li>
+    <a href="#container-probes">
+      Container probes
+    </a>
+  </li>
+  <li>
+    <a href="#pod-and-container-status">
+      Pod and Container status
+    </a>
+  </li>
+  <li>
+    <a href="#container-states">
+      Container States
+    </a>
+  </li>
+  <li>
+    <a href="#pod-readiness-gate">
+      Pod readiness gate
+    </a>
+  </li>
+  <li>
+    <a href="#restart-policy">
+      Restart policy
+    </a>
+  </li>
+  <li>
+    <a href="#pod-lifetime">
+      Pod lifetime
+    </a>
+  </li>
+  <li>
+    <a href="#examples">
+      Examples
+    </a>
+  </li>
+  <li>
+    <a href="#what-s-next">
+      What's next
+    </a>
+  </li>
+</ul>
+<h2 id="pod-phase">
+  Pod phase
+</h2>
+<p>
+  A Pod&rsquo;s
+  <code>
+    status
+  </code>
+  field is a
+  <a href="/docs/reference/generated/kubernetes-api/v1.18/#podstatus-v1-core">
+    PodStatus
+  </a>
+  object, which has a
+  <code>
+    phase
+  </code>
+  field.
+</p>
+<p>
+  The phase of a Pod is a simple, high-level summary of where the Pod is in its
+  lifecycle. The phase is not intended to be a comprehensive rollup of observations
+  of Container or Pod state, nor is it intended to be a comprehensive state machine.
+</p>
+<p>
+  The number and meanings of Pod phase values are tightly guarded.
+  Other than what is documented here, nothing should be assumed about Pods that
+  have a given
+  <code>
+    phase
+  </code>
+  value.
+</p>
+<p>
+  Here are the possible values for
+  <code>
+    phase
+  </code>
+  :
+</p>
+<table>
+  <thead>
+    <tr>
+      <th align="left">
+        Value
+      </th>
+      <th align="left">
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">
+        <code>
+          Pending
+        </code>
+      </td>
+      <td align="left">
+        The Pod has been accepted by the Kubernetes system, but one or more of the Container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while.
+      </td>
+    </tr>
+    <tr>
+      <td align="left">
+        <code>
+          Running
+        </code>
+      </td>
+      <td align="left">
+        The Pod has been bound to a node, and all of the Containers have been created. At least one Container is still running, or is in the process of starting or restarting.
+      </td>
+    </tr>
+    <tr>
+      <td align="left">
+        <code>
+          Succeeded
+        </code>
+      </td>
+      <td align="left">
+        All Containers in the Pod have terminated in success, and will not be restarted.
+      </td>
+    </tr>
+    <tr>
+      <td align="left">
+        <code>
+          Failed
+        </code>
+      </td>
+      <td align="left">
+        All Containers in the Pod have terminated, and at least one Container has terminated in failure. That is, the Container either exited with non-zero status or was terminated by the system.
+      </td>
+    </tr>
+    <tr>
+      <td align="left">
+        <code>
+          Unknown
+        </code>
+      </td>
+      <td align="left">
+        For some reason the state of the Pod could not be obtained, typically due to an error in communicating with the host of the Pod.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="pod-conditions">
+  Pod conditions
+</h2>
+<p>
+  A Pod has a PodStatus, which has an array of
+  <a href="/docs/reference/generated/kubernetes-api/v1.18/#podcondition-v1-core">
+    PodConditions
+  </a>
+  through which the Pod has or has not passed. Each element of the PodCondition
+  array has six possible fields:
+</p>
+<ul>
+  <li>
+    <p>
+      The
+      <code>
+        lastProbeTime
+      </code>
+      field provides a timestamp for when the Pod condition
+      was last probed.
+    </p>
+  </li>
+  <li>
+    <p>
+      The
+      <code>
+        lastTransitionTime
+      </code>
+      field provides a timestamp for when the Pod
+      last transitioned from one status to another.
+    </p>
+  </li>
+  <li>
+    <p>
+      The
+      <code>
+        message
+      </code>
+      field is a human-readable message indicating details
+      about the transition.
+    </p>
+  </li>
+  <li>
+    <p>
+      The
+      <code>
+        reason
+      </code>
+      field is a unique, one-word, CamelCase reason for the condition&rsquo;s last transition.
+    </p>
+  </li>
+  <li>
+    <p>
+      The
+      <code>
+        status
+      </code>
+      field is a string, with possible values &ldquo;
+      <code>
+        True
+      </code>
+      &rdquo;, &ldquo;
+      <code>
+        False
+      </code>
+      &rdquo;, and &ldquo;
+      <code>
+        Unknown
+      </code>
+      &rdquo;.
+    </p>
+  </li>
+  <li>
+    <p>
+      The
+      <code>
+        type
+      </code>
+      field is a string with the following possible values:
+    </p>
+    <ul>
+      <li>
+        <code>
+          PodScheduled
+        </code>
+        : the Pod has been scheduled to a node;
+      </li>
+      <li>
+        <code>
+          Ready
+        </code>
+        : the Pod is able to serve requests and should be added to the load
+        balancing pools of all matching Services;
+      </li>
+      <li>
+        <code>
+          Initialized
+        </code>
+        : all
+        <a href="/docs/concepts/workloads/pods/init-containers">
+          init containers
+        </a>
+        have started successfully;
+      </li>
+      <li>
+        <code>
+          ContainersReady
+        </code>
+        : all containers in the Pod are ready.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="container-probes">
+  Container probes
+</h2>
+<p>
+  A
+  <a href="/docs/reference/generated/kubernetes-api/v1.18/#probe-v1-core">
+    Probe
+  </a>
+  is a diagnostic
+  performed periodically by the
+  <a href="/docs/admin/kubelet/">
+    kubelet
+  </a>
+  on a Container. To perform a diagnostic,
+  the kubelet calls a
+  <a href="https://godoc.org/k8s.io/kubernetes/pkg/api/v1#Handler">
+    Handler
+  </a>
+  implemented by
+  the Container. There are three types of handlers:
+</p>
+<ul>
+  <li>
+    <p>
+      <a href="/docs/reference/generated/kubernetes-api/v1.18/#execaction-v1-core">
+        ExecAction
+      </a>
+      :
+      Executes a specified command inside the Container. The diagnostic
+      is considered successful if the command exits with a status code of 0.
+    </p>
+  </li>
+  <li>
+    <p>
+      <a href="/docs/reference/generated/kubernetes-api/v1.18/#tcpsocketaction-v1-core">
+        TCPSocketAction
+      </a>
+      :
+      Performs a TCP check against the Container&rsquo;s IP address on
+      a specified port. The diagnostic is considered successful if the port is open.
+    </p>
+  </li>
+  <li>
+    <p>
+      <a href="/docs/reference/generated/kubernetes-api/v1.18/#httpgetaction-v1-core">
+        HTTPGetAction
+      </a>
+      :
+      Performs an HTTP Get request against the Container&rsquo;s IP
+      address on a specified port and path. The diagnostic is considered successful
+      if the response has a status code greater than or equal to 200 and less than 400.
+    </p>
+  </li>
+</ul>
+<p>
+  Each probe has one of three results:
+</p>
+<ul>
+  <li>
+    Success: The Container passed the diagnostic.
+  </li>
+  <li>
+    Failure: The Container failed the diagnostic.
+  </li>
+  <li>
+    Unknown: The diagnostic failed, so no action should be taken.
+  </li>
+</ul>
+<p>
+  The kubelet can optionally perform and react to three kinds of probes on running
+  Containers:
+</p>
+<ul>
+  <li>
+    <p>
+      <code>
+        livenessProbe
+      </code>
+      : Indicates whether the Container is running. If
+      the liveness probe fails, the kubelet kills the Container, and the Container
+      is subjected to its
+      <a href="#restart-policy">
+        restart policy
+      </a>
+      . If a Container does not
+      provide a liveness probe, the default state is
+      <code>
+        Success
+      </code>
+      .
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>
+        readinessProbe
+      </code>
+      : Indicates whether the Container is ready to service requests.
+      If the readiness probe fails, the endpoints controller removes the Pod&rsquo;s IP
+      address from the endpoints of all Services that match the Pod. The default
+      state of readiness before the initial delay is
+      <code>
+        Failure
+      </code>
+      . If a Container does
+      not provide a readiness probe, the default state is
+      <code>
+        Success
+      </code>
+      .
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>
+        startupProbe
+      </code>
+      : Indicates whether the application within the Container is started.
+      All other probes are disabled if a startup probe is provided, until it succeeds.
+      If the startup probe fails, the kubelet kills the Container, and the Container
+      is subjected to its
+      <a href="#restart-policy">
+        restart policy
+      </a>
+      . If a Container does not
+      provide a startup probe, the default state is
+      <code>
+        Success
+      </code>
+      .
+    </p>
+  </li>
+</ul>
+<h3 id="when-should-you-use-a-liveness-probe">
+  When should you use a liveness probe?
+</h3>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.0
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    stable
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+  <p>
+    This feature is
+    <em>
+      stable
+    </em>
+    , meaning:
+  </p>
+  <ul>
+    <li>
+      The version name is vX where X is an integer.
+    </li>
+    <li>
+      Stable versions of features will appear in released software for many subsequent versions.
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  If the process in your Container is able to crash on its own whenever it
+  encounters an issue or becomes unhealthy, you do not necessarily need a liveness
+  probe; the kubelet will automatically perform the correct action in accordance
+  with the Pod&rsquo;s
+  <code>
+    restartPolicy
+  </code>
+  .
+</p>
+<p>
+  If you&rsquo;d like your Container to be killed and restarted if a probe fails, then
+  specify a liveness probe, and specify a
+  <code>
+    restartPolicy
+  </code>
+  of Always or OnFailure.
+</p>
+<h3 id="when-should-you-use-a-readiness-probe">
+  When should you use a readiness probe?
+</h3>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.0
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    stable
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+  <p>
+    This feature is
+    <em>
+      stable
+    </em>
+    , meaning:
+  </p>
+  <ul>
+    <li>
+      The version name is vX where X is an integer.
+    </li>
+    <li>
+      Stable versions of features will appear in released software for many subsequent versions.
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  If you&rsquo;d like to start sending traffic to a Pod only when a probe succeeds,
+  specify a readiness probe. In this case, the readiness probe might be the same
+  as the liveness probe, but the existence of the readiness probe in the spec means
+  that the Pod will start without receiving any traffic and only start receiving
+  traffic after the probe starts succeeding.
+  If your Container needs to work on loading large data, configuration files, or migrations during startup, specify a readiness probe.
+</p>
+<p>
+  If you want your Container to be able to take itself down for maintenance, you
+  can specify a readiness probe that checks an endpoint specific to readiness that
+  is different from the liveness probe.
+</p>
+<p>
+  Note that if you just want to be able to drain requests when the Pod is deleted,
+  you do not necessarily need a readiness probe; on deletion, the Pod automatically
+  puts itself into an unready state regardless of whether the readiness probe exists.
+  The Pod remains in the unready state while it waits for the Containers in the Pod
+  to stop.
+</p>
+<h3 id="when-should-you-use-a-startup-probe">
+  When should you use a startup probe?
+</h3>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.16
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    alpha
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+  <p>
+    This feature is currently in a
+    <em>
+      alpha
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain alpha (e.g. v1alpha1).
+    </li>
+    <li>
+      Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+    </li>
+    <li>
+      Support for feature may be dropped at any time without notice.
+    </li>
+    <li>
+      The API may change in incompatible ways in a later software release without notice.
+    </li>
+    <li>
+      Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  If your Container usually starts in more than
+  <code>
+    initialDelaySeconds + failureThreshold × periodSeconds
+  </code>
+  , you should specify a startup probe that checks the same endpoint as the liveness probe. The default for
+  <code>
+    periodSeconds
+  </code>
+  is 30s.
+  You should then set its
+  <code>
+    failureThreshold
+  </code>
+  high enough to allow the Container to start, without changing the default values of the liveness probe. This helps to protect against deadlocks.
+</p>
+<p>
+  For more information about how to set up a liveness, readiness, startup probe, see
+  <a href="/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">
+    Configure Liveness, Readiness and Startup Probes
+  </a>
+  .
+</p>
+<h2 id="pod-and-container-status">
+  Pod and Container status
+</h2>
+<p>
+  For detailed information about Pod Container status, see
+  <a href="/docs/reference/generated/kubernetes-api/v1.18/#podstatus-v1-core">
+    PodStatus
+  </a>
+  and
+  <a href="/docs/reference/generated/kubernetes-api/v1.18/#containerstatus-v1-core">
+    ContainerStatus
+  </a>
+  .
+  Note that the information reported as Pod status depends on the current
+  <a href="/docs/reference/generated/kubernetes-api/v1.18/#containerstatus-v1-core">
+    ContainerState
+  </a>
+  .
+</p>
+<h2 id="container-states">
+  Container States
+</h2>
+<p>
+  Once Pod is assigned to a node by scheduler, kubelet starts creating containers using container runtime.There are three possible states of containers: Waiting, Running and Terminated. To check state of container, you can use
+  <code>
+    kubectl describe pod [POD_NAME]
+  </code>
+  . State is displayed for each container within that Pod.
+</p>
+<ul>
+  <li>
+    <p>
+      <code>
+        Waiting
+      </code>
+      : Default state of container. If container is not in either Running or Terminated state, it is in Waiting state. A container in Waiting state still runs its required operations, like pulling images, applying Secrets, etc. Along with this state, a message and reason about the state are displayed to provide more information.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">...<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">State</span>:<span style="color:#bbb">          </span>Waiting<span style="color:#bbb">
+</span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">Reason</span>:<span style="color:#bbb">       </span>ErrImagePull<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span></code></pre>
+    </div>
+  </li>
+  <li>
+    <p>
+      <code>
+        Running
+      </code>
+      : Indicates that the container is executing without issues. The
+      <code>
+        postStart
+      </code>
+      hook (if any) is executed prior to the container entering a Running state. This state also displays the time when the container entered Running state.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">...<span style="color:#bbb">
+</span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">State</span>:<span style="color:#bbb">          </span>Running<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">Started</span>:<span style="color:#bbb">      </span>Wed,<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb"> </span>Jan<span style="color:#bbb"> </span><span style="color:#666">2019</span><span style="color:#bbb"> </span><span style="color:#666">16</span>:<span style="color:#666">46</span>:<span style="color:#666">38</span><span style="color:#bbb"> </span>+<span style="color:#666">0530</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>...<span style="color:#bbb">
+</span></code></pre>
+    </div>
+  </li>
+  <li>
+    <p>
+      <code>
+        Terminated
+      </code>
+      :  Indicates that the container completed its execution and has stopped running. A container enters into this when it has successfully completed execution or when it has failed for some reason. Regardless, a reason and exit code is displayed, as well as the container&rsquo;s start and finish time. Before a container enters into Terminated,
+      <code>
+        preStop
+      </code>
+      hook (if any) is executed.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">...<span style="color:#bbb">
+</span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">State</span>:<span style="color:#bbb">          </span>Terminated<span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">Reason</span>:<span style="color:#bbb">       </span>Completed<span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">Exit Code</span>:<span style="color:#bbb">    </span><span style="color:#666">0</span><span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">Started</span>:<span style="color:#bbb">      </span>Wed,<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb"> </span>Jan<span style="color:#bbb"> </span><span style="color:#666">2019</span><span style="color:#bbb"> </span><span style="color:#666">11</span>:<span style="color:#666">45</span>:<span style="color:#666">26</span><span style="color:#bbb"> </span>+<span style="color:#666">0530</span><span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">Finished</span>:<span style="color:#bbb">     </span>Wed,<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb"> </span>Jan<span style="color:#bbb"> </span><span style="color:#666">2019</span><span style="color:#bbb"> </span><span style="color:#666">11</span>:<span style="color:#666">45</span>:<span style="color:#666">26</span><span style="color:#bbb"> </span>+<span style="color:#666">0530</span><span style="color:#bbb">
+</span><span style="color:#bbb"> </span>...<span style="color:#bbb">
+</span></code></pre>
+    </div>
+  </li>
+</ul>
+<h2 id="pod-readiness-gate">
+  Pod readiness gate
+</h2>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.14
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    stable
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+  <p>
+    This feature is
+    <em>
+      stable
+    </em>
+    , meaning:
+  </p>
+  <ul>
+    <li>
+      The version name is vX where X is an integer.
+    </li>
+    <li>
+      Stable versions of features will appear in released software for many subsequent versions.
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  In order to add extensibility to Pod readiness by enabling the injection of
+  extra feedback or signals into
+  <code>
+    PodStatus
+  </code>
+  , Kubernetes 1.11 introduced a
+  feature named
+  <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-network/0007-pod-ready%2B%2B.md">
+    Pod ready++
+  </a>
+  .
+  You can use the new field
+  <code>
+    ReadinessGate
+  </code>
+  in the
+  <code>
+    PodSpec
+  </code>
+  to specify additional
+  conditions to be evaluated for Pod readiness. If Kubernetes cannot find such a
+  condition in the
+  <code>
+    status.conditions
+  </code>
+  field of a Pod, the status of the condition
+  is default to &ldquo;
+  <code>
+    False
+  </code>
+  &rdquo;. Below is an example:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">Kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span>...<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">readinessGates</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">conditionType</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;www.example.com/feature-1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">status</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">conditions</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Ready<span style="color:#bbb">  </span><span style="color:#080;font-style:italic"># this is a builtin PodCondition</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">status</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;False&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">lastProbeTime</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">null</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">lastTransitionTime</span>:<span style="color:#bbb"> </span>2018-01-01T00:00:00Z<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;www.example.com/feature-1&#34;</span><span style="color:#bbb">   </span><span style="color:#080;font-style:italic"># an extra PodCondition</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">status</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;False&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">lastProbeTime</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">null</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">lastTransitionTime</span>:<span style="color:#bbb"> </span>2018-01-01T00:00:00Z<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containerStatuses</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">containerID</span>:<span style="color:#bbb"> </span>docker://abcd...<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">ready</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>...<span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  The new Pod conditions must comply with Kubernetes
+  <a href="/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set">
+    label key format
+  </a>
+  .
+  Since the
+  <code>
+    kubectl patch
+  </code>
+  command still doesn&rsquo;t support patching object status,
+  the new Pod conditions have to be injected through the
+  <code>
+    PATCH
+  </code>
+  action using
+  one of the
+  <a href="/docs/reference/using-api/client-libraries/">
+    KubeClient libraries
+  </a>
+  .
+</p>
+<p>
+  With the introduction of new Pod conditions, a Pod is evaluated to be ready
+  <strong>
+    only
+  </strong>
+  when both the following statements are true:
+</p>
+<ul>
+  <li>
+    All containers in the Pod are ready.
+  </li>
+  <li>
+    All conditions specified in
+    <code>
+      ReadinessGates
+    </code>
+    are &ldquo;
+    <code>
+      True
+    </code>
+    &rdquo;.
+  </li>
+</ul>
+<p>
+  To facilitate this change to Pod readiness evaluation, a new Pod condition
+  <code>
+    ContainersReady
+  </code>
+  is introduced to capture the old Pod
+  <code>
+    Ready
+  </code>
+  condition.
+</p>
+<h2 id="restart-policy">
+  Restart policy
+</h2>
+<p>
+  A PodSpec has a
+  <code>
+    restartPolicy
+  </code>
+  field with possible values Always, OnFailure,
+  and Never. The default value is Always.
+  <code>
+    restartPolicy
+  </code>
+  applies to all Containers in the Pod.
+  <code>
+    restartPolicy
+  </code>
+  only
+  refers to restarts of the Containers by the kubelet on the same node. Exited
+  Containers that are restarted by the kubelet are restarted with an exponential
+  back-off delay (10s, 20s, 40s &hellip;) capped at five minutes, and is reset after ten
+  minutes of successful execution. As discussed in the
+  <a href="/docs/user-guide/pods/#durability-of-pods-or-lack-thereof">
+    Pods document
+  </a>
+  ,
+  once bound to a node, a Pod will never be rebound to another node.
+</p>
+<h2 id="pod-lifetime">
+  Pod lifetime
+</h2>
+<p>
+  In general, Pods remain until a human or controller process explicitly removes them.
+  The control plane cleans up terminated Pods (with a phase of
+  <code>
+    Succeeded
+  </code>
+  or
+  <code>
+    Failed
+  </code>
+  ), when the number of Pods exceeds the configured threshold
+  (determined by
+  <code>
+    terminated-pod-gc-threshold
+  </code>
+  in the kube-controller-manager).
+  This avoids a resource leak as Pods are created and terminated over time.
+</p>
+<p>
+  Three types of controllers are available:
+</p>
+<ul>
+  <li>
+    <p>
+      Use a
+      <a href="/docs/concepts/jobs/run-to-completion-finite-workloads/">
+        Job
+      </a>
+      for Pods that are expected to terminate,
+      for example, batch computations. Jobs are appropriate only for Pods with
+      <code>
+        restartPolicy
+      </code>
+      equal to OnFailure or Never.
+    </p>
+  </li>
+  <li>
+    <p>
+      Use a
+      <a href="/docs/concepts/workloads/controllers/replicationcontroller/">
+        ReplicationController
+      </a>
+      ,
+      <a href="/docs/concepts/workloads/controllers/replicaset/">
+        ReplicaSet
+      </a>
+      , or
+      <a href="/docs/concepts/workloads/controllers/deployment/">
+        Deployment
+      </a>
+      for Pods that are not expected to terminate, for example, web servers.
+      ReplicationControllers are appropriate only for Pods with a
+      <code>
+        restartPolicy
+      </code>
+      of
+      Always.
+    </p>
+  </li>
+  <li>
+    <p>
+      Use a
+      <a href="/docs/concepts/workloads/controllers/daemonset/">
+        DaemonSet
+      </a>
+      for Pods that need to run one per
+      machine, because they provide a machine-specific system service.
+    </p>
+  </li>
+</ul>
+<p>
+  All three types of controllers contain a PodTemplate. It
+  is recommended to create the appropriate controller and let
+  it create Pods, rather than directly create Pods yourself. That is because Pods
+  alone are not resilient to machine failures, but controllers are.
+</p>
+<p>
+  If a node dies or is disconnected from the rest of the cluster, Kubernetes
+  applies a policy for setting the
+  <code>
+    phase
+  </code>
+  of all Pods on the lost node to Failed.
+</p>
+<h2 id="examples">
+  Examples
+</h2>
+<h3 id="advanced-liveness-probe-example">
+  Advanced liveness probe example
+</h3>
+<p>
+  Liveness probes are executed by the kubelet, so all requests are made in the
+  kubelet network namespace.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">test</span>:<span style="color:#bbb"> </span>liveness<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>liveness-http<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">args</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- /server<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>k8s.gcr.io/liveness<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">livenessProbe</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">httpGet</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#080;font-style:italic"># when &#34;host&#34; is not defined, &#34;PodIP&#34; will be used</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#080;font-style:italic"># host: my-host</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#080;font-style:italic"># when &#34;scheme&#34; is not defined, &#34;HTTP&#34; scheme will be used. Only &#34;HTTP&#34; and &#34;HTTPS&#34; are allowed</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#080;font-style:italic"># scheme: HTTPS</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">path</span>:<span style="color:#bbb"> </span>/healthz<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">8080</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">httpHeaders</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>X-Custom-Header<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span>Awesome<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">initialDelaySeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">15</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">timeoutSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>liveness<span style="color:#bbb">
+</span></code></pre>
+</div>
+<h3 id="example-states">
+  Example states
+</h3>
+<ul>
+  <li>
+    <p>
+      Pod is running and has one Container. Container exits with success.
+    </p>
+    <ul>
+      <li>
+        Log completion event.
+      </li>
+      <li>
+        If
+        <code>
+          restartPolicy
+        </code>
+        is:
+        <ul>
+          <li>
+            Always: Restart Container; Pod
+            <code>
+              phase
+            </code>
+            stays Running.
+          </li>
+          <li>
+            OnFailure: Pod
+            <code>
+              phase
+            </code>
+            becomes Succeeded.
+          </li>
+          <li>
+            Never: Pod
+            <code>
+              phase
+            </code>
+            becomes Succeeded.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      Pod is running and has one Container. Container exits with failure.
+    </p>
+    <ul>
+      <li>
+        Log failure event.
+      </li>
+      <li>
+        If
+        <code>
+          restartPolicy
+        </code>
+        is:
+        <ul>
+          <li>
+            Always: Restart Container; Pod
+            <code>
+              phase
+            </code>
+            stays Running.
+          </li>
+          <li>
+            OnFailure: Restart Container; Pod
+            <code>
+              phase
+            </code>
+            stays Running.
+          </li>
+          <li>
+            Never: Pod
+            <code>
+              phase
+            </code>
+            becomes Failed.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      Pod is running and has two Containers. Container 1 exits with failure.
+    </p>
+    <ul>
+      <li>
+        Log failure event.
+      </li>
+      <li>
+        If
+        <code>
+          restartPolicy
+        </code>
+        is:
+        <ul>
+          <li>
+            Always: Restart Container; Pod
+            <code>
+              phase
+            </code>
+            stays Running.
+          </li>
+          <li>
+            OnFailure: Restart Container; Pod
+            <code>
+              phase
+            </code>
+            stays Running.
+          </li>
+          <li>
+            Never: Do not restart Container; Pod
+            <code>
+              phase
+            </code>
+            stays Running.
+          </li>
+        </ul>
+      </li>
+      <li>
+        If Container 1 is not running, and Container 2 exits:
+        <ul>
+          <li>
+            Log failure event.
+          </li>
+          <li>
+            If
+            <code>
+              restartPolicy
+            </code>
+            is:
+            <ul>
+              <li>
+                Always: Restart Container; Pod
+                <code>
+                  phase
+                </code>
+                stays Running.
+              </li>
+              <li>
+                OnFailure: Restart Container; Pod
+                <code>
+                  phase
+                </code>
+                stays Running.
+              </li>
+              <li>
+                Never: Pod
+                <code>
+                  phase
+                </code>
+                becomes Failed.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      Pod is running and has one Container. Container runs out of memory.
+    </p>
+    <ul>
+      <li>
+        Container terminates in failure.
+      </li>
+      <li>
+        Log OOM event.
+      </li>
+      <li>
+        If
+        <code>
+          restartPolicy
+        </code>
+        is:
+        <ul>
+          <li>
+            Always: Restart Container; Pod
+            <code>
+              phase
+            </code>
+            stays Running.
+          </li>
+          <li>
+            OnFailure: Restart Container; Pod
+            <code>
+              phase
+            </code>
+            stays Running.
+          </li>
+          <li>
+            Never: Log failure event; Pod
+            <code>
+              phase
+            </code>
+            becomes Failed.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      Pod is running, and a disk dies.
+    </p>
+    <ul>
+      <li>
+        Kill all Containers.
+      </li>
+      <li>
+        Log appropriate event.
+      </li>
+      <li>
+        Pod
+        <code>
+          phase
+        </code>
+        becomes Failed.
+      </li>
+      <li>
+        If running under a controller, Pod is recreated elsewhere.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      Pod is running, and its node is segmented out.
+    </p>
+    <ul>
+      <li>
+        Node controller waits for timeout.
+      </li>
+      <li>
+        Node controller sets Pod
+        <code>
+          phase
+        </code>
+        to Failed.
+      </li>
+      <li>
+        If running under a controller, Pod is recreated elsewhere.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="what-s-next">
+  What&#39;s next
+</h2>
+<ul>
+  <li>
+    <p>
+      Get hands-on experience
+      <a href="/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/">
+        attaching handlers to Container lifecycle events
+      </a>
+      .
+    </p>
+  </li>
+  <li>
+    <p>
+      Get hands-on experience
+      <a href="/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">
+        Configure Liveness, Readiness and Startup Probes
+      </a>
+      .
+    </p>
+  </li>
+  <li>
+    <p>
+      Learn more about
+      <a href="/docs/concepts/containers/container-lifecycle-hooks/">
+        Container lifecycle hooks
+      </a>
+      .
+    </p>
+  </li>
+</ul>

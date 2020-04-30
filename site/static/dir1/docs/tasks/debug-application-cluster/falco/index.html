@@ -1,0 +1,211 @@
+<html>
+  <body>
+    <h1>
+      Auditing with Falco
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/debug-application-cluster/falco.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Auditing with Falco
+    </h1>
+    <h3 id="use-falco-to-collect-audit-events">
+      Use Falco to collect audit events
+    </h3>
+    <p>
+      <a href="https://falco.org/">
+        Falco
+      </a>
+      is an open source project for intrusion and abnormality detection for Cloud Native platforms.
+      This section describes how to set up Falco, how to send audit events to the Kubernetes Audit endpoint exposed by Falco, and how Falco applies a set of rules to automatically detect suspicious behavior.
+    </p>
+    <ul id="markdown-toc"></ul>
+    <h4 id="install-falco">
+      Install Falco
+    </h4>
+    <p>
+      Install Falco by using one of the following methods:
+    </p>
+    <ul>
+      <li>
+        <a href="https://falco.org/docs/installation">
+          Standalone Falco
+        </a>
+      </li>
+      <li>
+        <a href="https://falco.org/docs/installation">
+          Kubernetes DaemonSet
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/helm/charts/tree/master/stable/falco">
+          Falco Helm Chart
+        </a>
+      </li>
+    </ul>
+    <p>
+      Once Falco is installed make sure it is configured to expose the Audit webhook. To do so, use the following configuration:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">webserver</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">enabled</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">listen_port</span>:<span style="color:#bbb"> </span><span style="color:#666">8765</span><span style="color:#bbb">
+</span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">k8s_audit_endpoint</span>:<span style="color:#bbb"> </span>/k8s_audit<span style="color:#bbb">
+</span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">ssl_enabled</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">false</span><span style="color:#bbb">
+</span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">ssl_certificate</span>:<span style="color:#bbb"> </span>/etc/falco/falco.pem</code></pre>
+    </div>
+    <p>
+      This configuration is typically found in the
+      <code>
+        /etc/falco/falco.yaml
+      </code>
+      file. If Falco is installed as a Kubernetes DaemonSet, edit the
+      <code>
+        falco-config
+      </code>
+      ConfigMap and add this configuration.
+    </p>
+    <h4 id="configure-kubernetes-audit">
+      Configure Kubernetes Audit
+    </h4>
+    <ol>
+      <li>
+        <p>
+          Create a
+          <a href="/docs/concepts/configuration/organize-cluster-access-kubeconfig/">
+            kubeconfig file
+          </a>
+          for the
+          <a href="/docs/admin/kube-apiserver">
+            kube-apiserver
+          </a>
+          webhook audit backend.
+        </p>
+        <pre><code>cat &lt;&lt;EOF &gt; /etc/kubernetes/audit-webhook-kubeconfig
+apiVersion: v1
+kind: Config
+clusters:
+- cluster:
+    server: http://&lt;ip_of_falco&gt;:8765/k8s_audit
+  name: falco
+contexts:
+- context:
+    cluster: falco
+    user: &#34;&#34;
+  name: default-context
+current-context: default-context
+preferences: {}
+users: []
+EOF</code></pre>
+      </li>
+      <li>
+        <p>
+          Start
+          <a href="/docs/admin/kube-apiserver">
+            kube-apiserver
+          </a>
+          with the following options:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">--audit-policy-file<span style="color:#666">=</span>/etc/kubernetes/audit-policy.yaml --audit-webhook-config-file<span style="color:#666">=</span>/etc/kubernetes/audit-webhook-kubeconfig</code></pre>
+        </div>
+      </li>
+    </ol>
+    <h4 id="audit-rules">
+      Audit Rules
+    </h4>
+    <p>
+      Rules devoted to Kubernetes Audit Events can be found in
+      <a href="https://github.com/falcosecurity/falco/blob/master/rules/k8s_audit_rules.yaml">
+        k8s_audit_rules.yaml
+      </a>
+      . If Audit Rules is installed as a native package or using the official Docker images, Falco copies the rules file to
+      <code>
+        /etc/falco/
+      </code>
+      , so they are available for use.
+    </p>
+    <p>
+      There are three classes of rules.
+    </p>
+    <p>
+      The first class of rules looks for suspicious or exceptional activities, such as:
+    </p>
+    <ul>
+      <li>
+        Any activity by an unauthorized or anonymous user.
+      </li>
+      <li>
+        Creating a pod with an unknown or disallowed image.
+      </li>
+      <li>
+        Creating a privileged pod, a pod mounting a sensitive filesystem from the host, or a pod using host networking.
+      </li>
+      <li>
+        Creating a NodePort service.
+      </li>
+      <li>
+        Creating a ConfigMap containing private credentials, such as passwords and cloud provider secrets.
+      </li>
+      <li>
+        Attaching to or executing a command on a running pod.
+      </li>
+      <li>
+        Creating a namespace external to a set of allowed namespaces.
+      </li>
+      <li>
+        Creating a pod or service account in the kube-system or kube-public namespaces.
+      </li>
+      <li>
+        Trying to modify or delete a system ClusterRole.
+      </li>
+      <li>
+        Creating a ClusterRoleBinding to the cluster-admin role.
+      </li>
+      <li>
+        Creating a ClusterRole with wildcarded verbs or resources. For example,  overly permissive.
+      </li>
+      <li>
+        Creating a ClusterRole with write permissions or a ClusterRole that can execute commands on pods.
+      </li>
+    </ul>
+    <p>
+      A second class of rules tracks resources being created or destroyed, including:
+    </p>
+    <ul>
+      <li>
+        Deployments
+      </li>
+      <li>
+        Services
+      </li>
+      <li>
+        ConfigMaps
+      </li>
+      <li>
+        Namespaces
+      </li>
+      <li>
+        Service accounts
+      </li>
+      <li>
+        Role/ClusterRoles
+      </li>
+      <li>
+        Role/ClusterRoleBindings
+      </li>
+    </ul>
+    <p>
+      The final class of rules simply displays any Audit Event received by Falco. This rule is disabled by default, as it can be quite noisy.
+    </p>
+    <p>
+      For further details, see
+      <a href="https://falco.org/docs/event-sources/kubernetes-audit">
+        Kubernetes Audit Events
+      </a>
+      in the Falco documentation.
+    </p>
+  </body>
+</html>

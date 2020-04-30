@@ -1,0 +1,304 @@
+<html>
+  <body>
+    <h1>
+      Advertise Extended Resources for a Node
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/administer-cluster/extended-resource-node.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Advertise Extended Resources for a Node
+    </h1>
+    <p>
+      This page shows how to specify extended resources for a Node.
+      Extended resources allow cluster administrators to advertise node-level
+      resources that would otherwise be unknown to Kubernetes.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#get-the-names-of-your-nodes">
+          Get the names of your Nodes
+        </a>
+      </li>
+      <li>
+        <a href="#advertise-a-new-extended-resource-on-one-of-your-nodes">
+          Advertise a new extended resource on one of your Nodes
+        </a>
+      </li>
+      <li>
+        <a href="#discussion">
+          Discussion
+        </a>
+      </li>
+      <li>
+        <a href="#clean-up">
+          Clean up
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="get-the-names-of-your-nodes">
+      Get the names of your Nodes
+    </h2>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get nodes</code></pre>
+    </div>
+    <p>
+      Choose one of your Nodes to use for this exercise.
+    </p>
+    <h2 id="advertise-a-new-extended-resource-on-one-of-your-nodes">
+      Advertise a new extended resource on one of your Nodes
+    </h2>
+    <p>
+      To advertise a new extended resource on a Node, send an HTTP PATCH request to
+      the Kubernetes API server. For example, suppose one of your Nodes has four dongles
+      attached. Here&rsquo;s an example of a PATCH request that advertises four dongle resources
+      for your Node.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">PATCH /api/v1/nodes/&lt;your-node-name&gt;/status HTTP/1.1
+Accept: application/json
+Content-Type: application/json-patch+json
+Host: k8s-master:8080
+
+<span style="color:#666">[</span>
+  <span style="color:#666">{</span>
+    <span style="color:#b44">&#34;op&#34;</span>: <span style="color:#b44">&#34;add&#34;</span>,
+    <span style="color:#b44">&#34;path&#34;</span>: <span style="color:#b44">&#34;/status/capacity/example.com~1dongle&#34;</span>,
+    <span style="color:#b44">&#34;value&#34;</span>: <span style="color:#b44">&#34;4&#34;</span>
+  <span style="color:#666">}</span>
+<span style="color:#666">]</span></code></pre>
+    </div>
+    <p>
+      Note that Kubernetes does not need to know what a dongle is or what a dongle is for.
+      The preceding PATCH request just tells Kubernetes that your Node has four things that
+      you call dongles.
+    </p>
+    <p>
+      Start a proxy, so that you can easily send requests to the Kubernetes API server:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl proxy</code></pre>
+    </div>
+    <p>
+      In another command window, send the HTTP PATCH request.
+      Replace
+      <code>
+        &lt;your-node-name&gt;
+      </code>
+      with the name of your Node:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl --header <span style="color:#b44">&#34;Content-Type: application/json-patch+json&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>--request PATCH <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>--data <span style="color:#b44">&#39;[{&#34;op&#34;: &#34;add&#34;, &#34;path&#34;: &#34;/status/capacity/example.com~1dongle&#34;, &#34;value&#34;: &#34;4&#34;}]&#39;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>http://localhost:8001/api/v1/nodes/&lt;your-node-name&gt;/status</code></pre>
+    </div>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        In the preceding request,
+        <code>
+          ~1
+        </code>
+        is the encoding for the character / in
+        the patch path. The operation path value in JSON-Patch is interpreted as a
+        JSON-Pointer. For more details, see
+        <a href="https://tools.ietf.org/html/rfc6901">
+          IETF RFC 6901
+        </a>
+        , section 3.
+      </div>
+    </blockquote>
+    <p>
+      The output shows that the Node has a capacity of 4 dongles:
+    </p>
+    <pre><code>&#34;capacity&#34;: {
+  &#34;cpu&#34;: &#34;2&#34;,
+  &#34;memory&#34;: &#34;2049008Ki&#34;,
+  &#34;example.com/dongle&#34;: &#34;4&#34;,</code></pre>
+    <p>
+      Describe your Node:
+    </p>
+    <pre><code>kubectl describe node &lt;your-node-name&gt;</code></pre>
+    <p>
+      Once again, the output shows the dongle resource:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">Capacity</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb">  </span><span style="color:#666">2</span><span style="color:#bbb">
+</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb">  </span>2049008Ki<span style="color:#bbb">
+</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">example.com/dongle</span>:<span style="color:#bbb">  </span><span style="color:#666">4</span></code></pre>
+    </div>
+    <p>
+      Now, application developers can create Pods that request a certain
+      number of dongles. See
+      <a href="/docs/tasks/configure-pod-container/extended-resource/">
+        Assign Extended Resources to a Container
+      </a>
+      .
+    </p>
+    <h2 id="discussion">
+      Discussion
+    </h2>
+    <p>
+      Extended resources are similar to memory and CPU resources. For example,
+      just as a Node has a certain amount of memory and CPU to be shared by all components
+      running on the Node, it can have a certain number of dongles to be shared
+      by all components running on the Node. And just as application developers
+      can create Pods that request a certain amount of memory and CPU, they can
+      create Pods that request a certain number of dongles.
+    </p>
+    <p>
+      Extended resources are opaque to Kubernetes; Kubernetes does not
+      know anything about what they are. Kubernetes knows only that a Node
+      has a certain number of them. Extended resources must be advertised in integer
+      amounts. For example, a Node can advertise four dongles, but not 4.5 dongles.
+    </p>
+    <h3 id="storage-example">
+      Storage example
+    </h3>
+    <p>
+      Suppose a Node has 800 GiB of a special kind of disk storage. You could
+      create a name for the special storage, say example.com/special-storage.
+      Then you could advertise it in chunks of a certain size, say 100 GiB. In that case,
+      your Node would advertise that it has eight resources of type
+      example.com/special-storage.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">Capacity</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"> </span>...<span style="color:#bbb">
+</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">example.com/special-storage</span>:<span style="color:#bbb"> </span><span style="color:#666">8</span></code></pre>
+    </div>
+    <p>
+      If you want to allow arbitrary requests for special storage, you
+      could advertise special storage in chunks of size 1 byte. In that case, you would advertise
+      800Gi resources of type example.com/special-storage.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">Capacity</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"> </span>...<span style="color:#bbb">
+</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">example.com/special-storage</span>:<span style="color:#bbb">  </span>800Gi</code></pre>
+    </div>
+    <p>
+      Then a Container could request any number of bytes of special storage, up to 800Gi.
+    </p>
+    <h2 id="clean-up">
+      Clean up
+    </h2>
+    <p>
+      Here is a PATCH request that removes the dongle advertisement from a Node.
+    </p>
+    <pre><code>PATCH /api/v1/nodes/&lt;your-node-name&gt;/status HTTP/1.1
+Accept: application/json
+Content-Type: application/json-patch+json
+Host: k8s-master:8080
+
+[
+  {
+    &#34;op&#34;: &#34;remove&#34;,
+    &#34;path&#34;: &#34;/status/capacity/example.com~1dongle&#34;,
+  }
+]</code></pre>
+    <p>
+      Start a proxy, so that you can easily send requests to the Kubernetes API server:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl proxy</code></pre>
+    </div>
+    <p>
+      In another command window, send the HTTP PATCH request.
+      Replace
+      <code>
+        &lt;your-node-name&gt;
+      </code>
+      with the name of your Node:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl --header <span style="color:#b44">&#34;Content-Type: application/json-patch+json&#34;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>--request PATCH <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>--data <span style="color:#b44">&#39;[{&#34;op&#34;: &#34;remove&#34;, &#34;path&#34;: &#34;/status/capacity/example.com~1dongle&#34;}]&#39;</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>http://localhost:8001/api/v1/nodes/&lt;your-node-name&gt;/status</code></pre>
+    </div>
+    <p>
+      Verify that the dongle advertisement has been removed:
+    </p>
+    <pre><code>kubectl describe node &lt;your-node-name&gt; | grep dongle</code></pre>
+    <p>
+      (you should not see any output)
+    </p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <h3 id="for-application-developers">
+      For application developers
+    </h3>
+    <ul>
+      <li>
+        <a href="/docs/tasks/configure-pod-container/extended-resource/">
+          Assign Extended Resources to a Container
+        </a>
+      </li>
+    </ul>
+    <h3 id="for-cluster-administrators">
+      For cluster administrators
+    </h3>
+    <ul>
+      <li>
+        <a href="/docs/tasks/administer-cluster/memory-constraint-namespace/">
+          Configure Minimum and Maximum Memory Constraints for a Namespace
+        </a>
+      </li>
+      <li>
+        <a href="/docs/tasks/administer-cluster/cpu-constraint-namespace/">
+          Configure Minimum and Maximum CPU Constraints for a Namespace
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

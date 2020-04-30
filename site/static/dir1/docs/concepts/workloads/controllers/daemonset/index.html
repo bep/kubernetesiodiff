@@ -1,0 +1,864 @@
+<html>
+  <body>
+    <h1>
+      DaemonSet
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/workloads/controllers/daemonset.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      DaemonSet
+    </h1>
+    <p>
+      A
+      <em>
+        DaemonSet
+      </em>
+      ensures that all (or some) Nodes run a copy of a Pod.  As nodes are added to the
+      cluster, Pods are added to them.  As nodes are removed from the cluster, those Pods are garbage
+      collected.  Deleting a DaemonSet will clean up the Pods it created.
+    </p>
+    <p>
+      Some typical uses of a DaemonSet are:
+    </p>
+    <ul>
+      <li>
+        running a cluster storage daemon, such as
+        <code>
+          glusterd
+        </code>
+        ,
+        <code>
+          ceph
+        </code>
+        , on each node.
+      </li>
+      <li>
+        running a logs collection daemon on every node, such as
+        <code>
+          fluentd
+        </code>
+        or
+        <code>
+          filebeat
+        </code>
+        .
+      </li>
+      <li>
+        running a node monitoring daemon on every node, such as
+        <a href="https://github.com/prometheus/node_exporter">
+          Prometheus Node Exporter
+        </a>
+        ,
+        <a href="https://github.com/Flowmill/flowmill-k8s/">
+          Flowmill
+        </a>
+        ,
+        <a href="https://docs.sysdig.com">
+          Sysdig Agent
+        </a>
+        ,
+        <code>
+          collectd
+        </code>
+        ,
+        <a href="https://www.dynatrace.com/technologies/kubernetes-monitoring/">
+          Dynatrace OneAgent
+        </a>
+        ,
+        <a href="https://docs.appdynamics.com/display/CLOUD/Container+Visibility+with+Kubernetes">
+          AppDynamics Agent
+        </a>
+        ,
+        <a href="https://docs.datadoghq.com/agent/kubernetes/daemonset_setup/">
+          Datadog agent
+        </a>
+        ,
+        <a href="https://docs.newrelic.com/docs/integrations/kubernetes-integration/installation/kubernetes-installation-configuration">
+          New Relic agent
+        </a>
+        , Ganglia
+        <code>
+          gmond
+        </code>
+        ,
+        <a href="https://www.instana.com/supported-integrations/kubernetes-monitoring/">
+          Instana Agent
+        </a>
+        or
+        <a href="https://www.elastic.co/guide/en/beats/metricbeat/current/running-on-kubernetes.html">
+          Elastic Metricbeat
+        </a>
+        .
+      </li>
+    </ul>
+    <p>
+      In a simple case, one DaemonSet, covering all nodes, would be used for each type of daemon.
+      A more complex setup might use multiple DaemonSets for a single type of daemon, but with
+      different flags and/or different memory and cpu requests for different hardware types.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#writing-a-daemonset-spec">
+          Writing a DaemonSet Spec
+        </a>
+      </li>
+      <li>
+        <a href="#how-daemon-pods-are-scheduled">
+          How Daemon Pods are Scheduled
+        </a>
+      </li>
+      <li>
+        <a href="#communicating-with-daemon-pods">
+          Communicating with Daemon Pods
+        </a>
+      </li>
+      <li>
+        <a href="#updating-a-daemonset">
+          Updating a DaemonSet
+        </a>
+      </li>
+      <li>
+        <a href="#alternatives-to-daemonset">
+          Alternatives to DaemonSet
+        </a>
+      </li>
+    </ul>
+    <h2 id="writing-a-daemonset-spec">
+      Writing a DaemonSet Spec
+    </h2>
+    <h3 id="create-a-daemonset">
+      Create a DaemonSet
+    </h3>
+    <p>
+      You can describe a DaemonSet in a YAML file. For example, the
+      <code>
+        daemonset.yaml
+      </code>
+      file below describes a DaemonSet that runs the fluentd-elasticsearch Docker image:
+    </p>
+    <table class="includecode" id="controllers-daemonset-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/controllers/daemonset.yaml" download="controllers/daemonset.yaml">
+              <code>
+                controllers/daemonset.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('controllers-daemonset-yaml')" title="Copy controllers/daemonset.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>DaemonSet<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>fluentd-elasticsearch<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-system<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">k8s-app</span>:<span style="color:#bbb"> </span>fluentd-logging<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>fluentd-elasticsearch<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>fluentd-elasticsearch<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">tolerations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#080;font-style:italic"># this toleration is to have the daemonset runnable on master nodes</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#080;font-style:italic"># remove it if your masters can&#39;t run pods</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span>node-role.kubernetes.io/master<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">effect</span>:<span style="color:#bbb"> </span>NoSchedule<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>fluentd-elasticsearch<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>quay.io/fluentd_elasticsearch/fluentd:v2<span style="color:#666">.5.2</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span>200Mi<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span>100m<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span>200Mi<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">volumeMounts</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>varlog<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">mountPath</span>:<span style="color:#bbb"> </span>/var/log<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>varlibdockercontainers<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">mountPath</span>:<span style="color:#bbb"> </span>/var/lib/docker/containers<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">readOnly</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">terminationGracePeriodSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">30</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">volumes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>varlog<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">hostPath</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">path</span>:<span style="color:#bbb"> </span>/var/log<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>varlibdockercontainers<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">hostPath</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">path</span>:<span style="color:#bbb"> </span>/var/lib/docker/containers<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Create a DaemonSet based on the YAML file:
+    </p>
+    <pre><code>kubectl apply -f https://k8s.io/examples/controllers/daemonset.yaml</code></pre>
+    <h3 id="required-fields">
+      Required Fields
+    </h3>
+    <p>
+      As with all other Kubernetes config, a DaemonSet needs
+      <code>
+        apiVersion
+      </code>
+      ,
+      <code>
+        kind
+      </code>
+      , and
+      <code>
+        metadata
+      </code>
+      fields.  For
+      general information about working with config files, see
+      <a href="/docs/user-guide/deploying-applications/">
+        deploying applications
+      </a>
+      ,
+      <a href="/docs/tasks/">
+        configuring containers
+      </a>
+      , and
+      <a href="/docs/concepts/overview/working-with-objects/object-management/">
+        object management using kubectl
+      </a>
+      documents.
+    </p>
+    <p>
+      The name of a DaemonSet object must be a valid
+      <a href="/docs/concepts/overview/working-with-objects/names#dns-subdomain-names">
+        DNS subdomain name
+      </a>
+      .
+    </p>
+    <p>
+      A DaemonSet also needs a
+      <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status">
+        <code>
+          .spec
+        </code>
+      </a>
+      section.
+    </p>
+    <h3 id="pod-template">
+      Pod Template
+    </h3>
+    <p>
+      The
+      <code>
+        .spec.template
+      </code>
+      is one of the required fields in
+      <code>
+        .spec
+      </code>
+      .
+    </p>
+    <p>
+      The
+      <code>
+        .spec.template
+      </code>
+      is a
+      <a href="/docs/concepts/workloads/pods/pod-overview/#pod-templates">
+        pod template
+      </a>
+      . It has exactly the same schema as a
+      <a href="/docs/concepts/workloads/pods/pod/">
+        Pod
+      </a>
+      , except it is nested and does not have an
+      <code>
+        apiVersion
+      </code>
+      or
+      <code>
+        kind
+      </code>
+      .
+    </p>
+    <p>
+      In addition to required fields for a Pod, a Pod template in a DaemonSet has to specify appropriate
+      labels (see
+      <a href="#pod-selector">
+        pod selector
+      </a>
+      ).
+    </p>
+    <p>
+      A Pod Template in a DaemonSet must have a
+      <a href="/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy">
+        <code>
+          RestartPolicy
+        </code>
+      </a>
+      equal to
+      <code>
+        Always
+      </code>
+      , or be unspecified, which defaults to
+      <code>
+        Always
+      </code>
+      .
+    </p>
+    <h3 id="pod-selector">
+      Pod Selector
+    </h3>
+    <p>
+      The
+      <code>
+        .spec.selector
+      </code>
+      field is a pod selector.  It works the same as the
+      <code>
+        .spec.selector
+      </code>
+      of
+      a
+      <a href="/docs/concepts/jobs/run-to-completion-finite-workloads/">
+        Job
+      </a>
+      .
+    </p>
+    <p>
+      As of Kubernetes 1.8, you must specify a pod selector that matches the labels of the
+      <code>
+        .spec.template
+      </code>
+      . The pod selector will no longer be defaulted when left empty. Selector
+      defaulting was not compatible with
+      <code>
+        kubectl apply
+      </code>
+      . Also, once a DaemonSet is created,
+      its
+      <code>
+        .spec.selector
+      </code>
+      can not be mutated. Mutating the pod selector can lead to the
+      unintentional orphaning of Pods, and it was found to be confusing to users.
+    </p>
+    <p>
+      The
+      <code>
+        .spec.selector
+      </code>
+      is an object consisting of two fields:
+    </p>
+    <ul>
+      <li>
+        <code>
+          matchLabels
+        </code>
+        - works the same as the
+        <code>
+          .spec.selector
+        </code>
+        of a
+        <a href="/docs/concepts/workloads/controllers/replicationcontroller/">
+          ReplicationController
+        </a>
+        .
+      </li>
+      <li>
+        <code>
+          matchExpressions
+        </code>
+        - allows to build more sophisticated selectors by specifying key,
+        list of values and an operator that relates the key and values.
+      </li>
+    </ul>
+    <p>
+      When the two are specified the result is ANDed.
+    </p>
+    <p>
+      If the
+      <code>
+        .spec.selector
+      </code>
+      is specified, it must match the
+      <code>
+        .spec.template.metadata.labels
+      </code>
+      . Config with these not matching will be rejected by the API.
+    </p>
+    <p>
+      Also you should not normally create any Pods whose labels match this selector, either directly, via
+      another DaemonSet, or via another workload resource such as ReplicaSet.  Otherwise, the DaemonSet
+      <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+        Controller
+        <span class='tooltip-text'>
+          A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
+        </span>
+      </a>
+      will think that those Pods were created by it.
+      Kubernetes will not stop you from doing this. One case where you might want to do this is manually
+      create a Pod with a different value on a node for testing.
+    </p>
+    <h3 id="running-pods-on-only-some-nodes">
+      Running Pods on Only Some Nodes
+    </h3>
+    <p>
+      If you specify a
+      <code>
+        .spec.template.spec.nodeSelector
+      </code>
+      , then the DaemonSet controller will
+      create Pods on nodes which match that
+      <a href="/docs/concepts/configuration/assign-pod-node/">
+        node
+        selector
+      </a>
+      . Likewise if you specify a
+      <code>
+        .spec.template.spec.affinity
+      </code>
+      ,
+      then DaemonSet controller will create Pods on nodes which match that
+      <a href="/docs/concepts/configuration/assign-pod-node/">
+        node affinity
+      </a>
+      .
+      If you do not specify either, then the DaemonSet controller will create Pods on all nodes.
+    </p>
+    <h2 id="how-daemon-pods-are-scheduled">
+      How Daemon Pods are Scheduled
+    </h2>
+    <h3 id="scheduled-by-default-scheduler">
+      Scheduled by default scheduler
+    </h3>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        stable
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+        <p>
+          This feature is
+          <em>
+            stable
+          </em>
+          , meaning:
+        </p>
+        <ul>
+          <li>
+            The version name is vX where X is an integer.
+          </li>
+          <li>
+            Stable versions of features will appear in released software for many subsequent versions.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      A DaemonSet ensures that all eligible nodes run a copy of a Pod. Normally, the
+      node that a Pod runs on is selected by the Kubernetes scheduler. However,
+      DaemonSet pods are created and scheduled by the DaemonSet controller instead.
+      That introduces the following issues:
+    </p>
+    <ul>
+      <li>
+        Inconsistent Pod behavior: Normal Pods waiting to be scheduled are created
+        and in
+        <code>
+          Pending
+        </code>
+        state, but DaemonSet pods are not created in
+        <code>
+          Pending
+        </code>
+        state. This is confusing to the user.
+      </li>
+      <li>
+        <a href="/docs/concepts/configuration/pod-priority-preemption/">
+          Pod preemption
+        </a>
+        is handled by default scheduler. When preemption is enabled, the DaemonSet controller
+        will make scheduling decisions without considering pod priority and preemption.
+      </li>
+    </ul>
+    <p>
+      <code>
+        ScheduleDaemonSetPods
+      </code>
+      allows you to schedule DaemonSets using the default
+      scheduler instead of the DaemonSet controller, by adding the
+      <code>
+        NodeAffinity
+      </code>
+      term
+      to the DaemonSet pods, instead of the
+      <code>
+        .spec.nodeName
+      </code>
+      term. The default
+      scheduler is then used to bind the pod to the target host. If node affinity of
+      the DaemonSet pod already exists, it is replaced. The DaemonSet controller only
+      performs these operations when creating or modifying DaemonSet pods, and no
+      changes are made to the
+      <code>
+        spec.template
+      </code>
+      of the DaemonSet.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">nodeAffinity</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">requiredDuringSchedulingIgnoredDuringExecution</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">nodeSelectorTerms</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">matchFields</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span>metadata.name<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">operator</span>:<span style="color:#bbb"> </span>In<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">values</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- target-host-name</code></pre>
+    </div>
+    <p>
+      In addition,
+      <code>
+        node.kubernetes.io/unschedulable:NoSchedule
+      </code>
+      toleration is added
+      automatically to DaemonSet Pods. The default scheduler ignores
+      <code>
+        unschedulable
+      </code>
+      Nodes when scheduling DaemonSet Pods.
+    </p>
+    <h3 id="taints-and-tolerations">
+      Taints and Tolerations
+    </h3>
+    <p>
+      Although Daemon Pods respect
+      <a href="/docs/concepts/configuration/taint-and-toleration">
+        taints and tolerations
+      </a>
+      ,
+      the following tolerations are added to DaemonSet Pods automatically according to
+      the related features.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Toleration Key
+          </th>
+          <th>
+            Effect
+          </th>
+          <th>
+            Version
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code>
+              node.kubernetes.io/not-ready
+            </code>
+          </td>
+          <td>
+            NoExecute
+          </td>
+          <td>
+            1.13+
+          </td>
+          <td>
+            DaemonSet pods will not be evicted when there are node problems such as a network partition.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>
+              node.kubernetes.io/unreachable
+            </code>
+          </td>
+          <td>
+            NoExecute
+          </td>
+          <td>
+            1.13+
+          </td>
+          <td>
+            DaemonSet pods will not be evicted when there are node problems such as a network partition.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>
+              node.kubernetes.io/disk-pressure
+            </code>
+          </td>
+          <td>
+            NoSchedule
+          </td>
+          <td>
+            1.8+
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <code>
+              node.kubernetes.io/memory-pressure
+            </code>
+          </td>
+          <td>
+            NoSchedule
+          </td>
+          <td>
+            1.8+
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <code>
+              node.kubernetes.io/unschedulable
+            </code>
+          </td>
+          <td>
+            NoSchedule
+          </td>
+          <td>
+            1.12+
+          </td>
+          <td>
+            DaemonSet pods tolerate unschedulable attributes by default scheduler.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>
+              node.kubernetes.io/network-unavailable
+            </code>
+          </td>
+          <td>
+            NoSchedule
+          </td>
+          <td>
+            1.12+
+          </td>
+          <td>
+            DaemonSet pods, who uses host network, tolerate network-unavailable attributes by default scheduler.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="communicating-with-daemon-pods">
+      Communicating with Daemon Pods
+    </h2>
+    <p>
+      Some possible patterns for communicating with Pods in a DaemonSet are:
+    </p>
+    <ul>
+      <li>
+        <strong>
+          Push
+        </strong>
+        : Pods in the DaemonSet are configured to send updates to another service, such
+        as a stats database.  They do not have clients.
+      </li>
+      <li>
+        <strong>
+          NodeIP and Known Port
+        </strong>
+        : Pods in the DaemonSet can use a
+        <code>
+          hostPort
+        </code>
+        , so that the pods are reachable via the node IPs.  Clients know the list of node IPs somehow, and know the port by convention.
+      </li>
+      <li>
+        <strong>
+          DNS
+        </strong>
+        : Create a
+        <a href="/docs/concepts/services-networking/service/#headless-services">
+          headless service
+        </a>
+        with the same pod selector,
+        and then discover DaemonSets using the
+        <code>
+          endpoints
+        </code>
+        resource or retrieve multiple A records from
+        DNS.
+      </li>
+      <li>
+        <strong>
+          Service
+        </strong>
+        : Create a service with the same Pod selector, and use the service to reach a
+        daemon on a random node. (No way to reach specific node.)
+      </li>
+    </ul>
+    <h2 id="updating-a-daemonset">
+      Updating a DaemonSet
+    </h2>
+    <p>
+      If node labels are changed, the DaemonSet will promptly add Pods to newly matching nodes and delete
+      Pods from newly not-matching nodes.
+    </p>
+    <p>
+      You can modify the Pods that a DaemonSet creates.  However, Pods do not allow all
+      fields to be updated.  Also, the DaemonSet controller will use the original template the next
+      time a node (even with the same name) is created.
+    </p>
+    <p>
+      You can delete a DaemonSet.  If you specify
+      <code>
+        --cascade=false
+      </code>
+      with
+      <code>
+        kubectl
+      </code>
+      , then the Pods
+      will be left on the nodes.  If you subsequently create a new DaemonSet with the same selector,
+      the new DaemonSet adopts the existing Pods. If any Pods need replacing the DaemonSet replaces
+      them according to its
+      <code>
+        updateStrategy
+      </code>
+      .
+    </p>
+    <p>
+      You can
+      <a href="/docs/tasks/manage-daemon/update-daemon-set/">
+        perform a rolling update
+      </a>
+      on a DaemonSet.
+    </p>
+    <h2 id="alternatives-to-daemonset">
+      Alternatives to DaemonSet
+    </h2>
+    <h3 id="init-scripts">
+      Init Scripts
+    </h3>
+    <p>
+      It is certainly possible to run daemon processes by directly starting them on a node (e.g. using
+      <code>
+        init
+      </code>
+      ,
+      <code>
+        upstartd
+      </code>
+      , or
+      <code>
+        systemd
+      </code>
+      ).  This is perfectly fine.  However, there are several advantages to
+      running such processes via a DaemonSet:
+    </p>
+    <ul>
+      <li>
+        Ability to monitor and manage logs for daemons in the same way as applications.
+      </li>
+      <li>
+        Same config language and tools (e.g. Pod templates,
+        <code>
+          kubectl
+        </code>
+        ) for daemons and applications.
+      </li>
+      <li>
+        Running daemons in containers with resource limits increases isolation between daemons from app
+        containers.  However, this can also be accomplished by running the daemons in a container but not in a Pod
+        (e.g. start directly via Docker).
+      </li>
+    </ul>
+    <h3 id="bare-pods">
+      Bare Pods
+    </h3>
+    <p>
+      It is possible to create Pods directly which specify a particular node to run on.  However,
+      a DaemonSet replaces Pods that are deleted or terminated for any reason, such as in the case of
+      node failure or disruptive node maintenance, such as a kernel upgrade. For this reason, you should
+      use a DaemonSet rather than creating individual Pods.
+    </p>
+    <h3 id="static-pods">
+      Static Pods
+    </h3>
+    <p>
+      It is possible to create Pods by writing a file to a certain directory watched by Kubelet.  These
+      are called
+      <a href="/docs/concepts/cluster-administration/static-pod/">
+        static pods
+      </a>
+      .
+      Unlike DaemonSet, static Pods cannot be managed with kubectl
+      or other Kubernetes API clients.  Static Pods do not depend on the apiserver, making them useful
+      in cluster bootstrapping cases.  Also, static Pods may be deprecated in the future.
+    </p>
+    <h3 id="deployments">
+      Deployments
+    </h3>
+    <p>
+      DaemonSets are similar to
+      <a href="/docs/concepts/workloads/controllers/deployment/">
+        Deployments
+      </a>
+      in that
+      they both create Pods, and those Pods have processes which are not expected to terminate (e.g. web servers,
+      storage servers).
+    </p>
+    <p>
+      Use a Deployment for stateless services, like frontends, where scaling up and down the
+      number of replicas and rolling out updates are more important than controlling exactly which host
+      the Pod runs on.  Use a DaemonSet when it is important that a copy of a Pod always run on
+      all or certain hosts, and when it needs to start before other Pods.
+    </p>
+  </body>
+</html>

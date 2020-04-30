@@ -1,0 +1,598 @@
+<html>
+  <body>
+    <h1>
+      Overview of Cloud Native Security
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/security/overview.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Overview of Cloud Native Security
+    </h1>
+    <p>
+      Kubernetes Security (and security in general) is an immense topic that has many
+      highly interrelated parts. In today&rsquo;s era where open source software is
+      integrated into many of the systems that help web applications run,
+      there are some overarching concepts that can help guide your intuition about how you can
+      think about security holistically. This guide will define a mental model
+      for some general concepts surrounding Cloud Native Security. The mental model is completely arbitrary
+      and you should only use it if it helps you think about where to secure your software
+      stack.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#the-4c-s-of-cloud-native-security">
+          The 4C’s of Cloud Native Security
+        </a>
+      </li>
+      <li>
+        <a href="#cloud">
+          Cloud
+        </a>
+      </li>
+      <li>
+        <a href="#cluster">
+          Cluster
+        </a>
+      </li>
+      <li>
+        <a href="#container">
+          Container
+        </a>
+      </li>
+      <li>
+        <a href="#code">
+          Code
+        </a>
+      </li>
+      <li>
+        <a href="#robust-automation">
+          Robust automation
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="the-4c-s-of-cloud-native-security">
+      The 4C&rsquo;s of Cloud Native Security
+    </h2>
+    <p>
+      Let&rsquo;s start with a diagram that may help you understand how you can think about security in layers.
+      <blockquote class="note">
+        <div>
+          <strong>
+            Note:
+          </strong>
+          This layered approach augments the
+          <a href="https://en.wikipedia.org/wiki/Defense_in_depth_(computing)">
+            defense in depth
+          </a>
+          approach to security, which is widely regarded as a best practice for securing
+          software systems. The 4C&rsquo;s are Cloud, Clusters, Containers, and Code.
+        </div>
+      </blockquote>
+    </p>
+    <figure>
+      <img src="/images/docs/4c.png"/>
+      <figcaption>
+        <h4>
+          The 4C&#39;s of Cloud Native Security
+        </h4>
+      </figcaption>
+    </figure>
+    <p>
+      As you can see from the above figure,
+      each one of the 4C&rsquo;s depend on the security of the squares in which they fit. It
+      is nearly impossibly to safeguard against poor security standards in Cloud, Containers, and Code
+      by only addressing security at the code level. However, when these areas are dealt
+      with appropriately, then adding security to your code augments an already strong
+      base. These areas of concern will now be described in more detail below.
+    </p>
+    <h2 id="cloud">
+      Cloud
+    </h2>
+    <p>
+      In many ways, the Cloud (or co-located servers, or the corporate datacenter) is the
+      <a href="https://en.wikipedia.org/wiki/Trusted_computing_base">
+        trusted computing base
+      </a>
+      of a Kubernetes cluster. If these components themselves are vulnerable (or
+      configured in a vulnerable way) then there&rsquo;s no real way to guarantee the security
+      of any components built on top of this base. Each cloud provider has extensive
+      security recommendations they make to their customers on how to run workloads securely
+      in their environment. It is out of the scope of this guide to give recommendations
+      on cloud security since every cloud provider and workload is different. Here are some
+      links to some of the popular cloud providers&rsquo; documentation
+      for security as well as give general guidance for securing the infrastructure that
+      makes up a Kubernetes cluster.
+    </p>
+    <h3 id="cloud-provider-security-table">
+      Cloud Provider Security Table
+    </h3>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            IaaS Provider
+          </th>
+          <th>
+            Link
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Alibaba Cloud
+          </td>
+          <td>
+            <a href="https://www.alibabacloud.com/trust-center">
+              https://www.alibabacloud.com/trust-center
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Amazon Web Services
+          </td>
+          <td>
+            <a href="https://aws.amazon.com/security/">
+              https://aws.amazon.com/security/
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Google Cloud Platform
+          </td>
+          <td>
+            <a href="https://cloud.google.com/security/">
+              https://cloud.google.com/security/
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            IBM Cloud
+          </td>
+          <td>
+            <a href="https://www.ibm.com/cloud/security">
+              https://www.ibm.com/cloud/security
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Microsoft Azure
+          </td>
+          <td>
+            <a href="https://docs.microsoft.com/en-us/azure/security/azure-security">
+              https://docs.microsoft.com/en-us/azure/security/azure-security
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            VMWare VSphere
+          </td>
+          <td>
+            <a href="https://www.vmware.com/security/hardening-guides.html">
+              https://www.vmware.com/security/hardening-guides.html
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      If you are running on your own hardware or a different cloud provider you will need to
+      consult your documentation for security best practices.
+    </p>
+    <h3 id="general-infrastructure-guidance-table">
+      General Infrastructure Guidance Table
+    </h3>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Area of Concern for Kubernetes Infrastructure
+          </th>
+          <th>
+            Recommendation
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Network access to API Server (Masters)
+          </td>
+          <td>
+            Ideally all access to the Kubernetes Masters is not allowed publicly on the internet and is controlled by network access control lists restricted to the set of IP addresses needed to administer the cluster.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Network access to Nodes (Worker Servers)
+          </td>
+          <td>
+            Nodes should be configured to
+            <em>
+              only
+            </em>
+            accept connections (via network access control lists) from the masters on the specified ports, and accept connections for services in Kubernetes of type NodePort and LoadBalancer. If possible, these nodes should not be exposed on the public internet entirely.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Kubernetes access to Cloud Provider API
+          </td>
+          <td>
+            Each cloud provider will need to grant a different set of permissions to the Kubernetes Masters and Nodes, so this recommendation will be more generic. It is best to provide the cluster with cloud provider access that follows the
+            <a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege">
+              principle of least privilege
+            </a>
+            for the resources it needs to administer. An example for Kops in AWS can be found here:
+            <a href="https://github.com/kubernetes/kops/blob/master/docs/iam_roles.md#iam-roles">
+              https://github.com/kubernetes/kops/blob/master/docs/iam_roles.md#iam-roles
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Access to etcd
+          </td>
+          <td>
+            Access to etcd (the datastore of Kubernetes) should be limited to the masters only. Depending on your configuration, you should also attempt to use etcd over TLS. More info can be found here:
+            <a href="https://github.com/etcd-io/etcd/tree/master/Documentation#security">
+              https://github.com/etcd-io/etcd/tree/master/Documentation#security
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            etcd Encryption
+          </td>
+          <td>
+            Wherever possible it&rsquo;s a good practice to encrypt all drives at rest, but since etcd holds the state of the entire cluster (including Secrets) its disk should especially be encrypted at rest.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="cluster">
+      Cluster
+    </h2>
+    <p>
+      This section will provide links for securing
+      workloads in Kubernetes. There are two areas of concern for securing
+      Kubernetes:
+    </p>
+    <ul>
+      <li>
+        Securing the components that are configurable which make up the cluster
+      </li>
+      <li>
+        Securing the components which run in the cluster
+      </li>
+    </ul>
+    <h3 id="components-of-the-cluster">
+      Components
+      <em>
+        of
+      </em>
+      the Cluster
+    </h3>
+    <p>
+      If you want to protect your cluster from accidental or malicious access, and adopt
+      good information practices, read and follow the advice about
+      <a href="/docs/tasks/administer-cluster/securing-a-cluster/">
+        securing your cluster
+      </a>
+      .
+    </p>
+    <h3 id="components-in-the-cluster-your-application">
+      Components
+      <em>
+        in
+      </em>
+      the Cluster (your application)
+    </h3>
+    <p>
+      Depending on the attack surface of your application, you may want to focus on specific
+      aspects of security. For example, if you are running a service (Service A) that is critical
+      in a chain of other resources and a separate workload (Service B) which is
+      vulnerable to a resource exhaustion attack, by not putting resource limits on
+      Service B you run the risk of also compromising Service A. Below is a table of
+      links of things to consider when securing workloads running in Kubernetes.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Area of Concern for Workload Security
+          </th>
+          <th>
+            Recommendation
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            RBAC Authorization (Access to the Kubernetes API)
+          </td>
+          <td>
+            <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">
+              https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Authentication
+          </td>
+          <td>
+            <a href="https://kubernetes.io/docs/reference/access-authn-authz/controlling-access/">
+              https://kubernetes.io/docs/reference/access-authn-authz/controlling-access/
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Application secrets management (and encrypting them in etcd at rest)
+          </td>
+          <td>
+            <a href="https://kubernetes.io/docs/concepts/configuration/secret/">
+              https://kubernetes.io/docs/concepts/configuration/secret/
+            </a>
+            <br>
+            <a href="https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/">
+              https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Pod Security Policies
+          </td>
+          <td>
+            <a href="https://kubernetes.io/docs/concepts/policy/pod-security-policy/">
+              https://kubernetes.io/docs/concepts/policy/pod-security-policy/
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Quality of Service (and Cluster resource management)
+          </td>
+          <td>
+            <a href="https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/">
+              https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Network Policies
+          </td>
+          <td>
+            <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">
+              https://kubernetes.io/docs/concepts/services-networking/network-policies/
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            TLS For Kubernetes Ingress
+          </td>
+          <td>
+            <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/#tls">
+              https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="container">
+      Container
+    </h2>
+    <p>
+      In order to run software in Kubernetes, it must be in a container. Because of this,
+      there are certain security considerations that must be taken into account in order
+      to benefit from the workload security primitives of Kubernetes. Container security
+      is also outside the scope of this guide, but here is a table of general
+      recommendations and links for further exploration of this topic.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Area of Concern for Containers
+          </th>
+          <th>
+            Recommendation
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Container Vulnerability Scanning and OS Dependency Security
+          </td>
+          <td>
+            As part of an image build step or on a regular basis you should scan your containers for known vulnerabilities with a tool such as
+            <a href="https://github.com/coreos/clair/">
+              CoreOS&rsquo;s Clair
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Image Signing and Enforcement
+          </td>
+          <td>
+            Two other CNCF Projects (TUF and Notary) are useful tools for signing container images and maintaining a system of trust for the content of your containers. If you use Docker, it is built in to the Docker Engine as
+            <a href="https://docs.docker.com/engine/security/trust/content_trust/">
+              Docker Content Trust
+            </a>
+            . On the enforcement piece,
+            <a href="https://github.com/IBM/portieris">
+              IBM&rsquo;s Portieris
+            </a>
+            project is a tool that runs as a Kubernetes Dynamic Admission Controller to ensure that images are properly signed via Notary before being admitted to the Cluster.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Disallow privileged users
+          </td>
+          <td>
+            When constructing containers, consult your documentation for how to create users inside of the containers that have the least level of operating system privilege necessary in order to carry out the goal of the container.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="code">
+      Code
+    </h2>
+    <p>
+      Finally moving down into the application code level, this is one of the primary attack
+      surfaces over which you have the most control. This is also outside of the scope
+      of Kubernetes but here are a few recommendations:
+    </p>
+    <h3 id="general-code-security-guidance-table">
+      General Code Security Guidance Table
+    </h3>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Area of Concern for Code
+          </th>
+          <th>
+            Recommendation
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Access over TLS only
+          </td>
+          <td>
+            If your code needs to communicate via TCP, ideally it would be performing a TLS handshake with the client ahead of time. With the exception of a few cases, the default behavior should be to encrypt everything in transit. Going one step further, even &ldquo;behind the firewall&rdquo; in our VPC&rsquo;s it&rsquo;s still a good idea to encrypt network traffic between services. This can be done through a process known as mutual or
+            <a href="https://en.wikipedia.org/wiki/Mutual_authentication">
+              mTLS
+            </a>
+            which performs a two sided verification of communication between two certificate holding services. There are numerous tools that can be used to accomplish this in Kubernetes such as
+            <a href="https://linkerd.io/">
+              Linkerd
+            </a>
+            and
+            <a href="https://istio.io/">
+              Istio
+            </a>
+            .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Limiting port ranges of communication
+          </td>
+          <td>
+            This recommendation may be a bit self-explanatory, but wherever possible you should only expose the ports on your service that are absolutely essential for communication or metric gathering.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            3rd Party Dependency Security
+          </td>
+          <td>
+            Since our applications tend to have dependencies outside of our own codebases, it is a good practice to regularly scan the code&rsquo;s dependencies to ensure that they are still secure with no vulnerabilities currently filed against them. Each language has a tool for performing this check automatically.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Static Code Analysis
+          </td>
+          <td>
+            Most languages provide a way for a snippet of code to be analyzed for any potentially unsafe coding practices. Whenever possible you should perform checks using automated tooling that can scan codebases for common security errors. Some of the tools can be found here:
+            <a href="https://www.owasp.org/index.php/Source_Code_Analysis_Tools">
+              https://www.owasp.org/index.php/Source_Code_Analysis_Tools
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Dynamic probing attacks
+          </td>
+          <td>
+            There are a few automated tools that are able to be run against your service to try some of the well known attacks that commonly befall services. These include SQL injection, CSRF, and XSS. One of the most popular dynamic analysis tools is the OWASP Zed Attack proxy
+            <a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">
+              https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="robust-automation">
+      Robust automation
+    </h2>
+    <p>
+      Most of the above mentioned suggestions can actually be automated in your code
+      delivery pipeline as part of a series of checks in security. To learn about a
+      more &ldquo;Continuous Hacking&rdquo; approach to software delivery,
+      <a href="https://thenewstack.io/beyond-ci-cd-how-continuous-hacking-of-docker-containers-and-pipeline-driven-security-keeps-ygrene-secure/">
+        this article
+      </a>
+      provides more detail.
+    </p>
+    <p></p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        Read about
+        <a href="/docs/concepts/services-networking/network-policies/">
+          network policies for Pods
+        </a>
+      </li>
+      <li>
+        Read about
+        <a href="/docs/tasks/administer-cluster/securing-a-cluster/">
+          securing your cluster
+        </a>
+      </li>
+      <li>
+        Read about
+        <a href="/docs/reference/access-authn-authz/controlling-access/">
+          API access control
+        </a>
+      </li>
+      <li>
+        Read about
+        <a href="/docs/tasks/tls/managing-tls-in-a-cluster/">
+          data encryption in transit
+        </a>
+        for the control plane
+      </li>
+      <li>
+        Read about
+        <a href="/docs/tasks/administer-cluster/encrypt-data/">
+          data encryption at rest
+        </a>
+      </li>
+      <li>
+        Read about
+        <a href="/docs/concepts/configuration/secret/">
+          Secrets in Kubernetes
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

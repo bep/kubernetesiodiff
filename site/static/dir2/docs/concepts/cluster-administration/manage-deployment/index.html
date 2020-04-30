@@ -1,0 +1,946 @@
+<html>
+  <body>
+    <h1>
+      Managing Resources
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/cluster-administration/manage-deployment.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Managing Resources
+    </h1>
+    <p>
+      You&rsquo;ve deployed your application and exposed it via a service. Now what? Kubernetes provides a number of tools to help you manage your application deployment, including scaling and updating. Among the features that we will discuss in more depth are
+      <a href="/docs/concepts/configuration/overview/">
+        configuration files
+      </a>
+      and
+      <a href="/docs/concepts/overview/working-with-objects/labels/">
+        labels
+      </a>
+      .
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#organizing-resource-configurations">
+          Organizing resource configurations
+        </a>
+      </li>
+      <li>
+        <a href="#bulk-operations-in-kubectl">
+          Bulk operations in kubectl
+        </a>
+      </li>
+      <li>
+        <a href="#using-labels-effectively">
+          Using labels effectively
+        </a>
+      </li>
+      <li>
+        <a href="#canary-deployments">
+          Canary deployments
+        </a>
+      </li>
+      <li>
+        <a href="#updating-labels">
+          Updating labels
+        </a>
+      </li>
+      <li>
+        <a href="#updating-annotations">
+          Updating annotations
+        </a>
+      </li>
+      <li>
+        <a href="#scaling-your-application">
+          Scaling your application
+        </a>
+      </li>
+      <li>
+        <a href="#in-place-updates-of-resources">
+          In-place updates of resources
+        </a>
+      </li>
+      <li>
+        <a href="#disruptive-updates">
+          Disruptive updates
+        </a>
+      </li>
+      <li>
+        <a href="#updating-your-application-without-a-service-outage">
+          Updating your application without a service outage
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="organizing-resource-configurations">
+      Organizing resource configurations
+    </h2>
+    <p>
+      Many applications require multiple resources to be created, such as a Deployment and a Service. Management of multiple resources can be simplified by grouping them together in the same file (separated by
+      <code>
+        ---
+      </code>
+      in YAML). For example:
+    </p>
+    <table class="includecode" id="application-nginx-app-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml" download="application/nginx-app.yaml">
+              <code>
+                application/nginx-app.yaml
+              </code>
+            </a>
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-nginx-app-yaml')" title="Copy application/nginx-app.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-nginx-svc<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>LoadBalancer<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb"></span>---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx:<span style="color:#666">1.14.2</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Multiple resources can be created the same way as a single resource:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/application/nginx-app.yaml</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">service/my-nginx-svc created
+deployment.apps/my-nginx created</code></pre>
+    </div>
+    <p>
+      The resources will be created in the order they appear in the file. Therefore, it&rsquo;s best to specify the service first, since that will ensure the scheduler can spread the pods associated with the service as they are created by the controller(s), such as Deployment.
+    </p>
+    <p>
+      <code>
+        kubectl apply
+      </code>
+      also accepts multiple
+      <code>
+        -f
+      </code>
+      arguments:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/application/nginx/nginx-svc.yaml -f https://k8s.io/examples/application/nginx/nginx-deployment.yaml</code></pre>
+    </div>
+    <p>
+      And a directory can be specified rather than or in addition to individual files:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/application/nginx/</code></pre>
+    </div>
+    <p>
+      <code>
+        kubectl
+      </code>
+      will read any files with suffixes
+      <code>
+        .yaml
+      </code>
+      ,
+      <code>
+        .yml
+      </code>
+      , or
+      <code>
+        .json
+      </code>
+      .
+    </p>
+    <p>
+      It is a recommended practice to put resources related to the same microservice or application tier into the same file, and to group all of the files associated with your application in the same directory. If the tiers of your application bind to each other using DNS, then you can then simply deploy all of the components of your stack en masse.
+    </p>
+    <p>
+      A URL can also be specified as a configuration source, which is handy for deploying directly from configuration files checked into github:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx/nginx-deployment.yaml</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">deployment.apps/my-nginx created</code></pre>
+    </div>
+    <h2 id="bulk-operations-in-kubectl">
+      Bulk operations in kubectl
+    </h2>
+    <p>
+      Resource creation isn&rsquo;t the only operation that
+      <code>
+        kubectl
+      </code>
+      can perform in bulk. It can also extract resource names from configuration files in order to perform other operations, in particular to delete the same resources you created:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete -f https://k8s.io/examples/application/nginx-app.yaml</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">deployment.apps <span style="color:#b44">&#34;my-nginx&#34;</span> deleted
+service <span style="color:#b44">&#34;my-nginx-svc&#34;</span> deleted</code></pre>
+    </div>
+    <p>
+      In the case of just two resources, it&rsquo;s also easy to specify both on the command line using the resource/name syntax:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete deployments/my-nginx services/my-nginx-svc</code></pre>
+    </div>
+    <p>
+      For larger numbers of resources, you&rsquo;ll find it easier to specify the selector (label query) specified using
+      <code>
+        -l
+      </code>
+      or
+      <code>
+        --selector
+      </code>
+      , to filter resources by their labels:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete deployment,services -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>nginx</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">deployment.apps <span style="color:#b44">&#34;my-nginx&#34;</span> deleted
+service <span style="color:#b44">&#34;my-nginx-svc&#34;</span> deleted</code></pre>
+    </div>
+    <p>
+      Because
+      <code>
+        kubectl
+      </code>
+      outputs resource names in the same syntax it accepts, it&rsquo;s easy to chain operations using
+      <code>
+        $()
+      </code>
+      or
+      <code>
+        xargs
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get <span style="color:#a2f;font-weight:bold">$(</span>kubectl create -f docs/concepts/cluster-administration/nginx/ -o name | grep service<span style="color:#a2f;font-weight:bold">)</span></code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">NAME           TYPE           CLUSTER-IP   EXTERNAL-IP   PORT<span style="color:#666">(</span>S<span style="color:#666">)</span>      AGE
+my-nginx-svc   LoadBalancer   10.0.0.208   &lt;pending&gt;     80/TCP       0s</code></pre>
+    </div>
+    <p>
+      With the above commands, we first create resources under
+      <code>
+        examples/application/nginx/
+      </code>
+      and print the resources created with
+      <code>
+        -o name
+      </code>
+      output format
+      (print each resource as resource/name). Then we
+      <code>
+        grep
+      </code>
+      only the &ldquo;service&rdquo;, and then print it with
+      <code>
+        kubectl get
+      </code>
+      .
+    </p>
+    <p>
+      If you happen to organize your resources across several subdirectories within a particular directory, you can recursively perform the operations on the subdirectories also, by specifying
+      <code>
+        --recursive
+      </code>
+      or
+      <code>
+        -R
+      </code>
+      alongside the
+      <code>
+        --filename,-f
+      </code>
+      flag.
+    </p>
+    <p>
+      For instance, assume there is a directory
+      <code>
+        project/k8s/development
+      </code>
+      that holds all of the
+      <a class='glossary-tooltip' href='/dir2/docs/reference/glossary/?all=true#term-manifest' target='_blank'>
+        manifests
+        <span class='tooltip-text'>
+          A serialized specification of one or more Kubernetes API objects.
+        </span>
+      </a>
+      needed for the development environment, organized by resource type:
+    </p>
+    <pre><code>project/k8s/development
+├── configmap
+│   └── my-configmap.yaml
+├── deployment
+│   └── my-deployment.yaml
+└── pvc
+    └── my-pvc.yaml</code></pre>
+    <p>
+      By default, performing a bulk operation on
+      <code>
+        project/k8s/development
+      </code>
+      will stop at the first level of the directory, not processing any subdirectories. If we had tried to create the resources in this directory using the following command, we would have encountered an error:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f project/k8s/development</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">error: you must provide one or more resources by argument or filename <span style="color:#666">(</span>.json|.yaml|.yml|stdin<span style="color:#666">)</span></code></pre>
+    </div>
+    <p>
+      Instead, specify the
+      <code>
+        --recursive
+      </code>
+      or
+      <code>
+        -R
+      </code>
+      flag with the
+      <code>
+        --filename,-f
+      </code>
+      flag as such:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f project/k8s/development --recursive</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">configmap/my-config created
+deployment.apps/my-deployment created
+persistentvolumeclaim/my-pvc created</code></pre>
+    </div>
+    <p>
+      The
+      <code>
+        --recursive
+      </code>
+      flag works with any operation that accepts the
+      <code>
+        --filename,-f
+      </code>
+      flag such as:
+      <code>
+        kubectl {create,get,delete,describe,rollout} etc.
+      </code>
+    </p>
+    <p>
+      The
+      <code>
+        --recursive
+      </code>
+      flag also works when multiple
+      <code>
+        -f
+      </code>
+      arguments are provided:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f project/k8s/namespaces -f project/k8s/development --recursive</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">namespace/development created
+namespace/staging created
+configmap/my-config created
+deployment.apps/my-deployment created
+persistentvolumeclaim/my-pvc created</code></pre>
+    </div>
+    <p>
+      If you&rsquo;re interested in learning more about
+      <code>
+        kubectl
+      </code>
+      , go ahead and read
+      <a href="/docs/reference/kubectl/overview/">
+        kubectl Overview
+      </a>
+      .
+    </p>
+    <h2 id="using-labels-effectively">
+      Using labels effectively
+    </h2>
+    <p>
+      The examples we&rsquo;ve used so far apply at most a single label to any resource. There are many scenarios where multiple labels should be used to distinguish sets from one another.
+    </p>
+    <p>
+      For instance, different applications would use different values for the
+      <code>
+        app
+      </code>
+      label, but a multi-tier application, such as the
+      <a href="https://github.com/kubernetes/examples/tree/master/guestbook/">
+        guestbook example
+      </a>
+      , would additionally need to distinguish each tier. The frontend could carry the following labels:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>guestbook<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>frontend<span style="color:#bbb">
+</span></code></pre>
+    </div>
+    <p>
+      while the Redis master and slave would have different
+      <code>
+        tier
+      </code>
+      labels, and perhaps even an additional
+      <code>
+        role
+      </code>
+      label:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>guestbook<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>backend<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">role</span>:<span style="color:#bbb"> </span>master<span style="color:#bbb">
+</span></code></pre>
+    </div>
+    <p>
+      and
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>guestbook<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>backend<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">role</span>:<span style="color:#bbb"> </span>slave<span style="color:#bbb">
+</span></code></pre>
+    </div>
+    <p>
+      The labels allow us to slice and dice our resources along any dimension specified by a label:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f examples/guestbook/all-in-one/guestbook-all-in-one.yaml
+kubectl get pods -Lapp -Ltier -Lrole</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">NAME                           READY     STATUS    RESTARTS   AGE       APP         TIER       ROLE
+guestbook-fe-4nlpb             1/1       Running   <span style="color:#666">0</span>          1m        guestbook   frontend   &lt;none&gt;
+guestbook-fe-ght6d             1/1       Running   <span style="color:#666">0</span>          1m        guestbook   frontend   &lt;none&gt;
+guestbook-fe-jpy62             1/1       Running   <span style="color:#666">0</span>          1m        guestbook   frontend   &lt;none&gt;
+guestbook-redis-master-5pg3b   1/1       Running   <span style="color:#666">0</span>          1m        guestbook   backend    master
+guestbook-redis-slave-2q2yf    1/1       Running   <span style="color:#666">0</span>          1m        guestbook   backend    slave
+guestbook-redis-slave-qgazl    1/1       Running   <span style="color:#666">0</span>          1m        guestbook   backend    slave
+my-nginx-divi2                 1/1       Running   <span style="color:#666">0</span>          29m       nginx       &lt;none&gt;     &lt;none&gt;
+my-nginx-o0ef1                 1/1       Running   <span style="color:#666">0</span>          29m       nginx       &lt;none&gt;     &lt;none&gt;</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -lapp<span style="color:#666">=</span>guestbook,role<span style="color:#666">=</span>slave</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">NAME                          READY     STATUS    RESTARTS   AGE
+guestbook-redis-slave-2q2yf   1/1       Running   <span style="color:#666">0</span>          3m
+guestbook-redis-slave-qgazl   1/1       Running   <span style="color:#666">0</span>          3m</code></pre>
+    </div>
+    <h2 id="canary-deployments">
+      Canary deployments
+    </h2>
+    <p>
+      Another scenario where multiple labels are needed is to distinguish deployments of different releases or configurations of the same component. It is common practice to deploy a
+      <em>
+        canary
+      </em>
+      of a new application release (specified via image tag in the pod template) side by side with the previous release so that the new release can receive live production traffic before fully rolling it out.
+    </p>
+    <p>
+      For instance, you can use a
+      <code>
+        track
+      </code>
+      label to differentiate different releases.
+    </p>
+    <p>
+      The primary, stable release would have a
+      <code>
+        track
+      </code>
+      label with value as
+      <code>
+        stable
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>frontend<span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb">
+</span><span style="color:#bbb">     </span>...<span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>guestbook<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>frontend<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">track</span>:<span style="color:#bbb"> </span>stable<span style="color:#bbb">
+</span><span style="color:#bbb">     </span>...<span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gb-frontend:v3<span style="color:#bbb">
+</span></code></pre>
+    </div>
+    <p>
+      and then you can create a new release of the guestbook frontend that carries the
+      <code>
+        track
+      </code>
+      label with different value (i.e.
+      <code>
+        canary
+      </code>
+      ), so that two sets of pods would not overlap:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>frontend-canary<span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">1</span><span style="color:#bbb">
+</span><span style="color:#bbb">     </span>...<span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>guestbook<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>frontend<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">track</span>:<span style="color:#bbb"> </span>canary<span style="color:#bbb">
+</span><span style="color:#bbb">     </span>...<span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gb-frontend:v4<span style="color:#bbb">
+</span></code></pre>
+    </div>
+    <p>
+      The frontend service would span both sets of replicas by selecting the common subset of their labels (i.e. omitting the
+      <code>
+        track
+      </code>
+      label), so that the traffic will be redirected to both applications:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>guestbook<span style="color:#bbb">
+</span><span style="color:#bbb">     </span><span style="color:#a2f;font-weight:bold">tier</span>:<span style="color:#bbb"> </span>frontend<span style="color:#bbb">
+</span></code></pre>
+    </div>
+    <p>
+      You can tweak the number of replicas of the stable and canary releases to determine the ratio of each release that will receive live production traffic (in this case, 3:1).
+      Once you&rsquo;re confident, you can update the stable track to the new application release and remove the canary one.
+    </p>
+    <p>
+      For a more concrete example, check the
+      <a href="https://github.com/kelseyhightower/talks/tree/master/kubecon-eu-2016/demo#deploy-a-canary">
+        tutorial of deploying Ghost
+      </a>
+      .
+    </p>
+    <h2 id="updating-labels">
+      Updating labels
+    </h2>
+    <p>
+      Sometimes existing pods and other resources need to be relabeled before creating new resources. This can be done with
+      <code>
+        kubectl label
+      </code>
+      .
+      For example, if you want to label all your nginx pods as frontend tier, simply run:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl label pods -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>nginx <span style="color:#b8860b">tier</span><span style="color:#666">=</span>fe</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pod/my-nginx-2035384211-j5fhi labeled
+pod/my-nginx-2035384211-u2c7e labeled
+pod/my-nginx-2035384211-u3t6x labeled</code></pre>
+    </div>
+    <p>
+      This first filters all pods with the label &ldquo;app=nginx&rdquo;, and then labels them with the &ldquo;tier=fe&rdquo;.
+      To see the pods you just labeled, run:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>nginx -L tier</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">NAME                        READY     STATUS    RESTARTS   AGE       TIER
+my-nginx-2035384211-j5fhi   1/1       Running   <span style="color:#666">0</span>          23m       fe
+my-nginx-2035384211-u2c7e   1/1       Running   <span style="color:#666">0</span>          23m       fe
+my-nginx-2035384211-u3t6x   1/1       Running   <span style="color:#666">0</span>          23m       fe</code></pre>
+    </div>
+    <p>
+      This outputs all &ldquo;app=nginx&rdquo; pods, with an additional label column of pods&rsquo; tier (specified with
+      <code>
+        -L
+      </code>
+      or
+      <code>
+        --label-columns
+      </code>
+      ).
+    </p>
+    <p>
+      For more information, please see
+      <a href="/docs/concepts/overview/working-with-objects/labels/">
+        labels
+      </a>
+      and
+      <a href="/docs/reference/generated/kubectl/kubectl-commands/#label">
+        kubectl label
+      </a>
+      .
+    </p>
+    <h2 id="updating-annotations">
+      Updating annotations
+    </h2>
+    <p>
+      Sometimes you would want to attach annotations to resources. Annotations are arbitrary non-identifying metadata for retrieval by API clients such as tools, libraries, etc. This can be done with
+      <code>
+        kubectl annotate
+      </code>
+      . For example:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl annotate pods my-nginx-v4-9gw19 <span style="color:#b8860b">description</span><span style="color:#666">=</span><span style="color:#b44">&#39;my frontend running nginx&#39;</span>
+kubectl get pods my-nginx-v4-9gw19 -o yaml</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">apiVersion: v1
+kind: pod
+metadata:
+  annotations:
+    description: my frontend running nginx
+...</code></pre>
+    </div>
+    <p>
+      For more information, please see
+      <a href="/docs/concepts/overview/working-with-objects/annotations/">
+        annotations
+      </a>
+      and
+      <a href="/docs/reference/generated/kubectl/kubectl-commands/#annotate">
+        kubectl annotate
+      </a>
+      document.
+    </p>
+    <h2 id="scaling-your-application">
+      Scaling your application
+    </h2>
+    <p>
+      When load on your application grows or shrinks, it&rsquo;s easy to scale with
+      <code>
+        kubectl
+      </code>
+      . For instance, to decrease the number of nginx replicas from 3 to 1, do:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl scale deployment/my-nginx --replicas<span style="color:#666">=</span><span style="color:#666">1</span></code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">deployment.extensions/my-nginx scaled</code></pre>
+    </div>
+    <p>
+      Now you only have one pod managed by the deployment.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>nginx</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">NAME                        READY     STATUS    RESTARTS   AGE
+my-nginx-2035384211-j5fhi   1/1       Running   <span style="color:#666">0</span>          30m</code></pre>
+    </div>
+    <p>
+      To have the system automatically choose the number of nginx replicas as needed, ranging from 1 to 3, do:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl autoscale deployment/my-nginx --min<span style="color:#666">=</span><span style="color:#666">1</span> --max<span style="color:#666">=</span><span style="color:#666">3</span></code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">horizontalpodautoscaler.autoscaling/my-nginx autoscaled</code></pre>
+    </div>
+    <p>
+      Now your nginx replicas will be scaled up and down as needed, automatically.
+    </p>
+    <p>
+      For more information, please see
+      <a href="/docs/reference/generated/kubectl/kubectl-commands/#scale">
+        kubectl scale
+      </a>
+      ,
+      <a href="/docs/reference/generated/kubectl/kubectl-commands/#autoscale">
+        kubectl autoscale
+      </a>
+      and
+      <a href="/docs/tasks/run-application/horizontal-pod-autoscale/">
+        horizontal pod autoscaler
+      </a>
+      document.
+    </p>
+    <h2 id="in-place-updates-of-resources">
+      In-place updates of resources
+    </h2>
+    <p>
+      Sometimes it&rsquo;s necessary to make narrow, non-disruptive updates to resources you&rsquo;ve created.
+    </p>
+    <h3 id="kubectl-apply">
+      kubectl apply
+    </h3>
+    <p>
+      It is suggested to maintain a set of configuration files in source control (see
+      <a href="http://martinfowler.com/bliki/InfrastructureAsCode.html">
+        configuration as code
+      </a>
+      ),
+      so that they can be maintained and versioned along with the code for the resources they configure.
+      Then, you can use
+      <a href="/docs/reference/generated/kubectl/kubectl-commands/#apply">
+        <code>
+          kubectl apply
+        </code>
+      </a>
+      to push your configuration changes to the cluster.
+    </p>
+    <p>
+      This command will compare the version of the configuration that you&rsquo;re pushing with the previous version and apply the changes you&rsquo;ve made, without overwriting any automated changes to properties you haven&rsquo;t specified.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/application/nginx/nginx-deployment.yaml
+deployment.apps/my-nginx configured</code></pre>
+    </div>
+    <p>
+      Note that
+      <code>
+        kubectl apply
+      </code>
+      attaches an annotation to the resource in order to determine the changes to the configuration since the previous invocation. When it&rsquo;s invoked,
+      <code>
+        kubectl apply
+      </code>
+      does a three-way diff between the previous configuration, the provided input and the current configuration of the resource, in order to determine how to modify the resource.
+    </p>
+    <p>
+      Currently, resources are created without this annotation, so the first invocation of
+      <code>
+        kubectl apply
+      </code>
+      will fall back to a two-way diff between the provided input and the current configuration of the resource. During this first invocation, it cannot detect the deletion of properties set when the resource was created. For this reason, it will not remove them.
+    </p>
+    <p>
+      All subsequent calls to
+      <code>
+        kubectl apply
+      </code>
+      , and other commands that modify the configuration, such as
+      <code>
+        kubectl replace
+      </code>
+      and
+      <code>
+        kubectl edit
+      </code>
+      , will update the annotation, allowing subsequent calls to
+      <code>
+        kubectl apply
+      </code>
+      to detect and perform deletions using a three-way diff.
+    </p>
+    <h3 id="kubectl-edit">
+      kubectl edit
+    </h3>
+    <p>
+      Alternatively, you may also update resources with
+      <code>
+        kubectl edit
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl edit deployment/my-nginx</code></pre>
+    </div>
+    <p>
+      This is equivalent to first
+      <code>
+        get
+      </code>
+      the resource, edit it in text editor, and then
+      <code>
+        apply
+      </code>
+      the resource with the updated version:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get deployment my-nginx -o yaml &gt; /tmp/nginx.yaml
+vi /tmp/nginx.yaml
+<span style="color:#080;font-style:italic"># do some edit, and then save the file</span>
+
+kubectl apply -f /tmp/nginx.yaml
+deployment.apps/my-nginx configured
+
+rm /tmp/nginx.yaml</code></pre>
+    </div>
+    <p>
+      This allows you to do more significant changes more easily. Note that you can specify the editor with your
+      <code>
+        EDITOR
+      </code>
+      or
+      <code>
+        KUBE_EDITOR
+      </code>
+      environment variables.
+    </p>
+    <p>
+      For more information, please see
+      <a href="/docs/reference/generated/kubectl/kubectl-commands/#edit">
+        kubectl edit
+      </a>
+      document.
+    </p>
+    <h3 id="kubectl-patch">
+      kubectl patch
+    </h3>
+    <p>
+      You can use
+      <code>
+        kubectl patch
+      </code>
+      to update API objects in place. This command supports JSON patch,
+      JSON merge patch, and strategic merge patch. See
+      <a href="/docs/tasks/run-application/update-api-object-kubectl-patch/">
+        Update API Objects in Place Using kubectl patch
+      </a>
+      and
+      <a href="/docs/reference/generated/kubectl/kubectl-commands/#patch">
+        kubectl patch
+      </a>
+      .
+    </p>
+    <h2 id="disruptive-updates">
+      Disruptive updates
+    </h2>
+    <p>
+      In some cases, you may need to update resource fields that cannot be updated once initialized, or you may just want to make a recursive change immediately, such as to fix broken pods created by a Deployment. To change such fields, use
+      <code>
+        replace --force
+      </code>
+      , which deletes and re-creates the resource. In this case, you can simply modify your original configuration file:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl replace -f https://k8s.io/examples/application/nginx/nginx-deployment.yaml --force</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">deployment.apps/my-nginx deleted
+deployment.apps/my-nginx replaced</code></pre>
+    </div>
+    <h2 id="updating-your-application-without-a-service-outage">
+      Updating your application without a service outage
+    </h2>
+    <p>
+      At some point, you&rsquo;ll eventually need to update your deployed application, typically by specifying a new image or image tag, as in the canary deployment scenario above.
+      <code>
+        kubectl
+      </code>
+      supports several update operations, each of which is applicable to different scenarios.
+    </p>
+    <p>
+      We&rsquo;ll guide you through how to create and update applications with Deployments.
+    </p>
+    <p>
+      Let&rsquo;s say you were running version 1.14.2 of nginx:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create deployment my-nginx --image<span style="color:#666">=</span>nginx:1.14.2</code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">deployment.apps/my-nginx created</code></pre>
+    </div>
+    <p>
+      with 3 replicas (so the old and new revisions can coexist):
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl scale deployment my-nginx --current-replicas<span style="color:#666">=</span><span style="color:#666">1</span> --replicas<span style="color:#666">=</span><span style="color:#666">3</span></code></pre>
+    </div>
+    <pre><code>deployment.apps/my-nginx scaled</code></pre>
+    <p>
+      To update to version 1.16.1, simply change
+      <code>
+        .spec.template.spec.containers[0].image
+      </code>
+      from
+      <code>
+        nginx:1.14.2
+      </code>
+      to
+      <code>
+        nginx:1.16.1
+      </code>
+      , with the kubectl commands we learned above.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl edit deployment/my-nginx</code></pre>
+    </div>
+    <p>
+      That&rsquo;s it! The Deployment will declaratively update the deployed nginx application progressively behind the scene. It ensures that only a certain number of old replicas may be down while they are being updated, and only a certain number of new replicas may be created above the desired number of pods. To learn more details about it, visit
+      <a href="/docs/concepts/workloads/controllers/deployment/">
+        Deployment page
+      </a>
+      .
+    </p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        <a href="/docs/tasks/debug-application-cluster/debug-application-introspection/">
+          Learn about how to use
+          <code>
+            kubectl
+          </code>
+          for application introspection and debugging.
+        </a>
+      </li>
+      <li>
+        <a href="/docs/concepts/configuration/overview/">
+          Configuration Best Practices and Tips
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

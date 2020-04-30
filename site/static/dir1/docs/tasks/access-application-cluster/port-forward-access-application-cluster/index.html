@@ -1,0 +1,289 @@
+<html>
+  <body>
+    <h1>
+      Use Port Forwarding to Access Applications in a Cluster
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/access-application-cluster/port-forward-access-application-cluster.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Use Port Forwarding to Access Applications in a Cluster
+    </h1>
+    <p>
+      This page shows how to use
+      <code>
+        kubectl port-forward
+      </code>
+      to connect to a Redis
+      server running in a Kubernetes cluster. This type of connection can be useful
+      for database debugging.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#creating-redis-deployment-and-service">
+          Creating Redis deployment and service
+        </a>
+      </li>
+      <li>
+        <a href="#forward-a-local-port-to-a-port-on-the-pod">
+          Forward a local port to a port on the Pod
+        </a>
+      </li>
+      <li>
+        <a href="#discussion">
+          Discussion
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <ul>
+      <li>
+        <p>
+          You need to have a Kubernetes cluster, and the kubectl command-line tool must
+          be configured to communicate with your cluster. If you do not already have a
+          cluster, you can create one by using
+          <a href="/docs/setup/learning-environment/minikube/">
+            Minikube
+          </a>
+          ,
+          or you can use one of these Kubernetes playgrounds:
+        </p>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      Your Kubernetes server must be at or later than version v1.10.
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <ul>
+      <li>
+        Install
+        <a href="http://redis.io/topics/rediscli">
+          redis-cli
+        </a>
+        .
+      </li>
+    </ul>
+    <h2 id="creating-redis-deployment-and-service">
+      Creating Redis deployment and service
+    </h2>
+    <ol>
+      <li>
+        <p>
+          Create a Deployment that runs Redis:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/application/guestbook/redis-master-deployment.yaml</code></pre>
+        </div>
+        <p>
+          The output of a successful command verifies that the deployment was created:
+        </p>
+        <pre><code>deployment.apps/redis-master created</code></pre>
+        <p>
+          View the pod status to check that it is ready:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods</code></pre>
+        </div>
+        <p>
+          The output displays the pod created:
+        </p>
+        <pre><code>NAME                            READY     STATUS    RESTARTS   AGE
+redis-master-765d459796-258hz   1/1       Running   0          50s</code></pre>
+        <p>
+          View the Deployment&rsquo;s status:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get deployment</code></pre>
+        </div>
+        <p>
+          The output displays that the Deployment was created:
+        </p>
+        <pre><code>NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+redis-master 1/1     1            1           55s</code></pre>
+        <p>
+          The Deployment automatically manages a ReplicaSet.
+          View the ReplicaSet status using:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get replicaset</code></pre>
+        </div>
+        <p>
+          The output displays that the ReplicaSet was created:
+        </p>
+        <pre><code>NAME                      DESIRED   CURRENT   READY     AGE
+redis-master-765d459796   1         1         1         1m</code></pre>
+      </li>
+      <li>
+        <p>
+          Create a Service to expose Redis on the network:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/application/guestbook/redis-master-service.yaml</code></pre>
+        </div>
+        <p>
+          The output of a successful command verifies that the Service was created:
+        </p>
+        <pre><code>service/redis-master created</code></pre>
+        <p>
+          Check the Service created:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get service redis-master</code></pre>
+        </div>
+        <p>
+          The output displays the service created:
+        </p>
+        <pre><code>NAME           TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
+redis-master   ClusterIP   10.0.0.213   &lt;none&gt;        6379/TCP   27s</code></pre>
+      </li>
+      <li>
+        <p>
+          Verify that the Redis server is running in the Pod, and listening on port 6379:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Change redis-master-765d459796-258hz to the name of the Pod</span>
+kubectl get pod redis-master-765d459796-258hz --template<span style="color:#666">=</span><span style="color:#b44">&#39;{{(index (index .spec.containers 0).ports 0).containerPort}}{{&#34;\n&#34;}}&#39;</span></code></pre>
+        </div>
+        <p>
+          The output displays the port for Redis in that Pod:
+        </p>
+        <pre><code>6379</code></pre>
+        <p>
+          (this is the TCP port allocated to Redis on the internet).
+        </p>
+      </li>
+    </ol>
+    <h2 id="forward-a-local-port-to-a-port-on-the-pod">
+      Forward a local port to a port on the Pod
+    </h2>
+    <ol>
+      <li>
+        <p>
+          <code>
+            kubectl port-forward
+          </code>
+          allows using resource name, such as a pod name, to select a matching pod to port forward to.
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Change redis-master-765d459796-258hz to the name of the Pod</span>
+kubectl port-forward redis-master-765d459796-258hz 7000:6379</code></pre>
+        </div>
+        <p>
+          which is the same as
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl port-forward pods/redis-master-765d459796-258hz 7000:6379</code></pre>
+        </div>
+        <p>
+          or
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl port-forward deployment/redis-master 7000:6379</code></pre>
+        </div>
+        <p>
+          or
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl port-forward replicaset/redis-master 7000:6379</code></pre>
+        </div>
+        <p>
+          or
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl port-forward service/redis-master 7000:6379</code></pre>
+        </div>
+        <p>
+          Any of the above commands works. The output is similar to this:
+        </p>
+        <pre><code>I0710 14:43:38.274550    3655 portforward.go:225] Forwarding from 127.0.0.1:7000 -&gt; 6379
+I0710 14:43:38.274797    3655 portforward.go:225] Forwarding from [::1]:7000 -&gt; 6379</code></pre>
+      </li>
+      <li>
+        <p>
+          Start the Redis command line interface:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">redis-cli -p <span style="color:#666">7000</span></code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          At the Redis command line prompt, enter the
+          <code>
+            ping
+          </code>
+          command:
+        </p>
+        <pre><code>ping</code></pre>
+        <p>
+          A successful ping request returns:
+        </p>
+        <pre><code>PONG</code></pre>
+      </li>
+    </ol>
+    <h2 id="discussion">
+      Discussion
+    </h2>
+    <p>
+      Connections made to local port 7000 are forwarded to port 6379 of the Pod that
+      is running the Redis server. With this connection in place, you can use your
+      local workstation to debug the database that is running in the Pod.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        <code>
+          kubectl port-forward
+        </code>
+        is implemented for TCP ports only.
+        The support for UDP protocol is tracked in
+        <a href="https://github.com/kubernetes/kubernetes/issues/47862">
+          issue 47862
+        </a>
+        .
+      </div>
+    </blockquote>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <p>
+      Learn more about
+      <a href="/docs/reference/generated/kubectl/kubectl-commands/#port-forward">
+        kubectl port-forward
+      </a>
+      .
+    </p>
+  </body>
+</html>

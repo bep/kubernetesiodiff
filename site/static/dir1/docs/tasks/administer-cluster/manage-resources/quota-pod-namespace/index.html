@@ -1,0 +1,317 @@
+<html>
+  <body>
+    <h1>
+      Configure a Pod Quota for a Namespace
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/administer-cluster/manage-resources/quota-pod-namespace.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Configure a Pod Quota for a Namespace
+    </h1>
+    <p>
+      This page shows how to set a quota for the total number of Pods that can run
+      in a namespace. You specify quotas in a
+      <a href="/docs/reference/generated/kubernetes-api/v1.18/#resourcequota-v1-core">
+        ResourceQuota
+      </a>
+      object.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#create-a-namespace">
+          Create a namespace
+        </a>
+      </li>
+      <li>
+        <a href="#create-a-resourcequota">
+          Create a ResourceQuota
+        </a>
+      </li>
+      <li>
+        <a href="#clean-up">
+          Clean up
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="create-a-namespace">
+      Create a namespace
+    </h2>
+    <p>
+      Create a namespace so that the resources you create in this exercise are
+      isolated from the rest of your cluster.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create namespace quota-pod-example</code></pre>
+    </div>
+    <h2 id="create-a-resourcequota">
+      Create a ResourceQuota
+    </h2>
+    <p>
+      Here is the configuration file for a ResourceQuota object:
+    </p>
+    <table class="includecode" id="admin-resource-quota-pod-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/admin/resource/quota-pod.yaml" download="admin/resource/quota-pod.yaml">
+              <code>
+                admin/resource/quota-pod.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-quota-pod-yaml')" title="Copy admin/resource/quota-pod.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ResourceQuota<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>pod-demo<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">hard</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">pods</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;2&#34;</span><span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Create the ResourceQuota:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/admin/resource/quota-pod.yaml --namespace<span style="color:#666">=</span>quota-pod-example</code></pre>
+    </div>
+    <p>
+      View detailed information about the ResourceQuota:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get resourcequota pod-demo --namespace<span style="color:#666">=</span>quota-pod-example --output<span style="color:#666">=</span>yaml</code></pre>
+    </div>
+    <p>
+      The output shows that the namespace has a quota of two Pods, and that currently there are
+      no Pods; that is, none of the quota is used.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">hard</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">pods</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;2&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">status</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">hard</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">pods</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;2&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">used</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">pods</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;0&#34;</span></code></pre>
+    </div>
+    <p>
+      Here is the configuration file for a Deployment:
+    </p>
+    <table class="includecode" id="admin-resource-quota-pod-deployment-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/admin/resource/quota-pod-deployment.yaml" download="admin/resource/quota-pod-deployment.yaml">
+              <code>
+                admin/resource/quota-pod-deployment.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-quota-pod-deployment-yaml')" title="Copy admin/resource/quota-pod-deployment.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>pod-quota-demo<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">purpose</span>:<span style="color:#bbb"> </span>quota-demo<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">purpose</span>:<span style="color:#bbb"> </span>quota-demo<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>pod-quota-demo<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      In the configuration file,
+      <code>
+        replicas: 3
+      </code>
+      tells Kubernetes to attempt to create three Pods, all running the same application.
+    </p>
+    <p>
+      Create the Deployment:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/admin/resource/quota-pod-deployment.yaml --namespace<span style="color:#666">=</span>quota-pod-example</code></pre>
+    </div>
+    <p>
+      View detailed information about the Deployment:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get deployment pod-quota-demo --namespace<span style="color:#666">=</span>quota-pod-example --output<span style="color:#666">=</span>yaml</code></pre>
+    </div>
+    <p>
+      The output shows that even though the Deployment specifies three replicas, only two
+      Pods were created because of the quota.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>...<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">status</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">availableReplicas</span>:<span style="color:#bbb"> </span><span style="color:#666">2</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>...<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">lastUpdateTime</span>:<span style="color:#bbb"> </span>2017-07-07T20:57:05Z<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">message: &#39;unable to create pods</span>:<span style="color:#bbb"> </span>pods<span style="color:#bbb"> </span><span style="color:#b44">&#34;pod-quota-demo-1650323038-&#34;</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">is forbidden</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">exceeded quota: pod-demo, requested: pods=1, used: pods=2, limited</span>:<span style="color:#bbb"> </span>pods=<span style="color:#666">2</span>&#39;</code></pre>
+    </div>
+    <h2 id="clean-up">
+      Clean up
+    </h2>
+    <p>
+      Delete your namespace:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete namespace quota-pod-example</code></pre>
+    </div>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <h3 id="for-cluster-administrators">
+      For cluster administrators
+    </h3>
+    <ul>
+      <li>
+        <p>
+          <a href="/docs/tasks/administer-cluster/memory-default-namespace/">
+            Configure Default Memory Requests and Limits for a Namespace
+          </a>
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="/docs/tasks/administer-cluster/cpu-default-namespace/">
+            Configure Default CPU Requests and Limits for a Namespace
+          </a>
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="/docs/tasks/administer-cluster/memory-constraint-namespace/">
+            Configure Minimum and Maximum Memory Constraints for a Namespace
+          </a>
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="/docs/tasks/administer-cluster/cpu-constraint-namespace/">
+            Configure Minimum and Maximum CPU Constraints for a Namespace
+          </a>
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="/docs/tasks/administer-cluster/quota-memory-cpu-namespace/">
+            Configure Memory and CPU Quotas for a Namespace
+          </a>
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="/docs/tasks/administer-cluster/quota-api-object/">
+            Configure Quotas for API Objects
+          </a>
+        </p>
+      </li>
+    </ul>
+    <h3 id="for-app-developers">
+      For app developers
+    </h3>
+    <ul>
+      <li>
+        <p>
+          <a href="/docs/tasks/configure-pod-container/assign-memory-resource/">
+            Assign Memory Resources to Containers and Pods
+          </a>
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="/docs/tasks/configure-pod-container/assign-cpu-resource/">
+            Assign CPU Resources to Containers and Pods
+          </a>
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="/docs/tasks/configure-pod-container/quality-service-pod/">
+            Configure Quality of Service for Pods
+          </a>
+        </p>
+      </li>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,542 @@
+<html>
+  <body>
+    <h1>
+      Define a Command and Arguments for a Container
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/inject-data-application/define-command-argument-container.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Define a Command and Arguments for a Container
+    </h1>
+    <p>
+      This page shows how to define commands and arguments when you run a container
+      in a
+      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+        Pod
+        <span class='tooltip-text'>
+          The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
+        </span>
+      </a>
+      .
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#define-a-command-and-arguments-when-you-create-a-pod">
+          Define a command and arguments when you create a Pod
+        </a>
+      </li>
+      <li>
+        <a href="#use-environment-variables-to-define-arguments">
+          Use environment variables to define arguments
+        </a>
+      </li>
+      <li>
+        <a href="#run-a-command-in-a-shell">
+          Run a command in a shell
+        </a>
+      </li>
+      <li>
+        <a href="#notes">
+          Notes
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="define-a-command-and-arguments-when-you-create-a-pod">
+      Define a command and arguments when you create a Pod
+    </h2>
+    <p>
+      When you create a Pod, you can define a command and arguments for the
+      containers that run in the Pod. To define a command, include the
+      <code>
+        command
+      </code>
+      field in the configuration file. To define arguments for the command, include
+      the
+      <code>
+        args
+      </code>
+      field in the configuration file. The command and arguments that
+      you define cannot be changed after the Pod is created.
+    </p>
+    <p>
+      The command and arguments that you define in the configuration file
+      override the default command and arguments provided by the container image.
+      If you define args, but do not define a command, the default command is used
+      with your new arguments.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        The
+        <code>
+          command
+        </code>
+        field corresponds to
+        <code>
+          entrypoint
+        </code>
+        in some container
+        runtimes. Refer to the
+        <a href="#notes">
+          Notes
+        </a>
+        below.
+      </div>
+    </blockquote>
+    <p>
+      In this exercise, you create a Pod that runs one container. The configuration
+      file for the Pod defines a command and two arguments:
+    </p>
+    <table class="includecode" id="pods-commands-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/commands.yaml" download="pods/commands.yaml">
+              <code>
+                pods/commands.yaml
+              </code>
+            </a>
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-commands-yaml')" title="Copy pods/commands.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>command-demo<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">purpose</span>:<span style="color:#bbb"> </span>demonstrate-command<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>command-demo-container<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>debian<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;printenv&#34;</span>]<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">args</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;HOSTNAME&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;KUBERNETES_PORT&#34;</span>]<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">restartPolicy</span>:<span style="color:#bbb"> </span>OnFailure<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ol>
+      <li>
+        <p>
+          Create a Pod based on the YAML configuration file:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/pods/commands.yaml</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          List the running Pods:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods</code></pre>
+        </div>
+        <p>
+          The output shows that the container that ran in the command-demo Pod has
+          completed.
+        </p>
+      </li>
+      <li>
+        <p>
+          To see the output of the command that ran in the container, view the logs
+          from the Pod:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl logs command-demo</code></pre>
+        </div>
+        <p>
+          The output shows the values of the HOSTNAME and KUBERNETES_PORT environment
+          variables:
+        </p>
+        <pre><code>command-demo
+tcp://10.3.240.1:443</code></pre>
+      </li>
+    </ol>
+    <h2 id="use-environment-variables-to-define-arguments">
+      Use environment variables to define arguments
+    </h2>
+    <p>
+      In the preceding example, you defined the arguments directly by
+      providing strings. As an alternative to providing strings directly,
+      you can define arguments by using environment variables:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">env</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>MESSAGE<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;hello world&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;/bin/echo&#34;</span>]<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">args</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;$(MESSAGE)&#34;</span>]<span style="color:#bbb">
+</span></code></pre>
+    </div>
+    <p>
+      This means you can define an argument for a Pod using any of
+      the techniques available for defining environment variables, including
+      <a href="/docs/tasks/configure-pod-container/configure-pod-configmap/">
+        ConfigMaps
+      </a>
+      and
+      <a href="/docs/concepts/configuration/secret/">
+        Secrets
+      </a>
+      .
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        The environment variable appears in parentheses,
+        <code>
+          &quot;$(VAR)&quot;
+        </code>
+        . This is
+        required for the variable to be expanded in the
+        <code>
+          command
+        </code>
+        or
+        <code>
+          args
+        </code>
+        field.
+      </div>
+    </blockquote>
+    <h2 id="run-a-command-in-a-shell">
+      Run a command in a shell
+    </h2>
+    <p>
+      In some cases, you need your command to run in a shell. For example, your
+      command might consist of several commands piped together, or it might be a shell
+      script. To run your command in a shell, wrap it like this:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">command: <span style="color:#666">[</span><span style="color:#b44">&#34;/bin/sh&#34;</span><span style="color:#666">]</span>
+args: <span style="color:#666">[</span><span style="color:#b44">&#34;-c&#34;</span>, <span style="color:#b44">&#34;while true; do echo hello; sleep 10;done&#34;</span><span style="color:#666">]</span></code></pre>
+    </div>
+    <h2 id="notes">
+      Notes
+    </h2>
+    <p>
+      This table summarizes the field names used by Docker and Kubernetes.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Description
+          </th>
+          <th>
+            Docker field name
+          </th>
+          <th>
+            Kubernetes field name
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            The command run by the container
+          </td>
+          <td>
+            Entrypoint
+          </td>
+          <td>
+            command
+          </td>
+        </tr>
+        <tr>
+          <td>
+            The arguments passed to the command
+          </td>
+          <td>
+            Cmd
+          </td>
+          <td>
+            args
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      When you override the default Entrypoint and Cmd, these rules apply:
+    </p>
+    <ul>
+      <li>
+        <p>
+          If you do not supply
+          <code>
+            command
+          </code>
+          or
+          <code>
+            args
+          </code>
+          for a Container, the defaults defined
+          in the Docker image are used.
+        </p>
+      </li>
+      <li>
+        <p>
+          If you supply a
+          <code>
+            command
+          </code>
+          but no
+          <code>
+            args
+          </code>
+          for a Container, only the supplied
+          <code>
+            command
+          </code>
+          is used. The default EntryPoint and the default Cmd defined in the Docker
+          image are ignored.
+        </p>
+      </li>
+      <li>
+        <p>
+          If you supply only
+          <code>
+            args
+          </code>
+          for a Container, the default Entrypoint defined in
+          the Docker image is run with the
+          <code>
+            args
+          </code>
+          that you supplied.
+        </p>
+      </li>
+      <li>
+        <p>
+          If you supply a
+          <code>
+            command
+          </code>
+          and
+          <code>
+            args
+          </code>
+          , the default Entrypoint and the default
+          Cmd defined in the Docker image are ignored. Your
+          <code>
+            command
+          </code>
+          is run with your
+          <code>
+            args
+          </code>
+          .
+        </p>
+      </li>
+    </ul>
+    <p>
+      Here are some examples:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Image Entrypoint
+          </th>
+          <th>
+            Image Cmd
+          </th>
+          <th>
+            Container command
+          </th>
+          <th>
+            Container args
+          </th>
+          <th>
+            Command run
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code>
+              [/ep-1]
+            </code>
+          </td>
+          <td>
+            <code>
+              [foo bar]
+            </code>
+          </td>
+          <td>
+            &lt;not set&gt;
+          </td>
+          <td>
+            &lt;not set&gt;
+          </td>
+          <td>
+            <code>
+              [ep-1 foo bar]
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>
+              [/ep-1]
+            </code>
+          </td>
+          <td>
+            <code>
+              [foo bar]
+            </code>
+          </td>
+          <td>
+            <code>
+              [/ep-2]
+            </code>
+          </td>
+          <td>
+            &lt;not set&gt;
+          </td>
+          <td>
+            <code>
+              [ep-2]
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>
+              [/ep-1]
+            </code>
+          </td>
+          <td>
+            <code>
+              [foo bar]
+            </code>
+          </td>
+          <td>
+            &lt;not set&gt;
+          </td>
+          <td>
+            <code>
+              [zoo boo]
+            </code>
+          </td>
+          <td>
+            <code>
+              [ep-1 zoo boo]
+            </code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>
+              [/ep-1]
+            </code>
+          </td>
+          <td>
+            <code>
+              [foo bar]
+            </code>
+          </td>
+          <td>
+            <code>
+              [/ep-2]
+            </code>
+          </td>
+          <td>
+            <code>
+              [zoo boo]
+            </code>
+          </td>
+          <td>
+            <code>
+              [ep-2 zoo boo]
+            </code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        Learn more about
+        <a href="/docs/tasks/">
+          configuring pods and containers
+        </a>
+        .
+      </li>
+      <li>
+        Learn more about
+        <a href="/docs/tasks/debug-application-cluster/get-shell-running-container/">
+          running commands in a container
+        </a>
+        .
+      </li>
+      <li>
+        See
+        <a href="/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core">
+          Container
+        </a>
+        .
+      </li>
+    </ul>
+  </body>
+</html>

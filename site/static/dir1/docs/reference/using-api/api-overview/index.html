@@ -1,0 +1,370 @@
+<html>
+  <body>
+    <h1>
+      Kubernetes API Overview
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/using-api/api-overview.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Kubernetes API Overview
+    </h1>
+    <p>
+      This page provides an overview of the Kubernetes API.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#api-versioning">
+          API versioning
+        </a>
+      </li>
+      <li>
+        <a href="#api-groups">
+          API groups
+        </a>
+      </li>
+      <li>
+        <a href="#enabling-or-disabling-api-groups">
+          Enabling or disabling API groups
+        </a>
+      </li>
+      <li>
+        <a href="#enabling-specific-resources-in-the-extensions-v1beta1-group">
+          Enabling specific resources in the extensions/v1beta1 group
+        </a>
+      </li>
+    </ul>
+    <p>
+      The REST API is the fundamental fabric of Kubernetes. All operations and communications between components, and external user commands are REST API calls that the API Server handles. Consequently, everything in the Kubernetes
+      platform is treated as an API object and has a corresponding entry in the
+      <a href="/docs/reference/generated/kubernetes-api/v1.18/">
+        API
+      </a>
+      .
+    </p>
+    <p>
+      Most operations can be performed through the
+      <a href="/docs/reference/kubectl/overview/">
+        kubectl
+      </a>
+      command-line interface or other
+      command-line tools, such as
+      <a href="/docs/reference/setup-tools/kubeadm/kubeadm/">
+        kubeadm
+      </a>
+      , which in turn use
+      the API. However, you can also access the API directly using REST calls.
+    </p>
+    <p>
+      Consider using one of the
+      <a href="/docs/reference/using-api/client-libraries/">
+        client libraries
+      </a>
+      if you are writing an application using the Kubernetes API.
+    </p>
+    <h2 id="api-versioning">
+      API versioning
+    </h2>
+    <p>
+      To eliminate fields or restructure resource representations, Kubernetes supports
+      multiple API versions, each at a different API path. For example:
+      <code>
+        /api/v1
+      </code>
+      or
+      <code>
+        /apis/extensions/v1beta1
+      </code>
+      .
+    </p>
+    <p>
+      The version is set at the API level rather than at the resource or field level to:
+    </p>
+    <ul>
+      <li>
+        Ensure that the API presents a clear and consistent view of system resources and behavior.
+      </li>
+      <li>
+        Enable control access to end-of-life and/or experimental APIs.
+      </li>
+    </ul>
+    <p>
+      The JSON and Protobuf serialization schemas follow the same guidelines for schema changes. The following descriptions cover both formats.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        The API versioning and software versioning are indirectly related.  The
+        <a href="https://git.k8s.io/community/contributors/design-proposals/release/versioning.md">
+          API and release
+          versioning proposal
+        </a>
+        describes the relationship between API versioning and software versioning.
+      </div>
+    </blockquote>
+    <p>
+      Different API versions indicate different levels of stability and support. You can find more information about the criteria for each level in the
+      <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api_changes.md#alpha-beta-and-stable-versions">
+        API Changes documentation
+      </a>
+      .
+    </p>
+    <p>
+      Here&rsquo;s a summary of each level:
+    </p>
+    <ul>
+      <li>
+        <p>
+          Alpha:
+        </p>
+        <ul>
+          <li>
+            The version names contain
+            <code>
+              alpha
+            </code>
+            (for example,
+            <code>
+              v1alpha1
+            </code>
+            ).
+          </li>
+          <li>
+            The software may contain bugs. Enabling a feature may expose bugs. A feature may be disabled by default.
+          </li>
+          <li>
+            The support for a feature may be dropped at any time without notice.
+          </li>
+          <li>
+            The API may change in incompatible ways in a later software release without notice.
+          </li>
+          <li>
+            The software is recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of  long-term support.
+            <br />
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>
+          Beta:
+        </p>
+        <ul>
+          <li>
+            The version names contain
+            <code>
+              beta
+            </code>
+            (for example,
+            <code>
+              v2beta3
+            </code>
+            ).
+          </li>
+          <li>
+            The software is well tested. Enabling a feature is considered safe. Features are enabled by default.
+          </li>
+          <li>
+            The support for a feature will not be dropped, though the details may change.
+          </li>
+          <li>
+            The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, migration instructions are provided.  This may require deleting, editing, and re-creating
+            API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+          </li>
+          <li>
+            The software is recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters which can be upgraded independently, you may be able to relax this restriction.
+            <br />
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p>
+      <blockquote class="note">
+        <div>
+          <strong>
+            Note:
+          </strong>
+          Try the beta features and provide feedback. After the features exit beta, it may not be practical to make more changes.
+        </div>
+      </blockquote>
+    </p>
+    <ul>
+      <li>
+        Stable:
+        <ul>
+          <li>
+            The version name is
+            <code>
+              vX
+            </code>
+            where
+            <code>
+              X
+            </code>
+            is an integer.
+          </li>
+          <li>
+            The stable versions of features appear in released software for many subsequent versions.
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="api-groups">
+      API groups
+    </h2>
+    <p>
+      <a href="https://git.k8s.io/community/contributors/design-proposals/api-machinery/api-group.md">
+        <em>
+          API groups
+        </em>
+      </a>
+      make it easier to extend the Kubernetes API. The API group is specified in a REST path and in the
+      <code>
+        apiVersion
+      </code>
+      field of a serialized object.
+    </p>
+    <p>
+      Currently, there are several API groups in use:
+    </p>
+    <ul>
+      <li>
+        The
+        <em>
+          core
+        </em>
+        (also called
+        <em>
+          legacy
+        </em>
+        ) group, which is at REST path
+        <code>
+          /api/v1
+        </code>
+        and is not specified as part of the
+        <code>
+          apiVersion
+        </code>
+        field, for example,
+        <code>
+          apiVersion: v1
+        </code>
+        .
+      </li>
+      <li>
+        The named groups are at REST path
+        <code>
+          /apis/$GROUP_NAME/$VERSION
+        </code>
+        , and use
+        <code>
+          apiVersion: $GROUP_NAME/$VERSION
+        </code>
+        (for example,
+        <code>
+          apiVersion: batch/v1
+        </code>
+        ). You can find the full list of supported API groups in
+        <a href="/docs/reference/">
+          Kubernetes API reference
+        </a>
+        .
+      </li>
+    </ul>
+    <p>
+      The two paths that support extending the API with
+      <a href="/docs/concepts/api-extension/custom-resources/">
+        custom resources
+      </a>
+      are:
+    </p>
+    <ul>
+      <li>
+        <a href="/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/">
+          CustomResourceDefinition
+        </a>
+        for basic CRUD needs.
+      </li>
+      <li>
+        <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/aggregated-api-servers.md">
+          aggregator
+        </a>
+        for a full set of Kubernetes API semantics to implement their own apiserver.
+      </li>
+    </ul>
+    <h2 id="enabling-or-disabling-api-groups">
+      Enabling or disabling API groups
+    </h2>
+    <p>
+      Certain resources and API groups are enabled by default. You can enable or disable them by setting
+      <code>
+        --runtime-config
+      </code>
+      on the apiserver.
+      <code>
+        --runtime-config
+      </code>
+      accepts comma separated values. For example:
+    </p>
+    <ul>
+      <li>
+        to disable batch/v1, set
+        <code>
+          --runtime-config=batch/v1=false
+        </code>
+      </li>
+      <li>
+        to enable batch/v2alpha1, set
+        <code>
+          --runtime-config=batch/v2alpha1
+        </code>
+      </li>
+    </ul>
+    <p>
+      The flag accepts comma separated set of key=value pairs describing runtime configuration of the apiserver.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        When you enable or disable groups or resources, you need to restart the apiserver and controller-manager
+        to pick up the
+        <code>
+          --runtime-config
+        </code>
+        changes.
+      </div>
+    </blockquote>
+    <h2 id="enabling-specific-resources-in-the-extensions-v1beta1-group">
+      Enabling specific resources in the extensions/v1beta1 group
+    </h2>
+    <p>
+      DaemonSets, Deployments, StatefulSet, NetworkPolicies, PodSecurityPolicies and ReplicaSets in the
+      <code>
+        extensions/v1beta1
+      </code>
+      API group are disabled by default.
+      For example: to enable deployments and daemonsets, set
+      <code>
+        --runtime-config=extensions/v1beta1/deployments=true,extensions/v1beta1/daemonsets=true
+      </code>
+      .
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        Individual resource enablement/disablement is only supported in the
+        <code>
+          extensions/v1beta1
+        </code>
+        API group for legacy reasons.
+      </div>
+    </blockquote>
+  </body>
+</html>

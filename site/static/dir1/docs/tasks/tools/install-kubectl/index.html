@@ -1,0 +1,1029 @@
+<html>
+<body>
+<h1>
+  Install and Set Up kubectl
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/tools/install-kubectl.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Install and Set Up kubectl
+</h1>
+<p>
+  The Kubernetes command-line tool,
+  <a href="/docs/user-guide/kubectl/">
+    kubectl
+  </a>
+  , allows you to run commands against Kubernetes clusters. You can use kubectl to deploy applications, inspect and manage cluster resources, and view logs. For a complete list of kubectl operations, see
+  <a href="/docs/reference/kubectl/overview/">
+    Overview of kubectl
+  </a>
+  .
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#before-you-begin">
+      Before you begin
+    </a>
+  </li>
+  <li>
+    <a href="#install-kubectl-on-linux">
+      Install kubectl on Linux
+    </a>
+  </li>
+  <li>
+    <a href="#install-kubectl-on-macos">
+      Install kubectl on macOS
+    </a>
+  </li>
+  <li>
+    <a href="#install-kubectl-on-windows">
+      Install kubectl on Windows
+    </a>
+  </li>
+  <li>
+    <a href="#download-as-part-of-the-google-cloud-sdk">
+      Download as part of the Google Cloud SDK
+    </a>
+  </li>
+  <li>
+    <a href="#verifying-kubectl-configuration">
+      Verifying kubectl configuration
+    </a>
+  </li>
+  <li>
+    <a href="#optional-kubectl-configurations">
+      Optional kubectl configurations
+    </a>
+  </li>
+  <li>
+    <a href="#what-s-next">
+      What's next
+    </a>
+  </li>
+</ul>
+<h2 id="before-you-begin">
+  Before you begin
+</h2>
+<p>
+  You must use a kubectl version that is within one minor version difference of your cluster. For example, a v1.2 client should work with v1.1, v1.2, and v1.3 master. Using the latest version of kubectl helps avoid unforeseen issues.
+</p>
+<h2 id="install-kubectl-on-linux">
+  Install kubectl on Linux
+</h2>
+<h3 id="install-kubectl-binary-with-curl-on-linux">
+  Install kubectl binary with curl on Linux
+</h3>
+<ol>
+  <li>
+    <p>
+      Download the latest release with the command:
+    </p>
+    <pre><code>curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl</code></pre>
+    <p>
+      To download a specific version, replace the
+      <code>
+        $(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+      </code>
+      portion of the command with the specific version.
+    </p>
+    <p>
+      For example, to download version v1.18.0 on Linux, type:
+    </p>
+    <pre><code>curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl</code></pre>
+  </li>
+  <li>
+    <p>
+      Make the kubectl binary executable.
+    </p>
+    <pre><code>chmod +x ./kubectl</code></pre>
+  </li>
+  <li>
+    <p>
+      Move the binary in to your PATH.
+    </p>
+    <pre><code>sudo mv ./kubectl /usr/local/bin/kubectl</code></pre>
+  </li>
+  <li>
+    <p>
+      Test to ensure the version you installed is up-to-date:
+    </p>
+    <pre><code>kubectl version --client</code></pre>
+  </li>
+</ol>
+<h3 id="install-using-native-package-management">
+  Install using native package management
+</h3>
+<div id="kubectl-install">
+<ul>
+  <li>
+    <a href="#kubectl-install-0">
+      Ubuntu, Debian or HypriotOS
+    </a>
+  </li>
+  <li>
+    <a href="#kubectl-install-1">
+      CentOS, RHEL or Fedora
+    </a>
+  </li>
+</ul>
+<div id="kubectl-install-0">
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+sudo apt-get update <span style="color:#666">&amp;&amp;</span> sudo apt-get install -y apt-transport-https gnupg2
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+<span style="color:#a2f">echo</span> <span style="color:#b44">&#34;deb https://apt.kubernetes.io/ kubernetes-xenial main&#34;</span> | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl</code></pre>
+  </div>
+  <p>
+</div>
+<div id="kubectl-install-1">
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#b44">&lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+</span><span style="color:#b44">[kubernetes]
+</span><span style="color:#b44">name=Kubernetes
+</span><span style="color:#b44">baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+</span><span style="color:#b44">enabled=1
+</span><span style="color:#b44">gpgcheck=1
+</span><span style="color:#b44">repo_gpgcheck=1
+</span><span style="color:#b44">gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+</span><span style="color:#b44">EOF</span>
+yum install -y kubectl</code></pre>
+  </div>
+  <p>
+</div>
+<p>
+<script>
+  $(function(){$("#kubectl-install").tabs();});
+</script>
+<h3 id="install-using-other-package-management">
+  Install using other package management
+</h3>
+<div id="other-kubectl-install">
+<ul>
+  <li>
+    <a href="#other-kubectl-install-0">
+      Snap
+    </a>
+  </li>
+  <li>
+    <a href="#other-kubectl-install-1">
+      Homebrew
+    </a>
+  </li>
+</ul>
+<div id="other-kubectl-install-0">
+  <p>
+    If you are on Ubuntu or another Linux distribution that support
+    <a href="https://snapcraft.io/docs/core/install">
+      snap
+    </a>
+    package manager, kubectl is available as a
+    <a href="https://snapcraft.io/">
+      snap
+    </a>
+    application.
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">snap install kubectl --classic
+
+kubectl version --client</code></pre>
+  </div>
+  <p>
+</div>
+<div id="other-kubectl-install-1">
+  <p>
+    If you are on Linux and using
+    <a href="https://docs.brew.sh/Homebrew-on-Linux">
+      Homebrew
+    </a>
+    package manager, kubectl is available for
+    <a href="https://docs.brew.sh/Homebrew-on-Linux#install">
+      installation
+    </a>
+    .
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">brew install kubectl
+
+kubectl version --client</code></pre>
+  </div>
+  <p>
+</div>
+<p>
+<script>
+  $(function(){$("#other-kubectl-install").tabs();});
+</script>
+<h2 id="install-kubectl-on-macos">
+  Install kubectl on macOS
+</h2>
+<h3 id="install-kubectl-binary-with-curl-on-macos">
+  Install kubectl binary with curl on macOS
+</h3>
+<ol>
+  <li>
+    <p>
+      Download the latest release:
+    </p>
+    <pre><code>curl -LO &#34;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&#34;</code></pre>
+    <p>
+      To download a specific version, replace the
+      <code>
+        $(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+      </code>
+      portion of the command with the specific version.
+    </p>
+    <p>
+      For example, to download version v1.18.0 on macOS, type:
+    </p>
+    <pre><code>curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/darwin/amd64/kubectl</code></pre>
+  </li>
+  <li>
+    <p>
+      Make the kubectl binary executable.
+    </p>
+    <pre><code>chmod +x ./kubectl</code></pre>
+  </li>
+  <li>
+    <p>
+      Move the binary in to your PATH.
+    </p>
+    <pre><code>sudo mv ./kubectl /usr/local/bin/kubectl</code></pre>
+  </li>
+  <li>
+    <p>
+      Test to ensure the version you installed is up-to-date:
+    </p>
+    <pre><code>kubectl version --client</code></pre>
+  </li>
+</ol>
+<h3 id="install-with-homebrew-on-macos">
+  Install with Homebrew on macOS
+</h3>
+<p>
+  If you are on macOS and using
+  <a href="https://brew.sh/">
+    Homebrew
+  </a>
+  package manager, you can install kubectl with Homebrew.
+</p>
+<ol>
+  <li>
+    <p>
+      Run the installation command:
+    </p>
+    <pre><code>brew install kubectl </code></pre>
+    <p>
+      or
+    </p>
+    <pre><code>brew install kubernetes-cli</code></pre>
+  </li>
+  <li>
+    <p>
+      Test to ensure the version you installed is up-to-date:
+    </p>
+    <pre><code>kubectl version --client</code></pre>
+  </li>
+</ol>
+<h3 id="install-with-macports-on-macos">
+  Install with Macports on macOS
+</h3>
+<p>
+  If you are on macOS and using
+  <a href="https://macports.org/">
+    Macports
+  </a>
+  package manager, you can install kubectl with Macports.
+</p>
+<ol>
+  <li>
+    <p>
+      Run the installation command:
+    </p>
+    <pre><code>sudo port selfupdate
+sudo port install kubectl</code></pre>
+  </li>
+  <li>
+    <p>
+      Test to ensure the version you installed is up-to-date:
+    </p>
+    <pre><code>kubectl version --client</code></pre>
+  </li>
+</ol>
+<h2 id="install-kubectl-on-windows">
+  Install kubectl on Windows
+</h2>
+<h3 id="install-kubectl-binary-with-curl-on-windows">
+  Install kubectl binary with curl on Windows
+</h3>
+<ol>
+  <li>
+    <p>
+      Download the latest release v1.18.0 from
+      <a href="https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe">
+        this link
+      </a>
+      .
+    </p>
+    <p>
+      Or if you have
+      <code>
+        curl
+      </code>
+      installed, use this command:
+    </p>
+    <pre><code>curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe</code></pre>
+    <p>
+      To find out the latest stable version (for example, for scripting), take a look at
+      <a href="https://storage.googleapis.com/kubernetes-release/release/stable.txt">
+        https://storage.googleapis.com/kubernetes-release/release/stable.txt
+      </a>
+      .
+    </p>
+  </li>
+  <li>
+    <p>
+      Add the binary in to your PATH.
+    </p>
+  </li>
+  <li>
+    <p>
+      Test to ensure the version of
+      <code>
+        kubectl
+      </code>
+      is the same as downloaded:
+    </p>
+    <pre><code>kubectl version --client</code></pre>
+  </li>
+</ol>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    <a href="https://docs.docker.com/docker-for-windows/#kubernetes">
+      Docker Desktop for Windows
+    </a>
+    adds its own version of
+    <code>
+      kubectl
+    </code>
+    to PATH.
+    If you have installed Docker Desktop before, you may need to place your PATH entry before the one added by the Docker Desktop installer or remove the Docker Desktop&rsquo;s
+    <code>
+      kubectl
+    </code>
+    .
+  </div>
+</blockquote>
+<h3 id="install-with-powershell-from-psgallery">
+  Install with Powershell from PSGallery
+</h3>
+<p>
+  If you are on Windows and using
+  <a href="https://www.powershellgallery.com/">
+    Powershell Gallery
+  </a>
+  package manager, you can install and update kubectl with Powershell.
+</p>
+<ol>
+  <li>
+    <p>
+      Run the installation commands (making sure to specify a
+      <code>
+        DownloadLocation
+      </code>
+      ):
+    </p>
+    <pre><code>Install-Script -Name install-kubectl -Scope CurrentUser -Force
+install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        If you do not specify a
+        <code>
+          DownloadLocation
+        </code>
+        ,
+        <code>
+          kubectl
+        </code>
+        will be installed in the user&rsquo;s temp Directory.
+      </div>
+    </blockquote>
+    <p>
+      The installer creates
+      <code>
+        $HOME/.kube
+      </code>
+      and instructs it to create a config file
+    </p>
+  </li>
+  <li>
+    <p>
+      Test to ensure the version you installed is up-to-date:
+    </p>
+    <pre><code>kubectl version --client</code></pre>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        Updating the installation is performed by rerunning the two commands listed in step 1.
+      </div>
+    </blockquote>
+  </li>
+</ol>
+<h3 id="install-on-windows-using-chocolatey-or-scoop">
+  Install on Windows using Chocolatey or Scoop
+</h3>
+<p>
+  To install kubectl on Windows you can use either
+  <a href="https://chocolatey.org">
+    Chocolatey
+  </a>
+  package manager or
+  <a href="https://scoop.sh">
+    Scoop
+  </a>
+  command-line installer.
+</p>
+<div id="kubectl-win-install">
+  <ul>
+    <li>
+      <a href="#kubectl-win-install-0">
+        choco
+      </a>
+    </li>
+    <li>
+      <a href="#kubectl-win-install-1">
+        scoop
+      </a>
+    </li>
+  </ul>
+  <div id="kubectl-win-install-0">
+    <pre><code>choco install kubernetes-cli</code></pre>
+  </div>
+  <div id="kubectl-win-install-1">
+    <pre><code>scoop install kubectl</code></pre>
+  </div>
+  <p>
+</div>
+<script>
+  $(function(){$("#kubectl-win-install").tabs();});
+</script>
+<ol>
+  <li>
+    <p>
+      Test to ensure the version you installed is up-to-date:
+    </p>
+    <pre><code>kubectl version --client</code></pre>
+  </li>
+  <li>
+    <p>
+      Navigate to your home directory:
+    </p>
+    <pre><code>cd %USERPROFILE%</code></pre>
+  </li>
+  <li>
+    <p>
+      Create the
+      <code>
+        .kube
+      </code>
+      directory:
+    </p>
+    <pre><code>mkdir .kube</code></pre>
+  </li>
+  <li>
+    <p>
+      Change to the
+      <code>
+        .kube
+      </code>
+      directory you just created:
+    </p>
+    <pre><code>cd .kube</code></pre>
+  </li>
+  <li>
+    <p>
+      Configure kubectl to use a remote Kubernetes cluster:
+    </p>
+    <pre><code>New-Item config -type file</code></pre>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        Edit the config file with a text editor of your choice, such as Notepad.
+      </div>
+    </blockquote>
+  </li>
+</ol>
+<h2 id="download-as-part-of-the-google-cloud-sdk">
+  Download as part of the Google Cloud SDK
+</h2>
+<p>
+  You can install kubectl as part of the Google Cloud SDK.
+</p>
+<ol>
+  <li>
+    Install the
+    <a href="https://cloud.google.com/sdk/">
+      Google Cloud SDK
+    </a>
+    .
+  </li>
+  <li>
+    <p>
+      Run the
+      <code>
+        kubectl
+      </code>
+      installation command:
+    </p>
+    <pre><code>gcloud components install kubectl</code></pre>
+  </li>
+  <li>
+    <p>
+      Test to ensure the version you installed is up-to-date:
+    </p>
+    <pre><code>kubectl version --client</code></pre>
+  </li>
+</ol>
+<h2 id="verifying-kubectl-configuration">
+  Verifying kubectl configuration
+</h2>
+<p>
+  In order for kubectl to find and access a Kubernetes cluster, it needs a
+  <a href="/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">
+    kubeconfig file
+  </a>
+  , which is created automatically when you create a cluster using
+  <a href="https://github.com/kubernetes/kubernetes/blob/master/cluster/kube-up.sh">
+    kube-up.sh
+  </a>
+  or successfully deploy a Minikube cluster. By default, kubectl configuration is located at
+  <code>
+    ~/.kube/config
+  </code>
+  .
+</p>
+<p>
+  Check that kubectl is properly configured by getting the cluster state:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl cluster-info</code></pre>
+</div>
+<p>
+  If you see a URL response, kubectl is correctly configured to access your cluster.
+</p>
+<p>
+  If you see a message similar to the following, kubectl is not configured correctly or is not able to connect to a Kubernetes cluster.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">The connection to the server &lt;server-name:port&gt; was refused - did you specify the right host or port?</code></pre>
+</div>
+<p>
+  For example, if you are intending to run a Kubernetes cluster on your laptop (locally), you will need a tool like Minikube to be installed first and then re-run the commands stated above.
+</p>
+<p>
+  If kubectl cluster-info returns the url response but you can&rsquo;t access your cluster, to check whether it is configured properly, use:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl cluster-info dump</code></pre>
+</div>
+<h2 id="optional-kubectl-configurations">
+  Optional kubectl configurations
+</h2>
+<h3 id="enabling-shell-autocompletion">
+  Enabling shell autocompletion
+</h3>
+<p>
+  kubectl provides autocompletion support for Bash and Zsh, which can save you a lot of typing.
+</p>
+<p>
+  Below are the procedures to set up autocompletion for Bash (including the difference between Linux and macOS) and Zsh.
+</p>
+<div id="kubectl-autocompletion">
+<ul>
+  <li>
+    <a href="#kubectl-autocompletion-0">
+      Bash on Linux
+    </a>
+  </li>
+  <li>
+    <a href="#kubectl-autocompletion-1">
+      Bash on macOS
+    </a>
+  </li>
+  <li>
+    <a href="#kubectl-autocompletion-2">
+      Zsh
+    </a>
+  </li>
+</ul>
+<div id="kubectl-autocompletion-0">
+  <h3 id="introduction">
+    Introduction
+  </h3>
+  <p>
+    The kubectl completion script for Bash can be generated with the command
+    <code>
+      kubectl completion bash
+    </code>
+    . Sourcing the completion script in your shell enables kubectl autocompletion.
+  </p>
+  <p>
+    However, the completion script depends on
+    <a href="https://github.com/scop/bash-completion">
+      <strong>
+        bash-completion
+      </strong>
+    </a>
+    , which means that you have to install this software first (you can test if you have bash-completion already installed by running
+    <code>
+      type _init_completion
+    </code>
+    ).
+  </p>
+  <h3 id="install-bash-completion">
+    Install bash-completion
+  </h3>
+  <p>
+    bash-completion is provided by many package managers (see
+    <a href="https://github.com/scop/bash-completion#installation">
+      here
+    </a>
+    ). You can install it with
+    <code>
+      apt-get install bash-completion
+    </code>
+    or
+    <code>
+      yum install bash-completion
+    </code>
+    , etc.
+  </p>
+  <p>
+    The above commands create
+    <code>
+      /usr/share/bash-completion/bash_completion
+    </code>
+    , which is the main script of bash-completion. Depending on your package manager, you have to manually source this file in your
+    <code>
+      ~/.bashrc
+    </code>
+    file.
+  </p>
+  <p>
+    To find out, reload your shell and run
+    <code>
+      type _init_completion
+    </code>
+    . If the command succeeds, you&rsquo;re already set, otherwise add the following to your
+    <code>
+      ~/.bashrc
+    </code>
+    file:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">source</span> /usr/share/bash-completion/bash_completion</code></pre>
+  </div>
+  <p>
+    Reload your shell and verify that bash-completion is correctly installed by typing
+    <code>
+      type _init_completion
+    </code>
+    .
+  </p>
+  <h3 id="enable-kubectl-autocompletion">
+    Enable kubectl autocompletion
+  </h3>
+  <p>
+    You now need to ensure that the kubectl completion script gets sourced in all your shell sessions. There are two ways in which you can do this:
+  </p>
+  <ul>
+    <li>
+      <p>
+        Source the completion script in your
+        <code>
+          ~/.bashrc
+        </code>
+        file:
+      </p>
+      <div class="highlight">
+        <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">echo</span> <span style="color:#b44">&#39;source &lt;(kubectl completion bash)&#39;</span> &gt;&gt;~/.bashrc</code></pre>
+      </div>
+    </li>
+    <li>
+      <p>
+        Add the completion script to the
+        <code>
+          /etc/bash_completion.d
+        </code>
+        directory:
+      </p>
+      <div class="highlight">
+        <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl completion bash &gt;/etc/bash_completion.d/kubectl</code></pre>
+      </div>
+    </li>
+    <li>
+      <p>
+        If you have an alias for kubectl, you can extend shell completion to work with that alias:
+      </p>
+      <div class="highlight">
+        <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">echo</span> <span style="color:#b44">&#39;alias k=kubectl&#39;</span> &gt;&gt;~/.bashrc
+<span style="color:#a2f">echo</span> <span style="color:#b44">&#39;complete -F __start_kubectl k&#39;</span> &gt;&gt;~/.bashrc</code></pre>
+      </div>
+    </li>
+  </ul>
+  <blockquote class="note">
+    <div>
+      <strong>
+        Note:
+      </strong>
+      bash-completion sources all completion scripts in
+      <code>
+        /etc/bash_completion.d
+      </code>
+      .
+    </div>
+  </blockquote>
+  <p>
+    Both approaches are equivalent. After reloading your shell, kubectl autocompletion should be working.
+  </p>
+</div>
+<div id="kubectl-autocompletion-1">
+  <h3 id="introduction">
+    Introduction
+  </h3>
+  <p>
+    The kubectl completion script for Bash can be generated with
+    <code>
+      kubectl completion bash
+    </code>
+    . Sourcing this script in your shell enables kubectl completion.
+  </p>
+  <p>
+    However, the kubectl completion script depends on
+    <a href="https://github.com/scop/bash-completion">
+      <strong>
+        bash-completion
+      </strong>
+    </a>
+    which you thus have to previously install.
+  </p>
+  <blockquote class="warning">
+    <div>
+      <strong>
+        Warning:
+      </strong>
+      there are two versions of bash-completion, v1 and v2. V1 is for Bash 3.2 (which is the default on macOS), and v2 is for Bash 4.1+. The kubectl completion script
+      <strong>
+        doesn&rsquo;t work
+      </strong>
+      correctly with bash-completion v1 and Bash 3.2. It requires
+      <strong>
+        bash-completion v2
+      </strong>
+      and
+      <strong>
+        Bash 4.1+
+      </strong>
+      . Thus, to be able to correctly use kubectl completion on macOS, you have to install and use Bash 4.1+ (
+      <a href="https://itnext.io/upgrading-bash-on-macos-7138bd1066ba">
+        <em>
+          instructions
+        </em>
+      </a>
+      ). The following instructions assume that you use Bash 4.1+ (that is, any Bash version of 4.1 or newer).
+    </div>
+  </blockquote>
+  <h3 id="upgrade-bash">
+    Upgrade Bash
+  </h3>
+  <p>
+    The instructions here assume you use Bash 4.1+. You can check your Bash&rsquo;s version by running:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">echo</span> <span style="color:#b8860b">$BASH_VERSION</span></code></pre>
+  </div>
+  <p>
+    If it is too old, you can install/upgrade it using Homebrew:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">brew install bash</code></pre>
+  </div>
+  <p>
+    Reload your shell and verify that the desired version is being used:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">echo</span> <span style="color:#b8860b">$BASH_VERSION</span> <span style="color:#b8860b">$SHELL</span></code></pre>
+  </div>
+  <p>
+    Homebrew usually installs it at
+    <code>
+      /usr/local/bin/bash
+    </code>
+    .
+  </p>
+  <h3 id="install-bash-completion">
+    Install bash-completion
+  </h3>
+  <blockquote class="note">
+    <div>
+      <strong>
+        Note:
+      </strong>
+      As mentioned, these instructions assume you use Bash 4.1+, which means you will install bash-completion v2 (in contrast to Bash 3.2 and bash-completion v1, in which case kubectl completion won&rsquo;t work).
+    </div>
+  </blockquote>
+  <p>
+    You can test if you have bash-completion v2 already installed with
+    <code>
+      type _init_completion
+    </code>
+    . If not, you can install it with Homebrew:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">brew install bash-completion@2</code></pre>
+  </div>
+  <p>
+    As stated in the output of this command, add the following to your
+    <code>
+      ~/.bash_profile
+    </code>
+    file:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">export</span> <span style="color:#b8860b">BASH_COMPLETION_COMPAT_DIR</span><span style="color:#666">=</span><span style="color:#b44">&#34;/usr/local/etc/bash_completion.d&#34;</span>
+<span style="color:#666">[[</span> -r <span style="color:#b44">&#34;/usr/local/etc/profile.d/bash_completion.sh&#34;</span> <span style="color:#666">]]</span> <span style="color:#666">&amp;&amp;</span> . <span style="color:#b44">&#34;/usr/local/etc/profile.d/bash_completion.sh&#34;</span></code></pre>
+  </div>
+  <p>
+    Reload your shell and verify that bash-completion v2 is correctly installed with
+    <code>
+      type _init_completion
+    </code>
+    .
+  </p>
+  <h3 id="enable-kubectl-autocompletion">
+    Enable kubectl autocompletion
+  </h3>
+  <p>
+    You now have to ensure that the kubectl completion script gets sourced in all your shell sessions. There are multiple ways to achieve this:
+  </p>
+  <ul>
+    <li>
+      <p>
+        Source the completion script in your
+        <code>
+          ~/.bash_profile
+        </code>
+        file:
+      </p>
+      <div class="highlight">
+        <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">echo</span> <span style="color:#b44">&#39;source &lt;(kubectl completion bash)&#39;</span> &gt;&gt;~/.bash_profile</code></pre>
+      </div>
+    </li>
+    <li>
+      <p>
+        Add the completion script to the
+        <code>
+          /usr/local/etc/bash_completion.d
+        </code>
+        directory:
+      </p>
+      <div class="highlight">
+        <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl completion bash &gt;/usr/local/etc/bash_completion.d/kubectl</code></pre>
+      </div>
+    </li>
+    <li>
+      <p>
+        If you have an alias for kubectl, you can extend shell completion to work with that alias:
+      </p>
+      <div class="highlight">
+        <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">echo</span> <span style="color:#b44">&#39;alias k=kubectl&#39;</span> &gt;&gt;~/.bash_profile
+<span style="color:#a2f">echo</span> <span style="color:#b44">&#39;complete -F __start_kubectl k&#39;</span> &gt;&gt;~/.bash_profile</code></pre>
+      </div>
+    </li>
+    <li>
+      <p>
+        If you installed kubectl with Homebrew (as explained
+        <a href="#install-with-homebrew-on-macos">
+          above
+        </a>
+        ), then the kubectl completion script should already be in
+        <code>
+          /usr/local/etc/bash_completion.d/kubectl
+        </code>
+        . In that case, you don&rsquo;t need to do anything.
+      </p>
+    </li>
+  </ul>
+  <blockquote class="note">
+    <div>
+      <strong>
+        Note:
+      </strong>
+      the Homebrew installation of bash-completion v2 sources all the files in the
+      <code>
+        BASH_COMPLETION_COMPAT_DIR
+      </code>
+      directory, that&rsquo;s why the latter two methods work.
+    </div>
+  </blockquote>
+  <p>
+    In any case, after reloading your shell, kubectl completion should be working.
+  </p>
+</div>
+<div id="kubectl-autocompletion-2">
+  <p>
+    The kubectl completion script for Zsh can be generated with the command
+    <code>
+      kubectl completion zsh
+    </code>
+    . Sourcing the completion script in your shell enables kubectl autocompletion.
+  </p>
+  <p>
+    To do so in all your shell sessions, add the following to your
+    <code>
+      ~/.zshrc
+    </code>
+    file:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">source</span> &lt;<span style="color:#666">(</span>kubectl completion zsh<span style="color:#666">)</span></code></pre>
+  </div>
+  <p>
+    If you have an alias for kubectl, you can extend shell completion to work with that alias:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">echo</span> <span style="color:#b44">&#39;alias k=kubectl&#39;</span> &gt;&gt;~/.zshrc
+<span style="color:#a2f">echo</span> <span style="color:#b44">&#39;complete -F __start_kubectl k&#39;</span> &gt;&gt;~/.zshrc</code></pre>
+  </div>
+  <p>
+    After reloading your shell, kubectl autocompletion should be working.
+  </p>
+  <p>
+    If you get an error like
+    <code>
+      complete:13: command not found: compdef
+    </code>
+    , then add the following to the beginning of your
+    <code>
+      ~/.zshrc
+    </code>
+    file:
+  </p>
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">autoload -Uz compinit
+compinit</code></pre>
+  </div>
+  <p>
+</div>
+<p>
+<script>
+  $(function(){$("#kubectl-autocompletion").tabs();});
+</script>
+<h2 id="what-s-next">
+  What&#39;s next
+</h2>
+<ul>
+  <li>
+    <a href="/docs/tasks/tools/install-minikube/">
+      Install Minikube
+    </a>
+  </li>
+  <li>
+    See the
+    <a href="/docs/setup/">
+      getting started guides
+    </a>
+    for more about creating clusters.
+  </li>
+  <li>
+    <a href="/docs/tasks/access-application-cluster/service-access-application-cluster/">
+      Learn how to launch and expose your application.
+    </a>
+  </li>
+  <li>
+    If you need access to a cluster you didn&rsquo;t create, see the
+    <a href="/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">
+      Sharing Cluster Access document
+    </a>
+    .
+  </li>
+  <li>
+    Read the
+    <a href="/docs/reference/kubectl/kubectl/">
+      kubectl reference docs
+    </a>
+  </li>
+</ul>

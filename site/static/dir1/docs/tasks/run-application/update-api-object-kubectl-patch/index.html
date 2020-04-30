@@ -1,0 +1,654 @@
+<html>
+<body>
+<h1>
+  Update API Objects in Place Using kubectl patch
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/run-application/update-api-object-kubectl-patch.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Update API Objects in Place Using kubectl patch
+</h1>
+<p>
+  This task shows how to use
+  <code>
+    kubectl patch
+  </code>
+  to update an API object in place. The exercises
+  in this task demonstrate a strategic merge patch and a JSON merge patch.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#before-you-begin">
+      Before you begin
+    </a>
+  </li>
+  <li>
+    <a href="#use-a-strategic-merge-patch-to-update-a-deployment">
+      Use a strategic merge patch to update a Deployment
+    </a>
+  </li>
+  <li>
+    <a href="#use-a-json-merge-patch-to-update-a-deployment">
+      Use a JSON merge patch to update a Deployment
+    </a>
+  </li>
+  <li>
+    <a href="#alternate-forms-of-the-kubectl-patch-command">
+      Alternate forms of the kubectl patch command
+    </a>
+  </li>
+  <li>
+    <a href="#summary">
+      Summary
+    </a>
+  </li>
+  <li>
+    <a href="#what-s-next">
+      What's next
+    </a>
+  </li>
+</ul>
+<h2 id="before-you-begin">
+  Before you begin
+</h2>
+<p>
+  You need to have a Kubernetes cluster, and the kubectl command-line tool must
+  be configured to communicate with your cluster. If you do not already have a
+  cluster, you can create one by using
+  <a href="/docs/setup/learning-environment/minikube/">
+    Minikube
+  </a>
+  ,
+  or you can use one of these Kubernetes playgrounds:
+</p>
+<ul>
+  <li>
+    <a href="https://www.katacoda.com/courses/kubernetes/playground">
+      Katacoda
+    </a>
+  </li>
+  <li>
+    <a href="http://labs.play-with-k8s.com/">
+      Play with Kubernetes
+    </a>
+  </li>
+</ul>
+<p>
+  To check the version, enter
+  <code>
+    kubectl version
+  </code>
+  .
+</p>
+<h2 id="use-a-strategic-merge-patch-to-update-a-deployment">
+  Use a strategic merge patch to update a Deployment
+</h2>
+<p>
+  Here&rsquo;s the configuration file for a Deployment that has two replicas. Each replica
+  is a Pod that has one container:
+</p>
+<table class="includecode" id="application-deployment-patch-yaml">
+  <thead>
+    <tr>
+      <th>
+        <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/deployment-patch.yaml" download="application/deployment-patch.yaml">
+          <code>
+            application/deployment-patch.yaml
+          </code>
+        </a>
+        <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-deployment-patch-yaml')" title="Copy application/deployment-patch.yaml to clipboard">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb"> </span><span style="color:#080;font-style:italic"># for versions before 1.9.0 use apps/v1beta2</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>patch-demo<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">2</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>patch-demo-ctr<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">tolerations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">effect</span>:<span style="color:#bbb"> </span>NoSchedule<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span>dedicated<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span>test-team<span style="color:#bbb">
+</span></code></pre>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  Create the Deployment:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/application/deployment-patch.yaml</code></pre>
+</div>
+<p>
+  View the Pods associated with your Deployment:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods</code></pre>
+</div>
+<p>
+  The output shows that the Deployment has two Pods. The
+  <code>
+    1/1
+  </code>
+  indicates that
+  each Pod has one container:
+</p>
+<pre><code>NAME                        READY     STATUS    RESTARTS   AGE
+patch-demo-28633765-670qr   1/1       Running   0          23s
+patch-demo-28633765-j5qs3   1/1       Running   0          23s</code></pre>
+<p>
+  Make a note of the names of the running Pods. Later, you will see that these Pods
+  get terminated and replaced by new ones.
+</p>
+<p>
+  At this point, each Pod has one Container that runs the nginx image. Now suppose
+  you want each Pod to have two containers: one that runs nginx and one that runs redis.
+</p>
+<p>
+  Create a file named
+  <code>
+    patch-file.yaml
+  </code>
+  that has this content:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>patch-demo-ctr<span style="color:#666">-2</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>redis</code></pre>
+</div>
+<p>
+  Patch your Deployment:
+</p>
+<div id="kubectl-patch-example">
+<ul>
+  <li>
+    <a href="#kubectl-patch-example-0">
+      Bash
+    </a>
+  </li>
+  <li>
+    <a href="#kubectl-patch-example-1">
+      PowerShell
+    </a>
+  </li>
+</ul>
+<div id="kubectl-patch-example-0">
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+kubectl patch deployment patch-demo --patch <span style="color:#b44">&#34;</span><span style="color:#a2f;font-weight:bold">$(</span>cat patch-file.yaml<span style="color:#a2f;font-weight:bold">)</span><span style="color:#b44">&#34;</span></code></pre>
+  </div>
+  <p>
+</div>
+<div id="kubectl-patch-example-1">
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-posh" data-lang="posh">
+kubectl patch deployment patch-demo --patch $(<span style="color:#a2f">Get-Content</span> patch<span style="color:#666">-file</span>.yaml -Raw)</code></pre>
+  </div>
+  <p>
+</div>
+<p>
+<script>
+  $(function(){$("#kubectl-patch-example").tabs();});
+</script>
+<p>
+  View the patched Deployment:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get deployment patch-demo --output yaml</code></pre>
+</div>
+<p>
+  The output shows that the PodSpec in the Deployment has two Containers:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">containers:
+- image: redis
+  imagePullPolicy: Always
+  name: patch-demo-ctr-2
+  ...
+- image: nginx
+  imagePullPolicy: Always
+  name: patch-demo-ctr
+  ...</code></pre>
+</div>
+<p>
+  View the Pods associated with your patched Deployment:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods</code></pre>
+</div>
+<p>
+  The output shows that the running Pods have different names from the Pods that
+  were running previously. The Deployment terminated the old Pods and created two
+  new Pods that comply with the updated Deployment spec. The
+  <code>
+    2/2
+  </code>
+  indicates that
+  each Pod has two Containers:
+</p><pre><code>NAME                          READY     STATUS    RESTARTS   AGE
+patch-demo-1081991389-2wrn5   2/2       Running   0          1m
+patch-demo-1081991389-jmg7b   2/2       Running   0          1m</code></pre>
+<p>
+  Take a closer look at one of the patch-demo Pods:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod &lt;your-pod-name&gt; --output yaml</code></pre>
+</div>
+<p>
+  The output shows that the Pod has two Containers: one running nginx and one running redis:
+</p><pre><code>containers:
+- image: redis
+  ...
+- image: nginx
+  ...</code></pre>
+<h3 id="notes-on-the-strategic-merge-patch">
+  Notes on the strategic merge patch
+</h3>
+<p>
+  The patch you did in the preceding exercise is called a
+  <em>
+    strategic merge patch
+  </em>
+  .
+  Notice that the patch did not replace the
+  <code>
+    containers
+  </code>
+  list. Instead it added a new
+  Container to the list. In other words, the list in the patch was merged with the
+  existing list. This is not always what happens when you use a strategic merge patch on a list.
+  In some cases, the list is replaced, not merged.
+</p>
+<p>
+  With a strategic merge patch, a list is either replaced or merged depending on its
+  patch strategy. The patch strategy is specified by the value of the
+  <code>
+    patchStrategy
+  </code>
+  key
+  in a field tag in the Kubernetes source code. For example, the
+  <code>
+    Containers
+  </code>
+  field of
+  <code>
+    PodSpec
+  </code>
+  struct has a
+  <code>
+    patchStrategy
+  </code>
+  of
+  <code>
+    merge
+  </code>
+  :
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a2f;font-weight:bold">type</span> PodSpec <span style="color:#a2f;font-weight:bold">struct</span> {
+  <span style="color:#666">...</span>
+  Containers []Container <span style="color:#b44">`json:&#34;containers&#34; patchStrategy:&#34;merge&#34; patchMergeKey:&#34;name&#34; ...`</span></code></pre>
+</div>
+<p>
+  You can also see the patch strategy in the
+  <a href="https://raw.githubusercontent.com/kubernetes/kubernetes/master/api/openapi-spec/swagger.json">
+    OpenApi spec
+  </a>
+  :
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#b44">&#34;io.k8s.api.core.v1.PodSpec&#34;</span><span style="">:</span> {
+    <span style="">...</span>
+     <span style="color:#008000;font-weight:bold">&#34;containers&#34;</span>: {
+      <span style="color:#008000;font-weight:bold">&#34;description&#34;</span>: <span style="color:#b44">&#34;List of containers belonging to the pod. ...
+</span><span style="color:#b44">      },
+</span><span style="color:#b44">      &#34;</span><span style="">x-kubernetes-patch-merge-key</span><span style="color:#b44">&#34;: &#34;</span><span style="">name</span><span style="color:#b44">&#34;,
+</span><span style="color:#b44">      &#34;</span><span style="">x-kubernetes-patch-strategy</span><span style="color:#b44">&#34;: &#34;</span><span style="">merge&#34;</span>
+     },</code></pre>
+</div>
+<p>
+  And you can see the patch strategy in the
+  <a href="/docs/reference/generated/kubernetes-api/v1.18/#podspec-v1-core">
+    Kubernetes API documentation
+  </a>
+  .
+</p>
+<p>
+  Create a file named
+  <code>
+    patch-file-tolerations.yaml
+  </code>
+  that has this content:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">tolerations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">effect</span>:<span style="color:#bbb"> </span>NoSchedule<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span>disktype<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span>ssd</code></pre>
+</div>
+<p>
+  Patch your Deployment:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl patch deployment patch-demo --patch <span style="color:#b44">&#34;</span><span style="color:#a2f;font-weight:bold">$(</span>cat patch-file-tolerations.yaml<span style="color:#a2f;font-weight:bold">)</span><span style="color:#b44">&#34;</span></code></pre>
+</div>
+<p>
+  View the patched Deployment:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get deployment patch-demo --output yaml</code></pre>
+</div>
+<p>
+  The output shows that the PodSpec in the Deployment has only one Toleration:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">tolerations:
+      - effect: NoSchedule
+        key: disktype
+        value: ssd</code></pre>
+</div>
+<p>
+  Notice that the
+  <code>
+    tolerations
+  </code>
+  list in the PodSpec was replaced, not merged. This is because
+  the Tolerations field of PodSpec does not have a
+  <code>
+    patchStrategy
+  </code>
+  key in its field tag. So the
+  strategic merge patch uses the default patch strategy, which is
+  <code>
+    replace
+  </code>
+  .
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a2f;font-weight:bold">type</span> PodSpec <span style="color:#a2f;font-weight:bold">struct</span> {
+  <span style="color:#666">...</span>
+  Tolerations []Toleration <span style="color:#b44">`json:&#34;tolerations,omitempty&#34; protobuf:&#34;bytes,22,opt,name=tolerations&#34;`</span></code></pre>
+</div>
+<h2 id="use-a-json-merge-patch-to-update-a-deployment">
+  Use a JSON merge patch to update a Deployment
+</h2>
+<p>
+  A strategic merge patch is different from a
+  <a href="https://tools.ietf.org/html/rfc7386">
+    JSON merge patch
+  </a>
+  .
+  With a JSON merge patch, if you
+  want to update a list, you have to specify the entire new list. And the new list completely
+  replaces the existing list.
+</p>
+<p>
+  The
+  <code>
+    kubectl patch
+  </code>
+  command has a
+  <code>
+    type
+  </code>
+  parameter that you can set to one of these values:
+</p>
+<table>
+  <tr>
+    <th>
+      Parameter value
+    </th>
+    <th>
+      Merge type
+    </th>
+  </tr>
+  <tr>
+    <td>
+      json
+    </td>
+    <td>
+      <a href="https://tools.ietf.org/html/rfc6902">
+        JSON Patch, RFC 6902
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      merge
+    </td>
+    <td>
+      <a href="https://tools.ietf.org/html/rfc7386">
+        JSON Merge Patch, RFC 7386
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      strategic
+    </td>
+    <td>
+      Strategic merge patch
+    </td>
+  </tr>
+</table>
+<p>
+  For a comparison of JSON patch and JSON merge patch, see
+  <a href="http://erosb.github.io/post/json-patch-vs-merge-patch/">
+    JSON Patch and JSON Merge Patch
+  </a>
+  .
+</p>
+<p>
+  The default value for the
+  <code>
+    type
+  </code>
+  parameter is
+  <code>
+    strategic
+  </code>
+  . So in the preceding exercise, you
+  did a strategic merge patch.
+</p>
+<p>
+  Next, do a JSON merge patch on your same Deployment. Create a file named
+  <code>
+    patch-file-2.yaml
+  </code>
+  that has this content:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>patch-demo-ctr<span style="color:#666">-3</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/google-samples/node-hello:<span style="color:#666">1.0</span></code></pre>
+</div>
+<p>
+  In your patch command, set
+  <code>
+    type
+  </code>
+  to
+  <code>
+    merge
+  </code>
+  :
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl patch deployment patch-demo --type merge --patch <span style="color:#b44">&#34;</span><span style="color:#a2f;font-weight:bold">$(</span>cat patch-file-2.yaml<span style="color:#a2f;font-weight:bold">)</span><span style="color:#b44">&#34;</span></code></pre>
+</div>
+<p>
+  View the patched Deployment:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get deployment patch-demo --output yaml</code></pre>
+</div>
+<p>
+  The
+  <code>
+    containers
+  </code>
+  list that you specified in the patch has only one Container.
+  The output shows that your list of one Container replaced the existing
+  <code>
+    containers
+  </code>
+  list.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">spec:
+  containers:
+  - image: gcr.io/google-samples/node-hello:1.0
+    ...
+    name: patch-demo-ctr-3</code></pre>
+</div>
+<p>
+  List the running Pods:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods</code></pre>
+</div>
+<p>
+  In the output, you can see that the existing Pods were terminated, and new Pods
+  were created. The
+  <code>
+    1/1
+  </code>
+  indicates that each new Pod is running only one Container.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">NAME                          READY     STATUS    RESTARTS   AGE
+patch-demo-1307768864-69308   1/1       Running   <span style="color:#666">0</span>          1m
+patch-demo-1307768864-c86dc   1/1       Running   <span style="color:#666">0</span>          1m</code></pre>
+</div>
+<h2 id="alternate-forms-of-the-kubectl-patch-command">
+  Alternate forms of the kubectl patch command
+</h2>
+<p>
+  The
+  <code>
+    kubectl patch
+  </code>
+  command takes YAML or JSON. It can take the patch as a file or
+  directly on the command line.
+</p>
+<p>
+  Create a file named
+  <code>
+    patch-file.json
+  </code>
+  that has this content:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+   <span style="color:#008000;font-weight:bold">&#34;spec&#34;</span>: {
+      <span style="color:#008000;font-weight:bold">&#34;template&#34;</span>: {
+         <span style="color:#008000;font-weight:bold">&#34;spec&#34;</span>: {
+            <span style="color:#008000;font-weight:bold">&#34;containers&#34;</span>: [
+               {
+                  <span style="color:#008000;font-weight:bold">&#34;name&#34;</span>: <span style="color:#b44">&#34;patch-demo-ctr-2&#34;</span>,
+                  <span style="color:#008000;font-weight:bold">&#34;image&#34;</span>: <span style="color:#b44">&#34;redis&#34;</span>
+               }
+            ]
+         }
+      }
+   }
+}</code></pre>
+</div>
+<p>
+  The following commands are equivalent:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl patch deployment patch-demo --patch <span style="color:#b44">&#34;</span><span style="color:#a2f;font-weight:bold">$(</span>cat patch-file.yaml<span style="color:#a2f;font-weight:bold">)</span><span style="color:#b44">&#34;</span>
+kubectl patch deployment patch-demo --patch <span style="color:#b44">&#39;spec:\n template:\n  spec:\n   containers:\n   - name: patch-demo-ctr-2\n     image: redis&#39;</span>
+
+kubectl patch deployment patch-demo --patch <span style="color:#b44">&#34;</span><span style="color:#a2f;font-weight:bold">$(</span>cat patch-file.json<span style="color:#a2f;font-weight:bold">)</span><span style="color:#b44">&#34;</span>
+kubectl patch deployment patch-demo --patch <span style="color:#b44">&#39;{&#34;spec&#34;: {&#34;template&#34;: {&#34;spec&#34;: {&#34;containers&#34;: [{&#34;name&#34;: &#34;patch-demo-ctr-2&#34;,&#34;image&#34;: &#34;redis&#34;}]}}}}&#39;</span></code></pre>
+</div>
+<h2 id="summary">
+  Summary
+</h2>
+<p>
+  In this exercise, you used
+  <code>
+    kubectl patch
+  </code>
+  to change the live configuration
+  of a Deployment object. You did not change the configuration file that you originally used to
+  create the Deployment object. Other commands for updating API objects include
+  <a href="/docs/reference/generated/kubectl/kubectl-commands/#annotate">
+    kubectl annotate
+  </a>
+  ,
+  <a href="/docs/reference/generated/kubectl/kubectl-commands/#edit">
+    kubectl edit
+  </a>
+  ,
+  <a href="/docs/reference/generated/kubectl/kubectl-commands/#replace">
+    kubectl replace
+  </a>
+  ,
+  <a href="/docs/reference/generated/kubectl/kubectl-commands/#scale">
+    kubectl scale
+  </a>
+  ,
+  and
+  <a href="/docs/reference/generated/kubectl/kubectl-commands/#apply">
+    kubectl apply
+  </a>
+  .
+</p>
+<h2 id="what-s-next">
+  What&#39;s next
+</h2>
+<ul>
+  <li>
+    <a href="/docs/concepts/overview/working-with-objects/object-management/">
+      Kubernetes Object Management
+    </a>
+  </li>
+  <li>
+    <a href="/docs/tasks/manage-kubernetes-objects/imperative-command/">
+      Managing Kubernetes Objects Using Imperative Commands
+    </a>
+  </li>
+  <li>
+    <a href="/docs/tasks/manage-kubernetes-objects/imperative-config/">
+      Imperative Management of Kubernetes Objects Using Configuration Files
+    </a>
+  </li>
+  <li>
+    <a href="/docs/tasks/manage-kubernetes-objects/declarative-config/">
+      Declarative Management of Kubernetes Objects Using Configuration Files
+    </a>
+  </li>
+</ul>

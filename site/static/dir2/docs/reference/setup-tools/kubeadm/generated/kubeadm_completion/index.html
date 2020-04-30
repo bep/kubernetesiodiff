@@ -1,0 +1,129 @@
+<html>
+  <body>
+    <h1></h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_completion.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1></h1>
+    <nav id="TableOfContents">
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <a href="#synopsis">
+                Synopsis
+              </a>
+            </li>
+            <li>
+              <a href="#examples">
+                Examples
+              </a>
+            </li>
+            <li>
+              <a href="#options">
+                Options
+              </a>
+            </li>
+            <li>
+              <a href="#options-inherited-from-parent-commands">
+                Options inherited from parent commands
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <h3 id="synopsis">
+      Synopsis
+    </h3>
+    <p>
+      Output shell completion code for the specified shell (bash or zsh).
+      The shell code must be evaluated to provide interactive
+      completion of kubeadm commands. This can be done by sourcing it from
+      the .bash_profile.
+    </p>
+    <p>
+      Note: this requires the bash-completion framework.
+    </p>
+    <p>
+      To install it on Mac use homebrew:
+      $ brew install bash-completion
+      Once installed, bash_completion must be evaluated. This can be done by adding the
+      following line to the .bash_profile
+      $ source $(brew &ndash;prefix)/etc/bash_completion
+    </p>
+    <p>
+      If bash-completion is not installed on Linux, please install the &lsquo;bash-completion&rsquo; package
+      via your distribution&rsquo;s package manager.
+    </p>
+    <p>
+      Note for zsh users: [1] zsh completions are only supported in versions of zsh &gt;= 5.2
+    </p>
+    <pre><code>kubeadm completion SHELL [flags]</code></pre>
+    <h3 id="examples">
+      Examples
+    </h3>
+    <pre><code>
+# Install bash completion on a Mac using homebrew
+brew install bash-completion
+printf &quot;\n# Bash completion support\nsource $(brew --prefix)/etc/bash_completion\n&quot; &gt;&gt; $HOME/.bash_profile
+source $HOME/.bash_profile
+
+# Load the kubeadm completion code for bash into the current shell
+source &lt;(kubeadm completion bash)
+
+# Write bash completion code to a file and source it from .bash_profile
+kubeadm completion bash &gt; ~/.kube/kubeadm_completion.bash.inc
+printf &quot;\n# Kubeadm shell completion\nsource '$HOME/.kube/kubeadm_completion.bash.inc'\n&quot; &gt;&gt; $HOME/.bash_profile
+source $HOME/.bash_profile
+
+# Load the kubeadm completion code for zsh[1] into the current shell
+source &lt;(kubeadm completion zsh)</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for completion
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

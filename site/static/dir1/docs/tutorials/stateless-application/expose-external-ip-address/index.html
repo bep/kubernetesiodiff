@@ -1,0 +1,352 @@
+<html>
+  <body>
+    <h1>
+      Exposing an External IP Address to Access an Application in a Cluster
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tutorials/stateless-application/expose-external-ip-address.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Exposing an External IP Address to Access an Application in a Cluster
+    </h1>
+    <p>
+      This page shows how to create a Kubernetes Service object that exposes an
+      external IP address.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#objectives">
+          Objectives
+        </a>
+      </li>
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#creating-a-service-for-an-application-running-in-five-pods">
+          Creating a service for an application running in five pods
+        </a>
+      </li>
+      <li>
+        <a href="#cleaning-up">
+          Cleaning up
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="objectives">
+      Objectives
+    </h2>
+    <ul>
+      <li>
+        Run five instances of a Hello World application.
+      </li>
+      <li>
+        Create a Service object that exposes an external IP address.
+      </li>
+      <li>
+        Use the Service object to access the running application.
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <ul>
+      <li>
+        <p>
+          Install
+          <a href="/docs/tasks/tools/install-kubectl/">
+            kubectl
+          </a>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          Use a cloud provider like Google Kubernetes Engine or Amazon Web Services to
+          create a Kubernetes cluster. This tutorial creates an
+          <a href="/docs/tasks/access-application-cluster/create-external-load-balancer/">
+            external load balancer
+          </a>
+          ,
+          which requires a cloud provider.
+        </p>
+      </li>
+      <li>
+        <p>
+          Configure
+          <code>
+            kubectl
+          </code>
+          to communicate with your Kubernetes API server. For
+          instructions, see the documentation for your cloud provider.
+        </p>
+      </li>
+    </ul>
+    <h2 id="creating-a-service-for-an-application-running-in-five-pods">
+      Creating a service for an application running in five pods
+    </h2>
+    <ol>
+      <li>
+        Run a Hello World application in your cluster:
+      </li>
+    </ol>
+    <table class="includecode" id="service-load-balancer-example-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/load-balancer-example.yaml" download="service/load-balancer-example.yaml">
+              <code>
+                service/load-balancer-example.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-load-balancer-example-yaml')" title="Copy service/load-balancer-example.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apps/v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Deployment<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app.kubernetes.io/name</span>:<span style="color:#bbb"> </span>load-balancer-example<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hello-world<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">5</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">matchLabels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">app.kubernetes.io/name</span>:<span style="color:#bbb"> </span>load-balancer-example<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">app.kubernetes.io/name</span>:<span style="color:#bbb"> </span>load-balancer-example<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>gcr.io/google-samples/node-hello:<span style="color:#666">1.0</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hello-world<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#666">8080</span><span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/service/load-balancer-example.yaml</code></pre>
+    </div>
+    <p>
+      The preceding command creates a
+      <a href="/docs/concepts/workloads/controllers/deployment/">
+        Deployment
+      </a>
+      object and an associated
+      <a href="/docs/concepts/workloads/controllers/replicaset/">
+        ReplicaSet
+      </a>
+      object. The ReplicaSet has five
+      <a href="/docs/concepts/workloads/pods/pod/">
+        Pods
+      </a>
+      ,
+      each of which runs the Hello World application.
+    </p>
+    <ol>
+      <li>
+        <p>
+          Display information about the Deployment:
+        </p>
+        <pre><code>kubectl get deployments hello-world
+kubectl describe deployments hello-world</code></pre>
+      </li>
+      <li>
+        <p>
+          Display information about your ReplicaSet objects:
+        </p>
+        <pre><code>kubectl get replicasets
+kubectl describe replicasets</code></pre>
+      </li>
+      <li>
+        <p>
+          Create a Service object that exposes the deployment:
+        </p>
+        <pre><code>kubectl expose deployment hello-world --type=LoadBalancer --name=my-service</code></pre>
+      </li>
+      <li>
+        <p>
+          Display information about the Service:
+        </p>
+        <pre><code>kubectl get services my-service</code></pre>
+        <p>
+          The output is similar to this:
+        </p>
+        <pre><code>NAME         TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)    AGE
+my-service   LoadBalancer   10.3.245.137   104.198.205.71   8080/TCP   54s</code></pre>
+        <blockquote class="note">
+          <div>
+            <strong>
+              Note:
+            </strong>
+            The
+            <code>
+              type=LoadBalancer
+            </code>
+            service is backed by external cloud providers, which is not covered in this example, please refer to
+            <a href="/docs/concepts/services-networking/service/#loadbalancer">
+              this page
+            </a>
+            for the details.
+          </div>
+        </blockquote>
+        <blockquote class="note">
+          <div>
+            <strong>
+              Note:
+            </strong>
+            If the external IP address is shown as &lt;pending&gt;, wait for a minute and enter the same command again.
+          </div>
+        </blockquote>
+      </li>
+      <li>
+        <p>
+          Display detailed information about the Service:
+        </p>
+        <pre><code>kubectl describe services my-service</code></pre>
+        <p>
+          The output is similar to this:
+        </p>
+        <pre><code>Name:           my-service
+Namespace:      default
+Labels:         app.kubernetes.io/name=load-balancer-example
+Annotations:    &lt;none&gt;
+Selector:       app.kubernetes.io/name=load-balancer-example
+Type:           LoadBalancer
+IP:             10.3.245.137
+LoadBalancer Ingress:   104.198.205.71
+Port:           &lt;unset&gt; 8080/TCP
+NodePort:       &lt;unset&gt; 32377/TCP
+Endpoints:      10.0.0.6:8080,10.0.1.6:8080,10.0.1.7:8080 + 2 more...
+Session Affinity:   None
+Events:         &lt;none&gt;</code></pre>
+        <p>
+          Make a note of the external IP address (
+          <code>
+            LoadBalancer Ingress
+          </code>
+          ) exposed by
+          your service. In this example, the external IP address is 104.198.205.71.
+          Also note the value of
+          <code>
+            Port
+          </code>
+          and
+          <code>
+            NodePort
+          </code>
+          . In this example, the
+          <code>
+            Port
+          </code>
+          is 8080 and the
+          <code>
+            NodePort
+          </code>
+          is 32377.
+        </p>
+      </li>
+      <li>
+        <p>
+          In the preceding output, you can see that the service has several endpoints:
+          10.0.0.6:8080,10.0.1.6:8080,10.0.1.7:8080 + 2 more. These are internal
+          addresses of the pods that are running the Hello World application. To
+          verify these are pod addresses, enter this command:
+        </p>
+        <pre><code>kubectl get pods --output=wide</code></pre>
+        <p>
+          The output is similar to this:
+        </p>
+        <pre><code>NAME                         ...  IP         NODE
+hello-world-2895499144-1jaz9 ...  10.0.1.6   gke-cluster-1-default-pool-e0b8d269-1afc
+hello-world-2895499144-2e5uh ...  10.0.1.8   gke-cluster-1-default-pool-e0b8d269-1afc
+hello-world-2895499144-9m4h1 ...  10.0.0.6   gke-cluster-1-default-pool-e0b8d269-5v7a
+hello-world-2895499144-o4z13 ...  10.0.1.7   gke-cluster-1-default-pool-e0b8d269-1afc
+hello-world-2895499144-segjf ...  10.0.2.5   gke-cluster-1-default-pool-e0b8d269-cpuc</code></pre>
+      </li>
+      <li>
+        <p>
+          Use the external IP address (
+          <code>
+            LoadBalancer Ingress
+          </code>
+          ) to access the Hello
+          World application:
+        </p>
+        <pre><code>curl http://&lt;external-ip&gt;:&lt;port&gt;</code></pre>
+        <p>
+          where
+          <code>
+            &lt;external-ip&gt;
+          </code>
+          is the external IP address (
+          <code>
+            LoadBalancer Ingress
+          </code>
+          )
+          of your Service, and
+          <code>
+            &lt;port&gt;
+          </code>
+          is the value of
+          <code>
+            Port
+          </code>
+          in your Service
+          description.
+          If you are using minikube, typing
+          <code>
+            minikube service my-service
+          </code>
+          will
+          automatically open the Hello World application in a browser.
+        </p>
+        <p>
+          The response to a successful request is a hello message:
+        </p>
+        <pre><code>Hello Kubernetes!</code></pre>
+      </li>
+    </ol>
+    <h2 id="cleaning-up">
+      Cleaning up
+    </h2>
+    <p>
+      To delete the Service, enter this command:
+    </p>
+    <pre><code>kubectl delete services my-service</code></pre>
+    <p>
+      To delete the Deployment, the ReplicaSet, and the Pods that are running
+      the Hello World application, enter this command:
+    </p>
+    <pre><code>kubectl delete deployment hello-world</code></pre>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <p>
+      Learn more about
+      <a href="/docs/concepts/services-networking/connect-applications-service/">
+        connecting applications with services
+      </a>
+      .
+    </p>
+  </body>
+</html>

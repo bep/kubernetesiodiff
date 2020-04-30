@@ -1,0 +1,532 @@
+<html>
+<body>
+<h1>
+  IPv4/IPv6 dual-stack
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/services-networking/dual-stack.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  IPv4/IPv6 dual-stack
+</h1>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.16
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    alpha
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+  <p>
+    This feature is currently in a
+    <em>
+      alpha
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain alpha (e.g. v1alpha1).
+    </li>
+    <li>
+      Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+    </li>
+    <li>
+      Support for feature may be dropped at any time without notice.
+    </li>
+    <li>
+      The API may change in incompatible ways in a later software release without notice.
+    </li>
+    <li>
+      Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  IPv4/IPv6 dual-stack enables the allocation of both IPv4 and IPv6 addresses to
+  <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+    Pods
+    <span class='tooltip-text'>
+      The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
+    </span>
+  </a>
+  and
+  <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+    Services
+    <span class='tooltip-text'>
+      A way to expose an application running on a set of Pods as a network service.
+    </span>
+  </a>
+  .
+</p>
+<p>
+  If you enable IPv4/IPv6 dual-stack networking for your Kubernetes cluster, the cluster will support the simultaneous assignment of both IPv4 and IPv6 addresses.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#supported-features">
+      Supported Features
+    </a>
+  </li>
+  <li>
+    <a href="#prerequisites">
+      Prerequisites
+    </a>
+  </li>
+  <li>
+    <a href="#enable-ipv4-ipv6-dual-stack">
+      Enable IPv4/IPv6 dual-stack
+    </a>
+  </li>
+  <li>
+    <a href="#services">
+      Services
+    </a>
+  </li>
+  <li>
+    <a href="#egress-traffic">
+      Egress Traffic
+    </a>
+  </li>
+  <li>
+    <a href="#known-issues">
+      Known Issues
+    </a>
+  </li>
+  <li>
+    <a href="#what-s-next">
+      What's next
+    </a>
+  </li>
+</ul>
+<h2 id="supported-features">
+  Supported Features
+</h2>
+<p>
+  Enabling IPv4/IPv6 dual-stack on your Kubernetes cluster provides the following features:
+</p>
+<ul>
+  <li>
+    Dual-stack Pod networking (a single IPv4 and IPv6 address assignment per Pod)
+  </li>
+  <li>
+    IPv4 and IPv6 enabled Services (each Service must be for a single address family)
+  </li>
+  <li>
+    Pod off-cluster egress routing (eg. the Internet) via both IPv4 and IPv6 interfaces
+  </li>
+</ul>
+<h2 id="prerequisites">
+  Prerequisites
+</h2>
+<p>
+  The following prerequisites are needed in order to utilize IPv4/IPv6 dual-stack Kubernetes clusters:
+</p>
+<ul>
+  <li>
+    Kubernetes 1.16 or later
+  </li>
+  <li>
+    Provider support for dual-stack networking (Cloud provider or otherwise must be able to provide Kubernetes nodes with routable IPv4/IPv6 network interfaces)
+  </li>
+  <li>
+    A network plugin that supports dual-stack (such as Kubenet or Calico)
+  </li>
+  <li>
+    Kube-proxy running in mode IPVS
+  </li>
+</ul>
+<h2 id="enable-ipv4-ipv6-dual-stack">
+  Enable IPv4/IPv6 dual-stack
+</h2>
+<p>
+  To enable IPv4/IPv6 dual-stack, enable the
+  <code>
+    IPv6DualStack
+  </code>
+  <a href="/docs/reference/command-line-tools-reference/feature-gates/">
+    feature gate
+  </a>
+  for the relevant components of your cluster, and set dual-stack cluster network assignments:
+</p>
+<ul>
+  <li>
+    kube-controller-manager:
+    <ul>
+      <li>
+        <code>
+          --feature-gates=&quot;IPv6DualStack=true&quot;
+        </code>
+      </li>
+      <li>
+        <code>
+          --cluster-cidr=&lt;IPv4 CIDR&gt;,&lt;IPv6 CIDR&gt;
+        </code>
+        eg.
+        <code>
+          --cluster-cidr=10.244.0.0/16,fc00::/24
+        </code>
+      </li>
+      <li>
+        <code>
+          --service-cluster-ip-range=&lt;IPv4 CIDR&gt;,&lt;IPv6 CIDR&gt;
+        </code>
+      </li>
+      <li>
+        <code>
+          --node-cidr-mask-size-ipv4|--node-cidr-mask-size-ipv6
+        </code>
+        defaults to /24 for IPv4 and /64 for IPv6
+      </li>
+    </ul>
+  </li>
+  <li>
+    kubelet:
+    <ul>
+      <li>
+        <code>
+          --feature-gates=&quot;IPv6DualStack=true&quot;
+        </code>
+      </li>
+    </ul>
+  </li>
+  <li>
+    kube-proxy:
+    <ul>
+      <li>
+        <code>
+          --proxy-mode=ipvs
+        </code>
+      </li>
+      <li>
+        <code>
+          --cluster-cidr=&lt;IPv4 CIDR&gt;,&lt;IPv6 CIDR&gt;
+        </code>
+      </li>
+      <li>
+        <code>
+          --feature-gates=&quot;IPv6DualStack=true&quot;
+        </code>
+      </li>
+    </ul>
+  </li>
+</ul>
+<blockquote class="caution">
+  <div>
+    <strong>
+      Caution:
+    </strong>
+    If you specify an IPv6 address block larger than a /24 via
+    <code>
+      --cluster-cidr
+    </code>
+    on the command line, that assignment will fail.
+  </div>
+</blockquote>
+<h2 id="services">
+  Services
+</h2>
+<p>
+  If your cluster has IPv4/IPv6 dual-stack networking enabled, you can create
+  <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+    Services
+    <span class='tooltip-text'>
+      A way to expose an application running on a set of Pods as a network service.
+    </span>
+  </a>
+  with either an IPv4 or an IPv6 address. You can choose the address family for the Service&rsquo;s cluster IP by setting a field,
+  <code>
+    .spec.ipFamily
+  </code>
+  , on that Service.
+  You can only set this field when creating a new Service. Setting the
+  <code>
+    .spec.ipFamily
+  </code>
+  field is optional and should only be used if you plan to enable IPv4 and IPv6
+  <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+    Services
+    <span class='tooltip-text'>
+      A way to expose an application running on a set of Pods as a network service.
+    </span>
+  </a>
+  and
+  <a class='glossary-tooltip' href='/docs/concepts/services-networking/ingress/' target='_blank'>
+    Ingresses
+    <span class='tooltip-text'>
+      An API object that manages external access to the services in a cluster, typically HTTP.
+    </span>
+  </a>
+  on your cluster. The configuration of this field not a requirement for
+  <a href="#egress-traffic">
+    egress
+  </a>
+  traffic.
+</p>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    The default address family for your cluster is the address family of the first service cluster IP range configured via the
+    <code>
+      --service-cluster-ip-range
+    </code>
+    flag to the kube-controller-manager.
+  </div>
+</blockquote>
+<p>
+  You can set
+  <code>
+    .spec.ipFamily
+  </code>
+  to either:
+</p>
+<ul>
+  <li>
+    <code>
+      IPv4
+    </code>
+    : The API server will assign an IP from a
+    <code>
+      service-cluster-ip-range
+    </code>
+    that is
+    <code>
+      ipv4
+    </code>
+  </li>
+  <li>
+    <code>
+      IPv6
+    </code>
+    : The API server will assign an IP from a
+    <code>
+      service-cluster-ip-range
+    </code>
+    that is
+    <code>
+      ipv6
+    </code>
+  </li>
+</ul>
+<p>
+  The following Service specification does not include the
+  <code>
+    ipFamily
+  </code>
+  field. Kubernetes will assign an IP address (also known as a &ldquo;cluster IP&rdquo;) from the first configured
+  <code>
+    service-cluster-ip-range
+  </code>
+  to this Service.
+</p>
+<table class="includecode" id="service-networking-dual-stack-default-svc-yaml">
+  <thead>
+    <tr>
+      <th>
+        <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/networking/dual-stack-default-svc.yaml" download="service/networking/dual-stack-default-svc.yaml">
+          <code>
+            service/networking/dual-stack-default-svc.yaml
+          </code>
+        </a>
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-dual-stack-default-svc-yaml')" title="Copy service/networking/dual-stack-default-svc.yaml to clipboard">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>MyApp<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#666">9376</span></code></pre>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  The following Service specification includes the
+  <code>
+    ipFamily
+  </code>
+  field. Kubernetes will assign an IPv6 address (also known as a &ldquo;cluster IP&rdquo;) from the configured
+  <code>
+    service-cluster-ip-range
+  </code>
+  to this Service.
+</p>
+<table class="includecode" id="service-networking-dual-stack-ipv6-svc-yaml">
+  <thead>
+    <tr>
+      <th>
+        <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/networking/dual-stack-ipv6-svc.yaml" download="service/networking/dual-stack-ipv6-svc.yaml">
+          <code>
+            service/networking/dual-stack-ipv6-svc.yaml
+          </code>
+        </a>
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-dual-stack-ipv6-svc-yaml')" title="Copy service/networking/dual-stack-ipv6-svc.yaml to clipboard">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ipFamily</span>:<span style="color:#bbb"> </span>IPv6<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>MyApp<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#666">9376</span></code></pre>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  For comparison, the following Service specification will be assigned an IPv4 address (also known as a &ldquo;cluster IP&rdquo;) from the configured
+  <code>
+    service-cluster-ip-range
+  </code>
+  to this Service.
+</p>
+<table class="includecode" id="service-networking-dual-stack-ipv4-svc-yaml">
+  <thead>
+    <tr>
+      <th>
+        <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/service/networking/dual-stack-ipv4-svc.yaml" download="service/networking/dual-stack-ipv4-svc.yaml">
+          <code>
+            service/networking/dual-stack-ipv4-svc.yaml
+          </code>
+        </a>
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-dual-stack-ipv4-svc-yaml')" title="Copy service/networking/dual-stack-ipv4-svc.yaml to clipboard">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ipFamily</span>:<span style="color:#bbb"> </span>IPv4<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>MyApp<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#666">9376</span></code></pre>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="type-loadbalancer">
+  Type LoadBalancer
+</h3>
+<p>
+  On cloud providers which support IPv6 enabled external load balancers, setting the
+  <code>
+    type
+  </code>
+  field to
+  <code>
+    LoadBalancer
+  </code>
+  in additional to setting
+  <code>
+    ipFamily
+  </code>
+  field to
+  <code>
+    IPv6
+  </code>
+  provisions a cloud load balancer for your Service.
+</p>
+<h2 id="egress-traffic">
+  Egress Traffic
+</h2>
+<p>
+  The use of publicly routable and non-publicly routable IPv6 address blocks is acceptable provided the underlying
+  <a class='glossary-tooltip' href='/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni' target='_blank'>
+    CNI
+    <span class='tooltip-text'>
+      Container network interface (CNI) plugins are a type of Network plugin that adheres to the appc/CNI specification.
+    </span>
+  </a>
+  provider is able to implement the transport. If you have a Pod that uses non-publicly routable IPv6 and want that Pod to reach off-cluster destinations (eg. the public Internet), you must set up IP masquerading for the egress traffic and any replies. The
+  <a href="https://github.com/kubernetes-incubator/ip-masq-agent">
+    ip-masq-agent
+  </a>
+  is dual-stack aware, so you can use ip-masq-agent for IP masquerading on dual-stack clusters.
+</p>
+<h2 id="known-issues">
+  Known Issues
+</h2>
+<ul>
+  <li>
+    Kubenet forces IPv4,IPv6 positional reporting of IPs (&ndash;cluster-cidr)
+  </li>
+</ul>
+<h2 id="what-s-next">
+  What&#39;s next
+</h2>
+<ul>
+  <li>
+    <a href="/docs/tasks/network/validate-dual-stack">
+      Validate IPv4/IPv6 dual-stack
+    </a>
+    networking
+  </li>
+</ul>

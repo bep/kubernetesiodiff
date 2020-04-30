@@ -1,0 +1,446 @@
+<html>
+  <body>
+    <h1>
+      Create an External Load Balancer
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/access-application-cluster/create-external-load-balancer.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Create an External Load Balancer
+    </h1>
+    <p>
+      This page shows how to create an External Load Balancer.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        This feature is only available for cloud providers or environments which support external load balancers.
+      </div>
+    </blockquote>
+    <p>
+      When creating a service, you have the option of automatically creating a
+      cloud network load balancer. This provides an externally-accessible IP address
+      that sends traffic to the correct port on your cluster nodes
+      <em>
+        provided your cluster runs in a supported environment and is configured with
+        the correct cloud load balancer provider package
+      </em>
+      .
+    </p>
+    <p>
+      For information on provisioning and using an Ingress resource that can give
+      services externally-reachable URLs, load balance the traffic, terminate SSL etc.,
+      please check the
+      <a href="/docs/concepts/services-networking/ingress/">
+        Ingress
+      </a>
+      documentation.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#configuration-file">
+          Configuration file
+        </a>
+      </li>
+      <li>
+        <a href="#using-kubectl">
+          Using kubectl
+        </a>
+      </li>
+      <li>
+        <a href="#finding-your-ip-address">
+          Finding your IP address
+        </a>
+      </li>
+      <li>
+        <a href="#preserving-the-client-source-ip">
+          Preserving the client source IP
+        </a>
+      </li>
+      <li>
+        <a href="#garbage-collecting-load-balancers">
+          Garbage Collecting Load Balancers
+        </a>
+      </li>
+      <li>
+        <a href="#external-load-balancer-providers">
+          External Load Balancer Providers
+        </a>
+      </li>
+      <li>
+        <a href="#caveats-and-limitations-when-preserving-source-ips">
+          Caveats and Limitations when preserving source IPs
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <ul>
+      <li>
+        <p>
+          You need to have a Kubernetes cluster, and the kubectl command-line tool must
+          be configured to communicate with your cluster. If you do not already have a
+          cluster, you can create one by using
+          <a href="/docs/setup/learning-environment/minikube/">
+            Minikube
+          </a>
+          ,
+          or you can use one of these Kubernetes playgrounds:
+        </p>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="configuration-file">
+      Configuration file
+    </h2>
+    <p>
+      To create an external load balancer, add the following line to your
+      <a href="/docs/concepts/services-networking/service/#loadbalancer">
+        service configuration file
+      </a>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>LoadBalancer</code></pre>
+    </div>
+    <p>
+      Your configuration file might look like:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>example-service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>example<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">8765</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#666">9376</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>LoadBalancer</code></pre>
+    </div>
+    <h2 id="using-kubectl">
+      Using kubectl
+    </h2>
+    <p>
+      You can alternatively create the service with the
+      <code>
+        kubectl expose
+      </code>
+      command and
+      its
+      <code>
+        --type=LoadBalancer
+      </code>
+      flag:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl expose rc example --port<span style="color:#666">=</span><span style="color:#666">8765</span> --target-port<span style="color:#666">=</span><span style="color:#666">9376</span> <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>        --name<span style="color:#666">=</span>example-service --type<span style="color:#666">=</span>LoadBalancer</code></pre>
+    </div>
+    <p>
+      This command creates a new service using the same selectors as the referenced
+      resource (in the case of the example above, a replication controller named
+      <code>
+        example
+      </code>
+      ).
+    </p>
+    <p>
+      For more information, including optional flags, refer to the
+      <a href="/docs/reference/generated/kubectl/kubectl-commands/#expose">
+        <code>
+          kubectl expose
+        </code>
+        reference
+      </a>
+      .
+    </p>
+    <h2 id="finding-your-ip-address">
+      Finding your IP address
+    </h2>
+    <p>
+      You can find the IP address created for your service by getting the service
+      information through
+      <code>
+        kubectl
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl describe services example-service</code></pre>
+    </div>
+    <p>
+      which should produce output like this:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    Name:                   example-service
+    Namespace:              default
+    Labels:                 &lt;none&gt;
+    Annotations:            &lt;none&gt;
+    Selector:               <span style="color:#b8860b">app</span><span style="color:#666">=</span>example
+    Type:                   LoadBalancer
+    IP:                     10.67.252.103
+    LoadBalancer Ingress:   192.0.2.89
+    Port:                   &lt;unnamed&gt; 80/TCP
+    NodePort:               &lt;unnamed&gt; 32445/TCP
+    Endpoints:              10.64.0.4:80,10.64.1.5:80,10.64.2.4:80
+    Session Affinity:       None
+    Events:                 &lt;none&gt;</code></pre>
+    </div>
+    <p>
+      The IP address is listed next to
+      <code>
+        LoadBalancer Ingress
+      </code>
+      .
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        If you are running your service on Minikube, you can find the assigned IP address and port with:
+      </div>
+    </blockquote>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">minikube service example-service --url</code></pre>
+    </div>
+    <h2 id="preserving-the-client-source-ip">
+      Preserving the client source IP
+    </h2>
+    <p>
+      Due to the implementation of this feature, the source IP seen in the target
+      container is
+      <em>
+        not the original source IP
+      </em>
+      of the client. To enable
+      preservation of the client IP, the following fields can be configured in the
+      service spec (supported in GCE/Google Kubernetes Engine environments):
+    </p>
+    <ul>
+      <li>
+        <code>
+          service.spec.externalTrafficPolicy
+        </code>
+        - denotes if this Service desires to route
+        external traffic to node-local or cluster-wide endpoints. There are two available
+        options: Cluster (default) and Local. Cluster obscures the client source
+        IP and may cause a second hop to another node, but should have good overall
+        load-spreading. Local preserves the client source IP and avoids a second hop
+        for LoadBalancer and NodePort type services, but risks potentially imbalanced
+        traffic spreading.
+      </li>
+      <li>
+        <code>
+          service.spec.healthCheckNodePort
+        </code>
+        - specifies the health check node port
+        (numeric port number) for the service. If
+        <code>
+          healthCheckNodePort
+        </code>
+        isn&rsquo;t specified,
+        the service controller allocates a port from your cluster&rsquo;s NodePort range. You
+        can configure that range by setting an API server command line option,
+        <code>
+          --service-node-port-range
+        </code>
+        . It will use the
+        user-specified
+        <code>
+          healthCheckNodePort
+        </code>
+        value if specified by the client. It only has an
+        effect when
+        <code>
+          type
+        </code>
+        is set to LoadBalancer and
+        <code>
+          externalTrafficPolicy
+        </code>
+        is set
+        to Local.
+      </li>
+    </ul>
+    <p>
+      Setting
+      <code>
+        externalTrafficPolicy
+      </code>
+      to Local in the Service configuration file
+      activates this feature.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>example-service<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">selector</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>example<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">8765</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">targetPort</span>:<span style="color:#bbb"> </span><span style="color:#666">9376</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">externalTrafficPolicy</span>:<span style="color:#bbb"> </span>Local<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>LoadBalancer</code></pre>
+    </div>
+    <h2 id="garbage-collecting-load-balancers">
+      Garbage Collecting Load Balancers
+    </h2>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.17
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        stable
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+        <p>
+          This feature is
+          <em>
+            stable
+          </em>
+          , meaning:
+        </p>
+        <ul>
+          <li>
+            The version name is vX where X is an integer.
+          </li>
+          <li>
+            Stable versions of features will appear in released software for many subsequent versions.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      In usual case, the correlating load balancer resources in cloud provider should
+      be cleaned up soon after a LoadBalancer type Service is deleted. But it is known
+      that there are various corner cases where cloud resources are orphaned after the
+      associated Service is deleted. Finalizer Protection for Service LoadBalancers was
+      introduced to prevent this from happening. By using finalizers, a Service resource
+      will never be deleted until the correlating load balancer resources are also deleted.
+    </p>
+    <p>
+      Specifically, if a Service has
+      <code>
+        type
+      </code>
+      LoadBalancer, the service controller will attach
+      a finalizer named
+      <code>
+        service.kubernetes.io/load-balancer-cleanup
+      </code>
+      .
+      The finalizer will only be removed after the load balancer resource is cleaned up.
+      This prevents dangling load balancer resources even in corner cases such as the
+      service controller crashing.
+    </p>
+    <h2 id="external-load-balancer-providers">
+      External Load Balancer Providers
+    </h2>
+    <p>
+      It is important to note that the datapath for this functionality is provided by a load balancer external to the Kubernetes cluster.
+    </p>
+    <p>
+      When the Service
+      <code>
+        type
+      </code>
+      is set to LoadBalancer, Kubernetes provides functionality equivalent to
+      <code>
+        type
+      </code>
+      equals ClusterIP to pods
+      within the cluster and extends it by programming the (external to Kubernetes) load balancer with entries for the Kubernetes
+      pods. The Kubernetes service controller automates the creation of the external load balancer, health checks (if needed),
+      firewall rules (if needed) and retrieves the external IP allocated by the cloud provider and populates it in the service
+      object.
+    </p>
+    <h2 id="caveats-and-limitations-when-preserving-source-ips">
+      Caveats and Limitations when preserving source IPs
+    </h2>
+    <p>
+      GCE/AWS load balancers do not provide weights for their target pools. This was not an issue with the old LB
+      kube-proxy rules which would correctly balance across all endpoints.
+    </p>
+    <p>
+      With the new functionality, the external traffic is not equally load balanced across pods, but rather
+      equally balanced at the node level (because GCE/AWS and other external LB implementations do not have the ability
+      for specifying the weight per node, they balance equally across all target nodes, disregarding the number of
+      pods on each node).
+    </p>
+    <p>
+      We can, however, state that for NumServicePods &lt;&lt; NumNodes or NumServicePods &gt;&gt; NumNodes, a fairly close-to-equal
+      distribution will be seen, even without weights.
+    </p>
+    <p>
+      Once the external load balancers provide weights, this functionality can be added to the LB programming path.
+      <em>
+        Future Work: No support for weights is provided for the 1.4 release, but may be added at a future date
+      </em>
+    </p>
+    <p>
+      Internal pod to pod traffic should behave similar to ClusterIP services, with equal probability across all pods.
+    </p>
+  </body>
+</html>

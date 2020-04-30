@@ -1,0 +1,418 @@
+<html>
+<body>
+<h1>
+  Ephemeral Containers
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/workloads/pods/ephemeral-containers.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Ephemeral Containers
+</h1>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.16
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    alpha
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+  <p>
+    This feature is currently in a
+    <em>
+      alpha
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain alpha (e.g. v1alpha1).
+    </li>
+    <li>
+      Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+    </li>
+    <li>
+      Support for feature may be dropped at any time without notice.
+    </li>
+    <li>
+      The API may change in incompatible ways in a later software release without notice.
+    </li>
+    <li>
+      Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  This page provides an overview of ephemeral containers: a special type of container
+  that runs temporarily in an existing
+  <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+    Pod
+    <span class='tooltip-text'>
+      The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
+    </span>
+  </a>
+  to
+  accomplish user-initiated actions such as troubleshooting. You use ephemeral
+  containers to inspect services rather than to build applications.
+</p>
+<blockquote class="warning">
+  <div>
+    <strong>
+      Warning:
+    </strong>
+    Ephemeral containers are in early alpha state and are not suitable for production
+    clusters. In accordance with the
+    <a href="/docs/reference/using-api/deprecation-policy/">
+      Kubernetes Deprecation Policy
+    </a>
+    , this alpha feature could change
+    significantly in the future or be removed entirely.
+  </div>
+</blockquote>
+<ul id="markdown-toc">
+  <li>
+    <a href="#understanding-ephemeral-containers">
+      Understanding ephemeral containers
+    </a>
+  </li>
+  <li>
+    <a href="#uses-for-ephemeral-containers">
+      Uses for ephemeral containers
+    </a>
+  </li>
+  <li>
+    <a href="#ephemeral-containers-api">
+      Ephemeral containers API
+    </a>
+  </li>
+</ul>
+<h2 id="understanding-ephemeral-containers">
+  Understanding ephemeral containers
+</h2>
+<p>
+  <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+    Pods
+    <span class='tooltip-text'>
+      The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
+    </span>
+  </a>
+  are the fundamental building
+  block of Kubernetes applications. Since Pods are intended to be disposable and
+  replaceable, you cannot add a container to a Pod once it has been created.
+  Instead, you usually delete and replace Pods in a controlled fashion using
+  <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/deployment/' target='_blank'>
+    deployments
+    <span class='tooltip-text'>
+      An API object that manages a replicated application.
+    </span>
+  </a>
+  .
+</p>
+<p>
+  Sometimes it&rsquo;s necessary to inspect the state of an existing Pod, however, for
+  example to troubleshoot a hard-to-reproduce bug. In these cases you can run
+  an ephemeral container in an existing Pod to inspect its state and run
+  arbitrary commands.
+</p>
+<h3 id="what-is-an-ephemeral-container">
+  What is an ephemeral container?
+</h3>
+<p>
+  Ephemeral containers differ from other containers in that they lack guarantees
+  for resources or execution, and they will never be automatically restarted, so
+  they are not appropriate for building applications.  Ephemeral containers are
+  described using the same
+  <code>
+    ContainerSpec
+  </code>
+  as regular containers, but many fields
+  are incompatible and disallowed for ephemeral containers.
+</p>
+<ul>
+  <li>
+    Ephemeral containers may not have ports, so fields such as
+    <code>
+      ports
+    </code>
+    ,
+    <code>
+      livenessProbe
+    </code>
+    ,
+    <code>
+      readinessProbe
+    </code>
+    are disallowed.
+  </li>
+  <li>
+    Pod resource allocations are immutable, so setting
+    <code>
+      resources
+    </code>
+    is disallowed.
+  </li>
+  <li>
+    For a complete list of allowed fields, see the
+    <a href="/docs/reference/generated/kubernetes-api/v1.18/#ephemeralcontainer-v1-core">
+      EphemeralContainer reference
+      documentation
+    </a>
+    .
+  </li>
+</ul>
+<p>
+  Ephemeral containers are created using a special
+  <code>
+    ephemeralcontainers
+  </code>
+  handler
+  in the API rather than by adding them directly to
+  <code>
+    pod.spec
+  </code>
+  , so it&rsquo;s not
+  possible to add an ephemeral container using
+  <code>
+    kubectl edit
+  </code>
+  .
+</p>
+<p>
+  Like regular containers, you may not change or remove an ephemeral container
+  after you have added it to a Pod.
+</p>
+<h2 id="uses-for-ephemeral-containers">
+  Uses for ephemeral containers
+</h2>
+<p>
+  Ephemeral containers are useful for interactive troubleshooting when
+  <code>
+    kubectl exec
+  </code>
+  is insufficient because a container has crashed or a container image
+  doesn&rsquo;t include debugging utilities.
+</p>
+<p>
+  In particular,
+  <a href="https://github.com/GoogleContainerTools/distroless">
+    distroless images
+  </a>
+  enable you to deploy minimal container images that reduce attack surface
+  and exposure to bugs and vulnerabilities. Since distroless images do not include a
+  shell or any debugging utilities, it&rsquo;s difficult to troubleshoot distroless
+  images using
+  <code>
+    kubectl exec
+  </code>
+  alone.
+</p>
+<p>
+  When using ephemeral containers, it&rsquo;s helpful to enable
+  <a href="/docs/tasks/configure-pod-container/share-process-namespace/">
+    process namespace
+    sharing
+  </a>
+  so
+  you can view processes in other containers.
+</p>
+<p>
+  See
+  <a href="/docs/tasks/debug-application-cluster/debug-running-pod/#debugging-with-ephemeral-debug-container">
+    Debugging with Ephemeral Debug Container
+  </a>
+  for examples of troubleshooting using ephemeral containers.
+</p>
+<h2 id="ephemeral-containers-api">
+  Ephemeral containers API
+</h2>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    The examples in this section require the
+    <code>
+      EphemeralContainers
+    </code>
+    <a href="/docs/reference/command-line-tools-reference/feature-gates/">
+      feature
+      gate
+    </a>
+    to be
+    enabled, and Kubernetes client and server version v1.16 or later.
+  </div>
+</blockquote>
+<p>
+  The examples in this section demonstrate how ephemeral containers appear in
+  the API. You would normally use
+  <code>
+    kubectl alpha debug
+  </code>
+  or another
+  <code>
+    kubectl
+  </code>
+  <a href="/docs/tasks/extend-kubectl/kubectl-plugins/">
+    plugin
+  </a>
+  to automate these steps
+  rather than invoking the API directly.
+</p>
+<p>
+  Ephemeral containers are created using the
+  <code>
+    ephemeralcontainers
+  </code>
+  subresource
+  of Pod, which can be demonstrated using
+  <code>
+    kubectl --raw
+  </code>
+  . First describe
+  the ephemeral container to add as an
+  <code>
+    EphemeralContainers
+  </code>
+  list:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#008000;font-weight:bold">&#34;apiVersion&#34;</span>: <span style="color:#b44">&#34;v1&#34;</span>,
+    <span style="color:#008000;font-weight:bold">&#34;kind&#34;</span>: <span style="color:#b44">&#34;EphemeralContainers&#34;</span>,
+    <span style="color:#008000;font-weight:bold">&#34;metadata&#34;</span>: {
+            <span style="color:#008000;font-weight:bold">&#34;name&#34;</span>: <span style="color:#b44">&#34;example-pod&#34;</span>
+    },
+    <span style="color:#008000;font-weight:bold">&#34;ephemeralContainers&#34;</span>: [{
+        <span style="color:#008000;font-weight:bold">&#34;command&#34;</span>: [
+            <span style="color:#b44">&#34;sh&#34;</span>
+        ],
+        <span style="color:#008000;font-weight:bold">&#34;image&#34;</span>: <span style="color:#b44">&#34;busybox&#34;</span>,
+        <span style="color:#008000;font-weight:bold">&#34;imagePullPolicy&#34;</span>: <span style="color:#b44">&#34;IfNotPresent&#34;</span>,
+        <span style="color:#008000;font-weight:bold">&#34;name&#34;</span>: <span style="color:#b44">&#34;debugger&#34;</span>,
+        <span style="color:#008000;font-weight:bold">&#34;stdin&#34;</span>: <span style="color:#a2f;font-weight:bold">true</span>,
+        <span style="color:#008000;font-weight:bold">&#34;tty&#34;</span>: <span style="color:#a2f;font-weight:bold">true</span>,
+        <span style="color:#008000;font-weight:bold">&#34;terminationMessagePolicy&#34;</span>: <span style="color:#b44">&#34;File&#34;</span>
+    }]
+}</code></pre>
+</div>
+<p>
+  To update the ephemeral containers of the already running
+  <code>
+    example-pod
+  </code>
+  :
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl replace --raw /api/v1/namespaces/default/pods/example-pod/ephemeralcontainers  -f ec.json</code></pre>
+</div>
+<p>
+  This will return the new list of ephemeral containers:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+   <span style="color:#008000;font-weight:bold">&#34;kind&#34;</span>:<span style="color:#b44">&#34;EphemeralContainers&#34;</span>,
+   <span style="color:#008000;font-weight:bold">&#34;apiVersion&#34;</span>:<span style="color:#b44">&#34;v1&#34;</span>,
+   <span style="color:#008000;font-weight:bold">&#34;metadata&#34;</span>:{
+      <span style="color:#008000;font-weight:bold">&#34;name&#34;</span>:<span style="color:#b44">&#34;example-pod&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;namespace&#34;</span>:<span style="color:#b44">&#34;default&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;selfLink&#34;</span>:<span style="color:#b44">&#34;/api/v1/namespaces/default/pods/example-pod/ephemeralcontainers&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;uid&#34;</span>:<span style="color:#b44">&#34;a14a6d9b-62f2-4119-9d8e-e2ed6bc3a47c&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;resourceVersion&#34;</span>:<span style="color:#b44">&#34;15886&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;creationTimestamp&#34;</span>:<span style="color:#b44">&#34;2019-08-29T06:41:42Z&#34;</span>
+   },
+   <span style="color:#008000;font-weight:bold">&#34;ephemeralContainers&#34;</span>:[
+      {
+         <span style="color:#008000;font-weight:bold">&#34;name&#34;</span>:<span style="color:#b44">&#34;debugger&#34;</span>,
+         <span style="color:#008000;font-weight:bold">&#34;image&#34;</span>:<span style="color:#b44">&#34;busybox&#34;</span>,
+         <span style="color:#008000;font-weight:bold">&#34;command&#34;</span>:[
+            <span style="color:#b44">&#34;sh&#34;</span>
+         ],
+         <span style="color:#008000;font-weight:bold">&#34;resources&#34;</span>:{
+
+         },
+         <span style="color:#008000;font-weight:bold">&#34;terminationMessagePolicy&#34;</span>:<span style="color:#b44">&#34;File&#34;</span>,
+         <span style="color:#008000;font-weight:bold">&#34;imagePullPolicy&#34;</span>:<span style="color:#b44">&#34;IfNotPresent&#34;</span>,
+         <span style="color:#008000;font-weight:bold">&#34;stdin&#34;</span>:<span style="color:#a2f;font-weight:bold">true</span>,
+         <span style="color:#008000;font-weight:bold">&#34;tty&#34;</span>:<span style="color:#a2f;font-weight:bold">true</span>
+      }
+   ]
+}</code></pre>
+</div>
+<p>
+  You can view the state of the newly created ephemeral container using
+  <code>
+    kubectl describe
+  </code>
+  :
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl describe pod example-pod</code></pre>
+</div><pre><code>...
+Ephemeral Containers:
+  debugger:
+    Container ID:  docker://cf81908f149e7e9213d3c3644eda55c72efaff67652a2685c1146f0ce151e80f
+    Image:         busybox
+    Image ID:      docker-pullable://busybox@sha256:9f1003c480699be56815db0f8146ad2e22efea85129b5b5983d0e0fb52d9ab70
+    Port:          &lt;none&gt;
+    Host Port:     &lt;none&gt;
+    Command:
+      sh
+    State:          Running
+      Started:      Thu, 29 Aug 2019 06:42:21 +0000
+    Ready:          False
+    Restart Count:  0
+    Environment:    &lt;none&gt;
+    Mounts:         &lt;none&gt;
+...</code></pre>
+<p>
+  You can interact with the new ephemeral container in the same way as other
+  containers using
+  <code>
+    kubectl attach
+  </code>
+  ,
+  <code>
+    kubectl exec
+  </code>
+  , and
+  <code>
+    kubectl logs
+  </code>
+  , for
+  example:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl attach -it example-pod -c debugger</code></pre>
+</div>

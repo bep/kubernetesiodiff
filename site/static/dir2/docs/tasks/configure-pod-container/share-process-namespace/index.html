@@ -1,0 +1,322 @@
+<html>
+<body>
+<h1>
+  Share Process Namespace between Containers in a Pod
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/configure-pod-container/share-process-namespace.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Share Process Namespace between Containers in a Pod
+</h1>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.17
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    stable
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+  <p>
+    This feature is
+    <em>
+      stable
+    </em>
+    , meaning:
+  </p>
+  <ul>
+    <li>
+      The version name is vX where X is an integer.
+    </li>
+    <li>
+      Stable versions of features will appear in released software for many subsequent versions.
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  This page shows how to configure process namespace sharing for a pod. When
+  process namespace sharing is enabled, processes in a container are visible
+  to all other containers in that pod.
+</p>
+<p>
+  You can use this feature to configure cooperating containers, such as a log
+  handler sidecar container, or to troubleshoot container images that don&rsquo;t
+  include debugging utilities like a shell.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#before-you-begin">
+      Before you begin
+    </a>
+  </li>
+  <li>
+    <a href="#configure-a-pod">
+      Configure a Pod
+    </a>
+  </li>
+  <li>
+    <a href="#understanding-process-namespace-sharing">
+      Understanding Process Namespace Sharing
+    </a>
+  </li>
+</ul>
+<h2 id="before-you-begin">
+  Before you begin
+</h2>
+<p>
+  You need to have a Kubernetes cluster, and the kubectl command-line tool must
+  be configured to communicate with your cluster. If you do not already have a
+  cluster, you can create one by using
+  <a href="/docs/setup/learning-environment/minikube/">
+    Minikube
+  </a>
+  ,
+  or you can use one of these Kubernetes playgrounds:
+</p>
+<ul>
+  <li>
+    <a href="https://www.katacoda.com/courses/kubernetes/playground">
+      Katacoda
+    </a>
+  </li>
+  <li>
+    <a href="http://labs.play-with-k8s.com/">
+      Play with Kubernetes
+    </a>
+  </li>
+</ul>
+<p>
+  Your Kubernetes server must be at or later than version v1.10.
+  To check the version, enter
+  <code>
+    kubectl version
+  </code>
+  .
+</p>
+<h2 id="configure-a-pod">
+  Configure a Pod
+</h2>
+<p>
+  Process Namespace Sharing is enabled using the
+  <code>
+    shareProcessNamespace
+  </code>
+  field of
+  <code>
+    v1.PodSpec
+  </code>
+  . For example:
+</p>
+<table class="includecode" id="pods-share-process-namespace-yaml">
+  <thead>
+    <tr>
+      <th>
+        <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/share-process-namespace.yaml" download="pods/share-process-namespace.yaml">
+          <code>
+            pods/share-process-namespace.yaml
+          </code>
+        </a>
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-share-process-namespace-yaml')" title="Copy pods/share-process-namespace.yaml to clipboard">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">shareProcessNamespace</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>shell<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>busybox<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">securityContext</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">capabilities</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">add</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- SYS_PTRACE<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">stdin</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">tty</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#bbb">
+</span></code></pre>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ol>
+  <li>
+    <p>
+      Create the pod
+      <code>
+        nginx
+      </code>
+      on your cluster:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/pods/share-process-namespace.yaml</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>
+      Attach to the
+      <code>
+        shell
+      </code>
+      container and run
+      <code>
+        ps
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl attach -it nginx -c shell</code></pre>
+    </div>
+    <p>
+      If you don&rsquo;t see a command prompt, try pressing enter.
+    </p>
+    <pre><code>/ # ps ax
+PID   USER     TIME  COMMAND
+    1 root      0:00 /pause
+    8 root      0:00 nginx: master process nginx -g daemon off;
+   14 101       0:00 nginx: worker process
+   15 root      0:00 sh
+   21 root      0:00 ps ax</code></pre>
+  </li>
+</ol>
+<p>
+  You can signal processes in other containers. For example, send
+  <code>
+    SIGHUP
+  </code>
+  to
+  nginx to restart the worker process. This requires the
+  <code>
+    SYS_PTRACE
+  </code>
+  capability.
+</p><pre><code>/ # kill -HUP 8
+/ # ps ax
+PID   USER     TIME  COMMAND
+    1 root      0:00 /pause
+    8 root      0:00 nginx: master process nginx -g daemon off;
+   15 root      0:00 sh
+   22 101       0:00 nginx: worker process
+   23 root      0:00 ps ax</code></pre>
+<p>
+  It&rsquo;s even possible to access another container image using the
+  <code>
+    /proc/$pid/root
+  </code>
+  link.
+</p><pre><code>/ # head /proc/8/root/etc/nginx/nginx.conf
+
+user  nginx;
+worker_processes  1;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  1024;</code></pre>
+<h2 id="understanding-process-namespace-sharing">
+  Understanding Process Namespace Sharing
+</h2>
+<p>
+  Pods share many resources so it makes sense they would also share a process
+  namespace. Some container images may expect to be isolated from other
+  containers, though, so it&rsquo;s important to understand these differences:
+</p>
+<ol>
+  <li>
+    <p>
+      <strong>
+        The container process no longer has PID 1.
+      </strong>
+      Some container images refuse
+      to start without PID 1 (for example, containers using
+      <code>
+        systemd
+      </code>
+      ) or run
+      commands like
+      <code>
+        kill -HUP 1
+      </code>
+      to signal the container process. In pods with a
+      shared process namespace,
+      <code>
+        kill -HUP 1
+      </code>
+      will signal the pod sandbox.
+      (
+      <code>
+        /pause
+      </code>
+      in the above example.)
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>
+        Processes are visible to other containers in the pod.
+      </strong>
+      This includes all
+      information visible in
+      <code>
+        /proc
+      </code>
+      , such as passwords that were passed as arguments
+      or environment variables. These are protected only by regular Unix permissions.
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>
+        Container filesystems are visible to other containers in the pod through the
+        <code>
+          /proc/$pid/root
+        </code>
+        link.
+      </strong>
+      This makes debugging easier, but it also means
+      that filesystem secrets are protected only by filesystem permissions.
+    </p>
+  </li>
+</ol>

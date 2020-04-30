@@ -1,0 +1,857 @@
+<html>
+  <body>
+    <h1>
+      Taints and Tolerations
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/configuration/taint-and-toleration.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Taints and Tolerations
+    </h1>
+    <p>
+      Node affinity, described
+      <a href="/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature">
+        here
+      </a>
+      ,
+      is a property of
+      <em>
+        pods
+      </em>
+      that
+      <em>
+        attracts
+      </em>
+      them to a set of nodes (either as a
+      preference or a hard requirement). Taints are the opposite &ndash; they allow a
+      <em>
+        node
+      </em>
+      to
+      <em>
+        repel
+      </em>
+      a set of pods.
+    </p>
+    <p>
+      Taints and tolerations work together to ensure that pods are not scheduled
+      onto inappropriate nodes. One or more taints are applied to a node; this
+      marks that the node should not accept any pods that do not tolerate the taints.
+      Tolerations are applied to pods, and allow (but do not require) the pods to schedule
+      onto nodes with matching taints.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#concepts">
+          Concepts
+        </a>
+      </li>
+      <li>
+        <a href="#example-use-cases">
+          Example Use Cases
+        </a>
+      </li>
+      <li>
+        <a href="#taint-based-evictions">
+          Taint based Evictions
+        </a>
+      </li>
+      <li>
+        <a href="#taint-nodes-by-condition">
+          Taint Nodes by Condition
+        </a>
+      </li>
+    </ul>
+    <h2 id="concepts">
+      Concepts
+    </h2>
+    <p>
+      You add a taint to a node using
+      <a href="/docs/reference/generated/kubectl/kubectl-commands#taint">
+        kubectl taint
+      </a>
+      .
+      For example,
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl taint nodes node1 <span style="color:#b8860b">key</span><span style="color:#666">=</span>value:NoSchedule</code></pre>
+    </div>
+    <p>
+      places a taint on node
+      <code>
+        node1
+      </code>
+      . The taint has key
+      <code>
+        key
+      </code>
+      , value
+      <code>
+        value
+      </code>
+      , and taint effect
+      <code>
+        NoSchedule
+      </code>
+      .
+      This means that no pod will be able to schedule onto
+      <code>
+        node1
+      </code>
+      unless it has a matching toleration.
+    </p>
+    <p>
+      To remove the taint added by the command above, you can run:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl taint nodes node1 key:NoSchedule-</code></pre>
+    </div>
+    <p>
+      You specify a toleration for a pod in the PodSpec. Both of the following tolerations &ldquo;match&rdquo; the
+      taint created by the
+      <code>
+        kubectl taint
+      </code>
+      line above, and thus a pod with either toleration would be able
+      to schedule onto
+      <code>
+        node1
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">tolerations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;key&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">operator</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Equal&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;value&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">effect</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;NoSchedule&#34;</span></code></pre>
+    </div>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">tolerations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;key&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">operator</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Exists&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">effect</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;NoSchedule&#34;</span></code></pre>
+    </div>
+    <p>
+      Here’s an example of a pod that uses tolerations:
+    </p>
+    <table class="includecode" id="pods-pod-with-toleration-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/pod-with-toleration.yaml" download="pods/pod-with-toleration.yaml">
+              <code>
+                pods/pod-with-toleration.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-with-toleration-yaml')" title="Copy pods/pod-with-toleration.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">labels</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">env</span>:<span style="color:#bbb"> </span>test<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">imagePullPolicy</span>:<span style="color:#bbb"> </span>IfNotPresent<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">tolerations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;example-key&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">operator</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Exists&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">effect</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;NoSchedule&#34;</span><span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      A toleration &ldquo;matches&rdquo; a taint if the keys are the same and the effects are the same, and:
+    </p>
+    <ul>
+      <li>
+        the
+        <code>
+          operator
+        </code>
+        is
+        <code>
+          Exists
+        </code>
+        (in which case no
+        <code>
+          value
+        </code>
+        should be specified), or
+      </li>
+      <li>
+        the
+        <code>
+          operator
+        </code>
+        is
+        <code>
+          Equal
+        </code>
+        and the
+        <code>
+          value
+        </code>
+        s are equal
+      </li>
+    </ul>
+    <p>
+      <code>
+        Operator
+      </code>
+      defaults to
+      <code>
+        Equal
+      </code>
+      if not specified.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        <p>
+          There are two special cases:
+        </p>
+        <ul>
+          <li>
+            <p>
+              An empty
+              <code>
+                key
+              </code>
+              with operator
+              <code>
+                Exists
+              </code>
+              matches all keys, values and effects which means this
+              will tolerate everything.
+            </p>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">tolerations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">operator</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Exists&#34;</span></code></pre>
+            </div>
+          </li>
+          <li>
+            <p>
+              An empty
+              <code>
+                effect
+              </code>
+              matches all effects with key
+              <code>
+                key
+              </code>
+              .
+            </p>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">tolerations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;key&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">operator</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Exists&#34;</span></code></pre>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </blockquote>
+    <p>
+      The above example used
+      <code>
+        effect
+      </code>
+      of
+      <code>
+        NoSchedule
+      </code>
+      . Alternatively, you can use
+      <code>
+        effect
+      </code>
+      of
+      <code>
+        PreferNoSchedule
+      </code>
+      .
+      This is a &ldquo;preference&rdquo; or &ldquo;soft&rdquo; version of
+      <code>
+        NoSchedule
+      </code>
+      &ndash; the system will
+      <em>
+        try
+      </em>
+      to avoid placing a
+      pod that does not tolerate the taint on the node, but it is not required. The third kind of
+      <code>
+        effect
+      </code>
+      is
+      <code>
+        NoExecute
+      </code>
+      , described later.
+    </p>
+    <p>
+      You can put multiple taints on the same node and multiple tolerations on the same pod.
+      The way Kubernetes processes multiple taints and tolerations is like a filter: start
+      with all of a node&rsquo;s taints, then ignore the ones for which the pod has a matching toleration; the
+      remaining un-ignored taints have the indicated effects on the pod. In particular,
+    </p>
+    <ul>
+      <li>
+        if there is at least one un-ignored taint with effect
+        <code>
+          NoSchedule
+        </code>
+        then Kubernetes will not schedule
+        the pod onto that node
+      </li>
+      <li>
+        if there is no un-ignored taint with effect
+        <code>
+          NoSchedule
+        </code>
+        but there is at least one un-ignored taint with
+        effect
+        <code>
+          PreferNoSchedule
+        </code>
+        then Kubernetes will
+        <em>
+          try
+        </em>
+        to not schedule the pod onto the node
+      </li>
+      <li>
+        if there is at least one un-ignored taint with effect
+        <code>
+          NoExecute
+        </code>
+        then the pod will be evicted from
+        the node (if it is already running on the node), and will not be
+        scheduled onto the node (if it is not yet running on the node).
+      </li>
+    </ul>
+    <p>
+      For example, imagine you taint a node like this
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl taint nodes node1 <span style="color:#b8860b">key1</span><span style="color:#666">=</span>value1:NoSchedule
+kubectl taint nodes node1 <span style="color:#b8860b">key1</span><span style="color:#666">=</span>value1:NoExecute
+kubectl taint nodes node1 <span style="color:#b8860b">key2</span><span style="color:#666">=</span>value2:NoSchedule</code></pre>
+    </div>
+    <p>
+      And a pod has two tolerations:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">tolerations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;key1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">operator</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Equal&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;value1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">effect</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;NoSchedule&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;key1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">operator</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Equal&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;value1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">effect</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;NoExecute&#34;</span></code></pre>
+    </div>
+    <p>
+      In this case, the pod will not be able to schedule onto the node, because there is no
+      toleration matching the third taint. But it will be able to continue running if it is
+      already running on the node when the taint is added, because the third taint is the only
+      one of the three that is not tolerated by the pod.
+    </p>
+    <p>
+      Normally, if a taint with effect
+      <code>
+        NoExecute
+      </code>
+      is added to a node, then any pods that do
+      not tolerate the taint will be evicted immediately, and pods that do tolerate the
+      taint will never be evicted. However, a toleration with
+      <code>
+        NoExecute
+      </code>
+      effect can specify
+      an optional
+      <code>
+        tolerationSeconds
+      </code>
+      field that dictates how long the pod will stay bound
+      to the node after the taint is added. For example,
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">tolerations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;key1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">operator</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Equal&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;value1&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">effect</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;NoExecute&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">tolerationSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">3600</span></code></pre>
+    </div>
+    <p>
+      means that if this pod is running and a matching taint is added to the node, then
+      the pod will stay bound to the node for 3600 seconds, and then be evicted. If the
+      taint is removed before that time, the pod will not be evicted.
+    </p>
+    <h2 id="example-use-cases">
+      Example Use Cases
+    </h2>
+    <p>
+      Taints and tolerations are a flexible way to steer pods
+      <em>
+        away
+      </em>
+      from nodes or evict
+      pods that shouldn&rsquo;t be running. A few of the use cases are
+    </p>
+    <ul>
+      <li>
+        <p>
+          <strong>
+            Dedicated Nodes
+          </strong>
+          : If you want to dedicate a set of nodes for exclusive use by
+          a particular set of users, you can add a taint to those nodes (say,
+          <code>
+            kubectl taint nodes nodename dedicated=groupName:NoSchedule
+          </code>
+          ) and then add a corresponding
+          toleration to their pods (this would be done most easily by writing a custom
+          <a href="/docs/reference/access-authn-authz/admission-controllers/">
+            admission controller
+          </a>
+          ).
+          The pods with the tolerations will then be allowed to use the tainted (dedicated) nodes as
+          well as any other nodes in the cluster. If you want to dedicate the nodes to them
+          <em>
+            and
+          </em>
+          ensure they
+          <em>
+            only
+          </em>
+          use the dedicated nodes, then you should additionally add a label similar
+          to the taint to the same set of nodes (e.g.
+          <code>
+            dedicated=groupName
+          </code>
+          ), and the admission
+          controller should additionally add a node affinity to require that the pods can only schedule
+          onto nodes labeled with
+          <code>
+            dedicated=groupName
+          </code>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>
+            Nodes with Special Hardware
+          </strong>
+          : In a cluster where a small subset of nodes have specialized
+          hardware (for example GPUs), it is desirable to keep pods that don&rsquo;t need the specialized
+          hardware off of those nodes, thus leaving room for later-arriving pods that do need the
+          specialized hardware. This can be done by tainting the nodes that have the specialized
+          hardware (e.g.
+          <code>
+            kubectl taint nodes nodename special=true:NoSchedule
+          </code>
+          or
+          <code>
+            kubectl taint nodes nodename special=true:PreferNoSchedule
+          </code>
+          ) and adding a corresponding
+          toleration to pods that use the special hardware. As in the dedicated nodes use case,
+          it is probably easiest to apply the tolerations using a custom
+          <a href="/docs/reference/access-authn-authz/admission-controllers/">
+            admission controller
+          </a>
+          .
+          For example, it is recommended to use
+          <a href="/docs/concepts/configuration/manage-compute-resources-container/#extended-resources">
+            Extended
+            Resources
+          </a>
+          to represent the special hardware, taint your special hardware nodes with the
+          extended resource name and run the
+          <a href="/docs/reference/access-authn-authz/admission-controllers/#extendedresourcetoleration">
+            ExtendedResourceToleration
+          </a>
+          admission controller. Now, because the nodes are tainted, no pods without the
+          toleration will schedule on them. But when you submit a pod that requests the
+          extended resource, the
+          <code>
+            ExtendedResourceToleration
+          </code>
+          admission controller will
+          automatically add the correct toleration to the pod and that pod will schedule
+          on the special hardware nodes. This will make sure that these special hardware
+          nodes are dedicated for pods requesting such hardware and you don&rsquo;t have to
+          manually add tolerations to your pods.
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>
+            Taint based Evictions
+          </strong>
+          : A per-pod-configurable eviction behavior
+          when there are node problems, which is described in the next section.
+        </p>
+      </li>
+    </ul>
+    <h2 id="taint-based-evictions">
+      Taint based Evictions
+    </h2>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        stable
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+        <p>
+          This feature is
+          <em>
+            stable
+          </em>
+          , meaning:
+        </p>
+        <ul>
+          <li>
+            The version name is vX where X is an integer.
+          </li>
+          <li>
+            Stable versions of features will appear in released software for many subsequent versions.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      Earlier we mentioned the
+      <code>
+        NoExecute
+      </code>
+      taint effect, which affects pods that are already
+      running on the node as follows
+    </p>
+    <ul>
+      <li>
+        pods that do not tolerate the taint are evicted immediately
+      </li>
+      <li>
+        pods that tolerate the taint without specifying
+        <code>
+          tolerationSeconds
+        </code>
+        in
+        their toleration specification remain bound forever
+      </li>
+      <li>
+        pods that tolerate the taint with a specified
+        <code>
+          tolerationSeconds
+        </code>
+        remain
+        bound for the specified amount of time
+      </li>
+    </ul>
+    <p>
+      In addition, Kubernetes 1.6 introduced alpha support for representing node
+      problems. In other words, the node controller automatically taints a node when
+      certain condition is true. The following taints are built in:
+    </p>
+    <ul>
+      <li>
+        <code>
+          node.kubernetes.io/not-ready
+        </code>
+        : Node is not ready. This corresponds to
+        the NodeCondition
+        <code>
+          Ready
+        </code>
+        being &ldquo;
+        <code>
+          False
+        </code>
+        &rdquo;.
+      </li>
+      <li>
+        <code>
+          node.kubernetes.io/unreachable
+        </code>
+        : Node is unreachable from the node
+        controller. This corresponds to the NodeCondition
+        <code>
+          Ready
+        </code>
+        being &ldquo;
+        <code>
+          Unknown
+        </code>
+        &rdquo;.
+      </li>
+      <li>
+        <code>
+          node.kubernetes.io/out-of-disk
+        </code>
+        : Node becomes out of disk.
+      </li>
+      <li>
+        <code>
+          node.kubernetes.io/memory-pressure
+        </code>
+        : Node has memory pressure.
+      </li>
+      <li>
+        <code>
+          node.kubernetes.io/disk-pressure
+        </code>
+        : Node has disk pressure.
+      </li>
+      <li>
+        <code>
+          node.kubernetes.io/network-unavailable
+        </code>
+        : Node&rsquo;s network is unavailable.
+      </li>
+      <li>
+        <code>
+          node.kubernetes.io/unschedulable
+        </code>
+        : Node is unschedulable.
+      </li>
+      <li>
+        <code>
+          node.cloudprovider.kubernetes.io/uninitialized
+        </code>
+        : When the kubelet is started
+        with &ldquo;external&rdquo; cloud provider, this taint is set on a node to mark it
+        as unusable. After a controller from the cloud-controller-manager initializes
+        this node, the kubelet removes this taint.
+      </li>
+    </ul>
+    <p>
+      In case a node is to be evicted, the node controller or the kubelet adds relevant taints
+      with
+      <code>
+        NoExecute
+      </code>
+      effect. If the fault condition returns to normal the kubelet or node
+      controller can remove the relevant taint(s).
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        To maintain the existing
+        <a href="/docs/concepts/architecture/nodes/">
+          rate limiting
+        </a>
+        behavior of pod evictions due to node problems, the system actually adds the taints
+        in a rate-limited way. This prevents massive pod evictions in scenarios such
+        as the master becoming partitioned from the nodes.
+      </div>
+    </blockquote>
+    <p>
+      The feature, in combination with
+      <code>
+        tolerationSeconds
+      </code>
+      , allows a pod
+      to specify how long it should stay bound to a node that has one or both of these problems.
+    </p>
+    <p>
+      For example, an application with a lot of local state might want to stay
+      bound to node for a long time in the event of network partition, in the hope
+      that the partition will recover and thus the pod eviction can be avoided.
+      The toleration the pod would use in that case would look like
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">tolerations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;node.kubernetes.io/unreachable&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">operator</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;Exists&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">effect</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;NoExecute&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">tolerationSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">6000</span></code></pre>
+    </div>
+    <p>
+      Note that Kubernetes automatically adds a toleration for
+      <code>
+        node.kubernetes.io/not-ready
+      </code>
+      with
+      <code>
+        tolerationSeconds=300
+      </code>
+      unless the pod configuration provided
+      by the user already has a toleration for
+      <code>
+        node.kubernetes.io/not-ready
+      </code>
+      .
+      Likewise it adds a toleration for
+      <code>
+        node.kubernetes.io/unreachable
+      </code>
+      with
+      <code>
+        tolerationSeconds=300
+      </code>
+      unless the pod configuration provided
+      by the user already has a toleration for
+      <code>
+        node.kubernetes.io/unreachable
+      </code>
+      .
+    </p>
+    <p>
+      These automatically-added tolerations ensure that
+      the default pod behavior of remaining bound for 5 minutes after one of these
+      problems is detected is maintained.
+      The two default tolerations are added by the
+      <a href="https://git.k8s.io/kubernetes/plugin/pkg/admission/defaulttolerationseconds">
+        DefaultTolerationSeconds
+        admission controller
+      </a>
+      .
+    </p>
+    <p>
+      <a href="/docs/concepts/workloads/controllers/daemonset/">
+        DaemonSet
+      </a>
+      pods are created with
+      <code>
+        NoExecute
+      </code>
+      tolerations for the following taints with no
+      <code>
+        tolerationSeconds
+      </code>
+      :
+    </p>
+    <ul>
+      <li>
+        <code>
+          node.kubernetes.io/unreachable
+        </code>
+      </li>
+      <li>
+        <code>
+          node.kubernetes.io/not-ready
+        </code>
+      </li>
+    </ul>
+    <p>
+      This ensures that DaemonSet pods are never evicted due to these problems.
+    </p>
+    <h2 id="taint-nodes-by-condition">
+      Taint Nodes by Condition
+    </h2>
+    <p>
+      The node lifecycle controller automatically creates taints corresponding to
+      Node conditions with
+      <code>
+        NoSchedule
+      </code>
+      effect.
+      Similarly the scheduler does not check Node conditions; instead the scheduler checks taints. This assures that Node conditions don&rsquo;t affect what&rsquo;s scheduled onto the Node. The user can choose to ignore some of the Node&rsquo;s problems (represented as Node conditions) by adding appropriate Pod tolerations.
+    </p>
+    <p>
+      Starting in Kubernetes 1.8, the DaemonSet controller automatically adds the
+      following
+      <code>
+        NoSchedule
+      </code>
+      tolerations to all daemons, to prevent DaemonSets from
+      breaking.
+    </p>
+    <ul>
+      <li>
+        <code>
+          node.kubernetes.io/memory-pressure
+        </code>
+      </li>
+      <li>
+        <code>
+          node.kubernetes.io/disk-pressure
+        </code>
+      </li>
+      <li>
+        <code>
+          node.kubernetes.io/out-of-disk
+        </code>
+        (
+        <em>
+          only for critical pods
+        </em>
+        )
+      </li>
+      <li>
+        <code>
+          node.kubernetes.io/unschedulable
+        </code>
+        (1.10 or later)
+      </li>
+      <li>
+        <code>
+          node.kubernetes.io/network-unavailable
+        </code>
+        (
+        <em>
+          host network only
+        </em>
+        )
+      </li>
+    </ul>
+    <p>
+      Adding these tolerations ensures backward compatibility. You can also add
+      arbitrary tolerations to DaemonSets.
+    </p>
+  </body>
+</html>

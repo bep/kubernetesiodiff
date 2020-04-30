@@ -1,0 +1,182 @@
+<html>
+  <body>
+    <h1>
+      Volume Snapshot Classes
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/storage/volume-snapshot-classes.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Volume Snapshot Classes
+    </h1>
+    <p>
+      This document describes the concept of
+      <code>
+        VolumeSnapshotClass
+      </code>
+      in Kubernetes. Familiarity
+      with
+      <a href="/docs/concepts/storage/volume-snapshots/">
+        volume snapshots
+      </a>
+      and
+      <a href="/docs/concepts/storage/storage-classes">
+        storage classes
+      </a>
+      is suggested.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#introduction">
+          Introduction
+        </a>
+      </li>
+      <li>
+        <a href="#the-volumesnapshotclass-resource">
+          The VolumeSnapshotClass Resource
+        </a>
+      </li>
+      <li>
+        <a href="#parameters">
+          Parameters
+        </a>
+      </li>
+    </ul>
+    <h2 id="introduction">
+      Introduction
+    </h2>
+    <p>
+      Just like
+      <code>
+        StorageClass
+      </code>
+      provides a way for administrators to describe the &ldquo;classes&rdquo;
+      of storage they offer when provisioning a volume,
+      <code>
+        VolumeSnapshotClass
+      </code>
+      provides a
+      way to describe the &ldquo;classes&rdquo; of storage when provisioning a volume snapshot.
+    </p>
+    <h2 id="the-volumesnapshotclass-resource">
+      The VolumeSnapshotClass Resource
+    </h2>
+    <p>
+      Each
+      <code>
+        VolumeSnapshotClass
+      </code>
+      contains the fields
+      <code>
+        driver
+      </code>
+      ,
+      <code>
+        deletionPolicy
+      </code>
+      , and
+      <code>
+        parameters
+      </code>
+      ,
+      which are used when a
+      <code>
+        VolumeSnapshot
+      </code>
+      belonging to the class needs to be
+      dynamically provisioned.
+    </p>
+    <p>
+      The name of a
+      <code>
+        VolumeSnapshotClass
+      </code>
+      object is significant, and is how users can
+      request a particular class. Administrators set the name and other parameters
+      of a class when first creating
+      <code>
+        VolumeSnapshotClass
+      </code>
+      objects, and the objects cannot
+      be updated once they are created.
+    </p>
+    <p>
+      Administrators can specify a default
+      <code>
+        VolumeSnapshotClass
+      </code>
+      just for VolumeSnapshots
+      that don&rsquo;t request any particular class to bind to.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>snapshot.storage.k8s.io/v1beta1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>VolumeSnapshotClass<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>csi-hostpath-snapclass<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">driver</span>:<span style="color:#bbb"> </span>hostpath.csi.k8s.io<span style="color:#bbb"> 
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">deletionPolicy</span>:<span style="color:#bbb"> </span>Delete<span style="color:#bbb">
+</span><span style="color:#bbb"></span>parameters:</code></pre>
+    </div>
+    <h3 id="driver">
+      Driver
+    </h3>
+    <p>
+      Volume snapshot classes have a driver that determines what CSI volume plugin is
+      used for provisioning VolumeSnapshots. This field must be specified.
+    </p>
+    <h3 id="deletionpolicy">
+      DeletionPolicy
+    </h3>
+    <p>
+      Volume snapshot classes have a deletionPolicy. It enables you to configure what happens to a
+      <code>
+        VolumeSnapshotContent
+      </code>
+      when the
+      <code>
+        VolumeSnapshot
+      </code>
+      object it is bound to is to be deleted. The deletionPolicy of a volume snapshot can either be
+      <code>
+        Retain
+      </code>
+      or
+      <code>
+        Delete
+      </code>
+      . This field must be specified.
+    </p>
+    <p>
+      If the deletionPolicy is
+      <code>
+        Delete
+      </code>
+      , then the underlying storage snapshot will be deleted along with the
+      <code>
+        VolumeSnapshotContent
+      </code>
+      object. If the deletionPolicy is
+      <code>
+        Retain
+      </code>
+      , then both the underlying snapshot and
+      <code>
+        VolumeSnapshotContent
+      </code>
+      remain.
+    </p>
+    <h2 id="parameters">
+      Parameters
+    </h2>
+    <p>
+      Volume snapshot classes have parameters that describe volume snapshots belonging to
+      the volume snapshot class. Different parameters may be accepted depending on the
+      <code>
+        driver
+      </code>
+      .
+    </p>
+  </body>
+</html>

@@ -1,0 +1,371 @@
+<html>
+  <body>
+    <h1>
+      CronJob
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/workloads/controllers/cron-jobs.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      CronJob
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.8
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        beta
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+        <p>
+          This feature is currently in a
+          <em>
+            beta
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain beta (e.g. v2beta3).
+          </li>
+          <li>
+            Code is well tested. Enabling the feature is considered safe. Enabled by default.
+          </li>
+          <li>
+            Support for the overall feature will not be dropped, though details may change.
+          </li>
+          <li>
+            The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+          </li>
+          <li>
+            Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+          </li>
+          <li>
+            <strong>
+              Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+            </strong>
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      A
+      <em>
+        CronJob
+      </em>
+      creates
+      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/jobs-run-to-completion' target='_blank'>
+        Jobs
+        <span class='tooltip-text'>
+          A finite or batch task that runs to completion.
+        </span>
+      </a>
+      on a repeating schedule.
+    </p>
+    <p>
+      One CronJob object is like one line of a
+      <em>
+        crontab
+      </em>
+      (cron table) file. It runs a job periodically
+      on a given schedule, written in
+      <a href="https://en.wikipedia.org/wiki/Cron">
+        Cron
+      </a>
+      format.
+    </p>
+    <blockquote class="caution">
+      <div>
+        <strong>
+          Caution:
+        </strong>
+        <p>
+          All
+          <strong>
+            CronJob
+          </strong>
+          <code>
+            schedule:
+          </code>
+          times are based on the timezone of the
+          <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-controller-manager/' target='_blank'>
+            kube-controller-manager
+            <span class='tooltip-text'>
+              Control Plane component that runs controller processes.
+            </span>
+          </a>
+          .
+        </p>
+        <p>
+          If your control plane runs the kube-controller-manager in Pods or bare
+          containers, the timezone set for the kube-controller-manager container determines the timezone
+          that the cron job controller uses.
+        </p>
+      </div>
+    </blockquote>
+    <p>
+      When creating the manifest for a CronJob resource, make sure the name you provide
+      is a valid
+      <a href="/docs/concepts/overview/working-with-objects/names#dns-subdomain-names">
+        DNS subdomain name
+      </a>
+      .
+      The name must be no longer than 52 characters. This is because the CronJob controller will automatically
+      append 11 characters to the job name provided and there is a constraint that the
+      maximum length of a Job name is no more than 63 characters.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#cronjob">
+          CronJob
+        </a>
+      </li>
+      <li>
+        <a href="#cron-job-limitations">
+          CronJob limitations
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="cronjob">
+      CronJob
+    </h2>
+    <p>
+      CronJobs are useful for creating periodic and recurring tasks, like running backups or
+      sending emails. CronJobs can also schedule individual tasks for a specific time, such as
+      scheduling a Job for when your cluster is likely to be idle.
+    </p>
+    <h3 id="example">
+      Example
+    </h3>
+    <p>
+      This example CronJob manifest prints the current time and a hello message every minute:
+    </p>
+    <table class="includecode" id="application-job-cronjob-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/job/cronjob.yaml" download="application/job/cronjob.yaml">
+              <code>
+                application/job/cronjob.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-cronjob-yaml')" title="Copy application/job/cronjob.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>batch/v1beta1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>CronJob<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">schedule</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;*/1 * * * *&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">jobTemplate</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>busybox<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">args</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- /bin/sh<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- -c<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- date;<span style="color:#bbb"> </span>echo<span style="color:#bbb"> </span>Hello<span style="color:#bbb"> </span>from<span style="color:#bbb"> </span>the<span style="color:#bbb"> </span>Kubernetes<span style="color:#bbb"> </span>cluster<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">restartPolicy</span>:<span style="color:#bbb"> </span>OnFailure<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      (
+      <a href="/docs/tasks/job/automated-tasks-with-cron-jobs/">
+        Running Automated Tasks with a CronJob
+      </a>
+      takes you through this example in more detail).
+    </p>
+    <h2 id="cron-job-limitations">
+      CronJob limitations
+    </h2>
+    <p>
+      A cron job creates a job object
+      <em>
+        about
+      </em>
+      once per execution time of its schedule. We say &ldquo;about&rdquo; because there
+      are certain circumstances where two jobs might be created, or no job might be created. We attempt to make these rare,
+      but do not completely prevent them. Therefore, jobs should be
+      <em>
+        idempotent
+      </em>
+      .
+    </p>
+    <p>
+      If
+      <code>
+        startingDeadlineSeconds
+      </code>
+      is set to a large value or left unset (the default)
+      and if
+      <code>
+        concurrencyPolicy
+      </code>
+      is set to
+      <code>
+        Allow
+      </code>
+      , the jobs will always run
+      at least once.
+    </p>
+    <p>
+      For every CronJob, the CronJob
+      <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+        Controller
+        <span class='tooltip-text'>
+          A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
+        </span>
+      </a>
+      checks how many schedules it missed in the duration from its last scheduled time until now. If there are more than 100 missed schedules, then it does not start the job and logs the error
+    </p>
+    <pre><code>Cannot determine if job needs to be started. Too many missed start time (&gt; 100). Set or decrease .spec.startingDeadlineSeconds or check clock skew.</code></pre>
+    <p>
+      It is important to note that if the
+      <code>
+        startingDeadlineSeconds
+      </code>
+      field is set (not
+      <code>
+        nil
+      </code>
+      ), the controller counts how many missed jobs occurred from the value of
+      <code>
+        startingDeadlineSeconds
+      </code>
+      until now rather than from the last scheduled time until now. For example, if
+      <code>
+        startingDeadlineSeconds
+      </code>
+      is
+      <code>
+        200
+      </code>
+      , the controller counts how many missed jobs occurred in the last 200 seconds.
+    </p>
+    <p>
+      A CronJob is counted as missed if it has failed to be created at its scheduled time. For example, If
+      <code>
+        concurrencyPolicy
+      </code>
+      is set to
+      <code>
+        Forbid
+      </code>
+      and a CronJob was attempted to be scheduled when there was a previous schedule still running, then it would count as missed.
+    </p>
+    <p>
+      For example, suppose a CronJob is set to schedule a new Job every one minute beginning at
+      <code>
+        08:30:00
+      </code>
+      , and its
+      <code>
+        startingDeadlineSeconds
+      </code>
+      field is not set. If the CronJob controller happens to
+      be down from
+      <code>
+        08:29:00
+      </code>
+      to
+      <code>
+        10:21:00
+      </code>
+      , the job will not start as the number of missed jobs which missed their schedule is greater than 100.
+    </p>
+    <p>
+      To illustrate this concept further, suppose a CronJob is set to schedule a new Job every one minute beginning at
+      <code>
+        08:30:00
+      </code>
+      , and its
+      <code>
+        startingDeadlineSeconds
+      </code>
+      is set to 200 seconds. If the CronJob controller happens to
+      be down for the same period as the previous example (
+      <code>
+        08:29:00
+      </code>
+      to
+      <code>
+        10:21:00
+      </code>
+      ,) the Job will still start at 10:22:00. This happens as the controller now checks how many missed schedules happened in the last 200 seconds (ie, 3 missed schedules), rather than from the last scheduled time until now.
+    </p>
+    <p>
+      The CronJob is only responsible for creating Jobs that match its schedule, and
+      the Job in turn is responsible for the management of the Pods it represents.
+    </p>
+    <p></p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <p>
+      <a href="https://pkg.go.dev/github.com/robfig/cron?tab=doc#hdr-CRON_Expression_Format">
+        Cron expression format
+      </a>
+      documents the format of CronJob
+      <code>
+        schedule
+      </code>
+      fields.
+    </p>
+    <p>
+      For instructions on creating and working with cron jobs, and for an example of CronJob
+      manifest, see
+      <a href="/docs/tasks/job/automated-tasks-with-cron-jobs">
+        Running automated tasks with cron jobs
+      </a>
+      .
+    </p>
+  </body>
+</html>

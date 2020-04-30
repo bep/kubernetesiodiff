@@ -1,0 +1,534 @@
+<html>
+  <body>
+    <h1>
+      Network Plugins
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Network Plugins
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        alpha
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+        <p>
+          This feature is currently in a
+          <em>
+            alpha
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain alpha (e.g. v1alpha1).
+          </li>
+          <li>
+            Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+          </li>
+          <li>
+            Support for feature may be dropped at any time without notice.
+          </li>
+          <li>
+            The API may change in incompatible ways in a later software release without notice.
+          </li>
+          <li>
+            Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <blockquote class="caution">
+      <div>
+        <strong>
+          Caution:
+        </strong>
+        Alpha features can change rapidly.
+      </div>
+    </blockquote>
+    <p>
+      Network plugins in Kubernetes come in a few flavors:
+    </p>
+    <ul>
+      <li>
+        CNI plugins: adhere to the appc/CNI specification, designed for interoperability.
+      </li>
+      <li>
+        Kubenet plugin: implements basic
+        <code>
+          cbr0
+        </code>
+        using the
+        <code>
+          bridge
+        </code>
+        and
+        <code>
+          host-local
+        </code>
+        CNI plugins
+      </li>
+    </ul>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#installation">
+          Installation
+        </a>
+      </li>
+      <li>
+        <a href="#network-plugin-requirements">
+          Network Plugin Requirements
+        </a>
+      </li>
+      <li>
+        <a href="#usage-summary">
+          Usage Summary
+        </a>
+      </li>
+    </ul>
+    <h2 id="installation">
+      Installation
+    </h2>
+    <p>
+      The kubelet has a single default network plugin, and a default network common to the entire cluster. It probes for plugins when it starts up, remembers what it finds, and executes the selected plugin at appropriate times in the pod lifecycle (this is only true for Docker, as rkt manages its own CNI plugins). There are two Kubelet command line parameters to keep in mind when using plugins:
+    </p>
+    <ul>
+      <li>
+        <code>
+          cni-bin-dir
+        </code>
+        : Kubelet probes this directory for plugins on startup
+      </li>
+      <li>
+        <code>
+          network-plugin
+        </code>
+        : The network plugin to use from
+        <code>
+          cni-bin-dir
+        </code>
+        .  It must match the name reported by a plugin probed from the plugin directory.  For CNI plugins, this is simply &ldquo;cni&rdquo;.
+      </li>
+    </ul>
+    <h2 id="network-plugin-requirements">
+      Network Plugin Requirements
+    </h2>
+    <p>
+      Besides providing the
+      <a href="https://github.com/kubernetes/kubernetes/tree/v1.18.0/pkg/kubelet/dockershim/network/plugins.go">
+        <code>
+          NetworkPlugin
+        </code>
+        interface
+      </a>
+      to configure and clean up pod networking, the plugin may also need specific support for kube-proxy.  The iptables proxy obviously depends on iptables, and the plugin may need to ensure that container traffic is made available to iptables.  For example, if the plugin connects containers to a Linux bridge, the plugin must set the
+      <code>
+        net/bridge/bridge-nf-call-iptables
+      </code>
+      sysctl to
+      <code>
+        1
+      </code>
+      to ensure that the iptables proxy functions correctly.  If the plugin does not use a Linux bridge (but instead something like Open vSwitch or some other mechanism) it should ensure container traffic is appropriately routed for the proxy.
+    </p>
+    <p>
+      By default if no kubelet network plugin is specified, the
+      <code>
+        noop
+      </code>
+      plugin is used, which sets
+      <code>
+        net/bridge/bridge-nf-call-iptables=1
+      </code>
+      to ensure simple configurations (like Docker with a bridge) work correctly with the iptables proxy.
+    </p>
+    <h3 id="cni">
+      CNI
+    </h3>
+    <p>
+      The CNI plugin is selected by passing Kubelet the
+      <code>
+        --network-plugin=cni
+      </code>
+      command-line option.  Kubelet reads a file from
+      <code>
+        --cni-conf-dir
+      </code>
+      (default
+      <code>
+        /etc/cni/net.d
+      </code>
+      ) and uses the CNI configuration from that file to set up each pod&rsquo;s network.  The CNI configuration file must match the
+      <a href="https://github.com/containernetworking/cni/blob/master/SPEC.md#network-configuration">
+        CNI specification
+      </a>
+      , and any required CNI plugins referenced by the configuration must be present in
+      <code>
+        --cni-bin-dir
+      </code>
+      (default
+      <code>
+        /opt/cni/bin
+      </code>
+      ).
+    </p>
+    <p>
+      If there are multiple CNI configuration files in the directory, the kubelet uses the configuration file that comes first by name in lexicographic order.
+    </p>
+    <p>
+      In addition to the CNI plugin specified by the configuration file, Kubernetes requires the standard CNI
+      <a href="https://github.com/containernetworking/plugins/blob/master/plugins/main/loopback/loopback.go">
+        <code>
+          lo
+        </code>
+      </a>
+      plugin, at minimum version 0.2.0
+    </p>
+    <h4 id="support-hostport">
+      Support hostPort
+    </h4>
+    <p>
+      The CNI networking plugin supports
+      <code>
+        hostPort
+      </code>
+      . You can use the official
+      <a href="https://github.com/containernetworking/plugins/tree/master/plugins/meta/portmap">
+        portmap
+      </a>
+      plugin offered by the CNI plugin team or use your own plugin with portMapping functionality.
+    </p>
+    <p>
+      If you want to enable
+      <code>
+        hostPort
+      </code>
+      support, you must specify
+      <code>
+        portMappings capability
+      </code>
+      in your
+      <code>
+        cni-conf-dir
+      </code>
+      .
+      For example:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#008000;font-weight:bold">&#34;name&#34;</span>: <span style="color:#b44">&#34;k8s-pod-network&#34;</span>,
+  <span style="color:#008000;font-weight:bold">&#34;cniVersion&#34;</span>: <span style="color:#b44">&#34;0.3.0&#34;</span>,
+  <span style="color:#008000;font-weight:bold">&#34;plugins&#34;</span>: [
+    {
+      <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#b44">&#34;calico&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;log_level&#34;</span>: <span style="color:#b44">&#34;info&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;datastore_type&#34;</span>: <span style="color:#b44">&#34;kubernetes&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;nodename&#34;</span>: <span style="color:#b44">&#34;127.0.0.1&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;ipam&#34;</span>: {
+        <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#b44">&#34;host-local&#34;</span>,
+        <span style="color:#008000;font-weight:bold">&#34;subnet&#34;</span>: <span style="color:#b44">&#34;usePodCidr&#34;</span>
+      },
+      <span style="color:#008000;font-weight:bold">&#34;policy&#34;</span>: {
+        <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#b44">&#34;k8s&#34;</span>
+      },
+      <span style="color:#008000;font-weight:bold">&#34;kubernetes&#34;</span>: {
+        <span style="color:#008000;font-weight:bold">&#34;kubeconfig&#34;</span>: <span style="color:#b44">&#34;/etc/cni/net.d/calico-kubeconfig&#34;</span>
+      }
+    },
+    {
+      <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#b44">&#34;portmap&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;capabilities&#34;</span>: {<span style="color:#008000;font-weight:bold">&#34;portMappings&#34;</span>: <span style="color:#a2f;font-weight:bold">true</span>}
+    }
+  ]
+}</code></pre>
+    </div>
+    <h4 id="support-traffic-shaping">
+      Support traffic shaping
+    </h4>
+    <p>
+      The CNI networking plugin also supports pod ingress and egress traffic shaping. You can use the official
+      <a href="https://github.com/containernetworking/plugins/tree/master/plugins/meta/bandwidth">
+        bandwidth
+      </a>
+      plugin offered by the CNI plugin team or use your own plugin with bandwidth control functionality.
+    </p>
+    <p>
+      If you want to enable traffic shaping support, you must add a
+      <code>
+        bandwidth
+      </code>
+      plugin to your CNI configuration file
+      (default
+      <code>
+        /etc/cni/net.d
+      </code>
+      ).
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#008000;font-weight:bold">&#34;name&#34;</span>: <span style="color:#b44">&#34;k8s-pod-network&#34;</span>,
+  <span style="color:#008000;font-weight:bold">&#34;cniVersion&#34;</span>: <span style="color:#b44">&#34;0.3.0&#34;</span>,
+  <span style="color:#008000;font-weight:bold">&#34;plugins&#34;</span>: [
+    {
+      <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#b44">&#34;calico&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;log_level&#34;</span>: <span style="color:#b44">&#34;info&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;datastore_type&#34;</span>: <span style="color:#b44">&#34;kubernetes&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;nodename&#34;</span>: <span style="color:#b44">&#34;127.0.0.1&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;ipam&#34;</span>: {
+        <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#b44">&#34;host-local&#34;</span>,
+        <span style="color:#008000;font-weight:bold">&#34;subnet&#34;</span>: <span style="color:#b44">&#34;usePodCidr&#34;</span>
+      },
+      <span style="color:#008000;font-weight:bold">&#34;policy&#34;</span>: {
+        <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#b44">&#34;k8s&#34;</span>
+      },
+      <span style="color:#008000;font-weight:bold">&#34;kubernetes&#34;</span>: {
+        <span style="color:#008000;font-weight:bold">&#34;kubeconfig&#34;</span>: <span style="color:#b44">&#34;/etc/cni/net.d/calico-kubeconfig&#34;</span>
+      }
+    },
+    {
+      <span style="color:#008000;font-weight:bold">&#34;type&#34;</span>: <span style="color:#b44">&#34;bandwidth&#34;</span>,
+      <span style="color:#008000;font-weight:bold">&#34;capabilities&#34;</span>: {<span style="color:#008000;font-weight:bold">&#34;bandwidth&#34;</span>: <span style="color:#a2f;font-weight:bold">true</span>}
+    }
+  ]
+}</code></pre>
+    </div>
+    <p>
+      Now you can add the
+      <code>
+        kubernetes.io/ingress-bandwidth
+      </code>
+      and
+      <code>
+        kubernetes.io/egress-bandwidth
+      </code>
+      annotations to your pod.
+      For example:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">kubernetes.io/ingress-bandwidth</span>:<span style="color:#bbb"> </span>1M<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">kubernetes.io/egress-bandwidth</span>:<span style="color:#bbb"> </span>1M<span style="color:#bbb">
+</span><span style="color:#bbb"></span>...</code></pre>
+    </div>
+    <h3 id="kubenet">
+      kubenet
+    </h3>
+    <p>
+      Kubenet is a very basic, simple network plugin, on Linux only.  It does not, of itself, implement more advanced features like cross-node networking or network policy.  It is typically used together with a cloud provider that sets up routing rules for communication between nodes, or in single-node environments.
+    </p>
+    <p>
+      Kubenet creates a Linux bridge named
+      <code>
+        cbr0
+      </code>
+      and creates a veth pair for each pod with the host end of each pair connected to
+      <code>
+        cbr0
+      </code>
+      .  The pod end of the pair is assigned an IP address allocated from a range assigned to the node either through configuration or by the controller-manager.
+      <code>
+        cbr0
+      </code>
+      is assigned an MTU matching the smallest MTU of an enabled normal interface on the host.
+    </p>
+    <p>
+      The plugin requires a few things:
+    </p>
+    <ul>
+      <li>
+        The standard CNI
+        <code>
+          bridge
+        </code>
+        ,
+        <code>
+          lo
+        </code>
+        and
+        <code>
+          host-local
+        </code>
+        plugins are required, at minimum version 0.2.0. Kubenet will first search for them in
+        <code>
+          /opt/cni/bin
+        </code>
+        . Specify
+        <code>
+          cni-bin-dir
+        </code>
+        to supply additional search path. The first found match will take effect.
+      </li>
+      <li>
+        Kubelet must be run with the
+        <code>
+          --network-plugin=kubenet
+        </code>
+        argument to enable the plugin
+      </li>
+      <li>
+        Kubelet should also be run with the
+        <code>
+          --non-masquerade-cidr=&lt;clusterCidr&gt;
+        </code>
+        argument to ensure traffic to IPs outside this range will use IP masquerade.
+      </li>
+      <li>
+        The node must be assigned an IP subnet through either the
+        <code>
+          --pod-cidr
+        </code>
+        kubelet command-line option or the
+        <code>
+          --allocate-node-cidrs=true --cluster-cidr=&lt;cidr&gt;
+        </code>
+        controller-manager command-line options.
+      </li>
+    </ul>
+    <h3 id="customizing-the-mtu-with-kubenet">
+      Customizing the MTU (with kubenet)
+    </h3>
+    <p>
+      The MTU should always be configured correctly to get the best networking performance.  Network plugins will usually try
+      to infer a sensible MTU, but sometimes the logic will not result in an optimal MTU.  For example, if the
+      Docker bridge or another interface has a small MTU, kubenet will currently select that MTU.  Or if you are
+      using IPSEC encapsulation, the MTU must be reduced, and this calculation is out-of-scope for
+      most network plugins.
+    </p>
+    <p>
+      Where needed, you can specify the MTU explicitly with the
+      <code>
+        network-plugin-mtu
+      </code>
+      kubelet option.  For example,
+      on AWS the
+      <code>
+        eth0
+      </code>
+      MTU is typically 9001, so you might specify
+      <code>
+        --network-plugin-mtu=9001
+      </code>
+      .  If you&rsquo;re using IPSEC you
+      might reduce it to allow for encapsulation overhead; for example:
+      <code>
+        --network-plugin-mtu=8873
+      </code>
+      .
+    </p>
+    <p>
+      This option is provided to the network-plugin; currently
+      <strong>
+        only kubenet supports
+        <code>
+          network-plugin-mtu
+        </code>
+      </strong>
+      .
+    </p>
+    <h2 id="usage-summary">
+      Usage Summary
+    </h2>
+    <ul>
+      <li>
+        <code>
+          --network-plugin=cni
+        </code>
+        specifies that we use the
+        <code>
+          cni
+        </code>
+        network plugin with actual CNI plugin binaries located in
+        <code>
+          --cni-bin-dir
+        </code>
+        (default
+        <code>
+          /opt/cni/bin
+        </code>
+        ) and CNI plugin configuration located in
+        <code>
+          --cni-conf-dir
+        </code>
+        (default
+        <code>
+          /etc/cni/net.d
+        </code>
+        ).
+      </li>
+      <li>
+        <code>
+          --network-plugin=kubenet
+        </code>
+        specifies that we use the
+        <code>
+          kubenet
+        </code>
+        network plugin with CNI
+        <code>
+          bridge
+        </code>
+        and
+        <code>
+          host-local
+        </code>
+        plugins placed in
+        <code>
+          /opt/cni/bin
+        </code>
+        or
+        <code>
+          cni-bin-dir
+        </code>
+        .
+      </li>
+      <li>
+        <code>
+          --network-plugin-mtu=9001
+        </code>
+        specifies the MTU to use, currently only used by the
+        <code>
+          kubenet
+        </code>
+        network plugin.
+      </li>
+    </ul>
+  </body>
+</html>

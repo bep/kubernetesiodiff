@@ -1,0 +1,189 @@
+<html>
+  <body>
+    <h1>
+      List: Reference
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/_index.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Reference
+    </h1>
+    <p>
+      This section of the Kubernetes documentation contains references.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#api-reference">
+          API Reference
+        </a>
+      </li>
+      <li>
+        <a href="#api-client-libraries">
+          API Client Libraries
+        </a>
+      </li>
+      <li>
+        <a href="#cli-reference">
+          CLI Reference
+        </a>
+      </li>
+      <li>
+        <a href="#components-reference">
+          Components Reference
+        </a>
+      </li>
+      <li>
+        <a href="#design-docs">
+          Design Docs
+        </a>
+      </li>
+    </ul>
+    <h2 id="api-reference">
+      API Reference
+    </h2>
+    <ul>
+      <li>
+        <a href="/docs/reference/using-api/api-overview/">
+          Kubernetes API Overview
+        </a>
+        - Overview of the API for Kubernetes.
+      </li>
+      <li>
+        <a href="/docs/reference/generated/kubernetes-api/v1.18
+/">
+          Kubernetes API Reference v1.18
+        </a>
+      </li>
+    </ul>
+    <h2 id="api-client-libraries">
+      API Client Libraries
+    </h2>
+    <p>
+      To call the Kubernetes API from a programming language, you can use
+      <a href="/docs/reference/using-api/client-libraries/">
+        client libraries
+      </a>
+      . Officially supported
+      client libraries:
+    </p>
+    <ul>
+      <li>
+        <a href="https://github.com/kubernetes/client-go/">
+          Kubernetes Go client library
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/kubernetes-client/python">
+          Kubernetes Python client library
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/kubernetes-client/java">
+          Kubernetes Java client library
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/kubernetes-client/javascript">
+          Kubernetes JavaScript client library
+        </a>
+      </li>
+    </ul>
+    <h2 id="cli-reference">
+      CLI Reference
+    </h2>
+    <ul>
+      <li>
+        <a href="/docs/reference/kubectl/overview/">
+          kubectl
+        </a>
+        - Main CLI tool for running commands and managing Kubernetes clusters.
+        <ul>
+          <li>
+            <a href="/docs/reference/kubectl/jsonpath/">
+              JSONPath
+            </a>
+            - Syntax guide for using
+            <a href="http://goessner.net/articles/JsonPath/">
+              JSONPath expressions
+            </a>
+            with kubectl.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/docs/reference/setup-tools/kubeadm/kubeadm/">
+          kubeadm
+        </a>
+        - CLI tool to easily provision a secure Kubernetes cluster.
+      </li>
+    </ul>
+    <h2 id="components-reference">
+      Components Reference
+    </h2>
+    <ul>
+      <li>
+        <a href="/docs/reference/command-line-tools-reference/kubelet/">
+          kubelet
+        </a>
+        - The primary
+        <em>
+          node agent
+        </em>
+        that runs on each node. The kubelet takes a set of PodSpecs and ensures that the described containers are running and healthy.
+      </li>
+      <li>
+        <a href="/docs/reference/command-line-tools-reference/kube-apiserver/">
+          kube-apiserver
+        </a>
+        - REST API that validates and configures data for API objects such as  pods, services, replication controllers.
+      </li>
+      <li>
+        <a href="/docs/reference/command-line-tools-reference/kube-controller-manager/">
+          kube-controller-manager
+        </a>
+        - Daemon that embeds the core control loops shipped with Kubernetes.
+      </li>
+      <li>
+        <a href="/docs/reference/command-line-tools-reference/kube-proxy/">
+          kube-proxy
+        </a>
+        - Can do simple TCP/UDP stream forwarding or round-robin TCP/UDP forwarding across a set of back-ends.
+      </li>
+      <li>
+        <a href="/docs/reference/command-line-tools-reference/kube-scheduler/">
+          kube-scheduler
+        </a>
+        - Scheduler that manages availability, performance, and capacity.
+        <ul>
+          <li>
+            <a href="/docs/reference/scheduling/policies">
+              kube-scheduler Policies
+            </a>
+          </li>
+          <li>
+            <a href="/docs/reference/scheduling/profiles">
+              kube-scheduler Profiles
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="design-docs">
+      Design Docs
+    </h2>
+    <p>
+      An archive of the design docs for Kubernetes functionality. Good starting points are
+      <a href="https://git.k8s.io/community/contributors/design-proposals/architecture/architecture.md">
+        Kubernetes Architecture
+      </a>
+      and
+      <a href="https://git.k8s.io/community/contributors/design-proposals">
+        Kubernetes Design Overview
+      </a>
+      .
+    </p>
+  </body>
+</html>

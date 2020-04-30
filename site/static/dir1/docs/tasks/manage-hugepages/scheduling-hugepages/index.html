@@ -1,0 +1,295 @@
+<html>
+  <body>
+    <h1>
+      Manage HugePages
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/manage-hugepages/scheduling-hugepages.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Manage HugePages
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        stable
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+        <p>
+          This feature is
+          <em>
+            stable
+          </em>
+          , meaning:
+        </p>
+        <ul>
+          <li>
+            The version name is vX where X is an integer.
+          </li>
+          <li>
+            Stable versions of features will appear in released software for many subsequent versions.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      Kubernetes supports the allocation and consumption of pre-allocated huge pages
+      by applications in a Pod as a
+      <strong>
+        GA
+      </strong>
+      feature. This page describes how users
+      can consume huge pages and the current limitations.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#api">
+          API
+        </a>
+      </li>
+      <li>
+        <a href="#future">
+          Future
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <ol>
+      <li>
+        Kubernetes nodes must pre-allocate huge pages in order for the node to report
+        its huge page capacity. A node can pre-allocate huge pages for multiple
+        sizes.
+      </li>
+    </ol>
+    <p>
+      The nodes will automatically discover and report all huge page resources as
+      schedulable resources.
+    </p>
+    <h2 id="api">
+      API
+    </h2>
+    <p>
+      Huge pages can be consumed via container level resource requirements using the
+      resource name
+      <code>
+        hugepages-&lt;size&gt;
+      </code>
+      , where
+      <code>
+        &lt;size&gt;
+      </code>
+      is the most compact binary
+      notation using integer values supported on a particular node. For example, if a
+      node supports 2048KiB and 1048576KiB page sizes, it will expose a schedulable
+      resources
+      <code>
+        hugepages-2Mi
+      </code>
+      and
+      <code>
+        hugepages-1Gi
+      </code>
+      . Unlike CPU or memory, huge pages
+      do not support overcommit. Note that when requesting hugepage resources, either
+      memory or CPU resources must be requested as well.
+    </p>
+    <p>
+      A pod may consume multiple huge page sizes in a single pod spec. In this case it
+      must use
+      <code>
+        medium: HugePages-&lt;hugepagesize&gt;
+      </code>
+      notation for all volume mounts.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>huge-pages-example<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>example<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>fedora:latest<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- sleep<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- inf<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">volumeMounts</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">mountPath</span>:<span style="color:#bbb"> </span>/hugepages-2Mi<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hugepage-2mi<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">mountPath</span>:<span style="color:#bbb"> </span>/hugepages-1Gi<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hugepage-1gi<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">hugepages-2Mi</span>:<span style="color:#bbb"> </span>100Mi<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">hugepages-1Gi</span>:<span style="color:#bbb"> </span>2Gi<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span>100Mi<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span>100Mi<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">volumes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hugepage-2mi<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">emptyDir</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">medium</span>:<span style="color:#bbb"> </span>HugePages-2Mi<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hugepage-1gi<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">emptyDir</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">medium</span>:<span style="color:#bbb"> </span>HugePages-1Gi</code></pre>
+    </div>
+    <p>
+      A pod may use
+      <code>
+        medium: HugePages
+      </code>
+      only if it requests huge pages of one size.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>huge-pages-example<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>example<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>fedora:latest<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- sleep<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- inf<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">volumeMounts</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">mountPath</span>:<span style="color:#bbb"> </span>/hugepages<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hugepage<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">hugepages-2Mi</span>:<span style="color:#bbb"> </span>100Mi<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span>100Mi<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb"> </span>100Mi<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">volumes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hugepage<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">emptyDir</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">medium</span>:<span style="color:#bbb"> </span>HugePages</code></pre>
+    </div>
+    <ul>
+      <li>
+        Huge page requests must equal the limits. This is the default if limits are
+        specified, but requests are not.
+      </li>
+      <li>
+        Huge pages are isolated at a container scope, so each container has own limit on their cgroup sandbox as requested in a container spec.
+      </li>
+      <li>
+        EmptyDir volumes backed by huge pages may not consume more huge page memory
+        than the pod request.
+      </li>
+      <li>
+        Applications that consume huge pages via
+        <code>
+          shmget()
+        </code>
+        with
+        <code>
+          SHM_HUGETLB
+        </code>
+        must
+        run with a supplemental group that matches
+        <code>
+          proc/sys/vm/hugetlb_shm_group
+        </code>
+        .
+      </li>
+      <li>
+        Huge page usage in a namespace is controllable via ResourceQuota similar
+        to other compute resources like
+        <code>
+          cpu
+        </code>
+        or
+        <code>
+          memory
+        </code>
+        using the
+        <code>
+          hugepages-&lt;size&gt;
+        </code>
+        token.
+      </li>
+      <li>
+        Support of multiple sizes huge pages is feature gated. It can be
+        enabled with the
+        <code>
+          HugePageStorageMediumSize
+        </code>
+        <a href="/docs/reference/command-line-tools-reference/feature-gates/">
+          feature
+          gate
+        </a>
+        on the
+        <a class='glossary-tooltip' href='/docs/reference/generated/kubelet' target='_blank'>
+          kubelet
+          <span class='tooltip-text'>
+            An agent that runs on each node in the cluster. It makes sure that containers are running in a pod.
+          </span>
+        </a>
+        and
+        <a class='glossary-tooltip' href='/docs/reference/generated/kube-apiserver/' target='_blank'>
+          kube-apiserver
+          <span class='tooltip-text'>
+            Control plane component that serves the Kubernetes API.
+          </span>
+        </a>
+        (
+        <code>
+          --feature-gates=HugePageStorageMediumSize=true
+        </code>
+        ).
+      </li>
+    </ul>
+    <h2 id="future">
+      Future
+    </h2>
+    <ul>
+      <li>
+        NUMA locality guarantees as a feature of quality of service.
+      </li>
+      <li>
+        LimitRange support.
+      </li>
+    </ul>
+  </body>
+</html>

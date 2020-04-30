@@ -1,0 +1,429 @@
+<html>
+  <body>
+    <h1>
+      Authenticating with Bootstrap Tokens
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/access-authn-authz/bootstrap-tokens.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Authenticating with Bootstrap Tokens
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        stable
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+        <p>
+          This feature is
+          <em>
+            stable
+          </em>
+          , meaning:
+        </p>
+        <ul>
+          <li>
+            The version name is vX where X is an integer.
+          </li>
+          <li>
+            Stable versions of features will appear in released software for many subsequent versions.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      Bootstrap tokens are a simple bearer token that is meant to be used when
+      creating new clusters or joining new nodes to an existing cluster.  It was built
+      to support
+      <a href="/docs/reference/setup-tools/kubeadm/kubeadm/">
+        kubeadm
+      </a>
+      , but can be used in other contexts
+      for users that wish to start clusters without
+      <code>
+        kubeadm
+      </code>
+      . It is also built to
+      work, via RBAC policy, with the
+      <a href="/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/">
+        Kubelet TLS
+        Bootstrapping
+      </a>
+      system.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#bootstrap-tokens-overview">
+          Bootstrap Tokens Overview
+        </a>
+      </li>
+      <li>
+        <a href="#token-format">
+          Token Format
+        </a>
+      </li>
+      <li>
+        <a href="#enabling-bootstrap-token-authentication">
+          Enabling Bootstrap Token Authentication
+        </a>
+      </li>
+      <li>
+        <a href="#bootstrap-token-secret-format">
+          Bootstrap Token Secret Format
+        </a>
+      </li>
+      <li>
+        <a href="#token-management-with-kubeadm">
+          Token Management with kubeadm
+        </a>
+      </li>
+      <li>
+        <a href="#configmap-signing">
+          ConfigMap Signing
+        </a>
+      </li>
+    </ul>
+    <h2 id="bootstrap-tokens-overview">
+      Bootstrap Tokens Overview
+    </h2>
+    <p>
+      Bootstrap Tokens are defined with a specific type
+      (
+      <code>
+        bootstrap.kubernetes.io/token
+      </code>
+      ) of secrets that lives in the
+      <code>
+        kube-system
+      </code>
+      namespace.  These Secrets are then read by the Bootstrap Authenticator in the
+      API Server.  Expired tokens are removed with the TokenCleaner controller in the
+      Controller Manager.  The tokens are also used to create a signature for a
+      specific ConfigMap used in a &ldquo;discovery&rdquo; process through a BootstrapSigner
+      controller.
+    </p>
+    <h2 id="token-format">
+      Token Format
+    </h2>
+    <p>
+      Bootstrap Tokens take the form of
+      <code>
+        abcdef.0123456789abcdef
+      </code>
+      .  More formally,
+      they must match the regular expression
+      <code>
+        [a-z0-9]{6}\.[a-z0-9]{16}
+      </code>
+      .
+    </p>
+    <p>
+      The first part of the token is the &ldquo;Token ID&rdquo; and is considered public
+      information.  It is used when referring to a token without leaking the secret
+      part used for authentication. The second part is the &ldquo;Token Secret&rdquo; and should
+      only be shared with trusted parties.
+    </p>
+    <h2 id="enabling-bootstrap-token-authentication">
+      Enabling Bootstrap Token Authentication
+    </h2>
+    <p>
+      The Bootstrap Token authenticator can be enabled using the following flag on the
+      API server:
+    </p>
+    <pre><code>--enable-bootstrap-token-auth</code></pre>
+    <p>
+      When enabled, bootstrapping tokens can be used as bearer token credentials to
+      authenticate requests against the API server.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-http" data-lang="http"><span style="">Authorization: Bearer 07401b.f395accd246ae52d</span></code></pre>
+    </div>
+    <p>
+      Tokens authenticate as the username
+      <code>
+        system:bootstrap:&lt;token id&gt;
+      </code>
+      and are members
+      of the group
+      <code>
+        system:bootstrappers
+      </code>
+      .  Additional groups may be specified in the
+      token&rsquo;s Secret.
+    </p>
+    <p>
+      Expired tokens can be deleted automatically by enabling the
+      <code>
+        tokencleaner
+      </code>
+      controller on the controller manager.
+    </p>
+    <pre><code>--controllers=*,tokencleaner</code></pre>
+    <h2 id="bootstrap-token-secret-format">
+      Bootstrap Token Secret Format
+    </h2>
+    <p>
+      Each valid token is backed by a secret in the
+      <code>
+        kube-system
+      </code>
+      namespace.  You can
+      find the full design doc
+      <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/cluster-lifecycle/bootstrap-discovery.md">
+        here
+      </a>
+      .
+    </p>
+    <p>
+      Here is what the secret looks like.
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Secret<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#080;font-style:italic"># Name MUST be of form &#34;bootstrap-token-&lt;token id&gt;&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>bootstrap-token-07401b<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-system<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#080;font-style:italic"># Type MUST be &#39;bootstrap.kubernetes.io/token&#39;</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>bootstrap.kubernetes.io/token<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">stringData</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#080;font-style:italic"># Human readable description. Optional.</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">description</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;The default bootstrap token generated by &#39;kubeadm init&#39;.&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#080;font-style:italic"># Token ID and secret. Required.</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">token-id</span>:<span style="color:#bbb"> </span>07401b<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">token-secret</span>:<span style="color:#bbb"> </span>f395accd246ae52d<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#080;font-style:italic"># Expiration. Optional.</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">expiration</span>:<span style="color:#bbb"> </span>2017-03-10T03:22:11Z<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#080;font-style:italic"># Allowed usages.</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">usage-bootstrap-authentication</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;true&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">usage-bootstrap-signing</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;true&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#080;font-style:italic"># Extra groups to authenticate the token as. Must start with &#34;system:bootstrappers:&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">auth-extra-groups</span>:<span style="color:#bbb"> </span>system:bootstrappers:worker,system:bootstrappers:ingress</code></pre>
+    </div>
+    <p>
+      The type of the secret must be
+      <code>
+        bootstrap.kubernetes.io/token
+      </code>
+      and the name must
+      be
+      <code>
+        bootstrap-token-&lt;token id&gt;
+      </code>
+      .  It must also exist in the
+      <code>
+        kube-system
+      </code>
+      namespace.
+    </p>
+    <p>
+      The
+      <code>
+        usage-bootstrap-*
+      </code>
+      members indicate what this secret is intended to be used
+      for.  A value must be set to
+      <code>
+        true
+      </code>
+      to be enabled.
+    </p>
+    <ul>
+      <li>
+        <code>
+          usage-bootstrap-authentication
+        </code>
+        indicates that the token can be used to
+        authenticate to the API server as a bearer token.
+      </li>
+      <li>
+        <code>
+          usage-bootstrap-signing
+        </code>
+        indicates that the token may be used to sign the
+        <code>
+          cluster-info
+        </code>
+        ConfigMap as described below.
+      </li>
+    </ul>
+    <p>
+      The
+      <code>
+        expiration
+      </code>
+      field controls the expiry of the token.  Expired tokens are
+      rejected when used for authentication and ignored during ConfigMap signing.
+      The expiry value is encoded as an absolute UTC time using RFC3339.  Enable the
+      <code>
+        tokencleaner
+      </code>
+      controller to automatically delete expired tokens.
+    </p>
+    <h2 id="token-management-with-kubeadm">
+      Token Management with kubeadm
+    </h2>
+    <p>
+      You can use the
+      <code>
+        kubeadm
+      </code>
+      tool to manage tokens on a running cluster. See the
+      <a href="/docs/reference/setup-tools/kubeadm/kubeadm-token/">
+        kubeadm token docs
+      </a>
+      for details.
+    </p>
+    <h2 id="configmap-signing">
+      ConfigMap Signing
+    </h2>
+    <p>
+      In addition to authentication, the tokens can be used to sign a ConfigMap.  This
+      is used early in a cluster bootstrap process before the client trusts the API
+      server.  The signed ConfigMap can be authenticated by the shared token.
+    </p>
+    <p>
+      Enable ConfigMap signing by enabling the
+      <code>
+        bootstrapsigner
+      </code>
+      controller on the
+      Controller Manager.
+    </p>
+    <pre><code>--controllers=*,bootstrapsigner</code></pre>
+    <p>
+      The ConfigMap that is signed is
+      <code>
+        cluster-info
+      </code>
+      in the
+      <code>
+        kube-public
+      </code>
+      namespace.
+      The typical flow is that a client reads this ConfigMap while unauthenticated and
+      ignoring TLS errors.  It then validates the payload of the ConfigMap by looking
+      at a signature embedded in the ConfigMap.
+    </p>
+    <p>
+      The ConfigMap may look like this:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ConfigMap<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>cluster-info<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-public<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">jws-kubeconfig-07401b</span>:<span style="color:#bbb"> </span>eyJhbGciOiJIUzI1NiIsImtpZCI6IjA3NDAxYiJ9..tYEfbo6zDNo40MQE07aZcQX2m3EB2rO3NuXtxVMYm9U<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">kubeconfig</span>:<span style="color:#bbb"> </span><span style="color:#b44;font-style:italic">|
+</span><span style="color:#b44;font-style:italic">    apiVersion: v1</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">clusters</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">cluster</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">certificate-authority-data</span>:<span style="color:#bbb"> </span>&lt;really<span style="color:#bbb"> </span>long<span style="color:#bbb"> </span>certificate<span style="color:#bbb"> </span>data<span style="color:#b44;font-style:italic">&gt;
+</span><span style="color:#b44;font-style:italic">        server: https://10.138.0.2:6443</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">contexts</span>:<span style="color:#bbb"> </span>[]<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">current-context</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Config<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">preferences</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">users</span>:<span style="color:#bbb"> </span>[]</code></pre>
+    </div>
+    <p>
+      The
+      <code>
+        kubeconfig
+      </code>
+      member of the ConfigMap is a config file with just the cluster
+      information filled out.  The key thing being communicated here is the
+      <code>
+        certificate-authority-data
+      </code>
+      .  This may be expanded in the future.
+    </p>
+    <p>
+      The signature is a JWS signature using the &ldquo;detached&rdquo; mode.  To validate the
+      signature, the user should encode the
+      <code>
+        kubeconfig
+      </code>
+      payload according to JWS
+      rules (base64 encoded while discarding any trailing
+      <code>
+        =
+      </code>
+      ).  That encoded payload
+      is then used to form a whole JWS by inserting it between the 2 dots.  You can
+      verify the JWS using the
+      <code>
+        HS256
+      </code>
+      scheme (HMAC-SHA256) with the full token (e.g.
+      <code>
+        07401b.f395accd246ae52d
+      </code>
+      ) as the shared secret.  Users
+      <em>
+        must
+      </em>
+      verify that HS256
+      is used.
+    </p>
+    <blockquote class="warning">
+      <div>
+        <strong>
+          Warning:
+        </strong>
+        Any party with a bootstrapping token can create a valid signature for that
+        token. When using ConfigMap signing it&rsquo;s discouraged to share the same token with
+        many clients, since a compromised client can potentially man-in-the middle another
+        client relying on the signature to bootstrap TLS trust.
+      </div>
+    </blockquote>
+    <p>
+      Consult the
+      <a href="/docs/reference/setup-tools/kubeadm/implementation-details/">
+        kubeadm implementation details
+      </a>
+      section for more information.
+    </p>
+  </body>
+</html>

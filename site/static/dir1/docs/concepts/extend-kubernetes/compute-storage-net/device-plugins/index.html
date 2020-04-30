@@ -1,0 +1,749 @@
+<html>
+  <body>
+    <h1>
+      Device Plugins
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Device Plugins
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.10
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        beta
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+        <p>
+          This feature is currently in a
+          <em>
+            beta
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain beta (e.g. v2beta3).
+          </li>
+          <li>
+            Code is well tested. Enabling the feature is considered safe. Enabled by default.
+          </li>
+          <li>
+            Support for the overall feature will not be dropped, though details may change.
+          </li>
+          <li>
+            The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+          </li>
+          <li>
+            Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+          </li>
+          <li>
+            <strong>
+              Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+            </strong>
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      Kubernetes provides a
+      <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/resource-management/device-plugin.md">
+        device plugin framework
+      </a>
+      that you can use to advertise system hardware resources to the
+      <a class='glossary-tooltip' href='/docs/reference/generated/kubelet' target='_blank'>
+        Kubelet
+        <span class='tooltip-text'>
+          An agent that runs on each node in the cluster. It makes sure that containers are running in a pod.
+        </span>
+      </a>
+      .
+    </p>
+    <p>
+      Instead of customizing the code for Kubernetes itself, vendors can implement a
+      device plugin that you deploy either manually or as a
+      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/daemonset' target='_blank'>
+        DaemonSet
+        <span class='tooltip-text'>
+          Ensures a copy of a Pod is running across a set of nodes in a cluster.
+        </span>
+      </a>
+      .
+      The targeted devices include GPUs, high-performance NICs, FPGAs, InfiniBand adapters,
+      and other similar computing resources that may require vendor specific initialization
+      and setup.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#device-plugin-registration">
+          Device plugin registration
+        </a>
+      </li>
+      <li>
+        <a href="#device-plugin-implementation">
+          Device plugin implementation
+        </a>
+      </li>
+      <li>
+        <a href="#device-plugin-deployment">
+          Device plugin deployment
+        </a>
+      </li>
+      <li>
+        <a href="#api-compatibility">
+          API compatibility
+        </a>
+      </li>
+      <li>
+        <a href="#monitoring-device-plugin-resources">
+          Monitoring Device Plugin Resources
+        </a>
+      </li>
+      <li>
+        <a href="#device-plugin-integration-with-the-topology-manager">
+          Device Plugin integration with the Topology Manager
+        </a>
+      </li>
+      <li>
+        <a href="#examples">
+          Device plugin examples
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="device-plugin-registration">
+      Device plugin registration
+    </h2>
+    <p>
+      The kubelet exports a
+      <code>
+        Registration
+      </code>
+      gRPC service:
+    </p>
+    <pre><code class="language-gRPC" data-lang="gRPC">service Registration {
+	rpc Register(RegisterRequest) returns (Empty) {}
+}</code></pre>
+    <p>
+      A device plugin can register itself with the kubelet through this gRPC service.
+      During the registration, the device plugin needs to send:
+    </p>
+    <ul>
+      <li>
+        The name of its Unix socket.
+      </li>
+      <li>
+        The Device Plugin API version against which it was built.
+      </li>
+      <li>
+        The
+        <code>
+          ResourceName
+        </code>
+        it wants to advertise. Here
+        <code>
+          ResourceName
+        </code>
+        needs to follow the
+        <a href="/docs/concepts/configuration/manage-compute-resources-container/#extended-resources">
+          extended resource naming scheme
+        </a>
+        as
+        <code>
+          vendor-domain/resourcetype
+        </code>
+        .
+        (For example, an NVIDIA GPU is advertised as
+        <code>
+          nvidia.com/gpu
+        </code>
+        .)
+      </li>
+    </ul>
+    <p>
+      Following a successful registration, the device plugin sends the kubelet the
+      list of devices it manages, and the kubelet is then in charge of advertising those
+      resources to the API server as part of the kubelet node status update.
+      For example, after a device plugin registers
+      <code>
+        hardware-vendor.example/foo
+      </code>
+      with the kubelet
+      and reports two healthy devices on a node, the node status is updated
+      to advertise that the node has 2 “Foo” devices installed and available.
+    </p>
+    <p>
+      Then, users can request devices in a
+      <a href="/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core">
+        Container
+      </a>
+      specification as they request other types of resources, with the following limitations:
+    </p>
+    <ul>
+      <li>
+        Extended resources are only supported as integer resources and cannot be overcommitted.
+      </li>
+      <li>
+        Devices cannot be shared among Containers.
+      </li>
+    </ul>
+    <p>
+      Suppose a Kubernetes cluster is running a device plugin that advertises resource
+      <code>
+        hardware-vendor.example/foo
+      </code>
+      on certain nodes. Here is an example of a pod requesting this resource to run a demo workload:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>demo-pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>demo-container<span style="color:#666">-1</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>k8s.gcr.io/pause:<span style="color:#666">2.0</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">hardware-vendor.example/foo</span>:<span style="color:#bbb"> </span><span style="color:#666">2</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#080;font-style:italic">#</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#080;font-style:italic"># This Pod needs 2 of the hardware-vendor.example/foo devices</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#080;font-style:italic"># and can only schedule onto a Node that&#39;s able to satisfy</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#080;font-style:italic"># that need.</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#080;font-style:italic">#</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#080;font-style:italic"># If the Node has more than 2 of those devices available, the</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#080;font-style:italic"># remainder would be available for other Pods to use.</span></code></pre>
+    </div>
+    <h2 id="device-plugin-implementation">
+      Device plugin implementation
+    </h2>
+    <p>
+      The general workflow of a device plugin includes the following steps:
+    </p>
+    <ul>
+      <li>
+        <p>
+          Initialization. During this phase, the device plugin performs vendor specific
+          initialization and setup to make sure the devices are in a ready state.
+        </p>
+      </li>
+      <li>
+        <p>
+          The plugin starts a gRPC service, with a Unix socket under host path
+          <code>
+            /var/lib/kubelet/device-plugins/
+          </code>
+          , that implements the following interfaces:
+        </p>
+        <pre><code class="language-gRPC" data-lang="gRPC">service DevicePlugin {
+    // ListAndWatch returns a stream of List of Devices
+    // Whenever a Device state change or a Device disappears, ListAndWatch
+    // returns the new list
+    rpc ListAndWatch(Empty) returns (stream ListAndWatchResponse) {}
+
+    // Allocate is called during container creation so that the Device
+    // Plugin can run device specific operations and instruct Kubelet
+    // of the steps to make the Device available in the container
+    rpc Allocate(AllocateRequest) returns (AllocateResponse) {}
+}</code></pre>
+      </li>
+      <li>
+        <p>
+          The plugin registers itself with the kubelet through the Unix socket at host
+          path
+          <code>
+            /var/lib/kubelet/device-plugins/kubelet.sock
+          </code>
+          .
+        </p>
+      </li>
+      <li>
+        <p>
+          After successfully registering itself, the device plugin runs in serving mode, during which it keeps
+          monitoring device health and reports back to the kubelet upon any device state changes.
+          It is also responsible for serving
+          <code>
+            Allocate
+          </code>
+          gRPC requests. During
+          <code>
+            Allocate
+          </code>
+          , the device plugin may
+          do device-specific preparation; for example, GPU cleanup or QRNG initialization.
+          If the operations succeed, the device plugin returns an
+          <code>
+            AllocateResponse
+          </code>
+          that contains container
+          runtime configurations for accessing the allocated devices. The kubelet passes this information
+          to the container runtime.
+        </p>
+      </li>
+    </ul>
+    <h3 id="handling-kubelet-restarts">
+      Handling kubelet restarts
+    </h3>
+    <p>
+      A device plugin is expected to detect kubelet restarts and re-register itself with the new
+      kubelet instance. In the current implementation, a new kubelet instance deletes all the existing Unix sockets
+      under
+      <code>
+        /var/lib/kubelet/device-plugins
+      </code>
+      when it starts. A device plugin can monitor the deletion
+      of its Unix socket and re-register itself upon such an event.
+    </p>
+    <h2 id="device-plugin-deployment">
+      Device plugin deployment
+    </h2>
+    <p>
+      You can deploy a device plugin as a DaemonSet, as a package for your node&rsquo;s operating system,
+      or manually.
+    </p>
+    <p>
+      The canonical directory
+      <code>
+        /var/lib/kubelet/device-plugins
+      </code>
+      requires privileged access,
+      so a device plugin must run in a privileged security context.
+      If you&rsquo;re deploying a device plugin as a DaemonSet,
+      <code>
+        /var/lib/kubelet/device-plugins
+      </code>
+      must be mounted as a
+      <a class='glossary-tooltip' href='/docs/concepts/storage/volumes/' target='_blank'>
+        Volume
+        <span class='tooltip-text'>
+          A directory containing data, accessible to the containers in a pod.
+        </span>
+      </a>
+      in the plugin&rsquo;s
+      <a href="/docs/reference/generated/kubernetes-api/v1.18/#podspec-v1-core">
+        PodSpec
+      </a>
+      .
+    </p>
+    <p>
+      If you choose the DaemonSet approach you can rely on Kubernetes to: place the device plugin&rsquo;s
+      Pod onto Nodes, to restart the daemon Pod after failure, and to help automate upgrades.
+    </p>
+    <h2 id="api-compatibility">
+      API compatibility
+    </h2>
+    <p>
+      Kubernetes device plugin support is in beta. The API may change before stabilization,
+      in incompatible ways. As a project, Kubernetes recommends that device plugin developers:
+    </p>
+    <ul>
+      <li>
+        Watch for changes in future releases.
+      </li>
+      <li>
+        Support multiple versions of the device plugin API for backward/forward compatibility.
+      </li>
+    </ul>
+    <p>
+      If you enable the DevicePlugins feature and run device plugins on nodes that need to be upgraded to
+      a Kubernetes release with a newer device plugin API version, upgrade your device plugins
+      to support both versions before upgrading these nodes. Taking that approach will
+      ensure the continuous functioning of the device allocations during the upgrade.
+    </p>
+    <h2 id="monitoring-device-plugin-resources">
+      Monitoring Device Plugin Resources
+    </h2>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.15
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        beta
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="beta">
+        <p>
+          This feature is currently in a
+          <em>
+            beta
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain beta (e.g. v2beta3).
+          </li>
+          <li>
+            Code is well tested. Enabling the feature is considered safe. Enabled by default.
+          </li>
+          <li>
+            Support for the overall feature will not be dropped, though details may change.
+          </li>
+          <li>
+            The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release. When this happens, we will provide instructions for migrating to the next version. This may require deleting, editing, and re-creating API objects. The editing process may require some thought. This may require downtime for applications that rely on the feature.
+          </li>
+          <li>
+            Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases. If you have multiple clusters that can be upgraded independently, you may be able to relax this restriction.
+          </li>
+          <li>
+            <strong>
+              Please do try our beta features and give feedback on them! After they exit beta, it may not be practical for us to make more changes.
+            </strong>
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      In order to monitor resources provided by device plugins, monitoring agents need to be able to
+      discover the set of devices that are in-use on the node and obtain metadata to describe which
+      container the metric should be associated with.
+      <a href="https://prometheus.io/">
+        Prometheus
+      </a>
+      metrics
+      exposed by device monitoring agents should follow the
+      <a href="https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/instrumentation.md">
+        Kubernetes Instrumentation Guidelines
+      </a>
+      ,
+      identifying containers using
+      <code>
+        pod
+      </code>
+      ,
+      <code>
+        namespace
+      </code>
+      , and
+      <code>
+        container
+      </code>
+      prometheus labels.
+    </p>
+    <p>
+      The kubelet provides a gRPC service to enable discovery of in-use devices, and to provide metadata
+      for these devices:
+    </p>
+    <pre><code class="language-gRPC" data-lang="gRPC">// PodResourcesLister is a service provided by the kubelet that provides information about the
+// node resources consumed by pods and containers on the node
+service PodResourcesLister {
+    rpc List(ListPodResourcesRequest) returns (ListPodResourcesResponse) {}
+}</code></pre>
+    <p>
+      The gRPC service is served over a unix socket at
+      <code>
+        /var/lib/kubelet/pod-resources/kubelet.sock
+      </code>
+      .
+      Monitoring agents for device plugin resources can be deployed as a daemon, or as a DaemonSet.
+      The canonical directory
+      <code>
+        /var/lib/kubelet/pod-resources
+      </code>
+      requires privileged access, so monitoring
+      agents must run in a privileged security context.  If a device monitoring agent is running as a
+      DaemonSet,
+      <code>
+        /var/lib/kubelet/pod-resources
+      </code>
+      must be mounted as a
+      <a class='glossary-tooltip' href='/docs/concepts/storage/volumes/' target='_blank'>
+        Volume
+        <span class='tooltip-text'>
+          A directory containing data, accessible to the containers in a pod.
+        </span>
+      </a>
+      in the plugin&rsquo;s
+      <a href="/docs/reference/generated/kubernetes-api/v1.18/#podspec-v1-core">
+        PodSpec
+      </a>
+      .
+    </p>
+    <p>
+      Support for the &ldquo;PodResources service&rdquo; requires
+      <code>
+        KubeletPodResources
+      </code>
+      <a href="/docs/reference/command-line-tools-reference/feature-gates/">
+        feature gate
+      </a>
+      to be enabled. It is enabled by default starting with Kubernetes 1.15.
+    </p>
+    <h2 id="device-plugin-integration-with-the-topology-manager">
+      Device Plugin integration with the Topology Manager
+    </h2>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.17
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        alpha
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+        <p>
+          This feature is currently in a
+          <em>
+            alpha
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain alpha (e.g. v1alpha1).
+          </li>
+          <li>
+            Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+          </li>
+          <li>
+            Support for feature may be dropped at any time without notice.
+          </li>
+          <li>
+            The API may change in incompatible ways in a later software release without notice.
+          </li>
+          <li>
+            Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      The Topology Manager is a Kubelet component that allows resources to be co-ordintated in a Topology aligned manner. In order to do this, the Device Plugin API was extended to include a
+      <code>
+        TopologyInfo
+      </code>
+      struct.
+    </p>
+    <pre><code class="language-gRPC" data-lang="gRPC">message TopologyInfo {
+	repeated NUMANode nodes = 1;
+}
+
+message NUMANode {
+    int64 ID = 1;
+}</code></pre>
+    <p>
+      Device Plugins that wish to leverage the Topology Manager can send back a populated TopologyInfo struct as part of the device registration, along with the device IDs and the health of the device. The device manager will then use this information to consult with the Topology Manager and make resource assignment decisions.
+    </p>
+    <p>
+      <code>
+        TopologyInfo
+      </code>
+      supports a
+      <code>
+        nodes
+      </code>
+      field that is either
+      <code>
+        nil
+      </code>
+      (the default) or a list of NUMA nodes. This lets the Device Plugin publish that can span NUMA nodes.
+    </p>
+    <p>
+      An example
+      <code>
+        TopologyInfo
+      </code>
+      struct populated for a device by a Device Plugin:
+    </p>
+    <pre><code>pluginapi.Device{ID: &#34;25102017&#34;, Health: pluginapi.Healthy, Topology:&amp;pluginapi.TopologyInfo{Nodes: []*pluginapi.NUMANode{&amp;pluginapi.NUMANode{ID: 0,},}}}</code></pre>
+    <h2 id="examples">
+      Device plugin examples
+    </h2>
+    <p>
+      Here are some examples of device plugin implementations:
+    </p>
+    <ul>
+      <li>
+        The
+        <a href="https://github.com/RadeonOpenCompute/k8s-device-plugin">
+          AMD GPU device plugin
+        </a>
+      </li>
+      <li>
+        The
+        <a href="https://github.com/intel/intel-device-plugins-for-kubernetes">
+          Intel device plugins
+        </a>
+        for Intel GPU, FPGA and QuickAssist devices
+      </li>
+      <li>
+        The
+        <a href="https://github.com/kubevirt/kubernetes-device-plugins">
+          KubeVirt device plugins
+        </a>
+        for hardware-assisted virtualization
+      </li>
+      <li>
+        The
+        <a href="https://github.com/NVIDIA/k8s-device-plugin">
+          NVIDIA GPU device plugin
+        </a>
+        <ul>
+          <li>
+            Requires
+            <a href="https://github.com/NVIDIA/nvidia-docker">
+              nvidia-docker
+            </a>
+            2.0, which allows you to run GPU-enabled Docker containers.
+          </li>
+        </ul>
+      </li>
+      <li>
+        The
+        <a href="https://github.com/GoogleCloudPlatform/container-engine-accelerators/tree/master/cmd/nvidia_gpu">
+          NVIDIA GPU device plugin for Container-Optimized OS
+        </a>
+      </li>
+      <li>
+        The
+        <a href="https://github.com/hustcat/k8s-rdma-device-plugin">
+          RDMA device plugin
+        </a>
+      </li>
+      <li>
+        The
+        <a href="https://github.com/vikaschoudhary16/sfc-device-plugin">
+          Solarflare device plugin
+        </a>
+      </li>
+      <li>
+        The
+        <a href="https://github.com/intel/sriov-network-device-plugin">
+          SR-IOV Network device plugin
+        </a>
+      </li>
+      <li>
+        The
+        <a href="https://github.com/Xilinx/FPGA_as_a_Service/tree/master/k8s-fpga-device-plugin/trunk">
+          Xilinx FPGA device plugins
+        </a>
+        for Xilinx FPGA devices
+      </li>
+    </ul>
+    <p></p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        Learn about
+        <a href="/docs/tasks/manage-gpus/scheduling-gpus/">
+          scheduling GPU resources
+        </a>
+        using device plugins
+      </li>
+      <li>
+        Learn about
+        <a href="/docs/tasks/administer-cluster/extended-resource-node/">
+          advertising extended resources
+        </a>
+        on a node
+      </li>
+      <li>
+        Read about using
+        <a href="https://kubernetes.io/blog/2019/04/24/hardware-accelerated-ssl/tls-termination-in-ingress-controllers-using-kubernetes-device-plugins-and-runtimeclass/">
+          hardware acceleration for TLS ingress
+        </a>
+        with Kubernetes
+      </li>
+      <li>
+        Learn about the
+        <a href="/docs/tasks/adminster-cluster/topology-manager/">
+          Topology Manager
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

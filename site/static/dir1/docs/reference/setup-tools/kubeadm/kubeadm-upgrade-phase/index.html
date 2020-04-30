@@ -1,0 +1,391 @@
+<html>
+<body>
+<h1>
+  kubeadm upgrade phase
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/kubeadm-upgrade-phase.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  kubeadm upgrade phase
+</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <a href="#cmd-node-phase">
+            kubeadm upgrade node phase
+          </a>
+        </li>
+        <li>
+          <a href="#what-s-next">
+            What&rsquo;s next
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<p>
+  In v1.15.0, kubeadm introduced preliminary support for
+  <code>
+    kubeadm upgrade node
+  </code>
+  phases.
+  Phases for other
+  <code>
+    kubeadm upgrade
+  </code>
+  sub-commands such as
+  <code>
+    apply
+  </code>
+  , could be added in the
+  following releases.
+</p>
+<h2 id="cmd-node-phase">
+  kubeadm upgrade node phase
+</h2>
+<p>
+  Using this phase you can choose to execute the separate steps of the upgrade of
+  secondary control-plane or worker nodes. Please note that
+  <code>
+    kubeadm upgrade apply
+  </code>
+  still has to
+  be called on a primary control-plane node.
+</p>
+<div id="tab-phase">
+<ul>
+  <li>
+    <a href="#tab-phase-0">
+      phase
+    </a>
+  </li>
+  <li>
+    <a href="#tab-phase-1">
+      control-plane
+    </a>
+  </li>
+  <li>
+    <a href="#tab-phase-2">
+      kubelet-config
+    </a>
+  </li>
+</ul>
+<div id="tab-phase-0">
+<h3 id="synopsis">
+  Synopsis
+</h3>
+<p>
+  Use this command to invoke single phase of the node workflow
+</p>
+<h3 id="options">
+  Options
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -h, &ndash;help
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      help for phase
+    </td>
+  </tr>
+</p>
+<p>
+<h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+    </td>
+  </tr>
+</p>
+<p>
+<div id="tab-phase-1">
+<h3 id="synopsis">
+  Synopsis
+</h3>
+<p>
+  Upgrade the control plane instance deployed on this node, if any
+</p>
+<pre><code>kubeadm upgrade node phase control-plane [flags]</code></pre>
+<h3 id="options">
+  Options
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;certificate-renewal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Perform the renewal of certificates used by component changed during upgrades.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;dry-run
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Do not change any state, just output the actions that would be performed.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;etcd-upgrade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Perform the upgrade of etcd.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -k, &ndash;experimental-kustomize string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The path where kustomize patches for static pod manifests are stored.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -h, &ndash;help
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      help for control-plane
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+    </td>
+  </tr>
+</p>
+<p>
+<h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+    </td>
+  </tr>
+</p>
+<p>
+<div id="tab-phase-2">
+<h3 id="synopsis">
+  Synopsis
+</h3>
+<p>
+  Download the kubelet configuration from a ConfigMap of the form &ldquo;kubelet-config-1.X&rdquo; in the cluster, where X is the minor version of the kubelet. kubeadm uses the KuberneteVersion field in the kubeadm-config ConfigMap to determine what the
+  <em>
+    desired
+  </em>
+  kubelet version is.
+</p>
+<pre><code>kubeadm upgrade node phase kubelet-config [flags]</code></pre>
+<h3 id="options">
+  Options
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;dry-run
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      Do not change any state, just output the actions that would be performed.
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -h, &ndash;help
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      help for kubelet-config
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+    </td>
+  </tr>
+</p>
+<p>
+<h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+    </td>
+  </tr>
+</p>
+<p>
+<script>
+  $(function(){$("#tab-phase").tabs();});
+</script>
+<h2 id="what-s-next">
+  What&rsquo;s next
+</h2>
+<ul>
+  <li>
+    <a href="/docs/reference/setup-tools/kubeadm/kubeadm-init/">
+      kubeadm init
+    </a>
+    to bootstrap a Kubernetes control-plane node
+  </li>
+  <li>
+    <a href="/docs/reference/setup-tools/kubeadm/kubeadm-join/">
+      kubeadm join
+    </a>
+    to connect a node to the cluster
+  </li>
+  <li>
+    <a href="/docs/reference/setup-tools/kubeadm/kubeadm-reset/">
+      kubeadm reset
+    </a>
+    to revert any changes made to this host by
+    <code>
+      kubeadm init
+    </code>
+    or
+    <code>
+      kubeadm join
+    </code>
+  </li>
+  <li>
+    <a href="/docs/reference/setup-tools/kubeadm/kubeadm-upgrade/">
+      kubeadm upgrade
+    </a>
+    to upgrade a kubeadm node
+  </li>
+  <li>
+    <a href="/docs/reference/setup-tools/kubeadm/kubeadm-alpha/">
+      kubeadm alpha
+    </a>
+    to try experimental functionality
+  </li>
+</ul>

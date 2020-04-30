@@ -1,0 +1,710 @@
+<html>
+  <body>
+    <h1>
+      kubeadm config
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/kubeadm-config.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      kubeadm config
+    </h1>
+    <p>
+      During
+      <code>
+        kubeadm init
+      </code>
+      , kubeadm uploads the
+      <code>
+        ClusterConfiguration
+      </code>
+      object to your cluster
+      in a ConfigMap called
+      <code>
+        kubeadm-config
+      </code>
+      in the
+      <code>
+        kube-system
+      </code>
+      namespace. This configuration is then read during
+      <code>
+        kubeadm join
+      </code>
+      ,
+      <code>
+        kubeadm reset
+      </code>
+      and
+      <code>
+        kubeadm upgrade
+      </code>
+      . To view this ConfigMap call
+      <code>
+        kubeadm config view
+      </code>
+      .
+    </p>
+    <p>
+      You can use
+      <code>
+        kubeadm config print
+      </code>
+      to print the default configuration and
+      <code>
+        kubeadm config migrate
+      </code>
+      to
+      convert your old configuration files to a newer version.
+      <code>
+        kubeadm config images list
+      </code>
+      and
+      <code>
+        kubeadm config images pull
+      </code>
+      can be used to list and pull the images that kubeadm requires.
+    </p>
+    <p>
+      In Kubernetes v1.13.0 and later to list/pull kube-dns images instead of the CoreDNS image
+      the
+      <code>
+        --config
+      </code>
+      method described
+      <a href="/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-addon">
+        here
+      </a>
+      has to be used.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#cmd-config-view">
+          kubeadm config view
+        </a>
+      </li>
+      <li>
+        <a href="#cmd-config-print-init-defaults">
+          kubeadm config print init-defaults
+        </a>
+      </li>
+      <li>
+        <a href="#cmd-config-print-join-defaults">
+          kubeadm config print join-defaults
+        </a>
+      </li>
+      <li>
+        <a href="#cmd-config-migrate">
+          kubeadm config migrate
+        </a>
+      </li>
+      <li>
+        <a href="#cmd-config-images-list">
+          kubeadm config images list
+        </a>
+      </li>
+      <li>
+        <a href="#cmd-config-images-pull">
+          kubeadm config images pull
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="cmd-config-view">
+      kubeadm config view
+    </h2>
+    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <p>
+      Using this command, you can view the ConfigMap in the cluster where the configuration for kubeadm is located.
+    </p>
+    <p>
+      The configuration is located in the &ldquo;kube-system&rdquo; namespace in the &ldquo;kubeadm-config&rdquo; ConfigMap.
+    </p>
+    <pre><code>kubeadm config view [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for view
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="cmd-config-print-init-defaults">
+      kubeadm config print init-defaults
+    </h2>
+    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <p>
+      This command prints objects such as the default init configuration that is used for &lsquo;kubeadm init&rsquo;.
+    </p>
+    <p>
+      Note that sensitive values like the Bootstrap Token fields are replaced with placeholder values like {&ldquo;abcdef.0123456789abcdef&rdquo; &quot;&rdquo; &ldquo;nil&rdquo; &lt;nil&gt; [] []} in order to pass validation but
+      not perform the real computation for creating a token.
+    </p>
+    <pre><code>kubeadm config print init-defaults [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --component-configs stringSlice
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            A comma-separated list for component config API objects to print the default values for. Available values: [KubeProxyConfiguration KubeletConfiguration]. If this flag is not set, no component configs will be printed.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for init-defaults
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="cmd-config-print-join-defaults">
+      kubeadm config print join-defaults
+    </h2>
+    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <p>
+      This command prints objects such as the default join configuration that is used for &lsquo;kubeadm join&rsquo;.
+    </p>
+    <p>
+      Note that sensitive values like the Bootstrap Token fields are replaced with placeholder values like {&ldquo;abcdef.0123456789abcdef&rdquo; &quot;&rdquo; &ldquo;nil&rdquo; &lt;nil&gt; [] []} in order to pass validation but
+      not perform the real computation for creating a token.
+    </p>
+    <pre><code>kubeadm config print join-defaults [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --component-configs stringSlice
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            A comma-separated list for component config API objects to print the default values for. Available values: [KubeProxyConfiguration KubeletConfiguration]. If this flag is not set, no component configs will be printed.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for join-defaults
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="cmd-config-migrate">
+      kubeadm config migrate
+    </h2>
+    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <p>
+      This command lets you convert configuration objects of older versions to the latest supported version,
+      locally in the CLI tool without ever touching anything in the cluster.
+      In this version of kubeadm, the following API versions are supported:
+    </p>
+    <ul>
+      <li>
+        kubeadm.k8s.io/v1beta2
+      </li>
+    </ul>
+    <p>
+      Further, kubeadm can only write out config of version &ldquo;kubeadm.k8s.io/v1beta2&rdquo;, but read both types.
+      So regardless of what version you pass to the &ndash;old-config parameter here, the API object will be
+      read, deserialized, defaulted, converted, validated, and re-serialized when written to stdout or
+      &ndash;new-config if specified.
+    </p>
+    <p>
+      In other words, the output of this command is what kubeadm actually would read internally if you
+      submitted this file to &ldquo;kubeadm init&rdquo;
+    </p>
+    <pre><code>kubeadm config migrate [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for migrate
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --new-config string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Path to the resulting equivalent kubeadm config file using the new API version. Optional, if not specified output will be sent to STDOUT.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --old-config string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Path to the kubeadm config file that is using an old API version and should be converted. This flag is mandatory.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="cmd-config-images-list">
+      kubeadm config images list
+    </h2>
+    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <p>
+      Print a list of images kubeadm will use. The configuration file is used in case any images or image repositories are customized
+    </p>
+    <pre><code>kubeadm config images list [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --allow-missing-template-keys&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --config string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Path to a kubeadm configuration file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -o, --experimental-output string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "text"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Output format. One of: text|json|yaml|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --feature-gates string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            A set of key=value pairs that describe feature gates for various features. Options are:
+            <br/>
+            IPv6DualStack=true|false (ALPHA - default=false)
+            <br/>
+            PublicKeysECDSA=true|false (ALPHA - default=false)
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for list
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --image-repository string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "k8s.gcr.io"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Choose a container registry to pull control plane images from
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --kubernetes-version string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "stable-1"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Choose a specific Kubernetes version for the control plane.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="cmd-config-images-pull">
+      kubeadm config images pull
+    </h2>
+    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <p>
+      Pull images used by kubeadm
+    </p>
+    <pre><code>kubeadm config images pull [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --config string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Path to a kubeadm configuration file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --cri-socket string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --feature-gates string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            A set of key=value pairs that describe feature gates for various features. Options are:
+            <br/>
+            IPv6DualStack=true|false (ALPHA - default=false)
+            <br/>
+            PublicKeysECDSA=true|false (ALPHA - default=false)
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for pull
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --image-repository string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "k8s.gcr.io"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Choose a container registry to pull control plane images from
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --kubernetes-version string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "stable-1"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Choose a specific Kubernetes version for the control plane.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        <a href="/docs/reference/setup-tools/kubeadm/kubeadm-upgrade/">
+          kubeadm upgrade
+        </a>
+        to upgrade a Kubernetes cluster to a newer version
+      </li>
+    </ul>
+  </body>
+</html>

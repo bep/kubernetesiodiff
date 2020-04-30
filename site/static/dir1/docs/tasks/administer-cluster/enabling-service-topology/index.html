@@ -1,0 +1,219 @@
+<html>
+  <body>
+    <h1>
+      Enabling Service Topology
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/administer-cluster/enabling-service-topology.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Enabling Service Topology
+    </h1>
+    <p>
+      This page provides an overview of enabling Service Topology in Kubernetes.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#introduction">
+          Introduction
+        </a>
+      </li>
+      <li>
+        <a href="#prerequisites">
+          Prerequisites
+        </a>
+      </li>
+      <li>
+        <a href="#enable-service-topology">
+          Enable Service Topology
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      <p>
+        You need to have a Kubernetes cluster, and the kubectl command-line tool must
+        be configured to communicate with your cluster. If you do not already have a
+        cluster, you can create one by using
+        <a href="/docs/setup/learning-environment/minikube/">
+          Minikube
+        </a>
+        ,
+        or you can use one of these Kubernetes playgrounds:
+      </p>
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="introduction">
+      Introduction
+    </h2>
+    <p>
+      <em>
+        Service Topology
+      </em>
+      enables a service to route traffic based upon the Node
+      topology of the cluster. For example, a service can specify that traffic be
+      preferentially routed to endpoints that are on the same Node as the client, or
+      in the same availability zone.
+    </p>
+    <h2 id="prerequisites">
+      Prerequisites
+    </h2>
+    <p>
+      The following prerequisites are needed in order to enable topology aware service
+      routing:
+    </p>
+    <ul>
+      <li>
+        Kubernetes 1.17 or later
+      </li>
+      <li>
+        <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-proxy/' target='_blank'>
+          Kube-proxy
+          <span class='tooltip-text'>
+            kube-proxy is a network proxy that runs on each node in the cluster.
+          </span>
+        </a>
+        running in iptables mode or IPVS mode
+      </li>
+      <li>
+        Enable
+        <a href="/docs/concepts/services-networking/endpoint-slices/">
+          Endpoint Slices
+        </a>
+      </li>
+    </ul>
+    <h2 id="enable-service-topology">
+      Enable Service Topology
+    </h2>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.17
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        alpha
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+        <p>
+          This feature is currently in a
+          <em>
+            alpha
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain alpha (e.g. v1alpha1).
+          </li>
+          <li>
+            Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+          </li>
+          <li>
+            Support for feature may be dropped at any time without notice.
+          </li>
+          <li>
+            The API may change in incompatible ways in a later software release without notice.
+          </li>
+          <li>
+            Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      To enable service topology, enable the
+      <code>
+        ServiceTopology
+      </code>
+      and
+      <code>
+        EndpointSlice
+      </code>
+      feature gate for all Kubernetes components:
+    </p>
+    <pre><code>--feature-gates=&#34;ServiceTopology=true,EndpointSlice=true&#34;</code></pre>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        Read about the
+        <a href="/docs/concepts/services-networking/service-topology">
+          Service Topology
+        </a>
+        concept
+      </li>
+      <li>
+        Read about
+        <a href="/docs/concepts/services-networking/endpoint-slices">
+          Endpoint Slices
+        </a>
+      </li>
+      <li>
+        Read
+        <a href="/docs/concepts/services-networking/connect-applications-service/">
+          Connecting Applications with Services
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

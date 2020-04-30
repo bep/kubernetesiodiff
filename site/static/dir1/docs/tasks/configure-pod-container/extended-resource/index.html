@@ -1,0 +1,358 @@
+<html>
+  <body>
+    <h1>
+      Assign Extended Resources to a Container
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/configure-pod-container/extended-resource.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Assign Extended Resources to a Container
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.18
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        stable
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="stable">
+        <p>
+          This feature is
+          <em>
+            stable
+          </em>
+          , meaning:
+        </p>
+        <ul>
+          <li>
+            The version name is vX where X is an integer.
+          </li>
+          <li>
+            Stable versions of features will appear in released software for many subsequent versions.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      This page shows how to assign extended resources to a Container.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#assign-an-extended-resource-to-a-pod">
+          Assign an extended resource to a Pod
+        </a>
+      </li>
+      <li>
+        <a href="#attempt-to-create-a-second-pod">
+          Attempt to create a second Pod
+        </a>
+      </li>
+      <li>
+        <a href="#clean-up">
+          Clean up
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <p>
+      Before you do this exercise, do the exercise in
+      <a href="/docs/tasks/administer-cluster/extended-resource-node/">
+        Advertise Extended Resources for a Node
+      </a>
+      .
+      That will configure one of your Nodes to advertise a dongle resource.
+    </p>
+    <h2 id="assign-an-extended-resource-to-a-pod">
+      Assign an extended resource to a Pod
+    </h2>
+    <p>
+      To request an extended resource, include the
+      <code>
+        resources:requests
+      </code>
+      field in your
+      Container manifest. Extended resources are fully qualified with any domain outside of
+      <code>
+        *.kubernetes.io/
+      </code>
+      . Valid extended resource names have the form
+      <code>
+        example.com/foo
+      </code>
+      where
+      <code>
+        example.com
+      </code>
+      is replaced with your organization&rsquo;s domain and
+      <code>
+        foo
+      </code>
+      is a
+      descriptive resource name.
+    </p>
+    <p>
+      Here is the configuration file for a Pod that has one Container:
+    </p>
+    <table class="includecode" id="pods-resource-extended-resource-pod-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/resource/extended-resource-pod.yaml" download="pods/resource/extended-resource-pod.yaml">
+              <code>
+                pods/resource/extended-resource-pod.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-resource-extended-resource-pod-yaml')" title="Copy pods/resource/extended-resource-pod.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>extended-resource-demo<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>extended-resource-demo-ctr<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/dongle</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/dongle</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      In the configuration file, you can see that the Container requests 3 dongles.
+    </p>
+    <p>
+      Create a Pod:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/pods/resource/extended-resource-pod.yaml</code></pre>
+    </div>
+    <p>
+      Verify that the Pod is running:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod extended-resource-demo</code></pre>
+    </div>
+    <p>
+      Describe the Pod:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl describe pod extended-resource-demo</code></pre>
+    </div>
+    <p>
+      The output shows dongle requests:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">Limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">example.com/dongle</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">Requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">example.com/dongle</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span></code></pre>
+    </div>
+    <h2 id="attempt-to-create-a-second-pod">
+      Attempt to create a second Pod
+    </h2>
+    <p>
+      Here is the configuration file for a Pod that has one Container. The Container requests
+      two dongles.
+    </p>
+    <table class="includecode" id="pods-resource-extended-resource-pod-2-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/resource/extended-resource-pod-2.yaml" download="pods/resource/extended-resource-pod-2.yaml">
+              <code>
+                pods/resource/extended-resource-pod-2.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-resource-extended-resource-pod-2-yaml')" title="Copy pods/resource/extended-resource-pod-2.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>extended-resource-demo<span style="color:#666">-2</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>extended-resource-demo<span style="color:#666">-2</span>-ctr<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">resources</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/dongle</span>:<span style="color:#bbb"> </span><span style="color:#666">2</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">example.com/dongle</span>:<span style="color:#bbb"> </span><span style="color:#666">2</span><span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Kubernetes will not be able to satisfy the request for two dongles, because the first Pod
+      used three of the four available dongles.
+    </p>
+    <p>
+      Attempt to create a Pod:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/pods/resource/extended-resource-pod-2.yaml</code></pre>
+    </div>
+    <p>
+      Describe the Pod
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl describe pod extended-resource-demo-2</code></pre>
+    </div>
+    <p>
+      The output shows that the Pod cannot be scheduled, because there is no Node that has
+      2 dongles available:
+    </p>
+    <pre><code>Conditions:
+  Type    Status
+  PodScheduled  False
+...
+Events:
+  ...
+  ... Warning   FailedScheduling  pod (extended-resource-demo-2) failed to fit in any node
+fit failure summary on nodes : Insufficient example.com/dongle (1)</code></pre>
+    <p>
+      View the Pod status:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod extended-resource-demo-2</code></pre>
+    </div>
+    <p>
+      The output shows that the Pod was created, but not scheduled to run on a Node.
+      It has a status of Pending:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">NAME<span style="color:#bbb">                       </span>READY<span style="color:#bbb">     </span>STATUS<span style="color:#bbb">    </span>RESTARTS<span style="color:#bbb">   </span>AGE<span style="color:#bbb">
+</span><span style="color:#bbb"></span>extended-resource-demo<span style="color:#666">-2</span><span style="color:#bbb">   </span><span style="color:#666">0</span>/<span style="color:#666">1</span><span style="color:#bbb">       </span>Pending<span style="color:#bbb">   </span><span style="color:#666">0</span><span style="color:#bbb">          </span>6m</code></pre>
+    </div>
+    <h2 id="clean-up">
+      Clean up
+    </h2>
+    <p>
+      Delete the Pods that you created for this exercise:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete pod extended-resource-demo
+kubectl delete pod extended-resource-demo-2</code></pre>
+    </div>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <h3 id="for-application-developers">
+      For application developers
+    </h3>
+    <ul>
+      <li>
+        <a href="/docs/tasks/configure-pod-container/assign-memory-resource/">
+          Assign Memory Resources to Containers and Pods
+        </a>
+      </li>
+      <li>
+        <a href="/docs/tasks/configure-pod-container/assign-cpu-resource/">
+          Assign CPU Resources to Containers and Pods
+        </a>
+      </li>
+    </ul>
+    <h3 id="for-cluster-administrators">
+      For cluster administrators
+    </h3>
+    <ul>
+      <li>
+        <a href="/docs/tasks/administer-cluster/extended-resource-node/">
+          Advertise Extended Resources for a Node
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,224 @@
+<html>
+  <body>
+    <h1>
+      TTL Controller for Finished Resources
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/workloads/controllers/ttlafterfinished.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      TTL Controller for Finished Resources
+    </h1>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <b>
+        FEATURE STATE:
+      </b>
+      <code>
+        Kubernetes v1.12
+      </code>
+      <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+        <span class="ui-icon ui-icon-newwin"></span>
+        alpha
+      </a>
+      <div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+        <p>
+          This feature is currently in a
+          <em>
+            alpha
+          </em>
+          state, meaning:
+        </p>
+        <ul>
+          <li>
+            The version names contain alpha (e.g. v1alpha1).
+          </li>
+          <li>
+            Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+          </li>
+          <li>
+            Support for feature may be dropped at any time without notice.
+          </li>
+          <li>
+            The API may change in incompatible ways in a later software release without notice.
+          </li>
+          <li>
+            Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+          </li>
+        </ul>
+      </div>
+      <script>
+        $(function(){
+
+        $( "#feature-state-dialog" ).dialog({
+        autoOpen: false,
+        width: "600",
+        buttons: [
+        {
+        text: "Ok",
+        click: function() {
+        $( this ).dialog( "close" );
+        }
+        }
+        ]
+        });
+
+
+        $( "#feature-state-dialog-link" ).click(function( event ) {
+        $( "#feature-state-dialog" ).dialog( "open" );
+        event.preventDefault();
+        });
+
+        });
+      </script>
+    </div>
+    <p>
+      The TTL controller provides a TTL (time to live) mechanism to limit the lifetime of resource
+      objects that have finished execution. TTL controller only handles
+      <a href="/docs/concepts/workloads/controllers/jobs-run-to-completion/">
+        Jobs
+      </a>
+      for
+      now, and may be expanded to handle other resources that will finish execution,
+      such as Pods and custom resources.
+    </p>
+    <p>
+      Alpha Disclaimer: this feature is currently alpha, and can be enabled with both kube-apiserver and kube-controller-manager
+      <a href="/docs/reference/command-line-tools-reference/feature-gates/">
+        feature gate
+      </a>
+      <code>
+        TTLAfterFinished
+      </code>
+      .
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#ttl-controller">
+          TTL Controller
+        </a>
+      </li>
+      <li>
+        <a href="#caveat">
+          Caveat
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="ttl-controller">
+      TTL Controller
+    </h2>
+    <p>
+      The TTL controller only supports Jobs for now. A cluster operator can use this feature to clean
+      up finished Jobs (either
+      <code>
+        Complete
+      </code>
+      or
+      <code>
+        Failed
+      </code>
+      ) automatically by specifying the
+      <code>
+        .spec.ttlSecondsAfterFinished
+      </code>
+      field of a Job, as in this
+      <a href="/docs/concepts/workloads/controllers/jobs-run-to-completion/#clean-up-finished-jobs-automatically">
+        example
+      </a>
+      .
+      The TTL controller will assume that a resource is eligible to be cleaned up
+      TTL seconds after the resource has finished, in other words, when the TTL has expired. When the
+      TTL controller cleans up a resource, it will delete it cascadingly, that is to say it will delete
+      its dependent objects together with it. Note that when the resource is deleted,
+      its lifecycle guarantees, such as finalizers, will be honored.
+    </p>
+    <p>
+      The TTL seconds can be set at any time. Here are some examples for setting the
+      <code>
+        .spec.ttlSecondsAfterFinished
+      </code>
+      field of a Job:
+    </p>
+    <ul>
+      <li>
+        Specify this field in the resource manifest, so that a Job can be cleaned up
+        automatically some time after it finishes.
+      </li>
+      <li>
+        Set this field of existing, already finished resources, to adopt this new
+        feature.
+      </li>
+      <li>
+        Use a
+        <a href="/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks">
+          mutating admission webhook
+        </a>
+        to set this field dynamically at resource creation time. Cluster administrators can
+        use this to enforce a TTL policy for finished resources.
+      </li>
+      <li>
+        Use a
+        <a href="/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks">
+          mutating admission webhook
+        </a>
+        to set this field dynamically after the resource has finished, and choose
+        different TTL values based on resource status, labels, etc.
+      </li>
+    </ul>
+    <h2 id="caveat">
+      Caveat
+    </h2>
+    <h3 id="updating-ttl-seconds">
+      Updating TTL Seconds
+    </h3>
+    <p>
+      Note that the TTL period, e.g.
+      <code>
+        .spec.ttlSecondsAfterFinished
+      </code>
+      field of Jobs,
+      can be modified after the resource is created or has finished. However, once the
+      Job becomes eligible to be deleted (when the TTL has expired), the system won&rsquo;t
+      guarantee that the Jobs will be kept, even if an update to extend the TTL
+      returns a successful API response.
+    </p>
+    <h3 id="time-skew">
+      Time Skew
+    </h3>
+    <p>
+      Because TTL controller uses timestamps stored in the Kubernetes resources to
+      determine whether the TTL has expired or not, this feature is sensitive to time
+      skew in the cluster, which may cause TTL controller to clean up resource objects
+      at the wrong time.
+    </p>
+    <p>
+      In Kubernetes, it&rsquo;s required to run NTP on all nodes
+      (see
+      <a href="https://github.com/kubernetes/kubernetes/issues/6159#issuecomment-93844058">
+        #6159
+      </a>
+      )
+      to avoid time skew. Clocks aren&rsquo;t always correct, but the difference should be
+      very small. Please be aware of this risk when setting a non-zero TTL.
+    </p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <p>
+      <a href="/docs/concepts/workloads/controllers/jobs-run-to-completion/#clean-up-finished-jobs-automatically">
+        Clean up Jobs automatically
+      </a>
+    </p>
+    <p>
+      <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-apps/0026-ttl-after-finish.md">
+        Design doc
+      </a>
+    </p>
+  </body>
+</html>

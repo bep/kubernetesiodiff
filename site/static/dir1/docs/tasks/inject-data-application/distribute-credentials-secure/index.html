@@ -1,0 +1,641 @@
+<html>
+  <body>
+    <h1>
+      Distribute Credentials Securely Using Secrets
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/inject-data-application/distribute-credentials-secure.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Distribute Credentials Securely Using Secrets
+    </h1>
+    <p>
+      This page shows how to securely inject sensitive data, such as passwords and
+      encryption keys, into Pods.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#convert-your-secret-data-to-a-base-64-representation">
+          Convert your secret data to a base-64 representation
+        </a>
+      </li>
+      <li>
+        <a href="#create-a-secret">
+          Create a Secret
+        </a>
+      </li>
+      <li>
+        <a href="#create-a-pod-that-has-access-to-the-secret-data-through-a-volume">
+          Create a Pod that has access to the secret data through a Volume
+        </a>
+      </li>
+      <li>
+        <a href="#define-container-environment-variables-using-secret-data">
+          Define container environment variables using Secret data
+        </a>
+      </li>
+      <li>
+        <a href="#configure-all-key-value-pairs-in-a-secret-as-container-environment-variables">
+          Configure all key-value pairs in a Secret as container environment variables
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <h2 id="convert-your-secret-data-to-a-base-64-representation">
+      Convert your secret data to a base-64 representation
+    </h2>
+    <p>
+      Suppose you want to have two pieces of secret data: a username
+      <code>
+        my-app
+      </code>
+      and a password
+      <code>
+        39528$vdg7Jb
+      </code>
+      . First, use a base64 encoding tool to convert your username and password to a base64 representation. Here&rsquo;s an example using the commonly available base64 program:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">echo</span> -n <span style="color:#b44">&#39;my-app&#39;</span> | base64
+<span style="color:#a2f">echo</span> -n <span style="color:#b44">&#39;39528$vdg7Jb&#39;</span> | base64</code></pre>
+    </div>
+    <p>
+      The output shows that the base-64 representation of your username is
+      <code>
+        bXktYXBw
+      </code>
+      ,
+      and the base-64 representation of your password is
+      <code>
+        Mzk1MjgkdmRnN0pi
+      </code>
+      .
+    </p>
+    <blockquote class="caution">
+      <div>
+        <strong>
+          Caution:
+        </strong>
+        Use a local tool trusted by your OS to decrease the security risks of external tools.
+      </div>
+    </blockquote>
+    <h2 id="create-a-secret">
+      Create a Secret
+    </h2>
+    <p>
+      Here is a configuration file you can use to create a Secret that holds your
+      username and password:
+    </p>
+    <table class="includecode" id="pods-inject-secret-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/inject/secret.yaml" download="pods/inject/secret.yaml">
+              <code>
+                pods/inject/secret.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-inject-secret-yaml')" title="Copy pods/inject/secret.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Secret<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>test-secret<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">data</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">username</span>:<span style="color:#bbb"> </span>bXktYXBw<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">password</span>:<span style="color:#bbb"> </span>Mzk1MjgkdmRnN0pi<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ol>
+      <li>
+        <p>
+          Create the Secret
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/pods/inject/secret.yaml</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          View information about the Secret:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get secret test-secret</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <pre><code>NAME          TYPE      DATA      AGE
+test-secret   Opaque    2         1m</code></pre>
+      </li>
+      <li>
+        <p>
+          View more detailed information about the Secret:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl describe secret test-secret</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <pre><code>Name:       test-secret
+Namespace:  default
+Labels:     &lt;none&gt;
+Annotations:    &lt;none&gt;
+
+Type:   Opaque
+
+Data
+====
+password:   13 bytes
+username:   7 bytes</code></pre>
+      </li>
+    </ol>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        If you want to skip the Base64 encoding step, you can create a Secret
+        by using the
+        <code>
+          kubectl create secret
+        </code>
+        command:
+      </div>
+    </blockquote>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create secret generic test-secret --from-literal<span style="color:#666">=</span><span style="color:#b8860b">username</span><span style="color:#666">=</span><span style="color:#b44">&#39;my-app&#39;</span> --from-literal<span style="color:#666">=</span><span style="color:#b8860b">password</span><span style="color:#666">=</span><span style="color:#b44">&#39;39528$vdg7Jb&#39;</span></code></pre>
+    </div>
+    <h2 id="create-a-pod-that-has-access-to-the-secret-data-through-a-volume">
+      Create a Pod that has access to the secret data through a Volume
+    </h2>
+    <p>
+      Here is a configuration file you can use to create a Pod:
+    </p>
+    <table class="includecode" id="pods-inject-secret-pod-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/inject/secret-pod.yaml" download="pods/inject/secret-pod.yaml">
+              <code>
+                pods/inject/secret-pod.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-inject-secret-pod-yaml')" title="Copy pods/inject/secret-pod.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>secret-test-pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>test-container<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">volumeMounts</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#080;font-style:italic"># name must match the volume name below</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>secret-volume<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">mountPath</span>:<span style="color:#bbb"> </span>/etc/secret-volume<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#080;font-style:italic"># The secret data is exposed to Containers in the Pod through a Volume.</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">volumes</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>secret-volume<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">secret</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">secretName</span>:<span style="color:#bbb"> </span>test-secret<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ol>
+      <li>
+        <p>
+          Create the Pod:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/pods/inject/secret-pod.yaml</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Verify that your Pod is running:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod secret-test-pod</code></pre>
+        </div>
+        <p>
+          Output:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">NAME              READY     STATUS    RESTARTS   AGE
+secret-test-pod   1/1       Running   <span style="color:#666">0</span>          42m</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Get a shell into the Container that is running in your Pod:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl <span style="color:#a2f">exec</span> -it secret-test-pod -- /bin/bash</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          The secret data is exposed to the Container through a Volume mounted under
+          <code>
+            /etc/secret-volume
+          </code>
+          . In your shell, go to the directory where the secret data
+          is exposed:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@secret-test-pod:/# <span style="color:#a2f">cd</span> /etc/secret-volume</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          In your shell, list the files in the
+          <code>
+            /etc/secret-volume
+          </code>
+          directory:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@secret-test-pod:/etc/secret-volume# ls</code></pre>
+        </div>
+        <p>
+          The output shows two files, one for each piece of secret data:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">password username</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          In your shell, display the contents of the
+          <code>
+            username
+          </code>
+          and
+          <code>
+            password
+          </code>
+          files:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">root@secret-test-pod:/etc/secret-volume# cat username; echo; cat password; echo</code></pre>
+        </div>
+        <p>
+          The output is your username and password:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">my-app
+39528<span style="color:#b8860b">$vdg7Jb</span></code></pre>
+        </div>
+      </li>
+    </ol>
+    <h2 id="define-container-environment-variables-using-secret-data">
+      Define container environment variables using Secret data
+    </h2>
+    <h3 id="define-a-container-environment-variable-with-data-from-a-single-secret">
+      Define a container environment variable with data from a single Secret
+    </h3>
+    <ul>
+      <li>
+        <p>
+          Define an environment variable as a key-value pair in a Secret:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create secret generic backend-user --from-literal<span style="color:#666">=</span>backend-username<span style="color:#666">=</span><span style="color:#b44">&#39;backend-admin&#39;</span></code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Assign the
+          <code>
+            backend-username
+          </code>
+          value defined in the Secret to the
+          <code>
+            SECRET_USERNAME
+          </code>
+          environment variable in the Pod specification.
+        </p>
+      </li>
+    </ul>
+    <table class="includecode" id="pods-inject-pod-single-secret-env-variable-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/inject/pod-single-secret-env-variable.yaml" download="pods/inject/pod-single-secret-env-variable.yaml">
+              <code>
+                pods/inject/pod-single-secret-env-variable.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-inject-pod-single-secret-env-variable-yaml')" title="Copy pods/inject/pod-single-secret-env-variable.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>env-single-secret<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>envars-test-container<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">env</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>SECRET_USERNAME<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">valueFrom</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">secretKeyRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>backend-user<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span>backend-username<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <p>
+          Create the Pod:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://k8s.io/examples/pods/inject/pod-single-secret-env-variable.yaml</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Now, the Pod’s output includes environment variable
+          <code>
+            SECRET_USERNAME=backend-admin
+          </code>
+        </p>
+      </li>
+    </ul>
+    <h3 id="define-container-environment-variables-with-data-from-multiple-secrets">
+      Define container environment variables with data from multiple Secrets
+    </h3>
+    <ul>
+      <li>
+        <p>
+          As with the previous example, create the Secrets first.
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> kubectl create secret generic backend-user --from-literal<span style="color:#666">=</span>backend-username<span style="color:#666">=</span><span style="color:#b44">&#39;backend-admin&#39;</span> 
+  
+	 kubectl create secret generic db-user --from-literal<span style="color:#666">=</span>db-username<span style="color:#666">=</span><span style="color:#b44">&#39;db-admin&#39;</span> </code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Define the environment variables in the Pod specification.
+        </p>
+      </li>
+    </ul>
+    <table class="includecode" id="pods-inject-pod-multiple-secret-env-variable-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/inject/pod-multiple-secret-env-variable.yaml" download="pods/inject/pod-multiple-secret-env-variable.yaml">
+              <code>
+                pods/inject/pod-multiple-secret-env-variable.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-inject-pod-multiple-secret-env-variable-yaml')" title="Copy pods/inject/pod-multiple-secret-env-variable.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>envvars-multiple-secrets<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>envars-test-container<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">env</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>BACKEND_USERNAME<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">valueFrom</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">secretKeyRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>backend-user<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span>backend-username<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>DB_USERNAME<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">valueFrom</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">secretKeyRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>db-user<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">key</span>:<span style="color:#bbb"> </span>db-username<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <p>
+          Create the Pod:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://k8s.io/examples/pods/inject/pod-multiple-secret-env-variable.yaml </code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Now, the Pod’s output includes
+          <code>
+            BACKEND_USERNAME=backend-admin
+          </code>
+          and
+          <code>
+            DB_USERNAME=db-admin
+          </code>
+          environment variables.
+        </p>
+      </li>
+    </ul>
+    <h2 id="configure-all-key-value-pairs-in-a-secret-as-container-environment-variables">
+      Configure all key-value pairs in a Secret as container environment variables
+    </h2>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        This functionality is available in Kubernetes v1.6 and later.
+      </div>
+    </blockquote>
+    <ul>
+      <li>
+        <p>
+          Create a Secret containing multiple key-value pairs
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create secret generic test-secret --from-literal<span style="color:#666">=</span><span style="color:#b8860b">username</span><span style="color:#666">=</span><span style="color:#b44">&#39;my-app&#39;</span> --from-literal<span style="color:#666">=</span><span style="color:#b8860b">password</span><span style="color:#666">=</span><span style="color:#b44">&#39;39528$vdg7Jb&#39;</span></code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Use envFrom to define all of the Secret’s data as container environment variables. The key from the Secret becomes the environment      variable name in the Pod.
+        </p>
+      </li>
+    </ul>
+    <table class="includecode" id="pods-inject-pod-secret-envfrom-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/inject/pod-secret-envFrom.yaml" download="pods/inject/pod-secret-envFrom.yaml">
+              <code>
+                pods/inject/pod-secret-envFrom.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-inject-pod-secret-envfrom-yaml')" title="Copy pods/inject/pod-secret-envFrom.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>envfrom-secret<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>envars-test-container<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">envFrom</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">secretRef</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>test-secret<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <p>
+          Create the Pod:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://k8s.io/examples/pods/inject/pod-secret-envFrom.yaml</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Now, the Pod’s output includes
+          <code>
+            username=my-app
+          </code>
+          and
+          <code>
+            password=39528$vdg7Jb
+          </code>
+          environment variables.
+        </p>
+      </li>
+    </ul>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        Learn more about
+        <a href="/docs/concepts/configuration/secret/">
+          Secrets
+        </a>
+        .
+      </li>
+      <li>
+        Learn about
+        <a href="/docs/concepts/storage/volumes/">
+          Volumes
+        </a>
+        .
+      </li>
+    </ul>
+    <h3 id="reference">
+      Reference
+    </h3>
+    <ul>
+      <li>
+        <a href="/docs/reference/generated/kubernetes-api/v1.18/#secret-v1-core">
+          Secret
+        </a>
+      </li>
+      <li>
+        <a href="/docs/reference/generated/kubernetes-api/v1.18/#volume-v1-core">
+          Volume
+        </a>
+      </li>
+      <li>
+        <a href="/docs/reference/generated/kubernetes-api/v1.18/#pod-v1-core">
+          Pod
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>

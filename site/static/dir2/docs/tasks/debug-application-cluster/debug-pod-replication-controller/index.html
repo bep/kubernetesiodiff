@@ -1,0 +1,263 @@
+<html>
+  <body>
+    <h1>
+      Debug Pods and ReplicationControllers
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/debug-application-cluster/debug-pod-replication-controller.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Debug Pods and ReplicationControllers
+    </h1>
+    <p>
+      This page shows how to debug Pods and ReplicationControllers.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#debugging-pods">
+          Debugging Pods
+        </a>
+      </li>
+      <li>
+        <a href="#debugging-replicationcontrollers">
+          Debugging ReplicationControllers
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <ul>
+      <li>
+        You should be familiar with the basics of
+        <a href="/docs/concepts/workloads/pods/pod/">
+          Pods
+        </a>
+        and
+        <a href="/docs/concepts/workloads/pods/pod-lifecycle/">
+          Pod Lifecycle
+        </a>
+        .
+      </li>
+    </ul>
+    <h2 id="debugging-pods">
+      Debugging Pods
+    </h2>
+    <p>
+      The first step in debugging a pod is taking a look at it. Check the current
+      state of the pod and recent events with the following command:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl describe pods <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">POD_NAME</span><span style="color:#b68;font-weight:bold">}</span></code></pre>
+    </div>
+    <p>
+      Look at the state of the containers in the pod. Are they all
+      <code>
+        Running
+      </code>
+      ?  Have
+      there been recent restarts?
+    </p>
+    <p>
+      Continue debugging depending on the state of the pods.
+    </p>
+    <h3 id="my-pod-stays-pending">
+      My pod stays pending
+    </h3>
+    <p>
+      If a pod is stuck in
+      <code>
+        Pending
+      </code>
+      it means that it can not be scheduled onto a
+      node. Generally this is because there are insufficient resources of one type or
+      another that prevent scheduling. Look at the output of the
+      <code>
+        kubectl describe ...
+      </code>
+      command above. There should be messages from the scheduler about why it
+      can not schedule your pod. Reasons include:
+    </p>
+    <h4 id="insufficient-resources">
+      Insufficient resources
+    </h4>
+    <p>
+      You may have exhausted the supply of CPU or Memory in your cluster. In this
+      case you can try several things:
+    </p>
+    <ul>
+      <li>
+        <p>
+          <a href="/docs/admin/cluster-management/#resizing-a-cluster">
+            Add more nodes
+          </a>
+          to the cluster.
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="/docs/user-guide/pods/single-container/#deleting_a_pod">
+            Terminate unneeded pods
+          </a>
+          to make room for pending pods.
+        </p>
+      </li>
+      <li>
+        <p>
+          Check that the pod is not larger than your nodes. For example, if all
+          nodes have a capacity of
+          <code>
+            cpu:1
+          </code>
+          , then a pod with a request of
+          <code>
+            cpu: 1.1
+          </code>
+          will never be scheduled.
+        </p>
+        <p>
+          You can check node capacities with the
+          <code>
+            kubectl get nodes -o &lt;format&gt;
+          </code>
+          command. Here are some example command lines that extract just the necessary
+          information:
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get nodes -o yaml | egrep <span style="color:#b44">&#39;\sname:|cpu:|memory:&#39;</span>
+kubectl get nodes -o json | jq <span style="color:#b44">&#39;.items[] | {name: .metadata.name, cap: .status.capacity}&#39;</span></code></pre>
+        </div>
+        <p>
+          The
+          <a href="/docs/concepts/policy/resource-quotas/">
+            resource quota
+          </a>
+          feature can be configured to limit the total amount of
+          resources that can be consumed. If used in conjunction with namespaces, it can
+          prevent one team from hogging all the resources.
+        </p>
+      </li>
+    </ul>
+    <h4 id="using-hostport">
+      Using hostPort
+    </h4>
+    <p>
+      When you bind a pod to a
+      <code>
+        hostPort
+      </code>
+      there are a limited number of places that
+      the pod can be scheduled. In most cases,
+      <code>
+        hostPort
+      </code>
+      is unnecessary; try using a
+      service object to expose your pod. If you do require
+      <code>
+        hostPort
+      </code>
+      then you can
+      only schedule as many pods as there are nodes in your container cluster.
+    </p>
+    <h3 id="my-pod-stays-waiting">
+      My pod stays waiting
+    </h3>
+    <p>
+      If a pod is stuck in the
+      <code>
+        Waiting
+      </code>
+      state, then it has been scheduled to a
+      worker node, but it can&rsquo;t run on that machine. Again, the information from
+      <code>
+        kubectl describe ...
+      </code>
+      should be informative. The most common cause of
+      <code>
+        Waiting
+      </code>
+      pods is a failure to pull the image. There are three things to check:
+    </p>
+    <ul>
+      <li>
+        Make sure that you have the name of the image correct.
+      </li>
+      <li>
+        Have you pushed the image to the repository?
+      </li>
+      <li>
+        Run a manual
+        <code>
+          docker pull &lt;image&gt;
+        </code>
+        on your machine to see if the image can be
+        pulled.
+      </li>
+    </ul>
+    <h3 id="my-pod-is-crashing-or-otherwise-unhealthy">
+      My pod is crashing or otherwise unhealthy
+    </h3>
+    <p>
+      Once your pod has been scheduled, the methods described in
+      <a href="/docs/tasks/debug-application-cluster/debug-running-pods/">
+        Debug Running Pods
+      </a>
+      are available for debugging.
+    </p>
+    <h2 id="debugging-replicationcontrollers">
+      Debugging ReplicationControllers
+    </h2>
+    <p>
+      ReplicationControllers are fairly straightforward. They can either create pods
+      or they can&rsquo;t. If they can&rsquo;t create pods, then please refer to the
+      <a href="#debugging-pods">
+        instructions above
+      </a>
+      to debug your pods.
+    </p>
+    <p>
+      You can also use
+      <code>
+        kubectl describe rc ${CONTROLLER_NAME}
+      </code>
+      to inspect events
+      related to the replication controller.
+    </p>
+  </body>
+</html>

@@ -1,0 +1,417 @@
+<html>
+  <body>
+    <h1>
+      Set up a High Availability etcd cluster with kubeadm
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/setup/production-environment/tools/kubeadm/setup-ha-etcd-with-kubeadm.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Set up a High Availability etcd cluster with kubeadm
+    </h1>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        While kubeadm is being used as the management tool for external etcd nodes
+        in this guide, please note that kubeadm does not plan to support certificate rotation
+        or upgrades for such nodes. The long term plan is to empower the tool
+        <a href="https://github.com/kubernetes-sigs/etcdadm">
+          etcdadm
+        </a>
+        to manage these
+        aspects.
+      </div>
+    </blockquote>
+    <p>
+      Kubeadm defaults to running a single member etcd cluster in a static pod managed
+      by the kubelet on the control plane node. This is not a high availability setup
+      as the etcd cluster contains only one member and cannot sustain any members
+      becoming unavailable. This task walks through the process of creating a high
+      availability etcd cluster of three members that can be used as an external etcd
+      when using kubeadm to set up a kubernetes cluster.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#setting-up-the-cluster">
+          Setting up the cluster
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <ul>
+      <li>
+        Three hosts that can talk to each other over ports 2379 and 2380. This
+        document assumes these default ports. However, they are configurable through
+        the kubeadm config file.
+      </li>
+      <li>
+        Each host must
+        <a href="/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">
+          have docker, kubelet, and kubeadm installed
+        </a>
+        .
+      </li>
+      <li>
+        Some infrastructure to copy files between hosts. For example
+        <code>
+          ssh
+        </code>
+        and
+        <code>
+          scp
+        </code>
+        can satisfy this requirement.
+      </li>
+    </ul>
+    <h2 id="setting-up-the-cluster">
+      Setting up the cluster
+    </h2>
+    <p>
+      The general approach is to generate all certs on one node and only distribute
+      the
+      <em>
+        necessary
+      </em>
+      files to the other nodes.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        kubeadm contains all the necessary crytographic machinery to generate
+        the certificates described below; no other cryptographic tooling is required for
+        this example.
+      </div>
+    </blockquote>
+    <ol>
+      <li>
+        <p>
+          Configure the kubelet to be a service manager for etcd.
+        </p>
+        <p>
+          Since etcd was created first, you must override the service priority by creating a new unit file
+          that has higher precedence than the kubeadm-provided kubelet unit file.
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cat <span style="color:#b44">&lt;&lt; EOF &gt; /etc/systemd/system/kubelet.service.d/20-etcd-service-manager.conf
+</span><span style="color:#b44">[Service]
+</span><span style="color:#b44">ExecStart=
+</span><span style="color:#b44">#  Replace &#34;systemd&#34; with the cgroup driver of your container runtime. The default value in the kubelet is &#34;cgroupfs&#34;.
+</span><span style="color:#b44">ExecStart=/usr/bin/kubelet --address=127.0.0.1 --pod-manifest-path=/etc/kubernetes/manifests --cgroup-driver=systemd
+</span><span style="color:#b44">Restart=always
+</span><span style="color:#b44">EOF</span>
+
+systemctl daemon-reload
+systemctl restart kubelet</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Create configuration files for kubeadm.
+        </p>
+        <p>
+          Generate one kubeadm configuration file for each host that will have an etcd
+          member running on it using the following script.
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#080;font-style:italic"># Update HOST0, HOST1, and HOST2 with the IPs or resolvable names of your hosts</span>
+<span style="color:#a2f">export</span> <span style="color:#b8860b">HOST0</span><span style="color:#666">=</span>10.0.0.6
+<span style="color:#a2f">export</span> <span style="color:#b8860b">HOST1</span><span style="color:#666">=</span>10.0.0.7
+<span style="color:#a2f">export</span> <span style="color:#b8860b">HOST2</span><span style="color:#666">=</span>10.0.0.8
+
+<span style="color:#080;font-style:italic"># Create temp directories to store files that will end up on other hosts.</span>
+mkdir -p /tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST0</span><span style="color:#b68;font-weight:bold">}</span>/ /tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST1</span><span style="color:#b68;font-weight:bold">}</span>/ /tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST2</span><span style="color:#b68;font-weight:bold">}</span>/
+
+<span style="color:#b8860b">ETCDHOSTS</span><span style="color:#666">=(</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST0</span><span style="color:#b68;font-weight:bold">}</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST1</span><span style="color:#b68;font-weight:bold">}</span> <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST2</span><span style="color:#b68;font-weight:bold">}</span><span style="color:#666">)</span>
+<span style="color:#b8860b">NAMES</span><span style="color:#666">=(</span><span style="color:#b44">&#34;infra0&#34;</span> <span style="color:#b44">&#34;infra1&#34;</span> <span style="color:#b44">&#34;infra2&#34;</span><span style="color:#666">)</span>
+
+<span style="color:#a2f;font-weight:bold">for</span> i in <span style="color:#b44">&#34;</span><span style="color:#b68;font-weight:bold">${</span>!ETCDHOSTS[@]<span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">&#34;</span>; <span style="color:#a2f;font-weight:bold">do</span>
+<span style="color:#b8860b">HOST</span><span style="color:#666">=</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">ETCDHOSTS</span>[<span style="color:#b8860b">$i</span>]<span style="color:#b68;font-weight:bold">}</span>
+<span style="color:#b8860b">NAME</span><span style="color:#666">=</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">NAMES</span>[<span style="color:#b8860b">$i</span>]<span style="color:#b68;font-weight:bold">}</span>
+cat <span style="color:#b44">&lt;&lt; EOF &gt; /tmp/${HOST}/kubeadmcfg.yaml
+</span><span style="color:#b44">apiVersion: &#34;kubeadm.k8s.io/v1beta2&#34;
+</span><span style="color:#b44">kind: ClusterConfiguration
+</span><span style="color:#b44">etcd:
+</span><span style="color:#b44">    local:
+</span><span style="color:#b44">        serverCertSANs:
+</span><span style="color:#b44">        - &#34;${HOST}&#34;
+</span><span style="color:#b44">        peerCertSANs:
+</span><span style="color:#b44">        - &#34;${HOST}&#34;
+</span><span style="color:#b44">        extraArgs:
+</span><span style="color:#b44">            initial-cluster: ${NAMES[0]}=https://${ETCDHOSTS[0]}:2380,${NAMES[1]}=https://${ETCDHOSTS[1]}:2380,${NAMES[2]}=https://${ETCDHOSTS[2]}:2380
+</span><span style="color:#b44">            initial-cluster-state: new
+</span><span style="color:#b44">            name: ${NAME}
+</span><span style="color:#b44">            listen-peer-urls: https://${HOST}:2380
+</span><span style="color:#b44">            listen-client-urls: https://${HOST}:2379
+</span><span style="color:#b44">            advertise-client-urls: https://${HOST}:2379
+</span><span style="color:#b44">            initial-advertise-peer-urls: https://${HOST}:2380
+</span><span style="color:#b44">EOF</span>
+<span style="color:#a2f;font-weight:bold">done</span></code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Generate the certificate authority
+        </p>
+        <p>
+          If you already have a CA then the only action that is copying the CA&rsquo;s
+          <code>
+            crt
+          </code>
+          and
+          <code>
+            key
+          </code>
+          file to
+          <code>
+            /etc/kubernetes/pki/etcd/ca.crt
+          </code>
+          and
+          <code>
+            /etc/kubernetes/pki/etcd/ca.key
+          </code>
+          . After those files have been copied,
+          proceed to the next step, &ldquo;Create certificates for each member&rdquo;.
+        </p>
+        <p>
+          If you do not already have a CA then run this command on
+          <code>
+            $HOST0
+          </code>
+          (where you
+          generated the configuration files for kubeadm).
+        </p>
+        <pre><code>kubeadm init phase certs etcd-ca</code></pre>
+        <p>
+          This creates two files
+        </p>
+        <ul>
+          <li>
+            <code>
+              /etc/kubernetes/pki/etcd/ca.crt
+            </code>
+          </li>
+          <li>
+            <code>
+              /etc/kubernetes/pki/etcd/ca.key
+            </code>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>
+          Create certificates for each member
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">kubeadm init phase certs etcd-server --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST2</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+kubeadm init phase certs etcd-peer --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST2</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+kubeadm init phase certs etcd-healthcheck-client --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST2</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+kubeadm init phase certs apiserver-etcd-client --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST2</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+cp -R /etc/kubernetes/pki /tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST2</span><span style="color:#b68;font-weight:bold">}</span>/
+<span style="color:#080;font-style:italic"># cleanup non-reusable certificates</span>
+find /etc/kubernetes/pki -not -name ca.crt -not -name ca.key -type f -delete
+
+kubeadm init phase certs etcd-server --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST1</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+kubeadm init phase certs etcd-peer --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST1</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+kubeadm init phase certs etcd-healthcheck-client --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST1</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+kubeadm init phase certs apiserver-etcd-client --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST1</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+cp -R /etc/kubernetes/pki /tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST1</span><span style="color:#b68;font-weight:bold">}</span>/
+find /etc/kubernetes/pki -not -name ca.crt -not -name ca.key -type f -delete
+
+kubeadm init phase certs etcd-server --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST0</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+kubeadm init phase certs etcd-peer --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST0</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+kubeadm init phase certs etcd-healthcheck-client --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST0</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+kubeadm init phase certs apiserver-etcd-client --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST0</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+<span style="color:#080;font-style:italic"># No need to move the certs because they are for HOST0</span>
+
+<span style="color:#080;font-style:italic"># clean up certs that should not be copied off this host</span>
+find /tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST2</span><span style="color:#b68;font-weight:bold">}</span> -name ca.key -type f -delete
+find /tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST1</span><span style="color:#b68;font-weight:bold">}</span> -name ca.key -type f -delete</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Copy certificates and kubeadm configs
+        </p>
+        <p>
+          The certificates have been generated and now they must be moved to their
+          respective hosts.
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#b8860b">USER</span><span style="color:#666">=</span>ubuntu
+<span style="color:#b8860b">HOST</span><span style="color:#666">=</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST1</span><span style="color:#b68;font-weight:bold">}</span>
+scp -r /tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST</span><span style="color:#b68;font-weight:bold">}</span>/* <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">USER</span><span style="color:#b68;font-weight:bold">}</span>@<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST</span><span style="color:#b68;font-weight:bold">}</span>:
+ssh <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">USER</span><span style="color:#b68;font-weight:bold">}</span>@<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST</span><span style="color:#b68;font-weight:bold">}</span>
+USER@HOST $ sudo -Es
+root@HOST $ chown -R root:root pki
+root@HOST $ mv pki /etc/kubernetes/</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Ensure all expected files exist
+        </p>
+        <p>
+          The complete list of required files on
+          <code>
+            $HOST0
+          </code>
+          is:
+        </p>
+        <pre><code>/tmp/${HOST0}
+└── kubeadmcfg.yaml
+---
+/etc/kubernetes/pki
+├── apiserver-etcd-client.crt
+├── apiserver-etcd-client.key
+└── etcd
+    ├── ca.crt
+    ├── ca.key
+    ├── healthcheck-client.crt
+    ├── healthcheck-client.key
+    ├── peer.crt
+    ├── peer.key
+    ├── server.crt
+    └── server.key</code></pre>
+        <p>
+          On
+          <code>
+            $HOST1
+          </code>
+          :
+        </p>
+        <pre><code>$HOME
+└── kubeadmcfg.yaml
+---
+/etc/kubernetes/pki
+├── apiserver-etcd-client.crt
+├── apiserver-etcd-client.key
+└── etcd
+    ├── ca.crt
+    ├── healthcheck-client.crt
+    ├── healthcheck-client.key
+    ├── peer.crt
+    ├── peer.key
+    ├── server.crt
+    └── server.key</code></pre>
+        <p>
+          On
+          <code>
+            $HOST2
+          </code>
+        </p>
+        <pre><code>$HOME
+└── kubeadmcfg.yaml
+---
+/etc/kubernetes/pki
+├── apiserver-etcd-client.crt
+├── apiserver-etcd-client.key
+└── etcd
+    ├── ca.crt
+    ├── healthcheck-client.crt
+    ├── healthcheck-client.key
+    ├── peer.crt
+    ├── peer.key
+    ├── server.crt
+    └── server.key</code></pre>
+      </li>
+      <li>
+        <p>
+          Create the static pod manifests
+        </p>
+        <p>
+          Now that the certificates and configs are in place it&rsquo;s time to create the
+          manifests. On each host run the
+          <code>
+            kubeadm
+          </code>
+          command to generate a static manifest
+          for etcd.
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">root@HOST0 $ kubeadm init phase etcd <span style="color:#a2f">local</span> --config<span style="color:#666">=</span>/tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST0</span><span style="color:#b68;font-weight:bold">}</span>/kubeadmcfg.yaml
+root@HOST1 $ kubeadm init phase etcd <span style="color:#a2f">local</span> --config<span style="color:#666">=</span>/home/ubuntu/kubeadmcfg.yaml
+root@HOST2 $ kubeadm init phase etcd <span style="color:#a2f">local</span> --config<span style="color:#666">=</span>/home/ubuntu/kubeadmcfg.yaml</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>
+          Optional: Check the cluster health
+        </p>
+        <div class="highlight">
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker run --rm -it <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>--net host <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>-v /etc/kubernetes:/etc/kubernetes k8s.gcr.io/etcd:<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">ETCD_TAG</span><span style="color:#b68;font-weight:bold">}</span> etcdctl <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>--cert /etc/kubernetes/pki/etcd/peer.crt <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>--key /etc/kubernetes/pki/etcd/peer.key <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>--cacert /etc/kubernetes/pki/etcd/ca.crt <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>--endpoints https://<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST0</span><span style="color:#b68;font-weight:bold">}</span>:2379 endpoint health --cluster
+...
+https://<span style="color:#666">[</span>HOST0 IP<span style="color:#666">]</span>:2379 is healthy: successfully committed proposal: <span style="color:#b8860b">took</span> <span style="color:#666">=</span> 16.283339ms
+https://<span style="color:#666">[</span>HOST1 IP<span style="color:#666">]</span>:2379 is healthy: successfully committed proposal: <span style="color:#b8860b">took</span> <span style="color:#666">=</span> 19.44402ms
+https://<span style="color:#666">[</span>HOST2 IP<span style="color:#666">]</span>:2379 is healthy: successfully committed proposal: <span style="color:#b8860b">took</span> <span style="color:#666">=</span> 35.926451ms</code></pre>
+        </div>
+        <ul>
+          <li>
+            Set
+            <code>
+              ${ETCD_TAG}
+            </code>
+            to the version tag of your etcd image. For example
+            <code>
+              3.4.3-0
+            </code>
+            . To see the etcd image and tag that kubeadm uses execute
+            <code>
+              kubeadm config images list --kubernetes-version ${K8S_VERSION}
+            </code>
+            , where
+            <code>
+              ${K8S_VERSION}
+            </code>
+            is for example
+            <code>
+              v1.17.0
+            </code>
+          </li>
+          <li>
+            Set
+            <code>
+              ${HOST0}
+            </code>
+            to the IP address of the host you are testing.
+          </li>
+        </ul>
+      </li>
+    </ol>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <p>
+      Once you have a working 3 member etcd cluster, you can continue setting up a
+      highly available control plane using the
+      <a href="/docs/setup/production-environment/tools/kubeadm/high-availability/">
+        external etcd method with
+        kubeadm
+      </a>
+      .
+    </p>
+  </body>
+</html>

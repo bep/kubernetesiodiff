@@ -1,0 +1,721 @@
+<html>
+  <body>
+    <h1>
+      kubeadm upgrade
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/kubeadm-upgrade.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      kubeadm upgrade
+    </h1>
+    <p>
+      <code>
+        kubeadm upgrade
+      </code>
+      is a user-friendly command that wraps complex upgrading logic
+      behind one command, with support for both planning an upgrade and actually performing it.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#kubeadm-upgrade-guidance">
+          kubeadm upgrade guidance
+        </a>
+      </li>
+      <li>
+        <a href="#cmd-upgrade-plan">
+          kubeadm upgrade plan
+        </a>
+      </li>
+      <li>
+        <a href="#cmd-upgrade-apply">
+          kubeadm upgrade apply
+        </a>
+      </li>
+      <li>
+        <a href="#cmd-upgrade-diff">
+          kubeadm upgrade diff
+        </a>
+      </li>
+      <li>
+        <a href="#cmd-upgrade-node">
+          kubeadm upgrade node
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="kubeadm-upgrade-guidance">
+      kubeadm upgrade guidance
+    </h2>
+    <p>
+      The steps for performing a upgrade using kubeadm are outlined in
+      <a href="/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/">
+        this document
+      </a>
+      .
+      For older versions of kubeadm, please refer to older documentation sets of the Kubernetes website.
+    </p>
+    <p>
+      You can use
+      <code>
+        kubeadm upgrade diff
+      </code>
+      to see the changes that would be applied to static pod manifests.
+    </p>
+    <p>
+      To use kube-dns with upgrades in Kubernetes v1.13.0 and later please follow
+      <a href="/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-addon">
+        this guide
+      </a>
+      .
+    </p>
+    <p>
+      In Kubernetes v1.15.0 and later,
+      <code>
+        kubeadm upgrade apply
+      </code>
+      and
+      <code>
+        kubeadm upgrade node
+      </code>
+      will also
+      automatically renew the kubeadm managed certificates on this node, including those stored in kubeconfig files.
+      To opt-out, it is possible to pass the flag
+      <code>
+        --certificate-renewal=false
+      </code>
+      . For more details about certificate
+      renewal see the
+      <a href="/docs/tasks/administer-cluster/kubeadm/kubeadm-certs">
+        certificate management documentation
+      </a>
+      .
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        The commands
+        <code>
+          kubeadm upgrade apply
+        </code>
+        and
+        <code>
+          kubeadm upgrade plan
+        </code>
+        have a legacy
+        <code>
+          --config
+        </code>
+        flag which makes it possible to reconfigure the cluster, while performing planning or upgrade of that particular
+        control-plane node. Please be aware that the upgrade workflow was not designed for this scenario and there are
+        reports of unexpected results.
+      </div>
+    </blockquote>
+    <h2 id="cmd-upgrade-plan">
+      kubeadm upgrade plan
+    </h2>
+    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <p>
+      Check which versions are available to upgrade to and validate whether your current cluster is upgradeable. To skip the internet check, pass in the optional [version] parameter
+    </p>
+    <pre><code>kubeadm upgrade plan [version] [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --allow-experimental-upgrades
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Show unstable versions of Kubernetes as an upgrade alternative and allow upgrading to an alpha/beta/release candidate versions of Kubernetes.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --allow-release-candidate-upgrades
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Show release candidate versions of Kubernetes as an upgrade alternative and allow upgrading to a release candidate versions of Kubernetes.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --config string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Path to a kubeadm configuration file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --feature-gates string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            A set of key=value pairs that describe feature gates for various features. Options are:
+            <br/>
+            IPv6DualStack=true|false (ALPHA - default=false)
+            <br/>
+            PublicKeysECDSA=true|false (ALPHA - default=false)
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for plan
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --ignore-preflight-errors stringSlice
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --print-config
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Specifies whether the configuration file that will be used in the upgrade should be printed or not.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="cmd-upgrade-apply">
+      kubeadm upgrade apply
+    </h2>
+    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <p>
+      Upgrade your Kubernetes cluster to the specified version
+    </p>
+    <pre><code>kubeadm upgrade apply [version]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --allow-experimental-upgrades
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Show unstable versions of Kubernetes as an upgrade alternative and allow upgrading to an alpha/beta/release candidate versions of Kubernetes.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --allow-release-candidate-upgrades
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Show release candidate versions of Kubernetes as an upgrade alternative and allow upgrading to a release candidate versions of Kubernetes.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --certificate-renewal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Perform the renewal of certificates used by component changed during upgrades.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --config string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Path to a kubeadm configuration file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --dry-run
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Do not change any state, just output what actions would be performed.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --etcd-upgrade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Perform the upgrade of etcd.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -k, --experimental-kustomize string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The path where kustomize patches for static pod manifests are stored.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --feature-gates string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            A set of key=value pairs that describe feature gates for various features. Options are:
+            <br/>
+            IPv6DualStack=true|false (ALPHA - default=false)
+            <br/>
+            PublicKeysECDSA=true|false (ALPHA - default=false)
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -f, --force
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Force upgrading although some requirements might not be met. This also implies non-interactive mode.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for apply
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --ignore-preflight-errors stringSlice
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --image-pull-timeout duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 15m0s
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The maximum amount of time to wait for the control plane pods to be downloaded.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --print-config
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Specifies whether the configuration file that will be used in the upgrade should be printed or not.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -y, --yes
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Perform the upgrade and do not prompt for confirmation (non-interactive mode).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="cmd-upgrade-diff">
+      kubeadm upgrade diff
+    </h2>
+    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <p>
+      Show what differences would be applied to existing static pod manifests. See also: kubeadm upgrade apply &ndash;dry-run
+    </p>
+    <pre><code>kubeadm upgrade diff [version] [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --api-server-manifest string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/manifests/kube-apiserver.yaml"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            path to API server manifest
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --config string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Path to a kubeadm configuration file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -c, --context-lines int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 3
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            How many lines of context in the diff
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --controller-manager-manifest string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/manifests/kube-controller-manager.yaml"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            path to controller manifest
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for diff
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --scheduler-manifest string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/manifests/kube-scheduler.yaml"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            path to scheduler manifest
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="cmd-upgrade-node">
+      kubeadm upgrade node
+    </h2>
+    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <p>
+      Upgrade commands for a node in the cluster
+    </p>
+    <p>
+      The &ldquo;node&rdquo; command executes the following phases:
+    </p>
+    <pre><code>control-plane   Upgrade the control plane instance deployed on this node, if any
+kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
+    <pre><code>kubeadm upgrade node [flags]</code></pre>
+    <h3 id="options">
+      Options
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --certificate-renewal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Perform the renewal of certificates used by component changed during upgrades.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --dry-run
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Do not change any state, just output the actions that would be performed.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --etcd-upgrade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            Perform the upgrade of etcd.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -k, --experimental-kustomize string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The path where kustomize patches for static pod manifests are stored.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            -h, --help
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            help for node
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            --skip-phases stringSlice
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            List of phases to be skipped
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="options-inherited-from-parent-commands">
+      Options inherited from parent commands
+    </h3>
+    <table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;" />
+        <col span="1" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td colspan="2">
+            --rootfs string
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="line-height: 130%; word-wrap: break-word;">
+            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        <a href="/docs/reference/setup-tools/kubeadm/kubeadm-config/">
+          kubeadm config
+        </a>
+        if you initialized your cluster using kubeadm v1.7.x or lower, to configure your cluster for
+        <code>
+          kubeadm upgrade
+        </code>
+      </li>
+    </ul>
+  </body>
+</html>

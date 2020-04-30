@@ -1,0 +1,580 @@
+<html>
+  <body>
+    <h1>
+      Running Automated Tasks with a CronJob
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/job/automated-tasks-with-cron-jobs.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Running Automated Tasks with a CronJob
+    </h1>
+    <p>
+      You can use a
+      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/cron-jobs/' target='_blank'>
+        CronJob
+        <span class='tooltip-text'>
+          Manages a Job that runs on a periodic schedule.
+        </span>
+      </a>
+      to run
+      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/jobs-run-to-completion' target='_blank'>
+        Jobs
+        <span class='tooltip-text'>
+          A finite or batch task that runs to completion.
+        </span>
+      </a>
+      on a time-based schedule.
+      These automated jobs run like
+      <a href="https://en.wikipedia.org/wiki/Cron">
+        Cron
+      </a>
+      tasks on a Linux or UNIX system.
+    </p>
+    <p>
+      Cron jobs are useful for creating periodic and recurring tasks, like running backups or sending emails.
+      Cron jobs can also schedule individual tasks for a specific time, such as if you want to schedule a job for a low activity period.
+    </p>
+    <p>
+      Cron jobs have limitations and idiosyncrasies.
+      For example, in certain circumstances, a single cron job can create multiple jobs.
+      Therefore, jobs should be idempotent.
+    </p>
+    <p>
+      For more limitations, see
+      <a href="/docs/concepts/workloads/controllers/cron-jobs">
+        CronJobs
+      </a>
+      .
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#creating-a-cron-job">
+          Creating a Cron Job
+        </a>
+      </li>
+      <li>
+        <a href="#deleting-a-cron-job">
+          Deleting a Cron Job
+        </a>
+      </li>
+      <li>
+        <a href="#writing-a-cron-job-spec">
+          Writing a Cron Job Spec
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <ul>
+      <li>
+        <p>
+          You need to have a Kubernetes cluster, and the kubectl command-line tool must
+          be configured to communicate with your cluster. If you do not already have a
+          cluster, you can create one by using
+          <a href="/docs/setup/learning-environment/minikube/">
+            Minikube
+          </a>
+          ,
+          or you can use one of these Kubernetes playgrounds:
+        </p>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <h2 id="creating-a-cron-job">
+      Creating a Cron Job
+    </h2>
+    <p>
+      Cron jobs require a config file.
+      This example cron job config
+      <code>
+        .spec
+      </code>
+      file prints the current time and a hello message every minute:
+    </p>
+    <table class="includecode" id="application-job-cronjob-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/job/cronjob.yaml" download="application/job/cronjob.yaml">
+              <code>
+                application/job/cronjob.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-cronjob-yaml')" title="Copy application/job/cronjob.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>batch/v1beta1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>CronJob<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">schedule</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;*/1 * * * *&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">jobTemplate</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">template</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>hello<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>busybox<span style="color:#bbb">
+</span><span style="color:#bbb">            </span><span style="color:#a2f;font-weight:bold">args</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- /bin/sh<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- -c<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>- date;<span style="color:#bbb"> </span>echo<span style="color:#bbb"> </span>Hello<span style="color:#bbb"> </span>from<span style="color:#bbb"> </span>the<span style="color:#bbb"> </span>Kubernetes<span style="color:#bbb"> </span>cluster<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">restartPolicy</span>:<span style="color:#bbb"> </span>OnFailure<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Run the example CronJob by using this command:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://k8s.io/examples/application/job/cronjob.yaml</code></pre>
+    </div>
+    <p>
+      The output is similar to this:
+    </p>
+    <pre><code>cronjob.batch/hello created</code></pre>
+    <p>
+      Alternatively, you can use
+      <code>
+        kubectl run
+      </code>
+      to create a cron job without writing a full config:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl run hello --schedule<span style="color:#666">=</span><span style="color:#b44">&#34;*/1 * * * *&#34;</span> --restart<span style="color:#666">=</span>OnFailure --image<span style="color:#666">=</span>busybox -- /bin/sh -c <span style="color:#b44">&#34;date; echo Hello from the Kubernetes cluster&#34;</span></code></pre>
+    </div>
+    <p>
+      After creating the cron job, get its status using this command:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get cronjob hello</code></pre>
+    </div>
+    <p>
+      The output is similar to this:
+    </p>
+    <pre><code>NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+hello   */1 * * * *   False     0        &lt;none&gt;          10s</code></pre>
+    <p>
+      As you can see from the results of the command, the cron job has not scheduled or run any jobs yet.
+      Watch for the job to be created in around one minute:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get <span style="color:#a2f">jobs</span> --watch</code></pre>
+    </div>
+    <p>
+      The output is similar to this:
+    </p>
+    <pre><code>NAME               COMPLETIONS   DURATION   AGE
+hello-4111706356   0/1                      0s
+hello-4111706356   0/1           0s         0s
+hello-4111706356   1/1           5s         5s</code></pre>
+    <p>
+      Now you&rsquo;ve seen one running job scheduled by the &ldquo;hello&rdquo; cron job.
+      You can stop watching the job and view the cron job again to see that it scheduled the job:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get cronjob hello</code></pre>
+    </div>
+    <p>
+      The output is similar to this:
+    </p>
+    <pre><code>NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+hello   */1 * * * *   False     0        50s             75s</code></pre>
+    <p>
+      You should see that the cron job
+      <code>
+        hello
+      </code>
+      successfully scheduled a job at the time specified in
+      <code>
+        LAST SCHEDULE
+      </code>
+      . There are currently 0 active jobs, meaning that the job has completed or failed.
+    </p>
+    <p>
+      Now, find the pods that the last scheduled job created and view the standard output of one of the pods.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        The job name and pod name are different.
+      </div>
+    </blockquote>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Replace &#34;hello-4111706356&#34; with the job name in your system</span>
+<span style="color:#b8860b">pods</span><span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">$(</span>kubectl get pods --selector<span style="color:#666">=</span>job-name<span style="color:#666">=</span>hello-4111706356 --output<span style="color:#666">=</span><span style="color:#b8860b">jsonpath</span><span style="color:#666">={</span>.items<span style="color:#666">[</span>*<span style="color:#666">]</span>.metadata.name<span style="color:#666">}</span><span style="color:#a2f;font-weight:bold">)</span></code></pre>
+    </div>
+    <p>
+      Show pod log:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl logs <span style="color:#b8860b">$pods</span></code></pre>
+    </div>
+    <p>
+      The output is similar to this:
+    </p>
+    <pre><code>Fri Feb 22 11:02:09 UTC 2019
+Hello from the Kubernetes cluster</code></pre>
+    <h2 id="deleting-a-cron-job">
+      Deleting a Cron Job
+    </h2>
+    <p>
+      When you don&rsquo;t need a cron job any more, delete it with
+      <code>
+        kubectl delete cronjob &lt;cronjob name&gt;
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete cronjob hello</code></pre>
+    </div>
+    <p>
+      Deleting the cron job removes all the jobs and pods it created and stops it from creating additional jobs.
+      You can read more about removing jobs in
+      <a href="/docs/concepts/workloads/controllers/garbage-collection/">
+        garbage collection
+      </a>
+      .
+    </p>
+    <h2 id="writing-a-cron-job-spec">
+      Writing a Cron Job Spec
+    </h2>
+    <p>
+      As with all other Kubernetes configs, a cron job needs
+      <code>
+        apiVersion
+      </code>
+      ,
+      <code>
+        kind
+      </code>
+      , and
+      <code>
+        metadata
+      </code>
+      fields. For general
+      information about working with config files, see
+      <a href="/docs/user-guide/deploying-applications">
+        deploying applications
+      </a>
+      ,
+      and
+      <a href="/docs/user-guide/working-with-resources">
+        using kubectl to manage resources
+      </a>
+      documents.
+    </p>
+    <p>
+      A cron job config also needs a
+      <a href="https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status">
+        <code>
+          .spec
+        </code>
+        section
+      </a>
+      .
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        All modifications to a cron job, especially its
+        <code>
+          .spec
+        </code>
+        , are applied only to the following runs.
+      </div>
+    </blockquote>
+    <h3 id="schedule">
+      Schedule
+    </h3>
+    <p>
+      The
+      <code>
+        .spec.schedule
+      </code>
+      is a required field of the
+      <code>
+        .spec
+      </code>
+      .
+      It takes a
+      <a href="https://en.wikipedia.org/wiki/Cron">
+        Cron
+      </a>
+      format string, such as
+      <code>
+        0 * * * *
+      </code>
+      or
+      <code>
+        @hourly
+      </code>
+      , as schedule time of its jobs to be created and executed.
+    </p>
+    <p>
+      The format also includes extended
+      <code>
+        vixie cron
+      </code>
+      step values. As explained in the
+      <a href="https://www.freebsd.org/cgi/man.cgi?crontab%285%29">
+        FreeBSD manual
+      </a>
+      :
+    </p>
+    <blockquote>
+      <p>
+        Step values can be    used in conjunction with ranges.  Following a range
+        with
+        <code>
+          /&lt;number&gt;
+        </code>
+        specifies skips  of the number&rsquo;s value through the
+        range.  For example,
+        <code>
+          0-23/2
+        </code>
+        can be used in the  hours field to specify
+        command execution every other hour    (the alternative in the V7 standard is
+        <code>
+          0,2,4,6,8,10,12,14,16,18,20,22
+        </code>
+        ).  Steps are also permitted after an
+        asterisk, so if you want to say &ldquo;every two hours&rdquo;, just use
+        <code>
+          */2
+        </code>
+        .
+      </p>
+    </blockquote>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        A question mark (
+        <code>
+          ?
+        </code>
+        ) in the schedule has the same meaning as an asterisk
+        <code>
+          *
+        </code>
+        , that is, it stands for any of available value for a given field.
+      </div>
+    </blockquote>
+    <h3 id="job-template">
+      Job Template
+    </h3>
+    <p>
+      The
+      <code>
+        .spec.jobTemplate
+      </code>
+      is the template for the job, and it is required.
+      It has exactly the same schema as a
+      <a href="/docs/concepts/workloads/controllers/jobs-run-to-completion/">
+        Job
+      </a>
+      , except that it is nested and does not have an
+      <code>
+        apiVersion
+      </code>
+      or
+      <code>
+        kind
+      </code>
+      .
+      For information about writing a job
+      <code>
+        .spec
+      </code>
+      , see
+      <a href="/docs/concepts/workloads/controllers/jobs-run-to-completion/#writing-a-job-spec">
+        Writing a Job Spec
+      </a>
+      .
+    </p>
+    <h3 id="starting-deadline">
+      Starting Deadline
+    </h3>
+    <p>
+      The
+      <code>
+        .spec.startingDeadlineSeconds
+      </code>
+      field is optional.
+      It stands for the deadline in seconds for starting the job if it misses its scheduled time for any reason.
+      After the deadline, the cron job does not start the job.
+      Jobs that do not meet their deadline in this way count as failed jobs.
+      If this field is not specified, the jobs have no deadline.
+    </p>
+    <p>
+      The CronJob controller counts how many missed schedules happen for a cron job. If there are more than 100 missed schedules, the cron job is no longer scheduled. When
+      <code>
+        .spec.startingDeadlineSeconds
+      </code>
+      is not set, the CronJob controller counts missed schedules from
+      <code>
+        status.lastScheduleTime
+      </code>
+      until now.
+    </p>
+    <p>
+      For example, one cron job is supposed to run every minute, the
+      <code>
+        status.lastScheduleTime
+      </code>
+      of the cronjob is 5:00am, but now it&rsquo;s 7:00am. That means 120 schedules were missed, so the cron job is no longer scheduled.
+    </p>
+    <p>
+      If the
+      <code>
+        .spec.startingDeadlineSeconds
+      </code>
+      field is set (not null), the CronJob controller counts how many missed jobs occurred from the value of
+      <code>
+        .spec.startingDeadlineSeconds
+      </code>
+      until now.
+    </p>
+    <p>
+      For example, if it is set to
+      <code>
+        200
+      </code>
+      , it counts how many missed schedules occurred in the last 200 seconds. In that case, if there were more than 100 missed schedules in the last 200 seconds, the cron job is no longer scheduled.
+    </p>
+    <h3 id="concurrency-policy">
+      Concurrency Policy
+    </h3>
+    <p>
+      The
+      <code>
+        .spec.concurrencyPolicy
+      </code>
+      field is also optional.
+      It specifies how to treat concurrent executions of a job that is created by this cron job.
+      The spec may specify only one of the following concurrency policies:
+    </p>
+    <ul>
+      <li>
+        <code>
+          Allow
+        </code>
+        (default): The cron job allows concurrently running jobs
+      </li>
+      <li>
+        <code>
+          Forbid
+        </code>
+        : The cron job does not allow concurrent runs; if it is time for a new job run and the previous job run hasn&rsquo;t finished yet, the cron job skips the new job run
+      </li>
+      <li>
+        <code>
+          Replace
+        </code>
+        : If it is time for a new job run and the previous job run hasn&rsquo;t finished yet, the cron job replaces the currently running job run with a new job run
+      </li>
+    </ul>
+    <p>
+      Note that concurrency policy only applies to the jobs created by the same cron job.
+      If there are multiple cron jobs, their respective jobs are always allowed to run concurrently.
+    </p>
+    <h3 id="suspend">
+      Suspend
+    </h3>
+    <p>
+      The
+      <code>
+        .spec.suspend
+      </code>
+      field is also optional.
+      If it is set to
+      <code>
+        true
+      </code>
+      , all subsequent executions are suspended.
+      This setting does not apply to already started executions.
+      Defaults to false.
+    </p>
+    <blockquote class="caution">
+      <div>
+        <strong>
+          Caution:
+        </strong>
+        Executions that are suspended during their scheduled time count as missed jobs.
+        When
+        <code>
+          .spec.suspend
+        </code>
+        changes from
+        <code>
+          true
+        </code>
+        to
+        <code>
+          false
+        </code>
+        on an existing cron job without a
+        <a href="#starting-deadline">
+          starting deadline
+        </a>
+        , the missed jobs are scheduled immediately.
+      </div>
+    </blockquote>
+    <h3 id="jobs-history-limits">
+      Jobs History Limits
+    </h3>
+    <p>
+      The
+      <code>
+        .spec.successfulJobsHistoryLimit
+      </code>
+      and
+      <code>
+        .spec.failedJobsHistoryLimit
+      </code>
+      fields are optional.
+      These fields specify how many completed and failed jobs should be kept.
+      By default, they are set to 3 and 1 respectively.  Setting a limit to
+      <code>
+        0
+      </code>
+      corresponds to keeping none of the corresponding kind of jobs after they finish.
+    </p>
+  </body>
+</html>

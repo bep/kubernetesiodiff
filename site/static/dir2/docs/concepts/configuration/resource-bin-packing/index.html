@@ -1,0 +1,328 @@
+<html>
+<body>
+<h1>
+  Resource Bin Packing for Extended Resources
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/configuration/resource-bin-packing.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Resource Bin Packing for Extended Resources
+</h1>
+<div style="margin-top: 10px; margin-bottom: 10px;">
+<p>
+  <b>
+    FEATURE STATE:
+  </b>
+  <code>
+    Kubernetes v1.16
+  </code>
+</p>
+<p>
+  <a href="#" id="feature-state-dialog-link" class="ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-newwin"></span>
+    alpha
+  </a>
+</p>
+<div id="feature-state-dialog" class="ui-dialog-content" title="alpha">
+  <p>
+    This feature is currently in a
+    <em>
+      alpha
+    </em>
+    state, meaning:
+  </p>
+  <ul>
+    <li>
+      The version names contain alpha (e.g. v1alpha1).
+    </li>
+    <li>
+      Might be buggy. Enabling the feature may expose bugs. Disabled by default.
+    </li>
+    <li>
+      Support for feature may be dropped at any time without notice.
+    </li>
+    <li>
+      The API may change in incompatible ways in a later software release without notice.
+    </li>
+    <li>
+      Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
+    </li>
+  </ul>
+</div>
+<script>
+  $(function(){
+  <pre><code>$( &quot;#feature-state-dialog&quot; ).dialog({
+  autoOpen: false,
+  width: &quot;600&quot;,
+  buttons: [
+  {
+  text: &quot;Ok&quot;,
+  click: function() {
+  $( this ).dialog( &quot;close&quot; );
+  }
+  }
+  ]
+  });
+
+
+  $( &quot;#feature-state-dialog-link&quot; ).click(function( event ) {
+  $( &quot;#feature-state-dialog&quot; ).dialog( &quot;open&quot; );
+  event.preventDefault();
+  });</code></pre>
+  <p>});
+</script>
+<p>
+  The kube-scheduler can be configured to enable bin packing of resources along with extended resources using
+  <code>
+    RequestedToCapacityRatioResourceAllocation
+  </code>
+  priority function. Priority functions can be used to fine-tune the kube-scheduler as per custom needs.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#enabling-bin-packing-using-requestedtocapacityratioresourceallocation">
+      Enabling Bin Packing using RequestedToCapacityRatioResourceAllocation
+    </a>
+  </li>
+</ul>
+<h2 id="enabling-bin-packing-using-requestedtocapacityratioresourceallocation">
+  Enabling Bin Packing using RequestedToCapacityRatioResourceAllocation
+</h2>
+<p>
+  Before Kubernetes 1.15, Kube-scheduler used to allow scoring nodes based on the request to capacity ratio of primary resources like CPU and Memory. Kubernetes 1.16 added a new parameter to the priority function that allows the users to specify the resources along with weights for each resource to score nodes based on the request to capacity ratio. This allows users to bin pack extended resources by using appropriate parameters improves the utilization of scarce resources in large clusters. The behavior of the
+  <code>
+    RequestedToCapacityRatioResourceAllocation
+  </code>
+  priority function can be controlled by a configuration option called
+  <code>
+    requestedToCapacityRatioArguments
+  </code>
+  . This argument consists of two parameters
+  <code>
+    shape
+  </code>
+  and
+  <code>
+    resources
+  </code>
+  . Shape allows the user to tune the function as least requested or most requested based on
+  <code>
+    utilization
+  </code>
+  and
+  <code>
+    score
+  </code>
+  values. Resources
+  consists of
+  <code>
+    name
+  </code>
+  which specifies the resource to be considered during scoring and
+  <code>
+    weight
+  </code>
+  specify the weight of each resource.
+</p>
+<p>
+  Below is an example configuration that sets
+  <code>
+    requestedToCapacityRatioArguments
+  </code>
+  to bin packing behavior for extended resources
+  <code>
+    intel.com/foo
+  </code>
+  and
+  <code>
+    intel.com/bar
+  </code>
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#008000;font-weight:bold">&#34;kind&#34;</span> : <span style="color:#b44">&#34;Policy&#34;</span>,
+    <span style="color:#008000;font-weight:bold">&#34;apiVersion&#34;</span> : <span style="color:#b44">&#34;v1&#34;</span>,
+
+    <span style="">...</span>
+
+    <span style="color:#008000;font-weight:bold">&#34;priorities&#34;</span> : [
+
+       <span style="">...</span>
+
+      {
+        <span style="color:#008000;font-weight:bold">&#34;name&#34;</span>: <span style="color:#b44">&#34;RequestedToCapacityRatioPriority&#34;</span>,
+        <span style="color:#008000;font-weight:bold">&#34;weight&#34;</span>: <span style="color:#666">2</span>,
+        <span style="color:#008000;font-weight:bold">&#34;argument&#34;</span>: {
+          <span style="color:#008000;font-weight:bold">&#34;requestedToCapacityRatioArguments&#34;</span>: {
+            <span style="color:#008000;font-weight:bold">&#34;shape&#34;</span>: [
+              {<span style="color:#008000;font-weight:bold">&#34;utilization&#34;</span>: <span style="color:#666">0</span>, <span style="color:#008000;font-weight:bold">&#34;score&#34;</span>: <span style="color:#666">0</span>},
+              {<span style="color:#008000;font-weight:bold">&#34;utilization&#34;</span>: <span style="color:#666">100</span>, <span style="color:#008000;font-weight:bold">&#34;score&#34;</span>: <span style="color:#666">10</span>}
+            ],
+            <span style="color:#008000;font-weight:bold">&#34;resources&#34;</span>: [
+              {<span style="color:#008000;font-weight:bold">&#34;name&#34;</span>: <span style="color:#b44">&#34;intel.com/foo&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;weight&#34;</span>: <span style="color:#666">3</span>},
+              {<span style="color:#008000;font-weight:bold">&#34;name&#34;</span>: <span style="color:#b44">&#34;intel.com/bar&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;weight&#34;</span>: <span style="color:#666">5</span>}
+            ]
+          }
+        }
+      }
+    ],
+  }</code></pre>
+</div>
+<p>
+  <strong>
+    This feature is disabled by default
+  </strong>
+</p>
+<h3 id="tuning-requestedtocapacityratioresourceallocation-priority-function">
+  Tuning RequestedToCapacityRatioResourceAllocation Priority Function
+</h3>
+<p>
+  <code>
+    shape
+  </code>
+  is used to specify the behavior of the
+  <code>
+    RequestedToCapacityRatioPriority
+  </code>
+  function.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb"> </span>{<span style="color:#a2f;font-weight:bold">&#34;utilization&#34;: 0, &#34;score&#34;: </span><span style="color:#666">0</span>},<span style="color:#bbb">
+</span><span style="color:#bbb"> </span>{<span style="color:#a2f;font-weight:bold">&#34;utilization&#34;: 100, &#34;score&#34;: </span><span style="color:#666">10</span>}<span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  The above arguments give the node a score of 0 if utilization is 0% and 10 for utilization 100%, thus enabling bin packing behavior. To enable least requested the score value must be reversed as follows.
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb"> </span>{<span style="color:#a2f;font-weight:bold">&#34;utilization&#34;: 0, &#34;score&#34;: </span><span style="color:#666">100</span>},<span style="color:#bbb">
+</span><span style="color:#bbb"> </span>{<span style="color:#a2f;font-weight:bold">&#34;utilization&#34;: 100, &#34;score&#34;: </span><span style="color:#666">0</span>}<span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  <code>
+    resources
+  </code>
+  is an optional parameter which by defaults is set to:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">&#34;resources&#34;: </span>[<span style="color:#bbb">
+</span><span style="color:#bbb">              </span>{<span style="color:#a2f;font-weight:bold">&#34;name&#34;: &#34;CPU&#34;, &#34;weight&#34;: </span><span style="color:#666">1</span>},<span style="color:#bbb">
+</span><span style="color:#bbb">              </span>{<span style="color:#a2f;font-weight:bold">&#34;name&#34;: &#34;Memory&#34;, &#34;weight&#34;: </span><span style="color:#666">1</span>}<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>]<span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  It can be used to add extended resources as follows:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">&#34;resources&#34;: </span>[<span style="color:#bbb">
+</span><span style="color:#bbb">              </span>{<span style="color:#a2f;font-weight:bold">&#34;name&#34;: &#34;intel.com/foo&#34;, &#34;weight&#34;: </span><span style="color:#666">5</span>},<span style="color:#bbb">
+</span><span style="color:#bbb">              </span>{<span style="color:#a2f;font-weight:bold">&#34;name&#34;: &#34;CPU&#34;, &#34;weight&#34;: </span><span style="color:#666">3</span>},<span style="color:#bbb">
+</span><span style="color:#bbb">              </span>{<span style="color:#a2f;font-weight:bold">&#34;name&#34;: &#34;Memory&#34;, &#34;weight&#34;: </span><span style="color:#666">1</span>}<span style="color:#bbb">
+</span><span style="color:#bbb">            </span>]<span style="color:#bbb">
+</span></code></pre>
+</div>
+<p>
+  The weight parameter is optional and is set to 1 if not specified. Also, the weight cannot be set to a negative value.
+</p>
+<h3 id="how-the-requestedtocapacityratioresourceallocation-priority-function-scores-nodes">
+  How the RequestedToCapacityRatioResourceAllocation Priority Function Scores Nodes
+</h3>
+<p>
+  This section is intended for those who want to understand the internal details
+  of this feature.
+  Below is an example of how the node score is calculated for a given set of values.
+</p><pre><code>Requested Resources
+
+intel.com/foo : 2
+Memory: 256MB
+CPU: 2
+
+Resource Weights
+
+intel.com/foo : 5
+Memory: 1
+CPU: 3
+
+FunctionShapePoint {{0, 0}, {100, 10}}
+
+Node 1 Spec
+
+Available:
+intel.com/foo : 4
+Memory : 1 GB
+CPU: 8
+
+Used:
+intel.com/foo: 1
+Memory: 256MB
+CPU: 1
+
+
+Node Score:
+
+intel.com/foo  = resourceScoringFunction((2+1),4)
+               =  (100 - ((4-3)*100/4)
+               =  (100 - 25)
+               =  75
+               =  rawScoringFunction(75)
+               = 7
+
+Memory         = resourceScoringFunction((256+256),1024)
+               = (100 -((1024-512)*100/1024))
+               = 50
+               = rawScoringFunction(50)
+               = 5
+
+CPU            = resourceScoringFunction((2+1),8)
+               = (100 -((8-3)*100/8))
+               = 37.5
+               = rawScoringFunction(37.5)
+               = 3
+
+NodeScore   =  (7 * 5) + (5 * 1) + (3 * 3) / (5 + 1 + 3)
+            =  5
+
+
+Node 2 Spec
+
+Available:
+intel.com/foo: 8
+Memory: 1GB
+CPU: 8
+
+Used:
+
+intel.com/foo: 2
+Memory: 512MB
+CPU: 6
+
+
+Node Score:
+
+intel.com/foo  = resourceScoringFunction((2+2),8)
+               =  (100 - ((8-4)*100/8)
+               =  (100 - 25)
+               =  50
+               =  rawScoringFunction(50)
+               = 5
+
+Memory         = resourceScoringFunction((256+512),1024)
+               = (100 -((1024-768)*100/1024))
+               = 75
+               = rawScoringFunction(75)
+               = 7
+
+CPU            = resourceScoringFunction((2+6),8)
+               = (100 -((8-8)*100/8))
+               = 100
+               = rawScoringFunction(100)
+               = 10
+
+NodeScore   =  (5 * 5) + (7 * 1) + (10 * 3) / (5 + 1 + 3)
+            =  7
+</code></pre>

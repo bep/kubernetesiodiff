@@ -1,0 +1,305 @@
+<html>
+  <body>
+    <h1>
+      Ingress Controllers
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/services-networking/ingress-controllers.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Ingress Controllers
+    </h1>
+    <p>
+      In order for the Ingress resource to work, the cluster must have an ingress controller running.
+    </p>
+    <p>
+      Unlike other types of controllers which run as part of the
+      <code>
+        kube-controller-manager
+      </code>
+      binary, Ingress controllers
+      are not started automatically with a cluster. Use this page to choose the ingress controller implementation
+      that best fits your cluster.
+    </p>
+    <p>
+      Kubernetes as a project currently supports and maintains
+      <a href="https://git.k8s.io/ingress-gce/README.md">
+        GCE
+      </a>
+      and
+      <a href="https://git.k8s.io/ingress-nginx/README.md">
+        nginx
+      </a>
+      controllers.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#additional-controllers">
+          Additional controllers
+        </a>
+      </li>
+      <li>
+        <a href="#using-multiple-ingress-controllers">
+          Using multiple Ingress controllers
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="additional-controllers">
+      Additional controllers
+    </h2>
+    <ul>
+      <li>
+        <a href="https://github.com/Azure/application-gateway-kubernetes-ingress">
+          AKS Application Gateway Ingress Controller
+        </a>
+        is an ingress controller that enables ingress to
+        <a href="https://docs.microsoft.com/azure/aks/kubernetes-walkthrough-portal">
+          AKS clusters
+        </a>
+        using the
+        <a href="https://docs.microsoft.com/azure/application-gateway/overview">
+          Azure Application Gateway
+        </a>
+        .
+      </li>
+      <li>
+        <a href="https://www.getambassador.io/">
+          Ambassador
+        </a>
+        API Gateway is an
+        <a href="https://www.envoyproxy.io">
+          Envoy
+        </a>
+        based ingress
+        controller with
+        <a href="https://www.getambassador.io/docs">
+          community
+        </a>
+        or
+        <a href="https://www.getambassador.io/pro/">
+          commercial
+        </a>
+        support from
+        <a href="https://www.datawire.io/">
+          Datawire
+        </a>
+        .
+      </li>
+      <li>
+        <a href="https://appscode.com">
+          AppsCode Inc.
+        </a>
+        offers support and maintenance for the most widely used
+        <a href="http://www.haproxy.org/">
+          HAProxy
+        </a>
+        based ingress controller
+        <a href="https://appscode.com/products/voyager">
+          Voyager
+        </a>
+        .
+      </li>
+      <li>
+        <a href="https://github.com/kubernetes-sigs/aws-alb-ingress-controller">
+          AWS ALB Ingress Controller
+        </a>
+        enables ingress using the
+        <a href="https://aws.amazon.com/elasticloadbalancing/">
+          AWS Application Load Balancer
+        </a>
+        .
+      </li>
+      <li>
+        <a href="https://projectcontour.io/">
+          Contour
+        </a>
+        is an
+        <a href="https://www.envoyproxy.io/">
+          Envoy
+        </a>
+        based ingress controller
+        provided and supported by VMware.
+      </li>
+      <li>
+        Citrix provides an
+        <a href="https://github.com/citrix/citrix-k8s-ingress-controller">
+          Ingress Controller
+        </a>
+        for its hardware (MPX), virtualized (VPX) and
+        <a href="https://www.citrix.com/products/citrix-adc/cpx-express.html">
+          free containerized (CPX) ADC
+        </a>
+        for
+        <a href="https://github.com/citrix/citrix-k8s-ingress-controller/tree/master/deployment/baremetal">
+          baremetal
+        </a>
+        and
+        <a href="https://github.com/citrix/citrix-k8s-ingress-controller/tree/master/deployment">
+          cloud
+        </a>
+        deployments.
+      </li>
+      <li>
+        F5 Networks provides
+        <a href="https://support.f5.com/csp/article/K86859508">
+          support and maintenance
+        </a>
+        for the
+        <a href="http://clouddocs.f5.com/products/connectors/k8s-bigip-ctlr/latest">
+          F5 BIG-IP Controller for Kubernetes
+        </a>
+        .
+      </li>
+      <li>
+        <a href="https://gloo.solo.io">
+          Gloo
+        </a>
+        is an open-source ingress controller based on
+        <a href="https://www.envoyproxy.io">
+          Envoy
+        </a>
+        which offers API Gateway functionality with enterprise support from
+        <a href="https://www.solo.io">
+          solo.io
+        </a>
+        .
+      </li>
+      <li>
+        <a href="https://haproxy-ingress.github.io">
+          HAProxy Ingress
+        </a>
+        is a highly customizable community-driven ingress controller for HAProxy.
+      </li>
+      <li>
+        <a href="https://www.haproxy.com/">
+          HAProxy Technologies
+        </a>
+        offers support and maintenance for the
+        <a href="https://github.com/haproxytech/kubernetes-ingress">
+          HAProxy Ingress Controller for Kubernetes
+        </a>
+        . See the
+        <a href="https://www.haproxy.com/documentation/hapee/1-9r1/traffic-management/kubernetes-ingress-controller/">
+          official documentation
+        </a>
+        .
+      </li>
+      <li>
+        <a href="https://istio.io/">
+          Istio
+        </a>
+        based ingress controller
+        <a href="https://istio.io/docs/tasks/traffic-management/ingress/">
+          Control Ingress Traffic
+        </a>
+        .
+      </li>
+      <li>
+        <a href="https://konghq.com/">
+          Kong
+        </a>
+        offers
+        <a href="https://discuss.konghq.com/c/kubernetes">
+          community
+        </a>
+        or
+        <a href="https://konghq.com/kong-enterprise/">
+          commercial
+        </a>
+        support and maintenance for the
+        <a href="https://github.com/Kong/kubernetes-ingress-controller">
+          Kong Ingress Controller for Kubernetes
+        </a>
+        .
+      </li>
+      <li>
+        <a href="https://www.nginx.com/">
+          NGINX, Inc.
+        </a>
+        offers support and maintenance for the
+        <a href="https://www.nginx.com/products/nginx/kubernetes-ingress-controller">
+          NGINX Ingress Controller for Kubernetes
+        </a>
+        .
+      </li>
+      <li>
+        <a href="https://opensource.zalando.com/skipper/kubernetes/ingress-controller/">
+          Skipper
+        </a>
+        HTTP router and reverse proxy for service composition, including use cases like Kubernetes Ingress, designed as a library to build your custom proxy
+      </li>
+      <li>
+        <a href="https://github.com/containous/traefik">
+          Traefik
+        </a>
+        is a fully featured ingress controller
+        (
+        <a href="https://letsencrypt.org">
+          Let&rsquo;s Encrypt
+        </a>
+        , secrets, http2, websocket), and it also comes with commercial
+        support by
+        <a href="https://containo.us/services">
+          Containous
+        </a>
+        .
+      </li>
+    </ul>
+    <h2 id="using-multiple-ingress-controllers">
+      Using multiple Ingress controllers
+    </h2>
+    <p>
+      You may deploy
+      <a href="https://git.k8s.io/ingress-nginx/docs/user-guide/multiple-ingress.md#multiple-ingress-controllers">
+        any number of ingress controllers
+      </a>
+      within a cluster. When you create an ingress, you should annotate each ingress with the appropriate
+      <a href="https://git.k8s.io/ingress-gce/docs/faq/README.md#how-do-i-run-multiple-ingress-controllers-in-the-same-cluster">
+        <code>
+          ingress.class
+        </code>
+      </a>
+      to indicate which ingress controller should be used if more than one exists within your cluster.
+    </p>
+    <p>
+      If you do not define a class, your cloud provider may use a default ingress controller.
+    </p>
+    <p>
+      Ideally, all ingress controllers should fulfill this specification, but the various ingress
+      controllers operate slightly differently.
+    </p>
+    <blockquote class="note">
+      <div>
+        <strong>
+          Note:
+        </strong>
+        Make sure you review your ingress controller&rsquo;s documentation to understand the caveats of choosing it.
+      </div>
+    </blockquote>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        Learn more about
+        <a href="/docs/concepts/services-networking/ingress/">
+          Ingress
+        </a>
+        .
+      </li>
+      <li>
+        <a href="/docs/tasks/access-application-cluster/ingress-minikube">
+          Set up Ingress on Minikube with the NGINX Controller
+        </a>
+        .
+      </li>
+    </ul>
+  </body>
+</html>

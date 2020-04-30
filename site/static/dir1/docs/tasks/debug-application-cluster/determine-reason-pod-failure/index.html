@@ -1,0 +1,278 @@
+<html>
+  <body>
+    <h1>
+      Determine the Reason for Pod Failure
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/debug-application-cluster/determine-reason-pod-failure.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Determine the Reason for Pod Failure
+    </h1>
+    <p>
+      This page shows how to write and read a Container
+      termination message.
+    </p>
+    <p>
+      Termination messages provide a way for containers to write
+      information about fatal events to a location where it can
+      be easily retrieved and surfaced by tools like dashboards
+      and monitoring software. In most cases, information that you
+      put in a termination message should also be written to
+      the general
+      <a href="/docs/concepts/cluster-administration/logging/">
+        Kubernetes logs
+      </a>
+      .
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#before-you-begin">
+          Before you begin
+        </a>
+      </li>
+      <li>
+        <a href="#writing-and-reading-a-termination-message">
+          Writing and reading a termination message
+        </a>
+      </li>
+      <li>
+        <a href="#customizing-the-termination-message">
+          Customizing the termination message
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="before-you-begin">
+      Before you begin
+    </h2>
+    <p>
+      You need to have a Kubernetes cluster, and the kubectl command-line tool must
+      be configured to communicate with your cluster. If you do not already have a
+      cluster, you can create one by using
+      <a href="/docs/setup/learning-environment/minikube/">
+        Minikube
+      </a>
+      ,
+      or you can use one of these Kubernetes playgrounds:
+    </p>
+    <ul>
+      <li>
+        <a href="https://www.katacoda.com/courses/kubernetes/playground">
+          Katacoda
+        </a>
+      </li>
+      <li>
+        <a href="http://labs.play-with-k8s.com/">
+          Play with Kubernetes
+        </a>
+      </li>
+    </ul>
+    <p>
+      To check the version, enter
+      <code>
+        kubectl version
+      </code>
+      .
+    </p>
+    <h2 id="writing-and-reading-a-termination-message">
+      Writing and reading a termination message
+    </h2>
+    <p>
+      In this exercise, you create a Pod that runs one container.
+      The configuration file specifies a command that runs when
+      the container starts.
+    </p>
+    <table class="includecode" id="debug-termination-yaml">
+      <thead>
+        <tr>
+          <th>
+            <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/debug/termination.yaml" download="debug/termination.yaml">
+              <code>
+                debug/termination.yaml
+              </code>
+            </a>
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('debug-termination-yaml')" title="Copy debug/termination.yaml to clipboard">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="highlight">
+              <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>termination-demo<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>termination-demo-container<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>debian<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;/bin/sh&#34;</span>]<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">args</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;-c&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;sleep 10 &amp;&amp; echo Sleep expired &gt; /dev/termination-log&#34;</span>]<span style="color:#bbb">
+</span></code></pre>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ol>
+      <li>
+        <p>
+          Create a Pod based on the YAML configuration file:
+        </p>
+        <pre><code>kubectl apply -f https://k8s.io/examples/debug/termination.yaml</code></pre>
+        <p>
+          In the YAML file, in the
+          <code>
+            cmd
+          </code>
+          and
+          <code>
+            args
+          </code>
+          fields, you can see that the
+          container sleeps for 10 seconds and then writes &ldquo;Sleep expired&rdquo; to
+          the
+          <code>
+            /dev/termination-log
+          </code>
+          file. After the container writes
+          the &ldquo;Sleep expired&rdquo; message, it terminates.
+        </p>
+      </li>
+      <li>
+        <p>
+          Display information about the Pod:
+        </p>
+        <pre><code>kubectl get pod termination-demo</code></pre>
+        <p>
+          Repeat the preceding command until the Pod is no longer running.
+        </p>
+      </li>
+      <li>
+        <p>
+          Display detailed information about the Pod:
+        </p>
+        <pre><code>kubectl get pod termination-demo --output=yaml</code></pre>
+        <p>
+          The output includes the &ldquo;Sleep expired&rdquo; message:
+        </p>
+        <pre><code>apiVersion: v1
+kind: Pod
+...
+    lastState:
+      terminated:
+        containerID: ...
+        exitCode: 0
+        finishedAt: ...
+        message: |
+          Sleep expired
+        ...</code></pre>
+      </li>
+      <li>
+        <p>
+          Use a Go template to filter the output so that it includes
+          only the termination message:
+        </p>
+        <pre><code>kubectl get pod termination-demo -o go-template=&#34;{{range .status.containerStatuses}}{{.lastState.terminated.message}}{{end}}&#34;</code></pre>
+      </li>
+    </ol>
+    <h2 id="customizing-the-termination-message">
+      Customizing the termination message
+    </h2>
+    <p>
+      Kubernetes retrieves termination messages from the termination message file
+      specified in the
+      <code>
+        terminationMessagePath
+      </code>
+      field of a Container, which as a default
+      value of
+      <code>
+        /dev/termination-log
+      </code>
+      . By customizing this field, you can tell Kubernetes
+      to use a different file. Kubernetes use the contents from the specified file to
+      populate the Container&rsquo;s status message on both success and failure.
+    </p>
+    <p>
+      In the following example, the container writes termination messages to
+      <code>
+        /tmp/my-log
+      </code>
+      for Kubernetes to retrieve:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>msg-path-demo<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>msg-path-demo-container<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>debian<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">terminationMessagePath</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;/tmp/my-log&#34;</span></code></pre>
+    </div>
+    <p>
+      Moreover, users can set the
+      <code>
+        terminationMessagePolicy
+      </code>
+      field of a Container for
+      further customization. This field defaults to &ldquo;
+      <code>
+        File
+      </code>
+      &rdquo; which means the termination
+      messages are retrieved only from the termination message file. By setting the
+      <code>
+        terminationMessagePolicy
+      </code>
+      to &ldquo;
+      <code>
+        FallbackToLogsOnError
+      </code>
+      &rdquo;, you can tell Kubernetes
+      to use the last chunk of container log output if the termination message file
+      is empty and the container exited with an error. The log output is limited to
+      2048 bytes or 80 lines, whichever is smaller.
+    </p>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <ul>
+      <li>
+        See the
+        <code>
+          terminationMessagePath
+        </code>
+        field in
+        <a href="/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core">
+          Container
+        </a>
+        .
+      </li>
+      <li>
+        Learn about
+        <a href="/docs/concepts/cluster-administration/logging/">
+          retrieving logs
+        </a>
+        .
+      </li>
+      <li>
+        Learn about
+        <a href="https://golang.org/pkg/text/template/">
+          Go templates
+        </a>
+        .
+      </li>
+    </ul>
+  </body>
+</html>

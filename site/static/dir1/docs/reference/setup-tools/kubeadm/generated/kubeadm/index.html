@@ -1,0 +1,99 @@
+<html>
+<body>
+<h1></h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1></h1>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <a href="#synopsis">
+                Synopsis
+              </a>
+            </li>
+            <li>
+              <a href="#options">
+                Options
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h3 id="synopsis">
+  Synopsis
+</h3>
+<pre><code>┌──────────────────────────────────────────────────────────┐
+│ KUBEADM                                                  │
+│ Easily bootstrap a secure Kubernetes cluster             │
+│                                                          │
+│ Please give us feedback at:                              │
+│ https://github.com/kubernetes/kubeadm/issues             │
+└──────────────────────────────────────────────────────────┘</code></pre>
+<p>
+  Example usage:
+</p>
+<pre><code>Create a two-machine cluster with one control-plane node
+(which controls the cluster), and one worker node
+(where your workloads, like Pods and Deployments run).
+
+┌──────────────────────────────────────────────────────────┐
+│ On the first machine:                                    │
+├──────────────────────────────────────────────────────────┤
+│ control-plane# kubeadm init                              │
+└──────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────┐
+│ On the second machine:                                   │
+├──────────────────────────────────────────────────────────┤
+│ worker# kubeadm join &amp;lt;arguments-returned-from-init&amp;gt;      │
+└──────────────────────────────────────────────────────────┘
+
+You can then repeat the second step on as many other machines as you like.</code></pre>
+<h3 id="options">
+  Options
+</h3>
+<p>
+  <table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;" />
+    <col span="1" />
+  </colgroup>
+  <tbody>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      -h, &ndash;help
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      help for kubeadm
+    </td>
+  </tr>
+</p>
+<p>
+  <tr>
+    <td colspan="2">
+      &ndash;rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+    </td>
+  </tr>
+</p>
+<p>

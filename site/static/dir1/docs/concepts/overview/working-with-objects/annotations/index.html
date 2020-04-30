@@ -1,0 +1,216 @@
+<html>
+  <body>
+    <h1>
+      Annotations
+    </h1>
+    <p>
+      <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/concepts/overview/working-with-objects/annotations.md" id="editPageButton" target="_blank">
+        Edit This Page
+      </a>
+    </p>
+    <h1>
+      Annotations
+    </h1>
+    <p>
+      You can use Kubernetes annotations to attach arbitrary non-identifying metadata
+      to objects. Clients such as tools and libraries can retrieve this metadata.
+    </p>
+    <ul id="markdown-toc">
+      <li>
+        <a href="#attaching-metadata-to-objects">
+          Attaching metadata to objects
+        </a>
+      </li>
+      <li>
+        <a href="#syntax-and-character-set">
+          Syntax and character set
+        </a>
+      </li>
+      <li>
+        <a href="#what-s-next">
+          What's next
+        </a>
+      </li>
+    </ul>
+    <h2 id="attaching-metadata-to-objects">
+      Attaching metadata to objects
+    </h2>
+    <p>
+      You can use either labels or annotations to attach metadata to Kubernetes
+      objects. Labels can be used to select objects and to find
+      collections of objects that satisfy certain conditions. In contrast, annotations
+      are not used to identify and select objects. The metadata
+      in an annotation can be small or large, structured or unstructured, and can
+      include characters not permitted by labels.
+    </p>
+    <p>
+      Annotations, like labels, are key/value maps:
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#b44">&#34;metadata&#34;</span><span style="">:</span> {
+  <span style="color:#008000;font-weight:bold">&#34;annotations&#34;</span>: {
+    <span style="color:#008000;font-weight:bold">&#34;key1&#34;</span> : <span style="color:#b44">&#34;value1&#34;</span>,
+    <span style="color:#008000;font-weight:bold">&#34;key2&#34;</span> : <span style="color:#b44">&#34;value2&#34;</span>
+  }
+}</code></pre>
+    </div>
+    <p>
+      Here are some examples of information that could be recorded in annotations:
+    </p>
+    <ul>
+      <li>
+        <p>
+          Fields managed by a declarative configuration layer. Attaching these fields
+          as annotations distinguishes them from default values set by clients or
+          servers, and from auto-generated fields and fields set by
+          auto-sizing or auto-scaling systems.
+        </p>
+      </li>
+      <li>
+        <p>
+          Build, release, or image information like timestamps, release IDs, git branch,
+          PR numbers, image hashes, and registry address.
+        </p>
+      </li>
+      <li>
+        <p>
+          Pointers to logging, monitoring, analytics, or audit repositories.
+        </p>
+      </li>
+      <li>
+        <p>
+          Client library or tool information that can be used for debugging purposes:
+          for example, name, version, and build information.
+        </p>
+      </li>
+      <li>
+        <p>
+          User or tool/system provenance information, such as URLs of related objects
+          from other ecosystem components.
+        </p>
+      </li>
+      <li>
+        <p>
+          Lightweight rollout tool metadata: for example, config or checkpoints.
+        </p>
+      </li>
+      <li>
+        <p>
+          Phone or pager numbers of persons responsible, or directory entries that
+          specify where that information can be found, such as a team web site.
+        </p>
+      </li>
+      <li>
+        <p>
+          Directives from the end-user to the implementations to modify behavior or
+          engage non-standard features.
+        </p>
+      </li>
+    </ul>
+    <p>
+      Instead of using annotations, you could store this type of information in an
+      external database or directory, but that would make it much harder to produce
+      shared client libraries and tools for deployment, management, introspection,
+      and the like.
+    </p>
+    <h2 id="syntax-and-character-set">
+      Syntax and character set
+    </h2>
+    <p>
+      <em>
+        Annotations
+      </em>
+      are key/value pairs. Valid annotation keys have two segments: an optional prefix and name, separated by a slash (
+      <code>
+        /
+      </code>
+      ). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character (
+      <code>
+        [a-z0-9A-Z]
+      </code>
+      ) with dashes (
+      <code>
+        -
+      </code>
+      ), underscores (
+      <code>
+        _
+      </code>
+      ), dots (
+      <code>
+        .
+      </code>
+      ), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (
+      <code>
+        .
+      </code>
+      ), not longer than 253 characters in total, followed by a slash (
+      <code>
+        /
+      </code>
+      ).
+    </p>
+    <p>
+      If the prefix is omitted, the annotation Key is presumed to be private to the user. Automated system components (e.g.
+      <code>
+        kube-scheduler
+      </code>
+      ,
+      <code>
+        kube-controller-manager
+      </code>
+      ,
+      <code>
+        kube-apiserver
+      </code>
+      ,
+      <code>
+        kubectl
+      </code>
+      , or other third-party automation) which add annotations to end-user objects must specify a prefix.
+    </p>
+    <p>
+      The
+      <code>
+        kubernetes.io/
+      </code>
+      and
+      <code>
+        k8s.io/
+      </code>
+      prefixes are reserved for Kubernetes core components.
+    </p>
+    <p>
+      For example, here’s the configuration file for a Pod that has the annotation
+      <code>
+        imageregistry: https://hub.docker.com/
+      </code>
+      :
+    </p>
+    <div class="highlight">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>annotations-demo<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">annotations</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">imageregistry</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;https://hub.docker.com/&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>nginx<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>nginx:<span style="color:#666">1.14.2</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span></code></pre>
+    </div>
+    <h2 id="what-s-next">
+      What&#39;s next
+    </h2>
+    <p>
+      Learn more about
+      <a href="/docs/concepts/overview/working-with-objects/labels/">
+        Labels and Selectors
+      </a>
+      .
+    </p>
+  </body>
+</html>

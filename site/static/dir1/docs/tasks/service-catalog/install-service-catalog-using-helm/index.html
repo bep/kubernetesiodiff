@@ -1,0 +1,314 @@
+<html>
+<body>
+<h1>
+  Install Service Catalog using Helm
+</h1>
+<p>
+  <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/tasks/service-catalog/install-service-catalog-using-helm.md" id="editPageButton" target="_blank">
+    Edit This Page
+  </a>
+</p>
+<h1>
+  Install Service Catalog using Helm
+</h1>
+<p>
+  <p>
+    Service Catalog is an extension API that enables applications running in Kubernetes clusters to easily use external managed software offerings, such as a datastore service offered by a cloud provider.
+  </p>
+</p>
+<p>
+  It provides a way to list, provision, and bind with external
+  <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-managed-service' target='_blank'>
+    Managed Services
+    <span class='tooltip-text'>
+      A software offering maintained by a third-party provider.
+    </span>
+  </a>
+  from
+  <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-service-broker' target='_blank'>
+    Service Brokers
+    <span class='tooltip-text'>
+      An endpoint for a set of Managed Services offered and maintained by a third-party.
+    </span>
+  </a>
+  without needing detailed knowledge about how those services are created or managed.
+</p>
+<p>
+  Use
+  <a href="https://helm.sh/">
+    Helm
+  </a>
+  to install Service Catalog on your Kubernetes cluster. Up to date information on this process can be found at the
+  <a href="https://github.com/kubernetes-sigs/service-catalog/blob/master/docs/install.md">
+    kubernetes-sigs/service-catalog
+  </a>
+  repo.
+</p>
+<ul id="markdown-toc">
+  <li>
+    <a href="#before-you-begin">
+      Before you begin
+    </a>
+  </li>
+  <li>
+    <a href="#add-the-service-catalog-helm-repository">
+      Add the service-catalog Helm repository
+    </a>
+  </li>
+  <li>
+    <a href="#enable-rbac">
+      Enable RBAC
+    </a>
+  </li>
+  <li>
+    <a href="#install-service-catalog-in-your-kubernetes-cluster">
+      Install Service Catalog in your Kubernetes cluster
+    </a>
+  </li>
+  <li>
+    <a href="#what-s-next">
+      What's next
+    </a>
+  </li>
+</ul>
+<h2 id="before-you-begin">
+  Before you begin
+</h2>
+<ul>
+  <li>
+    Understand the key concepts of
+    <a href="/docs/concepts/service-catalog/">
+      Service Catalog
+    </a>
+    .
+  </li>
+  <li>
+    Service Catalog requires a Kubernetes cluster running version 1.7 or higher.
+  </li>
+  <li>
+    You must have a Kubernetes cluster with cluster DNS enabled.
+    <ul>
+      <li>
+        If you are using a cloud-based Kubernetes cluster or
+        <a class='glossary-tooltip' href='/docs/setup/learning-environment/minikube/' target='_blank'>
+          Minikube
+          <span class='tooltip-text'>
+            A tool for running Kubernetes locally.
+          </span>
+        </a>
+        , you may already have cluster DNS enabled.
+      </li>
+      <li>
+        If you are using
+        <code>
+          hack/local-up-cluster.sh
+        </code>
+        , ensure that the
+        <code>
+          KUBE_ENABLE_CLUSTER_DNS
+        </code>
+        environment variable is set, then run the install script.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/tasks/tools/install-kubectl/">
+      Install and setup kubectl
+    </a>
+    v1.7 or higher. Make sure it is configured to connect to the Kubernetes cluster.
+  </li>
+  <li>
+    Install
+    <a href="https://helm.sh/">
+      Helm
+    </a>
+    v2.7.0 or newer.
+    <ul>
+      <li>
+        Follow the
+        <a href="https://helm.sh/docs/intro/install/">
+          Helm install instructions
+        </a>
+        .
+      </li>
+      <li>
+        If you already have an appropriate version of Helm installed, execute
+        <code>
+          helm init
+        </code>
+        to install Tiller, the server-side component of Helm.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="add-the-service-catalog-helm-repository">
+  Add the service-catalog Helm repository
+</h2>
+<p>
+  Once Helm is installed, add the
+  <em>
+    service-catalog
+  </em>
+  Helm repository to your local machine by executing the following command:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">helm repo add svc-cat https://svc-catalog-charts.storage.googleapis.com</code></pre>
+</div>
+<p>
+  Check to make sure that it installed successfully by executing the following command:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">helm search service-catalog</code></pre>
+</div>
+<p>
+  If the installation was successful, the command should output the following:
+</p>
+<pre><code>NAME                	CHART VERSION	APP VERSION	DESCRIPTION                                                 
+svc-cat/catalog     	0.2.1        	           	service-catalog API server and controller-manager helm chart
+svc-cat/catalog-v0.2	0.2.2        	           	service-catalog API server and controller-manager helm chart</code></pre>
+<h2 id="enable-rbac">
+  Enable RBAC
+</h2>
+<p>
+  Your Kubernetes cluster must have RBAC enabled, which requires your Tiller Pod(s) to have
+  <code>
+    cluster-admin
+  </code>
+  access.
+</p>
+<p>
+  When using Minikube v0.25 or older, you must run Minikube with RBAC explicitly enabled:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">minikube start --extra-config<span style="color:#666">=</span>apiserver.Authorization.Mode<span style="color:#666">=</span>RBAC</code></pre>
+</div>
+<p>
+  When using Minikube v0.26+, run:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">minikube start</code></pre>
+</div>
+<p>
+  With Minikube v0.26+, do not specify
+  <code>
+    --extra-config
+  </code>
+  . The flag has since been changed to &ndash;extra-config=apiserver.authorization-mode and Minikube now uses RBAC by default. Specifying the older flag may cause the start command to hang.
+</p>
+<p>
+  If you are using
+  <code>
+    hack/local-up-cluster.sh
+  </code>
+  , set the
+  <code>
+    AUTHORIZATION_MODE
+  </code>
+  environment variable with the following values:
+</p>
+<pre><code>AUTHORIZATION_MODE=Node,RBAC hack/local-up-cluster.sh -O</code></pre>
+<p>
+  By default,
+  <code>
+    helm init
+  </code>
+  installs the Tiller Pod into the
+  <code>
+    kube-system
+  </code>
+  namespace, with Tiller configured to use the
+  <code>
+    default
+  </code>
+  service account.
+</p>
+<blockquote class="note">
+  <div>
+    <strong>
+      Note:
+    </strong>
+    If you used the
+    <code>
+      --tiller-namespace
+    </code>
+    or
+    <code>
+      --service-account
+    </code>
+    flags when running
+    <code>
+      helm init
+    </code>
+    , the
+    <code>
+      --serviceaccount
+    </code>
+    flag in the following command needs to be adjusted to reference the appropriate namespace and ServiceAccount name.
+  </div>
+</blockquote>
+<p>
+  Configure Tiller to have
+  <code>
+    cluster-admin
+  </code>
+  access:
+</p>
+<div class="highlight">
+  <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create clusterrolebinding tiller-cluster-admin <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    --clusterrole<span style="color:#666">=</span>cluster-admin <span style="color:#b62;font-weight:bold">\
+</span><span style="color:#b62;font-weight:bold"></span>    --serviceaccount<span style="color:#666">=</span>kube-system:default</code></pre>
+</div>
+<h2 id="install-service-catalog-in-your-kubernetes-cluster">
+  Install Service Catalog in your Kubernetes cluster
+</h2>
+<p>
+  Install Service Catalog from the root of the Helm repository using the following command:
+</p>
+<div id="helm-versions">
+<ul>
+  <li>
+    <a href="#helm-versions-0">
+      Helm version 3
+    </a>
+  </li>
+  <li>
+    <a href="#helm-versions-1">
+      Helm version 2
+    </a>
+  </li>
+</ul>
+<div id="helm-versions-0">
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">helm install catalog svc-cat/catalog --namespace catalog</code></pre>
+  </div>
+  <p>
+</div>
+<div id="helm-versions-1">
+  <div class="highlight">
+    <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">helm install svc-cat/catalog --name catalog --namespace catalog</code></pre>
+  </div>
+  <p>
+</div>
+<p>
+<script>
+  $(function(){$("#helm-versions").tabs();});
+</script>
+<h2 id="what-s-next">
+  What&#39;s next
+</h2>
+<ul>
+  <li>
+    View
+    <a href="https://github.com/openservicebrokerapi/servicebroker/blob/master/gettingStarted.md#sample-service-brokers">
+      sample service brokers
+    </a>
+    .
+  </li>
+  <li>
+    Explore the
+    <a href="https://github.com/kubernetes-sigs/service-catalog">
+      kubernetes-sigs/service-catalog
+    </a>
+    project.
+  </li>
+</ul>
