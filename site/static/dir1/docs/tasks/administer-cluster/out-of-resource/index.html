@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configure Out of Resource Handling
     </h1>
@@ -615,7 +614,7 @@
             </code>
           </td>
           <td>
-            Available disk space and inodes on either the node&rsquo;s root filesystem or image filesystem has satisfied an eviction threshold
+            Available disk space and inodes on either the node’s root filesystem or image filesystem has satisfied an eviction threshold
           </td>
         </tr>
       </tbody>
@@ -784,7 +783,7 @@
       <a href="/docs/concepts/configuration/pod-priority-preemption/">
         Priority
       </a>
-      , and then by the consumption of the starved compute resource relative to the Pods&rsquo; scheduling requests.
+      , and then by the consumption of the starved compute resource relative to the Pods’ scheduling requests.
     </p>
     <p>
       As a result,
@@ -819,7 +818,7 @@
         </code>
         Pods are guaranteed only when requests and limits are specified for all
         the containers and they are equal. Such pods are guaranteed to never be evicted because
-        of another Pod&rsquo;s resource consumption. If a system daemon (such as
+        of another Pod’s resource consumption. If a system daemon (such as
         <code>
           kubelet
         </code>
@@ -903,7 +902,7 @@
       </code>
       - local volumes + logs of all its containers.
     </p>
-    <p>
+    <p data-diff="">
       If
       <code>
         imagefs
@@ -1169,7 +1168,7 @@
       <code>
         oom_score
       </code>
-      based on the percentage of memory it&rsquo;s using on the node, and then add the
+      based on the percentage of memory it’s using on the node, and then add the
       <code>
         oom_score_adj
       </code>
@@ -1236,7 +1235,7 @@
     <pre><code>--eviction-hard=memory.available&lt;500Mi
 --system-reserved=memory=1.5Gi</code></pre>
     <p>
-      Implicit in this configuration is the understanding that &ldquo;System reserved&rdquo; should include the amount of memory
+      Implicit in this configuration is the understanding that “System reserved” should include the amount of memory
       covered by the eviction threshold.
     </p>
     <p>
@@ -1442,5 +1441,5 @@
       </a>
       in the future.
     </p>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Installing Kubernetes with kops
     </h1>
@@ -71,7 +70,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -281,7 +280,7 @@
       ).
     </p>
     <p>
-      Let&rsquo;s assume you&rsquo;re using
+      Let’s assume you’re using
       <code>
         dev.example.com
       </code>
@@ -341,7 +340,7 @@
     <p>
       Multiple clusters can use the same S3 bucket, and you can share an S3 bucket between your colleagues that
       administer the same clusters - this is much easier than passing around kubecfg files.  But anyone with access
-      to the S3 bucket will have administrative access to all your clusters, so you don&rsquo;t want to share it beyond
+      to the S3 bucket will have administrative access to all your clusters, so you don’t want to share it beyond
       the operations team.
     </p>
     <p>
@@ -353,7 +352,7 @@
       <code>
         dev.example.com
       </code>
-      as our hosted zone, so let&rsquo;s pick
+      as our hosted zone, so let’s pick
       <code>
         clusters.dev.example.com
       </code>
@@ -410,7 +409,7 @@
         only
       </em>
       creates the configuration, it does
-      not actually create the cloud resources - you&rsquo;ll do that in the next step with a
+      not actually create the cloud resources - you’ll do that in the next step with a
       <code>
         kops update cluster
       </code>
@@ -456,7 +455,7 @@
       (5/5) Create the cluster in AWS
     </h3>
     <p>
-      Run &ldquo;kops update cluster&rdquo; to create your cluster in AWS:
+      Run “kops update cluster” to create your cluster in AWS:
     </p>
     <p>
       <code>
@@ -468,7 +467,7 @@
       <code>
         kops update cluster
       </code>
-      will be the tool you&rsquo;ll use whenever you change the configuration of your cluster; it
+      will be the tool you’ll use whenever you change the configuration of your cluster; it
       applies the changes you have made to the configuration to your cluster - reconfiguring AWS or kubernetes as needed.
     </p>
     <p>
@@ -568,5 +567,5 @@
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Using NodeLocal DNSCache in Kubernetes clusters
 </h1>
@@ -12,7 +11,7 @@
   Using NodeLocal DNSCache in Kubernetes clusters
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -131,7 +130,7 @@
   Introduction
 </h2>
 <p>
-  NodeLocal DNSCache improves Cluster DNS performance by running a dns caching agent on cluster nodes as a DaemonSet. In today&rsquo;s architecture, Pods in ClusterFirst DNS mode reach out to a kube-dns serviceIP for DNS queries. This is translated to a kube-dns/CoreDNS endpoint via iptables rules added by kube-proxy. With this new architecture, Pods will reach out to the dns caching agent running on the same node, thereby avoiding iptables DNAT rules and connection tracking. The local caching agent will query kube-dns service for cache misses of cluster hostnames(cluster.local suffix by default).
+  NodeLocal DNSCache improves Cluster DNS performance by running a dns caching agent on cluster nodes as a DaemonSet. In today’s architecture, Pods in ClusterFirst DNS mode reach out to a kube-dns serviceIP for DNS queries. This is translated to a kube-dns/CoreDNS endpoint via iptables rules added by kube-proxy. With this new architecture, Pods will reach out to the dns caching agent running on the same node, thereby avoiding iptables DNAT rules and connection tracking. The local caching agent will query kube-dns service for cache misses of cluster hostnames(cluster.local suffix by default).
 </p>
 <h2 id="motivation">
   Motivation
@@ -140,7 +139,7 @@
   <li>
     <p>
       With the current DNS architecture, it is possible that Pods with the highest DNS QPS have to reach out to a different node, if there is no local kube-dns/CoreDNS instance.
-      <br>
+      <br/>
       Having a local cache will help improve the latency in such scenarios.
     </p>
   </li>
@@ -167,7 +166,7 @@
   </li>
   <li>
     <p>
-      Upgrading DNS queries from UDP to TCP would reduce tail latency attributed to dropped UDP packets and DNS timeouts usually up to 30s (3 retries + 10s timeout). Since the nodelocal cache listens for UDP DNS queries, applications don&rsquo;t need to be changed.
+      Upgrading DNS queries from UDP to TCP would reduce tail latency attributed to dropped UDP packets and DNS timeouts usually up to 30s (3 retries + 10s timeout). Since the nodelocal cache listens for UDP DNS queries, applications don’t need to be changed.
     </p>
   </li>
   <li>
@@ -188,8 +187,7 @@
   This is the path followed by DNS Queries after NodeLocal DNSCache is enabled:
 </p>
 <figure>
-  <img src="/images/docs/nodelocaldns.jpg"
-         alt="NodeLocal DNSCache flow"/>
+  <img src="/images/docs/nodelocaldns.jpg" alt="NodeLocal DNSCache flow"/>
   <figcaption>
     <h4>
       Nodelocal DNSCache flow
@@ -262,7 +260,7 @@
       <code>
         &lt;cluster-domain&gt;
       </code>
-      is &ldquo;cluster.local&rdquo; by default.
+      is “cluster.local” by default.
       <code>
         &lt;node-local-address&gt;
       </code>
@@ -285,7 +283,7 @@
             __PILLAR__UPSTREAM__SERVERS__
           </code>
           will be populated by the node-local-dns pods.
-          <br>
+          <br/>
           In this mode, node-local-dns pods listen on both the kube-dns service IP as well as
           <code>
             &lt;node-local-address&gt;
@@ -306,7 +304,7 @@
             &lt;node-local-address&gt;
           </code>
           . The node-local-dns interface cannot bind the kube-dns cluster IP since the interface used for IPVS loadbalancing already uses this address.
-          <br>
+          <br/>
           <code>
             __PILLAR__UPSTREAM__SERVERS__
           </code>
@@ -359,4 +357,4 @@
     kubectl delete -f &lt;manifest&gt;
   </code>
   . You should also revert any changes you made to the kubelet configuration.
-</p>
+</p></div></body></html>

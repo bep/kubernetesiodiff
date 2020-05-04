@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Troubleshoot Applications
     </h1>
@@ -31,7 +30,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -98,7 +97,7 @@
       <li>
         <p>
           <strong>
-            You don&rsquo;t have enough resources
+            You don’t have enough resources
           </strong>
           :  You may have exhausted the supply of CPU or Memory in your cluster, in this case
           you need to delete Pods, adjust resource requests, or add new nodes to your cluster. See
@@ -141,7 +140,7 @@
       <code>
         Waiting
       </code>
-      state, then it has been scheduled to a worker node, but it can&rsquo;t run on that machine.
+      state, then it has been scheduled to a worker node, but it can’t run on that machine.
       Again, the information from
       <code>
         kubectl describe ...
@@ -245,7 +244,7 @@ pods/mypod</code></pre>
         mypod-on-apiserver.yaml
       </code>
       .  There will typically be some
-      lines on the &ldquo;apiserver&rdquo; version that are not on the original version.  This is
+      lines on the “apiserver” version that are not on the original version.  This is
       expected.  However, if there are lines on the original that are not on the apiserver
       version, then this may indicate a problem with your pod spec.
     </p>
@@ -253,7 +252,7 @@ pods/mypod</code></pre>
       Debugging Replication Controllers
     </h3>
     <p>
-      Replication controllers are fairly straightforward.  They can either create Pods or they can&rsquo;t.  If they can&rsquo;t
+      Replication controllers are fairly straightforward.  They can either create Pods or they can’t.  If they can’t
       create pods, then please refer to the
       <a href="#debugging-pods">
         instructions above
@@ -291,7 +290,7 @@ pods/mypod</code></pre>
     <p>
       Make sure that the endpoints match up with the number of containers that you expect to be a member of your service.
       For example, if your Service is for an nginx container with 3 replicas, you would expect to see three different
-      IP addresses in the Service&rsquo;s endpoints.
+      IP addresses in the Service’s endpoints.
     </p>
     <h4 id="my-service-is-missing-endpoints">
       My service is missing endpoints
@@ -317,20 +316,20 @@ pods/mypod</code></pre>
       to list pods that match this selector.  Verify that the list matches the Pods that you expect to provide your Service.
     </p>
     <p>
-      If the list of pods matches expectations, but your endpoints are still empty, it&rsquo;s possible that you don&rsquo;t
+      If the list of pods matches expectations, but your endpoints are still empty, it’s possible that you don’t
       have the right ports exposed.  If your service has a
       <code>
         containerPort
       </code>
       specified, but the Pods that are
-      selected don&rsquo;t have that port listed, then they won&rsquo;t be added to the endpoints list.
+      selected don’t have that port listed, then they won’t be added to the endpoints list.
     </p>
     <p>
-      Verify that the pod&rsquo;s
+      Verify that the pod’s
       <code>
         containerPort
       </code>
-      matches up with the Service&rsquo;s
+      matches up with the Service’s
       <code>
         targetPort
       </code>
@@ -340,7 +339,7 @@ pods/mypod</code></pre>
     </h4>
     <p>
       If you can connect to the service, but the connection is immediately dropped, and there are endpoints
-      in the endpoints list, it&rsquo;s likely that the proxy can&rsquo;t contact your pods.
+      in the endpoints list, it’s likely that the proxy can’t contact your pods.
     </p>
     <p>
       There are three things to
@@ -358,7 +357,7 @@ pods/mypod</code></pre>
         Can you connect to your pods directly?  Get the IP address for the Pod, and try to connect directly to that IP.
       </li>
       <li>
-        Is your application serving on the port that you configured?  Kubernetes doesn&rsquo;t do port remapping, so if your application serves on 8080, the
+        Is your application serving on the port that you configured?  Kubernetes doesn’t do port remapping, so if your application serves on 8080, the
         <code>
           containerPort
         </code>
@@ -394,5 +393,5 @@ pods/mypod</code></pre>
       </a>
       for more information.
     </p>
-  </body>
-</html>
+  
+</body></html>

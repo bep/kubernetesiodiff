@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Custom Hugo Shortcodes
 </h1>
@@ -44,7 +43,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -64,12 +63,12 @@
 <p>
   Below is a demo of the feature state snippet, which displays the feature as stable in Kubernetes version 1.10.
 </p>
-<pre><code>{{&lt; feature-state for_k8s_version=&quot;v1.10&quot; state=&quot;stable&quot; &gt;}}</code></pre>
+<pre><code>{{&lt; feature-state for_k8s_version=&#34;v1.10&#34; state=&#34;stable&#34; &gt;}}</code></pre>
 <p>
   Renders to:
 </p>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -152,7 +151,7 @@
     for_k8s_version
   </code>
   shortcode parameter.
-</p><pre><code>{{&lt; feature-state for_k8s_version=&quot;v1.10&quot; state=&quot;stable&quot; &gt;}}</code></pre>
+</p><pre><code>{{&lt; feature-state for_k8s_version=&#34;v1.10&#34; state=&#34;stable&#34; &gt;}}</code></pre>
 <p>
   Renders to:
 </p>
@@ -212,7 +211,7 @@
 </script>
 <h4 id="alpha-feature">
   Alpha feature
-</h4><pre><code>{{&lt; feature-state state=&quot;alpha&quot; &gt;}}</code></pre>
+</h4><pre><code>{{&lt; feature-state state=&#34;alpha&#34; &gt;}}</code></pre>
 <p>
   Renders to:
 </p>
@@ -281,7 +280,7 @@
 </script>
 <h4 id="beta-feature">
   Beta feature
-</h4><pre><code>{{&lt; feature-state state=&quot;beta&quot; &gt;}}</code></pre>
+</h4><pre><code>{{&lt; feature-state state=&#34;beta&#34; &gt;}}</code></pre>
 <p>
   Renders to:
 </p>
@@ -355,7 +354,7 @@
 </script>
 <h4 id="stable-feature">
   Stable feature
-</h4><pre><code>{{&lt; feature-state state=&quot;stable&quot; &gt;}}</code></pre>
+</h4><pre><code>{{&lt; feature-state state=&#34;stable&#34; &gt;}}</code></pre>
 <p>
   Renders to:
 </p>
@@ -415,7 +414,7 @@
 </script>
 <h4 id="deprecated-feature">
   Deprecated feature
-</h4><pre><code>{{&lt; feature-state state=&quot;deprecated&quot; &gt;}}</code></pre>
+</h4><pre><code>{{&lt; feature-state state=&#34;deprecated&#34; &gt;}}</code></pre>
 <p>
   Renders to:
 </p>
@@ -490,14 +489,14 @@
 </h3>
 <p>
   For example, the following include within the markdown renders to
-  <a class='glossary-tooltip' href='/dir2/docs/reference/glossary/?all=true#term-cluster' target='_blank'>
+  <a class="glossary-tooltip" href="/dir2/docs/reference/glossary/?all=true#term-cluster" target="_blank">
     cluster
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A set of worker machines, called nodes, that run containerized applications. Every cluster has at least one worker node.
     </span>
   </a>
   with a tooltip:
-</p><pre><code class="language-liquid" data-lang="liquid">{{&lt; glossary_tooltip text=&quot;cluster&quot; term_id=&quot;cluster&quot; &gt;}}</code></pre>
+</p><pre><code class="language-liquid" data-lang="liquid">{{&lt; glossary_tooltip text=&#34;cluster&#34; term_id=&#34;cluster&#34; &gt;}}</code></pre>
 <h2 id="table-captions">
   Table captions
 </h2>
@@ -525,7 +524,7 @@
   </div>
 </blockquote>
 <p>
-  Here&rsquo;s an example:
+  Here’s an example:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go-html-template" data-lang="go-html-template"><span style="color:#080">{{</span><span style="">&lt;</span><span style="color:#bbb"> </span>table<span style="color:#bbb"> </span>caption<span style="">=</span><span style="color:#b44">&#34;Configuration parameters&#34;</span><span style="color:#bbb"> </span><span style="">&gt;</span><span style="color:#080">}}</span>
@@ -640,13 +639,13 @@ Parameter | Description | Default
     <a href="https://gohugo.io/content-management/page-bundles/#leaf-bundles">
       leaf bundle
     </a>
-    , the file &ndash; which can be any MIME type supported by Hugo &ndash; is looked up in the bundle itself. If not, the content page that needs to be included is looked up relative to the current page. Note that with the
+    , the file – which can be any MIME type supported by Hugo – is looked up in the bundle itself. If not, the content page that needs to be included is looked up relative to the current page. Note that with the
     <code>
       include
     </code>
     , you do not have any shortcode inner content and must use the self-closing syntax. For example,
     <code>
-      {{&lt; tab name=&quot;Content File #1&rdquo; include=&quot;example1&rdquo; /&gt;}}
+      {{&lt; tab name=&#34;Content File #1” include=&#34;example1” /&gt;}}
     </code>
     . The language needs to be specified under
     <code>
@@ -661,7 +660,7 @@ Parameter | Description | Default
     </code>
     -delimiter to surround the tab. For example,
     <code>
-      {{% tab name=&quot;Tab 1&quot; %}}This is **markdown**{{% /tab %}}
+      {{% tab name=&#34;Tab 1&#34; %}}This is **markdown**{{% /tab %}}
     </code>
   </li>
   <li>
@@ -717,25 +716,25 @@ println &#34;This is tab 2.&#34;
   </li>
 </ul>
 <div id="tab-with-code-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;</code></pre>
 <p>
 <span style="color:#a2f">
   echo
 </span>
 <span style="color:#b44">
-  &quot;This is tab 1.&quot;
+  &#34;This is tab 1.&#34;
 </span>
-<div id="tab-with-code-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;</code></pre>
+</p><div id="tab-with-code-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;</code></pre>
 <p>
 println
 <span style="color:#b44">
-  &quot;This is tab 2.&quot;
+  &#34;This is tab 2.&#34;
 </span>
 <script>
   $(function(){$("#tab-with-code").tabs();});
 </script>
-<h3 id="tabs-demo-inline-markdown-and-html">
+</p><h3 id="tabs-demo-inline-markdown-and-html">
   Tabs demo: Inline Markdown and HTML
 </h3>
 <div class="highlight">
@@ -747,10 +746,10 @@ It can even contain shortcodes.
 <span style="color:#080">{{</span><span style="">&lt;</span><span style="color:#bbb"> </span><span style="">/</span>note<span style="color:#bbb"> </span><span style="">&gt;</span><span style="color:#080">}}</span>
 <span style="color:#080">{{</span><span style="">%</span><span style="color:#bbb"> </span><span style="">/</span>tab<span style="color:#bbb"> </span><span style="">%</span><span style="color:#080">}}</span>
 <span style="color:#080">{{</span><span style="">&lt;</span><span style="color:#bbb"> </span>tab<span style="color:#bbb"> </span>name<span style="">=</span><span style="color:#b44">&#34;HTML&#34;</span><span style="color:#bbb"> </span><span style="">&gt;</span><span style="color:#080">}}</span>
-&lt;<span style="color:#008000;font-weight:bold">div</span>&gt;
+<span style="color:#080">{{</span><span style="">&lt;</span><span style="color:#bbb"> </span>wrap<span style="color:#bbb"> </span><span style="">&gt;</span><span style="color:#080">}}{{</span><span style="">&lt;</span><span style="color:#bbb"> </span>wrap<span style="color:#bbb"> </span><span style="">&gt;</span><span style="color:#080">}}</span>&lt;<span style="color:#008000;font-weight:bold">div</span>&gt;
 	&lt;<span style="color:#008000;font-weight:bold">h3</span>&gt;Plain HTML&lt;/<span style="color:#008000;font-weight:bold">h3</span>&gt;
 	&lt;<span style="color:#008000;font-weight:bold">p</span>&gt;This is some &lt;<span style="color:#008000;font-weight:bold">i</span>&gt;plain&lt;/<span style="color:#008000;font-weight:bold">i</span>&gt; HTML.&lt;/<span style="color:#008000;font-weight:bold">p</span>&gt;
-&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;<span style="color:#080">{{</span><span style="">&lt;</span><span style="color:#bbb"> </span><span style="">/</span>wrap<span style="color:#bbb"> </span><span style="">&gt;</span><span style="color:#080">}}{{</span><span style="">&lt;</span><span style="color:#bbb"> </span><span style="">/</span>wrap<span style="color:#bbb"> </span><span style="">&gt;</span><span style="color:#080">}}</span>
 <span style="color:#080">{{</span><span style="">&lt;</span><span style="color:#bbb"> </span><span style="">/</span>tab<span style="color:#bbb"> </span><span style="">&gt;</span><span style="color:#080">}}</span>
 <span style="color:#080">{{</span><span style="">&lt;</span><span style="color:#bbb"> </span><span style="">/</span>tabs<span style="color:#bbb"> </span><span style="">&gt;</span><span style="color:#080">}}</span></code></pre>
 </div>
@@ -845,24 +844,24 @@ It can even contain shortcodes.
   <pre><code>                &lt;p&gt;This is another &lt;strong&gt;example&lt;/strong&gt; content file inside the &lt;strong&gt;includes&lt;/strong&gt; leaf bundle.&lt;/p&gt;</code></pre>
 </div>
 <div id="tab-with-file-include-2">
-<pre><code>            &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;  {
-&lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;apiVersion&amp;#34;&lt;/span&gt;: &lt;span style=&quot;color:#b44&quot;&gt;&amp;#34;v1&amp;#34;&lt;/span&gt;,
-&lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;kind&amp;#34;&lt;/span&gt;: &lt;span style=&quot;color:#b44&quot;&gt;&amp;#34;PodTemplate&amp;#34;&lt;/span&gt;,
-&lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;metadata&amp;#34;&lt;/span&gt;: {
-  &lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&quot;color:#b44&quot;&gt;&amp;#34;nginx&amp;#34;&lt;/span&gt;
+<pre><code>            &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;  {
+&lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;apiVersion&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;v1&amp;#34;&lt;/span&gt;,
+&lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;kind&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;PodTemplate&amp;#34;&lt;/span&gt;,
+&lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;metadata&amp;#34;&lt;/span&gt;: {
+  &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;nginx&amp;#34;&lt;/span&gt;
 },
-&lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;template&amp;#34;&lt;/span&gt;: {
-  &lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;metadata&amp;#34;&lt;/span&gt;: {
-    &lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;labels&amp;#34;&lt;/span&gt;: {
-      &lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&quot;color:#b44&quot;&gt;&amp;#34;nginx&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;template&amp;#34;&lt;/span&gt;: {
+  &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;metadata&amp;#34;&lt;/span&gt;: {
+    &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;labels&amp;#34;&lt;/span&gt;: {
+      &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;nginx&amp;#34;&lt;/span&gt;
     },
-    &lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;generateName&amp;#34;&lt;/span&gt;: &lt;span style=&quot;color:#b44&quot;&gt;&amp;#34;nginx-&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;generateName&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;nginx-&amp;#34;&lt;/span&gt;
   },
-  &lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;spec&amp;#34;&lt;/span&gt;: {
-     &lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;containers&amp;#34;&lt;/span&gt;: [{
-       &lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&quot;color:#b44&quot;&gt;&amp;#34;nginx&amp;#34;&lt;/span&gt;,
-       &lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;image&amp;#34;&lt;/span&gt;: &lt;span style=&quot;color:#b44&quot;&gt;&amp;#34;dockerfile/nginx&amp;#34;&lt;/span&gt;,
-       &lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;ports&amp;#34;&lt;/span&gt;: [{&lt;span style=&quot;color:#008000;font-weight:bold&quot;&gt;&amp;#34;containerPort&amp;#34;&lt;/span&gt;: &lt;span style=&quot;color:#666&quot;&gt;80&lt;/span&gt;}]
+  &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;spec&amp;#34;&lt;/span&gt;: {
+     &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;containers&amp;#34;&lt;/span&gt;: [{
+       &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;nginx&amp;#34;&lt;/span&gt;,
+       &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;image&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;dockerfile/nginx&amp;#34;&lt;/span&gt;,
+       &lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;ports&amp;#34;&lt;/span&gt;: [{&lt;span style=&#34;color:#008000;font-weight:bold&#34;&gt;&amp;#34;containerPort&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#666&#34;&gt;80&lt;/span&gt;}]
      }]
   }
 }</code></pre>
@@ -871,7 +870,7 @@ It can even contain shortcodes.
 <script>
   $(function(){$("#tab-with-file-include").tabs();});
 </script>
-<h2 id="what-s-next">
+</p><h2 id="what-s-next">
   What&#39;s next
 </h2>
 <ul>
@@ -909,4 +908,4 @@ It can even contain shortcodes.
     </a>
     .
   </li>
-</ul>
+</ul></div></div></div></div></div></div></div></div></div></div></div></body></html>

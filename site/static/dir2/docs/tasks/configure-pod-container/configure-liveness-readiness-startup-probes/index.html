@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configure Liveness, Readiness and Startup Probes
     </h1>
@@ -34,7 +33,7 @@
     <p>
       The kubelet uses startup probes to know when a container application has started.
       If such a probe is configured, it disables liveness and readiness checks until
-      it succeeds, making sure those probes don&rsquo;t interfere with the application startup.
+      it succeeds, making sure those probes don’t interfere with the application startup.
       This can be used to adopt liveness checks on slow starting containers, avoiding them
       getting killed by the kubelet before they are up and running.
     </p>
@@ -81,7 +80,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -141,7 +140,7 @@
                 pods/probe/exec-liveness.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-probe-exec-liveness-yaml')" title="Copy pods/probe/exec-liveness.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-probe-exec-liveness-yaml&#39;)" title="Copy pods/probe/exec-liveness.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -209,7 +208,7 @@
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/bin/sh -c <span style="color:#b44">&#34;touch /tmp/healthy; sleep 30; rm -rf /tmp/healthy; sleep 600&#34;</span></code></pre>
     </div>
     <p>
-      For the first 30 seconds of the container&rsquo;s life, there is a
+      For the first 30 seconds of the container’s life, there is a
       <code>
         /tmp/healthy
       </code>
@@ -243,8 +242,8 @@
     <pre><code>FirstSeen    LastSeen    Count   From            SubobjectPath           Type        Reason      Message
 --------- --------    -----   ----            -------------           --------    ------      -------
 24s       24s     1   {default-scheduler }                    Normal      Scheduled   Successfully assigned liveness-exec to worker0
-23s       23s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Pulling     pulling image &quot;k8s.gcr.io/busybox&quot;
-23s       23s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Pulled      Successfully pulled image &quot;k8s.gcr.io/busybox&quot;
+23s       23s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Pulling     pulling image &#34;k8s.gcr.io/busybox&#34;
+23s       23s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Pulled      Successfully pulled image &#34;k8s.gcr.io/busybox&#34;
 23s       23s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Created     Created container with docker id 86849c15382e; Security:[seccomp=unconfined]
 23s       23s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Started     Started container with docker id 86849c15382e</code></pre>
     <p>
@@ -260,11 +259,11 @@
     <pre><code>FirstSeen LastSeen    Count   From            SubobjectPath           Type        Reason      Message
 --------- --------    -----   ----            -------------           --------    ------      -------
 37s       37s     1   {default-scheduler }                    Normal      Scheduled   Successfully assigned liveness-exec to worker0
-36s       36s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Pulling     pulling image &quot;k8s.gcr.io/busybox&quot;
-36s       36s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Pulled      Successfully pulled image &quot;k8s.gcr.io/busybox&quot;
+36s       36s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Pulling     pulling image &#34;k8s.gcr.io/busybox&#34;
+36s       36s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Pulled      Successfully pulled image &#34;k8s.gcr.io/busybox&#34;
 36s       36s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Created     Created container with docker id 86849c15382e; Security:[seccomp=unconfined]
 36s       36s     1   {kubelet worker0}   spec.containers{liveness}   Normal      Started     Started container with docker id 86849c15382e
-2s        2s      1   {kubelet worker0}   spec.containers{liveness}   Warning     Unhealthy   Liveness probe failed: cat: can't open '/tmp/healthy': No such file or directory</code></pre>
+2s        2s      1   {kubelet worker0}   spec.containers{liveness}   Warning     Unhealthy   Liveness probe failed: cat: can&#39;t open &#39;/tmp/healthy&#39;: No such file or directory</code></pre>
     <p>
       Wait another 30 seconds, and verify that the container has been restarted:
     </p>
@@ -300,7 +299,7 @@ liveness-exec   1/1       Running   1          1m</code></pre>
                 pods/probe/http-liveness.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-probe-http-liveness-yaml')" title="Copy pods/probe/http-liveness.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-probe-http-liveness-yaml&#39;)" title="Copy pods/probe/http-liveness.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -349,7 +348,7 @@ liveness-exec   1/1       Running   1          1m</code></pre>
       field tells the kubelet that it
       should wait 3 seconds before performing the first probe. To perform a probe, the
       kubelet sends an HTTP GET request to the server that is running in the container
-      and listening on port 8080. If the handler for the server&rsquo;s
+      and listening on port 8080. If the handler for the server’s
       <code>
         /healthz
       </code>
@@ -439,7 +438,7 @@ liveness-exec   1/1       Running   1          1m</code></pre>
                 pods/probe/tcp-liveness-readiness.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-probe-tcp-liveness-readiness-yaml')" title="Copy pods/probe/tcp-liveness-readiness.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-probe-tcp-liveness-readiness-yaml&#39;)" title="Copy pods/probe/tcp-liveness-readiness.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -528,7 +527,7 @@ liveness-exec   1/1       Running   1          1m</code></pre>
 </span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">livenessProbe</span>:<span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">httpGet</span>:<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">path</span>:<span style="color:#bbb"> </span>/healthz<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span>liveness-port<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">port</span>:<span style="color:#bbb"> </span>liveness-port<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <h2 id="define-startup-probes">
@@ -577,7 +576,7 @@ liveness-exec   1/1       Running   1          1m</code></pre>
       Once the startup probe has succeeded once, the liveness probe takes over to
       provide a fast response to container deadlocks.
       If the startup probe never succeeds, the container is killed after 300s and
-      subject to the pod&rsquo;s
+      subject to the pod’s
       <code>
         restartPolicy
       </code>
@@ -590,7 +589,7 @@ liveness-exec   1/1       Running   1          1m</code></pre>
       Sometimes, applications are temporarily unable to serve traffic.
       For example, an application might need to load large data or configuration
       files during startup, or depend on external services after startup.
-      In such cases, you don&rsquo;t want to kill the application,
+      In such cases, you don’t want to kill the application,
       but you don’t want to send it requests either. Kubernetes provides
       readiness probes to detect and mitigate these situations. A pod with containers
       reporting that they are not ready does not receive traffic through Kubernetes
@@ -705,7 +704,7 @@ liveness-exec   1/1       Running   1          1m</code></pre>
           host
         </code>
         : Host name to connect to, defaults to the pod IP. You probably want to
-        set &ldquo;Host&rdquo; in httpHeaders instead.
+        set “Host” in httpHeaders instead.
       </li>
       <li>
         <code>
@@ -758,8 +757,8 @@ liveness-exec   1/1       Running   1          1m</code></pre>
         host
       </code>
       field.
-      Here&rsquo;s one scenario where you would set it. Suppose the container listens on 127.0.0.1
-      and the Pod&rsquo;s
+      Here’s one scenario where you would set it. Suppose the container listens on 127.0.0.1
+      and the Pod’s
       <code>
         hostNetwork
       </code>
@@ -828,5 +827,5 @@ liveness-exec   1/1       Running   1          1m</code></pre>
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

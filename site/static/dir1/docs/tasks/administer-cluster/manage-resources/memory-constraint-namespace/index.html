@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configure Minimum and Maximum Memory Constraints for a Namespace
     </h1>
@@ -68,7 +67,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -121,7 +120,7 @@
       Create a LimitRange and a Pod
     </h2>
     <p>
-      Here&rsquo;s the configuration file for a LimitRange:
+      Here’s the configuration file for a LimitRange:
     </p>
     <table class="includecode" id="admin-resource-memory-constraints-yaml">
       <thead>
@@ -132,7 +131,7 @@
                 admin/resource/memory-constraints.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-memory-constraints-yaml')" title="Copy admin/resource/memory-constraints.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-memory-constraints-yaml&#39;)" title="Copy admin/resource/memory-constraints.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -171,7 +170,7 @@
     </div>
     <p>
       The output shows the minimum and maximum memory constraints as expected. But
-      notice that even though you didn&rsquo;t specify default values in the configuration
+      notice that even though you didn’t specify default values in the configuration
       file for the LimitRange, they were created automatically.
     </p>
     <pre><code>  limits:
@@ -207,7 +206,7 @@
       </li>
     </ul>
     <p>
-      Here&rsquo;s the configuration file for a Pod that has one Container. The Container manifest
+      Here’s the configuration file for a Pod that has one Container. The Container manifest
       specifies a memory request of 600 MiB and a memory limit of 800 MiB. These satisfy the
       minimum and maximum memory constraints imposed by the LimitRange.
     </p>
@@ -220,7 +219,7 @@
                 admin/resource/memory-constraints-pod.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-memory-constraints-pod-yaml')" title="Copy admin/resource/memory-constraints-pod.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-memory-constraints-pod-yaml&#39;)" title="Copy admin/resource/memory-constraints-pod.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -254,7 +253,7 @@
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/admin/resource/memory-constraints-pod.yaml --namespace<span style="color:#666">=</span>constraints-mem-example</code></pre>
     </div>
     <p>
-      Verify that the Pod&rsquo;s Container is running:
+      Verify that the Pod’s Container is running:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod constraints-mem-demo --namespace<span style="color:#666">=</span>constraints-mem-example</code></pre>
@@ -286,7 +285,7 @@
       Attempt to create a Pod that exceeds the maximum memory constraint
     </h2>
     <p>
-      Here&rsquo;s the configuration file for a Pod that has one Container. The Container specifies a
+      Here’s the configuration file for a Pod that has one Container. The Container specifies a
       memory request of 800 MiB and a memory limit of 1.5 GiB.
     </p>
     <table class="includecode" id="admin-resource-memory-constraints-pod-2-yaml">
@@ -298,7 +297,7 @@
                 admin/resource/memory-constraints-pod-2.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-memory-constraints-pod-2-yaml')" title="Copy admin/resource/memory-constraints-pod-2.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-memory-constraints-pod-2-yaml&#39;)" title="Copy admin/resource/memory-constraints-pod-2.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -341,7 +340,7 @@ pods &#34;constraints-mem-demo-2&#34; is forbidden: maximum memory usage per Con
       Attempt to create a Pod that does not meet the minimum memory request
     </h2>
     <p>
-      Here&rsquo;s the configuration file for a Pod that has one Container. The Container specifies a
+      Here’s the configuration file for a Pod that has one Container. The Container specifies a
       memory request of 100 MiB and a memory limit of 800 MiB.
     </p>
     <table class="includecode" id="admin-resource-memory-constraints-pod-3-yaml">
@@ -353,7 +352,7 @@ pods &#34;constraints-mem-demo-2&#34; is forbidden: maximum memory usage per Con
                 admin/resource/memory-constraints-pod-3.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-memory-constraints-pod-3-yaml')" title="Copy admin/resource/memory-constraints-pod-3.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-memory-constraints-pod-3-yaml&#39;)" title="Copy admin/resource/memory-constraints-pod-3.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -396,7 +395,7 @@ pods &#34;constraints-mem-demo-3&#34; is forbidden: minimum memory usage per Con
       Create a Pod that does not specify any memory request or limit
     </h2>
     <p>
-      Here&rsquo;s the configuration file for a Pod that has one Container. The Container does not
+      Here’s the configuration file for a Pod that has one Container. The Container does not
       specify a memory request, and it does not specify a memory limit.
     </p>
     <table class="includecode" id="admin-resource-memory-constraints-pod-4-yaml">
@@ -408,7 +407,7 @@ pods &#34;constraints-mem-demo-3&#34; is forbidden: minimum memory usage per Con
                 admin/resource/memory-constraints-pod-4.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-memory-constraints-pod-4-yaml')" title="Copy admin/resource/memory-constraints-pod-4.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-memory-constraints-pod-4-yaml&#39;)" title="Copy admin/resource/memory-constraints-pod-4.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -442,7 +441,7 @@ pods &#34;constraints-mem-demo-3&#34; is forbidden: minimum memory usage per Con
     </p>
     <pre><code>kubectl get pod constraints-mem-demo-4 --namespace=constraints-mem-example --output=yaml</code></pre>
     <p>
-      The output shows that the Pod&rsquo;s Container has a memory request of 1 GiB and a memory limit of 1 GiB.
+      The output shows that the Pod’s Container has a memory request of 1 GiB and a memory limit of 1 GiB.
       How did the Container get those values?
     </p>
     <pre><code>resources:
@@ -584,5 +583,5 @@ pods &#34;constraints-mem-demo-3&#34; is forbidden: minimum memory usage per Con
         </p>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

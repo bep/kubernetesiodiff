@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1></h1>
 <p>
   <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_config_migrate.md" id="editPageButton" target="_blank">
@@ -12,7 +11,7 @@
     <li>
       <ul>
         <li>
-          <ul>
+          <ul data-diff="">
             <li>
               <a href="#synopsis">
                 Synopsis
@@ -44,31 +43,37 @@
   - kubeadm.k8s.io/v1beta2
 </p>
 <p>
-  Further, kubeadm can only write out config of version &ldquo;kubeadm.k8s.io/v1beta2&rdquo;, but read both types.
-  So regardless of what version you pass to the &ndash;old-config parameter here, the API object will be
+  Further, kubeadm can only write out config of version “kubeadm.k8s.io/v1beta2”, but read both types.
+  So regardless of what version you pass to the –old-config parameter here, the API object will be
   read, deserialized, defaulted, converted, validated, and re-serialized when written to stdout or
-  &ndash;new-config if specified.
+  –new-config if specified.
 </p>
 <p>
   In other words, the output of this command is what kubeadm actually would read internally if you
-  submitted this file to &ldquo;kubeadm init&rdquo;
+  submitted this file to “kubeadm init”
 </p>
 <pre><code>kubeadm config migrate [flags]</code></pre>
 <h3 id="options">
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  <p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -77,11 +82,10 @@
       help for migrate
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;new-config string
+      –new-config string
     </td>
   </tr>
   <tr>
@@ -90,11 +94,10 @@
       Path to the resulting equivalent kubeadm config file using the new API version. Optional, if not specified output will be sent to STDOUT.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;old-config string
+      –old-config string
     </td>
   </tr>
   <tr>
@@ -103,23 +106,20 @@
       Path to the kubeadm config file that is using an old API version and should be converted. This flag is mandatory.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p></p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -128,18 +128,17 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;rootfs string
+      –rootfs string
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
     </td>
   </tr>
-</p>
-<p>
+
+</tbody></table></p></body></html>

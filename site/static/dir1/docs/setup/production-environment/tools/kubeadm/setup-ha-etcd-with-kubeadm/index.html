@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Set up a High Availability etcd cluster with kubeadm
     </h1>
@@ -47,7 +46,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -171,7 +170,7 @@ cat <span style="color:#b44">&lt;&lt; EOF &gt; /tmp/${HOST}/kubeadmcfg.yaml
           Generate the certificate authority
         </p>
         <p>
-          If you already have a CA then the only action that is copying the CA&rsquo;s
+          If you already have a CA then the only action that is copying the CA’s
           <code>
             crt
           </code>
@@ -188,7 +187,7 @@ cat <span style="color:#b44">&lt;&lt; EOF &gt; /tmp/${HOST}/kubeadmcfg.yaml
             /etc/kubernetes/pki/etcd/ca.key
           </code>
           . After those files have been copied,
-          proceed to the next step, &ldquo;Create certificates for each member&rdquo;.
+          proceed to the next step, “Create certificates for each member”.
         </p>
         <p>
           If you do not already have a CA then run this command on
@@ -255,7 +254,7 @@ find /tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:
           respective hosts.
         </p>
         <div class="highlight">
-          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"> <span style="color:#b8860b">USER</span><span style="color:#666">=</span>ubuntu
+          <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"> <span style="color:#b8860b">USER</span><span style="color:#666" data-diff="">=</span>ubuntu
  <span style="color:#b8860b">HOST</span><span style="color:#666">=</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST1</span><span style="color:#b68;font-weight:bold">}</span>
  scp -r /tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST</span><span style="color:#b68;font-weight:bold">}</span>/* <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">USER</span><span style="color:#b68;font-weight:bold">}</span>@<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST</span><span style="color:#b68;font-weight:bold">}</span>:
  ssh <span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">USER</span><span style="color:#b68;font-weight:bold">}</span>@<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">HOST</span><span style="color:#b68;font-weight:bold">}</span>
@@ -337,7 +336,7 @@ find /tmp/<span style="color:#b68;font-weight:bold">${</span><span style="color:
           Create the static pod manifests
         </p>
         <p>
-          Now that the certificates and configs are in place it&rsquo;s time to create the
+          Now that the certificates and configs are in place it’s time to create the
           manifests. On each host run the
           <code>
             kubeadm
@@ -413,5 +412,5 @@ https://<span style="color:#666">[</span>HOST2 IP<span style="color:#666">]</spa
       </a>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

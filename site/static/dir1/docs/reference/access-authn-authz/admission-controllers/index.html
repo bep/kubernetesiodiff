@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Using Admission Controllers
 </h1>
@@ -76,7 +75,7 @@
   which are configured in the API.
 </p>
 <p>
-  Admission controllers may be &ldquo;validating&rdquo;, &ldquo;mutating&rdquo;, or both. Mutating
+  Admission controllers may be “validating”, “mutating”, or both. Mutating
   controllers may modify the objects they admit; validating controllers may not.
 </p>
 <p>
@@ -176,7 +175,7 @@
   AlwaysAdmit
 </h3>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-  <b>
+  <b data-diff="">
     FEATURE STATE:
   </b>
   <code>
@@ -232,7 +231,7 @@
   This admission controller modifies every new Pod to force the image pull policy to Always. This is useful in a
   multitenant cluster so that users can be assured that their private images can only be used by those
   who have the credentials to pull them. Without this admission controller, once an image has been pulled to a
-  node, any pod from any user can use it simply by knowing the image&rsquo;s name (assuming the Pod is
+  node, any pod from any user can use it simply by knowing the image’s name (assuming the Pod is
   scheduled onto the right node), without any authorization check against the image. When this admission controller
   is enabled, images are always pulled prior to starting containers, which means valid credentials are
   required.
@@ -294,7 +293,7 @@
   CertificateApproval
 </h3>
 <p>
-  This admission controller observes requests to &lsquo;approve&rsquo; CertificateSigningRequest resources and performs additional
+  This admission controller observes requests to ‘approve’ CertificateSigningRequest resources and performs additional
   authorization checks to ensure the approving user has permission to
   <code>
     approve
@@ -353,7 +352,7 @@
   <code>
     kubernetes.io/kube-apiserver-client
   </code>
-  . It rejects any request that specifies a &lsquo;group&rsquo; (or &lsquo;organization attribute&rsquo;)
+  . It rejects any request that specifies a ‘group’ (or ‘organization attribute’)
   of
   <code>
     system:masters
@@ -413,7 +412,7 @@
     unreachable:NoExecute
   </code>
   for 5 minutes,
-  if the pods don&rsquo;t already have toleration for taints
+  if the pods don’t already have toleration for taints
   <code>
     node.kubernetes.io/not-ready:NoExecute
   </code>
@@ -654,7 +653,7 @@
       EventRateLimit
     </code>
     configuration file from the file provided to the API
-    server&rsquo;s command line flag
+    server’s command line flag
     <code>
       --admission-control-config-file
     </code>
@@ -684,7 +683,7 @@
 </span><span style="color:#bbb"></span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="eventratelimit-example-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.17 in favor of apiserver.config.k8s.io/v1</span><span style="color:#bbb">
@@ -696,12 +695,12 @@
 </span><span style="color:#bbb"></span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#eventratelimit-example").tabs();});
 </script>
-<p>
+</p><p>
   There are four types of limits that can be specified in the configuration:
 </p>
 <ul>
@@ -768,7 +767,7 @@
   </a>
   with the extended resource
   name as the key. This admission controller, if enabled, automatically
-  adds tolerations for such taints to pods requesting extended resources, so users don&rsquo;t have to manually
+  adds tolerations for such taints to pods requesting extended resources, so users don’t have to manually
   add these tolerations.
 </p>
 <h3 id="imagepolicywebhook">
@@ -797,7 +796,7 @@
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">defaultAllow</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span></code></pre>
 </div>
 <p>
-  Reference the ImagePolicyWebhook configuration file from the file provided to the API server&rsquo;s command line flag
+  Reference the ImagePolicyWebhook configuration file from the file provided to the API server’s command line flag
   <code>
     --admission-control-config-file
   </code>
@@ -826,7 +825,7 @@
 </span><span style="color:#bbb"></span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="imagepolicywebhook-example1-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.17 in favor of apiserver.config.k8s.io/v1</span><span style="color:#bbb">
@@ -838,12 +837,12 @@
 </span><span style="color:#bbb"></span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#imagepolicywebhook-example1").tabs();});
 </script>
-<p>
+</p><p>
   Alternatively, you can embed the configuration directly in the file:
 </p>
 <div id="imagepolicywebhook-example2">
@@ -874,7 +873,7 @@
 </span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">defaultAllow</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span></code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="imagepolicywebhook-example2-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.17 in favor of apiserver.config.k8s.io/v1</span><span style="color:#bbb">
@@ -891,12 +890,12 @@
 </span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">defaultAllow</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">true</span></code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#imagepolicywebhook-example2").tabs();});
 </script>
-<p>
+</p><p>
   The ImagePolicyWebhook config file must reference a
   <a href="/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/">
     kubeconfig
@@ -904,7 +903,7 @@
   formatted file which sets up the connection to the backend. It is required that the backend communicate over TLS.
 </p>
 <p>
-  The kubeconfig file&rsquo;s cluster field must point to the remote service, and the user field must contain the returned authorizer.
+  The kubeconfig file’s cluster field must point to the remote service, and the user field must contain the returned authorizer.
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># clusters refers to the remote service.</span><span style="color:#bbb">
@@ -946,7 +945,7 @@
   .
 </p>
 <p>
-  Note that webhook API objects are subject to the same versioning compatibility rules as other Kubernetes API objects. Implementers should be aware of looser compatibility promises for alpha objects and check the &ldquo;apiVersion&rdquo; field of the request to ensure correct deserialization. Additionally, the API Server must enable the imagepolicy.k8s.io/v1alpha1 API extensions group (
+  Note that webhook API objects are subject to the same versioning compatibility rules as other Kubernetes API objects. Implementers should be aware of looser compatibility promises for alpha objects and check the “apiVersion” field of the request to ensure correct deserialization. Additionally, the API Server must enable the imagepolicy.k8s.io/v1alpha1 API extensions group (
   <code>
     --runtime-config=imagepolicy.k8s.io/v1alpha1=true
   </code>
@@ -980,7 +979,7 @@
   <code>
     ImageReviewStatus
   </code>
-  field of the request and respond to either allow or disallow access. The response body&rsquo;s &ldquo;spec&rdquo; field is ignored and may be omitted. A permissive response would return:
+  field of the request and respond to either allow or disallow access. The response body’s “spec” field is ignored and may be omitted. A permissive response would return:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
@@ -1030,7 +1029,7 @@
 </p>
 <ul>
   <li>
-    request to &ldquo;break glass&rdquo; to override a policy, in case of emergency.
+    request to “break glass” to override a policy, in case of emergency.
   </li>
   <li>
     a ticket number from a ticket system that documents the break-glass request
@@ -1083,7 +1082,7 @@
   </code>
   objects in
   your Kubernetes deployment, you MUST use this admission controller to enforce those constraints. LimitRanger can also
-  be used to apply default resource requests to Pods that don&rsquo;t specify any; currently, the default LimitRanger
+  be used to apply default resource requests to Pods that don’t specify any; currently, the default LimitRanger
   applies a 0.1 CPU requirement to all Pods in the
   <code>
     default
@@ -1250,7 +1249,7 @@
     Namespace
   </code>
   itself.
-  If the namespace referenced from a request doesn&rsquo;t exist, the request is rejected.
+  If the namespace referenced from a request doesn’t exist, the request is rejected.
 </p>
 <h3 id="namespacelifecycle">
   NamespaceLifecycle
@@ -1455,12 +1454,12 @@
     metadata.ownerReferences
   </code>
   of an object
-  so that only users with &ldquo;delete&rdquo; permission to the object can change it.
+  so that only users with “delete” permission to the object can change it.
   This admission controller also protects the access to
   <code>
     metadata.ownerReferences[x].blockOwnerDeletion
   </code>
-  of an object, so that only users with &ldquo;update&rdquo; permission to the
+  of an object, so that only users with “update” permission to the
   <code>
     finalizers
   </code>
@@ -1525,7 +1524,7 @@
   as defined by the cloud provider (for example, GCE or AWS).
   It helps ensure the Pods and the PersistentVolumes mounted are in the same
   region and/or zone.
-  If the admission controller doesn&rsquo;t support automatic labelling your PersistentVolumes, you
+  If the admission controller doesn’t support automatic labelling your PersistentVolumes, you
   may need to add the labels manually to prevent pods from mounting volumes from
   a different zone. PersistentVolumeLabel is DEPRECATED and labeling persistent volumes has been taken over by
   <a href="/docs/tasks/administer-cluster/running-cloud-controller/">
@@ -1562,7 +1561,7 @@
   <code>
     PodNodeSelector
   </code>
-  configuration file from the file provided to the API server&rsquo;s command line flag
+  configuration file from the file provided to the API server’s command line flag
   <code>
     --admission-control-config-file
   </code>
@@ -1591,7 +1590,7 @@
 </span><span style="color:#bbb"></span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="podnodeselector-example1-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.17 in favor of apiserver.config.k8s.io/v1</span><span style="color:#bbb">
@@ -1603,12 +1602,12 @@
 </span><span style="color:#bbb"></span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#podnodeselector-example1").tabs();});
 </script>
-<h4 id="configuration-annotation-format">
+</p><h4 id="configuration-annotation-format">
   Configuration Annotation Format
 </h4>
 <p>
@@ -1660,10 +1659,10 @@
     plugin configuration file as the node selector.
   </li>
   <li>
-    Evaluate the pod&rsquo;s node selector against the namespace node selector for conflicts. Conflicts result in rejection.
+    Evaluate the pod’s node selector against the namespace node selector for conflicts. Conflicts result in rejection.
   </li>
   <li>
-    Evaluate the pod&rsquo;s node selector against the namespace-specific whitelist defined the plugin configuration file.
+    Evaluate the pod’s node selector against the namespace-specific whitelist defined the plugin configuration file.
     Conflicts result in rejection.
   </li>
 </ol>
@@ -1712,7 +1711,7 @@
     PersistentVolumeClaimResize
   </code>
   admission
-  controller is recommended, too. This admission controller prevents resizing of all claims by default unless a claim&rsquo;s
+  controller is recommended, too. This admission controller prevents resizing of all claims by default unless a claim’s
   <code>
     StorageClass
   </code>
@@ -1961,7 +1960,7 @@
   <a href="/docs/user-guide/security-context">
     SecurityContext
   </a>
-  fields. This should be enabled if a cluster doesn&rsquo;t utilize
+  fields. This should be enabled if a cluster doesn’t utilize
   <a href="/docs/user-guide/pod-security-policy">
     pod security policies
   </a>
@@ -2076,9 +2075,9 @@
 </div>
 <p>
   This admission controller
-  <a class='glossary-tooltip' href='/docs/concepts/configuration/taint-and-toleration/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/configuration/taint-and-toleration/" target="_blank">
     taints
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A core object consisting of three required properties: key, value, and effect. Taints prevent the scheduling of pods on nodes or node groups.
     </span>
   </a>
@@ -2210,7 +2209,7 @@
   </code>
   flag (
   <strong>
-    order doesn&rsquo;t matter
+    order doesn’t matter
   </strong>
   ).
 </p>
@@ -2250,7 +2249,7 @@
     </div>
     <ul>
       <li>
-        It&rsquo;s worth reiterating that in 1.9, these happen in a mutating phase
+        It’s worth reiterating that in 1.9, these happen in a mutating phase
         and a validating phase, and that for example
         <code>
           ResourceQuota
@@ -2269,4 +2268,4 @@
       admission controllers ran in the exact order specified.
     </p>
   </li>
-</ul>
+</ul></div></div></div></div></body></html>

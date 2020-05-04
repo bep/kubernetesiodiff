@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Application Introspection and Debugging
     </h1>
@@ -12,7 +11,7 @@
       Application Introspection and Debugging
     </h1>
     <p>
-      Once your application is running, you&rsquo;ll inevitably need to debug problems with it.
+      Once your application is running, you’ll inevitably need to debug problems with it.
       Earlier we described how you can use
       <code>
         kubectl get pods
@@ -42,7 +41,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -54,7 +53,7 @@
       to fetch details about pods
     </h2>
     <p>
-      For this example we&rsquo;ll use a Deployment to create two pods, similar to the earlier example.
+      For this example we’ll use a Deployment to create two pods, similar to the earlier example.
     </p>
     <table class="includecode" id="application-nginx-with-request-yaml">
       <thead>
@@ -65,7 +64,7 @@
                 application/nginx-with-request.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-nginx-with-request-yaml')" title="Copy application/nginx-with-request.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-nginx-with-request-yaml&#39;)" title="Copy application/nginx-with-request.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -184,25 +183,25 @@ Events:
       Here you can see configuration information about the container(s) and Pod (labels, resource requirements, etc.), as well as status information about the container(s) and Pod (state, readiness, restart count, events, etc.).
     </p>
     <p>
-      The container state is one of Waiting, Running, or Terminated. Depending on the state, additional information will be provided &ndash; here you can see that for a container in Running state, the system tells you when the container started.
+      The container state is one of Waiting, Running, or Terminated. Depending on the state, additional information will be provided – here you can see that for a container in Running state, the system tells you when the container started.
     </p>
     <p>
       Ready tells you whether the container passed its last readiness probe. (In this case, the container does not have a readiness probe configured; the container is assumed to be ready if no readiness probe is configured.)
     </p>
     <p>
-      Restart Count tells you how many times the container has been restarted; this information can be useful for detecting crash loops in containers that are configured with a restart policy of &lsquo;always.&rsquo;
+      Restart Count tells you how many times the container has been restarted; this information can be useful for detecting crash loops in containers that are configured with a restart policy of ‘always.’
     </p>
     <p>
       Currently the only Condition associated with a Pod is the binary Ready condition, which indicates that the pod is able to service requests and should be added to the load balancing pools of all matching services.
     </p>
     <p>
-      Lastly, you see a log of recent events related to your Pod. The system compresses multiple identical events by indicating the first and last time it was seen and the number of times it was seen. &ldquo;From&rdquo; indicates the component that is logging the event, &ldquo;SubobjectPath&rdquo; tells you which object (e.g. container within the pod) is being referred to, and &ldquo;Reason&rdquo; and &ldquo;Message&rdquo; tell you what happened.
+      Lastly, you see a log of recent events related to your Pod. The system compresses multiple identical events by indicating the first and last time it was seen and the number of times it was seen. “From” indicates the component that is logging the event, “SubobjectPath” tells you which object (e.g. container within the pod) is being referred to, and “Reason” and “Message” tell you what happened.
     </p>
     <h2 id="example-debugging-pending-pods">
       Example: debugging Pending Pods
     </h2>
     <p>
-      A common scenario that you can detect using events is when you&rsquo;ve created a Pod that won&rsquo;t fit on any node. For example, the Pod might request more resources than are free on any node, or it might specify a label selector that doesn&rsquo;t match any nodes. Let&rsquo;s say we created the previous Deployment with 5 replicas (instead of 2) and requesting 600 millicores instead of 500, on a four-node cluster where each (virtual) machine has 1 CPU. In that case one of the Pods will not be able to schedule. (Note that because of the cluster addon pods such as fluentd, skydns, etc., that run on each node, if we requested 1000 millicores then none of the Pods would be able to schedule.)
+      A common scenario that you can detect using events is when you’ve created a Pod that won’t fit on any node. For example, the Pod might request more resources than are free on any node, or it might specify a label selector that doesn’t match any nodes. Let’s say we created the previous Deployment with 5 replicas (instead of 2) and requesting 600 millicores instead of 500, on a four-node cluster where each (virtual) machine has 1 CPU. In that case one of the Pods will not be able to schedule. (Note that because of the cluster addon pods such as fluentd, skydns, etc., that run on each node, if we requested 1000 millicores then none of the Pods would be able to schedule.)
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods</code></pre>
@@ -279,7 +278,7 @@ nginx-deployment-1370807587-fz9sd   0/1       Pending   0          1m</code></pr
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get events</code></pre>
     </div>
     <p>
-      but you have to remember that events are namespaced. This means that if you&rsquo;re interested in events for some namespaced object (e.g. what happened with Pods in namespace
+      but you have to remember that events are namespaced. This means that if you’re interested in events for some namespaced object (e.g. what happened with Pods in namespace
       <code>
         my-namespace
       </code>
@@ -316,7 +315,7 @@ nginx-deployment-1370807587-fz9sd   0/1       Pending   0          1m</code></pr
       <code>
         kubectl describe pod
       </code>
-      &ndash;essentially all of the information the system has about the Pod. Here you will see things like annotations (which are key-value metadata without the label restrictions, that is used internally by Kubernetes system components), restart policy, ports, and volumes.
+      –essentially all of the information the system has about the Pod. Here you will see things like annotations (which are key-value metadata without the label restrictions, that is used internally by Kubernetes system components), restart policy, ports, and volumes.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod nginx-deployment-1006230814-6winp -o yaml</code></pre>
@@ -394,7 +393,7 @@ nginx-deployment-1370807587-fz9sd   0/1       Pending   0          1m</code></pr
       Example: debugging a down/unreachable node
     </h2>
     <p>
-      Sometimes when debugging it can be useful to look at the status of a node &ndash; for example, because you&rsquo;ve noticed strange behavior of a Pod that&rsquo;s running on the node, or to find out why a Pod won&rsquo;t schedule onto the node. As with Pods, you can use
+      Sometimes when debugging it can be useful to look at the status of a node – for example, because you’ve noticed strange behavior of a Pod that’s running on the node, or to find out why a Pod won’t schedule onto the node. As with Pods, you can use
       <code>
         kubectl describe node
       </code>
@@ -402,7 +401,7 @@ nginx-deployment-1370807587-fz9sd   0/1       Pending   0          1m</code></pr
       <code>
         kubectl get node -o yaml
       </code>
-      to retrieve detailed information about nodes. For example, here&rsquo;s what you&rsquo;ll see if a node is down (disconnected from the network, or kubelet dies and won&rsquo;t restart, etc.). Notice the events that show the node is NotReady, and also notice that the pods are no longer running (they are evicted after five minutes of NotReady status).
+      to retrieve detailed information about nodes. For example, here’s what you’ll see if a node is down (disconnected from the network, or kubelet dies and won’t restart, etc.). Notice the events that show the node is NotReady, and also notice that the pods are no longer running (they are evicted after five minutes of NotReady status).
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get nodes</code></pre>
@@ -549,5 +548,5 @@ Events:         &lt;none&gt;</code></pre>
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

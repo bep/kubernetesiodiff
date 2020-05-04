@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Schedule GPUs
 </h1>
@@ -12,7 +11,7 @@
   Schedule GPUs
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -113,9 +112,9 @@
 </h2>
 <p>
   Kubernetes implements
-  <a class='glossary-tooltip' href='/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/" target="_blank">
     Device Plugins
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Software extensions to let Pods access devices that need vendor-specific initialization or setup
     </span>
   </a>
@@ -212,7 +211,7 @@
     </ul>
   </li>
   <li>
-    Containers (and Pods) do not share GPUs. There&rsquo;s no overcommitting of GPUs.
+    Containers (and Pods) do not share GPUs. There’s no overcommitting of GPUs.
   </li>
   <li>
     Each container can request one or more GPUs. It is not possible to request a
@@ -220,7 +219,7 @@
   </li>
 </ul>
 <p>
-  Here&rsquo;s an example:
+  Here’s an example:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
@@ -332,8 +331,8 @@
   <a href="https://github.com/GoogleCloudPlatform/container-engine-accelerators/tree/master/cmd/nvidia_gpu">
     NVIDIA GPU device plugin used by GCE
   </a>
-  doesn&rsquo;t require using nvidia-docker and should work with any container runtime
-  that is compatible with the Kubernetes Container Runtime Interface (CRI). It&rsquo;s tested
+  doesn’t require using nvidia-docker and should work with any container runtime
+  that is compatible with the Kubernetes Container Runtime Interface (CRI). It’s tested
   on
   <a href="https://cloud.google.com/container-optimized-os/">
     Container-Optimized OS
@@ -390,15 +389,15 @@ kubectl label nodes &lt;node-with-p100&gt; <span style="color:#b8860b">accelerat
   Automatic node labelling
 </h2>
 <p>
-  If you&rsquo;re using AMD GPU devices, you can deploy
+  If you’re using AMD GPU devices, you can deploy
   <a href="https://github.com/RadeonOpenCompute/k8s-device-plugin/tree/master/cmd/k8s-node-labeller">
     Node Labeller
   </a>
   .
   Node Labeller is a
-  <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/architecture/controller/" target="_blank">
     controller
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
     </span>
   </a>
@@ -490,4 +489,4 @@ kubectl label nodes &lt;node-with-p100&gt; <span style="color:#b8860b">accelerat
 <p>
   This will ensure that the Pod will be scheduled to a node that has the GPU type
   you specified.
-</p>
+</p></div></body></html>

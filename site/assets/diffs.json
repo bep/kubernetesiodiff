@@ -1,11 +1,5 @@
 [
   {
-    "Path": "/community/code-of-conduct/index.html",
-    "Reason": "Different",
-    "Tags1": "a/h1/div/h1/a",
-    "Tags2": "a/h1/div/h1/p"
-  },
-  {
     "Path": "/community/static/cncf-code-of-conduct/index.html",
     "Reason": "Different",
     "Tags1": "h1/nav/ul/li/ul",

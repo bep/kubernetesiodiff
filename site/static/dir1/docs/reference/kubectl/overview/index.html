@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Overview of kubectl
     </h1>
@@ -76,7 +75,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -148,7 +147,7 @@
           </a>
           . Resource types are case-insensitive and you can specify the singular, plural, or abbreviated forms. For example, the following commands produce the same output:
         </p>
-        <div class="highlight">
+        <div class="highlight" data-diff="">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  kubectl get pod pod1
   kubectl get pods pod1
   kubectl get po pod1</code></pre>
@@ -293,7 +292,7 @@
           </td>
           <td>
             <code>
-              kubectl annotate (-f FILENAME &#124; TYPE NAME &#124; TYPE/NAME) KEY_1=VAL_1 &hellip; KEY_N=VAL_N [&ndash;overwrite] [&ndash;all] [&ndash;resource-version=version] [flags]
+              kubectl annotate (-f FILENAME | TYPE NAME | TYPE/NAME) KEY_1=VAL_1 … KEY_N=VAL_N [–overwrite] [–all] [–resource-version=version] [flags]
             </code>
           </td>
           <td>
@@ -353,7 +352,7 @@
           </td>
           <td>
             <code>
-              kubectl autoscale (-f FILENAME &#124; TYPE NAME &#124; TYPE/NAME) [&ndash;min=MINPODS] &ndash;max=MAXPODS [&ndash;cpu-percent=CPU] [flags]
+              kubectl autoscale (-f FILENAME | TYPE NAME | TYPE/NAME) [–min=MINPODS] –max=MAXPODS [–cpu-percent=CPU] [flags]
             </code>
           </td>
           <td>
@@ -413,7 +412,7 @@
           </td>
           <td>
             <code>
-              kubectl delete (-f FILENAME &#124; TYPE [NAME &#124; /NAME &#124; -l label &#124; &ndash;all]) [flags]
+              kubectl delete (-f FILENAME | TYPE [NAME | /NAME | -l label | –all]) [flags]
             </code>
           </td>
           <td>
@@ -428,7 +427,7 @@
           </td>
           <td>
             <code>
-              kubectl describe (-f FILENAME &#124; TYPE [NAME_PREFIX &#124; /NAME &#124; -l label]) [flags]
+              kubectl describe (-f FILENAME | TYPE [NAME_PREFIX | /NAME | -l label]) [flags]
             </code>
           </td>
           <td>
@@ -458,7 +457,7 @@
           </td>
           <td>
             <code>
-              kubectl edit (-f FILENAME &#124; TYPE NAME &#124; TYPE/NAME) [flags]
+              kubectl edit (-f FILENAME | TYPE NAME | TYPE/NAME) [flags]
             </code>
           </td>
           <td>
@@ -503,7 +502,7 @@
           </td>
           <td>
             <code>
-              kubectl expose (-f FILENAME &#124; TYPE NAME &#124; TYPE/NAME) [&ndash;port=port] [&ndash;protocol=TCP&#124;UDP] [&ndash;target-port=number-or-name] [&ndash;name=name] [&ndash;external-ip=external-ip-of-service] [&ndash;type=type] [flags]
+              kubectl expose (-f FILENAME | TYPE NAME | TYPE/NAME) [–port=port] [–protocol=TCP|UDP] [–target-port=number-or-name] [–name=name] [–external-ip=external-ip-of-service] [–type=type] [flags]
             </code>
           </td>
           <td>
@@ -518,7 +517,7 @@
           </td>
           <td>
             <code>
-              kubectl get (-f FILENAME &#124; TYPE [NAME &#124; /NAME &#124; -l label]) [&ndash;watch] [&ndash;sort-by=FIELD] [[-o &#124; &ndash;output]=OUTPUT_FORMAT] [flags]
+              kubectl get (-f FILENAME | TYPE [NAME | /NAME | -l label]) [–watch] [–sort-by=FIELD] [[-o | –output]=OUTPUT_FORMAT] [flags]
             </code>
           </td>
           <td>
@@ -533,7 +532,7 @@
           </td>
           <td>
             <code>
-              kubectl label (-f FILENAME &#124; TYPE NAME &#124; TYPE/NAME) KEY_1=VAL_1 &hellip; KEY_N=VAL_N [&ndash;overwrite] [&ndash;all] [&ndash;resource-version=version] [flags]
+              kubectl label (-f FILENAME | TYPE NAME | TYPE/NAME) KEY_1=VAL_1 … KEY_N=VAL_N [–overwrite] [–all] [–resource-version=version] [flags]
             </code>
           </td>
           <td>
@@ -563,7 +562,7 @@
           </td>
           <td>
             <code>
-              kubectl patch (-f FILENAME &#124; TYPE NAME &#124; TYPE/NAME) &ndash;patch PATCH [flags]
+              kubectl patch (-f FILENAME | TYPE NAME | TYPE/NAME) –patch PATCH [flags]
             </code>
           </td>
           <td>
@@ -622,7 +621,7 @@
             </code>
           </td>
           <td>
-            `kubectl run NAME &ndash;image=image [&ndash;env=&ldquo;key=value&rdquo;] [&ndash;port=port] [&ndash;replicas=replicas] [&ndash;dry-run=server
+            `kubectl run NAME –image=image [–env=“key=value”] [–port=port] [–replicas=replicas] [–dry-run=server
           </td>
           <td>
             client
@@ -636,7 +635,7 @@
           </td>
           <td>
             <code>
-              kubectl scale (-f FILENAME &#124; TYPE NAME &#124; TYPE/NAME) &ndash;replicas=COUNT [&ndash;resource-version=version] [&ndash;current-replicas=count] [flags]
+              kubectl scale (-f FILENAME | TYPE NAME | TYPE/NAME) –replicas=COUNT [–resource-version=version] [–current-replicas=count] [flags]
             </code>
           </td>
           <td>
@@ -2207,5 +2206,5 @@ Current user: plugins-user</code></pre>
       </a>
       commands.
     </p>
-  </body>
-</html>
+  
+</body></html>

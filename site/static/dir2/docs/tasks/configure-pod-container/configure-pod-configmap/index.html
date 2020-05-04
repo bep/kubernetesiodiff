@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configure a Pod to Use a ConfigMap
     </h1>
@@ -52,7 +51,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -759,7 +758,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
                 pods/pod-single-configmap-env-variable.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-single-configmap-env-variable-yaml')" title="Copy pods/pod-single-configmap-env-variable.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-pod-single-configmap-env-variable-yaml&#39;)" title="Copy pods/pod-single-configmap-env-variable.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -799,7 +798,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://kubernetes.io/examples/pods/pod-single-configmap-env-variable.yaml</code></pre>
     </div>
     <p>
-      Now, the Pod&rsquo;s output includes environment variable
+      Now, the Pod’s output includes environment variable
       <code>
         SPECIAL_LEVEL_KEY=very
       </code>
@@ -822,7 +821,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
                 configmap/configmaps.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('configmap-configmaps-yaml')" title="Copy configmap/configmaps.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;configmap-configmaps-yaml&#39;)" title="Copy configmap/configmaps.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -871,7 +870,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
                 pods/pod-multiple-configmap-env-variable.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-multiple-configmap-env-variable-yaml')" title="Copy pods/pod-multiple-configmap-env-variable.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-pod-multiple-configmap-env-variable-yaml&#39;)" title="Copy pods/pod-multiple-configmap-env-variable.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -913,7 +912,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://kubernetes.io/examples/pods/pod-multiple-configmap-env-variable.yaml</code></pre>
     </div>
     <p>
-      Now, the Pod&rsquo;s output includes environment variables
+      Now, the Pod’s output includes environment variables
       <code>
         SPECIAL_LEVEL_KEY=very
       </code>
@@ -948,7 +947,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
                 configmap/configmap-multikeys.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('configmap-configmap-multikeys-yaml')" title="Copy configmap/configmap-multikeys.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;configmap-configmap-multikeys-yaml&#39;)" title="Copy configmap/configmap-multikeys.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -982,7 +981,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
         <code>
           envFrom
         </code>
-        to define all of the ConfigMap&rsquo;s data as container environment variables. The key from the ConfigMap becomes the environment variable name in the Pod.
+        to define all of the ConfigMap’s data as container environment variables. The key from the ConfigMap becomes the environment variable name in the Pod.
       </li>
     </ul>
     <table class="includecode" id="pods-pod-configmap-envfrom-yaml">
@@ -994,7 +993,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
                 pods/pod-configmap-envFrom.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-configmap-envfrom-yaml')" title="Copy pods/pod-configmap-envFrom.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-pod-configmap-envfrom-yaml&#39;)" title="Copy pods/pod-configmap-envFrom.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -1028,7 +1027,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://kubernetes.io/examples/pods/pod-configmap-envFrom.yaml</code></pre>
     </div>
     <p>
-      Now, the Pod&rsquo;s output includes environment variables
+      Now, the Pod’s output includes environment variables
       <code>
         SPECIAL_LEVEL=very
       </code>
@@ -1064,7 +1063,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
                 pods/pod-configmap-env-var-valueFrom.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-configmap-env-var-valuefrom-yaml')" title="Copy pods/pod-configmap-env-var-valueFrom.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-pod-configmap-env-var-valuefrom-yaml&#39;)" title="Copy pods/pod-configmap-env-var-valueFrom.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -1131,7 +1130,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
       <code>
         data
       </code>
-      section of the ConfigMap. The file contents become the key&rsquo;s value.
+      section of the ConfigMap. The file contents become the key’s value.
     </p>
     <p>
       The examples in this section refer to a ConfigMap named special-config, shown below.
@@ -1145,7 +1144,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
                 configmap/configmap-multikeys.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('configmap-configmap-multikeys-yaml')" title="Copy configmap/configmap-multikeys.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;configmap-configmap-multikeys-yaml&#39;)" title="Copy configmap/configmap-multikeys.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -1206,7 +1205,7 @@ configmap/special-config-2-c92b5mmcf2 created</code></pre>
                 pods/pod-configmap-volume.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-configmap-volume-yaml')" title="Copy pods/pod-configmap-volume.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-pod-configmap-volume-yaml&#39;)" title="Copy pods/pod-configmap-volume.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -1300,7 +1299,7 @@ SPECIAL_TYPE</code></pre>
                 pods/pod-configmap-volume-specific-key.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-configmap-volume-specific-key-yaml')" title="Copy pods/pod-configmap-volume-specific-key.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-pod-configmap-volume-specific-key-yaml&#39;)" title="Copy pods/pod-configmap-volume-specific-key.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -1377,7 +1376,7 @@ SPECIAL_TYPE</code></pre>
       Mounted ConfigMaps are updated automatically
     </h3>
     <p>
-      When a ConfigMap already being consumed in a volume is updated, projected keys are eventually updated as well. Kubelet is checking whether the mounted ConfigMap is fresh on every periodic sync. However, it is using its local ttl-based cache for getting the current value of the ConfigMap. As a result, the total delay from the moment when the ConfigMap is updated to the moment when new keys are projected to the pod can be as long as kubelet sync period (1 minute by default) + ttl of ConfigMaps cache (1 minute by default) in kubelet. You can trigger an immediate refresh by updating one of the pod&rsquo;s annotations.
+      When a ConfigMap already being consumed in a volume is updated, projected keys are eventually updated as well. Kubelet is checking whether the mounted ConfigMap is fresh on every periodic sync. However, it is using its local ttl-based cache for getting the current value of the ConfigMap. As a result, the total delay from the moment when the ConfigMap is updated to the moment when new keys are projected to the pod can be as long as kubelet sync period (1 minute by default) + ttl of ConfigMaps cache (1 minute by default) in kubelet. You can trigger an immediate refresh by updating one of the pod’s annotations.
     </p>
     <blockquote class="note">
       <div>
@@ -1399,7 +1398,7 @@ SPECIAL_TYPE</code></pre>
       <a href="/docs/concepts/configuration/secret/">
         Secrets
       </a>
-      , but provides a means of working with strings that don&rsquo;t contain sensitive information. Users and system components alike can store configuration data in ConfigMap.
+      , but provides a means of working with strings that don’t contain sensitive information. Users and system components alike can store configuration data in ConfigMap.
     </p>
     <blockquote class="note">
       <div>
@@ -1418,15 +1417,15 @@ SPECIAL_TYPE</code></pre>
       </div>
     </blockquote>
     <p>
-      The ConfigMap&rsquo;s
+      The ConfigMap’s
       <code>
         data
       </code>
-      field contains the configuration data. As shown in the example below, this can be simple &ndash; like individual properties defined using
+      field contains the configuration data. As shown in the example below, this can be simple – like individual properties defined using
       <code>
         --from-literal
       </code>
-      &ndash; or complex &ndash; like configuration files or JSON blobs defined using
+      – or complex – like configuration files or JSON blobs defined using
       <code>
         --from-file
       </code>
@@ -1456,7 +1455,7 @@ SPECIAL_TYPE</code></pre>
     <ul>
       <li>
         <p>
-          You must create a ConfigMap before referencing it in a Pod specification (unless you mark the ConfigMap as &ldquo;optional&rdquo;). If you reference a ConfigMap that doesn&rsquo;t exist, the Pod won&rsquo;t start. Likewise, references to keys that don&rsquo;t exist in the ConfigMap will prevent the pod from starting.
+          You must create a ConfigMap before referencing it in a Pod specification (unless you mark the ConfigMap as “optional”). If you reference a ConfigMap that doesn’t exist, the Pod won’t start. Likewise, references to keys that don’t exist in the ConfigMap will prevent the pod from starting.
         </p>
       </li>
       <li>
@@ -1483,9 +1482,9 @@ SPECIAL_TYPE</code></pre>
       <li>
         <p>
           ConfigMaps reside in a specific
-          <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/namespaces' target='_blank'>
+          <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/namespaces" target="_blank">
             Namespace
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               An abstraction used by Kubernetes to support multiple virtual clusters on the same physical cluster.
             </span>
           </a>
@@ -1494,10 +1493,10 @@ SPECIAL_TYPE</code></pre>
       </li>
       <li>
         <p>
-          You can&rsquo;t use ConfigMaps for
-          <a class='glossary-tooltip' href='/docs/tasks/configure-pod-container/static-pod/' target='_blank'>
+          You can’t use ConfigMaps for
+          <a class="glossary-tooltip" href="/docs/tasks/configure-pod-container/static-pod/" target="_blank">
             static pods
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               A pod managed directly by the kubelet daemon on a specific node.
             </span>
           </a>
@@ -1517,5 +1516,5 @@ SPECIAL_TYPE</code></pre>
         .
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

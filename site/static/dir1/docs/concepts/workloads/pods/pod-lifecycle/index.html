@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Pod Lifecycle
     </h1>
@@ -62,7 +61,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -70,7 +69,7 @@
       Pod phase
     </h2>
     <p>
-      A Pod&rsquo;s
+      A Pod’s
       <code>
         status
       </code>
@@ -217,7 +216,7 @@
           <code>
             reason
           </code>
-          field is a unique, one-word, CamelCase reason for the condition&rsquo;s last transition.
+          field is a unique, one-word, CamelCase reason for the condition’s last transition.
         </p>
       </li>
       <li>
@@ -226,19 +225,19 @@
           <code>
             status
           </code>
-          field is a string, with possible values &ldquo;
+          field is a string, with possible values “
           <code>
             True
           </code>
-          &rdquo;, &ldquo;
+          ”, “
           <code>
             False
           </code>
-          &rdquo;, and &ldquo;
+          ”, and “
           <code>
             Unknown
           </code>
-          &rdquo;.
+          ”.
         </p>
       </li>
       <li>
@@ -320,7 +319,7 @@
             TCPSocketAction
           </a>
           :
-          Performs a TCP check against the Container&rsquo;s IP address on
+          Performs a TCP check against the Container’s IP address on
           a specified port. The diagnostic is considered successful if the port is open.
         </p>
       </li>
@@ -330,7 +329,7 @@
             HTTPGetAction
           </a>
           :
-          Performs an HTTP Get request against the Container&rsquo;s IP
+          Performs an HTTP Get request against the Container’s IP
           address on a specified port and path. The diagnostic is considered successful
           if the response has a status code greater than or equal to 200 and less than 400.
         </p>
@@ -380,7 +379,7 @@
             readinessProbe
           </code>
           : Indicates whether the Container is ready to service requests.
-          If the readiness probe fails, the endpoints controller removes the Pod&rsquo;s IP
+          If the readiness probe fails, the endpoints controller removes the Pod’s IP
           address from the endpoints of all Services that match the Pod. The default
           state of readiness before the initial delay is
           <code>
@@ -419,7 +418,7 @@
       When should you use a liveness probe?
     </h3>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -475,14 +474,14 @@
       If the process in your Container is able to crash on its own whenever it
       encounters an issue or becomes unhealthy, you do not necessarily need a liveness
       probe; the kubelet will automatically perform the correct action in accordance
-      with the Pod&rsquo;s
+      with the Pod’s
       <code>
         restartPolicy
       </code>
       .
     </p>
     <p>
-      If you&rsquo;d like your Container to be killed and restarted if a probe fails, then
+      If you’d like your Container to be killed and restarted if a probe fails, then
       specify a liveness probe, and specify a
       <code>
         restartPolicy
@@ -546,7 +545,7 @@
       </script>
     </div>
     <p>
-      If you&rsquo;d like to start sending traffic to a Pod only when a probe succeeds,
+      If you’d like to start sending traffic to a Pod only when a probe succeeds,
       specify a readiness probe. In this case, the readiness probe might be the same
       as the liveness probe, but the existence of the readiness probe in the spec means
       that the Pod will start without receiving any traffic and only start receiving
@@ -720,7 +719,7 @@
           <code>
             Terminated
           </code>
-          :  Indicates that the container completed its execution and has stopped running. A container enters into this when it has successfully completed execution or when it has failed for some reason. Regardless, a reason and exit code is displayed, as well as the container&rsquo;s start and finish time. Before a container enters into Terminated,
+          :  Indicates that the container completed its execution and has stopped running. A container enters into this when it has successfully completed execution or when it has failed for some reason. Regardless, a reason and exit code is displayed, as well as the container’s start and finish time. Before a container enters into Terminated,
           <code>
             preStop
           </code>
@@ -820,11 +819,11 @@
         status.conditions
       </code>
       field of a Pod, the status of the condition
-      is default to &ldquo;
+      is default to “
       <code>
         False
       </code>
-      &rdquo;. Below is an example:
+      ”. Below is an example:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">Kind</span>:<span style="color:#bbb"> </span>Pod<span style="color:#bbb">
@@ -857,7 +856,7 @@
       <code>
         kubectl patch
       </code>
-      command still doesn&rsquo;t support patching object status,
+      command still doesn’t support patching object status,
       the new Pod conditions have to be injected through the
       <code>
         PATCH
@@ -885,11 +884,11 @@
         <code>
           ReadinessGates
         </code>
-        are &ldquo;
+        are “
         <code>
           True
         </code>
-        &rdquo;.
+        ”.
       </li>
     </ul>
     <p>
@@ -923,7 +922,7 @@
       only
       refers to restarts of the Containers by the kubelet on the same node. Exited
       Containers that are restarted by the kubelet are restarted with an exponential
-      back-off delay (10s, 20s, 40s &hellip;) capped at five minutes, and is reset after ten
+      back-off delay (10s, 20s, 40s …) capped at five minutes, and is reset after ten
       minutes of successful execution. As discussed in the
       <a href="/docs/user-guide/pods/#durability-of-pods-or-lack-thereof">
         Pods document
@@ -1336,5 +1335,5 @@
         </p>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

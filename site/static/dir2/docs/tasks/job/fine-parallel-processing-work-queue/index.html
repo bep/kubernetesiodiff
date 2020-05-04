@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Fine Parallel Processing Using a Work Queue
 </h1>
@@ -173,7 +172,7 @@
   Filling the Queue with tasks
 </h2>
 <p>
-  Now let&rsquo;s fill the queue with some &ldquo;tasks&rdquo;.  In our example, our tasks are just strings to be
+  Now let’s fill the queue with some “tasks”.  In our example, our tasks are just strings to be
   printed.
 </p>
 <p>
@@ -188,34 +187,34 @@ Hit enter <span style="color:#a2f;font-weight:bold">for</span> <span style="colo
   Now hit enter, start the redis CLI, and create a list with some work items in it.
 </p>
 <pre><code># redis-cli -h redis
-redis:6379&gt; rpush job2 &quot;apple&quot;
+redis:6379&gt; rpush job2 &#34;apple&#34;
 (integer) 1
-redis:6379&gt; rpush job2 &quot;banana&quot;
+redis:6379&gt; rpush job2 &#34;banana&#34;
 (integer) 2
-redis:6379&gt; rpush job2 &quot;cherry&quot;
+redis:6379&gt; rpush job2 &#34;cherry&#34;
 (integer) 3
-redis:6379&gt; rpush job2 &quot;date&quot;
+redis:6379&gt; rpush job2 &#34;date&#34;
 (integer) 4
-redis:6379&gt; rpush job2 &quot;fig&quot;
+redis:6379&gt; rpush job2 &#34;fig&#34;
 (integer) 5
-redis:6379&gt; rpush job2 &quot;grape&quot;
+redis:6379&gt; rpush job2 &#34;grape&#34;
 (integer) 6
-redis:6379&gt; rpush job2 &quot;lemon&quot;
+redis:6379&gt; rpush job2 &#34;lemon&#34;
 (integer) 7
-redis:6379&gt; rpush job2 &quot;melon&quot;
+redis:6379&gt; rpush job2 &#34;melon&#34;
 (integer) 8
-redis:6379&gt; rpush job2 &quot;orange&quot;
+redis:6379&gt; rpush job2 &#34;orange&#34;
 (integer) 9
 redis:6379&gt; lrange job2 0 -1
-1) &quot;apple&quot;
-2) &quot;banana&quot;
-3) &quot;cherry&quot;
-4) &quot;date&quot;
-5) &quot;fig&quot;
-6) &quot;grape&quot;
-7) &quot;lemon&quot;
-8) &quot;melon&quot;
-9) &quot;orange&quot;</code></pre>
+1) &#34;apple&#34;
+2) &#34;banana&#34;
+3) &#34;cherry&#34;
+4) &#34;date&#34;
+5) &#34;fig&#34;
+6) &#34;grape&#34;
+7) &#34;lemon&#34;
+8) &#34;melon&#34;
+9) &#34;orange&#34;</code></pre>
 <p>
   So, the list with key
   <code>
@@ -250,51 +249,10 @@ redis:6379&gt; lrange job2 0 -1
   ).
 </p>
 <p>
-  The &ldquo;worker&rdquo; program in each Pod of the Job uses the work queue
+  The “worker” program in each Pod of the Job uses the work queue
   client library to get work.  Here it is:
 </p>
-<table class="includecode" id="application-job-redis-worker-py">
-<thead>
-  <tr>
-    <th>
-      <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/job/redis/worker.py" download="application/job/redis/worker.py">
-        <code>
-          application/job/redis/worker.py
-        </code>
-      </a>
-      <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-redis-worker-py')" title="Copy application/job/redis/worker.py to clipboard">
-    </th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>
-      <div class="highlight">
-        <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-style:italic">#!/usr/bin/env python</span>
-<p><span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">time</span>
-<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">rediswq</span></p>
-<p>host<span style="color:#666">=</span><span style="color:#b44">&quot;redis&quot;</span>
-<span style="color:#080;font-style:italic"># Uncomment next two lines if you do not have Kube-DNS working.</span>
-<span style="color:#080;font-style:italic"># import os</span>
-<span style="color:#080;font-style:italic"># host = os.getenv(&quot;REDIS_SERVICE_HOST&quot;)</span></p>
-<p>q <span style="color:#666">=</span> rediswq<span style="color:#666">.</span>RedisWQ(name<span style="color:#666">=</span><span style="color:#b44">&quot;job2&quot;</span>, host<span style="color:#666">=</span><span style="color:#b44">&quot;redis&quot;</span>)
-<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&quot;Worker with sessionID: &quot;</span> <span style="color:#666">+</span>  q<span style="color:#666">.</span>sessionID())
-<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&quot;Initial queue state: empty=&quot;</span> <span style="color:#666">+</span> <span style="color:#a2f">str</span>(q<span style="color:#666">.</span>empty()))
-<span style="color:#a2f;font-weight:bold">while</span> <span style="color:#a2f;font-weight:bold">not</span> q<span style="color:#666">.</span>empty():
-item <span style="color:#666">=</span> q<span style="color:#666">.</span>lease(lease_secs<span style="color:#666">=</span><span style="color:#666">10</span>, block<span style="color:#666">=</span>True, timeout<span style="color:#666">=</span><span style="color:#666">2</span>)
-<span style="color:#a2f;font-weight:bold">if</span> item <span style="color:#a2f;font-weight:bold">is</span> <span style="color:#a2f;font-weight:bold">not</span> None:
-itemstr <span style="color:#666">=</span> item<span style="color:#666">.</span>decode(<span style="color:#b44">&quot;utf-8&quot;</span>)
-<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&quot;Working on &quot;</span> <span style="color:#666">+</span> itemstr)
-time<span style="color:#666">.</span>sleep(<span style="color:#666">10</span>) <span style="color:#080;font-style:italic"># Put your actual work here instead of sleep.</span>
-q<span style="color:#666">.</span>complete(item)
-<span style="color:#a2f;font-weight:bold">else</span>:
-<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&quot;Waiting for work&quot;</span>)
-<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&quot;Queue empty, exiting&quot;</span>)</code></pre>
-      </div>
-    </td>
-  </tr>
-</tbody>
-<p>
+<p data-diff="">
   You could also download
   <a href="/examples/application/job/redis/worker.py">
     <code>
@@ -315,14 +273,11 @@ q<span style="color:#666">.</span>complete(item)
   </a>
   files, then build
   the image:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker build -t job-wq-2 .</code></pre>
-</div>
-<h3 id="push-the-image">
+</div><h3 id="push-the-image">
   Push the image
-</h3>
-<p>
+</h3><p>
   For the
   <a href="https://hub.docker.com/">
     Docker Hub
@@ -333,20 +288,17 @@ q<span style="color:#666">.</span>complete(item)
     &lt;username&gt;
   </code>
   with your Hub username.
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker tag job-wq-2 &lt;username&gt;/job-wq-2
 docker push &lt;username&gt;/job-wq-2</code></pre>
-</div>
-<p>
+</div><p>
   You need to push to a public repository or
   <a href="/docs/concepts/containers/images/">
     configure your cluster to be able to access
     your private repository
   </a>
   .
-</p>
-<p>
+</p><p>
   If you are using
   <a href="https://cloud.google.com/tools/container-registry/">
     Google Container
@@ -358,18 +310,65 @@ docker push &lt;username&gt;/job-wq-2</code></pre>
     &lt;project&gt;
   </code>
   with your project ID.
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker tag job-wq-2 gcr.io/&lt;project&gt;/job-wq-2
 gcloud docker -- push gcr.io/&lt;project&gt;/job-wq-2</code></pre>
-</div>
-<h2 id="defining-a-job">
+</div><h2 id="defining-a-job">
   Defining a Job
-</h2>
-<p>
+</h2><p>
   Here is the job definition:
-</p>
-<table class="includecode" id="application-job-redis-job-yaml">
+</p><table class="includecode" id="application-job-redis-worker-py">
+<thead>
+  <tr>
+    <th>
+      <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/job/redis/worker.py" download="application/job/redis/worker.py">
+        <code>
+          application/job/redis/worker.py
+        </code>
+      </a>
+      <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-job-redis-worker-py&#39;)" title="Copy application/job/redis/worker.py to clipboard"/>
+    </th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+      <div class="highlight">
+        <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-style:italic">#!/usr/bin/env python</span>
+<p><span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">time</span>
+<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">rediswq</span></p>
+<p>host<span style="color:#666">=</span><span style="color:#b44">&#34;redis&#34;</span>
+<span style="color:#080;font-style:italic"># Uncomment next two lines if you do not have Kube-DNS working.</span>
+<span style="color:#080;font-style:italic"># import os</span>
+<span style="color:#080;font-style:italic"># host = os.getenv(&#34;REDIS_SERVICE_HOST&#34;)</span></p>
+</code><p><code class="language-python" data-lang="python">q <span style="color:#666">=</span> rediswq<span style="color:#666">.</span>RedisWQ(name<span style="color:#666">=</span><span style="color:#b44">&#34;job2&#34;</span>, host<span style="color:#666">=</span><span style="color:#b44">&#34;redis&#34;</span>)
+<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&#34;Worker with sessionID: &#34;</span> <span style="color:#666">+</span>  q<span style="color:#666">.</span>sessionID())
+<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&#34;Initial queue state: empty=&#34;</span> <span style="color:#666">+</span> <span style="color:#a2f">str</span>(q<span style="color:#666">.</span>empty()))
+<span style="color:#a2f;font-weight:bold">while</span> <span style="color:#a2f;font-weight:bold">not</span> q<span style="color:#666">.</span>empty():
+item <span style="color:#666">=</span> q<span style="color:#666">.</span>lease(lease_secs<span style="color:#666">=</span><span style="color:#666">10</span>, block<span style="color:#666">=</span>True, timeout<span style="color:#666">=</span><span style="color:#666">2</span>)
+<span style="color:#a2f;font-weight:bold">if</span> item <span style="color:#a2f;font-weight:bold">is</span> <span style="color:#a2f;font-weight:bold">not</span> None:
+itemstr <span style="color:#666">=</span> item<span style="color:#666">.</span>decode(<span style="color:#b44">&#34;utf-8&#34;</span>)
+<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&#34;Working on &#34;</span> <span style="color:#666">+</span> itemstr)
+time<span style="color:#666">.</span>sleep(<span style="color:#666">10</span>) <span style="color:#080;font-style:italic"># Put your actual work here instead of sleep.</span>
+q<span style="color:#666">.</span>complete(item)
+<span style="color:#a2f;font-weight:bold">else</span>:
+<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&#34;Waiting for work&#34;</span>)
+<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&#34;Queue empty, exiting&#34;</span>)</code></p></pre>
+      </div>
+    </td>
+  </tr>
+</tbody>
+
+
+
+
+
+
+
+
+
+
+</table><table class="includecode" id="application-job-redis-job-yaml">
   <thead>
     <tr>
       <th>
@@ -378,7 +377,7 @@ gcloud docker -- push gcr.io/&lt;project&gt;/job-wq-2</code></pre>
             application/job/redis/job.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-redis-job-yaml')" title="Copy application/job/redis/job.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-job-redis-job-yaml&#39;)" title="Copy application/job/redis/job.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -496,4 +495,4 @@ Working on lemon</code></pre>
     https://github.com/resque/resque
   </a>
   .
-</p>
+</p></body></html>

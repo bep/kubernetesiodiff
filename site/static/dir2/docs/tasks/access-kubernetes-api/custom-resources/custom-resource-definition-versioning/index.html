@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Versions in CustomResourceDefinitions
 </h1>
@@ -347,7 +346,7 @@
   </li>
 </ul>
 <div id="customresourcedefinition-versioning-example-1-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#a2f;font-weight:bold&quot;&gt;apiVersion&lt;/span&gt;:&lt;span style=&quot;color:#bbb&quot;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre data-diff=""><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;:&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -693,8 +692,8 @@ CronTab
 <span style="color:#bbb"></span>
 - ct
 <span style="color:#bbb"></span>
-<div id="customresourcedefinition-versioning-example-1-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#080;font-style:italic&quot;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="customresourcedefinition-versioning-example-1-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -992,7 +991,7 @@ CronTab
 <script>
   $(function(){$("#customresourcedefinition-versioning-example-1").tabs();});
 </script>
-<p>
+</p><p>
   You can save the CustomResourceDefinition in a YAML file, then use
   <code>
     kubectl apply
@@ -1096,7 +1095,7 @@ CronTab
     sorted from largest to smallest.
   </li>
   <li>
-    Strings that don&rsquo;t fit the above format are sorted alphabetically and the
+    Strings that don’t fit the above format are sorted alphabetically and the
     numeric portions are not treated specially. Notice that in the example below,
     <code>
       foo1
@@ -1395,7 +1394,7 @@ CronTab
   </li>
 </ul>
 <div id="customresourcedefinition-versioning-example-2-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#a2f;font-weight:bold&quot;&gt;apiVersion&lt;/span&gt;:&lt;span style=&quot;color:#bbb&quot;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;:&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -1495,7 +1494,7 @@ v1beta1
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#080;font-style:italic">
-  # Each version can define it's own schema when there is no top-level
+  # Each version can define it&#39;s own schema when there is no top-level
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -1683,11 +1682,11 @@ Webhook
 <span style="color:#bbb"></span>
 [
 <span style="color:#b44">
-  &quot;v1&quot;
+  &#34;v1&#34;
 </span>
 ,
 <span style="color:#b44">
-  &quot;v1beta1&quot;
+  &#34;v1beta1&#34;
 </span>
 ]
 <span style="color:#bbb"></span>
@@ -1734,7 +1733,7 @@ example-conversion-webhook-server
 :
 <span style="color:#bbb"></span>
 <span style="color:#b44">
-  &quot;Ci0tLS0tQk&hellip;&lt;base64-encoded PEM bundle&gt;&hellip;tLS0K&quot;
+  &#34;Ci0tLS0tQk…&lt;base64-encoded PEM bundle&gt;…tLS0K&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -1809,8 +1808,8 @@ CronTab
 <span style="color:#bbb"></span>
 - ct
 <span style="color:#bbb"></span>
-<div id="customresourcedefinition-versioning-example-2-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#080;font-style:italic&quot;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="customresourcedefinition-versioning-example-2-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -1933,7 +1932,7 @@ v1beta1
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#080;font-style:italic">
-  # Each version can define it's own schema when there is no top-level
+  # Each version can define it&#39;s own schema when there is no top-level
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -2135,7 +2134,7 @@ example-conversion-webhook-server
 :
 <span style="color:#bbb"></span>
 <span style="color:#b44">
-  &quot;Ci0tLS0tQk&hellip;&lt;base64-encoded PEM bundle&gt;&hellip;tLS0K&quot;
+  &#34;Ci0tLS0tQk…&lt;base64-encoded PEM bundle&gt;…tLS0K&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -2213,7 +2212,7 @@ CronTab
 <script>
   $(function(){$("#customresourcedefinition-versioning-example-2").tabs();});
 </script>
-<p>
+</p><p>
   You can save the CustomResourceDefinition in a YAML file, then use
   <code>
     kubectl apply
@@ -2298,11 +2297,11 @@ CronTab
   to turn up in a new cluster.
 </p>
 <p>
-  The scheme must be &ldquo;https&rdquo;; the URL must begin with &ldquo;https://&quot;.
+  The scheme must be “https”; the URL must begin with “https://&#34;.
 </p>
 <p>
-  Attempting to use a user or basic auth (for example &ldquo;user:password@&quot;) is not allowed.
-  Fragments (&quot;#&hellip;&quot;) and query parameters (&quot;?&hellip;&quot;) are also not allowed.
+  Attempting to use a user or basic auth (for example “user:password@&#34;) is not allowed.
+  Fragments (&#34;#…&#34;) and query parameters (&#34;?…&#34;) are also not allowed.
 </p>
 <p>
   Here is an example of a conversion webhook configured to call a URL
@@ -2322,7 +2321,7 @@ CronTab
   </li>
 </ul>
 <div id="customresourcedefinition-versioning-example-3-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#a2f;font-weight:bold&quot;&gt;apiVersion&lt;/span&gt;:&lt;span style=&quot;color:#bbb&quot;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;:&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2333,7 +2332,7 @@ CronTab
 CustomResourceDefinition
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2342,7 +2341,7 @@ CustomResourceDefinition
 :
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2377,14 +2376,14 @@ Webhook
 :
 <span style="color:#bbb"></span>
 <span style="color:#b44">
-  &quot;https://my-webhook.example.com:9443/my-webhook-path&quot;
+  &#34;https://my-webhook.example.com:9443/my-webhook-path&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
-<div id="customresourcedefinition-versioning-example-3-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#080;font-style:italic&quot;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="customresourcedefinition-versioning-example-3-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2403,7 +2402,7 @@ apiextensions.k8s.io/v1beta1
 CustomResourceDefinition
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2412,7 +2411,7 @@ CustomResourceDefinition
 :
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2441,16 +2440,16 @@ Webhook
 :
 <span style="color:#bbb"></span>
 <span style="color:#b44">
-  &quot;https://my-webhook.example.com:9443/my-webhook-path&quot;
+  &#34;https://my-webhook.example.com:9443/my-webhook-path&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <script>
   $(function(){$("#customresourcedefinition-versioning-example-3").tabs();});
 </script>
-<h3 id="service-reference">
+</p><h3 id="service-reference">
   Service Reference
 </h3>
 <p>
@@ -2473,11 +2472,11 @@ Webhook
   </code>
   .
   The service namespace and name are required. The port is optional and defaults to 443.
-  The path is optional and defaults to &ldquo;/&quot;.
+  The path is optional and defaults to “/&#34;.
 </p>
 <p>
-  Here is an example of a webhook that is configured to call a service on port &ldquo;1234&rdquo;
-  at the subpath &ldquo;/my-path&rdquo;, and to verify the TLS connection against the ServerName
+  Here is an example of a webhook that is configured to call a service on port “1234”
+  at the subpath “/my-path”, and to verify the TLS connection against the ServerName
   <code>
     my-service-name.my-service-namespace.svc
   </code>
@@ -2497,7 +2496,7 @@ Webhook
   </li>
 </ul>
 <div id="customresourcedefinition-versioning-example-4-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#a2f;font-weight:bold&quot;&gt;apiVersion&lt;/span&gt;:&lt;span style=&quot;color:#bbb&quot;&gt; &lt;/span&gt;apiextensions.k8s.io/v1b&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;:&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;apiextensions.k8s.io/v1b&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2508,7 +2507,7 @@ Webhook
 CustomResourceDefinition
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2517,7 +2516,7 @@ CustomResourceDefinition
 :
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2592,14 +2591,14 @@ my-service-name
 :
 <span style="color:#bbb"></span>
 <span style="color:#b44">
-  &quot;Ci0tLS0tQk&hellip;&lt;base64-encoded PEM bundle&gt;&hellip;tLS0K&quot;
+  &#34;Ci0tLS0tQk…&lt;base64-encoded PEM bundle&gt;…tLS0K&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
-<div id="customresourcedefinition-versioning-example-4-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#080;font-style:italic&quot;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="customresourcedefinition-versioning-example-4-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2618,7 +2617,7 @@ apiextensions.k8s.io/v1beta1
 CustomResourceDefinition
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2627,7 +2626,7 @@ CustomResourceDefinition
 :
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2696,16 +2695,16 @@ my-service-name
 :
 <span style="color:#bbb"></span>
 <span style="color:#b44">
-  &quot;Ci0tLS0tQk&hellip;&lt;base64-encoded PEM bundle&gt;&hellip;tLS0K&quot;
+  &#34;Ci0tLS0tQk…&lt;base64-encoded PEM bundle&gt;…tLS0K&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <script>
   $(function(){$("#customresourcedefinition-versioning-example-4").tabs();});
 </script>
-<h2 id="webhook-request-and-response">
+</p><h2 id="webhook-request-and-response">
   Webhook request and response
 </h2>
 <h3 id="request">
@@ -2754,7 +2753,7 @@ my-service-name
   </li>
 </ul>
 <div id="conversionreviewversions-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#a2f;font-weight:bold&quot;&gt;apiVersion&lt;/span&gt;:&lt;span style=&quot;color:#bbb&quot;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;:&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2765,7 +2764,7 @@ my-service-name
 CustomResourceDefinition
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2774,7 +2773,7 @@ CustomResourceDefinition
 :
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2804,19 +2803,19 @@ Webhook
 <span style="color:#bbb"></span>
 [
 <span style="color:#b44">
-  &quot;v1&quot;
+  &#34;v1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#b44">
-  &quot;v1beta1&quot;
+  &#34;v1beta1&#34;
 </span>
 ]
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
-<p>
+</p><p>
   <code>
     conversionReviewVersions
   </code>
@@ -2832,7 +2831,7 @@ Webhook
   version understood by the current and previous API server.
 </p>
 <div id="conversionreviewversions-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#080;font-style:italic&quot;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2851,7 +2850,7 @@ apiextensions.k8s.io/v1beta1
 CustomResourceDefinition
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2860,7 +2859,7 @@ CustomResourceDefinition
 :
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2884,19 +2883,19 @@ Webhook
 <span style="color:#bbb"></span>
 [
 <span style="color:#b44">
-  &quot;v1&quot;
+  &#34;v1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#b44">
-  &quot;v1beta1&quot;
+  &#34;v1beta1&#34;
 </span>
 ]
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
-&hellip;
+…
 <span style="color:#bbb"></span>
-<p>
+</p><p>
   If no
   <code>
     conversionReviewVersions
@@ -2961,29 +2960,29 @@ Webhook
   </li>
 </ul>
 <div id="conversionreview-request-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;{&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;{&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;apiextensions.k8s.io/v1&quot;
+  &#34;apiextensions.k8s.io/v1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;ConversionReview&quot;
+  &#34;ConversionReview&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;request&quot;:
+  &#34;request&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
@@ -2994,15 +2993,15 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;705ab4f5-6393-11e8-b7cc-42010a800002&quot;
+  &#34;705ab4f5-6393-11e8-b7cc-42010a800002&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb">
-  <br>
+  <br/>
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#080;font-style:italic">
@@ -3011,15 +3010,15 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;desiredAPIVersion&quot;:
+  &#34;desiredAPIVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com/v1&quot;
+  &#34;example.com/v1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb">
-  <br>
+  <br/>
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#080;font-style:italic">
@@ -3033,7 +3032,7 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;objects&quot;:
+  &#34;objects&#34;:
 </span>
 [
 <span style="color:#bbb"></span>
@@ -3042,70 +3041,70 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;CronTab&quot;
+  &#34;CronTab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com/v1beta1&quot;
+  &#34;example.com/v1beta1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;metadata&quot;:
+  &#34;metadata&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;creationTimestamp&quot;:
+  &#34;creationTimestamp&#34;:
 </span>
 <span style="color:#b44">
-  &quot;2019-09-04T14:03:02Z&quot;
+  &#34;2019-09-04T14:03:02Z&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;name&quot;:
+  &#34;name&#34;:
 </span>
 <span style="color:#b44">
-  &quot;local-crontab&quot;
+  &#34;local-crontab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;namespace&quot;:
+  &#34;namespace&#34;:
 </span>
 <span style="color:#b44">
-  &quot;default&quot;
+  &#34;default&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;resourceVersion&quot;:
+  &#34;resourceVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;143&quot;
+  &#34;143&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;3415a7fc-162b-4300-b5da-fd6083580d66&quot;
+  &#34;3415a7fc-162b-4300-b5da-fd6083580d66&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3113,10 +3112,10 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;hostPort&quot;:
+  &#34;hostPort&#34;:
 </span>
 <span style="color:#b44">
-  &quot;localhost:1234&quot;
+  &#34;localhost:1234&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3127,61 +3126,61 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;CronTab&quot;
+  &#34;CronTab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com/v1beta1&quot;
+  &#34;example.com/v1beta1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;metadata&quot;:
+  &#34;metadata&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;creationTimestamp&quot;:
+  &#34;creationTimestamp&#34;:
 </span>
 <span style="color:#b44">
-  &quot;2019-09-03T13:02:01Z&quot;
+  &#34;2019-09-03T13:02:01Z&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;name&quot;:
+  &#34;name&#34;:
 </span>
 <span style="color:#b44">
-  &quot;remote-crontab&quot;
+  &#34;remote-crontab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;resourceVersion&quot;:
+  &#34;resourceVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;12893&quot;
+  &#34;12893&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;359a83ec-b575-460d-b553-d859cedde8a0&quot;
+  &#34;359a83ec-b575-460d-b553-d859cedde8a0&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3189,10 +3188,10 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;hostPort&quot;:
+  &#34;hostPort&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com:2345&quot;
+  &#34;example.com:2345&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3207,8 +3206,8 @@ Webhook
 <span style="color:#bbb"></span>
 }
 <span style="color:#bbb"></span>
-<div id="conversionreview-request-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;{&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="conversionreview-request-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;{&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#080;font-style:italic">
@@ -3217,25 +3216,25 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;apiextensions.k8s.io/v1beta1&quot;
+  &#34;apiextensions.k8s.io/v1beta1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;ConversionReview&quot;
+  &#34;ConversionReview&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;request&quot;:
+  &#34;request&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
@@ -3246,15 +3245,15 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;705ab4f5-6393-11e8-b7cc-42010a800002&quot;
+  &#34;705ab4f5-6393-11e8-b7cc-42010a800002&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb">
-  <br>
+  <br/>
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#080;font-style:italic">
@@ -3263,15 +3262,15 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;desiredAPIVersion&quot;:
+  &#34;desiredAPIVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com/v1&quot;
+  &#34;example.com/v1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb">
-  <br>
+  <br/>
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#080;font-style:italic">
@@ -3285,7 +3284,7 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;objects&quot;:
+  &#34;objects&#34;:
 </span>
 [
 <span style="color:#bbb"></span>
@@ -3294,70 +3293,70 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;CronTab&quot;
+  &#34;CronTab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com/v1beta1&quot;
+  &#34;example.com/v1beta1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;metadata&quot;:
+  &#34;metadata&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;creationTimestamp&quot;:
+  &#34;creationTimestamp&#34;:
 </span>
 <span style="color:#b44">
-  &quot;2019-09-04T14:03:02Z&quot;
+  &#34;2019-09-04T14:03:02Z&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;name&quot;:
+  &#34;name&#34;:
 </span>
 <span style="color:#b44">
-  &quot;local-crontab&quot;
+  &#34;local-crontab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;namespace&quot;:
+  &#34;namespace&#34;:
 </span>
 <span style="color:#b44">
-  &quot;default&quot;
+  &#34;default&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;resourceVersion&quot;:
+  &#34;resourceVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;143&quot;
+  &#34;143&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;3415a7fc-162b-4300-b5da-fd6083580d66&quot;
+  &#34;3415a7fc-162b-4300-b5da-fd6083580d66&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3365,10 +3364,10 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;hostPort&quot;:
+  &#34;hostPort&#34;:
 </span>
 <span style="color:#b44">
-  &quot;localhost:1234&quot;
+  &#34;localhost:1234&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3379,61 +3378,61 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;CronTab&quot;
+  &#34;CronTab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com/v1beta1&quot;
+  &#34;example.com/v1beta1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;metadata&quot;:
+  &#34;metadata&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;creationTimestamp&quot;:
+  &#34;creationTimestamp&#34;:
 </span>
 <span style="color:#b44">
-  &quot;2019-09-03T13:02:01Z&quot;
+  &#34;2019-09-03T13:02:01Z&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;name&quot;:
+  &#34;name&#34;:
 </span>
 <span style="color:#b44">
-  &quot;remote-crontab&quot;
+  &#34;remote-crontab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;resourceVersion&quot;:
+  &#34;resourceVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;12893&quot;
+  &#34;12893&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;359a83ec-b575-460d-b553-d859cedde8a0&quot;
+  &#34;359a83ec-b575-460d-b553-d859cedde8a0&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3441,10 +3440,10 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;hostPort&quot;:
+  &#34;hostPort&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com:2345&quot;
+  &#34;example.com:2345&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3462,7 +3461,7 @@ Webhook
 <script>
   $(function(){$("#conversionreview-request").tabs();});
 </script>
-<h3 id="response">
+</p><h3 id="response">
   Response
 </h3>
 <p>
@@ -3506,7 +3505,7 @@ Webhook
     </code>
     , set to
     <code>
-      {&quot;status&quot;:&quot;Success&quot;}
+      {&#34;status&#34;:&#34;Success&#34;}
     </code>
   </li>
   <li>
@@ -3540,29 +3539,29 @@ Webhook
   </li>
 </ul>
 <div id="conversionreview-response-success-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;{&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;{&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;apiextensions.k8s.io/v1&quot;
+  &#34;apiextensions.k8s.io/v1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;ConversionReview&quot;
+  &#34;ConversionReview&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;response&quot;:
+  &#34;response&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
@@ -3573,25 +3572,25 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;705ab4f5-6393-11e8-b7cc-42010a800002&quot;
+  &#34;705ab4f5-6393-11e8-b7cc-42010a800002&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;result&quot;:
+  &#34;result&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;status&quot;:
+  &#34;status&#34;:
 </span>
 <span style="color:#b44">
-  &quot;Success&quot;
+  &#34;Success&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3619,7 +3618,7 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;convertedObjects&quot;:
+  &#34;convertedObjects&#34;:
 </span>
 [
 <span style="color:#bbb"></span>
@@ -3628,70 +3627,70 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;CronTab&quot;
+  &#34;CronTab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com/v1&quot;
+  &#34;example.com/v1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;metadata&quot;:
+  &#34;metadata&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;creationTimestamp&quot;:
+  &#34;creationTimestamp&#34;:
 </span>
 <span style="color:#b44">
-  &quot;2019-09-04T14:03:02Z&quot;
+  &#34;2019-09-04T14:03:02Z&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;name&quot;:
+  &#34;name&#34;:
 </span>
 <span style="color:#b44">
-  &quot;local-crontab&quot;
+  &#34;local-crontab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;namespace&quot;:
+  &#34;namespace&#34;:
 </span>
 <span style="color:#b44">
-  &quot;default&quot;
+  &#34;default&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;resourceVersion&quot;:
+  &#34;resourceVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;143&quot;
+  &#34;143&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;3415a7fc-162b-4300-b5da-fd6083580d66&quot;
+  &#34;3415a7fc-162b-4300-b5da-fd6083580d66&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3699,19 +3698,19 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;host&quot;:
+  &#34;host&#34;:
 </span>
 <span style="color:#b44">
-  &quot;localhost&quot;
+  &#34;localhost&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;port&quot;:
+  &#34;port&#34;:
 </span>
 <span style="color:#b44">
-  &quot;1234&quot;
+  &#34;1234&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3722,61 +3721,61 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;CronTab&quot;
+  &#34;CronTab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com/v1&quot;
+  &#34;example.com/v1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;metadata&quot;:
+  &#34;metadata&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;creationTimestamp&quot;:
+  &#34;creationTimestamp&#34;:
 </span>
 <span style="color:#b44">
-  &quot;2019-09-03T13:02:01Z&quot;
+  &#34;2019-09-03T13:02:01Z&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;name&quot;:
+  &#34;name&#34;:
 </span>
 <span style="color:#b44">
-  &quot;remote-crontab&quot;
+  &#34;remote-crontab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;resourceVersion&quot;:
+  &#34;resourceVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;12893&quot;
+  &#34;12893&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;359a83ec-b575-460d-b553-d859cedde8a0&quot;
+  &#34;359a83ec-b575-460d-b553-d859cedde8a0&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3784,19 +3783,19 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;host&quot;:
+  &#34;host&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com&quot;
+  &#34;example.com&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;port&quot;:
+  &#34;port&#34;:
 </span>
 <span style="color:#b44">
-  &quot;2345&quot;
+  &#34;2345&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3811,8 +3810,8 @@ Webhook
 <span style="color:#bbb"></span>
 }
 <span style="color:#bbb"></span>
-<div id="conversionreview-response-success-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;{&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="conversionreview-response-success-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;{&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#080;font-style:italic">
@@ -3821,25 +3820,25 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;apiextensions.k8s.io/v1beta1&quot;
+  &#34;apiextensions.k8s.io/v1beta1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;ConversionReview&quot;
+  &#34;ConversionReview&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;response&quot;:
+  &#34;response&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
@@ -3850,25 +3849,25 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;705ab4f5-6393-11e8-b7cc-42010a800002&quot;
+  &#34;705ab4f5-6393-11e8-b7cc-42010a800002&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;result&quot;:
+  &#34;result&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;status&quot;:
+  &#34;status&#34;:
 </span>
 <span style="color:#b44">
-  &quot;Failed&quot;
+  &#34;Failed&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3896,7 +3895,7 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;convertedObjects&quot;:
+  &#34;convertedObjects&#34;:
 </span>
 [
 <span style="color:#bbb"></span>
@@ -3905,70 +3904,70 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;CronTab&quot;
+  &#34;CronTab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com/v1&quot;
+  &#34;example.com/v1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;metadata&quot;:
+  &#34;metadata&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;creationTimestamp&quot;:
+  &#34;creationTimestamp&#34;:
 </span>
 <span style="color:#b44">
-  &quot;2019-09-04T14:03:02Z&quot;
+  &#34;2019-09-04T14:03:02Z&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;name&quot;:
+  &#34;name&#34;:
 </span>
 <span style="color:#b44">
-  &quot;local-crontab&quot;
+  &#34;local-crontab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;namespace&quot;:
+  &#34;namespace&#34;:
 </span>
 <span style="color:#b44">
-  &quot;default&quot;
+  &#34;default&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;resourceVersion&quot;:
+  &#34;resourceVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;143&quot;
+  &#34;143&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;3415a7fc-162b-4300-b5da-fd6083580d66&quot;
+  &#34;3415a7fc-162b-4300-b5da-fd6083580d66&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3976,19 +3975,19 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;host&quot;:
+  &#34;host&#34;:
 </span>
 <span style="color:#b44">
-  &quot;localhost&quot;
+  &#34;localhost&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;port&quot;:
+  &#34;port&#34;:
 </span>
 <span style="color:#b44">
-  &quot;1234&quot;
+  &#34;1234&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -3999,61 +3998,61 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;CronTab&quot;
+  &#34;CronTab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com/v1&quot;
+  &#34;example.com/v1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;metadata&quot;:
+  &#34;metadata&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;creationTimestamp&quot;:
+  &#34;creationTimestamp&#34;:
 </span>
 <span style="color:#b44">
-  &quot;2019-09-03T13:02:01Z&quot;
+  &#34;2019-09-03T13:02:01Z&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;name&quot;:
+  &#34;name&#34;:
 </span>
 <span style="color:#b44">
-  &quot;remote-crontab&quot;
+  &#34;remote-crontab&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;resourceVersion&quot;:
+  &#34;resourceVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;12893&quot;
+  &#34;12893&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;359a83ec-b575-460d-b553-d859cedde8a0&quot;
+  &#34;359a83ec-b575-460d-b553-d859cedde8a0&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -4061,19 +4060,19 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;host&quot;:
+  &#34;host&#34;:
 </span>
 <span style="color:#b44">
-  &quot;example.com&quot;
+  &#34;example.com&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;port&quot;:
+  &#34;port&#34;:
 </span>
 <span style="color:#b44">
-  &quot;2345&quot;
+  &#34;2345&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -4091,7 +4090,7 @@ Webhook
 <script>
   $(function(){$("#conversionreview-response-success").tabs();});
 </script>
-<p>
+</p><p>
   If conversion fails, a webhook should return a
   <code>
     response
@@ -4115,7 +4114,7 @@ Webhook
     </code>
     , set to
     <code>
-      {&quot;status&quot;:&quot;Failed&quot;}
+      {&#34;status&#34;:&#34;Failed&#34;}
     </code>
   </li>
 </ul>
@@ -4147,62 +4146,62 @@ Webhook
   </li>
 </ul>
 <div id="conversionreview-response-failure-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;{&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;{&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;apiextensions.k8s.io/v1&quot;
+  &#34;apiextensions.k8s.io/v1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;ConversionReview&quot;
+  &#34;ConversionReview&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;response&quot;:
+  &#34;response&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;&lt;value from request.uid&gt;&quot;
+  &#34;&lt;value from request.uid&gt;&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;result&quot;:
+  &#34;result&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;status&quot;:
+  &#34;status&#34;:
 </span>
 <span style="color:#b44">
-  &quot;Failed&quot;
+  &#34;Failed&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;message&quot;:
+  &#34;message&#34;:
 </span>
 <span style="color:#b44">
-  &quot;hostPort could not be parsed into a separate host and port&quot;
+  &#34;hostPort could not be parsed into a separate host and port&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -4214,8 +4213,8 @@ Webhook
 <span style="color:#bbb"></span>
 }
 <span style="color:#bbb"></span>
-<div id="conversionreview-response-failure-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;{&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="conversionreview-response-failure-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;{&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#080;font-style:italic">
@@ -4224,58 +4223,58 @@ Webhook
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;apiVersion&quot;:
+  &#34;apiVersion&#34;:
 </span>
 <span style="color:#b44">
-  &quot;apiextensions.k8s.io/v1beta1&quot;
+  &#34;apiextensions.k8s.io/v1beta1&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;kind&quot;:
+  &#34;kind&#34;:
 </span>
 <span style="color:#b44">
-  &quot;ConversionReview&quot;
+  &#34;ConversionReview&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;response&quot;:
+  &#34;response&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;uid&quot;:
+  &#34;uid&#34;:
 </span>
 <span style="color:#b44">
-  &quot;&lt;value from request.uid&gt;&quot;
+  &#34;&lt;value from request.uid&gt;&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;result&quot;:
+  &#34;result&#34;:
 </span>
 {
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;status&quot;:
+  &#34;status&#34;:
 </span>
 <span style="color:#b44">
-  &quot;Failed&quot;
+  &#34;Failed&#34;
 </span>
 ,
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
-  &quot;message&quot;:
+  &#34;message&#34;:
 </span>
 <span style="color:#b44">
-  &quot;hostPort could not be parsed into a separate host and port&quot;
+  &#34;hostPort could not be parsed into a separate host and port&#34;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -4290,7 +4289,7 @@ Webhook
 <script>
   $(function(){$("#conversionreview-response-failure").tabs();});
 </script>
-<h2 id="writing-reading-and-updating-versioned-customresourcedefinition-objects">
+</p><h2 id="writing-reading-and-updating-versioned-customresourcedefinition-objects">
   Writing, reading, and updating versioned CustomResourceDefinition objects
 </h2>
 <p>
@@ -4302,7 +4301,7 @@ Webhook
 </p>
 <p>
   When you read an object, you specify the version as part of the path. If you
-  specify a version that is different from the object&rsquo;s persisted version,
+  specify a version that is different from the object’s persisted version,
   Kubernetes returns the object to you at the version you requested, but the
   persisted object is neither changed on disk, nor converted in any way
   (other than changing the
@@ -4473,4 +4472,4 @@ Webhook
     </code>
     field.
   </li>
-</ol>
+</ol></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></body></html>

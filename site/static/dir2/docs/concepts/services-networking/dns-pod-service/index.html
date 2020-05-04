@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       DNS for Services and Pods
     </h1>
@@ -32,7 +31,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -41,7 +40,7 @@
     </h2>
     <p>
       Kubernetes DNS schedules a DNS Pod and Service on the cluster, and configures
-      the kubelets to tell individual containers to use the DNS Service&rsquo;s IP to
+      the kubelets to tell individual containers to use the DNS Service’s IP to
       resolve DNS names.
     </p>
     <h3 id="what-things-get-dns-names">
@@ -49,8 +48,8 @@
     </h3>
     <p>
       Every Service defined in the cluster (including the DNS server itself) is
-      assigned a DNS name.  By default, a client Pod&rsquo;s DNS search list will
-      include the Pod&rsquo;s own namespace and the cluster&rsquo;s default domain.  This is best
+      assigned a DNS name.  By default, a client Pod’s DNS search list will
+      include the Pod’s own namespace and the cluster’s default domain.  This is best
       illustrated by example:
     </p>
     <p>
@@ -99,7 +98,7 @@
       A/AAAA records
     </h3>
     <p>
-      &ldquo;Normal&rdquo; (not headless) Services are assigned a DNS A or AAAA record,
+      “Normal” (not headless) Services are assigned a DNS A or AAAA record,
       depending on the IP family of the service, for a name of the form
       <code>
         my-svc.my-namespace.svc.cluster-domain.example
@@ -108,7 +107,7 @@
       of the Service.
     </p>
     <p>
-      &ldquo;Headless&rdquo; (without a cluster IP) Services are also assigned a DNS A or AAAA record,
+      “Headless” (without a cluster IP) Services are also assigned a DNS A or AAAA record,
       depending on the IP family of the service, for a name of the form
       <code>
         my-svc.my-namespace.svc.cluster-domain.example
@@ -150,10 +149,10 @@
       Pods
     </h2>
     <h3 id="pod-s-hostname-and-subdomain-fields">
-      Pod&rsquo;s hostname and subdomain fields
+      Pod’s hostname and subdomain fields
     </h3>
     <p>
-      Currently when a pod is created, its hostname is the Pod&rsquo;s
+      Currently when a pod is created, its hostname is the Pod’s
       <code>
         metadata.name
       </code>
@@ -165,21 +164,21 @@
         hostname
       </code>
       field, which can be used to specify the
-      Pod&rsquo;s hostname. When specified, it takes precedence over the Pod&rsquo;s name to be
+      Pod’s hostname. When specified, it takes precedence over the Pod’s name to be
       the hostname of the pod. For example, given a Pod with
       <code>
         hostname
       </code>
       set to
-      &ldquo;
+      “
       <code>
         my-host
       </code>
-      &rdquo;, the Pod will have its hostname set to &ldquo;
+      ”, the Pod will have its hostname set to “
       <code>
         my-host
       </code>
-      &rdquo;.
+      ”.
     </p>
     <p>
       The Pod spec also has an optional
@@ -191,28 +190,28 @@
       <code>
         hostname
       </code>
-      set to &ldquo;
+      set to “
       <code>
         foo
       </code>
-      &rdquo;, and
+      ”, and
       <code>
         subdomain
       </code>
-      set to &ldquo;
+      set to “
       <code>
         bar
       </code>
-      &rdquo;, in namespace &ldquo;
+      ”, in namespace “
       <code>
         my-namespace
       </code>
-      &rdquo;, will have the fully qualified
-      domain name (FQDN) &ldquo;
+      ”, will have the fully qualified
+      domain name (FQDN) “
       <code>
         foo.bar.my-namespace.svc.cluster-domain.example
       </code>
-      &rdquo;.
+      ”.
     </p>
     <p>
       Example:
@@ -261,43 +260,43 @@
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb">
 </span><span style="color:#bbb">      </span>- sleep<span style="color:#bbb">
 </span><span style="color:#bbb">      </span>- <span style="color:#b44">&#34;3600&#34;</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>busybox<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>busybox<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <p>
       If there exists a headless service in the same namespace as the pod and with
-      the same name as the subdomain, the cluster&rsquo;s DNS Server also returns an A or AAAA
-      record for the Pod&rsquo;s fully qualified hostname.
-      For example, given a Pod with the hostname set to &ldquo;
+      the same name as the subdomain, the cluster’s DNS Server also returns an A or AAAA
+      record for the Pod’s fully qualified hostname.
+      For example, given a Pod with the hostname set to “
       <code>
         busybox-1
       </code>
-      &rdquo; and the subdomain set to
-      &ldquo;
+      ” and the subdomain set to
+      “
       <code>
         default-subdomain
       </code>
-      &rdquo;, and a headless Service named &ldquo;
+      ”, and a headless Service named “
       <code>
         default-subdomain
       </code>
-      &rdquo; in
+      ” in
       the same namespace, the pod will see its own FQDN as
-      &ldquo;
+      “
       <code>
         busybox-1.default-subdomain.my-namespace.svc.cluster-domain.example
       </code>
-      &rdquo;. DNS serves an
-      A or AAAA record at that name, pointing to the Pod&rsquo;s IP. Both pods &ldquo;
+      ”. DNS serves an
+      A or AAAA record at that name, pointing to the Pod’s IP. Both pods “
       <code>
         busybox1
       </code>
-      &rdquo; and
-      &ldquo;
+      ” and
+      “
       <code>
         busybox2
       </code>
-      &rdquo; can have their distinct A or AAAA records.
+      ” can have their distinct A or AAAA records.
     </p>
     <p>
       The Endpoints object can specify the
@@ -316,7 +315,7 @@
         <code>
           hostname
         </code>
-        is required for the Pod&rsquo;s A or AAAA
+        is required for the Pod’s A or AAAA
         record to be created. A Pod with no
         <code>
           hostname
@@ -331,7 +330,7 @@
           default-subdomain.my-namespace.svc.cluster-domain.example
         </code>
         ),
-        pointing to the Pod&rsquo;s IP address. Also, Pod needs to become ready in order to have a
+        pointing to the Pod’s IP address. Also, Pod needs to become ready in order to have a
         record unless
         <code>
           publishNotReadyAddresses=True
@@ -340,7 +339,7 @@
       </div>
     </blockquote>
     <h3 id="pod-s-dns-policy">
-      Pod&rsquo;s DNS Policy
+      Pod’s DNS Policy
     </h3>
     <p>
       DNS policies can be set on a per-pod basis. Currently Kubernetes supports the
@@ -352,11 +351,11 @@
     </p>
     <ul>
       <li>
-        &ldquo;
+        “
         <code>
           Default
         </code>
-        &rdquo;: The Pod inherits the name resolution configuration from the node
+        ”: The Pod inherits the name resolution configuration from the node
         that the pods run on.
         See
         <a href="/docs/tasks/administer-cluster/dns-custom-nameservers/#inheriting-dns-from-the-node">
@@ -365,16 +364,16 @@
         for more details.
       </li>
       <li>
-        &ldquo;
+        “
         <code>
           ClusterFirst
         </code>
-        &rdquo;: Any DNS query that does not match the configured cluster
-        domain suffix, such as &ldquo;
+        ”: Any DNS query that does not match the configured cluster
+        domain suffix, such as “
         <code>
           www.kubernetes.io
         </code>
-        &rdquo;, is forwarded to the upstream
+        ”, is forwarded to the upstream
         nameserver inherited from the node. Cluster administrators may have extra
         stub-domain and upstream DNS servers configured.
         See
@@ -384,23 +383,23 @@
         for details on how DNS queries are handled in those cases.
       </li>
       <li>
-        &ldquo;
+        “
         <code>
           ClusterFirstWithHostNet
         </code>
-        &rdquo;: For Pods running with hostNetwork, you should
-        explicitly set its DNS policy &ldquo;
+        ”: For Pods running with hostNetwork, you should
+        explicitly set its DNS policy “
         <code>
           ClusterFirstWithHostNet
         </code>
-        &rdquo;.
+        ”.
       </li>
       <li>
-        &ldquo;
+        “
         <code>
           None
         </code>
-        &rdquo;: It allows a Pod to ignore DNS settings from the Kubernetes
+        ”: It allows a Pod to ignore DNS settings from the Kubernetes
         environment. All DNS settings are supposed to be provided using the
         <code>
           dnsConfig
@@ -408,7 +407,7 @@
         field in the Pod Spec.
         See
         <a href="#pod-s-dns-config">
-          Pod&rsquo;s DNS config
+          Pod’s DNS config
         </a>
         subsection below.
       </li>
@@ -418,7 +417,7 @@
         <strong>
           Note:
         </strong>
-        &ldquo;Default&rdquo; is not the default DNS policy. If
+        “Default” is not the default DNS policy. If
         <code>
           dnsPolicy
         </code>
@@ -428,11 +427,11 @@
     </blockquote>
     <p>
       The example below shows a Pod with its DNS policy set to
-      &ldquo;
+      “
       <code>
         ClusterFirstWithHostNet
       </code>
-      &rdquo; because it has
+      ” because it has
       <code>
         hostNetwork
       </code>
@@ -462,10 +461,10 @@
 </span></code></pre>
     </div>
     <h3 id="pod-s-dns-config">
-      Pod&rsquo;s DNS Config
+      Pod’s DNS Config
     </h3>
     <p>
-      Pod&rsquo;s DNS Config allows users more control on the DNS settings for a Pod.
+      Pod’s DNS Config allows users more control on the DNS settings for a Pod.
     </p>
     <p>
       The
@@ -477,15 +476,15 @@
         dnsPolicy
       </code>
       settings.
-      However, when a Pod&rsquo;s
+      However, when a Pod’s
       <code>
         dnsPolicy
       </code>
-      is set to &ldquo;
+      is set to “
       <code>
         None
       </code>
-      &rdquo;, the
+      ”, the
       <code>
         dnsConfig
       </code>
@@ -505,15 +504,15 @@
           nameservers
         </code>
         : a list of IP addresses that will be used as DNS servers for the
-        Pod. There can be at most 3 IP addresses specified. When the Pod&rsquo;s
+        Pod. There can be at most 3 IP addresses specified. When the Pod’s
         <code>
           dnsPolicy
         </code>
-        is set to &ldquo;
+        is set to “
         <code>
           None
         </code>
-        &rdquo;, the list must contain at least one IP address, otherwise
+        ”, the list must contain at least one IP address, otherwise
         this property is optional.
         The servers listed will be combined to the base nameservers generated from the
         specified DNS policy with duplicate addresses removed.
@@ -557,7 +556,7 @@
                 service/networking/custom-dns.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-custom-dns-yaml')" title="Copy service/networking/custom-dns.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-custom-dns-yaml&#39;)" title="Copy service/networking/custom-dns.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -624,11 +623,11 @@ options ndots:5</code></pre>
       Feature availability
     </h3>
     <p>
-      The availability of Pod DNS Config and DNS Policy &ldquo;
+      The availability of Pod DNS Config and DNS Policy “
       <code>
         None
       </code>
-      &rdquo;&rdquo; is shown as below.
+      ”” is shown as below.
     </p>
     <table>
       <thead>
@@ -677,5 +676,5 @@ options ndots:5</code></pre>
         Configure DNS Service
       </a>
     </p>
-  </body>
-</html>
+  
+</body></html>

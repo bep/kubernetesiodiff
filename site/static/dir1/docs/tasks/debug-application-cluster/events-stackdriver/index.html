@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Events in Stackdriver
     </h1>
@@ -23,7 +22,7 @@
     </p>
     <p>
       Since events are API objects, they are stored in the apiserver on master. To
-      avoid filling up master&rsquo;s disk, a retention policy is enforced: events are
+      avoid filling up master’s disk, a retention policy is enforced: events are
       removed one hour after the last occurrence. To provide longer history
       and aggregation capabilities, a third party solution should be installed
       to capture events.
@@ -40,7 +39,7 @@
         It is not guaranteed that all events happening in a cluster will be
         exported to Stackdriver. One possible scenario when events will not be
         exported is when event exporter is not running (e.g. during restart or
-        upgrade). In most cases it&rsquo;s fine to use events for purposes like setting up
+        upgrade). In most cases it’s fine to use events for purposes like setting up
         <a href="https://cloud.google.com/logging/docs/logs-based-metrics/">
           metrics
         </a>
@@ -106,7 +105,7 @@
                 debug/event-exporter.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('debug-event-exporter-yaml')" title="Copy debug/event-exporter.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;debug-event-exporter-yaml&#39;)" title="Copy debug/event-exporter.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -179,8 +178,8 @@
       You can find them by selecting an appropriate option from a drop-down menu
       of available resources:
     </p>
-    <p>
-      <img src="/images/docs/stackdriver-event-exporter-resource.png" alt="Events location in the Stackdriver Logging interface" width="500">
+    <p data-diff="">
+      <img src="/images/docs/stackdriver-event-exporter-resource.png" alt="Events location in the Stackdriver Logging interface" width="500"/>
     </p>
     <p>
       You can filter based on the event object fields using Stackdriver Logging
@@ -200,8 +199,7 @@ jsonPayload.kind=&#34;Event&#34;
 jsonPayload.source.component=&#34;default-scheduler&#34;
 jsonPayload.involvedObject.name:&#34;nginx-deployment&#34;</code></pre>
     <figure>
-      <img src="/images/docs/stackdriver-event-exporter-filter.png"
-         alt="Filtered events in the Stackdriver Logging interface" width="500"/>
+      <img src="/images/docs/stackdriver-event-exporter-filter.png" alt="Filtered events in the Stackdriver Logging interface" width="500"/>
     </figure>
-  </body>
-</html>
+  
+</body></html>

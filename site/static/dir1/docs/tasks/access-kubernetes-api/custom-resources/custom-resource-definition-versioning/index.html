@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Versions in CustomResourceDefinitions
 </h1>
@@ -347,7 +346,7 @@
   </li>
 </ul>
 <div id="customresourcedefinition-versioning-example-1-0">
-  <div class="highlight">
+  <div class="highlight" data-diff="">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>apiextensions.k8s.io/v1<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>CustomResourceDefinition<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
@@ -403,7 +402,7 @@
 </span><span style="color:#bbb">    </span>- ct</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="customresourcedefinition-versioning-example-1-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of apiextensions.k8s.io/v1</span><span style="color:#bbb">
@@ -453,12 +452,12 @@
 </span><span style="color:#bbb">    </span>- ct</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#customresourcedefinition-versioning-example-1").tabs();});
 </script>
-<p>
+</p><p>
   You can save the CustomResourceDefinition in a YAML file, then use
   <code>
     kubectl apply
@@ -562,7 +561,7 @@
     sorted from largest to smallest.
   </li>
   <li>
-    Strings that don&rsquo;t fit the above format are sorted alphabetically and the
+    Strings that don’t fit the above format are sorted alphabetically and the
     numeric portions are not treated specially. Notice that in the example below,
     <code>
       foo1
@@ -924,7 +923,7 @@
 </span><span style="color:#bbb">    </span>- ct</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="customresourcedefinition-versioning-example-2-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of apiextensions.k8s.io/v1</span><span style="color:#bbb">
@@ -988,12 +987,12 @@
 </span><span style="color:#bbb">    </span>- ct</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#customresourcedefinition-versioning-example-2").tabs();});
 </script>
-<p>
+</p><p>
   You can save the CustomResourceDefinition in a YAML file, then use
   <code>
     kubectl apply
@@ -1078,11 +1077,11 @@
   to turn up in a new cluster.
 </p>
 <p>
-  The scheme must be &ldquo;https&rdquo;; the URL must begin with &ldquo;https://&ldquo;.
+  The scheme must be “https”; the URL must begin with “https://“.
 </p>
 <p>
-  Attempting to use a user or basic auth (for example &ldquo;user:password@&ldquo;) is not allowed.
-  Fragments (&ldquo;#&hellip;&rdquo;) and query parameters (&ldquo;?&hellip;&rdquo;) are also not allowed.
+  Attempting to use a user or basic auth (for example “user:password@“) is not allowed.
+  Fragments (“#…”) and query parameters (“?…”) are also not allowed.
 </p>
 <p>
   Here is an example of a conversion webhook configured to call a URL
@@ -1116,7 +1115,7 @@
 </span><span style="color:#bbb"></span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="customresourcedefinition-versioning-example-3-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of apiextensions.k8s.io/v1</span><span style="color:#bbb">
@@ -1132,12 +1131,12 @@
 </span><span style="color:#bbb"></span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#customresourcedefinition-versioning-example-3").tabs();});
 </script>
-<h3 id="service-reference">
+</p><h3 id="service-reference">
   Service Reference
 </h3>
 <p>
@@ -1160,11 +1159,11 @@
   </code>
   .
   The service namespace and name are required. The port is optional and defaults to 443.
-  The path is optional and defaults to &ldquo;/&rdquo;.
+  The path is optional and defaults to “/”.
 </p>
 <p>
-  Here is an example of a webhook that is configured to call a service on port &ldquo;1234&rdquo;
-  at the subpath &ldquo;/my-path&rdquo;, and to verify the TLS connection against the ServerName
+  Here is an example of a webhook that is configured to call a service on port “1234”
+  at the subpath “/my-path”, and to verify the TLS connection against the ServerName
   <code>
     my-service-name.my-service-namespace.svc
   </code>
@@ -1203,7 +1202,7 @@
 </span><span style="color:#bbb"></span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="customresourcedefinition-versioning-example-4-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of apiextensions.k8s.io/v1</span><span style="color:#bbb">
@@ -1224,12 +1223,12 @@
 </span><span style="color:#bbb"></span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#customresourcedefinition-versioning-example-4").tabs();});
 </script>
-<h2 id="webhook-request-and-response">
+</p><h2 id="webhook-request-and-response">
   Webhook request and response
 </h2>
 <h3 id="request">
@@ -1336,7 +1335,7 @@
     </p>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#conversionreviewversions").tabs();});
 </script>
@@ -1429,7 +1428,7 @@
 </span><span style="color:#bbb"></span>}</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="conversionreview-request-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">{<span style="color:#bbb">
@@ -1474,12 +1473,12 @@
 </span><span style="color:#bbb"></span>}</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#conversionreview-request").tabs();});
 </script>
-<h3 id="response">
+</p><h3 id="response">
   Response
 </h3>
 <p>
@@ -1520,7 +1519,7 @@
   </code>
   , set to
   <code>
-    {&quot;status&quot;:&quot;Success&quot;}
+    {&#34;status&#34;:&#34;Success&#34;}
   </code>
   *
   <code>
@@ -1597,7 +1596,7 @@
 </span><span style="color:#bbb"></span>}</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="conversionreview-response-success-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">{<span style="color:#bbb">
@@ -1645,12 +1644,12 @@
 </span><span style="color:#bbb"></span>}</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#conversionreview-response-success").tabs();});
 </script>
-<p>
+</p><p>
   If conversion fails, a webhook should return a
   <code>
     response
@@ -1671,7 +1670,7 @@
   </code>
   , set to
   <code>
-    {&quot;status&quot;:&quot;Failed&quot;}
+    {&#34;status&#34;:&#34;Failed&#34;}
   </code>
 </p>
 <blockquote class="warning">
@@ -1716,7 +1715,7 @@
 </span><span style="color:#bbb"></span>}</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="conversionreview-response-failure-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">{<span style="color:#bbb">
@@ -1733,12 +1732,12 @@
 </span><span style="color:#bbb"></span>}</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#conversionreview-response-failure").tabs();});
 </script>
-<h2 id="writing-reading-and-updating-versioned-customresourcedefinition-objects">
+</p><h2 id="writing-reading-and-updating-versioned-customresourcedefinition-objects">
   Writing, reading, and updating versioned CustomResourceDefinition objects
 </h2>
 <p>
@@ -1750,7 +1749,7 @@
 </p>
 <p>
   When you read an object, you specify the version as part of the path. If you
-  specify a version that is different from the object&rsquo;s persisted version,
+  specify a version that is different from the object’s persisted version,
   Kubernetes returns the object to you at the version you requested, but the
   persisted object is neither changed on disk, nor converted in any way
   (other than changing the
@@ -1921,4 +1920,4 @@
     </code>
     field.
   </li>
-</ol>
+</ol></div></div></div></div></div></div></div></body></html>

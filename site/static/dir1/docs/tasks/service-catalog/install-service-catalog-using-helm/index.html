@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Install Service Catalog using Helm
 </h1>
@@ -12,22 +11,22 @@
   Install Service Catalog using Helm
 </h1>
 <p>
-  <p>
+  </p><p>
     Service Catalog is an extension API that enables applications running in Kubernetes clusters to easily use external managed software offerings, such as a datastore service offered by a cloud provider.
   </p>
-</p>
+<p></p>
 <p>
   It provides a way to list, provision, and bind with external
-  <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-managed-service' target='_blank'>
+  <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-managed-service" target="_blank">
     Managed Services
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A software offering maintained by a third-party provider.
     </span>
   </a>
   from
-  <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-service-broker' target='_blank'>
+  <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-service-broker" target="_blank">
     Service Brokers
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       An endpoint for a set of Managed Services offered and maintained by a third-party.
     </span>
   </a>
@@ -67,7 +66,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -90,9 +89,9 @@
     <ul>
       <li>
         If you are using a cloud-based Kubernetes cluster or
-        <a class='glossary-tooltip' href='/docs/setup/learning-environment/minikube/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/setup/learning-environment/minikube/" target="_blank">
           Minikube
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             A tool for running Kubernetes locally.
           </span>
         </a>
@@ -193,7 +192,7 @@ svc-cat/catalog-v0.2	0.2.2        	           	service-catalog API server and co
   <code>
     --extra-config
   </code>
-  . The flag has since been changed to &ndash;extra-config=apiserver.authorization-mode and Minikube now uses RBAC by default. Specifying the older flag may cause the start command to hang.
+  . The flag has since been changed to –extra-config=apiserver.authorization-mode and Minikube now uses RBAC by default. Specifying the older flag may cause the start command to hang.
 </p>
 <p>
   If you are using
@@ -278,22 +277,22 @@ svc-cat/catalog-v0.2	0.2.2        	           	service-catalog API server and co
   </li>
 </ul>
 <div id="helm-versions-0">
-  <div class="highlight">
+  <div class="highlight" data-diff="">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">helm install catalog svc-cat/catalog --namespace catalog</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="helm-versions-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">helm install svc-cat/catalog --name catalog --namespace catalog</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#helm-versions").tabs();});
 </script>
-<h2 id="what-s-next">
+</p><h2 id="what-s-next">
   What&#39;s next
 </h2>
 <ul>
@@ -311,4 +310,4 @@ svc-cat/catalog-v0.2	0.2.2        	           	service-catalog API server and co
     </a>
     project.
   </li>
-</ul>
+</ul></div></body></html>

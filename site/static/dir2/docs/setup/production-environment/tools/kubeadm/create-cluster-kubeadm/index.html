@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Creating a single control-plane cluster with kubeadm
 </h1>
@@ -12,7 +11,7 @@
   Creating a single control-plane cluster with kubeadm
 </h1>
 <p>
-  <img src="https://raw.githubusercontent.com/kubernetes/kubeadm/master/logos/stacked/color/kubeadm-stacked-color.png" align="right" width="150px">
+  <img src="https://raw.githubusercontent.com/kubernetes/kubeadm/master/logos/stacked/color/kubeadm-stacked-color.png" align="right" width="150px"/>
   The
   <code>
     kubeadm
@@ -26,7 +25,7 @@
     Kubernetes Conformance tests
   </a>
   .
-  <br>
+  <br/>
   <code>
     kubeadm
   </code>
@@ -62,7 +61,7 @@
     kubeadm
   </code>
   on various machines: your laptop, a set
-  of cloud servers, a Raspberry Pi, and more. Whether you&rsquo;re deploying into the
+  of cloud servers, a Raspberry Pi, and more. Whether you’re deploying into the
   cloud or on-premises, you can integrate
   <code>
     kubeadm
@@ -123,7 +122,7 @@
     One or more machines running a deb/rpm-compatible Linux OS; for example: Ubuntu or CentOS.
   </li>
   <li>
-    2 GiB or more of RAM per machine&ndash;any less leaves little room for your
+    2 GiB or more of RAM per machine–any less leaves little room for your
     apps.
   </li>
   <li>
@@ -144,7 +143,7 @@
 </p>
 <p>
   <a href="https://kubernetes.io/docs/setup/release/version-skew-policy/#supported-versions">
-    Kubernetes&rsquo; version and version skew support policy
+    Kubernetes’ version and version skew support policy
   </a>
   applies to
   <code>
@@ -162,7 +161,7 @@
   <code>
     kubeadm
   </code>
-  tool&rsquo;s overall feature state is General Availability (GA). Some sub-features are
+  tool’s overall feature state is General Availability (GA). Some sub-features are
   still under active development. The implementation of creating the cluster may change
   slightly as the tool evolves, but the overall implementation should be pretty stable.
 </p>
@@ -202,7 +201,7 @@
 <p>
   See
   <a href="/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">
-    &ldquo;Installing kubeadm&rdquo;
+    “Installing kubeadm”
   </a>
   .
 </p>
@@ -234,23 +233,23 @@
 </h3>
 <p>
   The control-plane node is the machine where the control plane components run, including
-  <a class='glossary-tooltip' href='/docs/tasks/administer-cluster/configure-upgrade-etcd/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/tasks/administer-cluster/configure-upgrade-etcd/" target="_blank">
     etcd
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Consistent and highly-available key value store used as Kubernetes’ backing store for all cluster data.
     </span>
   </a>
   (the cluster database) and the
-  <a class='glossary-tooltip' href='/docs/reference/generated/kube-apiserver/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/reference/generated/kube-apiserver/" target="_blank">
     API Server
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Control plane component that serves the Kubernetes API.
     </span>
   </a>
   (which the
-  <a class='glossary-tooltip' href='/docs/user-guide/kubectl-overview/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/user-guide/kubectl-overview/" target="_blank">
     kubectl
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A command line tool for communicating with a Kubernetes API server.
     </span>
   </a>
@@ -316,7 +315,7 @@
       kubeadm
     </code>
     uses the network interface associated
-    with the default gateway to set the advertise address for this particular control-plane node&rsquo;s API server.
+    with the default gateway to set the advertise address for this particular control-plane node’s API server.
     To use a different network interface, specify the
     <code>
       --apiserver-advertise-address=&lt;ip-address&gt;
@@ -360,7 +359,7 @@
     --apiserver-advertise-address
   </code>
   can be used to set the advertise address for this particular
-  control-plane node&rsquo;s API server,
+  control-plane node’s API server,
   <code>
     --control-plane-endpoint
   </code>
@@ -474,48 +473,48 @@
 [preflight] Running pre-flight checks
 [preflight] Pulling images required for setting up a Kubernetes cluster
 [preflight] This might take a minute or two, depending on the speed of your internet connection
-[preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
-[kubelet-start] Writing kubelet environment file with flags to file &quot;/var/lib/kubelet/kubeadm-flags.env&quot;
-[kubelet-start] Writing kubelet configuration to file &quot;/var/lib/kubelet/config.yaml&quot;
+[preflight] You can also perform this action in beforehand using &#39;kubeadm config images pull&#39;
+[kubelet-start] Writing kubelet environment file with flags to file &#34;/var/lib/kubelet/kubeadm-flags.env&#34;
+[kubelet-start] Writing kubelet configuration to file &#34;/var/lib/kubelet/config.yaml&#34;
 [kubelet-start] Activating the kubelet service
-[certs] Using certificateDir folder &quot;/etc/kubernetes/pki&quot;
-[certs] Generating &quot;etcd/ca&quot; certificate and key
-[certs] Generating &quot;etcd/server&quot; certificate and key
+[certs] Using certificateDir folder &#34;/etc/kubernetes/pki&#34;
+[certs] Generating &#34;etcd/ca&#34; certificate and key
+[certs] Generating &#34;etcd/server&#34; certificate and key
 [certs] etcd/server serving cert is signed for DNS names [kubeadm-cp localhost] and IPs [10.138.0.4 127.0.0.1 ::1]
-[certs] Generating &quot;etcd/healthcheck-client&quot; certificate and key
-[certs] Generating &quot;etcd/peer&quot; certificate and key
+[certs] Generating &#34;etcd/healthcheck-client&#34; certificate and key
+[certs] Generating &#34;etcd/peer&#34; certificate and key
 [certs] etcd/peer serving cert is signed for DNS names [kubeadm-cp localhost] and IPs [10.138.0.4 127.0.0.1 ::1]
-[certs] Generating &quot;apiserver-etcd-client&quot; certificate and key
-[certs] Generating &quot;ca&quot; certificate and key
-[certs] Generating &quot;apiserver&quot; certificate and key
+[certs] Generating &#34;apiserver-etcd-client&#34; certificate and key
+[certs] Generating &#34;ca&#34; certificate and key
+[certs] Generating &#34;apiserver&#34; certificate and key
 [certs] apiserver serving cert is signed for DNS names [kubeadm-cp kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 10.138.0.4]
-[certs] Generating &quot;apiserver-kubelet-client&quot; certificate and key
-[certs] Generating &quot;front-proxy-ca&quot; certificate and key
-[certs] Generating &quot;front-proxy-client&quot; certificate and key
-[certs] Generating &quot;sa&quot; key and public key
-[kubeconfig] Using kubeconfig folder &quot;/etc/kubernetes&quot;
-[kubeconfig] Writing &quot;admin.conf&quot; kubeconfig file
-[kubeconfig] Writing &quot;kubelet.conf&quot; kubeconfig file
-[kubeconfig] Writing &quot;controller-manager.conf&quot; kubeconfig file
-[kubeconfig] Writing &quot;scheduler.conf&quot; kubeconfig file
-[control-plane] Using manifest folder &quot;/etc/kubernetes/manifests&quot;
-[control-plane] Creating static Pod manifest for &quot;kube-apiserver&quot;
-[control-plane] Creating static Pod manifest for &quot;kube-controller-manager&quot;
-[control-plane] Creating static Pod manifest for &quot;kube-scheduler&quot;
-[etcd] Creating static Pod manifest for local etcd in &quot;/etc/kubernetes/manifests&quot;
-[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory &quot;/etc/kubernetes/manifests&quot;. This can take up to 4m0s
+[certs] Generating &#34;apiserver-kubelet-client&#34; certificate and key
+[certs] Generating &#34;front-proxy-ca&#34; certificate and key
+[certs] Generating &#34;front-proxy-client&#34; certificate and key
+[certs] Generating &#34;sa&#34; key and public key
+[kubeconfig] Using kubeconfig folder &#34;/etc/kubernetes&#34;
+[kubeconfig] Writing &#34;admin.conf&#34; kubeconfig file
+[kubeconfig] Writing &#34;kubelet.conf&#34; kubeconfig file
+[kubeconfig] Writing &#34;controller-manager.conf&#34; kubeconfig file
+[kubeconfig] Writing &#34;scheduler.conf&#34; kubeconfig file
+[control-plane] Using manifest folder &#34;/etc/kubernetes/manifests&#34;
+[control-plane] Creating static Pod manifest for &#34;kube-apiserver&#34;
+[control-plane] Creating static Pod manifest for &#34;kube-controller-manager&#34;
+[control-plane] Creating static Pod manifest for &#34;kube-scheduler&#34;
+[etcd] Creating static Pod manifest for local etcd in &#34;/etc/kubernetes/manifests&#34;
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory &#34;/etc/kubernetes/manifests&#34;. This can take up to 4m0s
 [apiclient] All control plane components are healthy after 31.501735 seconds
-[uploadconfig] storing the configuration used in ConfigMap &quot;kubeadm-config&quot; in the &quot;kube-system&quot; Namespace
-[kubelet] Creating a ConfigMap &quot;kubelet-config-X.Y&quot; in namespace kube-system with the configuration for the kubelets in the cluster
-[patchnode] Uploading the CRI Socket information &quot;/var/run/dockershim.sock&quot; to the Node API object &quot;kubeadm-cp&quot; as an annotation
-[mark-control-plane] Marking the node kubeadm-cp as control-plane by adding the label &quot;node-role.kubernetes.io/master=''&quot;
+[uploadconfig] storing the configuration used in ConfigMap &#34;kubeadm-config&#34; in the &#34;kube-system&#34; Namespace
+[kubelet] Creating a ConfigMap &#34;kubelet-config-X.Y&#34; in namespace kube-system with the configuration for the kubelets in the cluster
+[patchnode] Uploading the CRI Socket information &#34;/var/run/dockershim.sock&#34; to the Node API object &#34;kubeadm-cp&#34; as an annotation
+[mark-control-plane] Marking the node kubeadm-cp as control-plane by adding the label &#34;node-role.kubernetes.io/master=&#39;&#39;&#34;
 [mark-control-plane] Marking the node kubeadm-cp as control-plane by adding the taints [node-role.kubernetes.io/master:NoSchedule]
 [bootstrap-token] Using token: &lt;token&gt;
 [bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
 [bootstraptoken] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
 [bootstraptoken] configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
 [bootstraptoken] configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
-[bootstraptoken] creating the &quot;cluster-info&quot; ConfigMap in the &quot;kube-public&quot; namespace
+[bootstraptoken] creating the &#34;cluster-info&#34; ConfigMap in the &#34;kube-public&#34; namespace
 [addons] Applied essential addon: CoreDNS
 [addons] Applied essential addon: kube-proxy
 
@@ -528,7 +527,7 @@ To start using your cluster, you need to run the following as a regular user:
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 You should now deploy a Pod network to the cluster.
-Run &quot;kubectl apply -f [podnetwork].yaml&quot; with one of the options listed at:
+Run &#34;kubectl apply -f [podnetwork].yaml&#34; with one of the options listed at:
   /docs/concepts/cluster-administration/addons/
 
 You can now join any number of machines by running the following on each node
@@ -604,14 +603,14 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
     <p>
       <strong>
         You must deploy a
-        <a class='glossary-tooltip' href='/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni" target="_blank">
           Container Network Interface
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Container network interface (CNI) plugins are a type of Network plugin that adheres to the appc/CNI specification.
           </span>
         </a>
         (CNI) based Pod network add-on so that your Pods can communicate with each other.
-        <br>
+        <br/>
         Cluster DNS (CoreDNS) will not start up before a network is installed.
       </strong>
     </p>
@@ -620,7 +619,7 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
         <p>
           Take care that your Pod network must not overlap with any of the host
           networks: you are likely to see problems if there is any overlap.
-          <br>
+          <br/>
           (If you find a collision between your network plugin’s preferred Pod
           network and some of your host networks, you should think of a suitable
           CIDR block to use instead, then use that during
@@ -646,17 +645,17 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
           </a>
           (role based access
           control).
-          <br>
+          <br/>
           Make sure that your Pod network plugin supports RBAC, and so do any manifests
           that you use to deploy it.
         </p>
       </li>
       <li>
         <p>
-          If you want to use IPv6&ndash;either dual-stack, or single-stack IPv6 only
-          networking&ndash;for your cluster, make sure that your Pod network plugin
+          If you want to use IPv6–either dual-stack, or single-stack IPv6 only
+          networking–for your cluster, make sure that your Pod network plugin
           supports IPv6.
-          <br>
+          <br/>
           IPv6 support was added to CNI in
           <a href="https://github.com/containernetworking/cni/releases/tag/v0.6.0">
             v0.6.0
@@ -727,7 +726,7 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
   </li>
 </ul>
 <div id="tabs-pod-install-0">
-  <pre><code>    &lt;p&gt;&lt;a href=&quot;https://docs.projectcalico.org/latest/introduction/&quot;&gt;Calico&lt;/a&gt; is a networking and network policy provider. Calico supports a flexible set of networking options so you can choose the most efficient option for your situation, including non-overlay and overlay networks, with or without BGP. Calico uses the same engine to enforce network policy for hosts, pods, and (if using Istio &amp;amp; Envoy) applications at the service mesh layer. Calico works on several architectures, including &lt;code&gt;amd64&lt;/code&gt;, &lt;code&gt;arm64&lt;/code&gt;, and &lt;code&gt;ppc64le&lt;/code&gt;.&lt;/p&gt;</code></pre>
+  <pre data-diff=""><code>    &lt;p&gt;&lt;a href=&#34;https://docs.projectcalico.org/latest/introduction/&#34;&gt;Calico&lt;/a&gt; is a networking and network policy provider. Calico supports a flexible set of networking options so you can choose the most efficient option for your situation, including non-overlay and overlay networks, with or without BGP. Calico uses the same engine to enforce network policy for hosts, pods, and (if using Istio &amp;amp; Envoy) applications at the service mesh layer. Calico works on several architectures, including &lt;code&gt;amd64&lt;/code&gt;, &lt;code&gt;arm64&lt;/code&gt;, and &lt;code&gt;ppc64le&lt;/code&gt;.&lt;/p&gt;</code></pre>
   <p>
     By default, Calico uses
     <code>
@@ -741,7 +740,7 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
     <code>
       --pod-network-cidr=192.168.0.0/16
     </code>
-    flag or via kubeadm&rsquo;s configuration.
+    flag or via kubeadm’s configuration.
   </p>
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml</code></pre>
@@ -786,7 +785,7 @@ cilium-drxkl   1/1     Running   0          18m</code></pre>
   </p>
 </div>
 <div id="tabs-pod-install-2">
-<pre><code>    &lt;p&gt;&lt;a href=&quot;https://contivpp.io/&quot;&gt;Contiv-VPP&lt;/a&gt; employs a programmable CNF vSwitch based on &lt;a href=&quot;https://fd.io/&quot;&gt;FD.io VPP&lt;/a&gt;,</code></pre>
+<pre><code>    &lt;p&gt;&lt;a href=&#34;https://contivpp.io/&#34;&gt;Contiv-VPP&lt;/a&gt; employs a programmable CNF vSwitch based on &lt;a href=&#34;https://fd.io/&#34;&gt;FD.io VPP&lt;/a&gt;,</code></pre>
 <p>
   offering feature-rich &amp; high-performance cloud-native networking and services.
 </p>
@@ -806,7 +805,7 @@ cilium-drxkl   1/1     Running   0          18m</code></pre>
     <a href="https://coreos.com/flannel/docs/latest/troubleshooting.html#firewalls">
       Firewall
     </a>
-    section of Flannel&rsquo;s troubleshooting guide explains about this in more detail.
+    section of Flannel’s troubleshooting guide explains about this in more detail.
   </p>
   <p>
     Flannel works on
@@ -869,7 +868,7 @@ cilium-drxkl   1/1     Running   0          18m</code></pre>
   </p>
 </div>
 <div id="tabs-pod-install-5">
-  <pre><code>    &lt;p&gt;For more information on setting up your Kubernetes cluster with Weave Net, please see &lt;a href=&quot;https://www.weave.works/docs/net/latest/kube-addon/&quot;&gt;Integrating Kubernetes via the Addon&lt;/a&gt;.&lt;/p&gt;</code></pre>
+  <pre><code>    &lt;p&gt;For more information on setting up your Kubernetes cluster with Weave Net, please see &lt;a href=&#34;https://www.weave.works/docs/net/latest/kube-addon/&#34;&gt;Integrating Kubernetes via the Addon&lt;/a&gt;.&lt;/p&gt;</code></pre>
   <p>
     Weave Net works on
     <code>
@@ -889,7 +888,7 @@ cilium-drxkl   1/1     Running   0          18m</code></pre>
     </code>
     platforms without any extra action required.
     Weave Net sets hairpin mode by default. This allows Pods to access themselves via their Service IP address
-    if they don&rsquo;t know their PodIP.
+    if they don’t know their PodIP.
   </p>
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f <span style="color:#b44">&#34;https://cloud.weave.works/k8s/net?k8s-version=</span><span style="color:#a2f;font-weight:bold">$(</span>kubectl version | base64 | tr -d <span style="color:#b44">&#39;\n&#39;</span><span style="color:#a2f;font-weight:bold">)</span><span style="color:#b44">&#34;</span></code></pre>
@@ -939,9 +938,9 @@ cilium-drxkl   1/1     Running   0          18m</code></pre>
 </div>
 <p>
   With output looking something like:
-</p><pre><code>node &quot;test-01&quot; untainted
-taint &quot;node-role.kubernetes.io/master:&quot; not found
-taint &quot;node-role.kubernetes.io/master:&quot; not found</code></pre>
+</p><pre><code>node &#34;test-01&#34; untainted
+taint &#34;node-role.kubernetes.io/master:&#34; not found
+taint &#34;node-role.kubernetes.io/master:&#34; not found</code></pre>
 <p>
   This will remove the
   <code>
@@ -990,7 +989,7 @@ taint &quot;node-role.kubernetes.io/master:&quot; not found</code></pre>
 </p><pre><code class="language-console" data-lang="console">TOKEN                    TTL  EXPIRES              USAGES           DESCRIPTION            EXTRA GROUPS
 8ewj1p.9r9hcjoqgajrj4gi  23h  2018-06-12T02:51:28Z authentication,  The default bootstrap  system:
                                                    signing          token generated by     bootstrappers:
-                                                                    'kubeadm init'.        kubeadm:
+                                                                    &#39;kubeadm init&#39;.        kubeadm:
                                                                                            default-node-token</code></pre>
 <p>
   By default, tokens expire after 24 hours. If you are joining a node to the cluster after the current token has expired,
@@ -1003,7 +1002,7 @@ taint &quot;node-role.kubernetes.io/master:&quot; not found</code></pre>
   The output is similar to this:
 </p><pre><code class="language-console" data-lang="console">5didvk.d09sbcov8ph2amjw</code></pre>
 <p>
-  If you don&rsquo;t have the value of
+  If you don’t have the value of
   <code>
     --discovery-token-ca-cert-hash
   </code>
@@ -1043,7 +1042,7 @@ Node join complete:
   received.
 * Kubelet informed of new secure connection details.
 
-Run 'kubectl get nodes' on control-plane to see this machine join.</code></pre>
+Run &#39;kubectl get nodes&#39; on control-plane to see this machine join.</code></pre>
 <p>
   A few seconds later, you should notice this node in the output from
   <code>
@@ -1091,7 +1090,7 @@ kubectl --kubeconfig ./admin.conf get nodes</code></pre>
         superuser
       </em>
       privileges over the cluster.
-      This file should be used sparingly. For normal users, it&rsquo;s recommended to
+      This file should be used sparingly. For normal users, it’s recommended to
       generate an unique credential to which you whitelist privileges. You can do
       this with the
       <code>
@@ -1213,7 +1212,7 @@ kubectl delete node &lt;node name&gt;</code></pre>
   options.
 </p>
 <h2 id="whats-next">
-  What&rsquo;s next
+  What’s next
 </h2>
 <ul>
   <li>
@@ -1223,9 +1222,9 @@ kubectl delete node &lt;node name&gt;</code></pre>
     </a>
   </li>
   <li>
-    <a id="lifecycle" />
+    <a id="lifecycle">
     See
-    <a href="/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/">
+    </a><a href="/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/">
       Upgrading kubeadm clusters
     </a>
     for details about upgrading your cluster using
@@ -1266,9 +1265,9 @@ kubectl delete node &lt;node name&gt;</code></pre>
     of Pod network add-ons.
   </li>
   <li>
-    <a id="other-addons" />
+    <a id="other-addons">
     See the
-    <a href="/docs/concepts/cluster-administration/addons/">
+    </a><a href="/docs/concepts/cluster-administration/addons/">
       list of add-ons
     </a>
     to
@@ -1337,7 +1336,7 @@ kubectl delete node &lt;node name&gt;</code></pre>
   vX.Y can also upgrade an existing kubeadm-created cluster of version vX.(Y-1).
 </p>
 <p>
-  Due to that we can&rsquo;t see into the future, kubeadm CLI vX.Y may or may not be able to deploy vX.(Y+1) clusters.
+  Due to that we can’t see into the future, kubeadm CLI vX.Y may or may not be able to deploy vX.(Y+1) clusters.
 </p>
 <p>
   Example:
@@ -1433,4 +1432,4 @@ kubectl delete node &lt;node name&gt;</code></pre>
     troubleshooting docs
   </a>
   .
-</p>
+</p></div></div></body></html>

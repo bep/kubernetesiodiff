@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Install and Set Up kubectl
 </h1>
@@ -60,7 +59,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -130,7 +129,7 @@
   </li>
 </ul>
 <div id="kubectl-install-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;</code></pre>
+<pre data-diff=""><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;</code></pre>
 <p>
 sudo apt-get update
 <span style="color:#666">
@@ -146,17 +145,17 @@ curl -s
   echo
 </span>
 <span style="color:#b44">
-  &quot;deb
+  &#34;deb
   <a href="https://apt.kubernetes.io/">
     https://apt.kubernetes.io/
   </a>
-  kubernetes-xenial main&quot;
+  kubernetes-xenial main&#34;
 </span>
 | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
-<div id="kubectl-install-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cat &lt;span style=&quot;color:#b44&quot;&gt;&amp;lt;&amp;lt;EOF &amp;gt; /etc/yum.repos.d/kubernetes.repo</code></pre>
+</p><div id="kubectl-install-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cat &lt;span style=&#34;color:#b44&#34;&gt;&amp;lt;&amp;lt;EOF &amp;gt; /etc/yum.repos.d/kubernetes.repo</code></pre>
 <p>
 <span style="color:#b44">
   [kubernetes]
@@ -189,7 +188,7 @@ yum install -y kubectl
 <script>
   $(function(){$("#kubectl-install").tabs();});
 </script>
-<h3 id="install-using-other-package-management">
+</p><h3 id="install-using-other-package-management">
   Install using other package management
 </h3>
 <div id="other-kubectl-install">
@@ -206,16 +205,16 @@ yum install -y kubectl
   </li>
 </ul>
 <div id="other-kubectl-install-0">
-<pre><code>    &lt;p&gt;If you are on Ubuntu or another Linux distribution that support &lt;a href=&quot;https://snapcraft.io/docs/core/install&quot;&gt;snap&lt;/a&gt; package manager, kubectl is available as a &lt;a href=&quot;https://snapcraft.io/&quot;&gt;snap&lt;/a&gt; application.&lt;/p&gt;</code></pre>
+<pre><code>    &lt;p&gt;If you are on Ubuntu or another Linux distribution that support &lt;a href=&#34;https://snapcraft.io/docs/core/install&#34;&gt;snap&lt;/a&gt; package manager, kubectl is available as a &lt;a href=&#34;https://snapcraft.io/&#34;&gt;snap&lt;/a&gt; application.&lt;/p&gt;</code></pre>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">snap install kubectl --classic
-<p>kubectl version &ndash;client</code></pre>
+</code><p><code class="language-shell" data-lang="shell">kubectl version –client</code></p></pre>
 </div>
 <div id="other-kubectl-install-1">
-<pre><code>    &lt;p&gt;If you are on Linux and using &lt;a href=&quot;https://docs.brew.sh/Homebrew-on-Linux&quot;&gt;Homebrew&lt;/a&gt; package manager, kubectl is available for &lt;a href=&quot;https://docs.brew.sh/Homebrew-on-Linux#install&quot;&gt;installation&lt;/a&gt;.&lt;/p&gt;</code></pre>
+<pre><code>    &lt;p&gt;If you are on Linux and using &lt;a href=&#34;https://docs.brew.sh/Homebrew-on-Linux&#34;&gt;Homebrew&lt;/a&gt; package manager, kubectl is available for &lt;a href=&#34;https://docs.brew.sh/Homebrew-on-Linux#install&#34;&gt;installation&lt;/a&gt;.&lt;/p&gt;</code></pre>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">brew install kubectl
-<p>kubectl version &ndash;client</code></pre>
+</code><p><code class="language-shell" data-lang="shell">kubectl version –client</code></p></pre>
 </div>
 <script>
   $(function(){$("#other-kubectl-install").tabs();});
@@ -231,7 +230,7 @@ yum install -y kubectl
     <p>
       Download the latest release:
     </p>
-    <pre><code>curl -LO &quot;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&quot;</code></pre>
+    <pre><code>curl -LO &#34;https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl&#34;</code></pre>
     <p>
       To download a specific version, replace the
       <code>
@@ -376,7 +375,7 @@ sudo port install kubectl</code></pre>
       kubectl
     </code>
     to PATH.
-    If you have installed Docker Desktop before, you may need to place your PATH entry before the one added by the Docker Desktop installer or remove the Docker Desktop&rsquo;s
+    If you have installed Docker Desktop before, you may need to place your PATH entry before the one added by the Docker Desktop installer or remove the Docker Desktop’s
     <code>
       kubectl
     </code>
@@ -405,7 +404,7 @@ sudo port install kubectl</code></pre>
     <pre><code>Install-Script -Name install-kubectl -Scope CurrentUser -Force
 install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
     <blockquote class="note">
-  </li>
+  </blockquote></li>
 </ol>
 <div>
   <strong>
@@ -419,7 +418,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
   <code>
     kubectl
   </code>
-  will be installed in the user&rsquo;s temp Directory.
+  will be installed in the user’s temp Directory.
 </div><pre><code>The installer creates `$HOME/.kube` and instructs it to create a config file</code></pre>
 <ol start="2">
   <li>
@@ -428,7 +427,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
     </p>
     <pre><code>kubectl version --client</code></pre>
     <blockquote class="note">
-  </li>
+  </blockquote></li>
 </ol>
 <div>
   <strong>
@@ -466,13 +465,13 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
 <div id="kubectl-win-install-0">
 <pre><code>    &lt;pre&gt;&lt;code&gt;choco install kubernetes-cli</code></pre>
 <p>
-<div id="kubectl-win-install-1">
+</p><div id="kubectl-win-install-1">
 <pre><code>    &lt;pre&gt;&lt;code&gt;scoop install kubectl</code></pre>
 <p>
 <script>
   $(function(){$("#kubectl-win-install").tabs();});
 </script>
-<ol start="2">
+</p><ol start="2">
   <li>
     <p>
       Test to ensure the version you installed is up-to-date:
@@ -511,7 +510,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
     </p>
     <pre><code>New-Item config -type file</code></pre>
     <blockquote class="note">
-  </li>
+  </blockquote></li>
 </ol>
 <div>
   <strong>
@@ -589,7 +588,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
   For example, if you are intending to run a Kubernetes cluster on your laptop (locally), you will need a tool like Minikube to be installed first and then re-run the commands stated above.
 </p>
 <p>
-  If kubectl cluster-info returns the url response but you can&rsquo;t access your cluster, to check whether it is configured properly, use:
+  If kubectl cluster-info returns the url response but you can’t access your cluster, to check whether it is configured properly, use:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl cluster-info dump</code></pre>
@@ -625,7 +624,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
   </li>
 </ul>
 <div id="kubectl-autocompletion-0">
-  <pre><code>    &lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;</code></pre>
+  <pre><code>    &lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;</code></pre>
   <p>
     The kubectl completion script for Bash can be generated with the command
     <code>
@@ -680,7 +679,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
     <code>
       type _init_completion
     </code>
-    . If the command succeeds, you&rsquo;re already set, otherwise add the following to your
+    . If the command succeeds, you’re already set, otherwise add the following to your
     <code>
       ~/.bashrc
     </code>
@@ -754,7 +753,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
   </p>
 </div>
 <div id="kubectl-autocompletion-1">
-<pre><code>    &lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;</code></pre>
+<pre><code>    &lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;</code></pre>
 <p>
   The kubectl completion script for Bash can be generated with
   <code>
@@ -778,7 +777,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
     </strong>
     there are two versions of bash-completion, v1 and v2. V1 is for Bash 3.2 (which is the default on macOS), and v2 is for Bash 4.1+. The kubectl completion script
     <strong>
-      doesn&rsquo;t work
+      doesn’t work
     </strong>
     correctly with bash-completion v1 and Bash 3.2. It requires
     <strong>
@@ -801,7 +800,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
   Upgrade Bash
 </h3>
 <p>
-  The instructions here assume you use Bash 4.1+. You can check your Bash&rsquo;s version by running:
+  The instructions here assume you use Bash 4.1+. You can check your Bash’s version by running:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">echo</span> <span style="color:#b8860b">$BASH_VERSION</span></code></pre>
@@ -833,7 +832,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
     <strong>
       Note:
     </strong>
-    As mentioned, these instructions assume you use Bash 4.1+, which means you will install bash-completion v2 (in contrast to Bash 3.2 and bash-completion v1, in which case kubectl completion won&rsquo;t work).
+    As mentioned, these instructions assume you use Bash 4.1+, which means you will install bash-completion v2 (in contrast to Bash 3.2 and bash-completion v1, in which case kubectl completion won’t work).
   </div>
 </blockquote>
 <p>
@@ -881,7 +880,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
   </p>
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">echo</span> <span style="color:#b44">&#39;source &lt;(kubectl completion bash)&#39;</span> &gt;&gt;~/.bash_profile
-<p></code></pre>
+</code><p><code class="language-shell" data-lang="shell"></code></p></pre>
   </div>
 </li>
 <li>
@@ -915,7 +914,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
     <code>
       /usr/local/etc/bash_completion.d/kubectl
     </code>
-    . In that case, you don&rsquo;t need to do anything.
+    . In that case, you don’t need to do anything.
   </p>
 </li>
 <blockquote class="note">
@@ -927,7 +926,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
     <code>
       BASH_COMPLETION_COMPAT_DIR
     </code>
-    directory, that&rsquo;s why the latter two methods work.
+    directory, that’s why the latter two methods work.
   </div>
 </blockquote>
 <p>
@@ -996,7 +995,7 @@ compinit</code></pre>
     </a>
   </li>
   <li>
-    If you need access to a cluster you didn&rsquo;t create, see the
+    If you need access to a cluster you didn’t create, see the
     <a href="/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">
       Sharing Cluster Access document
     </a>
@@ -1008,4 +1007,4 @@ compinit</code></pre>
       kubectl reference docs
     </a>
   </li>
-</ul>
+</ul></ul></div></div></div></div></div></div></div></div></div></div></div></body></html>

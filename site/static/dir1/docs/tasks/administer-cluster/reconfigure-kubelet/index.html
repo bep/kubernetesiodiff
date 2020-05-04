@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Reconfigure a Node&#39;s Kubelet in a Live Cluster
     </h1>
@@ -12,7 +11,7 @@
       Reconfigure a Node&#39;s Kubelet in a Live Cluster
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -83,25 +82,25 @@
         Dynamic Kubelet Configuration
       </a>
       allows you to change the configuration of each
-      <a class='glossary-tooltip' href='/docs/reference/generated/kubelet' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/generated/kubelet" target="_blank">
         kubelet
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An agent that runs on each node in the cluster. It makes sure that containers are running in a pod.
         </span>
       </a>
       in a running Kubernetes cluster,
       by deploying a
-      <a class='glossary-tooltip' href='/docs/tasks/configure-pod-container/configure-pod-configmap/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/tasks/configure-pod-container/configure-pod-configmap/" target="_blank">
         ConfigMap
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An API object used to store non-confidential data in key-value pairs. Can be consumed as environment variables, command-line arguments, or config files in a volume.
         </span>
       </a>
       and configuring
       each
-      <a class='glossary-tooltip' href='/docs/concepts/architecture/nodes/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/architecture/nodes/" target="_blank">
         Node
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A node is a worker machine in Kubernetes.
         </span>
       </a>
@@ -115,7 +114,7 @@
         All kubelet configuration parameters can be changed dynamically,
         but this is unsafe for some parameters. Before deciding to change a parameter
         dynamically, you need a strong understanding of how that change will affect your
-        cluster&rsquo;s behavior. Always carefully test configuration changes on a small set
+        cluster’s behavior. Always carefully test configuration changes on a small set
         of nodes before rolling them out cluster-wide. Advice on configuring specific
         fields is available in the inline
         <code>
@@ -158,7 +157,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -183,7 +182,7 @@
       if your cluster is running v1.16 then you can use kubectl v1.15, v1.16
       or v1.17; other combinations
       <a href="/docs/setup/release/version-skew-policy/#kubectl">
-        aren&rsquo;t supported
+        aren’t supported
       </a>
       .
     </p>
@@ -200,7 +199,7 @@
       because there are manual alternatives.
     </p>
     <p>
-      For each node that you&rsquo;re reconfiguring, you must set the kubelet
+      For each node that you’re reconfiguring, you must set the kubelet
       <code>
         --dynamic-config-dir
       </code>
@@ -218,13 +217,13 @@
     <ol>
       <li>
         Write a YAML or JSON configuration file containing the
-        kubelet&rsquo;s configuration.
+        kubelet’s configuration.
       </li>
       <li>
         Wrap this file in a ConfigMap and save it to the Kubernetes control plane.
       </li>
       <li>
-        Update the kubelet&rsquo;s corresponding Node object to use this ConfigMap.
+        Update the kubelet’s corresponding Node object to use this ConfigMap.
       </li>
     </ol>
     <p>
@@ -250,7 +249,7 @@
       ), unless overridden by flags.
     </p>
     <p>
-      The status of the Node&rsquo;s kubelet configuration is reported via
+      The status of the Node’s kubelet configuration is reported via
       <code>
         Node.Spec.Status.Config
       </code>
@@ -264,7 +263,7 @@
         kubectl edit
       </code>
       .
-      There are other ways to modify a Node&rsquo;s spec, including
+      There are other ways to modify a Node’s spec, including
       <code>
         kubectl patch
       </code>
@@ -291,7 +290,7 @@
         <code>
           kubectl
         </code>
-        &rsquo;s
+        ’s
         <code>
           --append-hash
         </code>
@@ -325,13 +324,13 @@
     <p>
       The kubelet loads settings from its configuration file, but you can set command
       line flags to override the configuration in the file. This means that if you
-      only know the contents of the configuration file, and you don&rsquo;t know the
+      only know the contents of the configuration file, and you don’t know the
       command line overrides, then you do not know the running configuration either.
     </p>
     <p>
       Because you need to know the running configuration in order to override it,
       you can fetch the running configuration from the kubelet. You can generate a
-      config file containing a Node&rsquo;s current configuration by accessing the kubelet&rsquo;s
+      config file containing a Node’s current configuration by accessing the kubelet’s
       <code>
         configz
       </code>
@@ -347,7 +346,7 @@
         <strong>
           Caution:
         </strong>
-        The kubelet&rsquo;s
+        The kubelet’s
         <code>
           configz
         </code>
@@ -519,7 +518,7 @@ data:
       Set the Node to use the new configuration
     </h4>
     <p>
-      Edit the Node&rsquo;s reference to point to the new ConfigMap with the
+      Edit the Node’s reference to point to the new ConfigMap with the
       following command:
     </p>
     <div class="highlight">
@@ -774,7 +773,7 @@ data:
       example
     </h2>
     <p>
-      You can change a Node&rsquo;s configSource using several different mechanisms.
+      You can change a Node’s configSource using several different mechanisms.
       This example uses
       <code>
         kubectl patch
@@ -825,8 +824,8 @@ data:
       tries to use the latest version of this ConfigMap.
     </p>
     <p>
-      When you are debugging problems on a node, you can inspect the kubelet&rsquo;s config
-      metadata and checkpoints. The structure of the kubelet&rsquo;s checkpointing directory is:
+      When you are debugging problems on a node, you can inspect the kubelet’s config
+      metadata and checkpoints. The structure of the kubelet’s checkpointing directory is:
     </p>
     <pre><code class="language-none" data-lang="none">- --dynamic-config-dir (root for managing dynamic config)
 | - meta
@@ -931,5 +930,5 @@ data:
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

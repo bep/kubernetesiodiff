@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Creating Highly Available clusters with kubeadm
 </h1>
@@ -100,7 +99,7 @@
   <li>
     Three machines that meet
     <a href="/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin">
-      kubeadm&rsquo;s minimum requirements
+      kubeadm’s minimum requirements
     </a>
     for
     the masters
@@ -108,7 +107,7 @@
   <li>
     Three machines that meet
     <a href="/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin">
-      kubeadm&rsquo;s minimum
+      kubeadm’s minimum
       requirements
     </a>
     for the workers
@@ -203,7 +202,7 @@
       <li>
         <p>
           Make sure the address of the load balancer always matches
-          the address of kubeadm&rsquo;s
+          the address of kubeadm’s
           <code>
             ControlPlaneEndpoint
           </code>
@@ -251,7 +250,7 @@
     </div>
     <ul>
       <li>
-        <p>
+        <p data-diff="">
           You can use the
           <code>
             --kubernetes-version
@@ -287,7 +286,7 @@
       </li>
     </ul>
     <blockquote class="note">
-  </li>
+  </blockquote></li>
 </ol>
 <div>
   <strong>
@@ -323,7 +322,7 @@
     JoinConfiguration: controlPlane
   </code>
   ).
-</div><pre><code>&lt;blockquote class=&quot;note&quot;&gt;</code></pre>
+</div><pre><code>&lt;blockquote class=&#34;note&#34;&gt;</code></pre>
 <div>
   <strong>
     Note:
@@ -384,7 +383,7 @@ sudo kubeadm init phase upload-certs --upload-certs
 kubeadm alpha certs certificate-key
 ```
 
-&lt;blockquote class=&quot;note&quot;&gt;</code></pre>
+&lt;blockquote class=&#34;note&#34;&gt;</code></pre>
 <div>
   <strong>
     Note:
@@ -394,7 +393,7 @@ kubeadm alpha certs certificate-key
     kubeadm-certs
   </code>
   Secret and decryption key expire after two hours.
-</div><pre><code>&lt;blockquote class=&quot;caution&quot;&gt;</code></pre>
+</div><pre><code>&lt;blockquote class=&#34;caution&#34;&gt;</code></pre>
 <div>
   <strong>
     Caution:
@@ -552,7 +551,7 @@ scp /etc/kubernetes/pki/apiserver-etcd-client.key <span style="color:#b44">&#34;
     <pre><code>apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
 kubernetesVersion: stable
-controlPlaneEndpoint: &quot;LOAD_BALANCER_DNS:LOAD_BALANCER_PORT&quot;
+controlPlaneEndpoint: &#34;LOAD_BALANCER_DNS:LOAD_BALANCER_PORT&#34;
 etcd:
     external:
         endpoints:
@@ -629,11 +628,11 @@ etcd:
     Make sure the first control plane node is fully initialized.
   </li>
   <li>
-    Join each control plane node with the join command you saved to a text file. It&rsquo;s recommended
+    Join each control plane node with the join command you saved to a text file. It’s recommended
     to join the control plane nodes one at a time.
   </li>
   <li>
-    Don&rsquo;t forget that the decryption key from
+    Don’t forget that the decryption key from
     <code>
       --certificate-key
     </code>
@@ -759,7 +758,7 @@ etcd:
 <span style="color:#a2f;font-weight:bold">done</span></code></pre>
     </div>
     <blockquote class="caution">
-  </li>
+  </blockquote></li>
 </ol>
 <div>
   <strong>
@@ -797,4 +796,4 @@ mv /home/<span style="color:#b68;font-weight:bold">${</span><span style="color:#
 mv /home/<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">USER</span><span style="color:#b68;font-weight:bold">}</span>/etcd-ca.key /etc/kubernetes/pki/etcd/ca.key</code></pre>
     </div>
   </li>
-</ol>
+</ol></body></html>

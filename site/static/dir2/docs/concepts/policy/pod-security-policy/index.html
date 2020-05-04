@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Pod Security Policies
 </h1>
@@ -12,7 +11,7 @@
   Pod Security Policies
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -116,7 +115,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -232,7 +231,7 @@
     </tr>
     <tr>
       <td>
-        Allocating an FSGroup that owns the pod&rsquo;s volumes
+        Allocating an FSGroup that owns the pod’s volumes
       </td>
       <td>
         <a href="#volumes-and-file-systems">
@@ -410,7 +409,7 @@
 </h2>
 <p>
   When a PodSecurityPolicy resource is created, it does nothing. In order to use
-  it, the requesting user or target pod&rsquo;s
+  it, the requesting user or target pod’s
   <a href="/docs/tasks/configure-pod-container/configure-service-account/">
     service
     account
@@ -440,7 +439,7 @@
   </em>
   pods created by that controller,
   so the preferred method for authorizing policies is to grant access to the
-  pod&rsquo;s service account (see
+  pod’s service account (see
   <a href="#run-another-pod">
     example
   </a>
@@ -588,7 +587,7 @@
   <li>
     PodSecurityPolicies which allow the pod as-is, without changing defaults or
     mutating the pod, are preferred.  The order of these non-mutating
-    PodSecurityPolicies doesn&rsquo;t matter.
+    PodSecurityPolicies doesn’t matter.
   </li>
   <li>
     If the pod must be defaulted or mutated, the first PodSecurityPolicy
@@ -617,7 +616,7 @@
   Set up
 </h3>
 <p>
-  Set up a namespace and a service account to act as for this example. We&rsquo;ll use
+  Set up a namespace and a service account to act as for this example. We’ll use
   this service account to mock a non-admin user.
 </p>
 <div class="highlight">
@@ -626,7 +625,7 @@ kubectl create serviceaccount -n psp-example fake-user
 kubectl create rolebinding -n psp-example fake-editor --clusterrole<span style="color:#666">=</span>edit --serviceaccount<span style="color:#666">=</span>psp-example:fake-user</code></pre>
 </div>
 <p>
-  To make it clear which user we&rsquo;re acting as and save some typing, create 2
+  To make it clear which user we’re acting as and save some typing, create 2
   aliases:
 </p>
 <div class="highlight">
@@ -654,7 +653,7 @@ kubectl create rolebinding -n psp-example fake-editor --clusterrole<span style="
             policy/example-psp.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('policy-example-psp-yaml')" title="Copy policy/example-psp.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;policy-example-psp-yaml&#39;)" title="Copy policy/example-psp.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -712,7 +711,7 @@ Error from server <span style="color:#666">(</span>Forbidden<span style="color:#
     What happened?
   </strong>
   Although the PodSecurityPolicy was created, neither the
-  pod&rsquo;s service account nor
+  pod’s service account nor
   <code>
     fake-user
   </code>
@@ -806,7 +805,7 @@ Error from server <span style="color:#666">(</span>Forbidden<span style="color:#
   Run another pod
 </h3>
 <p>
-  Let&rsquo;s try that again, slightly differently:
+  Let’s try that again, slightly differently:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl-user run pause --image<span style="color:#666">=</span>k8s.gcr.io/pause
@@ -834,7 +833,7 @@ LASTSEEN   FIRSTSEEN   COUNT     NAME              KIND         SUBOBJECT       
   ,
   why are we getting the error
   <code>
-    Error creating: pods &quot;pause-7774d79b5-&quot; is forbidden: no providers available to validate pod request
+    Error creating: pods &#34;pause-7774d79b5-&#34; is forbidden: no providers available to validate pod request
   </code>
   ? The answer lies in
   the source -
@@ -851,8 +850,8 @@ LASTSEEN   FIRSTSEEN   COUNT     NAME              KIND         SUBOBJECT       
   <code>
     psp:unprivileged
   </code>
-  role to the pod&rsquo;s service
-  account instead. In this case (since we didn&rsquo;t specify it) the service account
+  role to the pod’s service
+  account instead. In this case (since we didn’t specify it) the service account
   is
   <code>
     default
@@ -915,7 +914,7 @@ podsecuritypolicy <span style="color:#b44">&#34;example&#34;</span> deleted</cod
             policy/privileged-psp.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('policy-privileged-psp-yaml')" title="Copy policy/privileged-psp.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;policy-privileged-psp-yaml&#39;)" title="Copy policy/privileged-psp.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -970,7 +969,7 @@ podsecuritypolicy <span style="color:#b44">&#34;example&#34;</span> deleted</cod
             policy/restricted-psp.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('policy-restricted-psp-yaml')" title="Copy policy/restricted-psp.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;policy-restricted-psp-yaml&#39;)" title="Copy policy/restricted-psp.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -1044,7 +1043,7 @@ podsecuritypolicy <span style="color:#b44">&#34;example&#34;</span> deleted</cod
   </strong>
   - determines if any container in a pod can enable privileged mode.
   By default a container is not allowed to access any devices on the host, but a
-  &ldquo;privileged&rdquo; container is given access to all devices on the host. This allows
+  “privileged” container is given access to all devices on the host. This allows
   the container nearly all the same access as processes running on the host.
   This is useful for containers that want to use linux capabilities like
   manipulating the network stack and accessing devices.
@@ -1809,4 +1808,4 @@ podsecuritypolicy <span style="color:#b44">&#34;example&#34;</span> deleted</cod
     Pod Security Policy Reference
   </a>
   for the api details.
-</p>
+</p></div></body></html>

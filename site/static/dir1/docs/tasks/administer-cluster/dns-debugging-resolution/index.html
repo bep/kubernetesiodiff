@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Debugging DNS Resolution
     </h1>
@@ -45,7 +44,7 @@
           You need to have a Kubernetes cluster, and the kubectl command-line tool must
           be configured to communicate with your cluster. If you do not already have a
           cluster, you can create one by using
-          <a href="/docs/setup/learning-environment/minikube/">
+          <a href="/docs/setup/learning-environment/minikube/" data-diff="">
             Minikube
           </a>
           ,
@@ -103,7 +102,7 @@
                 admin/dns/dnsutils.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-dns-dnsutils-yaml')" title="Copy admin/dns/dnsutils.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-dns-dnsutils-yaml&#39;)" title="Copy admin/dns/dnsutils.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -279,19 +278,19 @@ kubectl logs --namespace<span style="color:#666">=</span>kube-system <span style
 kubectl logs --namespace<span style="color:#666">=</span>kube-system <span style="color:#a2f;font-weight:bold">$(</span>kubectl get pods --namespace<span style="color:#666">=</span>kube-system -l k8s-app<span style="color:#666">=</span>kube-dns -o name | head -1<span style="color:#a2f;font-weight:bold">)</span> -c sidecar</code></pre>
     </div>
     <p>
-      See if there are any suspicious error messages in the logs. In kube-dns, a &lsquo;
+      See if there are any suspicious error messages in the logs. In kube-dns, a ‘
       <code>
         W
       </code>
-      &rsquo;, &lsquo;
+      ’, ‘
       <code>
         E
       </code>
-      &rsquo; or &lsquo;
+      ’ or ‘
       <code>
         F
       </code>
-      &rsquo; at the beginning
+      ’ at the beginning
       of a line represents a Warning, Error or Failure. Please search for entries that have these
       as the logging level and use
       <a href="https://github.com/kubernetes/kubernetes/issues">
@@ -317,7 +316,7 @@ kube-dns     ClusterIP   10.0.0.10      &lt;none&gt;        53/UDP,53/TCP       
 ...</code></pre>
     </div>
     <p>
-      Note that the service name will be &ldquo;kube-dns&rdquo; for both CoreDNS and kube-dns deployments.
+      Note that the service name will be “kube-dns” for both CoreDNS and kube-dns deployments.
       If you have created the service or in the case it should be created by default
       but it does not appear, see
       <a href="/docs/tasks/debug-application-cluster/debug-service/">
@@ -368,7 +367,7 @@ kube-dns   10.180.3.17:53,10.180.3.17:53    1h</code></pre>
       <code>
         coredns
       </code>
-      . To edit it, use the command &hellip;
+      . To edit it, use the command …
     </p>
     <pre><code>kubectl -n kube-system edit configmap coredns</code></pre>
     <p>
@@ -428,7 +427,7 @@ linux/amd64, go1.10.3, 2e322f6
         /etc/resolv.conf
       </code>
       with a stub file that can cause a fatal forwarding
-      loop when resolving names in upstream servers. This can be fixed manually by using kubelet&rsquo;s
+      loop when resolving names in upstream servers. This can be fixed manually by using kubelet’s
       <code>
         --resolv-conf
       </code>
@@ -453,7 +452,7 @@ linux/amd64, go1.10.3, 2e322f6
       , and adjusts the kubelet flags accordingly.
     </p>
     <p>
-      Kubernetes installs do not configure the nodes&rsquo;
+      Kubernetes installs do not configure the nodes’
       <code>
         resolv.conf
       </code>
@@ -462,11 +461,11 @@ linux/amd64, go1.10.3, 2e322f6
       This should probably be implemented eventually.
     </p>
     <p>
-      Linux&rsquo;s libc (a.k.a. glibc) has a limit for the DNS
+      Linux’s libc (a.k.a. glibc) has a limit for the DNS
       <code>
         nameserver
       </code>
-      records to 3 by default. What&rsquo;s more, for the glibc versions which are older than glibc-2.17-222 (
+      records to 3 by default. What’s more, for the glibc versions which are older than glibc-2.17-222 (
       <a href="https://access.redhat.com/solutions/58028">
         the new versions update see this issue
       </a>
@@ -506,7 +505,7 @@ linux/amd64, go1.10.3, 2e322f6
       <code>
         nameserver
       </code>
-      entries. You can also use kubelet&rsquo;s
+      entries. You can also use kubelet’s
       <code>
         --resolv-conf
       </code>
@@ -541,7 +540,7 @@ linux/amd64, go1.10.3, 2e322f6
       </li>
     </ul>
     <h2 id="what-s-next">
-      What&rsquo;s next
+      What’s next
     </h2>
     <ul>
       <li>
@@ -551,5 +550,5 @@ linux/amd64, go1.10.3, 2e322f6
         .
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Field Selectors
     </h1>
@@ -14,7 +13,7 @@
     <nav id="TableOfContents">
       <ul>
         <li>
-          <a href="#supported-fields">
+          <a href="#supported-fields" data-diff="">
             Supported fields
           </a>
         </li>
@@ -121,7 +120,7 @@ kubectl get pods --field-selector <span style="color:#b44">&#34;&#34;</span></co
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get ingress --field-selector foo.bar<span style="color:#666">=</span>baz</code></pre>
     </div>
-    <pre><code>Error from server (BadRequest): Unable to find &quot;ingresses&quot; that match label selector &quot;&quot;, field selector &quot;foo.bar=baz&quot;: &quot;foo.bar&quot; is not a known field selector: only &quot;metadata.name&quot;, &quot;metadata.namespace&quot;</code></pre>
+    <pre><code>Error from server (BadRequest): Unable to find &#34;ingresses&#34; that match label selector &#34;&#34;, field selector &#34;foo.bar=baz&#34;: &#34;foo.bar&#34; is not a known field selector: only &#34;metadata.name&#34;, &#34;metadata.namespace&#34;</code></pre>
     <h2 id="supported-operators">
       Supported operators
     </h2>
@@ -150,7 +149,7 @@ kubectl get pods --field-selector <span style="color:#b44">&#34;&#34;</span></co
       <code>
         kubectl
       </code>
-      command, for example, selects all Kubernetes Services that aren&rsquo;t in the
+      command, for example, selects all Kubernetes Services that aren’t in the
       <code>
         default
       </code>
@@ -209,5 +208,5 @@ kubectl get pods --field-selector <span style="color:#b44">&#34;&#34;</span></co
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get statefulsets,services --all-namespaces --field-selector metadata.namespace!<span style="color:#666">=</span>default</code></pre>
     </div>
-  </body>
-</html>
+  
+</body></html>

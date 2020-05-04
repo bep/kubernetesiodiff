@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Install and Set Up kubectl
 </h1>
@@ -60,7 +59,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -130,7 +129,7 @@
   </li>
 </ul>
 <div id="kubectl-install-0">
-  <div class="highlight">
+  <div class="highlight" data-diff="">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
 sudo apt-get update <span style="color:#666">&amp;&amp;</span> sudo apt-get install -y apt-transport-https gnupg2
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
@@ -139,7 +138,7 @@ sudo apt-get update
 sudo apt-get install -y kubectl</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="kubectl-install-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#b44">&lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
@@ -154,12 +153,12 @@ sudo apt-get install -y kubectl</code></pre>
 yum install -y kubectl</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#kubectl-install").tabs();});
 </script>
-<h3 id="install-using-other-package-management">
+</p><h3 id="install-using-other-package-management">
   Install using other package management
 </h3>
 <div id="other-kubectl-install">
@@ -193,7 +192,7 @@ yum install -y kubectl</code></pre>
 kubectl version --client</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="other-kubectl-install-1">
   <p>
     If you are on Linux and using
@@ -212,12 +211,12 @@ kubectl version --client</code></pre>
 kubectl version --client</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#other-kubectl-install").tabs();});
 </script>
-<h2 id="install-kubectl-on-macos">
+</p><h2 id="install-kubectl-on-macos">
   Install kubectl on macOS
 </h2>
 <h3 id="install-kubectl-binary-with-curl-on-macos">
@@ -373,7 +372,7 @@ sudo port install kubectl</code></pre>
       kubectl
     </code>
     to PATH.
-    If you have installed Docker Desktop before, you may need to place your PATH entry before the one added by the Docker Desktop installer or remove the Docker Desktop&rsquo;s
+    If you have installed Docker Desktop before, you may need to place your PATH entry before the one added by the Docker Desktop installer or remove the Docker Desktop’s
     <code>
       kubectl
     </code>
@@ -414,7 +413,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
         <code>
           kubectl
         </code>
-        will be installed in the user&rsquo;s temp Directory.
+        will be installed in the user’s temp Directory.
       </div>
     </blockquote>
     <p>
@@ -474,7 +473,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
     <pre><code>scoop install kubectl</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#kubectl-win-install").tabs();});
 </script>
@@ -594,7 +593,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
   For example, if you are intending to run a Kubernetes cluster on your laptop (locally), you will need a tool like Minikube to be installed first and then re-run the commands stated above.
 </p>
 <p>
-  If kubectl cluster-info returns the url response but you can&rsquo;t access your cluster, to check whether it is configured properly, use:
+  If kubectl cluster-info returns the url response but you can’t access your cluster, to check whether it is configured properly, use:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl cluster-info dump</code></pre>
@@ -687,7 +686,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
     <code>
       type _init_completion
     </code>
-    . If the command succeeds, you&rsquo;re already set, otherwise add the following to your
+    . If the command succeeds, you’re already set, otherwise add the following to your
     <code>
       ~/.bashrc
     </code>
@@ -787,7 +786,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
       </strong>
       there are two versions of bash-completion, v1 and v2. V1 is for Bash 3.2 (which is the default on macOS), and v2 is for Bash 4.1+. The kubectl completion script
       <strong>
-        doesn&rsquo;t work
+        doesn’t work
       </strong>
       correctly with bash-completion v1 and Bash 3.2. It requires
       <strong>
@@ -810,7 +809,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
     Upgrade Bash
   </h3>
   <p>
-    The instructions here assume you use Bash 4.1+. You can check your Bash&rsquo;s version by running:
+    The instructions here assume you use Bash 4.1+. You can check your Bash’s version by running:
   </p>
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">echo</span> <span style="color:#b8860b">$BASH_VERSION</span></code></pre>
@@ -842,7 +841,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
       <strong>
         Note:
       </strong>
-      As mentioned, these instructions assume you use Bash 4.1+, which means you will install bash-completion v2 (in contrast to Bash 3.2 and bash-completion v1, in which case kubectl completion won&rsquo;t work).
+      As mentioned, these instructions assume you use Bash 4.1+, which means you will install bash-completion v2 (in contrast to Bash 3.2 and bash-completion v1, in which case kubectl completion won’t work).
     </div>
   </blockquote>
   <p>
@@ -923,7 +922,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
         <code>
           /usr/local/etc/bash_completion.d/kubectl
         </code>
-        . In that case, you don&rsquo;t need to do anything.
+        . In that case, you don’t need to do anything.
       </p>
     </li>
   </ul>
@@ -936,7 +935,7 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
       <code>
         BASH_COMPLETION_COMPAT_DIR
       </code>
-      directory, that&rsquo;s why the latter two methods work.
+      directory, that’s why the latter two methods work.
     </div>
   </blockquote>
   <p>
@@ -987,12 +986,12 @@ install-kubectl.ps1 [-DownloadLocation &lt;path&gt;]</code></pre>
 compinit</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#kubectl-autocompletion").tabs();});
 </script>
-<h2 id="what-s-next">
+</p><h2 id="what-s-next">
   What&#39;s next
 </h2>
 <ul>
@@ -1014,7 +1013,7 @@ compinit</code></pre>
     </a>
   </li>
   <li>
-    If you need access to a cluster you didn&rsquo;t create, see the
+    If you need access to a cluster you didn’t create, see the
     <a href="/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">
       Sharing Cluster Access document
     </a>
@@ -1026,4 +1025,4 @@ compinit</code></pre>
       kubectl reference docs
     </a>
   </li>
-</ul>
+</ul></div></div></div></body></html>

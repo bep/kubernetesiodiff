@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Extend the Kubernetes API with CustomResourceDefinitions
 </h1>
@@ -60,7 +59,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -126,7 +125,7 @@
 <p>
   When you create a new CustomResourceDefinition (CRD), the Kubernetes API Server
   creates a new RESTful resource path for each version you specify. The CRD can be
-  either namespaced or cluster-scoped, as specified in the CRD&rsquo;s
+  either namespaced or cluster-scoped, as specified in the CRD’s
   <code>
     scope
   </code>
@@ -156,7 +155,7 @@
   </li>
 </ul>
 <div id="customresourcedefinition-example-1-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#a2f;font-weight:bold&quot;&gt;apiVersion&lt;/span&gt;:&lt;span style=&quot;color:#bbb&quot;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre data-diff=""><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;:&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -414,8 +413,8 @@ CronTab
 <span style="color:#bbb"></span>
 - ct
 <span style="color:#bbb"></span>
-<div id="customresourcedefinition-example-1-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#080;font-style:italic&quot;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="customresourcedefinition-example-1-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -694,7 +693,7 @@ integer
 <script>
   $(function(){$("#customresourcedefinition-example-1").tabs();});
 </script>
-<p>
+</p><p>
   And create it:
 </p>
 <div class="highlight">
@@ -817,13 +816,13 @@ items:
     generation: 1
     name: my-new-cron-object
     namespace: default
-    resourceVersion: &quot;285&quot;
+    resourceVersion: &#34;285&#34;
     uid: 9423255b-4600-11e7-af6a-28d2447dc82b
   spec:
-    cronSpec: '* * * * */5'
+    cronSpec: &#39;* * * * */5&#39;
     image: my-awesome-cron-image
 metadata:
-  resourceVersion: &quot;&quot;</code></pre>
+  resourceVersion: &#34;&#34;</code></pre>
 <h2 id="delete-a-customresourcedefinition">
   Delete a CustomResourceDefinition
 </h2>
@@ -838,7 +837,7 @@ metadata:
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete -f resourcedefinition.yaml
 kubectl get crontabs</code></pre>
-</div><pre><code class="language-console" data-lang="console">Error from server (NotFound): Unable to list {&quot;stable.example.com&quot; &quot;v1&quot; &quot;crontabs&quot;}: the server could not find the requested resource (get crontabs.stable.example.com)</code></pre>
+</div><pre><code class="language-console" data-lang="console">Error from server (NotFound): Unable to list {&#34;stable.example.com&#34; &#34;v1&#34; &#34;crontabs&#34;}: the server could not find the requested resource (get crontabs.stable.example.com)</code></pre>
 <p>
   If you later recreate the same CustomResourceDefinition, it will start out empty.
 </p>
@@ -1152,7 +1151,7 @@ kubectl get crontabs</code></pre>
     <code>
       bar
     </code>
-    's
+    &#39;s
     <code>
       type
     </code>
@@ -1298,7 +1297,7 @@ kubectl get crontabs</code></pre>
   <a href="/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/#validation">
     OpenAPI v3.0 validation schema
   </a>
-  at all) are persisted. This is in contrast to native Kubernetes resources such as a pod where unknown fields are dropped before being persisted to etcd. We call this &ldquo;pruning&rdquo; of unknown fields.
+  at all) are persisted. This is in contrast to native Kubernetes resources such as a pod where unknown fields are dropped before being persisted to etcd. We call this “pruning” of unknown fields.
 </p>
 <div id="customresourcedefinition-pruning">
   <ul>
@@ -1314,10 +1313,10 @@ kubectl get crontabs</code></pre>
     </li>
   </ul>
   <div id="customresourcedefinition-pruning-0">
-    <pre><code>    &lt;p&gt;For CustomResourceDefinitions created in &lt;code&gt;apiextensions.k8s.io/v1&lt;/code&gt;, &lt;a href=&quot;#specifying-a-structural-schema&quot;&gt;structural OpenAPI v3 validation schemas&lt;/a&gt; are required and pruning is enabled and cannot be disabled (note that CRDs converted from &lt;code&gt;apiextensions.k8s.io/v1beta1&lt;/code&gt; to &lt;code&gt;apiextensions.k8s.io/v1&lt;/code&gt; might lack structural schemas, and &lt;code&gt;spec.preserveUnknownFields&lt;/code&gt; might be &lt;code&gt;true&lt;/code&gt;).&lt;/p&gt;</code></pre>
+    <pre><code>    &lt;p&gt;For CustomResourceDefinitions created in &lt;code&gt;apiextensions.k8s.io/v1&lt;/code&gt;, &lt;a href=&#34;#specifying-a-structural-schema&#34;&gt;structural OpenAPI v3 validation schemas&lt;/a&gt; are required and pruning is enabled and cannot be disabled (note that CRDs converted from &lt;code&gt;apiextensions.k8s.io/v1beta1&lt;/code&gt; to &lt;code&gt;apiextensions.k8s.io/v1&lt;/code&gt; might lack structural schemas, and &lt;code&gt;spec.preserveUnknownFields&lt;/code&gt; might be &lt;code&gt;true&lt;/code&gt;).&lt;/p&gt;</code></pre>
   </div>
   <div id="customresourcedefinition-pruning-1">
-    <pre><code>    &lt;p&gt;For CustomResourceDefinitions created in &lt;code&gt;apiextensions.k8s.io/v1beta1&lt;/code&gt;, if a &lt;a href=&quot;#specifying-a-structural-schema&quot;&gt;structural OpenAPI v3 validation schema&lt;/a&gt; is defined (either in the global &lt;code&gt;spec.validation.openAPIV3Schema&lt;/code&gt; in &lt;code&gt;apiextensions.k8s.io/v1beta1&lt;/code&gt; or for each version) in a CustomResourceDefinition, pruning can be enabled by setting &lt;code&gt;spec.preserveUnknownFields&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;</code></pre>
+    <pre><code>    &lt;p&gt;For CustomResourceDefinitions created in &lt;code&gt;apiextensions.k8s.io/v1beta1&lt;/code&gt;, if a &lt;a href=&#34;#specifying-a-structural-schema&#34;&gt;structural OpenAPI v3 validation schema&lt;/a&gt; is defined (either in the global &lt;code&gt;spec.validation.openAPIV3Schema&lt;/code&gt; in &lt;code&gt;apiextensions.k8s.io/v1beta1&lt;/code&gt; or for each version) in a CustomResourceDefinition, pruning can be enabled by setting &lt;code&gt;spec.preserveUnknownFields&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;</code></pre>
   </div>
 </div>
 <script>
@@ -1371,10 +1370,10 @@ metadata:
   generation: 1
   name: my-new-cron-object
   namespace: default
-  resourceVersion: &quot;285&quot;
+  resourceVersion: &#34;285&#34;
   uid: 9423255b-4600-11e7-af6a-28d2447dc82b
 spec:
-  cronSpec: '* * * * */5'
+  cronSpec: &#39;* * * * */5&#39;
   image: my-awesome-cron-image</code></pre>
 <p>
   The field
@@ -1964,7 +1963,7 @@ spec:
   </li>
 </ul>
 <div id="customresourcedefinition-validation-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#a2f;font-weight:bold&quot;&gt;apiVersion&lt;/span&gt;:&lt;span style=&quot;color:#bbb&quot;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;:&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2109,7 +2108,7 @@ string
 :
 <span style="color:#bbb"></span>
 <span style="color:#b44">
-  '^(\d+|*)(/\d+)?(\s+(\d+|*)(/\d+)?){4}$'
+  &#39;^(\d+|*)(/\d+)?(\s+(\d+|*)(/\d+)?){4}$&#39;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -2193,8 +2192,8 @@ CronTab
 <span style="color:#bbb"></span>
 - ct
 <span style="color:#bbb"></span>
-<div id="customresourcedefinition-validation-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#080;font-style:italic&quot;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="customresourcedefinition-validation-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -2402,7 +2401,7 @@ string
 :
 <span style="color:#bbb"></span>
 <span style="color:#b44">
-  '^(\d+|*)(/\d+)?(\s+(\d+|*)(/\d+)?){4}$'
+  &#39;^(\d+|*)(/\d+)?(\s+(\d+|*)(/\d+)?){4}$&#39;
 </span>
 <span style="color:#bbb"></span>
 <span style="color:#bbb"></span>
@@ -2442,7 +2441,7 @@ integer
 <script>
   $(function(){$("#customresourcedefinition-validation").tabs();});
 </script>
-<p>
+</p><p>
   And create it:
 </p>
 <div class="highlight">
@@ -2496,9 +2495,9 @@ integer
 </div>
 <p>
   you will get an error:
-</p><pre><code class="language-console" data-lang="console">The CronTab &quot;my-new-cron-object&quot; is invalid: []: Invalid value: map[string]interface {}{&quot;apiVersion&quot;:&quot;stable.example.com/v1&quot;, &quot;kind&quot;:&quot;CronTab&quot;, &quot;metadata&quot;:map[string]interface {}{&quot;name&quot;:&quot;my-new-cron-object&quot;, &quot;namespace&quot;:&quot;default&quot;, &quot;deletionTimestamp&quot;:interface {}(nil), &quot;deletionGracePeriodSeconds&quot;:(*int64)(nil), &quot;creationTimestamp&quot;:&quot;2017-09-05T05:20:07Z&quot;, &quot;uid&quot;:&quot;e14d79e7-91f9-11e7-a598-f0761cb232d1&quot;, &quot;clusterName&quot;:&quot;&quot;}, &quot;spec&quot;:map[string]interface {}{&quot;cronSpec&quot;:&quot;* * * *&quot;, &quot;image&quot;:&quot;my-awesome-cron-image&quot;, &quot;replicas&quot;:15}}:
+</p><pre><code class="language-console" data-lang="console">The CronTab &#34;my-new-cron-object&#34; is invalid: []: Invalid value: map[string]interface {}{&#34;apiVersion&#34;:&#34;stable.example.com/v1&#34;, &#34;kind&#34;:&#34;CronTab&#34;, &#34;metadata&#34;:map[string]interface {}{&#34;name&#34;:&#34;my-new-cron-object&#34;, &#34;namespace&#34;:&#34;default&#34;, &#34;deletionTimestamp&#34;:interface {}(nil), &#34;deletionGracePeriodSeconds&#34;:(*int64)(nil), &#34;creationTimestamp&#34;:&#34;2017-09-05T05:20:07Z&#34;, &#34;uid&#34;:&#34;e14d79e7-91f9-11e7-a598-f0761cb232d1&#34;, &#34;clusterName&#34;:&#34;&#34;}, &#34;spec&#34;:map[string]interface {}{&#34;cronSpec&#34;:&#34;* * * *&#34;, &#34;image&#34;:&#34;my-awesome-cron-image&#34;, &#34;replicas&#34;:15}}:
 validation failure list:
-spec.cronSpec in body should match '^(\d+|\*)(/\d+)?(\s+(\d+|\*)(/\d+)?){4}$'
+spec.cronSpec in body should match &#39;^(\d+|\*)(/\d+)?(\s+(\d+|\*)(/\d+)?){4}$&#39;
 spec.replicas in body should be less than or equal to 10</code></pre>
 <p>
   If the fields contain valid values, the object creation request is accepted.
@@ -2843,8 +2842,8 @@ crontab <span style="color:#b44">&#34;my-new-cron-object&#34;</span> created</co
   .
   The following modifications are applied during the conversion to keep backwards compatibility with
   kubectl in previous 1.13 version. These modifications prevent kubectl from being over-strict and rejecting
-  valid OpenAPI schemas that it doesn&rsquo;t understand. The conversion won&rsquo;t modify the validation schema defined in CRD,
-  and therefore won&rsquo;t affect
+  valid OpenAPI schemas that it doesn’t understand. The conversion won’t modify the validation schema defined in CRD,
+  and therefore won’t affect
   <a href="#validation">
     validation
   </a>
@@ -2852,7 +2851,7 @@ crontab <span style="color:#b44">&#34;my-new-cron-object&#34;</span> created</co
 </p>
 <ol>
   <li>
-    The following fields are removed as they aren&rsquo;t supported by OpenAPI v2 (in future versions OpenAPI v3 will be used without these restrictions)
+    The following fields are removed as they aren’t supported by OpenAPI v2 (in future versions OpenAPI v3 will be used without these restrictions)
     <ul>
       <li>
         The fields
@@ -2946,7 +2945,7 @@ crontab <span style="color:#b44">&#34;my-new-cron-object&#34;</span> created</co
   </li>
 </ul>
 <div id="customresourcedefinition-printer-columns-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#a2f;font-weight:bold&quot;&gt;apiVersion&lt;/span&gt;:&lt;span style=&quot;color:#bbb&quot;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;:&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -3283,8 +3282,8 @@ date
 <span style="color:#bbb"></span>
 .metadata.creationTimestamp
 <span style="color:#bbb"></span>
-<div id="customresourcedefinition-printer-columns-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#080;font-style:italic&quot;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="customresourcedefinition-printer-columns-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -3605,7 +3604,7 @@ date
 <script>
   $(function(){$("#customresourcedefinition-printer-columns").tabs();});
 </script>
-<ol start="2">
+</p><ol start="2">
   <li>
     <p>
       Create the CustomResourceDefinition:
@@ -3695,7 +3694,7 @@ my-new-cron-object   * * * * *   1          7s</code></pre>
   Type
 </h4>
 <p>
-  A column&rsquo;s
+  A column’s
   <code>
     type
   </code>
@@ -3746,7 +3745,7 @@ my-new-cron-object   * * * * *   1          7s</code></pre>
   Format
 </h4>
 <p>
-  A column&rsquo;s
+  A column’s
   <code>
     format
   </code>
@@ -3795,7 +3794,7 @@ my-new-cron-object   * * * * *   1          7s</code></pre>
   </li>
 </ul>
 <p>
-  The column&rsquo;s
+  The column’s
   <code>
     format
   </code>
@@ -4204,7 +4203,7 @@ my-new-cron-object   * * * * *   1          7s</code></pre>
   </li>
 </ul>
 <div id="customresourcedefinition-scale-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#a2f;font-weight:bold&quot;&gt;apiVersion&lt;/span&gt;:&lt;span style=&quot;color:#bbb&quot;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;:&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -4534,8 +4533,8 @@ CronTab
 <span style="color:#bbb"></span>
 - ct
 <span style="color:#bbb"></span>
-<div id="customresourcedefinition-scale-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#080;font-style:italic&quot;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="customresourcedefinition-scale-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -4876,7 +4875,7 @@ string
 <script>
   $(function(){$("#customresourcedefinition-scale").tabs();});
 </script>
-<p>
+</p><p>
   And create it:
 </p>
 <div class="highlight">
@@ -4995,7 +4994,7 @@ kubectl get crontabs my-new-cron-object -o <span style="color:#b8860b">jsonpath<
   </li>
 </ul>
 <div id="customresourcedefinition-categories-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#a2f;font-weight:bold&quot;&gt;apiVersion&lt;/span&gt;:&lt;span style=&quot;color:#bbb&quot;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;:&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;apiextensions.k8s.io/v1&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -5217,8 +5216,8 @@ CronTab
 <span style="color:#bbb"></span>
 - all
 <span style="color:#bbb"></span>
-<div id="customresourcedefinition-categories-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span style=&quot;color:#080;font-style:italic&quot;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&quot;color:#bbb&quot;&gt;</code></pre>
+</p><div id="customresourcedefinition-categories-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# Deprecated in v1.16 in favor of apiextensions.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;</code></pre>
 <p>
 <span style="color:#bbb"></span>
 <span style="color:#a2f;font-weight:bold">
@@ -5451,7 +5450,7 @@ CronTab
 <script>
   $(function(){$("#customresourcedefinition-categories").tabs();});
 </script>
-<p>
+</p><p>
   And create it:
 </p>
 <div class="highlight">
@@ -5521,4 +5520,4 @@ crontabs/my-new-cron-object   3s</code></pre>
       CustomResourceDefinition.
     </p>
   </li>
-</ul>
+</ul></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></body></html>

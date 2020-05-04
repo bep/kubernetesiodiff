@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Connect a Front End to a Back End Using a Service
 </h1>
@@ -15,9 +14,9 @@
   This task shows how to create a frontend and a backend
   microservice. The backend microservice is a hello greeter. The
   frontend and backend are connected using a Kubernetes
-  <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
     Service
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A way to expose an application running on a set of Pods as a network service.
     </span>
   </a>
@@ -61,7 +60,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -71,9 +70,9 @@
 <ul>
   <li>
     Create and run a microservice using a
-    <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/deployment/' target='_blank'>
+    <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/deployment/" target="_blank">
       Deployment
-      <span class='tooltip-text'>
+      <span class="tooltip-text">
         An API object that manages a replicated application.
       </span>
     </a>
@@ -94,7 +93,7 @@
   <li>
     <p>
     You need to have a Kubernetes cluster, and the kubectl command-line tool must
-  </li>
+  </p></li>
 </ul>
 <p>
   be configured to communicate with your cluster. If you do not already have a
@@ -155,7 +154,7 @@
             service/access/hello.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-access-hello-yaml')" title="Copy service/access/hello.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-access-hello-yaml&#39;)" title="Copy service/access/hello.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -225,7 +224,7 @@ Pod Template:
                 track=stable
   Containers:
    hello:
-    Image:              &quot;gcr.io/google-samples/hello-go-gke:1.0&quot;
+    Image:              &#34;gcr.io/google-samples/hello-go-gke:1.0&#34;
     Port:               80/TCP
     Environment:        &lt;none&gt;
     Mounts:             &lt;none&gt;
@@ -246,9 +245,9 @@ Events:
   The key to connecting a frontend to a backend is the backend
   Service. A Service creates a persistent IP address and DNS name entry
   so that the backend microservice can always be reached. A Service uses
-  <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/labels/" target="_blank">
     selectors
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Allows users to filter a list of resources based on labels.
     </span>
   </a>
@@ -267,7 +266,7 @@ Events:
             service/access/hello-service.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-access-hello-service-yaml')" title="Copy service/access/hello-service.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-access-hello-service-yaml&#39;)" title="Copy service/access/hello-service.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -325,7 +324,7 @@ Events:
 <p>
   Now that you have your backend, you can create a frontend that connects to the backend.
   The frontend connects to the backend worker Pods by using the DNS name
-  given to the backend Service. The DNS name is &ldquo;hello&rdquo;, which is the value
+  given to the backend Service. The DNS name is “hello”, which is the value
   of the
   <code>
     name
@@ -336,7 +335,15 @@ Events:
   The Pods in the frontend Deployment run an nginx image that is configured
   to find the hello backend Service. Here is the nginx configuration file:
 </p>
-<table class="includecode" id="service-access-frontend-conf">
+<p>
+  Similar to the backend, the frontend has a Deployment and a Service. The
+  configuration for the Service has
+  <code>
+    type: LoadBalancer
+  </code>
+  , which means that
+  the Service uses the default load balancer of your cloud provider.
+</p><table class="includecode" id="service-access-frontend-conf">
 <thead>
   <tr>
     <th>
@@ -345,7 +352,7 @@ Events:
           service/access/frontend.conf
         </code>
       </a>
-      <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-access-frontend-conf')" title="Copy service/access/frontend.conf to clipboard">
+      <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-access-frontend-conf&#39;)" title="Copy service/access/frontend.conf to clipboard"/>
     </th>
   </tr>
 </thead>
@@ -360,20 +367,12 @@ listen 80;</p>
 <pre><code>location / {
     proxy_pass http://hello;
 }</code></pre>
-<p>}</code></pre>
+</code><p><code class="language-conf" data-lang="conf">}</code></p></pre>
     </td>
   </tr>
 </tbody>
-<p>
-  Similar to the backend, the frontend has a Deployment and a Service. The
-  configuration for the Service has
-  <code>
-    type: LoadBalancer
-  </code>
-  , which means that
-  the Service uses the default load balancer of your cloud provider.
-</p>
-<table class="includecode" id="service-access-frontend-yaml">
+
+</table><table class="includecode" id="service-access-frontend-yaml">
   <thead>
     <tr>
       <th>
@@ -382,7 +381,7 @@ listen 80;</p>
             service/access/frontend.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-access-frontend-yaml')" title="Copy service/access/frontend.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-access-frontend-yaml&#39;)" title="Copy service/access/frontend.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -536,4 +535,4 @@ frontend   LoadBalancer   10.51.252.116   XXX.XXX.XXX.XXX    80/TCP   1m</code><
       ConfigMaps
     </a>
   </li>
-</ul>
+</ul></body></html>

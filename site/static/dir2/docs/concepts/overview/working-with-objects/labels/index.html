@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Labels and Selectors
     </h1>
@@ -72,55 +71,55 @@
     <ul>
       <li>
         <code>
-          &quot;release&quot; : &quot;stable&quot;
+          &#34;release&#34; : &#34;stable&#34;
         </code>
         ,
         <code>
-          &quot;release&quot; : &quot;canary&quot;
+          &#34;release&#34; : &#34;canary&#34;
         </code>
       </li>
       <li>
         <code>
-          &quot;environment&quot; : &quot;dev&quot;
+          &#34;environment&#34; : &#34;dev&#34;
         </code>
         ,
         <code>
-          &quot;environment&quot; : &quot;qa&quot;
+          &#34;environment&#34; : &#34;qa&#34;
         </code>
         ,
         <code>
-          &quot;environment&quot; : &quot;production&quot;
+          &#34;environment&#34; : &#34;production&#34;
         </code>
       </li>
       <li>
         <code>
-          &quot;tier&quot; : &quot;frontend&quot;
+          &#34;tier&#34; : &#34;frontend&#34;
         </code>
         ,
         <code>
-          &quot;tier&quot; : &quot;backend&quot;
+          &#34;tier&#34; : &#34;backend&#34;
         </code>
         ,
         <code>
-          &quot;tier&quot; : &quot;cache&quot;
+          &#34;tier&#34; : &#34;cache&#34;
         </code>
       </li>
       <li>
         <code>
-          &quot;partition&quot; : &quot;customerA&quot;
+          &#34;partition&#34; : &#34;customerA&#34;
         </code>
         ,
         <code>
-          &quot;partition&quot; : &quot;customerB&quot;
+          &#34;partition&#34; : &#34;customerB&#34;
         </code>
       </li>
       <li>
         <code>
-          &quot;track&quot; : &quot;daily&quot;
+          &#34;track&#34; : &#34;daily&#34;
         </code>
         ,
         <code>
-          &quot;track&quot; : &quot;weekly&quot;
+          &#34;track&#34; : &#34;weekly&#34;
         </code>
       </li>
     </ul>
@@ -390,11 +389,11 @@ tier != frontend</code></pre>
     <p>
       One usage scenario for equality-based label requirement is for Pods to specify
       node selection criteria. For example, the sample Pod below selects nodes with
-      the label &ldquo;
+      the label “
       <code>
         accelerator=nvidia-tesla-p100
       </code>
-      &rdquo;.
+      ”.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
@@ -769,15 +768,15 @@ partition
       <code>
         key
       </code>
-      field is &ldquo;key&rdquo;, the
+      field is “key”, the
       <code>
         operator
       </code>
-      is &ldquo;In&rdquo;, and the
+      is “In”, and the
       <code>
         values
       </code>
-      array contains only &ldquo;value&rdquo;.
+      array contains only “value”.
       <code>
         matchExpressions
       </code>
@@ -789,7 +788,7 @@ partition
       <code>
         matchExpressions
       </code>
-      are ANDed together &ndash; they must all be satisfied in order to match.
+      are ANDed together – they must all be satisfied in order to match.
     </p>
     <h4 id="selecting-sets-of-nodes">
       Selecting sets of nodes
@@ -802,5 +801,5 @@ partition
       </a>
       for more information.
     </p>
-  </body>
-</html>
+  
+</body></html>

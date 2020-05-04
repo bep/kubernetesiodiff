@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Authenticating
 </h1>
@@ -174,8 +173,8 @@
   option to API server. The referenced file must contain one or more certificate authorities
   to use to validate client certificates presented to the API server. If a client certificate
   is presented and verified, the common name of the subject is used as the user name for the
-  request. As of Kubernetes 1.4, client certificates can also indicate a user&rsquo;s group memberships
-  using the certificate&rsquo;s organization fields. To include multiple group memberships for a user,
+  request. As of Kubernetes 1.4, client certificates can also indicate a user’s group memberships
+  using the certificate’s organization fields. To include multiple group memberships for a user,
   include multiple organization fields in the certificate.
 </p>
 <p>
@@ -189,7 +188,7 @@
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">openssl req -new -key jbeda.pem -out jbeda-csr.pem -subj <span style="color:#b44">&#34;/CN=jbeda/O=app1/O=app2&#34;</span></code></pre>
 </div>
 <p>
-  This would create a CSR for the username &ldquo;jbeda&rdquo;, belonging to two groups, &ldquo;app1&rdquo; and &ldquo;app2&rdquo;.
+  This would create a CSR for the username “jbeda”, belonging to two groups, “app1” and “app2”.
 </p>
 <p>
   See
@@ -221,7 +220,7 @@
     <p>
       If you have more than one group the column must be double quoted e.g.
     </p>
-    <pre><code class="language-conf" data-lang="conf">token,user,uid,&quot;group1,group2,group3&quot;</code></pre>
+    <pre><code class="language-conf" data-lang="conf">token,user,uid,&#34;group1,group2,group3&#34;</code></pre>
   </div>
 </blockquote>
 <h4 id="putting-a-bearer-token-in-a-request">
@@ -254,7 +253,7 @@
   Bootstrap Tokens
 </h3>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -406,8 +405,8 @@
   The basic auth file is a csv file with a minimum of 3 columns: password, user name, user id.
   In Kubernetes version 1.6 and later, you can specify an optional fourth column containing
   comma-separated group names. If you have more than one group, you must enclose the fourth
-  column value in double quotes (&quot;). See the following example:
-</p><pre><code class="language-conf" data-lang="conf">password,user,uid,&quot;group1,group2,group3&quot;</code></pre>
+  column value in double quotes (&#34;). See the following example:
+</p><pre><code class="language-conf" data-lang="conf">password,user,uid,&#34;group1,group2,group3&#34;</code></pre>
 <p>
   When using basic authentication from an http client, the API server expects an
   <code>
@@ -433,7 +432,7 @@
       --service-account-key-file
     </code>
     A file containing a PEM encoded key for signing bearer tokens.
-    If unspecified, the API server&rsquo;s TLS private key will be used.
+    If unspecified, the API server’s TLS private key will be used.
   </li>
   <li>
     <code>
@@ -504,7 +503,7 @@
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create serviceaccount jenkins</code></pre>
-</div><pre><code class="language-none" data-lang="none">serviceaccount &quot;jenkins&quot; created</code></pre>
+</div><pre><code class="language-none" data-lang="none">serviceaccount &#34;jenkins&#34; created</code></pre>
 <p>
   Check an associated secret:
 </p>
@@ -587,13 +586,13 @@
   </a>
   is a flavor of OAuth2 supported by
   some OAuth2 providers, notably Azure Active Directory, Salesforce, and Google.
-  The protocol&rsquo;s main extension of OAuth2 is an additional field returned with
+  The protocol’s main extension of OAuth2 is an additional field returned with
   the access token called an
   <a href="https://openid.net/specs/openid-connect-core-1_0.html#IDToken">
     ID Token
   </a>
   .
-  This token is a JSON Web Token (JWT) with well known fields, such as a user&rsquo;s
+  This token is a JSON Web Token (JWT) with well known fields, such as a user’s
   email, signed by the server.
 </p>
 <p>
@@ -618,7 +617,7 @@
   is included in a request.
 </p>
 <p>
-  <img src="/images/docs/admin/k8s_oidc_login.svg" alt="Kubernetes OpenID Connect Flow">
+  <img src="/images/docs/admin/k8s_oidc_login.svg" alt="Kubernetes OpenID Connect Flow"/>
 </p>
 <ol>
   <li>
@@ -674,7 +673,7 @@
     <code>
       id_token
     </code>
-    hasn&rsquo;t expired
+    hasn’t expired
   </li>
   <li>
     Make sure the user is authorized
@@ -697,23 +696,23 @@
   <code>
     id_token
   </code>
-  , Kubernetes doesn&rsquo;t need to
-  &ldquo;phone home&rdquo; to the identity provider.  In a model where every request is stateless this provides a very scalable
+  , Kubernetes doesn’t need to
+  “phone home” to the identity provider.  In a model where every request is stateless this provides a very scalable
   solution for authentication.  It does offer a few challenges:
 </p>
 <ol>
   <li>
-    Kubernetes has no &ldquo;web interface&rdquo; to trigger the authentication process.  There is no browser or interface to collect credentials which is why you need to authenticate to your identity provider first.
+    Kubernetes has no “web interface” to trigger the authentication process.  There is no browser or interface to collect credentials which is why you need to authenticate to your identity provider first.
   </li>
   <li>
     The
     <code>
       id_token
     </code>
-    can&rsquo;t be revoked, it&rsquo;s like a certificate so it should be short-lived (only a few minutes) so it can be very annoying to have to get a new token every few minutes.
+    can’t be revoked, it’s like a certificate so it should be short-lived (only a few minutes) so it can be very annoying to have to get a new token every few minutes.
   </li>
   <li>
-    There&rsquo;s no easy way to authenticate to the Kubernetes dashboard without using the
+    There’s no easy way to authenticate to the Kubernetes dashboard without using the
     <code>
       kubectl proxy
     </code>
@@ -759,15 +758,15 @@
         <code>
           https://
         </code>
-        scheme are accepted.  This is typically the provider&rsquo;s discovery URL without a path, for example &ldquo;
+        scheme are accepted.  This is typically the provider’s discovery URL without a path, for example “
         <a href="https://accounts.google.com">
           https://accounts.google.com
         </a>
-        &rdquo; or &ldquo;
+        ” or “
         <a href="https://login.salesforce.com">
           https://login.salesforce.com
         </a>
-        &rdquo;.  This URL should point to the level below .well-known/openid-configuration
+        ”.  This URL should point to the level below .well-known/openid-configuration
       </td>
       <td>
         If the discovery URL is
@@ -850,7 +849,7 @@
         <code>
           oidc:jane.doe
         </code>
-        . If this flag isn&rsquo;t provided and
+        . If this flag isn’t provided and
         <code>
           --oidc-user-claim
         </code>
@@ -892,7 +891,7 @@
         </code>
       </td>
       <td>
-        JWT claim to use as the user&rsquo;s group. If the claim is present it must be an array of strings.
+        JWT claim to use as the user’s group. If the claim is present it must be an array of strings.
       </td>
       <td>
         groups
@@ -960,7 +959,7 @@
         </code>
       </td>
       <td>
-        The path to the certificate for the CA that signed your identity provider&rsquo;s web certificate.  Defaults to the host&rsquo;s root CAs.
+        The path to the certificate for the CA that signed your identity provider’s web certificate.  Defaults to the host’s root CAs.
       </td>
       <td>
         <code>
@@ -1003,7 +1002,7 @@
   <a href="https://github.com/cloudfoundry/uaa">
     UAA
   </a>
-  , or Tremolo Security&rsquo;s
+  , or Tremolo Security’s
   <a href="https://github.com/tremolosecurity/openunison">
     OpenUnison
   </a>
@@ -1028,7 +1027,7 @@
   </li>
 </ol>
 <p>
-  A note about requirement #3 above, requiring a CA signed certificate.  If you deploy your own identity provider (as opposed to one of the cloud providers like Google or Microsoft) you MUST have your identity provider&rsquo;s web server certificate signed by a certificate with the
+  A note about requirement #3 above, requiring a CA signed certificate.  If you deploy your own identity provider (as opposed to one of the cloud providers like Google or Microsoft) you MUST have your identity provider’s web server certificate signed by a certificate with the
   <code>
     CA
   </code>
@@ -1036,7 +1035,7 @@
   <code>
     TRUE
   </code>
-  , even if it is self signed.  This is due to GoLang&rsquo;s TLS client implementation being very strict to the standards around certificate validation.  If you don&rsquo;t have a CA handy, you can use
+  , even if it is self signed.  This is due to GoLang’s TLS client implementation being very strict to the standards around certificate validation.  If you don’t have a CA handy, you can use
   <a href="https://github.com/coreos/dex/blob/1ee5920c54f5926d6468d2607c728b71cfe98092/examples/k8s/gencert.sh">
     this script
   </a>
@@ -1082,7 +1081,7 @@
   <code>
     id_token
   </code>
-  as a bearer token for all requests and refreshes the token once it expires. After you&rsquo;ve logged into your provider, use kubectl to add your
+  as a bearer token for all requests and refreshes the token once it expires. After you’ve logged into your provider, use kubectl to add your
   <code>
     id_token
   </code>
@@ -1101,11 +1100,11 @@
   to configure the plugin.
 </p>
 <p>
-  Providers that don&rsquo;t return an
+  Providers that don’t return an
   <code>
     id_token
   </code>
-  as part of their refresh token response aren&rsquo;t supported by this plugin and should use &ldquo;Option 2&rdquo; below.
+  as part of their refresh token response aren’t supported by this plugin and should use “Option 2” below.
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl config set-credentials USER_NAME <span style="color:#b62;font-weight:bold">\
@@ -1294,7 +1293,7 @@
     versioning compatibility rules
   </a>
   as other Kubernetes API objects. Implementers should be aware of looser
-  compatibility promises for beta objects and check the &ldquo;apiVersion&rdquo; field of the
+  compatibility promises for beta objects and check the “apiVersion” field of the
   request to ensure correct deserialization. Additionally, the API server must
   enable the
   <code>
@@ -1324,7 +1323,7 @@
     status
   </code>
   field of
-  the request to indicate the success of the login. The response body&rsquo;s
+  the request to indicate the success of the login. The response body’s
   <code>
     spec
   </code>
@@ -1391,13 +1390,13 @@
     <code>
       --requestheader-group-headers
     </code>
-    1.6+. Optional, case-insensitive. &ldquo;X-Remote-Group&rdquo; is suggested. Header names to check, in order, for the user&rsquo;s groups. All values in all specified headers are used as group names.
+    1.6+. Optional, case-insensitive. “X-Remote-Group” is suggested. Header names to check, in order, for the user’s groups. All values in all specified headers are used as group names.
   </li>
   <li>
     <code>
       --requestheader-extra-headers-prefix
     </code>
-    1.6+. Optional, case-insensitive. &ldquo;X-Remote-Extra-&rdquo; is suggested. Header prefixes to look for to determine extra information about the user (typically used by the configured authorization plugin). Any headers beginning with any of the specified prefixes have the prefix removed. The remainder of the header name is lowercased and
+    1.6+. Optional, case-insensitive. “X-Remote-Extra-” is suggested. Header prefixes to look for to determine extra information about the user (typically used by the configured authorization plugin). Any headers beginning with any of the specified prefixes have the prefix removed. The remainder of the header name is lowercased and
     <a href="https://tools.ietf.org/html/rfc3986#section-2.1">
       percent-decoded
     </a>
@@ -1457,7 +1456,7 @@ X-Remote-Extra-Scopes<span style="color:#666">:</span> profile</code></pre>
     not
   </strong>
   reuse a CA that is used in a different context unless you understand
-  the risks and the mechanisms to protect the CA&rsquo;s usage.
+  the risks and the mechanisms to protect the CA’s usage.
 </p>
 <ul>
   <li>
@@ -1582,17 +1581,17 @@ X-Remote-Extra-Scopes<span style="color:#666">:</span> profile</code></pre>
     <code>
       Impersonate-Group
     </code>
-    : A group name to act as. Can be provided multiple times to set multiple groups. Optional. Requires &ldquo;Impersonate-User&rdquo;
+    : A group name to act as. Can be provided multiple times to set multiple groups. Optional. Requires “Impersonate-User”
   </li>
   <li>
     <code>
       Impersonate-Extra-( extra name )
     </code>
-    : A dynamic header used to associate extra fields with the user. Optional. Requires &ldquo;Impersonate-User&rdquo;. In order to be preserved consistently,
+    : A dynamic header used to associate extra fields with the user. Optional. Requires “Impersonate-User”. In order to be preserved consistently,
     <code>
       ( extra name )
     </code>
-    should be lower-case, and any characters which aren&rsquo;t
+    should be lower-case, and any characters which aren’t
     <a href="https://tools.ietf.org/html/rfc7230#section-3.2.6">
       legal in HTTP header labels
     </a>
@@ -1657,7 +1656,7 @@ X-Remote-Extra-Scopes<span style="color:#666">:</span> profile</code></pre>
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl drain mynode</code></pre>
-</div><pre><code class="language-none" data-lang="none">Error from server (Forbidden): User &quot;clark&quot; cannot get nodes at the cluster scope. (get nodes mynode)</code></pre>
+</div><pre><code class="language-none" data-lang="none">Error from server (Forbidden): User &#34;clark&#34; cannot get nodes at the cluster scope. (get nodes mynode)</code></pre>
 <p>
   Set the
   <code>
@@ -1675,8 +1674,8 @@ X-Remote-Extra-Scopes<span style="color:#666">:</span> profile</code></pre>
 node/mynode drained</code></pre>
 <p>
   To impersonate a user, group, or set extra fields, the impersonating user must
-  have the ability to perform the &ldquo;impersonate&rdquo; verb on the kind of attribute
-  being impersonated (&ldquo;user&rdquo;, &ldquo;group&rdquo;, etc.). For clusters that enable the RBAC
+  have the ability to perform the “impersonate” verb on the kind of attribute
+  being impersonated (“user”, “group”, etc.). For clusters that enable the RBAC
   authorization plugin, the following ClusterRole encompasses the rules needed to
   set user and group impersonation headers:
 </p>
@@ -1692,8 +1691,8 @@ node/mynode drained</code></pre>
 </span></code></pre>
 </div>
 <p>
-  Extra fields are evaluated as sub-resources of the resource &ldquo;userextras&rdquo;. To
-  allow a user to use impersonation headers for the extra field &ldquo;scopes,&rdquo; a user
+  Extra fields are evaluated as sub-resources of the resource “userextras”. To
+  allow a user to use impersonation headers for the extra field “scopes,” a user
   should be granted the following role:
 </p>
 <div class="highlight">
@@ -1883,7 +1882,7 @@ node/mynode drained</code></pre>
     to the external service.
   </li>
   <li>
-    External service verifies the signature on the token and returns the user&rsquo;s username and groups.
+    External service verifies the signature on the token and returns the user’s username and groups.
   </li>
 </ul>
 <h3 id="configuration">
@@ -1993,7 +1992,7 @@ node/mynode drained</code></pre>
   <a href="https://godoc.org/golang.org/x/crypto/ssh/terminal#IsTerminal">
     TTY check
   </a>
-  to determine if it&rsquo;s
+  to determine if it’s
   appropriate to prompt a user interactively.
 </p>
 <p>
@@ -2071,4 +2070,4 @@ node/mynode drained</code></pre>
     <span style="color:#008000;font-weight:bold">&#34;expirationTimestamp&#34;</span>: <span style="color:#b44">&#34;2018-03-05T17:30:20-08:00&#34;</span>
   }
 }</code></pre>
-</div>
+</div></div></div></body></html>

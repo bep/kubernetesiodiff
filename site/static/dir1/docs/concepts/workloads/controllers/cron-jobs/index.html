@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       CronJob
     </h1>
@@ -12,7 +11,7 @@
       CronJob
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -84,9 +83,9 @@
         CronJob
       </em>
       creates
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/jobs-run-to-completion' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/jobs-run-to-completion" target="_blank">
         Jobs
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A finite or batch task that runs to completion.
         </span>
       </a>
@@ -118,9 +117,9 @@
             schedule:
           </code>
           times are based on the timezone of the
-          <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-controller-manager/' target='_blank'>
+          <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-controller-manager/" target="_blank">
             kube-controller-manager
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               Control Plane component that runs controller processes.
             </span>
           </a>
@@ -157,7 +156,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -184,7 +183,7 @@
                 application/job/cronjob.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-cronjob-yaml')" title="Copy application/job/cronjob.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-job-cronjob-yaml&#39;)" title="Copy application/job/cronjob.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -231,7 +230,7 @@
       <em>
         about
       </em>
-      once per execution time of its schedule. We say &ldquo;about&rdquo; because there
+      once per execution time of its schedule. We say “about” because there
       are certain circumstances where two jobs might be created, or no job might be created. We attempt to make these rare,
       but do not completely prevent them. Therefore, jobs should be
       <em>
@@ -258,9 +257,9 @@
     </p>
     <p>
       For every CronJob, the CronJob
-      <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/architecture/controller/" target="_blank">
         Controller
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
         </span>
       </a>
@@ -367,5 +366,5 @@
       </a>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

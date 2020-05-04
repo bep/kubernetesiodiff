@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Managing Resources
     </h1>
@@ -12,7 +11,7 @@
       Managing Resources
     </h1>
     <p>
-      You&rsquo;ve deployed your application and exposed it via a service. Now what? Kubernetes provides a number of tools to help you manage your application deployment, including scaling and updating. Among the features that we will discuss in more depth are
+      You’ve deployed your application and exposed it via a service. Now what? Kubernetes provides a number of tools to help you manage your application deployment, including scaling and updating. Among the features that we will discuss in more depth are
       <a href="/docs/concepts/configuration/overview/">
         configuration files
       </a>
@@ -75,7 +74,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -98,7 +97,7 @@
                 application/nginx-app.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-nginx-app-yaml')" title="Copy application/nginx-app.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-nginx-app-yaml&#39;)" title="Copy application/nginx-app.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -157,7 +156,7 @@
 deployment.apps/my-nginx created</code></pre>
     </div>
     <p>
-      The resources will be created in the order they appear in the file. Therefore, it&rsquo;s best to specify the service first, since that will ensure the scheduler can spread the pods associated with the service as they are created by the controller(s), such as Deployment.
+      The resources will be created in the order they appear in the file. Therefore, it’s best to specify the service first, since that will ensure the scheduler can spread the pods associated with the service as they are created by the controller(s), such as Deployment.
     </p>
     <p>
       <code>
@@ -212,7 +211,7 @@ deployment.apps/my-nginx created</code></pre>
       Bulk operations in kubectl
     </h2>
     <p>
-      Resource creation isn&rsquo;t the only operation that
+      Resource creation isn’t the only operation that
       <code>
         kubectl
       </code>
@@ -226,13 +225,13 @@ deployment.apps/my-nginx created</code></pre>
 service <span style="color:#b44">&#34;my-nginx-svc&#34;</span> deleted</code></pre>
     </div>
     <p>
-      In the case of just two resources, it&rsquo;s also easy to specify both on the command line using the resource/name syntax:
+      In the case of just two resources, it’s also easy to specify both on the command line using the resource/name syntax:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete deployments/my-nginx services/my-nginx-svc</code></pre>
     </div>
     <p>
-      For larger numbers of resources, you&rsquo;ll find it easier to specify the selector (label query) specified using
+      For larger numbers of resources, you’ll find it easier to specify the selector (label query) specified using
       <code>
         -l
       </code>
@@ -254,7 +253,7 @@ service <span style="color:#b44">&#34;my-nginx-svc&#34;</span> deleted</code></p
       <code>
         kubectl
       </code>
-      outputs resource names in the same syntax it accepts, it&rsquo;s easy to chain operations using
+      outputs resource names in the same syntax it accepts, it’s easy to chain operations using
       <code>
         $()
       </code>
@@ -285,7 +284,7 @@ my-nginx-svc   LoadBalancer   10.0.0.208   &lt;pending&gt;     80/TCP       0s</
       <code>
         grep
       </code>
-      only the &ldquo;service&rdquo;, and then print it with
+      only the “service”, and then print it with
       <code>
         kubectl get
       </code>
@@ -312,9 +311,9 @@ my-nginx-svc   LoadBalancer   10.0.0.208   &lt;pending&gt;     80/TCP       0s</
         project/k8s/development
       </code>
       that holds all of the
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-manifest' target='_blank'>
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-manifest" target="_blank">
         manifests
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A serialized specification of one or more Kubernetes API objects.
         </span>
       </a>
@@ -399,7 +398,7 @@ deployment.apps/my-deployment created
 persistentvolumeclaim/my-pvc created</code></pre>
     </div>
     <p>
-      If you&rsquo;re interested in learning more about
+      If you’re interested in learning more about
       <code>
         kubectl
       </code>
@@ -413,7 +412,7 @@ persistentvolumeclaim/my-pvc created</code></pre>
       Using labels effectively
     </h2>
     <p>
-      The examples we&rsquo;ve used so far apply at most a single label to any resource. There are many scenarios where multiple labels should be used to distinguish sets from one another.
+      The examples we’ve used so far apply at most a single label to any resource. There are many scenarios where multiple labels should be used to distinguish sets from one another.
     </p>
     <p>
       For instance, different applications would use different values for the
@@ -558,7 +557,7 @@ guestbook-redis-slave-qgazl   1/1       Running   <span style="color:#666">0</sp
     </div>
     <p>
       You can tweak the number of replicas of the stable and canary releases to determine the ratio of each release that will receive live production traffic (in this case, 3:1).
-      Once you&rsquo;re confident, you can update the stable track to the new application release and remove the canary one.
+      Once you’re confident, you can update the stable track to the new application release and remove the canary one.
     </p>
     <p>
       For a more concrete example, check the
@@ -587,7 +586,7 @@ pod/my-nginx-2035384211-u2c7e labeled
 pod/my-nginx-2035384211-u3t6x labeled</code></pre>
     </div>
     <p>
-      This first filters all pods with the label &ldquo;app=nginx&rdquo;, and then labels them with the &ldquo;tier=fe&rdquo;.
+      This first filters all pods with the label “app=nginx”, and then labels them with the “tier=fe”.
       To see the pods you just labeled, run:
     </p>
     <div class="highlight">
@@ -600,7 +599,7 @@ my-nginx-2035384211-u2c7e   1/1       Running   <span style="color:#666">0</span
 my-nginx-2035384211-u3t6x   1/1       Running   <span style="color:#666">0</span>          23m       fe</code></pre>
     </div>
     <p>
-      This outputs all &ldquo;app=nginx&rdquo; pods, with an additional label column of pods&rsquo; tier (specified with
+      This outputs all “app=nginx” pods, with an additional label column of pods’ tier (specified with
       <code>
         -L
       </code>
@@ -658,7 +657,7 @@ metadata:
       Scaling your application
     </h2>
     <p>
-      When load on your application grows or shrinks, it&rsquo;s easy to scale with
+      When load on your application grows or shrinks, it’s easy to scale with
       <code>
         kubectl
       </code>
@@ -711,7 +710,7 @@ my-nginx-2035384211-j5fhi   1/1       Running   <span style="color:#666">0</span
       In-place updates of resources
     </h2>
     <p>
-      Sometimes it&rsquo;s necessary to make narrow, non-disruptive updates to resources you&rsquo;ve created.
+      Sometimes it’s necessary to make narrow, non-disruptive updates to resources you’ve created.
     </p>
     <h3 id="kubectl-apply">
       kubectl apply
@@ -732,7 +731,7 @@ my-nginx-2035384211-j5fhi   1/1       Running   <span style="color:#666">0</span
       to push your configuration changes to the cluster.
     </p>
     <p>
-      This command will compare the version of the configuration that you&rsquo;re pushing with the previous version and apply the changes you&rsquo;ve made, without overwriting any automated changes to properties you haven&rsquo;t specified.
+      This command will compare the version of the configuration that you’re pushing with the previous version and apply the changes you’ve made, without overwriting any automated changes to properties you haven’t specified.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/application/nginx/nginx-deployment.yaml
@@ -743,7 +742,7 @@ deployment.apps/my-nginx configured</code></pre>
       <code>
         kubectl apply
       </code>
-      attaches an annotation to the resource in order to determine the changes to the configuration since the previous invocation. When it&rsquo;s invoked,
+      attaches an annotation to the resource in order to determine the changes to the configuration since the previous invocation. When it’s invoked,
       <code>
         kubectl apply
       </code>
@@ -867,17 +866,17 @@ deployment.apps/my-nginx replaced</code></pre>
       Updating your application without a service outage
     </h2>
     <p>
-      At some point, you&rsquo;ll eventually need to update your deployed application, typically by specifying a new image or image tag, as in the canary deployment scenario above.
+      At some point, you’ll eventually need to update your deployed application, typically by specifying a new image or image tag, as in the canary deployment scenario above.
       <code>
         kubectl
       </code>
       supports several update operations, each of which is applicable to different scenarios.
     </p>
     <p>
-      We&rsquo;ll guide you through how to create and update applications with Deployments.
+      We’ll guide you through how to create and update applications with Deployments.
     </p>
     <p>
-      Let&rsquo;s say you were running version 1.14.2 of nginx:
+      Let’s say you were running version 1.14.2 of nginx:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create deployment my-nginx --image<span style="color:#666">=</span>nginx:1.14.2</code></pre>
@@ -911,7 +910,7 @@ deployment.apps/my-nginx replaced</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl edit deployment/my-nginx</code></pre>
     </div>
     <p>
-      That&rsquo;s it! The Deployment will declaratively update the deployed nginx application progressively behind the scene. It ensures that only a certain number of old replicas may be down while they are being updated, and only a certain number of new replicas may be created above the desired number of pods. To learn more details about it, visit
+      That’s it! The Deployment will declaratively update the deployed nginx application progressively behind the scene. It ensures that only a certain number of old replicas may be down while they are being updated, and only a certain number of new replicas may be created above the desired number of pods. To learn more details about it, visit
       <a href="/docs/concepts/workloads/controllers/deployment/">
         Deployment page
       </a>
@@ -936,5 +935,5 @@ deployment.apps/my-nginx replaced</code></pre>
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

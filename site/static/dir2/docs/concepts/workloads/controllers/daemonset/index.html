@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   DaemonSet
 </h1>
@@ -148,7 +147,7 @@
             controllers/daemonset.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('controllers-daemonset-yaml')" title="Copy controllers/daemonset.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;controllers-daemonset-yaml&#39;)" title="Copy controllers/daemonset.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -403,9 +402,9 @@
 <p>
   Also you should not normally create any Pods whose labels match this selector, either directly, via
   another DaemonSet, or via another workload resource such as ReplicaSet.  Otherwise, the DaemonSet
-  <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/architecture/controller/" target="_blank">
     Controller
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
     </span>
   </a>
@@ -446,7 +445,7 @@
   Scheduled by default scheduler
 </h3>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -861,4 +860,4 @@
   number of replicas and rolling out updates are more important than controlling exactly which host
   the Pod runs on.  Use a DaemonSet when it is important that a copy of a Pod always run on
   all or certain hosts, and when it needs to start before other Pods.
-</p>
+</p></div></body></html>

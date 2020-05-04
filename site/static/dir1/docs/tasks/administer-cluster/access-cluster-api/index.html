@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Access Clusters Using the Kubernetes API
     </h1>
@@ -119,7 +118,7 @@
         Run kubectl in proxy mode (recommended). This method is recommended, since it uses the stored apiserver location and verifies the identity of the API server using a self-signed cert. No man-in-the-middle (MITM) attack is possible using this method.
       </li>
       <li>
-        Alternatively, you can provide the location and credentials directly to the http client. This works with client code that is confused by proxies. To protect against man in the middle attacks, you&rsquo;ll need to import a root cert into your browser.
+        Alternatively, you can provide the location and credentials directly to the http client. This works with client code that is confused by proxies. To protect against man in the middle attacks, you’ll need to import a root cert into your browser.
       </li>
     </ol>
     <p>
@@ -323,7 +322,7 @@ curl <span style="color:#b8860b">$APISERVER</span>/api --header <span style="col
         </strong>
         client-go defines its own API objects, so if needed, import API definitions from client-go rather than from the main repository. For example,
         <code>
-          import &quot;k8s.io/client-go/kubernetes&quot;
+          import &#34;k8s.io/client-go/kubernetes&#34;
         </code>
         is correct.
       </div>
@@ -410,7 +409,7 @@ ret <span style="color:#666">=</span> v1<span style="color:#666">.</span>list_po
     </h4>
     <ul>
       <li>
-        <p>
+        <p data-diff="">
           To install the
           <a href="https://github.com/kubernetes-client/java">
             Java Client
@@ -820,5 +819,5 @@ curl --cacert <span style="color:#b68;font-weight:bold">${</span><span style="co
   ]
 }</code></pre>
     </div>
-  </body>
-</html>
+  
+</body></html>

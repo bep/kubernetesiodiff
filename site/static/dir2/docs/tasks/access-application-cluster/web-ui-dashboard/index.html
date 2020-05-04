@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Web UI (Dashboard)
     </h1>
@@ -18,7 +17,7 @@
       Dashboard also provides information on the state of Kubernetes resources in your cluster and on any errors that may have occurred.
     </p>
     <p>
-      <img src="/images/docs/ui-dashboard.png" alt="Kubernetes Dashboard UI">
+      <img src="/images/docs/ui-dashboard.png" alt="Kubernetes Dashboard UI"/>
     </p>
     <ul id="markdown-toc">
       <li>
@@ -43,7 +42,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -105,7 +104,7 @@
       Welcome view
     </h2>
     <p>
-      When you access Dashboard on an empty cluster, you&rsquo;ll see the welcome page. This page contains a link to this document as well as a button to deploy your first application. In addition, you can view which system applications are running by default in the
+      When you access Dashboard on an empty cluster, you’ll see the welcome page. This page contains a link to this document as well as a button to deploy your first application. In addition, you can view which system applications are running by default in the
       <code>
         kube-system
       </code>
@@ -115,7 +114,7 @@
       of your cluster, for example the Dashboard itself.
     </p>
     <p>
-      <img src="/images/docs/ui-dashboard-zerostate.png" alt="Kubernetes Dashboard welcome page">
+      <img src="/images/docs/ui-dashboard-zerostate.png" alt="Kubernetes Dashboard welcome page"/>
     </p>
     <h2 id="deploying-containerized-applications">
       Deploying containerized applications
@@ -223,7 +222,7 @@
           <a href="/docs/concepts/overview/working-with-objects/annotations/">
             annotation
           </a>
-          to the Deployment and displayed in the application&rsquo;s details.
+          to the Deployment and displayed in the application’s details.
         </p>
       </li>
       <li>
@@ -265,7 +264,7 @@
 
 - **CPU requirement (cores)** and **Memory requirement (MiB)**: You can specify the minimum [resource limits](/docs/tasks/configure-pod-container/limit-range/) for the container. By default, Pods run with unbounded CPU and memory limits.
 
-- **Run command** and **Run command arguments**: By default, your containers run the specified Docker image's default [entrypoint command](/docs/user-guide/containers/#containers-and-commands). You can use the command options and arguments to override the default.
+- **Run command** and **Run command arguments**: By default, your containers run the specified Docker image&#39;s default [entrypoint command](/docs/user-guide/containers/#containers-and-commands). You can use the command options and arguments to override the default.
 
 - **Run as privileged**: This setting determines whether processes in [privileged containers](/docs/user-guide/pods/#privileged-mode-for-pod-containers) are equivalent to processes running as root on the host. Privileged containers can make use of capabilities like manipulating the network stack and accessing devices.
 
@@ -318,5 +317,5 @@ Pod lists and detail pages link to a logs viewer that is built into Dashboard. T
       </a>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

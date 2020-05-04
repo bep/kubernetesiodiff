@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Example: Deploying PHP Guestbook application with Redis
     </h1>
@@ -75,7 +74,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -152,7 +151,7 @@
                 application/guestbook/redis-master-deployment.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-guestbook-redis-master-deployment-yaml')" title="Copy application/guestbook/redis-master-deployment.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-guestbook-redis-master-deployment-yaml&#39;)" title="Copy application/guestbook/redis-master-deployment.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -197,7 +196,7 @@
     </table>
     <ol>
       <li>
-        <p>
+        <p data-diff="">
           Launch a terminal window in the directory you downloaded the manifest files.
         </p>
       </li>
@@ -264,7 +263,7 @@ redis-master-1068406935-3lswp   1/1       Running   <span style="color:#666">0</
                 application/guestbook/redis-master-service.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-guestbook-redis-master-service-yaml')" title="Copy application/guestbook/redis-master-service.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-guestbook-redis-master-service-yaml&#39;)" title="Copy application/guestbook/redis-master-service.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -360,7 +359,7 @@ redis-master   ClusterIP   10.0.0.151   &lt;none&gt;        6379/TCP   8s</code>
                 application/guestbook/redis-slave-deployment.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-guestbook-redis-slave-deployment-yaml')" title="Copy application/guestbook/redis-slave-deployment.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-guestbook-redis-slave-deployment-yaml&#39;)" title="Copy application/guestbook/redis-slave-deployment.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -460,7 +459,7 @@ redis-slave-2005841000-phfv9    0/1       ContainerCreating   <span style="color
                 application/guestbook/redis-slave-service.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-guestbook-redis-slave-service-yaml')" title="Copy application/guestbook/redis-slave-service.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-guestbook-redis-slave-service-yaml&#39;)" title="Copy application/guestbook/redis-slave-service.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -544,7 +543,7 @@ redis-slave    ClusterIP   10.0.0.223   &lt;none&gt;        6379/TCP   6s</code>
                 application/guestbook/frontend-deployment.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-guestbook-frontend-deployment-yaml')" title="Copy application/guestbook/frontend-deployment.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-guestbook-frontend-deployment-yaml&#39;)" title="Copy application/guestbook/frontend-deployment.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -679,7 +678,7 @@ frontend-3823415956-w9gbt   1/1       Running   0          54s</code></pre>
                 application/guestbook/frontend-service.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-guestbook-frontend-service-yaml')" title="Copy application/guestbook/frontend-service.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-guestbook-frontend-service-yaml&#39;)" title="Copy application/guestbook/frontend-service.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -887,12 +886,12 @@ kubectl delete service -l <span style="color:#b8860b">app</span><span style="col
         <p>
           The responses should be:
         </p>
-        <pre><code>deployment.apps &quot;redis-master&quot; deleted
-deployment.apps &quot;redis-slave&quot; deleted
-service &quot;redis-master&quot; deleted
-service &quot;redis-slave&quot; deleted
-deployment.apps &quot;frontend&quot; deleted    
-service &quot;frontend&quot; deleted</code></pre>
+        <pre><code>deployment.apps &#34;redis-master&#34; deleted
+deployment.apps &#34;redis-slave&#34; deleted
+service &#34;redis-master&#34; deleted
+service &#34;redis-slave&#34; deleted
+deployment.apps &#34;frontend&#34; deleted    
+service &#34;frontend&#34; deleted</code></pre>
       </li>
       <li>
         <p>
@@ -944,5 +943,5 @@ service &quot;frontend&quot; deleted</code></pre>
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

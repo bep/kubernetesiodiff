@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configure Quotas for API Objects
     </h1>
@@ -59,7 +58,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -120,7 +119,7 @@
                 admin/resource/quota-objects.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-quota-objects-yaml')" title="Copy admin/resource/quota-objects.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-quota-objects-yaml&#39;)" title="Copy admin/resource/quota-objects.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -169,7 +168,7 @@
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">used</span>:<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">persistentvolumeclaims</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;0&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">services.loadbalancers</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;0&#34;</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">services.nodeports</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;0&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">services.nodeports</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;0&#34;</span><span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <h2 id="create-a-persistentvolumeclaim">
@@ -187,7 +186,7 @@
                 admin/resource/quota-objects-pvc.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-quota-objects-pvc-yaml')" title="Copy admin/resource/quota-objects-pvc.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-quota-objects-pvc-yaml&#39;)" title="Copy admin/resource/quota-objects-pvc.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -246,7 +245,7 @@ pvc-quota-demo   Pending</code></pre>
                 admin/resource/quota-objects-pvc-2.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-quota-objects-pvc-2-yaml')" title="Copy admin/resource/quota-objects-pvc-2.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-quota-objects-pvc-2-yaml&#39;)" title="Copy admin/resource/quota-objects-pvc-2.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -281,7 +280,7 @@ pvc-quota-demo   Pending</code></pre>
       The output shows that the second PersistentVolumeClaim was not created,
       because it would have exceeded the quota for the namespace.
     </p>
-    <pre><code>persistentvolumeclaims &quot;pvc-quota-demo-2&quot; is forbidden:
+    <pre><code>persistentvolumeclaims &#34;pvc-quota-demo-2&#34; is forbidden:
 exceeded quota: object-quota-demo, requested: persistentvolumeclaims=1,
 used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
     <h2 id="notes">
@@ -292,7 +291,7 @@ used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
       by quotas:
     </p>
     <table>
-      <tr>
+      <tbody><tr>
         <th>
           String
         </th>
@@ -302,7 +301,7 @@ used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
       </tr>
       <tr>
         <td>
-          "pods"
+          &#34;pods&#34;
         </td>
         <td>
           Pod
@@ -310,7 +309,7 @@ used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
       </tr>
       <tr>
         <td>
-          "services
+          &#34;services
         </td>
         <td>
           Service
@@ -318,7 +317,7 @@ used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
       </tr>
       <tr>
         <td>
-          "replicationcontrollers"
+          &#34;replicationcontrollers&#34;
         </td>
         <td>
           ReplicationController
@@ -326,7 +325,7 @@ used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
       </tr>
       <tr>
         <td>
-          "resourcequotas"
+          &#34;resourcequotas&#34;
         </td>
         <td>
           ResourceQuota
@@ -334,7 +333,7 @@ used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
       </tr>
       <tr>
         <td>
-          "secrets"
+          &#34;secrets&#34;
         </td>
         <td>
           Secret
@@ -342,7 +341,7 @@ used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
       </tr>
       <tr>
         <td>
-          "configmaps"
+          &#34;configmaps&#34;
         </td>
         <td>
           ConfigMap
@@ -350,7 +349,7 @@ used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
       </tr>
       <tr>
         <td>
-          "persistentvolumeclaims"
+          &#34;persistentvolumeclaims&#34;
         </td>
         <td>
           PersistentVolumeClaim
@@ -358,7 +357,7 @@ used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
       </tr>
       <tr>
         <td>
-          "services.nodeports"
+          &#34;services.nodeports&#34;
         </td>
         <td>
           Service of type NodePort
@@ -366,13 +365,13 @@ used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
       </tr>
       <tr>
         <td>
-          "services.loadbalancers"
+          &#34;services.loadbalancers&#34;
         </td>
         <td>
           Service of type LoadBalancer
         </td>
       </tr>
-    </table>
+    </tbody></table>
     <h2 id="clean-up">
       Clean up
     </h2>
@@ -458,5 +457,5 @@ used: persistentvolumeclaims=1, limited: persistentvolumeclaims=1</code></pre>
         </p>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

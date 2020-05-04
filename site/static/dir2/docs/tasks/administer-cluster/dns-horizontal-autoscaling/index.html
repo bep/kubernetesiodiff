@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Autoscale the DNS Service in a Cluster
 </h1>
@@ -53,7 +52,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -64,7 +63,7 @@
   <li>
     <p>
     You need to have a Kubernetes cluster, and the kubectl command-line tool must
-  </li>
+  </p></li>
 </ul>
 <p>
   be configured to communicate with your cluster. If you do not already have a
@@ -115,16 +114,16 @@
 </h2>
 <p>
   List the
-  <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/deployment/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/deployment/" target="_blank">
     Deployments
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       An API object that manages a replicated application.
     </span>
   </a>
   in your cluster in the kube-system
-  <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/namespaces' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/namespaces" target="_blank">
     namespace
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       An abstraction used by Kubernetes to support multiple virtual clusters on the same physical cluster.
     </span>
   </a>
@@ -140,7 +139,7 @@
 dns-autoscaler            1/1     1            1           ...
 ...</code></pre>
 <p>
-  If you see &ldquo;dns-autoscaler&rdquo; in the output, DNS horizontal autoscaling is
+  If you see “dns-autoscaler” in the output, DNS horizontal autoscaling is
   already enabled, and you can skip to
   <a href="#tuning-autoscaling-parameters">
     Tuning autoscaling parameters
@@ -163,7 +162,7 @@ dns-autoscaler            1/1     1            1           ...
 coredns   2/2     2            2           ...
 ...</code></pre>
 <p>
-  If you don&rsquo;t see a Deployment for DNS services, you can also look for it by name:
+  If you don’t see a Deployment for DNS services, you can also look for it by name:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get deployment --namespace<span style="color:#666">=</span>kube-system</code></pre>
@@ -230,7 +229,7 @@ coredns   2/2     2            2           ...
             admin/dns/dns-horizontal-autoscaler.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-dns-dns-horizontal-autoscaler-yaml')" title="Copy admin/dns/dns-horizontal-autoscaler.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-dns-dns-horizontal-autoscaler-yaml&#39;)" title="Copy admin/dns/dns-horizontal-autoscaler.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -302,9 +301,9 @@ coredns   2/2     2            2           ...
 </h2>
 <p>
   Verify that the dns-autoscaler
-  <a class='glossary-tooltip' href='/docs/tasks/configure-pod-container/configure-pod-configmap/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/tasks/configure-pod-container/configure-pod-configmap/" target="_blank">
     ConfigMap
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       An API object used to store non-confidential data in key-value pairs. Can be consumed as environment variables, command-line arguments, or config files in a volume.
     </span>
   </a>
@@ -333,7 +332,7 @@ dns-autoscaler        1         ...
 </span></code></pre>
 </div>
 <p>
-  Modify the fields according to your needs. The &ldquo;min&rdquo; field indicates the
+  Modify the fields according to your needs. The “min” field indicates the
   minimal number of DNS backends. The actual number of backends is
   calculated using this equation:
 </p><pre><code>replicas = max( ceil( cores × 1/coresPerReplica ) , ceil( nodes × 1/nodesPerReplica ) )</code></pre>
@@ -411,7 +410,7 @@ dns-autoscaler-6b59789fc8            0         0         0       ...
 </div>
 <p>
   The output is:
-</p><pre><code>deployment.apps &quot;dns-autoscaler&quot; deleted</code></pre>
+</p><pre><code>deployment.apps &#34;dns-autoscaler&#34; deleted</code></pre>
 <h3 id="option-3-delete-the-dns-autoscaler-manifest-file-from-the-master-node">
   Option 3: Delete the dns-autoscaler manifest file from the master node
 </h3>
@@ -499,4 +498,4 @@ dns-autoscaler-6b59789fc8            0         0         0       ...
     </a>
     .
   </li>
-</ul>
+</ul></body></html>

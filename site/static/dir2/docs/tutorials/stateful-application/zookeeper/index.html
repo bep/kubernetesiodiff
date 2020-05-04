@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Running ZooKeeper, A Distributed System Coordinator
     </h1>
@@ -149,7 +148,7 @@
       </li>
     </ul>
     <p>
-      You will require a cluster with at least four nodes, and each node requires at least 2 CPUs and 4 GiB of memory. In this tutorial you will cordon and drain the cluster&rsquo;s nodes.
+      You will require a cluster with at least four nodes, and each node requires at least 2 CPUs and 4 GiB of memory. In this tutorial you will cordon and drain the cluster’s nodes.
       <strong>
         This means that the cluster will terminate and evict all Pods on its nodes, and the nodes will temporarily become unschedulable.
       </strong>
@@ -219,7 +218,7 @@
                 application/zookeeper/zookeeper.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-zookeeper-zookeeper-yaml')" title="Copy application/zookeeper/zookeeper.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-zookeeper-zookeeper-yaml&#39;)" title="Copy application/zookeeper/zookeeper.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -413,7 +412,7 @@ statefulset.apps/zk created</code></pre>
         </code>
       </a>
       to watch the
-      StatefulSet controller create the StatefulSet&rsquo;s Pods.
+      StatefulSet controller create the StatefulSet’s Pods.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -w -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>zk</code></pre>
@@ -495,7 +494,7 @@ zk-2      1/1       Running   <span style="color:#666">0</span>         40s</cod
       <code>
         3
       </code>
-      , the Set&rsquo;s controller creates three Pods with their hostnames set to
+      , the Set’s controller creates three Pods with their hostnames set to
       <code>
         zk-0
       </code>
@@ -515,11 +514,11 @@ zk-1
 zk-2</code></pre>
     </div>
     <p>
-      The servers in a ZooKeeper ensemble use natural numbers as unique identifiers, and store each server&rsquo;s identifier in a file called
+      The servers in a ZooKeeper ensemble use natural numbers as unique identifiers, and store each server’s identifier in a file called
       <code>
         myid
       </code>
-      in the server&rsquo;s data directory.
+      in the server’s data directory.
     </p>
     <p>
       To examine the contents of the
@@ -573,7 +572,7 @@ zk-2.zk-hs.default.svc.cluster.local</code></pre>
       <a href="/docs/concepts/services-networking/dns-pod-service/">
         Kubernetes DNS
       </a>
-      resolve the FQDNs to the Pods&rsquo; IP addresses. If Kubernetes reschedules the Pods, it will update the A records with the Pods&rsquo; new IP addresses, but the A records names will not change.
+      resolve the FQDNs to the Pods’ IP addresses. If Kubernetes reschedules the Pods, it will update the A records with the Pods’ new IP addresses, but the A records names will not change.
     </p>
     <p>
       ZooKeeper stores its application configuration in a file named
@@ -624,7 +623,7 @@ zk-2.zk-hs.default.svc.cluster.local</code></pre>
         3
       </code>
       correspond to the identifiers in the
-      ZooKeeper servers&rsquo;
+      ZooKeeper servers’
       <code>
         myid
       </code>
@@ -697,7 +696,7 @@ zk-2.zk-hs.default.svc.cluster.local</code></pre>
       <code>
         servers
       </code>
-      properties in the ZooKeepers&rsquo;
+      properties in the ZooKeepers’
       <code>
         zoo.cfg
       </code>
@@ -861,7 +860,7 @@ zk-0      0/1       Terminating   <span style="color:#666">0</span>         11m<
       StatefulSet object, but the other API objects in the manifest are not modified because they already exist.
     </p>
     <p>
-      Watch the StatefulSet controller recreate the StatefulSet&rsquo;s Pods.
+      Watch the StatefulSet controller recreate the StatefulSet’s Pods.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -w -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>zk</code></pre>
@@ -943,7 +942,7 @@ world
       <code>
         zk
       </code>
-      StatefulSet&rsquo;s
+      StatefulSet’s
       <code>
         spec
       </code>
@@ -983,7 +982,7 @@ world
       <code>
         StatefulSet
       </code>
-      's
+      &#39;s
       <code>
         PersistentVolumeClaims
       </code>
@@ -997,7 +996,7 @@ world
       <code>
         StatefulSet
       </code>
-      recreated its Pods, it remounts the Pods&rsquo; PersistentVolumes.
+      recreated its Pods, it remounts the Pods’ PersistentVolumes.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">NAME           STATUS    VOLUME                                     CAPACITY   ACCESSMODES   AGE
@@ -1014,11 +1013,11 @@ datadir-zk-2   Bound     pvc-bee0817e-bcb1-11e6-994f-42010a800002   20Gi       R
       <code>
         StatefulSet
       </code>
-      's container
+      &#39;s container
       <code>
         template
       </code>
-      mounts the PersistentVolumes in the ZooKeeper servers&rsquo; data directories.
+      mounts the PersistentVolumes in the ZooKeeper servers’ data directories.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">volumeMounts:
@@ -1038,9 +1037,9 @@ datadir-zk-2   Bound     pvc-bee0817e-bcb1-11e6-994f-42010a800002   20Gi       R
       <code>
         PersistentVolume
       </code>
-      mounted to the ZooKeeper server&rsquo;s data directory.
+      mounted to the ZooKeeper server’s data directory.
       Even when the Pods are rescheduled, all the writes made to the ZooKeeper
-      servers&rsquo; WALs, and all their snapshots, remain durable.
+      servers’ WALs, and all their snapshots, remain durable.
     </p>
     <h2 id="ensuring-consistent-configuration">
       Ensuring Consistent Configuration
@@ -1105,7 +1104,7 @@ command:
       <code>
         zkGenConfig.sh
       </code>
-      script controls ZooKeeper&rsquo;s logging.
+      script controls ZooKeeper’s logging.
       ZooKeeper uses
       <a href="http://logging.apache.org/log4j/2.x/">
         Log4j
@@ -1221,7 +1220,7 @@ log4j.appender.CONSOLE.layout.ConversionPattern<span style="color:#666">=</span>
       <code>
         StatefulSet
       </code>
-      's Pod
+      &#39;s Pod
       <code>
         template
       </code>
@@ -1238,7 +1237,7 @@ log4j.appender.CONSOLE.layout.ConversionPattern<span style="color:#666">=</span>
 </span></code></pre>
     </div>
     <p>
-      In the Pods&rsquo; containers, UID 1000 corresponds to the zookeeper user and GID 1000
+      In the Pods’ containers, UID 1000 corresponds to the zookeeper user and GID 1000
       corresponds to the zookeeper group.
     </p>
     <p>
@@ -1269,7 +1268,7 @@ log4j.appender.CONSOLE.layout.ConversionPattern<span style="color:#666">=</span>
 <span style="color:#666">0</span> S zookeep+    <span style="color:#666">27</span>     <span style="color:#666">1</span>  <span style="color:#666">0</span>  <span style="color:#666">80</span>   <span style="color:#666">0</span> - <span style="color:#666">1155556</span> -    20:46 ?        00:00:19 /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dzookeeper.log.dir<span style="color:#666">=</span>/var/log/zookeeper -Dzookeeper.root.logger<span style="color:#666">=</span>INFO,CONSOLE -cp /usr/bin/../build/classes:/usr/bin/../build/lib/*.jar:/usr/bin/../share/zookeeper/zookeeper-3.4.9.jar:/usr/bin/../share/zookeeper/slf4j-log4j12-1.6.1.jar:/usr/bin/../share/zookeeper/slf4j-api-1.6.1.jar:/usr/bin/../share/zookeeper/netty-3.10.5.Final.jar:/usr/bin/../share/zookeeper/log4j-1.2.16.jar:/usr/bin/../share/zookeeper/jline-0.9.94.jar:/usr/bin/../src/java/lib/*.jar:/usr/bin/../etc/zookeeper: -Xmx2G -Xms2G -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only<span style="color:#666">=</span><span style="color:#a2f">false</span> org.apache.zookeeper.server.quorum.QuorumPeerMain /usr/bin/../etc/zookeeper/zoo.cfg</code></pre>
     </div>
     <p>
-      By default, when the Pod&rsquo;s PersistentVolumes is mounted to the ZooKeeper server&rsquo;s data directory, it is only accessible by the root user. This configuration prevents the ZooKeeper process from writing to its WAL and storing its snapshots.
+      By default, when the Pod’s PersistentVolumes is mounted to the ZooKeeper server’s data directory, it is only accessible by the root user. This configuration prevents the ZooKeeper process from writing to its WAL and storing its snapshots.
     </p>
     <p>
       Use the command below to get the file permissions of the ZooKeeper data directory on the
@@ -1290,7 +1289,7 @@ log4j.appender.CONSOLE.layout.ConversionPattern<span style="color:#666">=</span>
       <code>
         securityContext
       </code>
-      object is set to 1000, the ownership of the Pods&rsquo; PersistentVolumes is set to the zookeeper group, and the ZooKeeper process is able to read and write its data.
+      object is set to 1000, the ownership of the Pods’ PersistentVolumes is set to the zookeeper group, and the ZooKeeper process is able to read and write its data.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">drwxr-sr-x <span style="color:#666">3</span> zookeeper zookeeper <span style="color:#666">4096</span> Dec  <span style="color:#666">5</span> 20:45 /var/lib/zookeeper/data</code></pre>
@@ -1303,8 +1302,8 @@ log4j.appender.CONSOLE.layout.ConversionPattern<span style="color:#666">=</span>
       <a href="https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_supervision">
         ZooKeeper documentation
       </a>
-      mentions that &ldquo;You will want to have a supervisory process that
-      manages each of your ZooKeeper server processes (JVM).&rdquo; Utilizing a watchdog
+      mentions that “You will want to have a supervisory process that
+      manages each of your ZooKeeper server processes (JVM).” Utilizing a watchdog
       (supervisory process) to restart failed processes in a distributed system is a
       common pattern. When deploying an application in Kubernetes, rather than using
       an external utility as a supervisory process, you should use Kubernetes as the
@@ -1430,7 +1429,7 @@ statefulset.apps/zk rolled back</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl <span style="color:#a2f">exec</span> zk-0 -- ps -ef</code></pre>
     </div>
     <p>
-      The command used as the container&rsquo;s entry point has PID 1, and
+      The command used as the container’s entry point has PID 1, and
       the ZooKeeper process, a child of the entry point, has PID 27.
     </p>
     <div class="highlight">
@@ -1484,9 +1483,9 @@ zk-0      1/1       Running   <span style="color:#666">1</span>         29m</cod
         zkServer.sh
       </code>
       ) to launch the process
-      that implements the application&rsquo;s business logic, the script must terminate with the
-      child process. This ensures that Kubernetes will restart the application&rsquo;s
-      container when the process implementing the application&rsquo;s business logic fails.
+      that implements the application’s business logic, the script must terminate with the
+      child process. This ensures that Kubernetes will restart the application’s
+      container when the process implementing the application’s business logic fails.
     </p>
     <h3 id="testing-for-liveness">
       Testing for Liveness
@@ -1494,9 +1493,9 @@ zk-0      1/1       Running   <span style="color:#666">1</span>         29m</cod
     <p>
       Configuring your application to restart failed processes is not enough to
       keep a distributed system healthy. There are scenarios where
-      a system&rsquo;s processes can be both alive and unresponsive, or otherwise
+      a system’s processes can be both alive and unresponsive, or otherwise
       unhealthy. You should use liveness probes to notify Kubernetes
-      that your application&rsquo;s processes are unhealthy and it should restart them.
+      that your application’s processes are unhealthy and it should restart them.
     </p>
     <p>
       The Pod
@@ -1530,7 +1529,7 @@ zk-0      1/1       Running   <span style="color:#666">1</span>         29m</cod
         ruok
       </code>
       four letter
-      word to test the server&rsquo;s health.
+      word to test the server’s health.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#b8860b">OK</span><span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">$(</span><span style="color:#a2f">echo</span> ruok | nc 127.0.0.1 <span style="color:#b8860b">$1</span><span style="color:#a2f;font-weight:bold">)</span>
@@ -1592,7 +1591,7 @@ zk-0      1/1       Running   <span style="color:#666">1</span>         1h</code
       alive but not ready.
     </p>
     <p>
-      If you specify a readiness probe, Kubernetes will ensure that your application&rsquo;s
+      If you specify a readiness probe, Kubernetes will ensure that your application’s
       processes will not receive network traffic until their readiness checks pass.
     </p>
     <p>
@@ -1874,7 +1873,7 @@ zk-0      1/1       Running   <span style="color:#666">0</span>         1m</code
       <code>
         StatefulSet
       </code>
-      's Pods in the first terminal and drain the node on which
+      &#39;s Pods in the first terminal and drain the node on which
       <code>
         zk-1
       </code>
@@ -2064,11 +2063,11 @@ zk-1      1/1       Running   <span style="color:#666">0</span>         13m</cod
     <p>
       The output:
     </p>
-    <pre><code>node &quot;kubernetes-node-i4c4&quot; already cordoned
+    <pre><code>node &#34;kubernetes-node-i4c4&#34; already cordoned
 WARNING: Deleting pods not managed by ReplicationController, ReplicaSet, Job, or DaemonSet: fluentd-cloud-logging-kubernetes-node-i4c4, kube-proxy-kubernetes-node-i4c4; Ignoring DaemonSet-managed pods: node-problem-detector-v0.1-dyrog
-pod &quot;heapster-v1.2.0-2604621511-wht1r&quot; deleted
-pod &quot;zk-2&quot; deleted
-node &quot;kubernetes-node-i4c4&quot; drained</code></pre>
+pod &#34;heapster-v1.2.0-2604621511-wht1r&#34; deleted
+pod &#34;zk-2&#34; deleted
+node &#34;kubernetes-node-i4c4&#34; drained</code></pre>
     <p>
       This time
       <code>
@@ -2086,7 +2085,7 @@ node &quot;kubernetes-node-i4c4&quot; drained</code></pre>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl uncordon kubernetes-node-ixsl</code></pre>
     </div>
-    <pre><code>node &quot;kubernetes-node-ixsl&quot; uncordoned</code></pre>
+    <pre><code>node &#34;kubernetes-node-ixsl&#34; uncordoned</code></pre>
     <p>
       You can use
       <code>
@@ -2116,5 +2115,5 @@ node &quot;kubernetes-node-i4c4&quot; drained</code></pre>
         reclaimed.
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       kubeadm config
     </h1>
@@ -112,19 +111,19 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
     <h2 id="cmd-config-view">
       kubeadm config view
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre data-diff=""><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       Using this command, you can view the ConfigMap in the cluster where the configuration for kubeadm is located.
     </p>
     <p>
-      The configuration is located in the &ldquo;kube-system&rdquo; namespace in the &ldquo;kubeadm-config&rdquo; ConfigMap.
+      The configuration is located in the “kube-system” namespace in the “kubeadm-config” ConfigMap.
     </p>
     <pre><code>kubeadm config view [flags]</code></pre>
     <h3 id="options">
@@ -132,8 +131,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -154,13 +153,13 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -177,7 +176,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -185,12 +184,12 @@
     <h2 id="cmd-config-print-init-defaults">
       kubeadm config print init-defaults
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
-      This command prints objects such as the default init configuration that is used for &lsquo;kubeadm init&rsquo;.
+      This command prints objects such as the default init configuration that is used for ‘kubeadm init’.
     </p>
     <p>
-      Note that sensitive values like the Bootstrap Token fields are replaced with placeholder values like {&ldquo;abcdef.0123456789abcdef&rdquo; &quot;&rdquo; &ldquo;nil&rdquo; &lt;nil&gt; [] []} in order to pass validation but
+      Note that sensitive values like the Bootstrap Token fields are replaced with placeholder values like {“abcdef.0123456789abcdef” &#34;” “nil” &lt;nil&gt; [] []} in order to pass validation but
       not perform the real computation for creating a token.
     </p>
     <pre><code>kubeadm config print init-defaults [flags]</code></pre>
@@ -199,8 +198,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -232,13 +231,13 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -255,7 +254,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -263,12 +262,12 @@
     <h2 id="cmd-config-print-join-defaults">
       kubeadm config print join-defaults
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
-      This command prints objects such as the default join configuration that is used for &lsquo;kubeadm join&rsquo;.
+      This command prints objects such as the default join configuration that is used for ‘kubeadm join’.
     </p>
     <p>
-      Note that sensitive values like the Bootstrap Token fields are replaced with placeholder values like {&ldquo;abcdef.0123456789abcdef&rdquo; &quot;&rdquo; &ldquo;nil&rdquo; &lt;nil&gt; [] []} in order to pass validation but
+      Note that sensitive values like the Bootstrap Token fields are replaced with placeholder values like {“abcdef.0123456789abcdef” &#34;” “nil” &lt;nil&gt; [] []} in order to pass validation but
       not perform the real computation for creating a token.
     </p>
     <pre><code>kubeadm config print join-defaults [flags]</code></pre>
@@ -277,8 +276,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -310,13 +309,13 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -333,7 +332,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -341,7 +340,7 @@
     <h2 id="cmd-config-migrate">
       kubeadm config migrate
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       This command lets you convert configuration objects of older versions to the latest supported version,
       locally in the CLI tool without ever touching anything in the cluster.
@@ -353,14 +352,14 @@
       </li>
     </ul>
     <p>
-      Further, kubeadm can only write out config of version &ldquo;kubeadm.k8s.io/v1beta2&rdquo;, but read both types.
-      So regardless of what version you pass to the &ndash;old-config parameter here, the API object will be
+      Further, kubeadm can only write out config of version “kubeadm.k8s.io/v1beta2”, but read both types.
+      So regardless of what version you pass to the –old-config parameter here, the API object will be
       read, deserialized, defaulted, converted, validated, and re-serialized when written to stdout or
-      &ndash;new-config if specified.
+      –new-config if specified.
     </p>
     <p>
       In other words, the output of this command is what kubeadm actually would read internally if you
-      submitted this file to &ldquo;kubeadm init&rdquo;
+      submitted this file to “kubeadm init”
     </p>
     <pre><code>kubeadm config migrate [flags]</code></pre>
     <h3 id="options">
@@ -368,8 +367,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -412,13 +411,13 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -435,7 +434,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -443,7 +442,7 @@
     <h2 id="cmd-config-images-list">
       kubeadm config images list
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       Print a list of images kubeadm will use. The configuration file is used in case any images or image repositories are customized
     </p>
@@ -453,13 +452,13 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
           <td colspan="2">
-            --allow-missing-template-keys&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+            --allow-missing-template-keys     Default: true
           </td>
         </tr>
         <tr>
@@ -481,7 +480,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            -o, --experimental-output string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "text"
+            -o, --experimental-output string     Default: &#34;text&#34;
           </td>
         </tr>
         <tr>
@@ -518,7 +517,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --image-repository string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "k8s.gcr.io"
+            --image-repository string     Default: &#34;k8s.gcr.io&#34;
           </td>
         </tr>
         <tr>
@@ -529,7 +528,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubernetes-version string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "stable-1"
+            --kubernetes-version string     Default: &#34;stable-1&#34;
           </td>
         </tr>
         <tr>
@@ -545,13 +544,13 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -568,7 +567,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -576,7 +575,7 @@
     <h2 id="cmd-config-images-pull">
       kubeadm config images pull
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       Pull images used by kubeadm
     </p>
@@ -586,8 +585,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -640,7 +639,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --image-repository string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "k8s.gcr.io"
+            --image-repository string     Default: &#34;k8s.gcr.io&#34;
           </td>
         </tr>
         <tr>
@@ -651,7 +650,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubernetes-version string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "stable-1"
+            --kubernetes-version string     Default: &#34;stable-1&#34;
           </td>
         </tr>
         <tr>
@@ -667,13 +666,13 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -690,7 +689,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -706,5 +705,5 @@
         to upgrade a Kubernetes cluster to a newer version
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

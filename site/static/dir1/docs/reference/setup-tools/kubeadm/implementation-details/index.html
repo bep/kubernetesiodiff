@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Implementation details
     </h1>
@@ -12,7 +11,7 @@
       Implementation details
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -405,7 +404,7 @@
             [error] if not Kernel 3.10+ or 4+ with specific KernelSpec
           </li>
           <li>
-            [error] if required cgroups subsystem aren&rsquo;t in set up
+            [error] if required cgroups subsystem aren’t in set up
           </li>
           <li>
             if using docker:
@@ -625,7 +624,7 @@
         . This certificate should contain following alternative names:
         <ul>
           <li>
-            The Kubernetes service&rsquo;s internal clusterIP (the first address in the services CIDR, e.g.
+            The Kubernetes service’s internal clusterIP (the first address in the services CIDR, e.g.
             <code>
               10.96.0.1
             </code>
@@ -773,7 +772,7 @@
           csrsigner
         </code>
         controller in
-        controller-manager won&rsquo;t be started
+        controller-manager won’t be started
       </li>
       <li>
         If kubeadm is running in
@@ -872,7 +871,7 @@
         /etc/kubernetes/admin.conf
       </code>
       file.
-      The &ldquo;admin&rdquo; here is defined the actual person(s) that is administering the cluster and want to have full control (
+      The “admin” here is defined the actual person(s) that is administering the cluster and want to have full control (
       <strong>
         root
       </strong>
@@ -1252,7 +1251,7 @@
           kubectl logs
         </code>
         and other API server-kubelet
-        communication work in environments where the hostnames of the nodes aren&rsquo;t resolvable
+        communication work in environments where the hostnames of the nodes aren’t resolvable
       </li>
       <li>
         Flags for using certificates generated in previous steps:
@@ -1469,7 +1468,7 @@
             </code>
             , if External CA mode is disabled, otherwise to
             <code>
-              &quot;&quot;
+              &#34;&#34;
             </code>
           </li>
           <li>
@@ -1482,7 +1481,7 @@
             </code>
             , if External CA mode is disabled, otherwise to
             <code>
-              &quot;&quot;
+              &#34;&#34;
             </code>
           </li>
           <li>
@@ -1530,7 +1529,7 @@
         <code>
           dataDir
         </code>
-        to the host&rsquo;s filesystem
+        to the host’s filesystem
       </li>
       <li>
         Any extra flags specified by the user
@@ -1668,7 +1667,7 @@
       <code>
         localhost:10255/healthz/syncloop
       </code>
-      (kubelet readiness) don&rsquo;t return
+      (kubelet readiness) don’t return
       <code>
         ok
       </code>
@@ -1789,7 +1788,7 @@
       <li>
         Label the master with
         <code>
-          node-role.kubernetes.io/master=&quot;&quot;
+          node-role.kubernetes.io/master=&#34;&#34;
         </code>
       </li>
       <li>
@@ -2223,7 +2222,7 @@
       namespace.
     </p>
     <p>
-      In order to prevent &ldquo;man in the middle&rdquo; attacks, several steps are taken:
+      In order to prevent “man in the middle” attacks, several steps are taken:
     </p>
     <ul>
       <li>
@@ -2414,7 +2413,7 @@
         </code>
       </li>
       <li>
-        As soon as kubelet starts with the Node&rsquo;s own credential (
+        As soon as kubelet starts with the Node’s own credential (
         <code>
           /etc/kubernetes/kubelet.conf
         </code>
@@ -2437,5 +2436,5 @@
         </code>
       </li>
     </ol>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1></h1>
     <p>
       <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_kubelet_config_download.md" id="editPageButton" target="_blank">
@@ -12,7 +11,7 @@
         <li>
           <ul>
             <li>
-              <ul>
+              <ul data-diff="">
                 <li>
                   <a href="#synopsis">
                     Synopsis
@@ -43,7 +42,7 @@
       Synopsis
     </h3>
     <p>
-      Download the kubelet configuration from a ConfigMap of the form &ldquo;kubelet-config-1.X&rdquo; in the cluster, where X is the minor version of the kubelet. Either kubeadm autodetects the kubelet version by exec-ing &ldquo;kubelet &ndash;version&rdquo; or respects the &ndash;kubelet-version parameter.
+      Download the kubelet configuration from a ConfigMap of the form “kubelet-config-1.X” in the cluster, where X is the minor version of the kubelet. Either kubeadm autodetects the kubelet version by exec-ing “kubelet –version” or respects the –kubelet-version parameter.
     </p>
     <p>
       Alpha Disclaimer: this command is currently alpha.
@@ -62,8 +61,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -79,7 +78,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -96,7 +95,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The desired version for the kubelet. Defaults to being autodetected from 'kubelet --version'.
+            The desired version for the kubelet. Defaults to being autodetected from &#39;kubelet --version&#39;.
           </td>
         </tr>
       </tbody>
@@ -106,8 +105,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -118,10 +117,10 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
     </table>
-  </body>
-</html>
+  
+</body></html>

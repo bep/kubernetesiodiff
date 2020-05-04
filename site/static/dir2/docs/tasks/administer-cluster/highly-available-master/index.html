@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Set up High-Availability Kubernetes Masters
 </h1>
@@ -12,7 +11,7 @@
   Set up High-Availability Kubernetes Masters
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -176,7 +175,7 @@
       <code>
         MULTIZONE=true
       </code>
-      - to prevent removal of master replicas kubelets from zones different than server&rsquo;s default zone.
+      - to prevent removal of master replicas kubelets from zones different than server’s default zone.
       Required if you want to run master replicas in different zones, which is recommended.
     </p>
   </li>
@@ -240,12 +239,12 @@
         KUBE_GCE_ZONE=zone
       </code>
       - zone where the master replica will run.
-      Must be in the same region as other replicas&rsquo; zones.
+      Must be in the same region as other replicas’ zones.
     </p>
   </li>
 </ul>
 <p>
-  You don&rsquo;t need to set the
+  You don’t need to set the
   <code>
     MULTIZONE
   </code>
@@ -367,7 +366,7 @@
   Implementation notes
 </h2>
 <p>
-  <img src="/images/docs/ha-master-gce.png" alt="ha-master-gce">
+  <img src="/images/docs/ha-master-gce.png" alt="ha-master-gce"/>
 </p>
 <h3 id="overview">
   Overview
@@ -453,4 +452,4 @@
   <a href="https://git.k8s.io/community/contributors/design-proposals/cluster-lifecycle/ha_master.md">
     Automated HA master deployment - design doc
   </a>
-</p>
+</p></div></body></html>

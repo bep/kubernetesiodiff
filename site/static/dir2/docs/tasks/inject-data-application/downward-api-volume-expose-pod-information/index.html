@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Expose Pod Information to Containers Through Files
     </h1>
@@ -54,7 +53,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -129,7 +128,7 @@
                 pods/inject/dapi-volume.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-inject-dapi-volume-yaml')" title="Copy pods/inject/dapi-volume.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-inject-dapi-volume-yaml&#39;)" title="Copy pods/inject/dapi-volume.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -207,7 +206,7 @@
         DownwardAPIVolumeFile
       </a>
       .
-      The first element specifies that the value of the Pod&rsquo;s
+      The first element specifies that the value of the Pod’s
       <code>
         metadata.labels
       </code>
@@ -216,7 +215,7 @@
         labels
       </code>
       .
-      The second element specifies that the value of the Pod&rsquo;s
+      The second element specifies that the value of the Pod’s
       <code>
         annotations
       </code>
@@ -248,7 +247,7 @@
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods</code></pre>
     </div>
     <p>
-      View the Container&rsquo;s logs:
+      View the Container’s logs:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl logs kubernetes-downwardapi-volume-example</code></pre>
@@ -289,7 +288,7 @@
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/# cat /etc/podinfo/labels</code></pre>
     </div>
     <p>
-      The output shows that all of the Pod&rsquo;s labels have been written
+      The output shows that all of the Pod’s labels have been written
       to the
       <code>
         labels
@@ -397,7 +396,7 @@ total 8
       Exit the shell:
     </p>
     <div class="highlight">
-      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/# <span style="color:#a2f">exit</span></code></pre>
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/# <span style="color:#a2f" data-diff="">exit</span></code></pre>
     </div>
     <h2 id="store-container-fields">
       Store Container fields
@@ -416,7 +415,7 @@ total 8
                 pods/inject/dapi-volume-resources.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-inject-dapi-volume-resources-yaml')" title="Copy pods/inject/dapi-volume-resources.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-inject-dapi-volume-resources-yaml&#39;)" title="Copy pods/inject/dapi-volume-resources.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -617,7 +616,7 @@ total 8
           </li>
           <li>
             <code>
-              metadata.labels['&lt;KEY&gt;']
+              metadata.labels[&#39;&lt;KEY&gt;&#39;]
             </code>
             - the value of the pod’s label
             <code>
@@ -625,13 +624,13 @@ total 8
             </code>
             (for example,
             <code>
-              metadata.labels['mylabel']
+              metadata.labels[&#39;mylabel&#39;]
             </code>
             ); available in Kubernetes 1.9+
           </li>
           <li>
             <code>
-              metadata.annotations['&lt;KEY&gt;']
+              metadata.annotations[&#39;&lt;KEY&gt;&#39;]
             </code>
             - the value of the pod’s annotation
             <code>
@@ -639,7 +638,7 @@ total 8
             </code>
             (for example,
             <code>
-              metadata.annotations['myannotation']
+              metadata.annotations[&#39;myannotation&#39;]
             </code>
             ); available in Kubernetes 1.9+
           </li>
@@ -691,7 +690,7 @@ total 8
         </code>
         - all of the pod’s labels, formatted as
         <code>
-          label-key=&quot;escaped-label-value&quot;
+          label-key=&#34;escaped-label-value&#34;
         </code>
         with one label per line
       </li>
@@ -701,7 +700,7 @@ total 8
         </code>
         - all of the pod’s annotations, formatted as
         <code>
-          annotation-key=&quot;escaped-annotation-value&quot;
+          annotation-key=&#34;escaped-annotation-value&#34;
         </code>
         with one annotation per line
       </li>
@@ -732,7 +731,7 @@ total 8
         <code>
           status.hostIP
         </code>
-        - the node&rsquo;s IP, available since v1.7.0-alpha.1
+        - the node’s IP, available since v1.7.0-alpha.1
       </li>
     </ul>
     <blockquote class="note">
@@ -768,8 +767,8 @@ total 8
       An example is an existing application that assumes a particular well-known
       environment variable holds a unique identifier. One possibility is to wrap the
       application, but that is tedious and error prone, and it violates the goal of low
-      coupling. A better option would be to use the Pod&rsquo;s name as an identifier, and
-      inject the Pod&rsquo;s name into the well-known environment variable.
+      coupling. A better option would be to use the Pod’s name as an identifier, and
+      inject the Pod’s name into the well-known environment variable.
     </p>
     <h2 id="what-s-next">
       What&#39;s next
@@ -801,5 +800,5 @@ total 8
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

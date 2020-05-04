@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Metrics For The Kubernetes Control Plane
     </h1>
@@ -44,7 +43,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -56,7 +55,7 @@
       <code>
         /metrics
       </code>
-      endpoint of the HTTP server. For components that doesn&rsquo;t expose endpoint by default it can be enabled using
+      endpoint of the HTTP server. For components that doesn’t expose endpoint by default it can be enabled using
       <code>
         --bind-address
       </code>
@@ -67,41 +66,41 @@
     </p>
     <ul>
       <li>
-        <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-controller-manager/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-controller-manager/" target="_blank">
           kube-controller-manager
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Control Plane component that runs controller processes.
           </span>
         </a>
       </li>
       <li>
-        <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-proxy/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-proxy/" target="_blank">
           kube-proxy
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             kube-proxy is a network proxy that runs on each node in the cluster.
           </span>
         </a>
       </li>
       <li>
-        <a class='glossary-tooltip' href='/docs/reference/generated/kube-apiserver/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/reference/generated/kube-apiserver/" target="_blank">
           kube-apiserver
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Control plane component that serves the Kubernetes API.
           </span>
         </a>
       </li>
       <li>
-        <a class='glossary-tooltip' href='/docs/reference/generated/kube-scheduler/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/reference/generated/kube-scheduler/" target="_blank">
           kube-scheduler
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Control plane component that watches for newly created pods with no assigned node, and selects a node for them to run on.
           </span>
         </a>
       </li>
       <li>
-        <a class='glossary-tooltip' href='/docs/reference/generated/kubelet' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/reference/generated/kubelet" target="_blank">
           kubelet
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             An agent that runs on each node in the cluster. It makes sure that containers are running in a pod.
           </span>
         </a>
@@ -117,9 +116,9 @@
     </p>
     <p>
       Note that
-      <a class='glossary-tooltip' href='/docs/reference/generated/kubelet' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/generated/kubelet" target="_blank">
         kubelet
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An agent that runs on each node in the cluster. It makes sure that containers are running in a pod.
         </span>
       </a>
@@ -139,9 +138,9 @@
     </p>
     <p>
       If your cluster uses
-      <a class='glossary-tooltip' href='/docs/reference/access-authn-authz/rbac/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/access-authn-authz/rbac/" target="_blank">
         RBAC
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Manages authorization decisions, allowing admins to dynamically configure access policies through the Kubernetes API.
         </span>
       </a>
@@ -158,7 +157,7 @@ metadata:
   name: prometheus	
 rules:	
   - nonResourceURLs:	
-      - &quot;/metrics&quot;	
+      - &#34;/metrics&#34;	
     verbs:	
       - get</code></pre>
     <h2 id="metric-lifecycle">
@@ -216,7 +215,7 @@ some_counter 0</code></pre>
       takes a version for which you want to show metrics deprecated in that release. The version is expressed as x.y, where x is the major version, y is the minor version. The patch version is not needed even though a metrics can be deprecated in a patch release, the reason for that is the metrics deprecation policy runs against the minor release.
     </p>
     <p>
-      The flag can only take the previous minor version as it&rsquo;s value. All metrics hidden in previous will be emitted if admins set the previous version to
+      The flag can only take the previous minor version as it’s value. All metrics hidden in previous will be emitted if admins set the previous version to
       <code>
         show-hidden-metrics-for-version
       </code>
@@ -261,7 +260,7 @@ some_counter 0</code></pre>
       </li>
     </ul>
     <p>
-      If you&rsquo;re upgrading from release
+      If you’re upgrading from release
       <code>
         1.12
       </code>
@@ -305,12 +304,12 @@ some_counter 0</code></pre>
     <p>
       For example, for GCE these metrics are called:
     </p>
-    <pre><code>cloudprovider_gce_api_request_duration_seconds { request = &quot;instance_list&quot;}
-cloudprovider_gce_api_request_duration_seconds { request = &quot;disk_insert&quot;}
-cloudprovider_gce_api_request_duration_seconds { request = &quot;disk_delete&quot;}
-cloudprovider_gce_api_request_duration_seconds { request = &quot;attach_disk&quot;}
-cloudprovider_gce_api_request_duration_seconds { request = &quot;detach_disk&quot;}
-cloudprovider_gce_api_request_duration_seconds { request = &quot;list_disk&quot;}</code></pre>
+    <pre><code>cloudprovider_gce_api_request_duration_seconds { request = &#34;instance_list&#34;}
+cloudprovider_gce_api_request_duration_seconds { request = &#34;disk_insert&#34;}
+cloudprovider_gce_api_request_duration_seconds { request = &#34;disk_delete&#34;}
+cloudprovider_gce_api_request_duration_seconds { request = &#34;attach_disk&#34;}
+cloudprovider_gce_api_request_duration_seconds { request = &#34;detach_disk&#34;}
+cloudprovider_gce_api_request_duration_seconds { request = &#34;list_disk&#34;}</code></pre>
     <h2 id="what-s-next">
       What&#39;s next
     </h2>
@@ -335,5 +334,5 @@ cloudprovider_gce_api_request_duration_seconds { request = &quot;list_disk&quot;
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

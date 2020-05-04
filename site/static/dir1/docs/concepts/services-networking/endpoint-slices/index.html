@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       EndpointSlices
     </h1>
@@ -12,7 +11,7 @@
       EndpointSlices
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -104,7 +103,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -133,9 +132,9 @@
       In Kubernetes, an EndpointSlice contains references to a set of network
       endpoints. The EndpointSlice controller automatically creates EndpointSlices
       for a Kubernetes Service when a
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/labels/" target="_blank">
         selector
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Allows users to filter a list of resources based on labels.
         </span>
       </a>
@@ -149,7 +148,7 @@
       .
     </p>
     <p>
-      As an example, here&rsquo;s a sample EndpointSlice resource for the
+      As an example, here’s a sample EndpointSlice resource for the
       <code>
         example
       </code>
@@ -291,9 +290,9 @@
       <code>
         --max-endpoints-per-slice
       </code>
-      <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-controller-manager/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-controller-manager/" target="_blank">
         kube-controller-manager
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Control Plane component that runs controller processes.
         </span>
       </a>
@@ -324,9 +323,9 @@
         fill them up with any new endpoints needed.
       </li>
       <li>
-        If there&rsquo;s still new endpoints left to add, try to fit them into a previously
+        If there’s still new endpoints left to add, try to fit them into a previously
         unchanged slice and/or create new ones.
-        <br />
+        <br/>
       </li>
     </ol>
     <p>
@@ -368,5 +367,5 @@
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   API Priority and Fairness
 </h1>
@@ -12,7 +11,7 @@
   API Priority and Fairness
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -77,9 +76,9 @@
 <p>
   Controlling the behavior of the Kubernetes API server in an overload situation
   is a key task for cluster administrators. The
-  <a class='glossary-tooltip' href='/docs/reference/generated/kube-apiserver/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/reference/generated/kube-apiserver/" target="_blank">
     kube-apiserver
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Control plane component that serves the Kubernetes API.
     </span>
   </a>
@@ -104,9 +103,9 @@
   a limited amount of queuing, so that no requests are rejected in cases
   of very brief bursts.  Requests are dispatched from queues using a
   fair queuing technique so that, for example, a poorly-behaved
-  <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/architecture/controller/" target="_blank">
     controller
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
     </span>
   </a>
@@ -118,7 +117,7 @@
     <strong>
       Caution:
     </strong>
-    Requests classified as &ldquo;long-running&rdquo; — primarily watches — are not
+    Requests classified as “long-running” — primarily watches — are not
     subject to the API Priority and Fairness filter. This is also true for
     the
     <code>
@@ -161,7 +160,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -175,11 +174,11 @@
     Feature Gates
   </a>
   for a general explanation of feature gates and how to enable and disable them.  The
-  name of the feature gate for APF is &ldquo;APIPriorityAndFairness&rdquo;.  This
+  name of the feature gate for APF is “APIPriorityAndFairness”.  This
   feature also involves an
-  <a class='glossary-tooltip' href='/docs/concepts/overview/kubernetes-api/#api-groups' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/overview/kubernetes-api/#api-groups" target="_blank">
     API Group
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A set of related paths in the Kubernetes API.
     </span>
   </a>
@@ -278,7 +277,7 @@
     flow distinguisher
   </em>
   — which
-  is either the requesting user, the target resource&rsquo;s namespace, or nothing — and the
+  is either the requesting user, the target resource’s namespace, or nothing — and the
   system attempts to give approximately equal weight to requests in different
   flows of the same priority level.
 </p>
@@ -286,9 +285,9 @@
   After classifying a request into a flow, the API Priority and Fairness
   feature then may assign the request to a queue.  This assignment uses
   a technique known as
-  <a class='glossary-tooltip' href='/dir2/docs/reference/glossary/?all=true#term-shuffle-sharding' target='_blank'>
+  <a class="glossary-tooltip" href="/dir2/docs/reference/glossary/?all=true#term-shuffle-sharding" target="_blank">
     shuffle sharding
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A technique for assigning requests to queues that provides better isolation than hashing modulo the number of queues.
     </span>
   </a>
@@ -493,7 +492,7 @@
 </p>
 <p>
   Concurrency limits for PriorityLevelConfigurations are not specified in absolute
-  number of requests, but rather in &ldquo;concurrency shares.&rdquo; The total concurrency
+  number of requests, but rather in “concurrency shares.” The total concurrency
   limit for the API Server is distributed among the existing
   PriorityLevelConfigurations in proportion with these shares. This allows a
   cluster administrator to scale up or down the total amount of traffic to a
@@ -605,7 +604,7 @@
       handSize
     </code>
     makes it less likely for two individual flows to collide
-  </li>
+  </div></blockquote></li>
 </ul>
 <p>
 (and therefore for one to be able to starve the other), but more likely that
@@ -621,7 +620,7 @@ single flow is
   handSize * queueLengthLimit
 </code>
 .
-<p>
+</p><p>
   Following is a table showing an interesting collection of shuffle
   sharding configurations, showing for each the probability that a
   given mouse (low-intensity flow) is squished by the elephants (high-intensity flows) for
@@ -850,8 +849,8 @@ single flow is
 <p>
   A FlowSchema matches some inbound requests and assigns them to a
   priority level. Every inbound request is tested against every
-  FlowSchema in turn, starting with those with numerically lowest &mdash;
-  which we take to be the logically highest &mdash;
+  FlowSchema in turn, starting with those with numerically lowest —
+  which we take to be the logically highest —
   <code>
     matchingPrecedence
   </code>
@@ -878,7 +877,7 @@ single flow is
     <code>
       name
     </code>
-    will win, but it&rsquo;s better not to rely on this, and instead to
+    will win, but it’s better not to rely on this, and instead to
     ensure that no two FlowSchemas have the same
     <code>
       matchingPrecedence
@@ -944,7 +943,7 @@ single flow is
   effectively removing it from consideration.
 </p>
 <p>
-  A FlowSchema&rsquo;s
+  A FlowSchema’s
   <code>
     distinguisherMethod.type
   </code>
@@ -984,7 +983,7 @@ single flow is
     X-Kubernetes-PF-PriorityLevel-UID
   </code>
   , noting the flow schema that matched the request
-  and the priority level to which it was assigned, respectively. The API objects&rsquo;
+  and the priority level to which it was assigned, respectively. The API objects’
   names are not included in these headers in case the requesting user does not
   have permission to view them, so when debugging you can use a command like
 </p>
@@ -1088,7 +1087,7 @@ kubectl get prioritylevelconfigurations -o custom-columns<span style="color:#666
       Note:
     </strong>
     An outlier value in a histogram here means it is likely that a single flow
-  </li>
+  </div></blockquote></li>
 </ul>
 <p>
 (i.e., requests by one user or for one namespace, depending on
@@ -1096,14 +1095,14 @@ configuration) is flooding the API server, and being throttled. By contrast,
 if one priority level’s histogram shows that all queues for that priority
 level are longer than those for other priority levels, it may be appropriate
 to increase that PriorityLevelConfiguration’s concurrency shares.
-<ul>
+</p><ul>
   <li>
     <p>
       <code>
         apiserver_flowcontrol_request_concurrency_limit
       </code>
       gives the computed
-      concurrency limit (based on the API server&rsquo;s total concurrency limit and PriorityLevelConfigurations&rsquo;
+      concurrency limit (based on the API server’s total concurrency limit and PriorityLevelConfigurations’
       concurrency shares) for each PriorityLevelConfiguration.
     </p>
   </li>
@@ -1123,13 +1122,13 @@ to increase that PriorityLevelConfiguration’s concurrency shares.
       Note:
     </strong>
     Since each FlowSchema always assigns requests to a single
-  </li>
+  </div></blockquote></li>
 </ul>
 <p>
 PriorityLevelConfiguration, you can add the histograms for all the
 FlowSchemas for one priority level to get the effective histogram for
 requests assigned to that priority level.
-<ul>
+</p><ul>
   <li>
     <code>
       apiserver_flowcontrol_request_execution_seconds
@@ -1155,4 +1154,4 @@ requests assigned to that priority level.
     Machinery
   </a>
   .
-</p>
+</p></div></body></html>

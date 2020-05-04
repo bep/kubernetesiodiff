@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Configure RunAsUserName for Windows pods and containers
 </h1>
@@ -12,7 +11,7 @@
   Configure RunAsUserName for Windows pods and containers
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -104,7 +103,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -118,7 +117,7 @@
   Set the Username for a Pod
 </h2>
 <p>
-  To specify the username with which to execute the Pod&rsquo;s container processes, include the
+  To specify the username with which to execute the Pod’s container processes, include the
   <code>
     securityContext
   </code>
@@ -159,7 +158,7 @@
             windows/run-as-username-pod.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('windows-run-as-username-pod-yaml')" title="Copy windows/run-as-username-pod.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;windows-run-as-username-pod-yaml&#39;)" title="Copy windows/run-as-username-pod.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -194,7 +193,7 @@
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/windows/run-as-username-pod.yaml</code></pre>
 </div>
 <p>
-  Verify that the Pod&rsquo;s Container is running:
+  Verify that the Pod’s Container is running:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod run-as-username-pod-demo</code></pre>
@@ -221,7 +220,7 @@
   Set the Username for a Container
 </h2>
 <p>
-  To specify the username with which to execute a Container&rsquo;s processes, include the
+  To specify the username with which to execute a Container’s processes, include the
   <code>
     securityContext
   </code>
@@ -262,7 +261,7 @@
             windows/run-as-username-container.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('windows-run-as-username-container-yaml')" title="Copy windows/run-as-username-container.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;windows-run-as-username-container-yaml&#39;)" title="Copy windows/run-as-username-container.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -300,7 +299,7 @@
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/windows/run-as-username-container.yaml</code></pre>
 </div>
 <p>
-  Verify that the Pod&rsquo;s Container is running:
+  Verify that the Pod’s Container is running:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod run-as-username-container-demo</code></pre>
@@ -379,7 +378,7 @@
         </code>
         (dot), and cannot contain the following characters:
         <code>
-          \ / : * ? &quot; &lt; &gt; |
+          \ / : * ? &#34; &lt; &gt; |
         </code>
       </li>
       <li>
@@ -406,7 +405,7 @@
     </em>
     dots or spaces, and it cannot contain the following characters:
     <code>
-      &quot; / \ [ ] : ; | = , + * ? &lt; &gt; @
+      &#34; / \ [ ] : ; | = , + * ? &lt; &gt; @
     </code>
     .
   </li>
@@ -485,4 +484,4 @@
       Configure GMSA for Windows pods and containers
     </a>
   </li>
-</ul>
+</ul></div></body></html>

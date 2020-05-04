@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Translate a Docker Compose File to Kubernetes Resources
 </h1>
@@ -12,7 +11,7 @@
   Translate a Docker Compose File to Kubernetes Resources
 </h1>
 <p>
-  What&rsquo;s Kompose? It&rsquo;s a conversion tool for all things compose (namely Docker Compose) to container orchestrators (Kubernetes or OpenShift).
+  What’s Kompose? It’s a conversion tool for all things compose (namely Docker Compose) to container orchestrators (Kubernetes or OpenShift).
 </p>
 <p>
   More information can be found on the Kompose website at
@@ -156,7 +155,7 @@
   </li>
 </ul>
 <div id="install-ways-0">
-<pre><code>    &lt;p&gt;Kompose is released via GitHub on a three-week cycle, you can see all current releases on the &lt;a href=&quot;https://github.com/kubernetes/kompose/releases&quot;&gt;GitHub release page&lt;/a&gt;.&lt;/p&gt;</code></pre>
+<pre data-diff=""><code>    &lt;p&gt;Kompose is released via GitHub on a three-week cycle, you can see all current releases on the &lt;a href=&#34;https://github.com/kubernetes/kompose/releases&#34;&gt;GitHub release page&lt;/a&gt;.&lt;/p&gt;</code></pre>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#080;font-style:italic"># Linux</span>
 curl -L https://github.com/kubernetes/kompose/releases/download/v1.21.0/kompose-linux-amd64 -o kompose
@@ -164,8 +163,8 @@ curl -L https://github.com/kubernetes/kompose/releases/download/v1.21.0/kompose-
 curl -L <a href="https://github.com/kubernetes/kompose/releases/download/v1.21.0/kompose-darwin-amd64">https://github.com/kubernetes/kompose/releases/download/v1.21.0/kompose-darwin-amd64</a> -o kompose</p>
 <p><span style="color:#080;font-style:italic"># Windows</span>
 curl -L <a href="https://github.com/kubernetes/kompose/releases/download/v1.21.0/kompose-windows-amd64.exe">https://github.com/kubernetes/kompose/releases/download/v1.21.0/kompose-windows-amd64.exe</a> -o kompose.exe</p>
-<p>chmod +x kompose
-sudo mv ./kompose /usr/local/bin/kompose</code></pre>
+</code><p><code class="language-sh" data-lang="sh">chmod +x kompose
+sudo mv ./kompose /usr/local/bin/kompose</code></p></pre>
 </div>
 <p>
   Alternatively, you can download the
@@ -181,7 +180,7 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
   </div>
 </div>
 <div id="install-ways-2">
-<pre><code>    &lt;p&gt;Kompose is in &lt;a href=&quot;https://fedoraproject.org/wiki/EPEL&quot;&gt;EPEL&lt;/a&gt; CentOS repository.</code></pre>
+<pre><code>    &lt;p&gt;Kompose is in &lt;a href=&#34;https://fedoraproject.org/wiki/EPEL&#34;&gt;EPEL&lt;/a&gt; CentOS repository.</code></pre>
 <p>
   If you don’t have
   <a href="https://fedoraproject.org/wiki/EPEL">
@@ -209,10 +208,10 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
   </div>
 </div>
 <div id="install-ways-4">
-<pre><code>    &lt;p&gt;On macOS you can install latest release via &lt;a href=&quot;https://brew.sh&quot;&gt;Homebrew&lt;/a&gt;:&lt;/p&gt;</code></pre>
+<pre><code>    &lt;p&gt;On macOS you can install latest release via &lt;a href=&#34;https://brew.sh&#34;&gt;Homebrew&lt;/a&gt;:&lt;/p&gt;</code></pre>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install kompose
-<p></code></pre>
+</code><p><code class="language-bash" data-lang="bash"></code></p></pre>
 </div>
 <script>
   $(function(){$("#install-ways").tabs();});
@@ -221,7 +220,7 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
   Use Kompose
 </h2>
 <p>
-  In just a few steps, we&rsquo;ll take you from Docker Compose to Kubernetes. All
+  In just a few steps, we’ll take you from Docker Compose to Kubernetes. All
   you need is an existing
   <code>
     docker-compose.yml
@@ -235,7 +234,7 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
       <code>
         docker-compose.yml
       </code>
-      file. If you don&rsquo;t
+      file. If you don’t
       have one, test using this one.
     </p>
     <div class="highlight">
@@ -339,7 +338,7 @@ deployment.apps/redis-slave created</code></pre>
       Access your application.
     </p>
     <p>
-      If you&rsquo;re already using
+      If you’re already using
       <code>
         minikube
       </code>
@@ -349,7 +348,7 @@ deployment.apps/redis-slave created</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ minikube service frontend</code></pre>
     </div>
     <p>
-      Otherwise, let&rsquo;s look up what IP your service is using!
+      Otherwise, let’s look up what IP your service is using!
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ kubectl describe svc frontend
@@ -368,7 +367,7 @@ No events.
 </code></pre>
     </div>
     <p>
-      If you&rsquo;re using a cloud provider, your IP will be listed next to
+      If you’re using a cloud provider, your IP will be listed next to
       <code>
         LoadBalancer Ingress
       </code>
@@ -566,7 +565,7 @@ INFO OpenShift file <span style="color:#b44">&#34;foo-buildconfig.yaml&#34;</spa
   </code>
 </h2>
 <p>
-  Kompose supports a straightforward way to deploy your &ldquo;composed&rdquo; application to Kubernetes or OpenShift via
+  Kompose supports a straightforward way to deploy your “composed” application to Kubernetes or OpenShift via
   <code>
     kompose up
   </code>
@@ -687,11 +686,11 @@ is/redis-slave     172.30.12.200:5000/fff/redis-slave    v1  </code></pre>
   </code>
 </h2>
 <p>
-  Once you have deployed &ldquo;composed&rdquo; application to Kubernetes,
+  Once you have deployed “composed” application to Kubernetes,
   <code>
     $ kompose down
   </code>
-  will help you to take the application out by deleting its deployments and services. If you need to remove other resources, use the &lsquo;kubectl&rsquo; command.
+  will help you to take the application out by deleting its deployments and services. If you need to remove other resources, use the ‘kubectl’ command.
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ kompose --file docker-guestbook.yml down
@@ -766,19 +765,19 @@ INFO Successfully deleted deployment: frontend</code></pre>
   </code>
   key:
 </p><pre><code class="language-none" data-lang="none">$ kompose up
-INFO Build key detected. Attempting to build and push image 'docker.io/foo/bar'
-INFO Building image 'docker.io/foo/bar' from directory 'build'
-INFO Image 'docker.io/foo/bar' from directory 'build' built successfully
-INFO Pushing image 'foo/bar:latest' to registry 'docker.io'
-INFO Attempting authentication credentials 'https://index.docker.io/v1/
-INFO Successfully pushed image 'foo/bar:latest' to registry 'docker.io'
-INFO We are going to create Kubernetes Deployments, Services and PersistentVolumeClaims for your Dockerized application. If you need different kind of resources, use the 'kompose convert' and 'kubectl apply -f' commands instead.
+INFO Build key detected. Attempting to build and push image &#39;docker.io/foo/bar&#39;
+INFO Building image &#39;docker.io/foo/bar&#39; from directory &#39;build&#39;
+INFO Image &#39;docker.io/foo/bar&#39; from directory &#39;build&#39; built successfully
+INFO Pushing image &#39;foo/bar:latest&#39; to registry &#39;docker.io&#39;
+INFO Attempting authentication credentials &#39;https://index.docker.io/v1/
+INFO Successfully pushed image &#39;foo/bar:latest&#39; to registry &#39;docker.io&#39;
+INFO We are going to create Kubernetes Deployments, Services and PersistentVolumeClaims for your Dockerized application. If you need different kind of resources, use the &#39;kompose convert&#39; and &#39;kubectl apply -f&#39; commands instead.
 
-INFO Deploying application in &quot;default&quot; namespace
+INFO Deploying application in &#34;default&#34; namespace
 INFO Successfully created Service: foo            
 INFO Successfully created Deployment: foo         
 
-Your application has been deployed to Kubernetes. You can run 'kubectl get deployment,svc,pods,pvc' for details.</code></pre>
+Your application has been deployed to Kubernetes. You can run &#39;kubectl get deployment,svc,pods,pvc&#39; for details.</code></pre>
 <p>
   In order to disable the functionality, or choose to use BuildConfig generation (with OpenShift)
   <code>
@@ -915,7 +914,7 @@ docker-compose
   <code>
     docker-compose.yml
   </code>
-  file in order to explicitly define a service&rsquo;s behavior upon conversion.
+  file in order to explicitly define a service’s behavior upon conversion.
 </p>
 <ul>
   <li>
@@ -947,7 +946,7 @@ docker-compose
     <code>
       kompose.service.expose
     </code>
-    defines if the service needs to be made accessible from outside the cluster or not. If the value is set to &ldquo;true&rdquo;, the provider sets the endpoint automatically, and for any other value, the value is set as the hostname. If multiple ports are defined in a service, the first one is chosen to be the exposed.
+    defines if the service needs to be made accessible from outside the cluster or not. If the value is set to “true”, the provider sets the endpoint automatically, and for any other value, the value is set as the hostname. If multiple ports are defined in a service, the first one is chosen to be the exposed.
     <ul>
       <li>
         For the Kubernetes provider, an ingress resource is created and it is assumed that an ingress controller has already been configured.
@@ -1071,7 +1070,7 @@ docker-compose
     <tr>
       <td>
         <code>
-          &quot;&quot;
+          &#34;&#34;
         </code>
       </td>
       <td>
@@ -1168,10 +1167,10 @@ docker-compose
 </span></code></pre>
 </div>
 <h3 id="warning-about-deployment-config-s">
-  Warning about Deployment Config&rsquo;s
+  Warning about Deployment Config’s
 </h3>
 <p>
-  If the Docker Compose file has a volume specified for a service, the Deployment (Kubernetes) or DeploymentConfig (OpenShift) strategy is changed to &ldquo;Recreate&rdquo; instead of &ldquo;RollingUpdate&rdquo; (default). This is done to avoid multiple instances of a service from accessing a volume at the same time.
+  If the Docker Compose file has a volume specified for a service, the Deployment (Kubernetes) or DeploymentConfig (OpenShift) strategy is changed to “Recreate” instead of “RollingUpdate” (default). This is done to avoid multiple instances of a service from accessing a volume at the same time.
 </p>
 <p>
   If the Docker Compose file has service name with
@@ -1190,7 +1189,7 @@ docker-compose
   <code>
     web-service
   </code>
-  ). Kompose does this because &ldquo;Kubernetes&rdquo; doesn&rsquo;t allow
+  ). Kompose does this because “Kubernetes” doesn’t allow
   <code>
     _
   </code>
@@ -1215,4 +1214,4 @@ docker-compose
     conversion document
   </a>
   including a list of all incompatible Docker Compose keys.
-</p>
+</p></div></div></div></div></body></html>

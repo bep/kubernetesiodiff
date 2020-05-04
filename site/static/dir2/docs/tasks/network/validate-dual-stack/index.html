@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Validate IPv4/IPv6 dual-stack
     </h1>
@@ -70,7 +69,7 @@
       Validate node addressing
     </h3>
     <p>
-      Each dual-stack Node should have a single IPv4 block and a single IPv6 block allocated. Validate that IPv4/IPv6 Pod address ranges are configured by running the following command. Replace the sample node name with a valid dual-stack Node from your cluster. In this example, the Node&rsquo;s name is
+      Each dual-stack Node should have a single IPv4 block and a single IPv6 block allocated. Validate that IPv4/IPv6 Pod address ranges are configured by running the following command. Replace the sample node name with a valid dual-stack Node from your cluster. In this example, the Node’s name is
       <code>
         k8s-linuxpool1-34450317-0
       </code>
@@ -125,14 +124,14 @@ a00:100::4</code></pre>
       <code>
         MY_POD_IPS
       </code>
-      environment variable from within a container. The value is a comma separated list that corresponds to the Pod&rsquo;s IPv4 and IPv6 addresses.
+      environment variable from within a container. The value is a comma separated list that corresponds to the Pod’s IPv4 and IPv6 addresses.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl <span style="color:#a2f">exec</span> -it pod01 -- <span style="color:#a2f">set</span> | grep MY_POD_IPS</code></pre>
     </div>
     <pre><code>MY_POD_IPS=10.244.1.4,a00:100::4</code></pre>
     <p>
-      The Pod&rsquo;s IP addresses will also be written to
+      The Pod’s IP addresses will also be written to
       <code>
         /etc/hosts
       </code>
@@ -177,7 +176,7 @@ a00:100::4    pod01</code></pre>
                 service/networking/dual-stack-default-svc.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-dual-stack-default-svc-yaml')" title="Copy service/networking/dual-stack-default-svc.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-dual-stack-default-svc-yaml&#39;)" title="Copy service/networking/dual-stack-default-svc.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -239,7 +238,7 @@ a00:100::4    pod01</code></pre>
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">sessionAffinity</span>:<span style="color:#bbb"> </span>None<span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>ClusterIP<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">status</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">loadBalancer</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">loadBalancer</span>:<span style="color:#bbb"> </span>{}<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <p>
@@ -262,7 +261,7 @@ a00:100::4    pod01</code></pre>
                 service/networking/dual-stack-ipv6-svc.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-dual-stack-ipv6-svc-yaml')" title="Copy service/networking/dual-stack-ipv6-svc.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-dual-stack-ipv6-svc-yaml&#39;)" title="Copy service/networking/dual-stack-ipv6-svc.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -323,7 +322,7 @@ my-service   ClusterIP   fe80:20d::d06b   &lt;none&gt;        80/TCP    9s</code
                 service/networking/dual-stack-ipv6-lb-svc.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-dual-stack-ipv6-lb-svc-yaml')" title="Copy service/networking/dual-stack-ipv6-lb-svc.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-dual-stack-ipv6-lb-svc-yaml&#39;)" title="Copy service/networking/dual-stack-ipv6-lb-svc.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -365,5 +364,5 @@ my-service   ClusterIP   fe80:20d::d06b   &lt;none&gt;        80/TCP    9s</code
     <pre><code> kubectl get svc -l app=MyApp
 NAME         TYPE        CLUSTER-IP       EXTERNAL-IP                     PORT(S)        AGE
 my-service   ClusterIP   fe80:20d::d06b   2001:db8:f100:4002::9d37:c0d7   80:31868/TCP   30s</code></pre>
-  </body>
-</html>
+  
+</body></html>

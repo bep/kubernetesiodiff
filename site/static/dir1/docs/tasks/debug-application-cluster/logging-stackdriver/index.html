@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Logging Using Stackdriver
     </h1>
@@ -12,7 +11,7 @@
       Logging Using Stackdriver
     </h1>
     <p>
-      Before reading this page, it&rsquo;s highly recommended to familiarize yourself
+      Before reading this page, it’s highly recommended to familiarize yourself
       with the
       <a href="/docs/concepts/cluster-administration/logging">
         overview of logging in Kubernetes
@@ -24,7 +23,7 @@
         <strong>
           Note:
         </strong>
-        By default, Stackdriver logging collects only your container&rsquo;s standard output and
+        By default, Stackdriver logging collects only your container’s standard output and
         standard error streams. To collect any logs your application writes to a file (for example),
         see the
         <a href="/docs/concepts/cluster-administration/logging#sidecar-container-with-a-logging-agent">
@@ -100,7 +99,7 @@
       <em>
         new
       </em>
-      cluster that you&rsquo;re
+      cluster that you’re
       creating using
       <code>
         kube-up.sh
@@ -144,7 +143,7 @@
       <code>
         ConfigMap
       </code>
-      are configured as addons. If you&rsquo;re not using
+      are configured as addons. If you’re not using
       <code>
         kube-up.sh
       </code>
@@ -175,7 +174,7 @@
           Kubernetes version 1.6 or higher. If the cluster was created with Stackdriver Logging
           configured and node has version 1.5.X or lower, it will have fluentd as static pod. Node
           cannot have more than one instance of fluentd, therefore only apply labels to the nodes
-          that don&rsquo;t have fluentd pod allocated already. You can ensure that your node is labelled
+          that don’t have fluentd pod allocated already. You can ensure that your node is labelled
           properly by running
           <code>
             kubectl describe
@@ -204,12 +203,12 @@ Labels:         beta.kubernetes.io/fluentd-ds-ready=true
         </p>
         <pre><code>kubectl label node $NODE_NAME beta.kubernetes.io/fluentd-ds-ready=true</code></pre>
         <blockquote class="note">
-          <div>
+          <div data-diff="">
             <strong>
               Note:
             </strong>
             If a node fails and has to be recreated, you must re-apply the label to
-            the recreated node. To make this easier, you can use Kubelet&rsquo;s command-line parameter
+            the recreated node. To make this easier, you can use Kubelet’s command-line parameter
             for applying node labels in your node startup script.
           </div>
         </blockquote>
@@ -292,7 +291,7 @@ default       fluentd-gcp-v2.0   3         3         3         beta.kubernetes.i
                 debug/counter-pod.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('debug-counter-pod-yaml')" title="Copy debug/counter-pod.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;debug-counter-pod-yaml&#39;)" title="Copy debug/counter-pod.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -319,7 +318,7 @@ default       fluentd-gcp-v2.0   3         3         3         beta.kubernetes.i
     <p>
       This pod specification has one container that runs a bash script
       that writes out the value of a counter and the datetime once per
-      second, and runs indefinitely. Let&rsquo;s create this pod in the default namespace.
+      second, and runs indefinitely. Let’s create this pod in the default namespace.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/debug/counter-pod.yaml</code></pre>
@@ -333,7 +332,7 @@ default       fluentd-gcp-v2.0   3         3         3         beta.kubernetes.i
     <pre><code>NAME                                           READY     STATUS    RESTARTS   AGE
 counter                                        1/1       Running   0          5m</code></pre>
     <p>
-      For a short period of time you can observe the &lsquo;Pending&rsquo; pod status, because the kubelet
+      For a short period of time you can observe the ‘Pending’ pod status, because the kubelet
       has to download the container image first. When the pod status changes to
       <code>
         Running
@@ -355,7 +354,7 @@ counter                                        1/1       Running   0          5m
       As described in the logging overview, this command fetches log entries
       from the container log file. If the container is killed and then restarted by
       Kubernetes, you can still access logs from the previous container. However,
-      if the pod is evicted from the node, log files are lost. Let&rsquo;s demonstrate this
+      if the pod is evicted from the node, log files are lost. Let’s demonstrate this
       by deleting the currently running counter container:
     </p>
     <div class="highlight">
@@ -390,7 +389,7 @@ counter                                        1/1       Running   0          5m
     </h2>
     <p>
       Stackdriver Logging agent attaches metadata to each log entry, for you to use later
-      in queries to select only the messages you&rsquo;re interested in: for example,
+      in queries to select only the messages you’re interested in: for example,
       the messages from a particular pod.
     </p>
     <p>
@@ -516,7 +515,7 @@ counter                                        1/1       Running   0          5m
     </p>
     <ul>
       <li>
-        You may want to add more resources because default performance doesn&rsquo;t suit your needs.
+        You may want to add more resources because default performance doesn’t suit your needs.
       </li>
       <li>
         You may want to introduce additional parsing to extract more metadata from your log messages,
@@ -541,8 +540,8 @@ counter                                        1/1       Running   0          5m
       Prerequisites
     </h3>
     <p>
-      If you&rsquo;re using GKE and Stackdriver Logging is enabled in your cluster, you
-      cannot change its configuration, because it&rsquo;s managed and supported by GKE.
+      If you’re using GKE and Stackdriver Logging is enabled in your cluster, you
+      cannot change its configuration, because it’s managed and supported by GKE.
       However, you can disable the default integration and deploy your own.
     </p>
     <blockquote class="note">
@@ -583,7 +582,7 @@ counter                                        1/1       Running   0          5m
         template
       </code>
       field in its spec, daemonset controller will update the pods for you. For example,
-      let&rsquo;s assume you&rsquo;ve just installed the Stackdriver Logging as described above. Now you want to
+      let’s assume you’ve just installed the Stackdriver Logging as described above. Now you want to
       change the memory limit to give fluentd more memory to safely process more logs.
     </p>
     <p>
@@ -678,7 +677,7 @@ counter                                        1/1       Running   0          5m
       <code>
         DaemonSet
       </code>
-      . It&rsquo;s better
+      . It’s better
       to consider
       <code>
         ConfigMap
@@ -727,7 +726,7 @@ counter                                        1/1       Running   0          5m
       <li>
         Add your dependency to the Gemfile, for example
         <code>
-          gem 'fluent-plugin-kafka'
+          gem &#39;fluent-plugin-kafka&#39;
         </code>
         .
       </li>
@@ -744,5 +743,5 @@ counter                                        1/1       Running   0          5m
       to pick up the
       new image, you can use the plugin you installed in the fluentd configuration.
     </p>
-  </body>
-</html>
+  
+</body></html>

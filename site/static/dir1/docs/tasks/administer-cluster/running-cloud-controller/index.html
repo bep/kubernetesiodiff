@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Kubernetes Cloud Controller Manager
     </h1>
@@ -12,7 +11,7 @@
       Kubernetes Cloud Controller Manager
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -149,7 +148,7 @@
       <code>
         kube-controller-manager
       </code>
-      . As a general rule of thumb you&rsquo;ll need:
+      . As a general rule of thumb you’ll need:
     </p>
     <ul>
       <li>
@@ -281,7 +280,7 @@
                 admin/cloud/ccm-example.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-cloud-ccm-example-yaml')" title="Copy admin/cloud/ccm-example.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-cloud-ccm-example-yaml&#39;)" title="Copy admin/cloud/ccm-example.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -368,7 +367,7 @@
       Limitations
     </h2>
     <p>
-      Running cloud controller manager comes with a few possible limitations. Although these limitations are being addressed in upcoming releases, it&rsquo;s important that you are aware of these limitations for production workloads.
+      Running cloud controller manager comes with a few possible limitations. Although these limitations are being addressed in upcoming releases, it’s important that you are aware of these limitations for production workloads.
     </p>
     <h3 id="support-for-volumes">
       Support for Volumes
@@ -397,7 +396,7 @@
       The goal of the cloud controller manager project is to decouple development of cloud features from the core Kubernetes project. Unfortunately, many aspects of the Kubernetes project has assumptions that cloud provider features are tightly integrated into the project. As a result, adopting this new architecture can create several situations where a request is being made for information from a cloud provider, but the cloud controller manager may not be able to return that information without the original request being complete.
     </p>
     <p>
-      A good example of this is the TLS bootstrapping feature in the Kubelet. Currently, TLS bootstrapping assumes that the Kubelet has the ability to ask the cloud provider (or a local metadata service) for all its address types (private, public, etc) but cloud controller manager cannot set a node&rsquo;s address types without being initialized in the first place which requires that the kubelet has TLS certificates to communicate with the apiserver.
+      A good example of this is the TLS bootstrapping feature in the Kubelet. Currently, TLS bootstrapping assumes that the Kubelet has the ability to ask the cloud provider (or a local metadata service) for all its address types (private, public, etc) but cloud controller manager cannot set a node’s address types without being initialized in the first place which requires that the kubelet has TLS certificates to communicate with the apiserver.
     </p>
     <p>
       As this initiative evolves, changes will be made to address these issues in upcoming releases.
@@ -412,5 +411,5 @@
       </a>
       doc.
     </p>
-  </body>
-</html>
+  
+</body></html>

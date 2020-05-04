@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Auditing
     </h1>
@@ -63,7 +62,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -73,12 +72,12 @@
       </a>
       performs auditing. Each request on each stage
       of its execution generates an event, which is then pre-processed according to
-      a certain policy and written to a backend. The policy determines what&rsquo;s recorded
+      a certain policy and written to a backend. The policy determines what’s recorded
       and the backends persist the records. The current backend implementations
       include logs files and webhooks.
     </p>
     <p>
-      Each request can be recorded with an associated &ldquo;stage&rdquo;. The known stages are:
+      Each request can be recorded with an associated “stage”. The known stages are:
     </p>
     <ul>
       <li>
@@ -133,16 +132,16 @@
         </code>
         API group
       </a>
-      . When an event is processed, it&rsquo;s
+      . When an event is processed, it’s
       compared against the list of rules in order. The first matching rule sets the
-      &ldquo;audit level&rdquo; of the event. The known audit levels are:
+      “audit level” of the event. The known audit levels are:
     </p>
     <ul>
       <li>
         <code>
           None
         </code>
-        - don&rsquo;t log events that match this rule.
+        - don’t log events that match this rule.
       </li>
       <li>
         <code>
@@ -199,7 +198,7 @@
                 audit/audit-policy.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('audit-audit-policy-yaml')" title="Copy audit/audit-policy.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;audit-audit-policy-yaml&#39;)" title="Copy audit/audit-policy.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -454,7 +453,7 @@
       Batching
     </h3>
     <p>
-      Both log and webhook backends support batching. Using webhook as an example, here&rsquo;s the list of
+      Both log and webhook backends support batching. Using webhook as an example, here’s the list of
       available flags. To get the same flag for log backend, replace
       <code>
         webhook
@@ -577,7 +576,7 @@
       10 batches, i.e. 1000 events.
     </p>
     <p>
-      In most cases however, the default parameters should be sufficient and you don&rsquo;t have to worry about
+      In most cases however, the default parameters should be sufficient and you don’t have to worry about
       setting them manually. You can look at the following Prometheus metrics exposed by kube-apiserver
       and in the logs to monitor the state of the auditing subsystem.
     </p>
@@ -646,7 +645,7 @@
       Dynamic backend
     </h3>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -857,11 +856,11 @@
       to turn up in a new cluster.
     </p>
     <p>
-      The scheme must be &ldquo;https&rdquo;; the URL must begin with &ldquo;https://&ldquo;.
+      The scheme must be “https”; the URL must begin with “https://“.
     </p>
     <p>
-      Attempting to use a user or basic auth (for example &ldquo;user:password@&ldquo;) is not allowed.
-      Fragments (&ldquo;#&hellip;&rdquo;) and query parameters (&ldquo;?&hellip;&rdquo;) are also not allowed.
+      Attempting to use a user or basic auth (for example “user:password@“) is not allowed.
+      Fragments (“#…”) and query parameters (“?…”) are also not allowed.
     </p>
     <p>
       Here is an example of a webhook configured to call a URL
@@ -899,11 +898,11 @@
       </code>
       .
       The service namespace and name are required. The port is optional and defaults to 443.
-      The path is optional and defaults to &ldquo;/&rdquo;.
+      The path is optional and defaults to “/”.
     </p>
     <p>
-      Here is an example of a webhook that is configured to call a service on port &ldquo;1234&rdquo;
-      at the subpath &ldquo;/my-path&rdquo;, and to verify the TLS connection against the ServerName
+      Here is an example of a webhook that is configured to call a service on port “1234”
+      at the subpath “/my-path”, and to verify the TLS connection against the ServerName
       <code>
         my-service-name.my-service-namespace.svc
       </code>
@@ -943,7 +942,7 @@
       Setup for multiple API servers
     </h2>
     <p>
-      If you&rsquo;re extending the Kubernetes API with the
+      If you’re extending the Kubernetes API with the
       <a href="/docs/concepts/api-extension/apiserver-aggregation">
         aggregation layer
       </a>
@@ -974,7 +973,7 @@
             fluentd
           </a>
           ,  fluent-plugin-forest and fluent-plugin-rewrite-tag-filter in the kube-apiserver node
-          <blockquote class="note">
+          </p><blockquote class="note">
             <div>
               <strong>
                 Note:
@@ -986,7 +985,7 @@
               .
             </div>
           </blockquote>
-        </p>
+        <p></p>
       </li>
       <li>
         <p>
@@ -1163,7 +1162,7 @@ EOF</code></pre>
       </li>
       <li>
         <p>
-          check audits in logstash node&rsquo;s directories
+          check audits in logstash node’s directories
           <code>
             /var/log/kube-audit-*/audit
           </code>
@@ -1192,5 +1191,5 @@ EOF</code></pre>
       </a>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

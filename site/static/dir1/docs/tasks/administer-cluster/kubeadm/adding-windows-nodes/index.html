@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Adding Windows nodes
     </h1>
@@ -12,7 +11,7 @@
       Adding Windows nodes
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -99,7 +98,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -226,7 +225,7 @@
             </code>
             to
             <code>
-              &quot;host-gw&quot;
+              &#34;host-gw&#34;
             </code>
             and omit
             <code>
@@ -245,7 +244,7 @@
           Apply the Flannel manifest and validate
         </p>
         <p>
-          Let&rsquo;s apply the Flannel configuration:
+          Let’s apply the Flannel configuration:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f kube-flannel.yml</code></pre>
@@ -269,7 +268,7 @@ kube-system   kube-flannel-ds-54954                     1/1          Running   0
         </p>
         <p>
           Now you can add Windows-compatible versions of Flannel and kube-proxy. In order
-          to ensure that you get a compatible version of kube-proxy, you&rsquo;ll need to substitute
+          to ensure that you get a compatible version of kube-proxy, you’ll need to substitute
           the tag of the image. The following example shows usage for Kubernetes v1.18.0,
           but you should adjust the version for your own deployment.
         </p>
@@ -282,7 +281,7 @@ kubectl apply -f https://github.com/kubernetes-sigs/sig-windows-tools/releases/l
             <strong>
               Note:
             </strong>
-            If you&rsquo;re using host-gateway use
+            If you’re using host-gateway use
             <a href="https://github.com/kubernetes-sigs/sig-windows-tools/releases/latest/download/flannel-host-gw.yml">
               https://github.com/kubernetes-sigs/sig-windows-tools/releases/latest/download/flannel-host-gw.yml
             </a>
@@ -295,7 +294,7 @@ kubectl apply -f https://github.com/kubernetes-sigs/sig-windows-tools/releases/l
               Note:
             </strong>
             <p>
-              If you&rsquo;re using a different interface rather than Ethernet (i.e. &ldquo;Ethernet0 2&rdquo;) on the Windows nodes, you have to modify the line:
+              If you’re using a different interface rather than Ethernet (i.e. “Ethernet0 2”) on the Windows nodes, you have to modify the line:
             </p>
             <pre><code>```powershell
 wins cli process run --path /k/flannel/setup.exe --args &#34;--mode=overlay --interface=Ethernet&#34;
@@ -389,5 +388,5 @@ You can check the progress as before by checking on the flannel pods in the `kub
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

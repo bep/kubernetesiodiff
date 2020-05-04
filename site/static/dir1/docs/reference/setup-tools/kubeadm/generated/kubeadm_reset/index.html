@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1></h1>
 <p>
   <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_reset.md" id="editPageButton" target="_blank">
@@ -12,7 +11,7 @@
     <li>
       <ul>
         <li>
-          <ul>
+          <ul data-diff="">
             <li>
               <a href="#synopsis">
                 Synopsis
@@ -38,10 +37,10 @@
   Synopsis
 </h3>
 <p>
-  Performs a best effort revert of changes made to this host by &lsquo;kubeadm init&rsquo; or &lsquo;kubeadm join&rsquo;
+  Performs a best effort revert of changes made to this host by ‘kubeadm init’ or ‘kubeadm join’
 </p>
 <p>
-  The &ldquo;reset&rdquo; command executes the following phases:
+  The “reset” command executes the following phases:
 </p>
 <pre><code>preflight              Run reset pre-flight checks
 update-cluster-status  Remove this node from the ClusterStatus object.
@@ -52,17 +51,27 @@ cleanup-node           Run cleanup node.</code></pre>
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  <p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -71,11 +80,10 @@ cleanup-node           Run cleanup node.</code></pre>
       The path to the directory where the certificates are stored. If specified, clean this directory.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cri-socket string
+      –cri-socket string
     </td>
   </tr>
   <tr>
@@ -84,11 +92,10 @@ cleanup-node           Run cleanup node.</code></pre>
       Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -f, &ndash;force
+      -f, –force
     </td>
   </tr>
   <tr>
@@ -97,11 +104,10 @@ cleanup-node           Run cleanup node.</code></pre>
       Reset the node without prompting for confirmation.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -110,24 +116,22 @@ cleanup-node           Run cleanup node.</code></pre>
       help for reset
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ignore-preflight-errors stringSlice
+      –ignore-preflight-errors stringSlice
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      A list of checks whose errors will be shown as warnings. Example: &lsquo;IsPrivilegedUser,Swap&rsquo;. Value &lsquo;all&rsquo; ignores errors from all checks.
+      A list of checks whose errors will be shown as warnings. Example: ‘IsPrivilegedUser,Swap’. Value ‘all’ ignores errors from all checks.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -136,11 +140,10 @@ cleanup-node           Run cleanup node.</code></pre>
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;skip-phases stringSlice
+      –skip-phases stringSlice
     </td>
   </tr>
   <tr>
@@ -149,30 +152,26 @@ cleanup-node           Run cleanup node.</code></pre>
       List of phases to be skipped
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p></p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;rootfs string
+      –rootfs string
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
     </td>
   </tr>
-</p>
-<p>
+
+</tbody></table></p></body></html>

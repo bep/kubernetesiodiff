@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Define a Command and Arguments for a Container
     </h1>
@@ -14,9 +13,9 @@
     <p>
       This page shows how to define commands and arguments when you run a container
       in a
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         Pod
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
@@ -50,7 +49,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -143,7 +142,7 @@
                 pods/commands.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-commands-yaml')" title="Copy pods/commands.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-commands-yaml&#39;)" title="Copy pods/commands.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -220,7 +219,7 @@ tcp://10.3.240.1:443</code></pre>
 </span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>MESSAGE<span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">value</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;hello world&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;/bin/echo&#34;</span>]<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">args</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;$(MESSAGE)&#34;</span>]<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">args</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;$(MESSAGE)&#34;</span>]<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <p>
@@ -242,7 +241,7 @@ tcp://10.3.240.1:443</code></pre>
         </strong>
         The environment variable appears in parentheses,
         <code>
-          &quot;$(VAR)&quot;
+          &#34;$(VAR)&#34;
         </code>
         . This is
         required for the variable to be expanded in the
@@ -538,5 +537,5 @@ args: <span style="color:#666">[</span><span style="color:#b44">&#34;-c&#34;</sp
         .
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

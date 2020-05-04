@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   kubeadm init
 </h1>
@@ -17,18 +16,18 @@
 <ul id="markdown-toc">
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
-<h3 id="synopsis">
+<h3 id="synopsis" data-diff="">
   Synopsis
 </h3>
 <p>
   Run this command in order to set up the Kubernetes control plane
 </p>
 <p>
-  The &ldquo;init&rdquo; command executes the following phases:
+  The “init” command executes the following phases:
 </p>
 <pre><code>preflight                    Run pre-flight checks
 kubelet-start                Write kubelet settings and (re)start the kubelet
@@ -71,30 +70,57 @@ addon                        Install required addons for passing Conformance tes
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  <p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;apiserver-advertise-address string
+      –apiserver-advertise-address string
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The IP address the API Server will advertise it&rsquo;s listening on. If not set the default network interface will be used.
+      The IP address the API Server will advertise it’s listening on. If not set the default network interface will be used.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;apiserver-bind-port int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 6443
+      –apiserver-bind-port int32     Default: 6443
     </td>
   </tr>
   <tr>
@@ -103,11 +129,10 @@ addon                        Install required addons for passing Conformance tes
       Port for the API Server to bind to.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;apiserver-cert-extra-sans stringSlice
+      –apiserver-cert-extra-sans stringSlice
     </td>
   </tr>
   <tr>
@@ -116,11 +141,10 @@ addon                        Install required addons for passing Conformance tes
       Optional extra Subject Alternative Names (SANs) to use for the API Server serving certificate. Can be both IP addresses and DNS names.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -129,11 +153,10 @@ addon                        Install required addons for passing Conformance tes
       The path where to save and store the certificates.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;certificate-key string
+      –certificate-key string
     </td>
   </tr>
   <tr>
@@ -142,11 +165,10 @@ addon                        Install required addons for passing Conformance tes
       Key used to encrypt the control-plane certificates in the kubeadm-certs Secret.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -155,11 +177,10 @@ addon                        Install required addons for passing Conformance tes
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;control-plane-endpoint string
+      –control-plane-endpoint string
     </td>
   </tr>
   <tr>
@@ -168,11 +189,10 @@ addon                        Install required addons for passing Conformance tes
       Specify a stable IP address or DNS name for the control plane.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cri-socket string
+      –cri-socket string
     </td>
   </tr>
   <tr>
@@ -181,24 +201,22 @@ addon                        Install required addons for passing Conformance tes
       Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;dry-run
+      –dry-run
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      Don&rsquo;t apply any changes; just output what would be done.
+      Don’t apply any changes; just output what would be done.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -k, &ndash;experimental-kustomize string
+      -k, –experimental-kustomize string
     </td>
   </tr>
   <tr>
@@ -207,11 +225,10 @@ addon                        Install required addons for passing Conformance tes
       The path where kustomize patches for static pod manifests are stored.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;feature-gates string
+      –feature-gates string
     </td>
   </tr>
   <tr>
@@ -224,11 +241,10 @@ addon                        Install required addons for passing Conformance tes
       PublicKeysECDSA=true|false (ALPHA - default=false)
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -237,24 +253,22 @@ addon                        Install required addons for passing Conformance tes
       help for init
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ignore-preflight-errors stringSlice
+      –ignore-preflight-errors stringSlice
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      A list of checks whose errors will be shown as warnings. Example: &lsquo;IsPrivilegedUser,Swap&rsquo;. Value &lsquo;all&rsquo; ignores errors from all checks.
+      A list of checks whose errors will be shown as warnings. Example: ‘IsPrivilegedUser,Swap’. Value ‘all’ ignores errors from all checks.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;image-repository string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;k8s.gcr.io&rdquo;
+      –image-repository string     Default: “k8s.gcr.io”
     </td>
   </tr>
   <tr>
@@ -263,11 +277,10 @@ addon                        Install required addons for passing Conformance tes
       Choose a container registry to pull control plane images from
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubernetes-version string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;stable-1&rdquo;
+      –kubernetes-version string     Default: “stable-1”
     </td>
   </tr>
   <tr>
@@ -276,11 +289,10 @@ addon                        Install required addons for passing Conformance tes
       Choose a specific Kubernetes version for the control plane.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;node-name string
+      –node-name string
     </td>
   </tr>
   <tr>
@@ -289,11 +301,10 @@ addon                        Install required addons for passing Conformance tes
       Specify the node name.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;pod-network-cidr string
+      –pod-network-cidr string
     </td>
   </tr>
   <tr>
@@ -302,11 +313,10 @@ addon                        Install required addons for passing Conformance tes
       Specify range of IP addresses for the pod network. If set, the control plane will automatically allocate CIDRs for every node.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;service-cidr string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;10.96.0.0/12&rdquo;
+      –service-cidr string     Default: “10.96.0.0/12”
     </td>
   </tr>
   <tr>
@@ -315,37 +325,34 @@ addon                        Install required addons for passing Conformance tes
       Use alternative range of IP address for service VIPs.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;service-dns-domain string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;cluster.local&rdquo;
+      –service-dns-domain string     Default: “cluster.local”
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      Use alternative domain for services, e.g. &ldquo;myorg.internal&rdquo;.
+      Use alternative domain for services, e.g. “myorg.internal”.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;skip-certificate-key-print
+      –skip-certificate-key-print
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      Don&rsquo;t print the key used to encrypt the control-plane certificates.
+      Don’t print the key used to encrypt the control-plane certificates.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;skip-phases stringSlice
+      –skip-phases stringSlice
     </td>
   </tr>
   <tr>
@@ -354,24 +361,22 @@ addon                        Install required addons for passing Conformance tes
       List of phases to be skipped
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;skip-token-print
+      –skip-token-print
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      Skip printing of the default bootstrap token generated by &lsquo;kubeadm init&rsquo;.
+      Skip printing of the default bootstrap token generated by ‘kubeadm init’.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;token string
+      –token string
     </td>
   </tr>
   <tr>
@@ -380,24 +385,22 @@ addon                        Install required addons for passing Conformance tes
       The token to use for establishing bidirectional trust between nodes and control-plane nodes. The format is [a-z0-9]{6}.[a-z0-9]{16} - e.g. abcdef.0123456789abcdef
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;token-ttl duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 24h0m0s
+      –token-ttl duration     Default: 24h0m0s
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The duration before the token is automatically deleted (e.g. 1s, 2m, 3h). If set to &lsquo;0&rsquo;, the token will never expire
+      The duration before the token is automatically deleted (e.g. 1s, 2m, 3h). If set to ‘0’, the token will never expire
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;upload-certs
+      –upload-certs
     </td>
   </tr>
   <tr>
@@ -406,44 +409,19 @@ addon                        Install required addons for passing Conformance tes
       Upload control-plane certificates to the kubeadm-certs Secret.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<h3 id="init-workflow">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><h3 id="init-workflow">
   Init workflow
-</h3>
-<p>
+</h3><p>
   <code>
     kubeadm init
   </code>
   bootstraps a Kubernetes control-plane node by executing the
   following steps:
-</p>
-<ol>
+</p><ol>
   <li>
     <p>
       Runs a series of pre-flight checks to validate the system state
@@ -499,23 +477,20 @@ addon                        Install required addons for passing Conformance tes
       an additional static Pod manifest is generated for etcd.
     </p>
   </li>
-</ol>
-<p>
+</ol><p>
   Static Pod manifests are written to
   <code>
     /etc/kubernetes/manifests
   </code>
   ; the kubelet
   watches this directory for Pods to create on startup.
-</p>
-<p>
+</p><p>
   Once control plane Pods are up and running, the
   <code>
     kubeadm init
   </code>
   sequence can continue.
-</p>
-<ol>
+</p><ol>
   <li>
     <p>
       Apply labels and taints to the control-plane node so that no additional workloads will
@@ -568,15 +543,13 @@ addon                        Install required addons for passing Conformance tes
       </li>
     </ul>
   </li>
-</ol>
-<p>
+</ol><p>
   See
   <a href="/docs/reference/setup-tools/kubeadm/kubeadm-join/">
     kubeadm join
   </a>
   for additional info.
-</p>
-<ol>
+</p><ol>
   <li>
     Installs a DNS server (CoreDNS) and the kube-proxy addon components via the API server.
     In Kubernetes version 1.11 and later CoreDNS is the default DNS server.
@@ -592,28 +565,23 @@ addon                        Install required addons for passing Conformance tes
     below.
     Please note that although the DNS server is deployed, it will not be scheduled until CNI is installed.
   </li>
-</ol>
-<p>
-  <blockquote class="warning">
+</ol><p>
+  </p><blockquote class="warning">
     <div>
       <strong>
         Warning:
       </strong>
       kube-dns usage with kubeadm is deprecated as of v1.18 and will be removed in a future release.
     </div>
-  </blockquote>
-</p>
-<h3 id="init-phases">
+  </blockquote><p></p><h3 id="init-phases">
   Using init phases with kubeadm
-</h3>
-<p>
+</h3><p>
   Kubeadm allows you to create a control-plane node in phases using the
   <code>
     kubeadm init phase
   </code>
   command.
-</p>
-<p>
+</p><p>
   To view the ordered list of phases and sub-phases you can call
   <code>
     kubeadm init --help
@@ -624,28 +592,23 @@ addon                        Install required addons for passing Conformance tes
     kubeadm init
   </code>
   all of the phases and sub-phases will be executed in this exact order.
-</p>
-<p>
+</p><p>
   Some phases have unique flags, so if you want to have a look at the list of available options add
   <code>
     --help
   </code>
   , for example:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo kubeadm init phase control-plane controller-manager --help</code></pre>
-</div>
-<p>
+</div><p>
   You can also use
   <code>
     --help
   </code>
   to see the list of sub-phases for a certain parent phase:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo kubeadm init phase control-plane --help</code></pre>
-</div>
-<p>
+</div><p>
   <code>
     kubeadm init
   </code>
@@ -654,17 +617,14 @@ addon                        Install required addons for passing Conformance tes
     --skip-phases
   </code>
   that can be used to skip certain phases. The flag accepts a list of phase names and the names can be taken from the above ordered list.
-</p>
-<p>
+</p><p>
   An example:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo kubeadm init phase control-plane all --config<span style="color:#666">=</span>configfile.yaml
 sudo kubeadm init phase etcd <span style="color:#a2f">local</span> --config<span style="color:#666">=</span>configfile.yaml
 <span style="color:#080;font-style:italic"># you can now modify the control plane and etcd manifest files</span>
 sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,etcd --config<span style="color:#666">=</span>configfile.yaml</code></pre>
-</div>
-<p>
+</div><p>
   What this example would do is write the manifest files for the control plane and etcd in
   <code>
     /etc/kubernetes/manifests
@@ -678,20 +638,17 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
     --skip-phases
   </code>
   . By calling the last command you will create a control plane node with the custom manifest files.
-</p>
-<h3 id="config-file">
+</p><h3 id="config-file">
   Using kubeadm init with a configuration file
-</h3>
-<blockquote class="caution">
+</h3><blockquote class="caution">
   <div>
     <strong>
       Caution:
     </strong>
     The config file is still considered beta and may change in future versions.
   </div>
-</blockquote>
-<p>
-  It&rsquo;s possible to configure
+</blockquote><p>
+  It’s possible to configure
   <code>
     kubeadm init
   </code>
@@ -702,15 +659,13 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
     --config
   </code>
   option.
-</p>
-<p>
+</p><p>
   The default configuration can be printed out using the
   <a href="/docs/reference/setup-tools/kubeadm/kubeadm-config/">
     kubeadm config print
   </a>
   command.
-</p>
-<p>
+</p><p>
   It is
   <strong>
     recommended
@@ -729,8 +684,7 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
     kubeadm config migrate
   </a>
   command.
-</p>
-<p>
+</p><p>
   For more details on each field in the
   <code>
     v1beta2
@@ -740,38 +694,31 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
     API reference pages
   </a>
   .
-</p>
-<h3 id="kube-proxy">
+</p><h3 id="kube-proxy">
   Adding kube-proxy parameters
-</h3>
-<p>
+</h3><p>
   For information about kube-proxy parameters in the kubeadm configuration see:
   -
   <a href="https://godoc.org/k8s.io/kubernetes/pkg/proxy/apis/config#KubeProxyConfiguration">
     kube-proxy
   </a>
-</p>
-<p>
+</p><p>
   For information about enabling IPVS mode with kubeadm see:
   -
   <a href="https://github.com/kubernetes/kubernetes/blob/master/pkg/proxy/ipvs/README.md">
     IPVS
   </a>
-</p>
-<h3 id="control-plane-flags">
+</p><h3 id="control-plane-flags">
   Passing custom flags to control plane components
-</h3>
-<p>
+</h3><p>
   For information about passing flags to control plane components see:
   -
   <a href="/docs/setup/production-environment/tools/kubeadm/control-plane-flags/">
     control-plane-flags
   </a>
-</p>
-<h3 id="custom-images">
+</p><h3 id="custom-images">
   Using custom images
-</h3>
-<p>
+</h3><p>
   By default, kubeadm pulls images from
   <code>
     k8s.gcr.io
@@ -786,16 +733,14 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
     gcr.io/kubernetes-ci-images
   </code>
   is used.
-</p>
-<p>
+</p><p>
   You can override this behavior by using
   <a href="#config-file">
     kubeadm with a configuration file
   </a>
   .
   Allowed customization are:
-</p>
-<ul>
+</p><ul>
   <li>
     To provide an alternative
     <code>
@@ -829,8 +774,7 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
     </code>
     for etcd or DNS add-on.
   </li>
-</ul>
-<p>
+</ul><p>
   Please note that the configuration field
   <code>
     kubernetesVersion
@@ -840,11 +784,9 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
     --kubernetes-version
   </code>
   affect the version of the images.
-</p>
-<h3 id="uploading-control-plane-certificates-to-the-cluster">
+</p><h3 id="uploading-control-plane-certificates-to-the-cluster">
   Uploading control-plane certificates to the cluster
-</h3>
-<p>
+</h3><p>
   By adding the flag
   <code>
     --upload-certs
@@ -874,11 +816,9 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
     kubeadm join
   </code>
   .
-</p>
-<p>
+</p><p>
   The following phase command can be used to re-upload the certificates after expiration:
-</p><pre><code>kubeadm init phase upload-certs --upload-certs --certificate-key=SOME_VALUE --config=SOME_YAML_FILE</code></pre>
-<p>
+</p><pre><code>kubeadm init phase upload-certs --upload-certs --certificate-key=SOME_VALUE --config=SOME_YAML_FILE</code></pre><p>
   If the flag
   <code>
     --certificate-key
@@ -892,14 +832,11 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
     kubeadm init phase upload-certs
   </code>
   a new key will be generated automatically.
-</p>
-<p>
+</p><p>
   The following command can be used to generate a new key on demand:
-</p><pre><code>kubeadm alpha certs certificate-key</code></pre>
-<h3 id="certificate-management-with-kubeadm">
+</p><pre><code>kubeadm alpha certs certificate-key</code></pre><h3 id="certificate-management-with-kubeadm">
   Certificate management with kubeadm
-</h3>
-<p>
+</h3><p>
   For detailed information on certificate management with kubeadm see
   <a href="/docs/tasks/administer-cluster/kubeadm/kubeadm-certs/">
     Certificate Management with kubeadm
@@ -907,11 +844,9 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
   .
   The document includes information about using external CA, custom certificates
   and certificate renewal.
-</p>
-<h3 id="kubelet-drop-in">
+</p><h3 id="kubelet-drop-in">
   Managing the kubeadm drop-in file for the kubelet
-</h3>
-<p>
+</h3><p>
   The
   <code>
     kubeadm
@@ -925,34 +860,29 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
     systemd
   </code>
   . Note that the kubeadm CLI never touches this drop-in file. This drop-in file is part of the kubeadm DEB/RPM package.
-</p>
-<p>
+</p><p>
   For further information, see
   <a href="/docs/setup/production-environment/tools/kubeadm/kubelet-integration/#the-kubelet-drop-in-file-for-systemd">
     Managing the kubeadm drop-in file for systemd
   </a>
   .
-</p>
-<h3 id="use-kubeadm-with-cri-runtimes">
+</p><h3 id="use-kubeadm-with-cri-runtimes">
   Use kubeadm with CRI runtimes
-</h3>
-<p>
+</h3><p>
   By default kubeadm attempts to detect your container runtime. For more details on this detection, see
   the
   <a href="/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-runtime">
     kubeadm CRI installation guide
   </a>
   .
-</p>
-<h3 id="setting-the-node-name">
+</p><h3 id="setting-the-node-name">
   Setting the node name
-</h3>
-<p>
+</h3><p>
   By default,
   <code>
     kubeadm
   </code>
-  assigns a node name based on a machine&rsquo;s host address. You can override this setting with the
+  assigns a node name based on a machine’s host address. You can override this setting with the
   <code>
     --node-name
   </code>
@@ -964,32 +894,26 @@ sudo kubeadm init --skip-phases<span style="color:#666">=</span>control-plane,et
     </code>
   </a>
   value to the kubelet.
-</p>
-<p>
+</p><p>
   Be aware that overriding the hostname can
   <a href="https://github.com/kubernetes/website/pull/8873">
     interfere with cloud providers
   </a>
   .
-</p>
-<h3 id="running-kubeadm-without-an-internet-connection">
+</p><h3 id="running-kubeadm-without-an-internet-connection">
   Running kubeadm without an internet connection
-</h3>
-<p>
+</h3><p>
   For running kubeadm without an internet connection you have to pre-pull the required control-plane images.
-</p>
-<p>
+</p><p>
   You can list and pull the images using the
   <code>
     kubeadm config images
   </code>
   sub-command:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubeadm config images list
 kubeadm config images pull</code></pre>
-</div>
-<p>
+</div><p>
   All images that kubeadm requires such as
   <code>
     k8s.gcr.io/kube-*
@@ -1003,11 +927,9 @@ kubeadm config images pull</code></pre>
     k8s.gcr.io/pause
   </code>
   support multiple architectures.
-</p>
-<h3 id="automating-kubeadm">
+</p><h3 id="automating-kubeadm">
   Automating kubeadm
-</h3>
-<p>
+</h3><p>
   Rather than copying the token you obtained from
   <code>
     kubeadm init
@@ -1021,8 +943,7 @@ kubeadm config images pull</code></pre>
   token distribution for easier automation. To implement this automation, you must
   know the IP address that the control-plane node will have after it is started,
   or use a DNS name or an address of a load balancer.
-</p>
-<ol>
+</p><ol>
   <li>
     <p>
       Generate a token. This token must have the form
@@ -1074,32 +995,28 @@ kubeadm config images pull</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubeadm alpha certs certificate-key</code></pre>
     </div>
   </li>
-</ol>
-<p>
+</ol><p>
   Once the cluster is up, you can grab the admin credentials from the control-plane node
   at
   <code>
     /etc/kubernetes/admin.conf
   </code>
   and use that to talk to the cluster.
-</p>
-<p>
+</p><p>
   Note that this style of bootstrap has some relaxed security guarantees because
   it does not allow the root CA hash to be validated with
   <code>
     --discovery-token-ca-cert-hash
   </code>
-  (since it&rsquo;s not generated when the nodes are
+  (since it’s not generated when the nodes are
   provisioned). For details, see the
   <a href="/docs/reference/setup-tools/kubeadm/kubeadm-join/">
     kubeadm join
   </a>
   .
-</p>
-<h2 id="what-s-next">
+</p><h2 id="what-s-next">
   What&#39;s next
-</h2>
-<ul>
+</h2><ul>
   <li>
     <a href="/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/">
       kubeadm init phase
@@ -1135,4 +1052,86 @@ kubeadm config images pull</code></pre>
       kubeadm join
     </code>
   </li>
-</ul>
+</ul><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody></table></p></body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Extending your Kubernetes Cluster
     </h1>
@@ -19,25 +18,25 @@
     <p>
       This guide describes the options for customizing a Kubernetes
       cluster. It is aimed at
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-cluster-operator' target='_blank'>
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-cluster-operator" target="_blank">
         cluster operators
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A person who configures, controls, and monitors clusters.
         </span>
       </a>
       who want to
       understand how to adapt their Kubernetes cluster to the needs of
       their work environment. Developers who are prospective
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-platform-developer' target='_blank'>
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-platform-developer" target="_blank">
         Platform Developers
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A person who customizes the Kubernetes platform to fit the needs of their project.
         </span>
       </a>
       or Kubernetes Project
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-contributor' target='_blank'>
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-contributor" target="_blank">
         Contributors
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Someone who donates code, documentation, or their time to help the Kubernetes project or community.
         </span>
       </a>
@@ -83,7 +82,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -208,11 +207,11 @@
         Controller
       </em>
       pattern. Controllers typically read an
-      object&rsquo;s
+      object’s
       <code>
         .spec
       </code>
-      , possibly do things, and then update the object&rsquo;s
+      , possibly do things, and then update the object’s
       <code>
         .status
       </code>
@@ -256,8 +255,8 @@
       Below is a diagram showing how the extension points interact with the
       Kubernetes control plane.
     </p>
-    <p>
-      <img src="https://docs.google.com/drawings/d/e/2PACX-1vQBRWyXLVUlQPlp7BvxvV9S1mxyXSM6rAc_cbLANvKlu6kCCf-kGTporTMIeG5GZtUdxXz1xowN7RmL/pub?w=960&h=720">
+    <p data-diff="">
+      <img src="https://docs.google.com/drawings/d/e/2PACX-1vQBRWyXLVUlQPlp7BvxvV9S1mxyXSM6rAc_cbLANvKlu6kCCf-kGTporTMIeG5GZtUdxXz1xowN7RmL/pub?w=960&amp;h=720"/>
     </p>
     <!-- image source drawing https://docs.google.com/drawings/d/1muJ7Oxuj_7Gtv7HV9-2zJbOnkQJnjxq-v1ym_kZfB-4/edit?ts=5a01e054 -->
     <h2 id="extension-points">
@@ -267,7 +266,7 @@
       This diagram shows the extension points in a Kubernetes system.
     </p>
     <p>
-      <img src="https://docs.google.com/drawings/d/e/2PACX-1vSH5ZWUO2jH9f34YHenhnCd14baEb4vT-pzfxeFC7NzdNqRDgdz4DDAVqArtH4onOGqh0bhwMX0zGBb/pub?w=425&h=809">
+      <img src="https://docs.google.com/drawings/d/e/2PACX-1vSH5ZWUO2jH9f34YHenhnCd14baEb4vT-pzfxeFC7NzdNqRDgdz4DDAVqArtH4onOGqh0bhwMX0zGBb/pub?w=425&amp;h=809"/>
     </p>
     <!-- image source diagrams: https://docs.google.com/drawings/d/1k2YdJgNTtNfW7_A8moIIkij-DmVgEhNrn3y2OODwqQQ/view -->
     <ol>
@@ -280,7 +279,7 @@
         <a href="/docs/tasks/extend-kubectl/kubectl-plugins/">
           Kubectl plugins
         </a>
-        extend the kubectl binary. They only affect the individual user&rsquo;s local environment, and so cannot enforce site-wide policies.
+        extend the kubectl binary. They only affect the individual user’s local environment, and so cannot enforce site-wide policies.
       </li>
       <li>
         The apiserver handles all requests. Several types of extension points in the apiserver allow authenticating requests, or blocking them based on their content, editing content, and handling deletion. These are described in the
@@ -302,7 +301,7 @@
         <code>
           pods
         </code>
-        , are defined by the Kubernetes project and can&rsquo;t be changed. You can also add resources that you define, or that other projects have defined, called
+        , are defined by the Kubernetes project and can’t be changed. You can also add resources that you define, or that other projects have defined, called
         <em>
           Custom Resources
         </em>
@@ -341,7 +340,7 @@
       If you are unsure where to start, this flowchart can help. Note that some solutions may involve several types of extensions.
     </p>
     <p>
-      <img src="https://docs.google.com/drawings/d/e/2PACX-1vRWXNNIVWFDqzDY0CsKZJY3AR8sDeFDXItdc5awYxVH8s0OLherMlEPVUpxPIB1CSUu7GPk7B2fEnzM/pub?w=1440&h=1080">
+      <img src="https://docs.google.com/drawings/d/e/2PACX-1vRWXNNIVWFDqzDY0CsKZJY3AR8sDeFDXItdc5awYxVH8s0OLherMlEPVUpxPIB1CSUu7GPk7B2fEnzM/pub?w=1440&amp;h=1080"/>
     </p>
     <!-- image source drawing: https://docs.google.com/drawings/d/1sdviU6lDz4BpnzJNHfNpQrqI9F19QZ07KnhnxVrp2yg/edit -->
     <h2 id="api-extensions">
@@ -418,7 +417,7 @@
       <a href="/docs/reference/access-authn-authz/authentication/#webhook-token-authentication">
         Authentication webhook
       </a>
-      method if those don&rsquo;t meet your needs.
+      method if those don’t meet your needs.
     </p>
     <h3 id="authorization">
       Authorization
@@ -427,7 +426,7 @@
       <a href="/docs/reference/access-authn-authz/webhook/">
         Authorization
       </a>
-      determines whether specific users can read, write, and do other operations on API resources. It just works at the level of whole resources &ndash; it doesn&rsquo;t discriminate based on arbitrary object fields. If the built-in authorization options don&rsquo;t meet your needs, and
+      determines whether specific users can read, write, and do other operations on API resources. It just works at the level of whole resources – it doesn’t discriminate based on arbitrary object fields. If the built-in authorization options don’t meet your needs, and
       <a href="/docs/reference/access-authn-authz/webhook/">
         Authorization webhook
       </a>
@@ -563,5 +562,5 @@
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       PKI certificates and requirements
     </h1>
@@ -18,7 +17,7 @@
         kubeadm
       </a>
       , the certificates that your cluster requires are automatically generated.
-      You can also generate your own certificates &ndash; for example, to keep your private keys more secure by not storing them on the API server.
+      You can also generate your own certificates – for example, to keep your private keys more secure by not storing them on the API server.
       This page explains the certificates that your cluster requires.
     </p>
     <ul id="markdown-toc">
@@ -110,7 +109,7 @@
       Configure certificates manually
     </h2>
     <p>
-      If you don&rsquo;t want kubeadm to generate the required certificates, you can create them in either of the following ways.
+      If you don’t want kubeadm to generate the required certificates, you can create them in either of the following ways.
     </p>
     <h3 id="single-root-ca">
       Single root CA
@@ -189,7 +188,7 @@
       All certificates
     </h3>
     <p>
-      If you don&rsquo;t wish to copy the CA private keys to your cluster, you can generate all certificates yourself.
+      If you don’t wish to copy the CA private keys to your cluster, you can generate all certificates yourself.
     </p>
     <p>
       Required certificates:
@@ -508,7 +507,7 @@
           </td>
           <td></td>
           <td>
-            &ndash;etcd-cafile
+            –etcd-cafile
           </td>
         </tr>
         <tr>
@@ -525,10 +524,10 @@
             kube-apiserver
           </td>
           <td>
-            &ndash;etcd-keyfile
+            –etcd-keyfile
           </td>
           <td>
-            &ndash;etcd-certfile
+            –etcd-certfile
           </td>
         </tr>
         <tr>
@@ -546,7 +545,7 @@
           </td>
           <td></td>
           <td>
-            &ndash;client-ca-file
+            –client-ca-file
           </td>
         </tr>
         <tr>
@@ -563,10 +562,10 @@
             kube-controller-manager
           </td>
           <td>
-            &ndash;cluster-signing-key-file
+            –cluster-signing-key-file
           </td>
           <td>
-            &ndash;client-ca-file, &ndash;root-ca-file, &ndash;cluster-signing-cert-file
+            –client-ca-file, –root-ca-file, –cluster-signing-cert-file
           </td>
         </tr>
         <tr>
@@ -583,10 +582,10 @@
             kube-apiserver
           </td>
           <td>
-            &ndash;tls-private-key-file
+            –tls-private-key-file
           </td>
           <td>
-            &ndash;tls-cert-file
+            –tls-cert-file
           </td>
         </tr>
         <tr>
@@ -603,10 +602,10 @@
             kube-apiserver
           </td>
           <td>
-            &ndash;kubelet-client-key
+            –kubelet-client-key
           </td>
           <td>
-            &ndash;kubelet-client-certificate
+            –kubelet-client-certificate
           </td>
         </tr>
         <tr>
@@ -624,7 +623,7 @@
           </td>
           <td></td>
           <td>
-            &ndash;requestheader-client-ca-file
+            –requestheader-client-ca-file
           </td>
         </tr>
         <tr>
@@ -642,7 +641,7 @@
           </td>
           <td></td>
           <td>
-            &ndash;requestheader-client-ca-file
+            –requestheader-client-ca-file
           </td>
         </tr>
         <tr>
@@ -659,10 +658,10 @@
             kube-apiserver
           </td>
           <td>
-            &ndash;proxy-client-key-file
+            –proxy-client-key-file
           </td>
           <td>
-            &ndash;proxy-client-cert-file
+            –proxy-client-cert-file
           </td>
         </tr>
         <tr>
@@ -680,7 +679,7 @@
           </td>
           <td></td>
           <td>
-            &ndash;trusted-ca-file, &ndash;peer-trusted-ca-file
+            –trusted-ca-file, –peer-trusted-ca-file
           </td>
         </tr>
         <tr>
@@ -697,10 +696,10 @@
             etcd
           </td>
           <td>
-            &ndash;key-file
+            –key-file
           </td>
           <td>
-            &ndash;cert-file
+            –cert-file
           </td>
         </tr>
         <tr>
@@ -717,10 +716,10 @@
             etcd
           </td>
           <td>
-            &ndash;peer-key-file
+            –peer-key-file
           </td>
           <td>
-            &ndash;peer-cert-file
+            –peer-cert-file
           </td>
         </tr>
         <tr>
@@ -736,7 +735,7 @@
           </td>
           <td></td>
           <td>
-            &ndash;cacert
+            –cacert
           </td>
         </tr>
         <tr>
@@ -753,10 +752,10 @@
             etcdctl
           </td>
           <td>
-            &ndash;key
+            –key
           </td>
           <td>
-            &ndash;cert
+            –cert
           </td>
         </tr>
       </tbody>
@@ -1005,5 +1004,5 @@
         </tr>
       </tbody>
     </table>
-  </body>
-</html>
+  
+</body></html>

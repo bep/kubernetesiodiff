@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Coarse Parallel Processing Using a Work Queue
 </h1>
@@ -141,11 +140,11 @@
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://raw.githubusercontent.com/kubernetes/kubernetes/release-1.3/examples/celery-rabbitmq/rabbitmq-service.yaml</code></pre>
 </div>
-<pre><code>service &quot;rabbitmq-service&quot; created</code></pre>
+<pre><code>service &#34;rabbitmq-service&#34; created</code></pre>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://raw.githubusercontent.com/kubernetes/kubernetes/release-1.3/examples/celery-rabbitmq/rabbitmq-controller.yaml</code></pre>
 </div>
-<pre><code>replicationcontroller &quot;rabbitmq-controller&quot; created</code></pre>
+<pre><code>replicationcontroller &#34;rabbitmq-controller&#34; created</code></pre>
 <p>
   We will only use the rabbitmq part from the
   <a href="https://github.com/kubernetes/kubernetes/tree/release-1.3/examples/celery-rabbitmq">
@@ -259,7 +258,7 @@ root@temp-loe07:/#</code></pre>
   Filling the Queue with tasks
 </h2>
 <p>
-  Now let&rsquo;s fill the queue with some &ldquo;tasks&rdquo;.  In our example, our tasks are just strings to be
+  Now let’s fill the queue with some “tasks”.  In our example, our tasks are just strings to be
   printed.
 </p>
 <p>
@@ -320,40 +319,11 @@ job1</code></pre>
   from the queue and run our actual program.  Here is a very simple
   example program:
 </p>
-<table class="includecode" id="application-job-rabbitmq-worker-py">
-<thead>
-  <tr>
-    <th>
-      <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/job/rabbitmq/worker.py" download="application/job/rabbitmq/worker.py">
-        <code>
-          application/job/rabbitmq/worker.py
-        </code>
-      </a>
-      <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-rabbitmq-worker-py')" title="Copy application/job/rabbitmq/worker.py to clipboard">
-    </th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>
-      <div class="highlight">
-        <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-style:italic">#!/usr/bin/env python</span>
-<p><span style="color:#080;font-style:italic"># Just prints standard out and sleeps for 10 seconds.</span>
-<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">sys</span>
-<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">time</span>
-<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&quot;Processing &quot;</span> <span style="color:#666">+</span> sys<span style="color:#666">.</span>stdin<span style="color:#666">.</span>readlines()[<span style="color:#666">0</span>])
-time<span style="color:#666">.</span>sleep(<span style="color:#666">10</span>)</code></pre>
-      </div>
-    </td>
-  </tr>
-</tbody>
-<p>
+<p data-diff="">
   Give the script execution permission:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">chmod +x worker.py</code></pre>
-</div>
-<p>
+</div><p>
   Now, build an image.  If you are working in the source
   tree, then change directory to
   <code>
@@ -372,11 +342,9 @@ time<span style="color:#666">.</span>sleep(<span style="color:#666">10</span>)</
   </a>
   .  In either case,
   build the image with this command:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker build -t job-wq-1 .</code></pre>
-</div>
-<p>
+</div><p>
   For the
   <a href="https://hub.docker.com/">
     Docker Hub
@@ -387,12 +355,10 @@ time<span style="color:#666">.</span>sleep(<span style="color:#666">10</span>)</
     &lt;username&gt;
   </code>
   with your Hub username.
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker tag job-wq-1 &lt;username&gt;/job-wq-1
 docker push &lt;username&gt;/job-wq-1</code></pre>
-</div>
-<p>
+</div><p>
   If you are using
   <a href="https://cloud.google.com/tools/container-registry/">
     Google Container
@@ -404,23 +370,56 @@ docker push &lt;username&gt;/job-wq-1</code></pre>
     &lt;project&gt;
   </code>
   with your project ID.
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker tag job-wq-1 gcr.io/&lt;project&gt;/job-wq-1
 gcloud docker -- push gcr.io/&lt;project&gt;/job-wq-1</code></pre>
-</div>
-<h2 id="defining-a-job">
+</div><h2 id="defining-a-job">
   Defining a Job
-</h2>
-<p>
-  Here is a job definition.  You&rsquo;ll need to make a copy of the Job and edit the
+</h2><p>
+  Here is a job definition.  You’ll need to make a copy of the Job and edit the
   image to match the name you used, and call it
   <code>
     ./job.yaml
   </code>
   .
-</p>
-<table class="includecode" id="application-job-rabbitmq-job-yaml">
+</p><table class="includecode" id="application-job-rabbitmq-worker-py">
+<thead>
+  <tr>
+    <th>
+      <a href="https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/job/rabbitmq/worker.py" download="application/job/rabbitmq/worker.py">
+        <code>
+          application/job/rabbitmq/worker.py
+        </code>
+      </a>
+      <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-job-rabbitmq-worker-py&#39;)" title="Copy application/job/rabbitmq/worker.py to clipboard"/>
+    </th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+      <div class="highlight">
+        <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-style:italic">#!/usr/bin/env python</span>
+</code><p><code class="language-python" data-lang="python"><span style="color:#080;font-style:italic"># Just prints standard out and sleeps for 10 seconds.</span>
+<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">sys</span>
+<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">time</span>
+<span style="color:#a2f;font-weight:bold">print</span>(<span style="color:#b44">&#34;Processing &#34;</span> <span style="color:#666">+</span> sys<span style="color:#666">.</span>stdin<span style="color:#666">.</span>readlines()[<span style="color:#666">0</span>])
+time<span style="color:#666">.</span>sleep(<span style="color:#666">10</span>)</code></p></pre>
+      </div>
+    </td>
+  </tr>
+</tbody>
+
+
+
+
+
+
+
+
+
+
+</table><table class="includecode" id="application-job-rabbitmq-job-yaml">
   <thead>
     <tr>
       <th>
@@ -429,7 +428,7 @@ gcloud docker -- push gcr.io/&lt;project&gt;/job-wq-1</code></pre>
             application/job/rabbitmq/job.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-rabbitmq-job-yaml')" title="Copy application/job/rabbitmq/job.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-job-rabbitmq-job-yaml&#39;)" title="Copy application/job/rabbitmq/job.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -527,7 +526,7 @@ Events:
 </h2>
 <p>
   This approach has the advantage that you
-  do not need to modify your &ldquo;worker&rdquo; program to be aware that there is a work queue.
+  do not need to modify your “worker” program to be aware that there is a work queue.
 </p>
 <p>
   It does require that you run a message queue service.
@@ -580,4 +579,4 @@ Events:
   exits with success, or if the node crashes before the kubelet is able to post the success of the pod
   back to the api-server, then the Job will not appear to be complete, even though all items
   in the queue have been processed.
-</p>
+</p></body></html>

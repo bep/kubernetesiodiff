@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Example: Deploying Cassandra with a StatefulSet
     </h1>
@@ -50,9 +49,9 @@
           </em>
           ). When those Pods run in your Kubernetes cluster,
           the Kubernetes control plane schedules those Pods onto Kubernetes
-          <a class='glossary-tooltip' href='/docs/concepts/architecture/nodes/' target='_blank'>
+          <a class="glossary-tooltip" href="/docs/concepts/architecture/nodes/" target="_blank">
             Nodes
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               A node is a worker machine in Kubernetes.
             </span>
           </a>
@@ -113,7 +112,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -123,9 +122,9 @@
     <ul>
       <li>
         Create and validate a Cassandra headless
-        <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
           Service
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             A way to expose an application running on a set of Pods as a network service.
           </span>
         </a>
@@ -133,9 +132,9 @@
       </li>
       <li>
         Use a
-        <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/statefulset/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/statefulset/" target="_blank">
           StatefulSet
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.
           </span>
         </a>
@@ -149,9 +148,9 @@
       </li>
       <li>
         Delete the StatefulSet and its
-        <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
           Pods
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
           </span>
         </a>
@@ -185,23 +184,23 @@
     </ul>
     <p>
       To complete this tutorial, you should already have a basic familiarity with
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         Pods
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
       ,
-      <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
         Services
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A way to expose an application running on a set of Pods as a network service.
         </span>
       </a>
       , and
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/statefulset/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/statefulset/" target="_blank">
         StatefulSets
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.
         </span>
       </a>
@@ -231,16 +230,16 @@
     </h2>
     <p>
       In Kubernetes, a
-      <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
         Service
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A way to expose an application running on a set of Pods as a network service.
         </span>
       </a>
       describes a set of
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         Pods
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
@@ -258,7 +257,7 @@
                 application/cassandra/cassandra-service.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-cassandra-cassandra-service-yaml')" title="Copy application/cassandra/cassandra-service.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-cassandra-cassandra-service-yaml&#39;)" title="Copy application/cassandra/cassandra-service.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -309,7 +308,7 @@
     <pre><code>NAME        TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
 cassandra   ClusterIP   None         &lt;none&gt;        9042/TCP   45s</code></pre>
     <p>
-      If you don&rsquo;t see a Service named
+      If you don’t see a Service named
       <code>
         cassandra
       </code>
@@ -342,7 +341,7 @@ cassandra   ClusterIP   None         &lt;none&gt;        9042/TCP   45s</code></
                 application/cassandra/cassandra-statefulset.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-cassandra-cassandra-statefulset-yaml')" title="Copy application/cassandra/cassandra-statefulset.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-cassandra-cassandra-statefulset-yaml&#39;)" title="Copy application/cassandra/cassandra-statefulset.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -598,7 +597,7 @@ UN  172.17.0.6  84.74 KiB  32           67.1%             a6a1e8c2-3dc5-4417-b1a
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">resourceVersion</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;323&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">uid</span>:<span style="color:#bbb"> </span>7a219483<span style="color:#666">-6185-11e6</span>-a910-42010a8a0fc0<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">spec</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">replicas</span>:<span style="color:#bbb"> </span><span style="color:#666">3</span><span style="color:#bbb" data-diff="">
 </span></code></pre>
         </div>
       </li>
@@ -675,7 +674,7 @@ cassandra   4         4         36m</code></pre>
           gcr.io/google-samples/cassandra:v13
         </code>
       </a>
-      image from Google&rsquo;s
+      image from Google’s
       <a href="https://cloud.google.com/container-registry/docs/">
         container registry
       </a>
@@ -714,7 +713,7 @@ cassandra   4         4         36m</code></pre>
           </td>
           <td align="center">
             <code>
-              'Test Cluster'
+              &#39;Test Cluster&#39;
             </code>
           </td>
         </tr>
@@ -770,5 +769,5 @@ cassandra   4         4         36m</code></pre>
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

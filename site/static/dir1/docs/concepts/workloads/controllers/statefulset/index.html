@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       StatefulSets
     </h1>
@@ -16,9 +15,9 @@
     </p>
     <p>
       Manages the deployment and scaling of a set of
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         Pods
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
@@ -30,13 +29,13 @@
     </p>
     <p>
       Like a
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/deployment/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/deployment/" target="_blank">
         Deployment
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An API object that manages a replicated application.
         </span>
       </a>
-      , a StatefulSet manages Pods that are based on an identical container spec. Unlike a Deployment, a StatefulSet maintains a sticky identity for each of their Pods. These pods are created from the same spec, but are not interchangeable&#58; each has a persistent identifier that it maintains across any rescheduling.
+      , a StatefulSet manages Pods that are based on an identical container spec. Unlike a Deployment, a StatefulSet maintains a sticky identity for each of their Pods. These pods are created from the same spec, but are not interchangeable: each has a persistent identifier that it maintains across any rescheduling.
     </p>
     <ul id="markdown-toc">
       <li>
@@ -76,7 +75,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -103,7 +102,7 @@
     </ul>
     <p>
       In the above, stable is synonymous with persistence across Pod (re)scheduling.
-      If an application doesn&rsquo;t require any stable identifiers or ordered deployment,
+      If an application doesn’t require any stable identifiers or ordered deployment,
       deletion, or scaling, you should deploy your application using a workload object
       that provides a set of stateless replicas.
       <a href="/docs/concepts/workloads/controllers/deployment/">
@@ -161,7 +160,7 @@
           OrderedReady
         </code>
         ),
-        it&rsquo;s possible to get into a broken state that requires
+        it’s possible to get into a broken state that requires
         <a href="#forced-rollback">
           manual intervention to repair
         </a>
@@ -285,7 +284,7 @@
     <p>
       StatefulSet Pods have a unique identity that is comprised of an ordinal, a
       stable network identity, and stable storage. The identity sticks to the Pod,
-      regardless of which node it&rsquo;s (re)scheduled on.
+      regardless of which node it’s (re)scheduled on.
     </p>
     <h3 id="ordinal-index">
       Ordinal Index
@@ -318,7 +317,7 @@
       <code>
         $(service name).$(namespace).svc.cluster.local
       </code>
-      , where &ldquo;cluster.local&rdquo; is the
+      , where “cluster.local” is the
       cluster domain.
       As each Pod is created, it gets a matching DNS subdomain, taking the form:
       <code>
@@ -345,7 +344,7 @@
     </p>
     <p>
       Here are some examples of choices for Cluster Domain, Service name,
-      StatefulSet name, and how that affects the DNS names for the StatefulSet&rsquo;s Pods.
+      StatefulSet name, and how that affects the DNS names for the StatefulSet’s Pods.
     </p>
     <table>
       <thead>
@@ -471,7 +470,7 @@
       </code>
       mount the PersistentVolumes associated with its
       PersistentVolume Claims. Note that, the PersistentVolumes associated with the
-      Pods&rsquo; PersistentVolume Claims are not deleted when the Pods, or StatefulSet are deleted.
+      Pods’ PersistentVolume Claims are not deleted when the Pods, or StatefulSet are deleted.
       This must be done manually.
     </p>
     <h3 id="pod-name-label">
@@ -479,9 +478,9 @@
     </h3>
     <p>
       When the StatefulSet
-      <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/architecture/controller/" target="_blank">
         Controller
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
         </span>
       </a>
@@ -540,7 +539,7 @@
       </code>
       , web-2 would be terminated first. web-1 would not be terminated until web-2
       is fully shutdown and deleted. If web-0 were to fail after web-2 has been terminated and
-      is completely shutdown, but prior to web-1&rsquo;s termination, web-1 would not be terminated
+      is completely shutdown, but prior to web-1’s termination, web-1 would not be terminated
       until web-0 is Running and Ready.
     </p>
     <h3 id="pod-management-policies">
@@ -585,7 +584,7 @@
       Update Strategies
     </h2>
     <p>
-      In Kubernetes 1.7 and later, StatefulSet&rsquo;s
+      In Kubernetes 1.7 and later, StatefulSet’s
       <code>
         .spec.updateStrategy
       </code>
@@ -601,7 +600,7 @@
       <code>
         OnDelete
       </code>
-      update strategy implements the legacy (1.6 and prior) behavior. When a StatefulSet&rsquo;s
+      update strategy implements the legacy (1.6 and prior) behavior. When a StatefulSet’s
       <code>
         .spec.updateStrategy.type
       </code>
@@ -611,7 +610,7 @@
       </code>
       , the StatefulSet controller will not automatically
       update the Pods in a StatefulSet. Users must manually delete Pods to cause the controller to
-      create new Pods that reflect modifications made to a StatefulSet&rsquo;s
+      create new Pods that reflect modifications made to a StatefulSet’s
       <code>
         .spec.template
       </code>
@@ -630,7 +629,7 @@
       <code>
         .spec.updateStrategy
       </code>
-      is left unspecified. When a StatefulSet&rsquo;s
+      is left unspecified. When a StatefulSet’s
       <code>
         .spec.updateStrategy.type
       </code>
@@ -657,13 +656,13 @@
         .spec.updateStrategy.rollingUpdate.partition
       </code>
       . If a partition is specified, all Pods with an
-      ordinal that is greater than or equal to the partition will be updated when the StatefulSet&rsquo;s
+      ordinal that is greater than or equal to the partition will be updated when the StatefulSet’s
       <code>
         .spec.template
       </code>
       is updated. All Pods with an ordinal that is less than the partition will not
       be updated, and, even if they are deleted, they will be recreated at the previous version. If a
-      StatefulSet&rsquo;s
+      StatefulSet’s
       <code>
         .spec.updateStrategy.rollingUpdate.partition
       </code>
@@ -697,7 +696,7 @@
         OrderedReady
       </code>
       ),
-      it&rsquo;s possible to get into a broken state that requires manual intervention to repair.
+      it’s possible to get into a broken state that requires manual intervention to repair.
     </p>
     <p>
       If you update the Pod template to a configuration that never becomes Running and
@@ -705,7 +704,7 @@
       StatefulSet will stop the rollout and wait.
     </p>
     <p>
-      In this state, it&rsquo;s not enough to revert the Pod template to a good configuration.
+      In this state, it’s not enough to revert the Pod template to a good configuration.
       Due to a
       <a href="https://github.com/kubernetes/kubernetes/issues/67250">
         known issue
@@ -747,5 +746,5 @@
         .
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

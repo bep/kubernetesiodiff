@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configuring each kubelet in your cluster using kubeadm
     </h1>
@@ -12,7 +11,7 @@
       Configuring each kubelet in your cluster using kubeadm
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -164,7 +163,7 @@
       that can configure most parameters in the kubelet and push out this configuration to each running
       kubelet in the cluster. This object is called
       <strong>
-        the kubelet&rsquo;s ComponentConfig
+        the kubelet’s ComponentConfig
       </strong>
       .
       The ComponentConfig allows the user to specify flags such as the cluster DNS IP addresses expressed as
@@ -212,13 +211,13 @@
           <code>
             .metadata.name
           </code>
-          is set to the machine&rsquo;s hostname by default,
+          is set to the machine’s hostname by default,
           unless you are using a cloud provider. You can use the
           <code>
             --hostname-override
           </code>
           flag to override the
-          default behavior if you need to specify a Node name different from the machine&rsquo;s hostname.
+          default behavior if you need to specify a Node name different from the machine’s hostname.
         </p>
       </li>
       <li>
@@ -254,7 +253,7 @@
       </li>
     </ul>
     <p>
-      You can specify these flags by configuring an individual kubelet&rsquo;s configuration in your service manager,
+      You can specify these flags by configuring an individual kubelet’s configuration in your service manager,
       such as systemd.
     </p>
     <h2 id="configure-kubelets-using-kubeadm">
@@ -493,7 +492,7 @@ ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_CONFIG_ARGS $KUBELE
         .
       </li>
       <li>
-        The file containing the kubelet&rsquo;s ComponentConfig is
+        The file containing the kubelet’s ComponentConfig is
         <code>
           /var/lib/kubelet/config.yaml
         </code>
@@ -628,5 +627,5 @@ ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_CONFIG_ARGS $KUBELE
         </tr>
       </tbody>
     </table>
-  </body>
-</html>
+  
+</body></html>

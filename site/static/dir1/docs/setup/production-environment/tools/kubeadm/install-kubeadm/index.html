@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Installing kubeadm
 </h1>
@@ -12,7 +11,7 @@
   Installing kubeadm
 </h1>
 <p>
-  <img src="https://raw.githubusercontent.com/kubernetes/kubeadm/master/logos/stacked/color/kubeadm-stacked-color.png" align="right" width="150px">
+  <img src="https://raw.githubusercontent.com/kubernetes/kubeadm/master/logos/stacked/color/kubeadm-stacked-color.png" align="right" width="150px"/>
   This page shows how to install the
   <code>
     kubeadm
@@ -72,7 +71,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -179,7 +178,7 @@
   Letting iptables see bridged traffic
 </h2>
 <p>
-  As a requirement for your Linux Node&rsquo;s iptables to correctly see bridged traffic, you should ensure
+  As a requirement for your Linux Node’s iptables to correctly see bridged traffic, you should ensure
   <code>
     net.bridge.bridge-nf-call-iptables
   </code>
@@ -417,9 +416,9 @@ sysctl --system</code></pre>
 </h2>
 <p>
   To run containers in Pods, Kubernetes uses a
-  <a class='glossary-tooltip' href='/docs/setup/production-environment/container-runtimes' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/setup/production-environment/container-runtimes" target="_blank">
     container runtime
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       The container runtime is the software that is responsible for running containers.
     </span>
   </a>
@@ -439,11 +438,11 @@ sysctl --system</code></pre>
     </li>
   </ul>
   <div id="container-runtime-0">
-    <p>
+    <p data-diff="">
       By default, Kubernetes uses the
-      <a class='glossary-tooltip' href='/docs/concepts/overview/components/#container-runtime' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/components/#container-runtime" target="_blank">
         Container Runtime Interface
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An API for container runtimes to integrate with kubelet
         </span>
       </a>
@@ -451,7 +450,7 @@ sysctl --system</code></pre>
       to interface with your chosen container runtime.
     </p>
     <p>
-      If you don&rsquo;t specify a runtime, kubeadm automatically tries to detect an installed
+      If you don’t specify a runtime, kubeadm automatically tries to detect an installed
       container runtime by scanning through a list of well known Unix domain sockets.
       The following table lists container runtimes and their associated socket paths:
     </p>
@@ -503,7 +502,7 @@ sysctl --system</code></pre>
       </tbody>
     </table>
     <p>
-      <br />
+      <br/>
       If both Docker and containerd are detected, Docker takes precedence. This is
       needed because Docker 18.09 ships with containerd and both are detectable even if you only
       installed Docker.
@@ -527,9 +526,9 @@ sysctl --system</code></pre>
   <div id="container-runtime-1">
     <p>
       By default, kubeadm uses
-      <a class='glossary-tooltip' href='https://docs.docker.com/engine/' target='_blank'>
+      <a class="glossary-tooltip" href="https://docs.docker.com/engine/" target="_blank">
         Docker
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Docker is a software technology providing operating-system-level virtualization also known as containers.
         </span>
       </a>
@@ -549,7 +548,7 @@ sysctl --system</code></pre>
     </p>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#container-runtime").tabs();});
 </script>
@@ -682,7 +681,7 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="k8s-install-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#b44">&lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
@@ -722,7 +721,7 @@ systemctl <span style="color:#a2f">enable</span> --now kubelet</code></pre>
       effectively disables it.
       This is required to allow containers to access the host filesystem, which is needed by pod networks for example.
       You have to do this until SELinux support is improved in the kubelet.
-      <br />
+      <br/>
     </li>
   </ul>
 </div>
@@ -786,12 +785,12 @@ curl -sSL <span style="color:#b44">&#34;https://raw.githubusercontent.com/kubern
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl <span style="color:#a2f">enable</span> --now kubelet</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#k8s-install").tabs();});
 </script>
-<p>
+</p><p>
   The kubelet is now restarting every few seconds, as it waits in a crashloop for
   kubeadm to tell it what to do.
 </p>
@@ -878,4 +877,4 @@ systemctl restart kubelet</code></pre>
       Using kubeadm to Create a Cluster
     </a>
   </li>
-</ul>
+</ul></div></body></html>

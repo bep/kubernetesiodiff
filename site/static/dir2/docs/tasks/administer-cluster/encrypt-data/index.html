@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Encrypting Secret Data at Rest
 </h1>
@@ -63,7 +62,7 @@
   <li>
     <p>
     You need to have a Kubernetes cluster, and the kubectl command-line tool must
-  </li>
+  </p></li>
 </ul>
 <p>
   be configured to communicate with your cluster. If you do not already have a
@@ -403,7 +402,7 @@
 <ol>
   <li>
     <p>
-      Generate a 32 byte random key and base64 encode it. If you&rsquo;re on Linux or macOS, run the following command:
+      Generate a 32 byte random key and base64 encode it. If you’re on Linux or macOS, run the following command:
     </p>
     <pre><code>head -c 32 /dev/urandom | base64</code></pre>
   </li>
@@ -478,7 +477,7 @@
   </li>
 </ol>
 <p>
-   ETCDCTL_API=3 etcdctl get /registry/secrets/default/secret1 [&hellip;] | hexdump -C
+   ETCDCTL_API=3 etcdctl get /registry/secrets/default/secret1 […] | hexdump -C
   ```
 </p><pre><code>where `[...]` must be the additional arguments for connecting to the etcd server. </code></pre>
 <ol start="3">
@@ -613,4 +612,4 @@
     kubectl get secrets --all-namespaces -o json | kubectl replace -f -
   </code>
   to force all secrets to be decrypted.
-</p>
+</p></body></html>

@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1></h1>
 <p>
   <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_upgrade_node.md" id="editPageButton" target="_blank">
@@ -12,7 +11,7 @@
     <li>
       <ul>
         <li>
-          <ul>
+          <ul data-diff="">
             <li>
               <a href="#synopsis">
                 Synopsis
@@ -41,7 +40,7 @@
   Upgrade commands for a node in the cluster
 </p>
 <p>
-  The &ldquo;node&rdquo; command executes the following phases:
+  The “node” command executes the following phases:
 </p>
 <pre><code>control-plane   Upgrade the control plane instance deployed on this node, if any
 kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
@@ -50,17 +49,27 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  <p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;certificate-renewal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+      –certificate-renewal     Default: true
     </td>
   </tr>
   <tr>
@@ -69,11 +78,10 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
       Perform the renewal of certificates used by component changed during upgrades.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;dry-run
+      –dry-run
     </td>
   </tr>
   <tr>
@@ -82,11 +90,10 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
       Do not change any state, just output the actions that would be performed.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;etcd-upgrade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+      –etcd-upgrade     Default: true
     </td>
   </tr>
   <tr>
@@ -95,11 +102,10 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
       Perform the upgrade of etcd.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -k, &ndash;experimental-kustomize string
+      -k, –experimental-kustomize string
     </td>
   </tr>
   <tr>
@@ -108,11 +114,10 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
       The path where kustomize patches for static pod manifests are stored.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -121,11 +126,10 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
       help for node
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -134,11 +138,10 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;skip-phases stringSlice
+      –skip-phases stringSlice
     </td>
   </tr>
   <tr>
@@ -147,30 +150,26 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
       List of phases to be skipped
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p></p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;rootfs string
+      –rootfs string
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
     </td>
   </tr>
-</p>
-<p>
+
+</tbody></table></p></body></html>

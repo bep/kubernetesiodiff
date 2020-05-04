@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1></h1>
     <p>
       <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_kubelet_config_download.md" id="editPageButton" target="_blank">
@@ -12,7 +11,7 @@
         <li>
           <ul>
             <li>
-              <a href="#synopsis">
+              <a href="#synopsis" data-diff="">
                 Synopsis
               </a>
             </li>
@@ -39,7 +38,7 @@
       Synopsis
     </h3>
     <p>
-      Download the kubelet configuration from a ConfigMap of the form &ldquo;kubelet-config-1.X&rdquo; in the cluster, where X is the minor version of the kubelet. Either kubeadm autodetects the kubelet version by exec-ing &ldquo;kubelet &ndash;version&rdquo; or respects the &ndash;kubelet-version parameter.
+      Download the kubelet configuration from a ConfigMap of the form “kubelet-config-1.X” in the cluster, where X is the minor version of the kubelet. Either kubeadm autodetects the kubelet version by exec-ing “kubelet –version” or respects the –kubelet-version parameter.
     </p>
     <p>
       Alpha Disclaimer: this command is currently alpha.
@@ -56,50 +55,50 @@
     <h3 id="options">
       Options
     </h3>
-    <table style="width: 100%; table-layout: fixed;">
+    <pre><code>&lt;tr&gt;
+  &lt;td colspan=&#34;2&#34;&gt;-h, --help&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;&lt;/td&gt;&lt;td style=&#34;line-height: 130%; word-wrap: break-word;&#34;&gt;help for download&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td colspan=&#34;2&#34;&gt;--kubeconfig string&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Default: &#34;/etc/kubernetes/admin.conf&#34;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;&lt;/td&gt;&lt;td style=&#34;line-height: 130%; word-wrap: break-word;&#34;&gt;The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+  &lt;td colspan=&#34;2&#34;&gt;--kubelet-version string&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;&lt;/td&gt;&lt;td style=&#34;line-height: 130%; word-wrap: break-word;&#34;&gt;The desired version for the kubelet. Defaults to being autodetected from &#39;kubelet --version&#39;.&lt;/td&gt;
+&lt;/tr&gt;</code></pre><table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
-        <pre><code>&lt;tr&gt;
-  &lt;td colspan=&quot;2&quot;&gt;-h, --help&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;&lt;/td&gt;&lt;td style=&quot;line-height: 130%; word-wrap: break-word;&quot;&gt;help for download&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-  &lt;td colspan=&quot;2&quot;&gt;--kubeconfig string&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Default: &quot;/etc/kubernetes/admin.conf&quot;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;&lt;/td&gt;&lt;td style=&quot;line-height: 130%; word-wrap: break-word;&quot;&gt;The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-  &lt;td colspan=&quot;2&quot;&gt;--kubelet-version string&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td&gt;&lt;/td&gt;&lt;td style=&quot;line-height: 130%; word-wrap: break-word;&quot;&gt;The desired version for the kubelet. Defaults to being autodetected from 'kubelet --version'.&lt;/td&gt;
-&lt;/tr&gt;</code></pre>
+        
       </tbody>
     </table>
     <h3 id="options-inherited-from-parent-commands">
       Options inherited from parent commands
     </h3>
-    <table style="width: 100%; table-layout: fixed;">
-      <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
-      </colgroup>
-      <tbody>
-        <pre><code>&lt;tr&gt;
-  &lt;td colspan=&quot;2&quot;&gt;--rootfs string&lt;/td&gt;
+    <pre><code>&lt;tr&gt;
+  &lt;td colspan=&#34;2&#34;&gt;--rootfs string&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-  &lt;td&gt;&lt;/td&gt;&lt;td style=&quot;line-height: 130%; word-wrap: break-word;&quot;&gt;[EXPERIMENTAL] The path to the 'real' host root filesystem.&lt;/td&gt;
-&lt;/tr&gt;</code></pre>
+  &lt;td&gt;&lt;/td&gt;&lt;td style=&#34;line-height: 130%; word-wrap: break-word;&#34;&gt;[EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.&lt;/td&gt;
+&lt;/tr&gt;</code></pre><table style="width: 100%; table-layout: fixed;">
+      <colgroup>
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
+      </colgroup>
+      <tbody>
+        
       </tbody>
     </table>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Upgrading kubeadm clusters
 </h1>
@@ -173,7 +172,7 @@
   it should look like 1.18.x-00, where x is the latest patch
 </h1>
 <p>
-<div id="k8s-install-versions-1">
+</p><div id="k8s-install-versions-1">
 <pre><code>    &lt;pre&gt;&lt;code&gt;yum list --showduplicates kubeadm --disableexcludes=kubernetes</code></pre>
 <h1 id="find-the-latest-1-18-version-in-the-list-1">
   find the latest 1.18 version in the list
@@ -185,7 +184,7 @@
 <script>
   $(function(){$("#k8s-install-versions").tabs();});
 </script>
-<h2 id="upgrading-control-plane-nodes">
+</p><h2 id="upgrading-control-plane-nodes">
   Upgrading control plane nodes
 </h2>
 <h3 id="upgrade-the-first-control-plane-node">
@@ -213,9 +212,9 @@
 <pre><code>    &lt;pre&gt;&lt;code&gt;# replace x in 1.18.x-00 with the latest patch version</code></pre>
 <p>
   apt-mark unhold kubeadm &amp;&amp;
-  <br>
+  <br/>
   apt-get update &amp;&amp; apt-get install -y kubeadm=1.18.x-00 &amp;&amp;
-  <br>
+  <br/>
   apt-mark hold kubeadm
 </p>
 <h1 id="since-apt-get-version-1-1-you-can-also-use-the-following-method">
@@ -223,16 +222,16 @@
 </h1>
 <p>
 apt-get update &amp;&amp;
-<br>
-apt-get install -y &ndash;allow-change-held-packages kubeadm=1.18.x-00
-<div id="k8s-install-kubeadm-first-cp-1">
+<br/>
+apt-get install -y –allow-change-held-packages kubeadm=1.18.x-00
+</p><div id="k8s-install-kubeadm-first-cp-1">
 <pre><code>    &lt;pre&gt;&lt;code&gt;# replace x in 1.18.x-0 with the latest patch version</code></pre>
 <p>
-yum install -y kubeadm-1.18.x-0 &ndash;disableexcludes=kubernetes
+yum install -y kubeadm-1.18.x-0 –disableexcludes=kubernetes
 <script>
   $(function(){$("#k8s-install-kubeadm-first-cp").tabs();});
 </script>
-<ol>
+</p><ol>
   <li>
     <p>
       Verify that the download works and has the expected version:
@@ -262,7 +261,7 @@ kubectl drain &lt;cp-node-name&gt; --ignore-daemonsets</code></pre>
     </p>
     <pre><code>[upgrade/config] Making sure the configuration is correct:
 [upgrade/config] Reading configuration from the cluster...
-[upgrade/config] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
+[upgrade/config] FYI: You can look at this config file with &#39;kubectl -n kube-system get cm kubeadm-config -oyaml&#39;
 [preflight] Running pre-flight checks.
 [upgrade] Running cluster health checks
 [upgrade] Fetching available versions to upgrade to
@@ -271,7 +270,7 @@ kubectl drain &lt;cp-node-name&gt; --ignore-daemonsets</code></pre>
 [upgrade/versions] Latest stable version: v1.18.0
 [upgrade/versions] Latest version in the v1.17 series: v1.18.0
 
-Components that must be upgraded manually after you have upgraded the control plane with 'kubeadm upgrade apply':
+Components that must be upgraded manually after you have upgraded the control plane with &#39;kubeadm upgrade apply&#39;:
 COMPONENT   CURRENT             AVAILABLE
 Kubelet     1 x v1.17.3   v1.18.0
 
@@ -294,7 +293,7 @@ _____________________________________________________________________</code></pr
       This command checks that your cluster can be upgraded, and fetches the versions you can upgrade to.
     </p>
     <blockquote class="note">
-  </li>
+  </blockquote></li>
 </ol>
 <div>
   <strong>
@@ -329,10 +328,10 @@ sudo kubeadm upgrade apply v1.18.x</code></pre>
     </p>
     <pre><code>[upgrade/config] Making sure the configuration is correct:
 [upgrade/config] Reading configuration from the cluster...
-[upgrade/config] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
+[upgrade/config] FYI: You can look at this config file with &#39;kubectl -n kube-system get cm kubeadm-config -oyaml&#39;
 [preflight] Running pre-flight checks.
 [upgrade] Running cluster health checks
-[upgrade/version] You have chosen to change the cluster version to &quot;v1.18.0&quot;
+[upgrade/version] You have chosen to change the cluster version to &#34;v1.18.0&#34;
 [upgrade/versions] Cluster version: v1.17.3
 [upgrade/versions] kubeadm version: v1.18.0
 [upgrade/confirm] Are you sure you want to proceed with the upgrade? [y/N]: y
@@ -352,57 +351,57 @@ sudo kubeadm upgrade apply v1.18.x</code></pre>
 [upgrade/prepull] Prepulled image for component kube-controller-manager.
 [upgrade/prepull] Prepulled image for component kube-scheduler.
 [upgrade/prepull] Successfully prepulled the images for all the control plane components
-[upgrade/apply] Upgrading your Static Pod-hosted control plane to version &quot;v1.18.0&quot;...
+[upgrade/apply] Upgrading your Static Pod-hosted control plane to version &#34;v1.18.0&#34;...
 Static pod: kube-apiserver-myhost hash: 2cc222e1a577b40a8c2832320db54b46
 Static pod: kube-controller-manager-myhost hash: f7ce4bc35cb6e646161578ac69910f18
 Static pod: kube-scheduler-myhost hash: e3025acd90e7465e66fa19c71b916366
 [upgrade/etcd] Upgrading to TLS for etcd
-[upgrade/etcd] Non fatal issue encountered during upgrade: the desired etcd version for this Kubernetes version &quot;v1.18.0&quot; is &quot;3.4.3-0&quot;, but the current etcd version is &quot;3.4.3&quot;. Won't downgrade etcd, instead just continue
-[upgrade/staticpods] Writing new Static Pod manifests to &quot;/etc/kubernetes/tmp/kubeadm-upgraded-manifests308527012&quot;
-W0308 18:48:14.535122    3082 manifests.go:225] the default kube-apiserver authorization-mode is &quot;Node,RBAC&quot;; using &quot;Node,RBAC&quot;
-[upgrade/staticpods] Preparing for &quot;kube-apiserver&quot; upgrade
+[upgrade/etcd] Non fatal issue encountered during upgrade: the desired etcd version for this Kubernetes version &#34;v1.18.0&#34; is &#34;3.4.3-0&#34;, but the current etcd version is &#34;3.4.3&#34;. Won&#39;t downgrade etcd, instead just continue
+[upgrade/staticpods] Writing new Static Pod manifests to &#34;/etc/kubernetes/tmp/kubeadm-upgraded-manifests308527012&#34;
+W0308 18:48:14.535122    3082 manifests.go:225] the default kube-apiserver authorization-mode is &#34;Node,RBAC&#34;; using &#34;Node,RBAC&#34;
+[upgrade/staticpods] Preparing for &#34;kube-apiserver&#34; upgrade
 [upgrade/staticpods] Renewing apiserver certificate
 [upgrade/staticpods] Renewing apiserver-kubelet-client certificate
 [upgrade/staticpods] Renewing front-proxy-client certificate
 [upgrade/staticpods] Renewing apiserver-etcd-client certificate
-[upgrade/staticpods] Moved new manifest to &quot;/etc/kubernetes/manifests/kube-apiserver.yaml&quot; and backed up old manifest to &quot;/etc/kubernetes/tmp/kubeadm-backup-manifests-2020-03-08-18-48-14/kube-apiserver.yaml&quot;
+[upgrade/staticpods] Moved new manifest to &#34;/etc/kubernetes/manifests/kube-apiserver.yaml&#34; and backed up old manifest to &#34;/etc/kubernetes/tmp/kubeadm-backup-manifests-2020-03-08-18-48-14/kube-apiserver.yaml&#34;
 [upgrade/staticpods] Waiting for the kubelet to restart the component
 [upgrade/staticpods] This might take a minute or longer depending on the component/version gap (timeout 5m0s)
 Static pod: kube-apiserver-myhost hash: 2cc222e1a577b40a8c2832320db54b46
 Static pod: kube-apiserver-myhost hash: 609429acb0d71dce6725836dd97d8bf4
 [apiclient] Found 1 Pods for label selector component=kube-apiserver
-[upgrade/staticpods] Component &quot;kube-apiserver&quot; upgraded successfully!
-[upgrade/staticpods] Preparing for &quot;kube-controller-manager&quot; upgrade
+[upgrade/staticpods] Component &#34;kube-apiserver&#34; upgraded successfully!
+[upgrade/staticpods] Preparing for &#34;kube-controller-manager&#34; upgrade
 [upgrade/staticpods] Renewing controller-manager.conf certificate
-[upgrade/staticpods] Moved new manifest to &quot;/etc/kubernetes/manifests/kube-controller-manager.yaml&quot; and backed up old manifest to &quot;/etc/kubernetes/tmp/kubeadm-backup-manifests-2020-03-08-18-48-14/kube-controller-manager.yaml&quot;
+[upgrade/staticpods] Moved new manifest to &#34;/etc/kubernetes/manifests/kube-controller-manager.yaml&#34; and backed up old manifest to &#34;/etc/kubernetes/tmp/kubeadm-backup-manifests-2020-03-08-18-48-14/kube-controller-manager.yaml&#34;
 [upgrade/staticpods] Waiting for the kubelet to restart the component
 [upgrade/staticpods] This might take a minute or longer depending on the component/version gap (timeout 5m0s)
 Static pod: kube-controller-manager-myhost hash: f7ce4bc35cb6e646161578ac69910f18
 Static pod: kube-controller-manager-myhost hash: c7a1232ba2c5dc15641c392662fe5156
 [apiclient] Found 1 Pods for label selector component=kube-controller-manager
-[upgrade/staticpods] Component &quot;kube-controller-manager&quot; upgraded successfully!
-[upgrade/staticpods] Preparing for &quot;kube-scheduler&quot; upgrade
+[upgrade/staticpods] Component &#34;kube-controller-manager&#34; upgraded successfully!
+[upgrade/staticpods] Preparing for &#34;kube-scheduler&#34; upgrade
 [upgrade/staticpods] Renewing scheduler.conf certificate
-[upgrade/staticpods] Moved new manifest to &quot;/etc/kubernetes/manifests/kube-scheduler.yaml&quot; and backed up old manifest to &quot;/etc/kubernetes/tmp/kubeadm-backup-manifests-2020-03-08-18-48-14/kube-scheduler.yaml&quot;
+[upgrade/staticpods] Moved new manifest to &#34;/etc/kubernetes/manifests/kube-scheduler.yaml&#34; and backed up old manifest to &#34;/etc/kubernetes/tmp/kubeadm-backup-manifests-2020-03-08-18-48-14/kube-scheduler.yaml&#34;
 [upgrade/staticpods] Waiting for the kubelet to restart the component
 [upgrade/staticpods] This might take a minute or longer depending on the component/version gap (timeout 5m0s)
 Static pod: kube-scheduler-myhost hash: e3025acd90e7465e66fa19c71b916366
 Static pod: kube-scheduler-myhost hash: b1b721486ae0ac504c160dcdc457ab0d
 [apiclient] Found 1 Pods for label selector component=kube-scheduler
-[upgrade/staticpods] Component &quot;kube-scheduler&quot; upgraded successfully!
-[upload-config] Storing the configuration used in ConfigMap &quot;kubeadm-config&quot; in the &quot;kube-system&quot; Namespace
-[kubelet] Creating a ConfigMap &quot;kubelet-config-1.18&quot; in namespace kube-system with the configuration for the kubelets in the cluster
-[kubelet-start] Downloading configuration for the kubelet from the &quot;kubelet-config-1.18&quot; ConfigMap in the kube-system namespace
-[kubelet-start] Writing kubelet configuration to file &quot;/var/lib/kubelet/config.yaml&quot;
+[upgrade/staticpods] Component &#34;kube-scheduler&#34; upgraded successfully!
+[upload-config] Storing the configuration used in ConfigMap &#34;kubeadm-config&#34; in the &#34;kube-system&#34; Namespace
+[kubelet] Creating a ConfigMap &#34;kubelet-config-1.18&#34; in namespace kube-system with the configuration for the kubelets in the cluster
+[kubelet-start] Downloading configuration for the kubelet from the &#34;kubelet-config-1.18&#34; ConfigMap in the kube-system namespace
+[kubelet-start] Writing kubelet configuration to file &#34;/var/lib/kubelet/config.yaml&#34;
 [bootstrap-token] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
 [bootstrap-token] configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
 [bootstrap-token] configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
 [addons] Applied essential addon: CoreDNS
 [addons] Applied essential addon: kube-proxy
 
-[upgrade/successful] SUCCESS! Your cluster was upgraded to &quot;v1.18.0&quot;. Enjoy!
+[upgrade/successful] SUCCESS! Your cluster was upgraded to &#34;v1.18.0&#34;. Enjoy!
 
-[upgrade/kubelet] Now that your control plane is upgraded, please proceed with upgrading your kubelets if you haven't already done so.</code></pre>
+[upgrade/kubelet] Now that your control plane is upgraded, please proceed with upgrading your kubelets if you haven&#39;t already done so.</code></pre>
   </li>
   <li>
     <p>
@@ -474,9 +473,9 @@ kubectl uncordon &lt;cp-node-name&gt;</code></pre>
 <pre><code>    &lt;pre&gt;&lt;code&gt;# replace x in 1.18.x-00 with the latest patch version</code></pre>
 <p>
   apt-mark unhold kubelet kubectl &amp;&amp;
-  <br>
+  <br/>
   apt-get update &amp;&amp; apt-get install -y kubelet=1.18.x-00 kubectl=1.18.x-00 &amp;&amp;
-  <br>
+  <br/>
   apt-mark hold kubelet kubectl
 </p>
 <h1 id="since-apt-get-version-1-1-you-can-also-use-the-following-method-1">
@@ -484,16 +483,16 @@ kubectl uncordon &lt;cp-node-name&gt;</code></pre>
 </h1>
 <p>
 apt-get update &amp;&amp;
-<br>
-apt-get install -y &ndash;allow-change-held-packages kubelet=1.18.x-00 kubectl=1.18.x-00
-<div id="k8s-install-kubelet-1">
+<br/>
+apt-get install -y –allow-change-held-packages kubelet=1.18.x-00 kubectl=1.18.x-00
+</p><div id="k8s-install-kubelet-1">
 <pre><code>    &lt;pre&gt;&lt;code&gt;# replace x in 1.18.x-0 with the latest patch version</code></pre>
 <p>
-yum install -y kubelet-1.18.x-0 kubectl-1.18.x-0 &ndash;disableexcludes=kubernetes
+yum install -y kubelet-1.18.x-0 kubectl-1.18.x-0 –disableexcludes=kubernetes
 <script>
   $(function(){$("#k8s-install-kubelet").tabs();});
 </script>
-<ol>
+</p><ol>
   <li>
     <p>
       Restart the kubelet
@@ -535,9 +534,9 @@ yum install -y kubelet-1.18.x-0 kubectl-1.18.x-0 &ndash;disableexcludes=kubernet
 <pre><code>    &lt;pre&gt;&lt;code&gt;# replace x in 1.18.x-00 with the latest patch version</code></pre>
 <p>
   apt-mark unhold kubeadm &amp;&amp;
-  <br>
+  <br/>
   apt-get update &amp;&amp; apt-get install -y kubeadm=1.18.x-00 &amp;&amp;
-  <br>
+  <br/>
   apt-mark hold kubeadm
 </p>
 <h1 id="since-apt-get-version-1-1-you-can-also-use-the-following-method-2">
@@ -545,16 +544,16 @@ yum install -y kubelet-1.18.x-0 kubectl-1.18.x-0 &ndash;disableexcludes=kubernet
 </h1>
 <p>
 apt-get update &amp;&amp;
-<br>
-apt-get install -y &ndash;allow-change-held-packages kubeadm=1.18.x-00
-<div id="k8s-install-kubeadm-worker-nodes-1">
+<br/>
+apt-get install -y –allow-change-held-packages kubeadm=1.18.x-00
+</p><div id="k8s-install-kubeadm-worker-nodes-1">
 <pre><code>    &lt;pre&gt;&lt;code&gt;# replace x in 1.18.x-0 with the latest patch version</code></pre>
 <p>
-yum install -y kubeadm-1.18.x-0 &ndash;disableexcludes=kubernetes
+yum install -y kubeadm-1.18.x-0 –disableexcludes=kubernetes
 <script>
   $(function(){$("#k8s-install-kubeadm-worker-nodes").tabs();});
 </script>
-<h3 id="drain-the-node">
+</p><h3 id="drain-the-node">
   Drain the node
 </h3>
 <ol>
@@ -612,9 +611,9 @@ node/ip-172-31-85-18 drained</code></pre>
 <pre><code>    &lt;pre&gt;&lt;code&gt;# replace x in 1.18.x-00 with the latest patch version</code></pre>
 <p>
   apt-mark unhold kubelet kubectl &amp;&amp;
-  <br>
+  <br/>
   apt-get update &amp;&amp; apt-get install -y kubelet=1.18.x-00 kubectl=1.18.x-00 &amp;&amp;
-  <br>
+  <br/>
   apt-mark hold kubelet kubectl
 </p>
 <h1 id="since-apt-get-version-1-1-you-can-also-use-the-following-method-3">
@@ -622,16 +621,16 @@ node/ip-172-31-85-18 drained</code></pre>
 </h1>
 <p>
 apt-get update &amp;&amp;
-<br>
-apt-get install -y &ndash;allow-change-held-packages kubelet=1.18.x-00 kubectl=1.18.x-00
-<div id="k8s-kubelet-and-kubectl-1">
+<br/>
+apt-get install -y –allow-change-held-packages kubelet=1.18.x-00 kubectl=1.18.x-00
+</p><div id="k8s-kubelet-and-kubectl-1">
 <pre><code>    &lt;pre&gt;&lt;code&gt;# replace x in 1.18.x-0 with the latest patch version</code></pre>
 <p>
-yum install -y kubelet-1.18.x-0 kubectl-1.18.x-0 &ndash;disableexcludes=kubernetes
+yum install -y kubelet-1.18.x-0 kubectl-1.18.x-0 –disableexcludes=kubernetes
 <script>
   $(function(){$("#k8s-kubelet-and-kubectl").tabs();});
 </script>
-<ol>
+</p><ol>
   <li>
     <p>
       Restart the kubelet
@@ -790,7 +789,7 @@ kubectl uncordon &lt;node-to-drain&gt;</code></pre>
     manifests and makes sure that all necessary RBAC rules are created.
   </li>
   <li>
-    Creates new certificate and key files of the API server and backs up old files if they&rsquo;re about to expire in 180 days.
+    Creates new certificate and key files of the API server and backs up old files if they’re about to expire in 180 days.
   </li>
 </ul>
 <p>
@@ -834,4 +833,4 @@ kubectl uncordon &lt;node-to-drain&gt;</code></pre>
   <li>
     Upgrades the kubelet configuration for this node.
   </li>
-</ul>
+</ul></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></body></html>

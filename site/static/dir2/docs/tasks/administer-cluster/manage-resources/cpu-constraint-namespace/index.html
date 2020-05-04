@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configure Minimum and Maximum CPU Constraints for a Namespace
     </h1>
@@ -73,7 +72,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -126,7 +125,7 @@
       Create a LimitRange and a Pod
     </h2>
     <p>
-      Here&rsquo;s the configuration file for a LimitRange:
+      Here’s the configuration file for a LimitRange:
     </p>
     <table class="includecode" id="admin-resource-cpu-constraints-yaml">
       <thead>
@@ -137,7 +136,7 @@
                 admin/resource/cpu-constraints.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-cpu-constraints-yaml')" title="Copy admin/resource/cpu-constraints.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-cpu-constraints-yaml&#39;)" title="Copy admin/resource/cpu-constraints.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -176,7 +175,7 @@
     </div>
     <p>
       The output shows the minimum and maximum CPU constraints as expected. But
-      notice that even though you didn&rsquo;t specify default values in the configuration
+      notice that even though you didn’t specify default values in the configuration
       file for the LimitRange, they were created automatically.
     </p>
     <div class="highlight">
@@ -189,7 +188,7 @@
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span>800m<span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">min</span>:<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span>200m<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Container<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">type</span>:<span style="color:#bbb"> </span>Container<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <p>
@@ -237,7 +236,7 @@
       </div>
     </blockquote>
     <p>
-      Here&rsquo;s the configuration file for a Pod that has one Container. The Container manifest
+      Here’s the configuration file for a Pod that has one Container. The Container manifest
       specifies a CPU request of 500 millicpu and a CPU limit of 800 millicpu. These satisfy the
       minimum and maximum CPU constraints imposed by the LimitRange.
     </p>
@@ -250,7 +249,7 @@
                 admin/resource/cpu-constraints-pod.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-cpu-constraints-pod-yaml')" title="Copy admin/resource/cpu-constraints-pod.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-cpu-constraints-pod-yaml&#39;)" title="Copy admin/resource/cpu-constraints-pod.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -284,7 +283,7 @@
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/admin/resource/cpu-constraints-pod.yaml --namespace<span style="color:#666">=</span>constraints-cpu-example</code></pre>
     </div>
     <p>
-      Verify that the Pod&rsquo;s Container is running:
+      Verify that the Pod’s Container is running:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod constraints-cpu-demo --namespace<span style="color:#666">=</span>constraints-cpu-example</code></pre>
@@ -317,7 +316,7 @@
       Attempt to create a Pod that exceeds the maximum CPU constraint
     </h2>
     <p>
-      Here&rsquo;s the configuration file for a Pod that has one Container. The Container specifies a
+      Here’s the configuration file for a Pod that has one Container. The Container specifies a
       CPU request of 500 millicpu and a cpu limit of 1.5 cpu.
     </p>
     <table class="includecode" id="admin-resource-cpu-constraints-pod-2-yaml">
@@ -329,7 +328,7 @@
                 admin/resource/cpu-constraints-pod-2.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-cpu-constraints-pod-2-yaml')" title="Copy admin/resource/cpu-constraints-pod-2.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-cpu-constraints-pod-2-yaml&#39;)" title="Copy admin/resource/cpu-constraints-pod-2.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -366,13 +365,13 @@
       The output shows that the Pod does not get created, because the Container specifies a CPU limit that is
       too large:
     </p>
-    <pre><code>Error from server (Forbidden): error when creating &quot;examples/admin/resource/cpu-constraints-pod-2.yaml&quot;:
-pods &quot;constraints-cpu-demo-2&quot; is forbidden: maximum cpu usage per Container is 800m, but limit is 1500m.</code></pre>
+    <pre><code>Error from server (Forbidden): error when creating &#34;examples/admin/resource/cpu-constraints-pod-2.yaml&#34;:
+pods &#34;constraints-cpu-demo-2&#34; is forbidden: maximum cpu usage per Container is 800m, but limit is 1500m.</code></pre>
     <h2 id="attempt-to-create-a-pod-that-does-not-meet-the-minimum-cpu-request">
       Attempt to create a Pod that does not meet the minimum CPU request
     </h2>
     <p>
-      Here&rsquo;s the configuration file for a Pod that has one Container. The Container specifies a
+      Here’s the configuration file for a Pod that has one Container. The Container specifies a
       CPU request of 100 millicpu and a CPU limit of 800 millicpu.
     </p>
     <table class="includecode" id="admin-resource-cpu-constraints-pod-3-yaml">
@@ -384,7 +383,7 @@ pods &quot;constraints-cpu-demo-2&quot; is forbidden: maximum cpu usage per Cont
                 admin/resource/cpu-constraints-pod-3.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-cpu-constraints-pod-3-yaml')" title="Copy admin/resource/cpu-constraints-pod-3.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-cpu-constraints-pod-3-yaml&#39;)" title="Copy admin/resource/cpu-constraints-pod-3.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -421,13 +420,13 @@ pods &quot;constraints-cpu-demo-2&quot; is forbidden: maximum cpu usage per Cont
       The output shows that the Pod does not get created, because the Container specifies a CPU
       request that is too small:
     </p>
-    <pre><code>Error from server (Forbidden): error when creating &quot;examples/admin/resource/cpu-constraints-pod-3.yaml&quot;:
-pods &quot;constraints-cpu-demo-3&quot; is forbidden: minimum cpu usage per Container is 200m, but request is 100m.</code></pre>
+    <pre><code>Error from server (Forbidden): error when creating &#34;examples/admin/resource/cpu-constraints-pod-3.yaml&#34;:
+pods &#34;constraints-cpu-demo-3&#34; is forbidden: minimum cpu usage per Container is 200m, but request is 100m.</code></pre>
     <h2 id="create-a-pod-that-does-not-specify-any-cpu-request-or-limit">
       Create a Pod that does not specify any CPU request or limit
     </h2>
     <p>
-      Here&rsquo;s the configuration file for a Pod that has one Container. The Container does not
+      Here’s the configuration file for a Pod that has one Container. The Container does not
       specify a CPU request, and it does not specify a CPU limit.
     </p>
     <table class="includecode" id="admin-resource-cpu-constraints-pod-4-yaml">
@@ -439,7 +438,7 @@ pods &quot;constraints-cpu-demo-3&quot; is forbidden: minimum cpu usage per Cont
                 admin/resource/cpu-constraints-pod-4.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-resource-cpu-constraints-pod-4-yaml')" title="Copy admin/resource/cpu-constraints-pod-4.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-resource-cpu-constraints-pod-4-yaml&#39;)" title="Copy admin/resource/cpu-constraints-pod-4.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -472,7 +471,7 @@ pods &quot;constraints-cpu-demo-3&quot; is forbidden: minimum cpu usage per Cont
     </p>
     <pre><code>kubectl get pod constraints-cpu-demo-4 --namespace=constraints-cpu-example --output=yaml</code></pre>
     <p>
-      The output shows that the Pod&rsquo;s Container has a CPU request of 800 millicpu and a CPU limit of 800 millicpu.
+      The output shows that the Pod’s Container has a CPU request of 800 millicpu and a CPU limit of 800 millicpu.
       How did the Container get those values?
     </p>
     <div class="highlight">
@@ -617,5 +616,5 @@ pods &quot;constraints-cpu-demo-3&quot; is forbidden: minimum cpu usage per Cont
         </p>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

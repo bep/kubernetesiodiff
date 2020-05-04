@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Persistent Volumes
 </h1>
@@ -75,7 +74,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -139,7 +138,7 @@
   Dynamic
 </h4>
 <p>
-  When none of the static PVs the administrator created match a user&rsquo;s PersistentVolumeClaim,
+  When none of the static PVs the administrator created match a user’s PersistentVolumeClaim,
   the cluster may try to dynamically provision a volume specially for the PVC.
   This provisioning is based on StorageClasses: the PVC must request a
   <a href="/docs/concepts/storage/storage-classes/">
@@ -149,7 +148,7 @@
   the administrator must have created and configured that class for dynamic
   provisioning to occur. Claims that request the class
   <code>
-    &quot;&quot;
+    &#34;&#34;
   </code>
   effectively disable
   dynamic provisioning for themselves.
@@ -200,7 +199,7 @@
   <code>
     persistentVolumeClaim
   </code>
-  section in a Pod&rsquo;s
+  section in a Pod’s
   <code>
     volumes
   </code>
@@ -228,7 +227,7 @@
   If a user deletes a PVC in active use by a Pod, the PVC is not removed immediately. PVC removal is postponed until the PVC is no longer actively used by any Pods. Also, if an admin deletes a PV that is bound to a PVC, the PV is not removed immediately. PV removal is postponed until the PV is no longer bound to a PVC.
 </p>
 <p>
-  You can see that a PVC is protected when the PVC&rsquo;s status is
+  You can see that a PVC is protected when the PVC’s status is
   <code>
     Terminating
   </code>
@@ -256,7 +255,7 @@ Finalizers:    <span style="color:#666">[</span>kubernetes.io/pvc-protection<spa
 ...</code></pre>
 </div>
 <p>
-  You can see that a PV is protected when the PV&rsquo;s status is
+  You can see that a PV is protected when the PV’s status is
   <code>
     Terminating
   </code>
@@ -303,7 +302,7 @@ Events:            &lt;none&gt;</code></pre>
   <code>
     Retain
   </code>
-  reclaim policy allows for manual reclamation of the resource. When the PersistentVolumeClaim is deleted, the PersistentVolume still exists and the volume is considered &ldquo;released&rdquo;. But it is not yet available for another claim because the previous claimant&rsquo;s data remains on the volume. An administrator can manually reclaim the volume with the following steps.
+  reclaim policy allows for manual reclamation of the resource. When the PersistentVolumeClaim is deleted, the PersistentVolume still exists and the volume is considered “released”. But it is not yet available for another claim because the previous claimant’s data remains on the volume. An administrator can manually reclaim the volume with the following steps.
 </p>
 <ol>
   <li>
@@ -332,7 +331,7 @@ Events:            &lt;none&gt;</code></pre>
   <code>
     Delete
   </code>
-  . The administrator should configure the StorageClass according to users&rsquo; expectations; otherwise, the PV must be edited or patched after it is created. See
+  . The administrator should configure the StorageClass according to users’ expectations; otherwise, the PV must be edited or patched after it is created. See
   <a href="/docs/tasks/administer-cluster/change-pv-reclaim-policy/">
     Change the Reclaim Policy of a PersistentVolume
   </a>
@@ -407,7 +406,7 @@ Events:            &lt;none&gt;</code></pre>
   Expanding Persistent Volumes Claims
 </h3>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -511,7 +510,7 @@ Events:            &lt;none&gt;</code></pre>
   </li>
 </ul>
 <p>
-  You can only expand a PVC if its storage class&rsquo;s
+  You can only expand a PVC if its storage class’s
   <code>
     allowVolumeExpansion
   </code>
@@ -725,7 +724,7 @@ Events:            &lt;none&gt;</code></pre>
   </div>
 </blockquote>
 <p>
-  In this case, you don&rsquo;t need to delete and recreate a Pod or deployment that is using an existing PVC.
+  In this case, you don’t need to delete and recreate a Pod or deployment that is using an existing PVC.
   Any in-use PVC automatically becomes available to its Pod as soon as its file system has been expanded.
   This feature has no effect on PVCs that are not in use by a Pod or deployment. You must create a Pod that
   uses the PVC before the expansion can complete.
@@ -805,7 +804,7 @@ Events:            &lt;none&gt;</code></pre>
     Quobyte Volumes
   </li>
   <li>
-    HostPath (Single node testing only &ndash; local storage is not supported in any way and WILL NOT WORK in a multi-node cluster)
+    HostPath (Single node testing only – local storage is not supported in any way and WILL NOT WORK in a multi-node cluster)
   </li>
   <li>
     Portworx Volumes
@@ -861,7 +860,7 @@ Events:            &lt;none&gt;</code></pre>
   Capacity
 </h3>
 <p>
-  Generally, a PV will have a specific storage capacity.  This is set using the PV&rsquo;s
+  Generally, a PV will have a specific storage capacity.  This is set using the PV’s
   <code>
     capacity
   </code>
@@ -1005,20 +1004,20 @@ Events:            &lt;none&gt;</code></pre>
   Access Modes
 </h3>
 <p>
-  A PersistentVolume can be mounted on a host in any way supported by the resource provider. As shown in the table below, providers will have different capabilities and each PV&rsquo;s access modes are set to the specific modes supported by that particular volume.  For example, NFS can support multiple read/write clients, but a specific NFS PV might be exported on the server as read-only. Each PV gets its own set of access modes describing that specific PV&rsquo;s capabilities.
+  A PersistentVolume can be mounted on a host in any way supported by the resource provider. As shown in the table below, providers will have different capabilities and each PV’s access modes are set to the specific modes supported by that particular volume.  For example, NFS can support multiple read/write clients, but a specific NFS PV might be exported on the server as read-only. Each PV gets its own set of access modes describing that specific PV’s capabilities.
 </p>
 <p>
   The access modes are:
 </p>
 <ul>
   <li>
-    ReadWriteOnce &ndash; the volume can be mounted as read-write by a single node
+    ReadWriteOnce – the volume can be mounted as read-write by a single node
   </li>
   <li>
-    ReadOnlyMany &ndash; the volume can be mounted read-only by many nodes
+    ReadOnlyMany – the volume can be mounted read-only by many nodes
   </li>
   <li>
-    ReadWriteMany &ndash; the volume can be mounted as read-write by many nodes
+    ReadWriteMany – the volume can be mounted as read-write by many nodes
   </li>
 </ul>
 <p>
@@ -1385,17 +1384,17 @@ Events:            &lt;none&gt;</code></pre>
 </p>
 <ul>
   <li>
-    Retain &ndash; manual reclamation
+    Retain – manual reclamation
   </li>
   <li>
-    Recycle &ndash; basic scrub (
+    Recycle – basic scrub (
     <code>
       rm -rf /thevolume/*
     </code>
     )
   </li>
   <li>
-    Delete &ndash; associated storage asset such as AWS EBS, GCE PD, Azure Disk, or OpenStack Cinder volume is deleted
+    Delete – associated storage asset such as AWS EBS, GCE PD, Azure Disk, or OpenStack Cinder volume is deleted
   </li>
 </ul>
 <p>
@@ -1517,16 +1516,16 @@ Events:            &lt;none&gt;</code></pre>
 </p>
 <ul>
   <li>
-    Available &ndash; a free resource that is not yet bound to a claim
+    Available – a free resource that is not yet bound to a claim
   </li>
   <li>
-    Bound &ndash; the volume is bound to a claim
+    Bound – the volume is bound to a claim
   </li>
   <li>
-    Released &ndash; the claim has been deleted, but the resource is not yet reclaimed by the cluster
+    Released – the claim has been deleted, but the resource is not yet reclaimed by the cluster
   </li>
   <li>
-    Failed &ndash; the volume has failed its automatic reclamation
+    Failed – the volume has failed its automatic reclamation
   </li>
 </ul>
 <p>
@@ -1641,19 +1640,19 @@ Events:            &lt;none&gt;</code></pre>
   be bound to the PVC.
 </p>
 <p>
-  PVCs don&rsquo;t necessarily have to request a class. A PVC with its
+  PVCs don’t necessarily have to request a class. A PVC with its
   <code>
     storageClassName
   </code>
   set
   equal to
   <code>
-    &quot;&quot;
+    &#34;&#34;
   </code>
   is always interpreted to be requesting a PV with no class, so it
   can only be bound to PVs with no class (no annotation or one set equal to
   <code>
-    &quot;&quot;
+    &#34;&#34;
   </code>
   ). A PVC with no
   <code>
@@ -1710,7 +1709,7 @@ Events:            &lt;none&gt;</code></pre>
     </code>
     set to
     <code>
-      &quot;&quot;
+      &#34;&#34;
     </code>
     .
   </li>
@@ -1737,7 +1736,7 @@ Events:            &lt;none&gt;</code></pre>
     <code>
       selector
     </code>
-    can&rsquo;t have a PV dynamically provisioned for it.
+    can’t have a PV dynamically provisioned for it.
   </div>
 </blockquote>
 <p>
@@ -1751,13 +1750,13 @@ Events:            &lt;none&gt;</code></pre>
     storageClassName
   </code>
   attribute. This annotation is still working; however,
-  it won&rsquo;t be supported in a future Kubernetes release.
+  it won’t be supported in a future Kubernetes release.
 </p>
 <h2 id="claims-as-volumes">
   Claims As Volumes
 </h2>
 <p>
-  Pods access storage by using the claim as a volume. Claims must exist in the same namespace as the Pod using the claim. The cluster finds the claim in the Pod&rsquo;s namespace and uses it to get the PersistentVolume backing the claim. The volume is then mounted to the host and into the Pod.
+  Pods access storage by using the claim as a volume. Claims must exist in the same namespace as the Pod using the claim. The cluster finds the claim in the Pod’s namespace and uses it to get the PersistentVolume backing the claim. The volume is then mounted to the host and into the Pod.
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
@@ -1781,7 +1780,7 @@ Events:            &lt;none&gt;</code></pre>
   A Note on Namespaces
 </h3>
 <p>
-  PersistentVolumes binds are exclusive, and since PersistentVolumeClaims are namespaced objects, mounting claims with &ldquo;Many&rdquo; modes (
+  PersistentVolumes binds are exclusive, and since PersistentVolumeClaims are namespaced objects, mounting claims with “Many” modes (
   <code>
     ROX
   </code>
@@ -1961,7 +1960,7 @@ Events:            &lt;none&gt;</code></pre>
   <code>
     volumeMode
   </code>
-  field in the PersistentVolumeClaim spec, the binding rules differ slightly from previous releases that didn&rsquo;t consider this mode as part of the spec.
+  field in the PersistentVolumeClaim spec, the binding rules differ slightly from previous releases that didn’t consider this mode as part of the spec.
   Listed is a table of possible combinations the user and admin might specify for requesting a raw block device. The table indicates if the volume will be bound or not given the combinations:
   Volume binding matrix for statically provisioned volumes:
 </p>
@@ -2228,7 +2227,7 @@ Events:            &lt;none&gt;</code></pre>
   Writing Portable Configuration
 </h2>
 <p>
-  If you&rsquo;re writing configuration templates or examples that run on a wide range of clusters
+  If you’re writing configuration templates or examples that run on a wide range of clusters
   and need persistent storage, it is recommended that you use the following pattern:
 </p>
 <ul>
@@ -2324,4 +2323,4 @@ Events:            &lt;none&gt;</code></pre>
       PersistentVolumeClaimSpec
     </a>
   </li>
-</ul>
+</ul></div></div></div></div></div></div></body></html>

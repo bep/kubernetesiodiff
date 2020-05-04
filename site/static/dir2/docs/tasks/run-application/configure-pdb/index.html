@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Specifying a Disruption Budget for your Application
     </h1>
@@ -129,7 +128,7 @@
       </li>
     </ul>
     <p>
-      In this case, make a note of the controller&rsquo;s
+      In this case, make a note of the controller’s
       <code>
         .spec.selector
       </code>
@@ -168,7 +167,7 @@
         Stateless frontends:
         <ul>
           <li>
-            Concern: don&rsquo;t reduce serving capacity by more than 10%.
+            Concern: don’t reduce serving capacity by more than 10%.
             <ul>
               <li>
                 Solution: use PDB with minAvailable 90% for example.
@@ -252,7 +251,7 @@
       <li>
         When you specify a percentage by setting the value to a string representation of a percentage (eg.
         <code>
-          &quot;50%&quot;
+          &#34;50%&#34;
         </code>
         ), it represents a percentage of
         total Pods. For instance, if you set
@@ -261,7 +260,7 @@
         </code>
         to
         <code>
-          &quot;50%&quot;
+          &#34;50%&#34;
         </code>
         , then only 50% of the Pods can be unavailable during a
         disruption.
@@ -275,9 +274,9 @@
       </code>
       to
       <code>
-        &quot;50%&quot;
+        &#34;50%&#34;
       </code>
-      , it&rsquo;s not immediately obvious whether that means 3 Pods or 4 Pods must be available.
+      , it’s not immediately obvious whether that means 3 Pods or 4 Pods must be available.
       Kubernetes rounds up to the nearest integer, so in this case, 4 Pods must be available. You can examine the
       <a href="https://github.com/kubernetes/kubernetes/blob/23be9587a0f8677eb8091464098881df939c44a9/pkg/controller/disruption/disruption.go#L539">
         code
@@ -371,7 +370,7 @@
         maxUnavailable
       </code>
       can only be used to control the eviction of pods
-      that have an associated controller managing them. In the examples below, &ldquo;desired replicas&rdquo;
+      that have an associated controller managing them. In the examples below, “desired replicas”
       is the
       <code>
         scale
@@ -388,7 +387,7 @@
         minAvailable
       </code>
       of 5, evictions are allowed as long as they leave behind
-      5 or more healthy pods among those selected by the PodDisruptionBudget&rsquo;s
+      5 or more healthy pods among those selected by the PodDisruptionBudget’s
       <code>
         selector
       </code>
@@ -473,7 +472,7 @@
                 policy/zookeeper-pod-disruption-budget-minavailable.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('policy-zookeeper-pod-disruption-budget-minavailable-yaml')" title="Copy policy/zookeeper-pod-disruption-budget-minavailable.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;policy-zookeeper-pod-disruption-budget-minavailable-yaml&#39;)" title="Copy policy/zookeeper-pod-disruption-budget-minavailable.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -508,7 +507,7 @@
                 policy/zookeeper-pod-disruption-budget-maxunavailable.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('policy-zookeeper-pod-disruption-budget-maxunavailable-yaml')" title="Copy policy/zookeeper-pod-disruption-budget-maxunavailable.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;policy-zookeeper-pod-disruption-budget-maxunavailable-yaml&#39;)" title="Copy policy/zookeeper-pod-disruption-budget-maxunavailable.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -561,12 +560,12 @@
       Use kubectl to check that your PDB is created.
     </p>
     <p>
-      Assuming you don&rsquo;t actually have pods matching
+      Assuming you don’t actually have pods matching
       <code>
         app: zookeeper
       </code>
       in your namespace,
-      then you&rsquo;ll see something like this:
+      then you’ll see something like this:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get poddisruptionbudgets</code></pre>
@@ -619,11 +618,11 @@ zk-pdb   2               N/A               1                     7s</code></pre>
     <p>
       You can skip this section if you only use PDBs with the built-in
       application controllers (Deployment, ReplicationController, ReplicaSet, and StatefulSet),
-      with the PDB selector matching the controller&rsquo;s selector.
+      with the PDB selector matching the controller’s selector.
     </p>
     <p>
       You can use a PDB with pods controlled by another type of controller, by an
-      &ldquo;operator&rdquo;, or bare pods, but with these restrictions:
+      “operator”, or bare pods, but with these restrictions:
     </p>
     <ul>
       <li>
@@ -650,5 +649,5 @@ zk-pdb   2               N/A               1                     7s</code></pre>
       controller.  However, when there are multiple PDBs in a namespace, you must be careful not
       to create PDBs whose selectors overlap.
     </p>
-  </body>
-</html>
+  
+</body></html>

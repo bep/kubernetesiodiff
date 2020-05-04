@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   kubeadm join
 </h1>
@@ -17,11 +16,11 @@
 <ul id="markdown-toc">
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
-<h3 id="synopsis">
+<h3 id="synopsis" data-diff="">
   Synopsis
 </h3>
 <p>
@@ -35,9 +34,9 @@
   token along with the IP address of the API server. The second is to
   provide a file - a subset of the standard kubeconfig file. This file
   can be a local file or downloaded via an HTTPS URL. The forms are
-  kubeadm join &ndash;discovery-token abcdef.1234567890abcdef 1.2.3.4:6443,
-  kubeadm join &ndash;discovery-file path/to/file.conf, or kubeadm join
-  &ndash;discovery-file
+  kubeadm join –discovery-token abcdef.1234567890abcdef 1.2.3.4:6443,
+  kubeadm join –discovery-file path/to/file.conf, or kubeadm join
+  –discovery-file
   <a href="https://url/file.conf">
     https://url/file.conf
   </a>
@@ -48,18 +47,18 @@
 </p>
 <p>
   If you use a shared token for discovery, you should also pass the
-  &ndash;discovery-token-ca-cert-hash flag to validate the public key of the
+  –discovery-token-ca-cert-hash flag to validate the public key of the
   root certificate authority (CA) presented by the Kubernetes Control Plane.
-  The value of this flag is specified as &ldquo;&lt;hash-type&gt;:&lt;hex-encoded-value&gt;&rdquo;,
-  where the supported hash type is &ldquo;sha256&rdquo;. The hash is calculated over
+  The value of this flag is specified as “&lt;hash-type&gt;:&lt;hex-encoded-value&gt;”,
+  where the supported hash type is “sha256”. The hash is calculated over
   the bytes of the Subject Public Key Info (SPKI) object (as in RFC7469).
-  This value is available in the output of &ldquo;kubeadm init&rdquo; or can be
-  calculated using standard tools. The &ndash;discovery-token-ca-cert-hash flag
+  This value is available in the output of “kubeadm init” or can be
+  calculated using standard tools. The –discovery-token-ca-cert-hash flag
   may be repeated multiple times to allow more than one public key.
 </p>
 <p>
   If you cannot know the CA public key hash ahead of time, you can pass
-  the &ndash;discovery-token-unsafe-skip-ca-verification flag to disable this
+  the –discovery-token-unsafe-skip-ca-verification flag to disable this
   verification. This weakens the kubeadm security model since other nodes
   can potentially impersonate the Kubernetes Control Plane.
 </p>
@@ -69,14 +68,14 @@
   certificate signing request (CSR) for a locally created key pair. By
   default, kubeadm will set up the Kubernetes Control Plane to automatically
   approve these signing requests. This token is passed in with the
-  &ndash;tls-bootstrap-token abcdef.1234567890abcdef flag.
+  –tls-bootstrap-token abcdef.1234567890abcdef flag.
 </p>
 <p>
   Often times the same token is used for both parts. In this case, the
-  &ndash;token flag can be used instead of specifying each token individually.
+  –token flag can be used instead of specifying each token individually.
 </p>
 <p>
-  The &ldquo;join [api-server-endpoint]&rdquo; command executes the following phases:
+  The “join [api-server-endpoint]” command executes the following phases:
 </p>
 <pre><code>preflight              Run join pre-flight checks
 control-plane-prepare  Prepare the machine for serving a control plane
@@ -94,30 +93,49 @@ control-plane-join     Join a machine as a control plane instance
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  <p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;apiserver-advertise-address string
+      –apiserver-advertise-address string
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      If the node should host a new control plane instance, the IP address the API Server will advertise it&rsquo;s listening on. If not set the default network interface will be used.
+      If the node should host a new control plane instance, the IP address the API Server will advertise it’s listening on. If not set the default network interface will be used.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;apiserver-bind-port int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 6443
+      –apiserver-bind-port int32     Default: 6443
     </td>
   </tr>
   <tr>
@@ -126,11 +144,10 @@ control-plane-join     Join a machine as a control plane instance
       If the node should host a new control plane instance, the port for the API Server to bind to.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;certificate-key string
+      –certificate-key string
     </td>
   </tr>
   <tr>
@@ -139,11 +156,10 @@ control-plane-join     Join a machine as a control plane instance
       Use this key to decrypt the certificate secrets uploaded by init.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -152,11 +168,10 @@ control-plane-join     Join a machine as a control plane instance
       Path to kubeadm config file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;control-plane
+      –control-plane
     </td>
   </tr>
   <tr>
@@ -165,11 +180,10 @@ control-plane-join     Join a machine as a control plane instance
       Create a new control plane instance on this node
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cri-socket string
+      –cri-socket string
     </td>
   </tr>
   <tr>
@@ -178,11 +192,10 @@ control-plane-join     Join a machine as a control plane instance
       Path to the CRI socket to connect. If empty kubeadm will try to auto-detect this value; use this option only if you have more than one CRI installed or if you have non-standard CRI socket.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;discovery-file string
+      –discovery-file string
     </td>
   </tr>
   <tr>
@@ -191,11 +204,10 @@ control-plane-join     Join a machine as a control plane instance
       For file-based discovery, a file or URL from which to load cluster information.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;discovery-token string
+      –discovery-token string
     </td>
   </tr>
   <tr>
@@ -204,37 +216,34 @@ control-plane-join     Join a machine as a control plane instance
       For token-based discovery, the token used to validate cluster information fetched from the API server.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;discovery-token-ca-cert-hash stringSlice
+      –discovery-token-ca-cert-hash stringSlice
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      For token-based discovery, validate that the root CA public key matches this hash (format: &ldquo;&lt;type&gt;:&lt;value&gt;&rdquo;).
+      For token-based discovery, validate that the root CA public key matches this hash (format: “&lt;type&gt;:&lt;value&gt;”).
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;discovery-token-unsafe-skip-ca-verification
+      –discovery-token-unsafe-skip-ca-verification
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      For token-based discovery, allow joining without &ndash;discovery-token-ca-cert-hash pinning.
+      For token-based discovery, allow joining without –discovery-token-ca-cert-hash pinning.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -k, &ndash;experimental-kustomize string
+      -k, –experimental-kustomize string
     </td>
   </tr>
   <tr>
@@ -243,11 +252,10 @@ control-plane-join     Join a machine as a control plane instance
       The path where kustomize patches for static pod manifests are stored.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -256,24 +264,22 @@ control-plane-join     Join a machine as a control plane instance
       help for join
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ignore-preflight-errors stringSlice
+      –ignore-preflight-errors stringSlice
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      A list of checks whose errors will be shown as warnings. Example: &lsquo;IsPrivilegedUser,Swap&rsquo;. Value &lsquo;all&rsquo; ignores errors from all checks.
+      A list of checks whose errors will be shown as warnings. Example: ‘IsPrivilegedUser,Swap’. Value ‘all’ ignores errors from all checks.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;node-name string
+      –node-name string
     </td>
   </tr>
   <tr>
@@ -282,11 +288,10 @@ control-plane-join     Join a machine as a control plane instance
       Specify the node name.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;skip-phases stringSlice
+      –skip-phases stringSlice
     </td>
   </tr>
   <tr>
@@ -295,11 +300,10 @@ control-plane-join     Join a machine as a control plane instance
       List of phases to be skipped
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;tls-bootstrap-token string
+      –tls-bootstrap-token string
     </td>
   </tr>
   <tr>
@@ -308,11 +312,10 @@ control-plane-join     Join a machine as a control plane instance
       Specify the token used to temporarily authenticate with the Kubernetes Control Plane while joining the node.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;token string
+      –token string
     </td>
   </tr>
   <tr>
@@ -321,44 +324,19 @@ control-plane-join     Join a machine as a control plane instance
       Use this token for both discovery-token and tls-bootstrap-token when those values are not provided.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<h3 id="join-workflow">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><h3 id="join-workflow">
   The join workflow
-</h3>
-<p>
+</h3><p>
   <code>
     kubeadm join
   </code>
   bootstraps a Kubernetes worker node or a control-plane node and adds it to the cluster.
   This action consists of the following steps for worker nodes:
-</p>
-<ol>
+</p><ol>
   <li>
     <p>
       kubeadm downloads necessary cluster information from the API server.
@@ -373,22 +351,18 @@ control-plane-join     Join a machine as a control plane instance
       process.
     </p>
   </li>
-</ol>
-<p>
+</ol><p>
   The TLS bootstrap uses the shared token to temporarily authenticate
   with the Kubernetes API server to submit a certificate signing request (CSR); by
   default the control plane signs this CSR request automatically.
-</p>
-<ol>
+</p><ol>
   <li>
     Finally, kubeadm configures the local kubelet to connect to the API
     server with the definitive identity assigned to the node.
   </li>
-</ol>
-<p>
+</ol><p>
   For control-plane nodes additional steps are performed:
-</p>
-<ol>
+</p><ol>
   <li>
     <p>
       Downloading certificates shared among control-plane nodes from the cluster
@@ -410,18 +384,15 @@ control-plane-join     Join a machine as a control plane instance
       Adding this node to the ClusterStatus of the kubeadm cluster.
     </p>
   </li>
-</ol>
-<h3 id="join-phases">
+</ol><h3 id="join-phases">
   Using join phases with kubeadm
-</h3>
-<p>
+</h3><p>
   Kubeadm allows you join a node to the cluster in phases using
   <code>
     kubeadm join phase
   </code>
   .
-</p>
-<p>
+</p><p>
   To view the ordered list of phases and sub-phases you can call
   <code>
     kubeadm join --help
@@ -433,18 +404,15 @@ control-plane-join     Join a machine as a control plane instance
     kubeadm join
   </code>
   all of the phases and sub-phases will be executed in this exact order.
-</p>
-<p>
+</p><p>
   Some phases have unique flags, so if you want to have a look at the list of available options add
   <code>
     --help
   </code>
   , for example:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubeadm join phase kubelet-start --help</code></pre>
-</div>
-<p>
+</div><p>
   Similar to the
   <a href="/docs/reference/setup-tools/kubeadm/kubeadm-init/#init-phases">
     kubeadm init phase
@@ -458,31 +426,24 @@ control-plane-join     Join a machine as a control plane instance
     --skip-phases
   </code>
   flag.
-</p>
-<p>
+</p><p>
   For example:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo kubeadm join --skip-phases<span style="color:#666">=</span>preflight --config<span style="color:#666">=</span>config.yaml</code></pre>
-</div>
-<h3 id="discovering-what-cluster-ca-to-trust">
+</div><h3 id="discovering-what-cluster-ca-to-trust">
   Discovering what cluster CA to trust
-</h3>
-<p>
+</h3><p>
   The kubeadm discovery has several options, each with security tradeoffs.
   The right method for your environment depends on how you provision nodes and the
   security expectations you have about your network and node lifecycles.
-</p>
-<h4 id="token-based-discovery-with-ca-pinning">
+</p><h4 id="token-based-discovery-with-ca-pinning">
   Token-based discovery with CA pinning
-</h4>
-<p>
+</h4><p>
   This is the default mode in kubeadm. In this mode, kubeadm downloads
   the cluster configuration (including root CA) and validates it using the token
   as well as validating that the root CA public key matches the provided hash and
   that the API server certificate is valid under the root CA.
-</p>
-<p>
+</p><p>
   The CA key hash has the format
   <code>
     sha256:&lt;hex_encoded_hash&gt;
@@ -504,11 +465,9 @@ control-plane-join     Join a machine as a control plane instance
     RFC7469
   </a>
   ) and can also be calculated by 3rd party tools or provisioning systems. For example, using the OpenSSL CLI:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed <span style="color:#b44">&#39;s/^.* //&#39;</span></code></pre>
-</div>
-<p>
+</div><p>
   <strong>
     Example
     <code>
@@ -516,20 +475,15 @@ control-plane-join     Join a machine as a control plane instance
     </code>
     commands:
   </strong>
-</p>
-<p>
+</p><p>
   For worker nodes:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubeadm join --discovery-token abcdef.1234567890abcdef --discovery-token-ca-cert-hash sha256:1234..cdef 1.2.3.4:6443</code></pre>
-</div>
-<p>
+</div><p>
   For control-plane nodes:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubeadm join --discovery-token abcdef.1234567890abcdef --discovery-token-ca-cert-hash sha256:1234..cdef --control-plane 1.2.3.4:6443</code></pre>
-</div>
-<p>
+</div><p>
   You can also call
   <code>
     join
@@ -548,13 +502,11 @@ control-plane-join     Join a machine as a control plane instance
     --upload-certs
   </code>
   .
-</p>
-<p>
+</p><p>
   <strong>
     Advantages:
   </strong>
-</p>
-<ul>
+</p><ul>
   <li>
     <p>
       Allows bootstrapping nodes to securely discover a root of trust for the
@@ -571,24 +523,20 @@ control-plane-join     Join a machine as a control plane instance
       command that is easy to copy and paste.
     </p>
   </li>
-</ul>
-<p>
+</ul><p>
   <strong>
     Disadvantages:
   </strong>
-</p>
-<ul>
+</p><ul>
   <li>
     The CA hash is not normally known until the control-plane node has been provisioned,
     which can make it more difficult to build automated provisioning tools that
     use kubeadm. By generating your CA in beforehand, you may workaround this
     limitation.
   </li>
-</ul>
-<h4 id="token-based-discovery-without-ca-pinning">
+</ul><h4 id="token-based-discovery-without-ca-pinning">
   Token-based discovery without CA pinning
-</h4>
-<p>
+</h4><p>
   This mode relies only on the symmetric token to sign
   (HMAC-SHA256) the discovery information that establishes the root of trust for
   the control-plane. To use the mode the joining nodes must skip the hash validation of the
@@ -598,8 +546,7 @@ control-plane-join     Join a machine as a control plane instance
   </code>
   . You should consider
   using one of the other modes if possible.
-</p>
-<p>
+</p><p>
   <strong>
     Example
     <code>
@@ -607,16 +554,13 @@ control-plane-join     Join a machine as a control plane instance
     </code>
     command:
   </strong>
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubeadm join --token abcdef.1234567890abcdef --discovery-token-unsafe-skip-ca-verification 1.2.3.4:6443</code></pre>
-</div>
-<p>
+</div><p>
   <strong>
     Advantages:
   </strong>
-</p>
-<ul>
+</p><ul>
   <li>
     <p>
       Still protects against many network-level attacks.
@@ -629,24 +573,20 @@ control-plane-join     Join a machine as a control plane instance
       allows it to be used in many provisioning scenarios.
     </p>
   </li>
-</ul>
-<p>
+</ul><p>
   <strong>
     Disadvantages:
   </strong>
-</p>
-<ul>
+</p><ul>
   <li>
     If an attacker is able to steal a bootstrap token via some vulnerability,
     they can use that token (along with network-level access) to impersonate the
     control-plane node to other bootstrapping nodes. This may or may not be an appropriate
     tradeoff in your environment.
   </li>
-</ul>
-<h4 id="file-or-https-based-discovery">
+</ul><h4 id="file-or-https-based-discovery">
   File or HTTPS-based discovery
-</h4>
-<p>
+</h4><p>
   This provides an out-of-band way to establish a root of trust between the control-plane node
   and bootstrapping nodes. Consider using this mode if you are building automated provisioning
   using kubeadm. The format of the discovery file is a regular Kubernetes
@@ -654,11 +594,9 @@ control-plane-join     Join a machine as a control plane instance
     kubeconfig
   </a>
   file.
-</p>
-<p>
+</p><p>
   In case the discovery file does not contain credentials, the TLS discovery token will be used.
-</p>
-<p>
+</p><p>
   <strong>
     Example
     <code>
@@ -666,8 +604,7 @@ control-plane-join     Join a machine as a control plane instance
     </code>
     commands:
   </strong>
-</p>
-<ul>
+</p><ul>
   <li>
     <p>
       <code>
@@ -684,77 +621,60 @@ control-plane-join     Join a machine as a control plane instance
       (remote HTTPS URL)
     </p>
   </li>
-</ul>
-<p>
+</ul><p>
   <strong>
     Advantages:
   </strong>
-</p>
-<ul>
+</p><ul>
   <li>
     Allows bootstrapping nodes to securely discover a root of trust for the
     control-plane node even if the network or other worker nodes are compromised.
   </li>
-</ul>
-<p>
+</ul><p>
   <strong>
     Disadvantages:
   </strong>
-</p>
-<ul>
+</p><ul>
   <li>
     Requires that you have some way to carry the discovery information from
     the control-plane node to the bootstrapping nodes. If the discovery file contains credentials
     you must keep it secret and transfer it over a secure channel. This might be possible with your
     cloud provider or provisioning tool.
   </li>
-</ul>
-<h3 id="securing-more">
+</ul><h3 id="securing-more">
   Securing your installation even more
-</h3>
-<p>
+</h3><p>
   The defaults for kubeadm may not work for everyone. This section documents how to tighten up a kubeadm installation
   at the cost of some usability.
-</p>
-<h4 id="turning-off-auto-approval-of-node-client-certificates">
+</p><h4 id="turning-off-auto-approval-of-node-client-certificates">
   Turning off auto-approval of node client certificates
-</h4>
-<p>
+</h4><p>
   By default, there is a CSR auto-approver enabled that basically approves any client certificate request
-  for a kubelet when a Bootstrap Token was used when authenticating. If you don&rsquo;t want the cluster to
+  for a kubelet when a Bootstrap Token was used when authenticating. If you don’t want the cluster to
   automatically approve kubelet client certs, you can turn it off by executing this command:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete clusterrolebinding kubeadm:node-autoapprove-bootstrap</code></pre>
-</div>
-<p>
+</div><p>
   After that,
   <code>
     kubeadm join
   </code>
   will block until the admin has manually approved the CSR in flight:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get csr</code></pre>
-</div>
-<p>
+</div><p>
   The output is similar to this:
 </p><pre><code>NAME                                                   AGE       REQUESTOR                 CONDITION
-node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ   18s       system:bootstrap:878f07   Pending</code></pre>
-<div class="highlight">
+node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ   18s       system:bootstrap:878f07   Pending</code></pre><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl certificate approve node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ</code></pre>
-</div>
-<p>
+</div><p>
   The output is similar to this:
-</p><pre><code>certificatesigningrequest &#34;node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ&#34; approved</code></pre>
-<div class="highlight">
+</p><pre><code>certificatesigningrequest &#34;node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ&#34; approved</code></pre><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get csr</code></pre>
-</div>
-<p>
+</div><p>
   The output is similar to this:
 </p><pre><code>NAME                                                   AGE       REQUESTOR                 CONDITION
-node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ   1m        system:bootstrap:878f07   Approved,Issued</code></pre>
-<p>
+node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ   1m        system:bootstrap:878f07   Approved,Issued</code></pre><p>
   This forces the workflow that
   <code>
     kubeadm join
@@ -764,13 +684,11 @@ node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ   1m        system:bootstra
     kubectl certificate approve
   </code>
   has been run.
-</p>
-<h4 id="turning-off-public-access-to-the-cluster-info-configmap">
+</p><h4 id="turning-off-public-access-to-the-cluster-info-configmap">
   Turning off public access to the cluster-info ConfigMap
-</h4>
-<p>
+</h4><p>
   In order to achieve the joining flow using the token as the only piece of validation information, a
-  ConfigMap with some data needed for validation of the control-plane node&rsquo;s identity is exposed publicly by
+  ConfigMap with some data needed for validation of the control-plane node’s identity is exposed publicly by
   default. While there is no private data in this ConfigMap, some users might wish to turn
   it off regardless. Doing so will disable the ability to use the
   <code>
@@ -781,8 +699,7 @@ node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ   1m        system:bootstra
     kubeadm join
   </code>
   flow. Here are the steps to do so:
-</p>
-<ul>
+</p><ul>
   <li>
     <p>
       Fetch the
@@ -795,8 +712,7 @@ node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ   1m        system:bootstra
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl -n kube-public get cm cluster-info -o yaml | grep <span style="color:#b44">&#34;kubeconfig:&#34;</span> -A11 | grep <span style="color:#b44">&#34;apiVersion&#34;</span> -A10 | sed <span style="color:#b44">&#34;s/    //&#34;</span> | tee cluster-info.yaml</code></pre>
     </div>
   </li>
-</ul>
-<p>
+</ul><p>
   The output is similar to this:
 </p><pre><code>apiVersion: v1
 kind: Config
@@ -808,8 +724,7 @@ clusters:
 contexts: []
 current-context: &#34;&#34;
 preferences: {}
-users: []</code></pre>
-<ul>
+users: []</code></pre><ul>
   <li>
     <p>
       Use the
@@ -835,8 +750,7 @@ users: []</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl -n kube-public delete rolebinding kubeadm:bootstrap-signer-clusterinfo</code></pre>
     </div>
   </li>
-</ul>
-<p>
+</ul><p>
   These commands should be run after
   <code>
     kubeadm init
@@ -846,20 +760,17 @@ users: []</code></pre>
     kubeadm join
   </code>
   .
-</p>
-<h3 id="config-file">
+</p><h3 id="config-file">
   Using kubeadm join with a configuration file
-</h3>
-<blockquote class="caution">
+</h3><blockquote class="caution">
   <div>
     <strong>
       Caution:
     </strong>
     The config file is still considered beta and may change in future versions.
   </div>
-</blockquote>
-<p>
-  It&rsquo;s possible to configure
+</blockquote><p>
+  It’s possible to configure
   <code>
     kubeadm join
   </code>
@@ -875,18 +786,15 @@ users: []</code></pre>
     JoinConfiguration
   </code>
   structure.
-</p>
-<p>
+</p><p>
   To print the default values of
   <code>
     JoinConfiguration
   </code>
   run the following command:
-</p>
-<div class="highlight">
+</p><div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubeadm config print join-defaults</code></pre>
-</div>
-<p>
+</div><p>
   For details on individual fields in
   <code>
     JoinConfiguration
@@ -896,11 +804,9 @@ users: []</code></pre>
     the godoc
   </a>
   .
-</p>
-<h2 id="what-s-next">
+</p><h2 id="what-s-next">
   What&#39;s next
-</h2>
-<ul>
+</h2><ul>
   <li>
     <a href="/docs/reference/setup-tools/kubeadm/kubeadm-init/">
       kubeadm init
@@ -929,4 +835,97 @@ users: []</code></pre>
       kubeadm join
     </code>
   </li>
-</ul>
+</ul><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody></table></p></body></html>

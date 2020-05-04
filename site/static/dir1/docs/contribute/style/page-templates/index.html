@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Using Page Templates
     </h1>
@@ -61,7 +60,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -72,7 +71,7 @@
       A concept page explains some aspect of Kubernetes. For example, a concept
       page might describe the Kubernetes Deployment object and explain the role it
       plays as an application once it is deployed, scaled, and updated. Typically, concept
-      pages don&rsquo;t include sequences of steps, but instead provide links to tasks or
+      pages don’t include sequences of steps, but instead provide links to tasks or
       tutorials.
     </p>
     <p>
@@ -84,15 +83,15 @@
     </p>
     <ul>
       <li>
-        In the page&rsquo;s YAML front-matter, set
-        <code>
+        In the page’s YAML front-matter, set
+        <code data-diff="">
           content_template: templates/concept
         </code>
         .
       </li>
       <li>
         <p>
-          In the page&rsquo;s body, set the required
+          In the page’s body, set the required
           <code>
             capture
           </code>
@@ -138,7 +137,7 @@
           </tbody>
         </table>
         <p>
-          The page&rsquo;s body will look like this (remove any optional captures you don&rsquo;t
+          The page’s body will look like this (remove any optional captures you don’t
           need):
         </p>
         <pre><code>{{% capture overview %}}
@@ -166,7 +165,7 @@
             <code>
               overview
             </code>
-            , set the topic&rsquo;s context with a single paragraph.
+            , set the topic’s context with a single paragraph.
           </li>
           <li>
             For
@@ -208,7 +207,7 @@
     </p>
     <ul>
       <li>
-        In the page&rsquo;s YAML front-matter, set
+        In the page’s YAML front-matter, set
         <code>
           content_template: templates/task
         </code>
@@ -216,7 +215,7 @@
       </li>
       <li>
         <p>
-          In the page&rsquo;s body, set the required
+          In the page’s body, set the required
           <code>
             capture
           </code>
@@ -278,7 +277,7 @@
           </tbody>
         </table>
         <p>
-          The page&rsquo;s body will look like this (remove any optional captures you don&rsquo;t
+          The page’s body will look like this (remove any optional captures you don’t
           need):
         </p>
         <pre><code>{{% capture overview %}}
@@ -388,7 +387,7 @@
     </p>
     <ul>
       <li>
-        In the page&rsquo;s YAML front-matter, set
+        In the page’s YAML front-matter, set
         <code>
           content_template: templates/tutorial
         </code>
@@ -396,7 +395,7 @@
       </li>
       <li>
         <p>
-          In the page&rsquo;s body, set the required
+          In the page’s body, set the required
           <code>
             capture
           </code>
@@ -466,7 +465,7 @@
           </tbody>
         </table>
         <p>
-          The page&rsquo;s body will look like this (remove any optional captures you don&rsquo;t
+          The page’s body will look like this (remove any optional captures you don’t
           need):
         </p>
         <pre><code>{{% capture overview %}}
@@ -587,5 +586,5 @@
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Translate a Docker Compose File to Kubernetes Resources
 </h1>
@@ -12,7 +11,7 @@
   Translate a Docker Compose File to Kubernetes Resources
 </h1>
 <p>
-  What&rsquo;s Kompose? It&rsquo;s a conversion tool for all things compose (namely Docker Compose) to container orchestrators (Kubernetes or OpenShift).
+  What’s Kompose? It’s a conversion tool for all things compose (namely Docker Compose) to container orchestrators (Kubernetes or OpenShift).
 </p>
 <p>
   More information can be found on the Kompose website at
@@ -156,7 +155,7 @@
   </li>
 </ul>
 <div id="install-ways-0">
-  <p>
+  <p data-diff="">
     Kompose is released via GitHub on a three-week cycle, you can see all current releases on the
     <a href="https://github.com/kubernetes/kompose/releases">
       GitHub release page
@@ -196,7 +195,7 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">go get -u github.com/kubernetes/kompose</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="install-ways-2">
   <p>
     Kompose is in
@@ -204,7 +203,7 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
       EPEL
     </a>
     CentOS repository.
-    If you don&rsquo;t have
+    If you don’t have
     <a href="https://fedoraproject.org/wiki/EPEL">
       EPEL
     </a>
@@ -224,7 +223,7 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo yum -y install kompose</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="install-ways-3">
   <p>
     Kompose is in Fedora 24, 25 and 26 repositories. You can install it just like any other package.
@@ -233,7 +232,7 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo dnf -y install kompose</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="install-ways-4">
   <p>
     On macOS you can install latest release via
@@ -246,16 +245,16 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install kompose</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#install-ways").tabs();});
 </script>
-<h2 id="use-kompose">
+</p><h2 id="use-kompose">
   Use Kompose
 </h2>
 <p>
-  In just a few steps, we&rsquo;ll take you from Docker Compose to Kubernetes. All
+  In just a few steps, we’ll take you from Docker Compose to Kubernetes. All
   you need is an existing
   <code>
     docker-compose.yml
@@ -269,7 +268,7 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
       <code>
         docker-compose.yml
       </code>
-      file. If you don&rsquo;t
+      file. If you don’t
       have one, test using this one.
     </p>
     <div class="highlight">
@@ -372,7 +371,7 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
       Access your application.
     </p>
     <p>
-      If you&rsquo;re already using
+      If you’re already using
       <code>
         minikube
       </code>
@@ -382,7 +381,7 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">  $ minikube service frontend</code></pre>
     </div>
     <p>
-      Otherwise, let&rsquo;s look up what IP your service is using!
+      Otherwise, let’s look up what IP your service is using!
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">  $ kubectl describe svc frontend
@@ -400,7 +399,7 @@ sudo mv ./kompose /usr/local/bin/kompose</code></pre>
   No events.</code></pre>
     </div>
     <p>
-      If you&rsquo;re using a cloud provider, your IP will be listed next to
+      If you’re using a cloud provider, your IP will be listed next to
       <code>
         LoadBalancer Ingress
       </code>
@@ -598,7 +597,7 @@ INFO OpenShift file <span style="color:#b44">&#34;foo-buildconfig.yaml&#34;</spa
   </code>
 </h2>
 <p>
-  Kompose supports a straightforward way to deploy your &ldquo;composed&rdquo; application to Kubernetes or OpenShift via
+  Kompose supports a straightforward way to deploy your “composed” application to Kubernetes or OpenShift via
   <code>
     kompose up
   </code>
@@ -719,11 +718,11 @@ is/redis-slave     172.30.12.200:5000/fff/redis-slave    v1  </code></pre>
   </code>
 </h2>
 <p>
-  Once you have deployed &ldquo;composed&rdquo; application to Kubernetes,
+  Once you have deployed “composed” application to Kubernetes,
   <code>
     $ kompose down
   </code>
-  will help you to take the application out by deleting its deployments and services. If you need to remove other resources, use the &lsquo;kubectl&rsquo; command.
+  will help you to take the application out by deleting its deployments and services. If you need to remove other resources, use the ‘kubectl’ command.
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ kompose --file docker-guestbook.yml down
@@ -946,7 +945,7 @@ docker-compose
   <code>
     docker-compose.yml
   </code>
-  file in order to explicitly define a service&rsquo;s behavior upon conversion.
+  file in order to explicitly define a service’s behavior upon conversion.
 </p>
 <ul>
   <li>
@@ -977,7 +976,7 @@ docker-compose
     <code>
       kompose.service.expose
     </code>
-    defines if the service needs to be made accessible from outside the cluster or not. If the value is set to &ldquo;true&rdquo;, the provider sets the endpoint automatically, and for any other value, the value is set as the hostname. If multiple ports are defined in a service, the first one is chosen to be the exposed.
+    defines if the service needs to be made accessible from outside the cluster or not. If the value is set to “true”, the provider sets the endpoint automatically, and for any other value, the value is set as the hostname. If multiple ports are defined in a service, the first one is chosen to be the exposed.
     <ul>
       <li>
         For the Kubernetes provider, an ingress resource is created and it is assumed that an ingress controller has already been configured.
@@ -1100,7 +1099,7 @@ docker-compose
     <tr>
       <td>
         <code>
-          &quot;&quot;
+          &#34;&#34;
         </code>
       </td>
       <td>
@@ -1196,10 +1195,10 @@ docker-compose
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">restart</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;on-failure&#34;</span></code></pre>
 </div>
 <h3 id="warning-about-deployment-config-s">
-  Warning about Deployment Config&rsquo;s
+  Warning about Deployment Config’s
 </h3>
 <p>
-  If the Docker Compose file has a volume specified for a service, the Deployment (Kubernetes) or DeploymentConfig (OpenShift) strategy is changed to &ldquo;Recreate&rdquo; instead of &ldquo;RollingUpdate&rdquo; (default). This is done to avoid multiple instances of a service from accessing a volume at the same time.
+  If the Docker Compose file has a volume specified for a service, the Deployment (Kubernetes) or DeploymentConfig (OpenShift) strategy is changed to “Recreate” instead of “RollingUpdate” (default). This is done to avoid multiple instances of a service from accessing a volume at the same time.
 </p>
 <p>
   If the Docker Compose file has service name with
@@ -1218,7 +1217,7 @@ docker-compose
   <code>
     web-service
   </code>
-  ). Kompose does this because &ldquo;Kubernetes&rdquo; doesn&rsquo;t allow
+  ). Kompose does this because “Kubernetes” doesn’t allow
   <code>
     _
   </code>
@@ -1243,4 +1242,4 @@ docker-compose
     conversion document
   </a>
   including a list of all incompatible Docker Compose keys.
-</p>
+</p></div></body></html>

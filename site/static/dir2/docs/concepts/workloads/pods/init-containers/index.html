@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Init Containers
     </h1>
@@ -14,9 +13,9 @@
     <p>
       This page provides an overview of init containers: specialized containers that run
       before app containers in a
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         Pod
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
@@ -48,7 +47,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -57,9 +56,9 @@
     </h2>
     <p>
       A
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         Pod
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
@@ -79,7 +78,7 @@
       </li>
     </ul>
     <p>
-      If a Pod&rsquo;s init container fails, Kubernetes repeatedly restarts the Pod until the init container
+      If a Pod’s init container fails, Kubernetes repeatedly restarts the Pod until the init container
       succeeds. However, if the Pod has a
       <code>
         restartPolicy
@@ -174,9 +173,9 @@
       <li>
         Init containers can run with a different view of the filesystem than app containers in the
         same Pod. Consequently, they can be given access to
-        <a class='glossary-tooltip' href='/docs/concepts/configuration/secret/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/configuration/secret/" target="_blank">
           Secrets
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Stores sensitive information, such as passwords, OAuth tokens, and ssh keys.
           </span>
         </a>
@@ -203,9 +202,9 @@
       <li>
         <p>
           Wait for a
-          <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+          <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
             Service
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               A way to expose an application running on a set of Pods as a network service.
             </span>
           </a>
@@ -235,9 +234,9 @@
       <li>
         <p>
           Clone a Git repository into a
-          <a class='glossary-tooltip' href='/docs/concepts/storage/volumes/' target='_blank'>
+          <a class="glossary-tooltip" href="/docs/concepts/storage/volumes/" target="_blank">
             Volume
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               A directory containing data, accessible to the containers in a pod.
             </span>
           </a>
@@ -294,7 +293,7 @@
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#39;sh&#39;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#39;-c&#39;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 2; done&#34;</span>]<span style="color:#bbb">
 </span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>init-mydb<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>busybox:<span style="color:#666">1.28</span><span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#39;sh&#39;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#39;-c&#39;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;until nslookup mydb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done&#34;</span>]<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#39;sh&#39;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#39;-c&#39;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;until nslookup mydb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done&#34;</span>]<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <p>
@@ -346,8 +345,8 @@ Events:
   FirstSeen    LastSeen    Count    From                      SubObjectPath                           Type          Reason        Message
   ---------    --------    -----    ----                      -------------                           --------      ------        -------
   16s          16s         1        {default-scheduler }                                              Normal        Scheduled     Successfully assigned myapp-pod to 172.17.4.201
-  16s          16s         1        {kubelet 172.17.4.201}    spec.initContainers{init-myservice}     Normal        Pulling       pulling image &quot;busybox&quot;
-  13s          13s         1        {kubelet 172.17.4.201}    spec.initContainers{init-myservice}     Normal        Pulled        Successfully pulled image &quot;busybox&quot;
+  16s          16s         1        {kubelet 172.17.4.201}    spec.initContainers{init-myservice}     Normal        Pulling       pulling image &#34;busybox&#34;
+  13s          13s         1        {kubelet 172.17.4.201}    spec.initContainers{init-myservice}     Normal        Pulled        Successfully pulled image &#34;busybox&#34;
   13s          13s         1        {kubelet 172.17.4.201}    spec.initContainers{init-myservice}     Normal        Created       Created container with docker id 5ced34a04634; Security:[seccomp=unconfined]
   13s          13s         1        {kubelet 172.17.4.201}    spec.initContainers{init-myservice}     Normal        Started       Started container with docker id 5ced34a04634</code></pre>
     <p>
@@ -369,7 +368,7 @@ kubectl logs myapp-pod -c init-mydb      <span style="color:#080;font-style:ital
       .
     </p>
     <p>
-      Here&rsquo;s a configuration you can use to make those Services appear:
+      Here’s a configuration you can use to make those Services appear:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---<span style="color:#bbb">
@@ -411,7 +410,7 @@ kubectl logs myapp-pod -c init-mydb      <span style="color:#080;font-style:ital
     <pre><code>service/myservice created
 service/mydb created</code></pre>
     <p>
-      You&rsquo;ll then see that those init containers complete, and that the
+      You’ll then see that those init containers complete, and that the
       <code>
         myapp-pod
       </code>
@@ -426,7 +425,7 @@ myapp-pod   1/1       Running   0          9m</code></pre>
       This simple example should provide some inspiration for you to create your own
       init containers.
       <a href="#what-s-next">
-        What&rsquo;s next
+        What’s next
       </a>
       contains a link to a more detailed example.
     </p>
@@ -435,8 +434,8 @@ myapp-pod   1/1       Running   0          9m</code></pre>
     </h2>
     <p>
       During Pod startup, the kubelet delays running init containers until the networking
-      and storage are ready. Then the kubelet runs the Pod&rsquo;s init containers in the order
-      they appear in the Pod&rsquo;s spec.
+      and storage are ready. Then the kubelet runs the Pod’s init containers in the order
+      they appear in the Pod’s spec.
     </p>
     <p>
       Each init container must exit successfully before
@@ -535,7 +534,7 @@ myapp-pod   1/1       Running   0          9m</code></pre>
         </em>
       </li>
       <li>
-        The Pod&rsquo;s
+        The Pod’s
         <em>
           effective request/limit
         </em>
@@ -555,7 +554,7 @@ myapp-pod   1/1       Running   0          9m</code></pre>
         during the life of the Pod.
       </li>
       <li>
-        The QoS (quality of service) tier of the Pod&rsquo;s
+        The QoS (quality of service) tier of the Pod’s
         <em>
           effective QoS tier
         </em>
@@ -615,5 +614,5 @@ myapp-pod   1/1       Running   0          9m</code></pre>
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

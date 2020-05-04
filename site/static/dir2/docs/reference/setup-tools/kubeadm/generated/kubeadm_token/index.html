@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1></h1>
     <p>
       <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_token.md" id="editPageButton" target="_blank">
@@ -12,7 +11,7 @@
         <li>
           <ul>
             <li>
-              <a href="#synopsis">
+              <a href="#synopsis" data-diff="">
                 Synopsis
               </a>
             </li>
@@ -39,7 +38,7 @@
     <p>
       In short, bootstrap tokens are used for establishing bidirectional trust between a client and a server.
       A bootstrap token can be used when a client (for example a node that is about to join the cluster) needs
-      to trust the server it is talking to. Then a bootstrap token with the &ldquo;signing&rdquo; usage can be used.
+      to trust the server it is talking to. Then a bootstrap token with the “signing” usage can be used.
       bootstrap tokens can also function as a way to allow short-lived authentication to the API Server
       (the token serves as a way for the API Server to trust the client), for example for doing the TLS Bootstrap.
     </p>
@@ -48,14 +47,14 @@
     </p>
     <ul>
       <li>
-        It is a Secret in the kube-system namespace of type &ldquo;bootstrap.kubernetes.io/token&rdquo;.
+        It is a Secret in the kube-system namespace of type “bootstrap.kubernetes.io/token”.
       </li>
       <li>
-        A bootstrap token must be of the form &ldquo;[a-z0-9]{6}.[a-z0-9]{16}&quot;. The former part is the public token ID,
+        A bootstrap token must be of the form “[a-z0-9]{6}.[a-z0-9]{16}&#34;. The former part is the public token ID,
         while the latter is the Token Secret and it must be kept private at all circumstances!
       </li>
       <li>
-        The name of the Secret must be named &ldquo;bootstrap-token-(token-id)&quot;.
+        The name of the Secret must be named “bootstrap-token-(token-id)&#34;.
       </li>
     </ul>
     <p>
@@ -70,8 +69,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -98,7 +97,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -114,8 +113,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -126,10 +125,10 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
     </table>
-  </body>
-</html>
+  
+</body></html>

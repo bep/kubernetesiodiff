@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Configure a Security Context for a Pod or Container
 </h1>
@@ -59,7 +58,7 @@
       <a href="https://en.wikipedia.org/wiki/Seccomp">
         Seccomp
       </a>
-      : Filter a process&rsquo;s system calls.
+      : Filter a process’s system calls.
     </p>
   </li>
   <li>
@@ -127,7 +126,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -201,7 +200,7 @@
             pods/security/security-context.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-security-security-context-yaml')" title="Copy pods/security/security-context.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-security-security-context-yaml&#39;)" title="Copy pods/security/security-context.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -271,7 +270,7 @@
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/pods/security/security-context.yaml</code></pre>
 </div>
 <p>
-  Verify that the Pod&rsquo;s Container is running:
+  Verify that the Pod’s Container is running:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod security-context-demo</code></pre>
@@ -392,7 +391,7 @@ ls -l</code></pre>
   Configure volume permission and ownership change policy for Pods
 </h2>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -460,7 +459,7 @@ ls -l</code></pre>
   <code>
     fsGroup
   </code>
-  specified in a Pod&rsquo;s
+  specified in a Pod’s
   <code>
     securityContext
   </code>
@@ -575,7 +574,7 @@ ls -l</code></pre>
   object.
   Security settings that you specify for a Container apply only to
   the individual Container, and they override settings made at the Pod level when
-  there is overlap. Container settings do not affect the Pod&rsquo;s Volumes.
+  there is overlap. Container settings do not affect the Pod’s Volumes.
 </p>
 <p>
   Here is the configuration file for a Pod that has one Container. Both the Pod
@@ -594,7 +593,7 @@ ls -l</code></pre>
             pods/security/security-context-2.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-security-security-context-2-yaml')" title="Copy pods/security/security-context-2.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-security-security-context-2-yaml&#39;)" title="Copy pods/security/security-context-2.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -628,7 +627,7 @@ ls -l</code></pre>
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/pods/security/security-context-2.yaml</code></pre>
 </div>
 <p>
-  Verify that the Pod&rsquo;s Container is running:
+  Verify that the Pod’s Container is running:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod security-context-demo-2</code></pre>
@@ -681,7 +680,7 @@ ls -l</code></pre>
   section of the Container manifest.
 </p>
 <p>
-  First, see what happens when you don&rsquo;t include a
+  First, see what happens when you don’t include a
   <code>
     capabilities
   </code>
@@ -697,7 +696,7 @@ ls -l</code></pre>
             pods/security/security-context-3.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-security-security-context-3-yaml')" title="Copy pods/security/security-context-3.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-security-security-context-3-yaml&#39;)" title="Copy pods/security/security-context-3.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -729,7 +728,7 @@ ls -l</code></pre>
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://k8s.io/examples/pods/security/security-context-3.yaml</code></pre>
 </div>
 <p>
-  Verify that the Pod&rsquo;s Container is running:
+  Verify that the Pod’s Container is running:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pod security-context-demo-3</code></pre>
@@ -798,7 +797,7 @@ CapEff:	00000000a80425fb
             pods/security/security-context-4.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-security-security-context-4-yaml')" title="Copy pods/security/security-context-4.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-security-security-context-4-yaml&#39;)" title="Copy pods/security/security-context-4.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -917,7 +916,7 @@ CapEff:	00000000aa0435fb
   <a href="/docs/reference/generated/kubernetes-api/v1.18/#selinuxoptions-v1-core">
     SELinuxOptions
   </a>
-  object. Here&rsquo;s an example that applies an SELinux level:
+  object. Here’s an example that applies an SELinux level:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">...<span style="color:#bbb">
@@ -938,8 +937,8 @@ CapEff:	00000000aa0435fb
   Discussion
 </h2>
 <p>
-  The security context for a Pod applies to the Pod&rsquo;s Containers and also to
-  the Pod&rsquo;s Volumes when applicable. Specifically
+  The security context for a Pod applies to the Pod’s Containers and also to
+  the Pod’s Volumes when applicable. Specifically
   <code>
     fsGroup
   </code>
@@ -1051,4 +1050,4 @@ kubectl delete pod security-context-demo-4</code></pre>
       document
     </a>
   </li>
-</ul>
+</ul></div></body></html>

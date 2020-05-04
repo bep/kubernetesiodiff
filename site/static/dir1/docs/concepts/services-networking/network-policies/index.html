@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Network Policies
     </h1>
@@ -13,9 +12,9 @@
     </h1>
     <p>
       A network policy is a specification of how groups of
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         pods
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
@@ -23,9 +22,9 @@
     </p>
     <p>
       NetworkPolicy resources use
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/labels" target="_blank">
         labels
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Tags objects with identifying attributes that are meaningful and relevant to users.
         </span>
       </a>
@@ -72,7 +71,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -96,7 +95,7 @@
       Pods become isolated by having a NetworkPolicy that selects them. Once there is any NetworkPolicy in a namespace selecting a particular pod, that pod will reject any connections that are not allowed by any NetworkPolicy. (Other pods in the namespace that are not selected by any NetworkPolicy will continue to accept all traffic.)
     </p>
     <p>
-      Network policies do not conflict, they are additive. If any policy or policies select a pod, the pod is restricted to what is allowed by the union of those policies&rsquo; ingress/egress rules. Thus, order of evaluation does not affect the policy result.
+      Network policies do not conflict, they are additive. If any policy or policies select a pod, the pod is restricted to what is allowed by the union of those policies’ ingress/egress rules. Thus, order of evaluation does not affect the policy result.
     </p>
     <h2 id="networkpolicy-resource">
       The NetworkPolicy resource
@@ -202,7 +201,7 @@
       <code>
         podSelector
       </code>
-      which selects the grouping of pods to which the policy applies. The example policy selects pods with the label &ldquo;role=db&rdquo;. An empty
+      which selects the grouping of pods to which the policy applies. The example policy selects pods with the label “role=db”. An empty
       <code>
         podSelector
       </code>
@@ -299,7 +298,7 @@
     </p>
     <ol>
       <li>
-        isolates &ldquo;role=db&rdquo; pods in the &ldquo;default&rdquo; namespace for both ingress and egress traffic (if they weren&rsquo;t already isolated)
+        isolates “role=db” pods in the “default” namespace for both ingress and egress traffic (if they weren’t already isolated)
       </li>
       <li>
         <p>
@@ -307,10 +306,10 @@
         </p>
         <ul>
           <li>
-            any pod in the &ldquo;default&rdquo; namespace with the label &ldquo;role=frontend&rdquo;
+            any pod in the “default” namespace with the label “role=frontend”
           </li>
           <li>
-            any pod in a namespace with the label &ldquo;project=myproject&rdquo;
+            any pod in a namespace with the label “project=myproject”
           </li>
           <li>
             IP addresses in the ranges 172.17.0.0–172.17.0.255 and 172.17.2.0–172.17.255.255 (ie, all of 172.17.0.0/16 except 172.17.1.0/24)
@@ -319,7 +318,7 @@
       </li>
       <li>
         <p>
-          (Egress rules) allows connections from any pod in the &ldquo;default&rdquo; namespace with the label &ldquo;role=db&rdquo; to CIDR 10.0.0.0/24 on TCP port 5978
+          (Egress rules) allows connections from any pod in the “default” namespace with the label “role=db” to CIDR 10.0.0.0/24 on TCP port 5978
         </p>
       </li>
     </ol>
@@ -485,12 +484,12 @@
     </p>
     <p>
       In the case of ingress, this means that in some cases you may be able to filter incoming
-      packets based on the actual original source IP, while in other cases, the &ldquo;source IP&rdquo; that
+      packets based on the actual original source IP, while in other cases, the “source IP” that
       the NetworkPolicy acts on may be the IP of a
       <code>
         LoadBalancer
       </code>
-      or of the Pod&rsquo;s node, etc.
+      or of the Pod’s node, etc.
     </p>
     <p>
       For egress, this means that connections from pods to
@@ -515,7 +514,7 @@
       Default deny all ingress traffic
     </h3>
     <p>
-      You can create a &ldquo;default&rdquo; isolation policy for a namespace by creating a NetworkPolicy that selects all pods but does not allow any ingress traffic to those pods.
+      You can create a “default” isolation policy for a namespace by creating a NetworkPolicy that selects all pods but does not allow any ingress traffic to those pods.
     </p>
     <table class="includecode" id="service-networking-network-policy-default-deny-ingress-yaml">
       <thead>
@@ -526,7 +525,7 @@
                 service/networking/network-policy-default-deny-ingress.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-network-policy-default-deny-ingress-yaml')" title="Copy service/networking/network-policy-default-deny-ingress.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-network-policy-default-deny-ingress-yaml&#39;)" title="Copy service/networking/network-policy-default-deny-ingress.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -550,13 +549,13 @@
       </tbody>
     </table>
     <p>
-      This ensures that even pods that aren&rsquo;t selected by any other NetworkPolicy will still be isolated. This policy does not change the default egress isolation behavior.
+      This ensures that even pods that aren’t selected by any other NetworkPolicy will still be isolated. This policy does not change the default egress isolation behavior.
     </p>
     <h3 id="default-allow-all-ingress-traffic">
       Default allow all ingress traffic
     </h3>
     <p>
-      If you want to allow all traffic to all pods in a namespace (even if policies are added that cause some pods to be treated as &ldquo;isolated&rdquo;), you can create a policy that explicitly allows all traffic in that namespace.
+      If you want to allow all traffic to all pods in a namespace (even if policies are added that cause some pods to be treated as “isolated”), you can create a policy that explicitly allows all traffic in that namespace.
     </p>
     <table class="includecode" id="service-networking-network-policy-allow-all-ingress-yaml">
       <thead>
@@ -567,7 +566,7 @@
                 service/networking/network-policy-allow-all-ingress.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-network-policy-allow-all-ingress-yaml')" title="Copy service/networking/network-policy-allow-all-ingress.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-network-policy-allow-all-ingress-yaml&#39;)" title="Copy service/networking/network-policy-allow-all-ingress.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -596,7 +595,7 @@
       Default deny all egress traffic
     </h3>
     <p>
-      You can create a &ldquo;default&rdquo; egress isolation policy for a namespace by creating a NetworkPolicy that selects all pods but does not allow any egress traffic from those pods.
+      You can create a “default” egress isolation policy for a namespace by creating a NetworkPolicy that selects all pods but does not allow any egress traffic from those pods.
     </p>
     <table class="includecode" id="service-networking-network-policy-default-deny-egress-yaml">
       <thead>
@@ -607,7 +606,7 @@
                 service/networking/network-policy-default-deny-egress.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-network-policy-default-deny-egress-yaml')" title="Copy service/networking/network-policy-default-deny-egress.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-network-policy-default-deny-egress-yaml&#39;)" title="Copy service/networking/network-policy-default-deny-egress.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -631,14 +630,14 @@
       </tbody>
     </table>
     <p>
-      This ensures that even pods that aren&rsquo;t selected by any other NetworkPolicy will not be allowed egress traffic. This policy does not
+      This ensures that even pods that aren’t selected by any other NetworkPolicy will not be allowed egress traffic. This policy does not
       change the default ingress isolation behavior.
     </p>
     <h3 id="default-allow-all-egress-traffic">
       Default allow all egress traffic
     </h3>
     <p>
-      If you want to allow all traffic from all pods in a namespace (even if policies are added that cause some pods to be treated as &ldquo;isolated&rdquo;), you can create a policy that explicitly allows all egress traffic in that namespace.
+      If you want to allow all traffic from all pods in a namespace (even if policies are added that cause some pods to be treated as “isolated”), you can create a policy that explicitly allows all egress traffic in that namespace.
     </p>
     <table class="includecode" id="service-networking-network-policy-allow-all-egress-yaml">
       <thead>
@@ -649,7 +648,7 @@
                 service/networking/network-policy-allow-all-egress.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-network-policy-allow-all-egress-yaml')" title="Copy service/networking/network-policy-allow-all-egress.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-network-policy-allow-all-egress-yaml&#39;)" title="Copy service/networking/network-policy-allow-all-egress.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -678,7 +677,7 @@
       Default deny all ingress and all egress traffic
     </h3>
     <p>
-      You can create a &ldquo;default&rdquo; policy for a namespace which prevents all ingress AND egress traffic by creating the following NetworkPolicy in that namespace.
+      You can create a “default” policy for a namespace which prevents all ingress AND egress traffic by creating the following NetworkPolicy in that namespace.
     </p>
     <table class="includecode" id="service-networking-network-policy-default-deny-all-yaml">
       <thead>
@@ -689,7 +688,7 @@
                 service/networking/network-policy-default-deny-all.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-network-policy-default-deny-all-yaml')" title="Copy service/networking/network-policy-default-deny-all.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-network-policy-default-deny-all-yaml&#39;)" title="Copy service/networking/network-policy-default-deny-all.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -714,13 +713,13 @@
       </tbody>
     </table>
     <p>
-      This ensures that even pods that aren&rsquo;t selected by any other NetworkPolicy will not be allowed ingress or egress traffic.
+      This ensures that even pods that aren’t selected by any other NetworkPolicy will not be allowed ingress or egress traffic.
     </p>
     <h2 id="sctp-support">
       SCTP support
     </h2>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -810,9 +809,9 @@
           Note:
         </strong>
         You must be using a
-        <a class='glossary-tooltip' href='/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni" target="_blank">
           CNI
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Container network interface (CNI) plugins are a type of Network plugin that adheres to the appc/CNI specification.
           </span>
         </a>
@@ -838,5 +837,5 @@
         for common scenarios enabled by the NetworkPolicy resource.
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

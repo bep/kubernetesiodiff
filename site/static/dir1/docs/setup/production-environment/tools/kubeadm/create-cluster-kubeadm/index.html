@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Creating a single control-plane cluster with kubeadm
 </h1>
@@ -12,7 +11,7 @@
   Creating a single control-plane cluster with kubeadm
 </h1>
 <p>
-  <img src="https://raw.githubusercontent.com/kubernetes/kubeadm/master/logos/stacked/color/kubeadm-stacked-color.png" align="right" width="150px">
+  <img src="https://raw.githubusercontent.com/kubernetes/kubeadm/master/logos/stacked/color/kubeadm-stacked-color.png" align="right" width="150px"/>
   The
   <code>
     kubeadm
@@ -26,7 +25,7 @@
     Kubernetes Conformance tests
   </a>
   .
-  <br />
+  <br/>
   <code>
     kubeadm
   </code>
@@ -62,7 +61,7 @@
     kubeadm
   </code>
   on various machines: your laptop, a set
-  of cloud servers, a Raspberry Pi, and more. Whether you&rsquo;re deploying into the
+  of cloud servers, a Raspberry Pi, and more. Whether you’re deploying into the
   cloud or on-premises, you can integrate
   <code>
     kubeadm
@@ -123,7 +122,7 @@
     One or more machines running a deb/rpm-compatible Linux OS; for example: Ubuntu or CentOS.
   </li>
   <li>
-    2 GiB or more of RAM per machine&ndash;any less leaves little room for your
+    2 GiB or more of RAM per machine–any less leaves little room for your
     apps.
   </li>
   <li>
@@ -144,7 +143,7 @@
 </p>
 <p>
   <a href="https://kubernetes.io/docs/setup/release/version-skew-policy/#supported-versions">
-    Kubernetes&rsquo; version and version skew support policy
+    Kubernetes’ version and version skew support policy
   </a>
   applies to
   <code>
@@ -162,7 +161,7 @@
   <code>
     kubeadm
   </code>
-  tool&rsquo;s overall feature state is General Availability (GA). Some sub-features are
+  tool’s overall feature state is General Availability (GA). Some sub-features are
   still under active development. The implementation of creating the cluster may change
   slightly as the tool evolves, but the overall implementation should be pretty stable.
 </p>
@@ -202,7 +201,7 @@
 <p>
   See
   <a href="/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">
-    &ldquo;Installing kubeadm&rdquo;
+    “Installing kubeadm”
   </a>
   .
 </p>
@@ -235,23 +234,23 @@
 </h3>
 <p>
   The control-plane node is the machine where the control plane components run, including
-  <a class='glossary-tooltip' href='/docs/tasks/administer-cluster/configure-upgrade-etcd/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/tasks/administer-cluster/configure-upgrade-etcd/" target="_blank">
     etcd
-    <span class='tooltip-text'>
-      Consistent and highly-available key value store used as Kubernetes&rsquo; backing store for all cluster data.
+    <span class="tooltip-text">
+      Consistent and highly-available key value store used as Kubernetes’ backing store for all cluster data.
     </span>
   </a>
   (the cluster database) and the
-  <a class='glossary-tooltip' href='/docs/reference/generated/kube-apiserver/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/reference/generated/kube-apiserver/" target="_blank">
     API Server
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Control plane component that serves the Kubernetes API.
     </span>
   </a>
   (which the
-  <a class='glossary-tooltip' href='/docs/user-guide/kubectl-overview/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/user-guide/kubectl-overview/" target="_blank">
     kubectl
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A command line tool for communicating with a Kubernetes API server.
     </span>
   </a>
@@ -317,7 +316,7 @@
       kubeadm
     </code>
     uses the network interface associated
-    with the default gateway to set the advertise address for this particular control-plane node&rsquo;s API server.
+    with the default gateway to set the advertise address for this particular control-plane node’s API server.
     To use a different network interface, specify the
     <code>
       --apiserver-advertise-address=&lt;ip-address&gt;
@@ -361,7 +360,7 @@
     --apiserver-advertise-address
   </code>
   can be used to set the advertise address for this particular
-  control-plane node&rsquo;s API server,
+  control-plane node’s API server,
   <code>
     --control-plane-endpoint
   </code>
@@ -605,14 +604,14 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
     <p>
       <strong>
         You must deploy a
-        <a class='glossary-tooltip' href='/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni" target="_blank">
           Container Network Interface
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Container network interface (CNI) plugins are a type of Network plugin that adheres to the appc/CNI specification.
           </span>
         </a>
         (CNI) based Pod network add-on so that your Pods can communicate with each other.
-        <br />
+        <br/>
         Cluster DNS (CoreDNS) will not start up before a network is installed.
       </strong>
     </p>
@@ -621,7 +620,7 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
         <p>
           Take care that your Pod network must not overlap with any of the host
           networks: you are likely to see problems if there is any overlap.
-          <br />
+          <br/>
           (If you find a collision between your network plugin’s preferred Pod
           network and some of your host networks, you should think of a suitable
           CIDR block to use instead, then use that during
@@ -647,17 +646,17 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
           </a>
           (role based access
           control).
-          <br />
+          <br/>
           Make sure that your Pod network plugin supports RBAC, and so do any manifests
           that you use to deploy it.
         </p>
       </li>
       <li>
         <p>
-          If you want to use IPv6&ndash;either dual-stack, or single-stack IPv6 only
-          networking&ndash;for your cluster, make sure that your Pod network plugin
+          If you want to use IPv6–either dual-stack, or single-stack IPv6 only
+          networking–for your cluster, make sure that your Pod network plugin
           supports IPv6.
-          <br />
+          <br/>
           IPv6 support was added to CNI in
           <a href="https://github.com/containernetworking/cni/releases/tag/v0.6.0">
             v0.6.0
@@ -728,7 +727,7 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
   </li>
 </ul>
 <div id="tabs-pod-install-0">
-  <p>
+  <p data-diff="">
     <a href="https://docs.projectcalico.org/latest/introduction/">
       Calico
     </a>
@@ -759,13 +758,13 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
     <code>
       --pod-network-cidr=192.168.0.0/16
     </code>
-    flag or via kubeadm&rsquo;s configuration.
+    flag or via kubeadm’s configuration.
   </p>
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="tabs-pod-install-1">
   <p>
     For Cilium to work correctly, you must pass
@@ -857,7 +856,7 @@ cilium-drxkl   1/1     Running   0          18m</code></pre>
     <a href="https://coreos.com/flannel/docs/latest/troubleshooting.html#firewalls">
       Firewall
     </a>
-    section of Flannel&rsquo;s troubleshooting guide explains about this in more detail.
+    section of Flannel’s troubleshooting guide explains about this in more detail.
   </p>
   <p>
     Flannel works on
@@ -956,18 +955,18 @@ cilium-drxkl   1/1     Running   0          18m</code></pre>
     </code>
     platforms without any extra action required.
     Weave Net sets hairpin mode by default. This allows Pods to access themselves via their Service IP address
-    if they don&rsquo;t know their PodIP.
+    if they don’t know their PodIP.
   </p>
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl apply -f <span style="color:#b44">&#34;https://cloud.weave.works/k8s/net?k8s-version=</span><span style="color:#a2f;font-weight:bold">$(</span>kubectl version | base64 | tr -d <span style="color:#b44">&#39;\n&#39;</span><span style="color:#a2f;font-weight:bold">)</span><span style="color:#b44">&#34;</span></code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#tabs-pod-install").tabs();});
 </script>
-<p>
+</p><p>
   Once a Pod network has been installed, you can confirm that it is working by
   checking that the CoreDNS Pod is
   <code>
@@ -1074,7 +1073,7 @@ taint &#34;node-role.kubernetes.io/master:&#34; not found</code></pre>
   The output is similar to this:
 </p><pre><code class="language-console" data-lang="console">5didvk.d09sbcov8ph2amjw</code></pre>
 <p>
-  If you don&rsquo;t have the value of
+  If you don’t have the value of
   <code>
     --discovery-token-ca-cert-hash
   </code>
@@ -1163,7 +1162,7 @@ kubectl --kubeconfig ./admin.conf get nodes</code></pre>
         superuser
       </em>
       privileges over the cluster.
-      This file should be used sparingly. For normal users, it&rsquo;s recommended to
+      This file should be used sparingly. For normal users, it’s recommended to
       generate an unique credential to which you whitelist privileges. You can do
       this with the
       <code>
@@ -1285,7 +1284,7 @@ kubectl delete node &lt;node name&gt;</code></pre>
   options.
 </p>
 <h2 id="whats-next">
-  What&rsquo;s next
+  What’s next
 </h2>
 <ul>
   <li>
@@ -1295,9 +1294,9 @@ kubectl delete node &lt;node name&gt;</code></pre>
     </a>
   </li>
   <li>
-    <a id="lifecycle" />
+    <a id="lifecycle">
     See
-    <a href="/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/">
+    </a><a href="/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/">
       Upgrading kubeadm clusters
     </a>
     for details about upgrading your cluster using
@@ -1338,9 +1337,9 @@ kubectl delete node &lt;node name&gt;</code></pre>
     of Pod network add-ons.
   </li>
   <li>
-    <a id="other-addons" />
+    <a id="other-addons">
     See the
-    <a href="/docs/concepts/cluster-administration/addons/">
+    </a><a href="/docs/concepts/cluster-administration/addons/">
       list of add-ons
     </a>
     to
@@ -1409,7 +1408,7 @@ kubectl delete node &lt;node name&gt;</code></pre>
   vX.Y can also upgrade an existing kubeadm-created cluster of version vX.(Y-1).
 </p>
 <p>
-  Due to that we can&rsquo;t see into the future, kubeadm CLI vX.Y may or may not be able to deploy vX.(Y+1) clusters.
+  Due to that we can’t see into the future, kubeadm CLI vX.Y may or may not be able to deploy vX.(Y+1) clusters.
 </p>
 <p>
   Example:
@@ -1505,4 +1504,4 @@ kubectl delete node &lt;node name&gt;</code></pre>
     troubleshooting docs
   </a>
   .
-</p>
+</p></div></body></html>

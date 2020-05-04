@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       kubectl
     </h1>
@@ -44,10 +43,10 @@
     <h2 id="options">
       Options
     </h2>
-    <table style="width: 100%; table-layout: fixed;">
+    <table style="width: 100%; table-layout: fixed;" data-diff="">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -74,7 +73,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --application-metrics-count-limit int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 100
+            --application-metrics-count-limit int     Default: 100
           </td>
         </tr>
         <tr>
@@ -118,7 +117,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --boot-id-file string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/proc/sys/kernel/random/boot_id"
+            --boot-id-file string     Default: &#34;/proc/sys/kernel/random/boot_id&#34;
           </td>
         </tr>
         <tr>
@@ -129,7 +128,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --cache-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "$HOME/.kube/http-cache"
+            --cache-dir string     Default: &#34;$HOME/.kube/http-cache&#34;
           </td>
         </tr>
         <tr>
@@ -173,24 +172,24 @@
         </tr>
         <tr>
           <td colspan="2">
-            --cloud-provider-gce-l7lb-src-cidrs cidrs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 130.211.0.0/22,35.191.0.0/16
+            --cloud-provider-gce-l7lb-src-cidrs cidrs     Default: 130.211.0.0/22,35.191.0.0/16
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            CIDRs opened in GCE firewall for L7 LB traffic proxy & health checks
+            CIDRs opened in GCE firewall for L7 LB traffic proxy &amp; health checks
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --cloud-provider-gce-lb-src-cidrs cidrs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 130.211.0.0/22,209.85.152.0/22,209.85.204.0/22,35.191.0.0/16
+            --cloud-provider-gce-lb-src-cidrs cidrs     Default: 130.211.0.0/22,209.85.152.0/22,209.85.204.0/22,35.191.0.0/16
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            CIDRs opened in GCE firewall for L4 LB traffic proxy & health checks
+            CIDRs opened in GCE firewall for L4 LB traffic proxy &amp; health checks
           </td>
         </tr>
         <tr>
@@ -206,7 +205,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --container-hints string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/cadvisor/container_hints.json"
+            --container-hints string     Default: &#34;/etc/cadvisor/container_hints.json&#34;
           </td>
         </tr>
         <tr>
@@ -217,7 +216,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --containerd string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/run/containerd/containerd.sock"
+            --containerd string     Default: &#34;/run/containerd/containerd.sock&#34;
           </td>
         </tr>
         <tr>
@@ -228,7 +227,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --containerd-namespace string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "k8s.io"
+            --containerd-namespace string     Default: &#34;k8s.io&#34;
           </td>
         </tr>
         <tr>
@@ -250,7 +249,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --default-not-ready-toleration-seconds int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 300
+            --default-not-ready-toleration-seconds int     Default: 300
           </td>
         </tr>
         <tr>
@@ -261,7 +260,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --default-unreachable-toleration-seconds int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 300
+            --default-unreachable-toleration-seconds int     Default: 300
           </td>
         </tr>
         <tr>
@@ -283,7 +282,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --docker string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "unix:///var/run/docker.sock"
+            --docker string     Default: &#34;unix:///var/run/docker.sock&#34;
           </td>
         </tr>
         <tr>
@@ -316,7 +315,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --docker-root string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/var/lib/docker"
+            --docker-root string     Default: &#34;/var/lib/docker&#34;
           </td>
         </tr>
         <tr>
@@ -338,7 +337,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --docker-tls-ca string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "ca.pem"
+            --docker-tls-ca string     Default: &#34;ca.pem&#34;
           </td>
         </tr>
         <tr>
@@ -349,7 +348,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --docker-tls-cert string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "cert.pem"
+            --docker-tls-cert string     Default: &#34;cert.pem&#34;
           </td>
         </tr>
         <tr>
@@ -360,7 +359,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --docker-tls-key string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "key.pem"
+            --docker-tls-key string     Default: &#34;key.pem&#34;
           </td>
         </tr>
         <tr>
@@ -382,29 +381,29 @@
         </tr>
         <tr>
           <td colspan="2">
-            --event-storage-age-limit string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "default=0"
+            --event-storage-age-limit string     Default: &#34;default=0&#34;
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Max length of time for which to store events (per type). Value is a comma separated list of key values, where the keys are event types (e.g.: creation, oom) or "default" and the value is a duration. Default is applied to all non-specified event types
+            Max length of time for which to store events (per type). Value is a comma separated list of key values, where the keys are event types (e.g.: creation, oom) or &#34;default&#34; and the value is a duration. Default is applied to all non-specified event types
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --event-storage-event-limit string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "default=0"
+            --event-storage-event-limit string     Default: &#34;default=0&#34;
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Max number of events to store (per type). Value is a comma separated list of key values, where the keys are event types (e.g.: creation, oom) or "default" and the value is an integer. Default is applied to all non-specified event types
+            Max number of events to store (per type). Value is a comma separated list of key values, where the keys are event types (e.g.: creation, oom) or &#34;default&#34; and the value is an integer. Default is applied to all non-specified event types
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --global-housekeeping-interval duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 1m0s
+            --global-housekeeping-interval duration     Default: 1m0s
           </td>
         </tr>
         <tr>
@@ -426,7 +425,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --housekeeping-interval duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 10s
+            --housekeeping-interval duration     Default: 10s
           </td>
         </tr>
         <tr>
@@ -443,7 +442,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
+            If true, the server&#39;s certificate will not be checked for validity. This will make your HTTPS connections insecure
           </td>
         </tr>
         <tr>
@@ -459,7 +458,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --log-backtrace-at traceLocation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: :0
+            --log-backtrace-at traceLocation     Default: :0
           </td>
         </tr>
         <tr>
@@ -503,7 +502,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --log-file-max-size uint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 1800
+            --log-file-max-size uint     Default: 1800
           </td>
         </tr>
         <tr>
@@ -514,7 +513,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --log-flush-frequency duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5s
+            --log-flush-frequency duration     Default: 5s
           </td>
         </tr>
         <tr>
@@ -525,7 +524,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --logtostderr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+            --logtostderr     Default: true
           </td>
         </tr>
         <tr>
@@ -536,7 +535,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --machine-id-file string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/machine-id,/var/lib/dbus/machine-id"
+            --machine-id-file string     Default: &#34;/etc/machine-id,/var/lib/dbus/machine-id&#34;
           </td>
         </tr>
         <tr>
@@ -580,7 +579,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --profile string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "none"
+            --profile string     Default: &#34;none&#34;
           </td>
         </tr>
         <tr>
@@ -591,7 +590,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --profile-output string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "profile.pprof"
+            --profile-output string     Default: &#34;profile.pprof&#34;
           </td>
         </tr>
         <tr>
@@ -602,13 +601,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            --request-timeout string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "0"
+            --request-timeout string     Default: &#34;0&#34;
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests.
+            The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don&#39;t timeout requests.
           </td>
         </tr>
         <tr>
@@ -646,7 +645,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --stderrthreshold severity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 2
+            --stderrthreshold severity     Default: 2
           </td>
         </tr>
         <tr>
@@ -657,7 +656,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --storage-driver-buffer-duration duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 1m0s
+            --storage-driver-buffer-duration duration     Default: 1m0s
           </td>
         </tr>
         <tr>
@@ -668,7 +667,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --storage-driver-db string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "cadvisor"
+            --storage-driver-db string     Default: &#34;cadvisor&#34;
           </td>
         </tr>
         <tr>
@@ -679,7 +678,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --storage-driver-host string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "localhost:8086"
+            --storage-driver-host string     Default: &#34;localhost:8086&#34;
           </td>
         </tr>
         <tr>
@@ -690,7 +689,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --storage-driver-password string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "root"
+            --storage-driver-password string     Default: &#34;root&#34;
           </td>
         </tr>
         <tr>
@@ -712,7 +711,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --storage-driver-table string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "stats"
+            --storage-driver-table string     Default: &#34;stats&#34;
           </td>
         </tr>
         <tr>
@@ -723,7 +722,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --storage-driver-user string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "root"
+            --storage-driver-user string     Default: &#34;root&#34;
           </td>
         </tr>
         <tr>
@@ -756,7 +755,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --update-machine-info-interval duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5m0s
+            --update-machine-info-interval duration     Default: 5m0s
           </td>
         </tr>
         <tr>
@@ -848,7 +847,7 @@
         <a href="/docs/reference/generated/kubectl/kubectl-commands#api-versions">
           kubectl api-versions
         </a>
-        - Print the supported API versions on the server, in the form of &ldquo;group/version&rdquo;
+        - Print the supported API versions on the server, in the form of “group/version”
       </li>
       <li>
         <a href="/docs/reference/generated/kubectl/kubectl-commands#apply">
@@ -1085,5 +1084,5 @@
         - Experimental: Wait for a specific condition on one or many resources.
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

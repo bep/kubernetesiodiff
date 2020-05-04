@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Running in multiple zones
     </h1>
@@ -41,11 +40,11 @@
     </h2>
     <p>
       Kubernetes 1.2 adds support for running a single cluster in multiple failure zones
-      (GCE calls them simply &ldquo;zones&rdquo;, AWS calls them &ldquo;availability zones&rdquo;, here we&rsquo;ll refer to them as &ldquo;zones&rdquo;).
+      (GCE calls them simply “zones”, AWS calls them “availability zones”, here we’ll refer to them as “zones”).
       This is a lightweight version of a broader Cluster Federation feature (previously referred to by the affectionate
       nickname
       <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/multicluster/federation.md">
-        &ldquo;Ubernetes&rdquo;
+        “Ubernetes”
       </a>
       ).
       Full Cluster Federation allows combining separate
@@ -53,7 +52,7 @@
       (or on-premises data centers).  However, many
       users simply want to run a more available Kubernetes cluster in multiple zones
       of their single cloud provider, and this is what the multizone support in 1.2 allows
-      (this previously went by the nickname &ldquo;Ubernetes Lite&rdquo;).
+      (this previously went by the nickname “Ubernetes Lite”).
     </p>
     <p>
       Multizone support is deliberately limited: a single Kubernetes cluster can run
@@ -109,7 +108,7 @@
       <li>
         <p>
           We assume that the different zones are located close to each other in the
-          network, so we don&rsquo;t perform any zone-aware routing.  In particular, traffic
+          network, so we don’t perform any zone-aware routing.  In particular, traffic
           that goes via services might cross zones (even if some pods backing that service
           exist in the same zone as the client), and this may incur additional latency and cost.
         </p>
@@ -163,7 +162,7 @@
       </li>
       <li>
         <p>
-          If the name of the StatefulSet contains dashes (&quot;-&quot;), volume zone spreading
+          If the name of the StatefulSet contains dashes (&#34;-&#34;), volume zone spreading
           may not provide a uniform distribution of storage across zones.
         </p>
       </li>
@@ -181,7 +180,7 @@
       Walkthrough
     </h2>
     <p>
-      We&rsquo;re now going to walk through setting up and using a multi-zone
+      We’re now going to walk through setting up and using a multi-zone
       cluster on both GCE &amp; AWS.  To do so, you bring up a full cluster
       (specifying
       <code>
@@ -266,7 +265,7 @@ kubernetes-minion-a12q   Ready                      &lt;none&gt;   6m    v1.13.0
       Add more nodes in a second zone
     </h3>
     <p>
-      Let&rsquo;s add another set of nodes to the existing cluster, reusing the
+      Let’s add another set of nodes to the existing cluster, reusing the
       existing master, running in a different zone (us-central1-b or us-west-2b).
       We run kube-up again, but by specifying
       <code>
@@ -356,7 +355,7 @@ kubernetes-minion-wf8i   Ready                      &lt;none&gt;   2m    v1.13.0
       </div>
     </blockquote>
     <p>
-      Now let&rsquo;s validate that Kubernetes automatically labeled the zone &amp; region the PV was created in.
+      Now let’s validate that Kubernetes automatically labeled the zone &amp; region the PV was created in.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pv --show-labels</code></pre>
@@ -390,7 +389,7 @@ pv-gce-mj4gm   5Gi        RWO           Retain           Bound     default/claim
 </span><span style="color:#bbb">    </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>mypd<span style="color:#bbb">
 </span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">persistentVolumeClaim</span>:<span style="color:#bbb">
 </span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">claimName</span>:<span style="color:#bbb"> </span>claim1<span style="color:#bbb">
-</span><span style="color:#bbb"></span>EOF<span style="color:#bbb">
+</span><span style="color:#bbb"></span>EOF<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <p>
@@ -418,7 +417,7 @@ kubernetes-minion-9vlv   Ready     22m    v1.6.0+fff5156   beta.kubernetes.io/in
     </h3>
     <p>
       Pods in a replication controller or service are automatically spread
-      across zones.  First, let&rsquo;s launch more nodes in a third zone:
+      across zones.  First, let’s launch more nodes in a third zone:
     </p>
     <p>
       GCE:
@@ -516,7 +515,7 @@ kubernetes-minion-olsh   Ready     &lt;none&gt;   3m     v1.13.0          beta.k
       Shutting down the cluster
     </h3>
     <p>
-      When you&rsquo;re done, clean up:
+      When you’re done, clean up:
     </p>
     <p>
       GCE:
@@ -534,5 +533,5 @@ kubernetes-minion-olsh   Ready     &lt;none&gt;   3m     v1.13.0          beta.k
 <span style="color:#b8860b">KUBERNETES_PROVIDER</span><span style="color:#666">=</span>aws <span style="color:#b8860b">KUBE_USE_EXISTING_MASTER</span><span style="color:#666">=</span><span style="color:#a2f">true</span> <span style="color:#b8860b">KUBE_AWS_ZONE</span><span style="color:#666">=</span>us-west-2b kubernetes/cluster/kube-down.sh
 <span style="color:#b8860b">KUBERNETES_PROVIDER</span><span style="color:#666">=</span>aws <span style="color:#b8860b">KUBE_AWS_ZONE</span><span style="color:#666">=</span>us-west-2a kubernetes/cluster/kube-down.sh</code></pre>
     </div>
-  </body>
-</html>
+  
+</body></html>

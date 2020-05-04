@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Horizontal Pod Autoscaler
 </h1>
@@ -18,7 +17,7 @@
     custom metrics
   </a>
   support, on some other application-provided metrics). Note that Horizontal
-  Pod Autoscaling does not apply to objects that can&rsquo;t be scaled, for example, DaemonSets.
+  Pod Autoscaling does not apply to objects that can’t be scaled, for example, DaemonSets.
 </p>
 <p>
   The Horizontal Pod Autoscaler is implemented as a Kubernetes API resource and a controller.
@@ -74,7 +73,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -82,11 +81,11 @@
   How does the Horizontal Pod Autoscaler work?
 </h2>
 <p>
-  <img src="/images/docs/horizontal-pod-autoscaler.svg" alt="Horizontal Pod Autoscaler diagram">
+  <img src="/images/docs/horizontal-pod-autoscaler.svg" alt="Horizontal Pod Autoscaler diagram"/>
 </p>
 <p>
   The Horizontal Pod Autoscaler is implemented as a control loop, with a period controlled
-  by the controller manager&rsquo;s
+  by the controller manager’s
   <code>
     --horizontal-pod-autoscaler-sync-period
   </code>
@@ -112,7 +111,7 @@
       the number of desired replicas.
     </p>
     <p>
-      Please note that if some of the pod&rsquo;s containers do not have the relevant resource request set,
+      Please note that if some of the pod’s containers do not have the relevant resource request set,
       CPU utilization for the pod will not be defined and the autoscaler will
       not take any action for that metric. See the
       <a href="#algorithm-details">
@@ -145,7 +144,7 @@
 </ul>
 <p>
   The HorizontalPodAutoscaler normally fetches metrics from a series of aggregated APIs (
-  <code>
+  <code data-diff="">
     metrics.k8s.io
   </code>
   ,
@@ -263,12 +262,12 @@
   <code>
     50m
   </code>
-  , we&rsquo;ll halve the number of
+  , we’ll halve the number of
   replicas, since
   <code>
     50.0 / 100.0 == 0.5
   </code>
-  .  We&rsquo;ll skip scaling if the ratio is
+  .  We’ll skip scaling if the ratio is
   sufficiently close to 1.0 (within a globally-configurable tolerance, from
   the
   <code>
@@ -291,7 +290,7 @@
     currentMetricValue
   </code>
   is computed by taking the average of the given
-  metric across all Pods in the HorizontalPodAutoscaler&rsquo;s scale target.
+  metric across all Pods in the HorizontalPodAutoscaler’s scale target.
   Before checking the tolerance and deciding on the final values, we take
   pod readiness and missing metrics into consideration, however.
 </p>
@@ -304,7 +303,7 @@
   with missing metrics will be used to adjust the final scaling amount.
 </p>
 <p>
-  When scaling on CPU, if any pod has yet to become ready (i.e. it&rsquo;s still
+  When scaling on CPU, if any pod has yet to become ready (i.e. it’s still
   initializing)
   <em>
     or
@@ -316,7 +315,7 @@
   Due to technical constraints, the HorizontalPodAutoscaler controller
   cannot exactly determine the first time a pod becomes ready when
   determining whether to set aside certain CPU metrics. Instead, it
-  considers a Pod &ldquo;not yet ready&rdquo; if it&rsquo;s unready and transitioned to
+  considers a Pod “not yet ready” if it’s unready and transitioned to
   unready within a short, configurable window of time since it started.
   This value is configured with the
   <code>
@@ -506,7 +505,7 @@
 <p>
   Horizontal Pod Autoscaler does not work with rolling update using direct manipulation of replication controllers,
   i.e. you cannot bind a Horizontal Pod Autoscaler to a replication controller and do rolling update.
-  The reason this doesn&rsquo;t work is that when rolling update creates a new replication controller,
+  The reason this doesn’t work is that when rolling update creates a new replication controller,
   the Horizontal Pod Autoscaler will not be bound to the new replication controller.
 </p>
 <h2 id="support-for-cooldown-delay">
@@ -645,7 +644,7 @@
           <code>
             custom.metrics.k8s.io
           </code>
-          API.  It&rsquo;s provided by &ldquo;adapter&rdquo; API servers provided by metrics solution vendors.
+          API.  It’s provided by “adapter” API servers provided by metrics solution vendors.
           Check with your metrics pipeline, or the
           <a href="https://github.com/kubernetes/metrics/blob/master/IMPLEMENTATIONS.md#custom-metrics-api">
             list of known solutions
@@ -961,4 +960,4 @@
     </a>
     .
   </li>
-</ul>
+</ul></div></div></blockquote></body></html>

@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Network Plugins
 </h1>
@@ -12,7 +11,7 @@
   Network Plugins
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -143,7 +142,7 @@
     <code>
       cni-bin-dir
     </code>
-    .  It must match the name reported by a plugin probed from the plugin directory.  For CNI plugins, this is simply &ldquo;cni&rdquo;.
+    .  It must match the name reported by a plugin probed from the plugin directory.  For CNI plugins, this is simply “cni”.
   </li>
 </ul>
 <h2 id="network-plugin-requirements">
@@ -194,7 +193,7 @@
   <code>
     /etc/cni/net.d
   </code>
-  ) and uses the CNI configuration from that file to set up each pod&rsquo;s network.  The CNI configuration file must match the
+  ) and uses the CNI configuration from that file to set up each pod’s network.  The CNI configuration file must match the
   <a href="https://github.com/containernetworking/cni/blob/master/SPEC.md#network-configuration">
     CNI specification
   </a>
@@ -448,7 +447,7 @@
   <code>
     --network-plugin-mtu=9001
   </code>
-  .  If you&rsquo;re using IPSEC you
+  .  If you’re using IPSEC you
   might reduce it to allow for encapsulation overhead; for example:
   <code>
     --network-plugin-mtu=8873
@@ -531,4 +530,4 @@
     </code>
     network plugin.
   </li>
-</ul>
+</ul></div></body></html>

@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Upgrading kubeadm clusters
 </h1>
@@ -146,7 +145,7 @@
 <ol>
   <li>
     Find the latest stable 1.18 version:
-    <br />
+    <br data-diff=""/>
   </li>
 </ol>
 <div id="k8s-install-versions">
@@ -174,7 +173,7 @@ apt-cache madison kubeadm
 # it should look like 1.18.x-0, where x is the latest patch</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#k8s-install-versions").tabs();});
 </script>
@@ -187,7 +186,7 @@ apt-cache madison kubeadm
 <ol>
   <li>
     On your first control plane node, upgrade kubeadm:
-    <br />
+    <br/>
   </li>
 </ol>
 <div id="k8s-install-kubeadm-first-cp">
@@ -218,7 +217,7 @@ apt-get install -y --allow-change-held-packages kubeadm=1.18.x-00</code></pre>
 yum install -y kubeadm-1.18.x-0 --disableexcludes=kubernetes</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#k8s-install-kubeadm-first-cp").tabs();});
 </script>
@@ -447,7 +446,7 @@ kubectl uncordon &lt;cp-node-name&gt;</code></pre>
 <ol>
   <li>
     Upgrade the kubelet and kubectl on all control plane nodes:
-    <br />
+    <br/>
   </li>
 </ol>
 <div id="k8s-install-kubelet">
@@ -478,7 +477,7 @@ apt-get install -y --allow-change-held-packages kubelet=1.18.x-00 kubectl=1.18.x
 yum install -y kubelet-1.18.x-0 kubectl-1.18.x-0 --disableexcludes=kubernetes</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#k8s-install-kubelet").tabs();});
 </script>
@@ -505,7 +504,7 @@ yum install -y kubelet-1.18.x-0 kubectl-1.18.x-0 --disableexcludes=kubernetes</c
 <ol>
   <li>
     Upgrade kubeadm on all worker nodes:
-    <br />
+    <br/>
   </li>
 </ol>
 <div id="k8s-install-kubeadm-worker-nodes">
@@ -536,7 +535,7 @@ apt-get install -y --allow-change-held-packages kubeadm=1.18.x-00</code></pre>
 yum install -y kubeadm-1.18.x-0 --disableexcludes=kubernetes</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#k8s-install-kubeadm-worker-nodes").tabs();});
 </script>
@@ -579,7 +578,7 @@ node/ip-172-31-85-18 drained</code></pre>
 <ol>
   <li>
     Upgrade the kubelet and kubectl on all worker nodes:
-    <br />
+    <br/>
   </li>
 </ol>
 <div id="k8s-kubelet-and-kubectl">
@@ -610,7 +609,7 @@ apt-get install -y --allow-change-held-packages kubelet=1.18.x-00 kubectl=1.18.x
 yum install -y kubelet-1.18.x-0 kubectl-1.18.x-0 --disableexcludes=kubernetes</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#k8s-kubelet-and-kubectl").tabs();});
 </script>
@@ -769,7 +768,7 @@ kubectl uncordon &lt;node-to-drain&gt;</code></pre>
     manifests and makes sure that all necessary RBAC rules are created.
   </li>
   <li>
-    Creates new certificate and key files of the API server and backs up old files if they&rsquo;re about to expire in 180 days.
+    Creates new certificate and key files of the API server and backs up old files if they’re about to expire in 180 days.
   </li>
 </ul>
 <p>
@@ -813,4 +812,4 @@ kubectl uncordon &lt;node-to-drain&gt;</code></pre>
   <li>
     Upgrades the kubelet configuration for this node.
   </li>
-</ul>
+</ul></body></html>

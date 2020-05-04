@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Update API Objects in Place Using kubectl patch
 </h1>
@@ -47,7 +46,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -87,7 +86,7 @@
   Use a strategic merge patch to update a Deployment
 </h2>
 <p>
-  Here&rsquo;s the configuration file for a Deployment that has two replicas. Each replica
+  Here’s the configuration file for a Deployment that has two replicas. Each replica
   is a Pod that has one container:
 </p>
 <table class="includecode" id="application-deployment-patch-yaml">
@@ -99,7 +98,7 @@
             application/deployment-patch.yaml
           </code>
         </a>
-        <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-deployment-patch-yaml')" title="Copy application/deployment-patch.yaml to clipboard">
+        <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-deployment-patch-yaml&#39;)" title="Copy application/deployment-patch.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -197,24 +196,24 @@ patch-demo-28633765-j5qs3   1/1       Running   0          23s</code></pre>
   </li>
 </ul>
 <div id="kubectl-patch-example-0">
-  <div class="highlight">
+  <div class="highlight" data-diff="">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
 kubectl patch deployment patch-demo --patch <span style="color:#b44">&#34;</span><span style="color:#a2f;font-weight:bold">$(</span>cat patch-file.yaml<span style="color:#a2f;font-weight:bold">)</span><span style="color:#b44">&#34;</span></code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="kubectl-patch-example-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-posh" data-lang="posh">
 kubectl patch deployment patch-demo --patch $(<span style="color:#a2f">Get-Content</span> patch<span style="color:#666">-file</span>.yaml -Raw)</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#kubectl-patch-example").tabs();});
 </script>
-<p>
+</p><p>
   View the patched Deployment:
 </p>
 <div class="highlight">
@@ -421,7 +420,7 @@ patch-demo-1081991389-jmg7b   2/2       Running   0          1m</code></pre>
   parameter that you can set to one of these values:
 </p>
 <table>
-  <tr>
+  <tbody><tr>
     <th>
       Parameter value
     </th>
@@ -457,7 +456,7 @@ patch-demo-1081991389-jmg7b   2/2       Running   0          1m</code></pre>
       Strategic merge patch
     </td>
   </tr>
-</table>
+</tbody></table>
 <p>
   For a comparison of JSON patch and JSON merge patch, see
   <a href="http://erosb.github.io/post/json-patch-vs-merge-patch/">
@@ -651,4 +650,4 @@ kubectl patch deployment patch-demo --patch <span style="color:#b44">&#39;{&#34;
       Declarative Management of Kubernetes Objects Using Configuration Files
     </a>
   </li>
-</ul>
+</ul></div></body></html>

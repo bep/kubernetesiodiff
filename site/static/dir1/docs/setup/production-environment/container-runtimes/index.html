@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Container runtimes
 </h1>
@@ -12,7 +11,7 @@
   Container runtimes
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-  <b>
+  <b data-diff="">
     FEATURE STATE:
   </b>
   <code>
@@ -146,7 +145,7 @@
     cgroup
   </code>
   ) and acts as a cgroup manager. Systemd has a tight
-  integration with cgroups and will allocate cgroups per process. It&rsquo;s possible to configure your
+  integration with cgroups and will allocate cgroups per process. It’s possible to configure your
   container runtime and the kubelet to use
   <code>
     cgroupfs
@@ -212,12 +211,12 @@
 <ul>
   <li>
     <a href="#tab-cri-docker-installation-0">
-      Ubuntu 16.04&#43;
+      Ubuntu 16.04+
     </a>
   </li>
   <li>
     <a href="#tab-cri-docker-installation-1">
-      CentOS/RHEL 7.4&#43;
+      CentOS/RHEL 7.4+
     </a>
   </li>
 </ul>
@@ -264,7 +263,7 @@ systemctl daemon-reload
 systemctl restart docker</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="tab-cri-docker-installation-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
@@ -309,12 +308,12 @@ systemctl daemon-reload
 systemctl restart docker</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#tab-cri-docker-installation").tabs();});
 </script>
-<p>
+</p><p>
   Refer to the
   <a href="https://docs.docker.com/engine/installation/">
     official Docker installation guides
@@ -377,7 +376,7 @@ sysctl --system</code></pre>
   </li>
   <li>
     <a href="#tab-cri-cri-o-installation-2">
-      CentOS/RHEL 7.4&#43;
+      CentOS/RHEL 7.4+
     </a>
   </li>
   <li>
@@ -409,7 +408,7 @@ wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:st
 sudo apt-get install cri-o-1.17</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="tab-cri-cri-o-installation-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
@@ -423,7 +422,7 @@ sudo apt-get update
 sudo apt-get install cri-o-1.17</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="tab-cri-cri-o-installation-2">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
@@ -434,19 +433,19 @@ yum-config-manager --add-repo<span style="color:#666">=</span>https://cbs.centos
 yum install --nogpgcheck -y cri-o</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="tab-cri-cri-o-installation-3">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
 sudo zypper install cri-o</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#tab-cri-cri-o-installation").tabs();});
 </script>
-<h3 id="start-cri-o">
+</p><h3 id="start-cri-o">
   Start CRI-O
 </h3><pre><code>systemctl daemon-reload
 systemctl start crio</code></pre>
@@ -503,7 +502,7 @@ sysctl --system</code></pre>
   </li>
   <li>
     <a href="#tab-cri-containerd-installation-1">
-      CentOS/RHEL 7.4&#43;
+      CentOS/RHEL 7.4+
     </a>
   </li>
 </ul>
@@ -535,7 +534,7 @@ containerd config default &gt; /etc/containerd/config.toml
 systemctl restart containerd</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="tab-cri-containerd-installation-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
@@ -560,12 +559,12 @@ containerd config default &gt; /etc/containerd/config.toml
 systemctl restart containerd</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#tab-cri-containerd-installation").tabs();});
 </script>
-<h3 id="systemd">
+</p><h3 id="systemd">
   systemd
 </h3>
 <p>
@@ -596,4 +595,4 @@ systemctl restart containerd</code></pre>
     Frakti QuickStart guide
   </a>
   for more information.
-</p>
+</p></div></div></div></body></html>

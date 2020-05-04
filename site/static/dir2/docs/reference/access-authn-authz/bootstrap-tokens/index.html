@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Authenticating with Bootstrap Tokens
 </h1>
@@ -12,7 +11,7 @@
   Authenticating with Bootstrap Tokens
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -133,7 +132,7 @@
   namespace.  These Secrets are then read by the Bootstrap Authenticator in the
   API Server.  Expired tokens are removed with the TokenCleaner controller in the
   Controller Manager.  The tokens are also used to create a signature for a
-  specific ConfigMap used in a &ldquo;discovery&rdquo; process through a BootstrapSigner
+  specific ConfigMap used in a “discovery” process through a BootstrapSigner
   controller.
 </p>
 <h2 id="token-format">
@@ -152,9 +151,9 @@
   .
 </p>
 <p>
-  The first part of the token is the &ldquo;Token ID&rdquo; and is considered public
+  The first part of the token is the “Token ID” and is considered public
   information.  It is used when referring to a token without leaking the secret
-  part used for authentication. The second part is the &ldquo;Token Secret&rdquo; and should
+  part used for authentication. The second part is the “Token Secret” and should
   only be shared with trusted parties.
 </p>
 <h2 id="enabling-bootstrap-token-authentication">
@@ -183,7 +182,7 @@
     system:bootstrappers
   </code>
   .  Additional groups may be specified in the
-  token&rsquo;s Secret.
+  token’s Secret.
 </p>
 <p>
   Expired tokens can be deleted automatically by enabling the
@@ -381,7 +380,7 @@
   .  This may be expanded in the future.
 </p>
 <p>
-  The signature is a JWS signature using the &ldquo;detached&rdquo; mode.  To validate the
+  The signature is a JWS signature using the “detached” mode.  To validate the
   signature, the user should encode the
   <code>
     kubeconfig
@@ -414,7 +413,7 @@
       Warning:
     </strong>
     Any party with a bootstrapping token can create a valid signature for that
-    token. When using ConfigMap signing it&rsquo;s discouraged to share the same token with
+    token. When using ConfigMap signing it’s discouraged to share the same token with
     many clients, since a compromised client can potentially man-in-the middle another
     client relying on the signature to bootstrap TLS trust.
   </div>
@@ -425,4 +424,4 @@
     kubeadm implementation details
   </a>
   section for more information.
-</p>
+</p></div></body></html>

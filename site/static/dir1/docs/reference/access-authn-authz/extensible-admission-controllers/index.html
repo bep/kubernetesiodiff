@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Dynamic Admission Control
 </h1>
@@ -257,7 +256,7 @@
   </li>
 </ul>
 <div id="validatingwebhookconfiguration-example-1-0">
-  <div class="highlight">
+  <div class="highlight" data-diff="">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>admissionregistration.k8s.io/v1<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ValidatingWebhookConfiguration<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">metadata</span>:<span style="color:#bbb">
@@ -280,7 +279,7 @@
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">timeoutSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">5</span></code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="validatingwebhookconfiguration-example-1-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of admissionregistration.k8s.io/v1</span><span style="color:#bbb">
@@ -305,14 +304,14 @@
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">timeoutSeconds</span>:<span style="color:#bbb"> </span><span style="color:#666">5</span></code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#validatingwebhookconfiguration-example-1").tabs();});
 </script>
-<p>
-  The scope field specifies if only cluster-scoped resources (&ldquo;Cluster&rdquo;) or namespace-scoped
-  resources (&ldquo;Namespaced&rdquo;) will match this rule. &ldquo;*&rdquo; means that there are no scope restrictions.
+</p><p>
+  The scope field specifies if only cluster-scoped resources (“Cluster”) or namespace-scoped
+  resources (“Namespaced”) will match this rule. “*” means that there are no scope restrictions.
 </p>
 <blockquote class="note">
   <div>
@@ -346,7 +345,7 @@
     </code>
     . Starting in kubernetes 1.14 you
     can set the timeout and it is encouraged to use a small timeout for webhooks.
-    If the webhook call times out, the request is handled according to the webhook&rsquo;s
+    If the webhook call times out, the request is handled according to the webhook’s
     failure policy.
   </div>
 </blockquote>
@@ -394,7 +393,7 @@
       In the admission control configuration file, specify where the
       MutatingAdmissionWebhook controller and ValidatingAdmissionWebhook controller
       should read the credentials. The credentials are stored in kubeConfig files
-      (yes, the same schema that&rsquo;s used by kubectl), so the field name is
+      (yes, the same schema that’s used by kubectl), so the field name is
       <code>
         kubeConfigFile
       </code>
@@ -432,7 +431,7 @@
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">kubeConfigFile</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;&lt;path-to-kubeconfig-file&gt;&#34;</span></code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="admissionconfiguration-example1-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.17 in favor of apiserver.config.k8s.io/v1</span><span style="color:#bbb">
@@ -453,12 +452,12 @@
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">kubeConfigFile</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;&lt;path-to-kubeconfig-file&gt;&#34;</span></code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#admissionconfiguration-example1").tabs();});
 </script>
-<p>
+</p><p>
   For more information about
   <code>
     AdmissionConfiguration
@@ -631,7 +630,7 @@
     </p>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#validatingwebhookconfiguration-admissionreviewversions").tabs();});
 </script>
@@ -758,7 +757,7 @@
 </span><span style="color:#bbb"></span>}</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="admissionreview-request-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">{<span style="color:#bbb">
@@ -834,12 +833,12 @@
 </span><span style="color:#bbb"></span>}</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#admissionreview-request").tabs();});
 </script>
-<h3 id="response">
+</p><h3 id="response">
   Response
 </h3>
 <p>
@@ -919,7 +918,7 @@
 }</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="admissionreview-response-allow-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
@@ -932,12 +931,12 @@
 }</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#admissionreview-response-allow").tabs();});
 </script>
-<p>
+</p><p>
   Example of a minimal response from a webhook to forbid a request:
 </p>
 <div id="admissionreview-response-forbid-minimal">
@@ -965,7 +964,7 @@
 }</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="admissionreview-response-forbid-minimal-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
@@ -978,12 +977,12 @@
 }</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#admissionreview-response-forbid-minimal").tabs();});
 </script>
-<p>
+</p><p>
   When rejecting a request, the webhook can customize the http code and message returned to the user using the
   <code>
     status
@@ -1026,7 +1025,7 @@
 }</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="admissionreview-response-forbid-details-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
@@ -1043,12 +1042,12 @@
 }</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#admissionreview-response-forbid-details").tabs();});
 </script>
-<p>
+</p><p>
   When allowing a request, a mutating admission webhook may optionally modify the incoming object as well.
   This is done using the
   <code>
@@ -1090,7 +1089,7 @@
   </code>
   would be
   <code>
-    [{&quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/spec/replicas&quot;, &quot;value&quot;: 3}]
+    [{&#34;op&#34;: &#34;add&#34;, &#34;path&#34;: &#34;/spec/replicas&#34;, &#34;value&#34;: 3}]
   </code>
 </p>
 <p>
@@ -1129,7 +1128,7 @@
 }</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="admissionreview-response-modify-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
@@ -1144,12 +1143,12 @@
 }</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#admissionreview-response-modify").tabs();});
 </script>
-<h2 id="webhook-configuration">
+</p><h2 id="webhook-configuration">
   Webhook configuration
 </h2>
 <p>
@@ -1207,23 +1206,23 @@
     </code>
     lists one or more operations to match. Can be
     <code>
-      &quot;CREATE&quot;
+      &#34;CREATE&#34;
     </code>
     ,
     <code>
-      &quot;UPDATE&quot;
+      &#34;UPDATE&#34;
     </code>
     ,
     <code>
-      &quot;DELETE&quot;
+      &#34;DELETE&#34;
     </code>
     ,
     <code>
-      &quot;CONNECT&quot;
+      &#34;CONNECT&#34;
     </code>
     , or
     <code>
-      &quot;*&quot;
+      &#34;*&#34;
     </code>
     to match all.
   </li>
@@ -1233,11 +1232,11 @@
     </code>
     lists one or more API groups to match.
     <code>
-      &quot;&quot;
+      &#34;&#34;
     </code>
     is the core API group.
     <code>
-      &quot;*&quot;
+      &#34;*&#34;
     </code>
     matches all API groups.
   </li>
@@ -1247,7 +1246,7 @@
     </code>
     lists one or more API versions to match.
     <code>
-      &quot;*&quot;
+      &#34;*&#34;
     </code>
     matches all API versions.
   </li>
@@ -1259,25 +1258,25 @@
     <ul>
       <li>
         <code>
-          &quot;*&quot;
+          &#34;*&#34;
         </code>
         matches all resources, but not subresources.
       </li>
       <li>
         <code>
-          &quot;*/*&quot;
+          &#34;*/*&#34;
         </code>
         matches all resources and subresources.
       </li>
       <li>
         <code>
-          &quot;pods/*&quot;
+          &#34;pods/*&#34;
         </code>
         matches all subresources of pods.
       </li>
       <li>
         <code>
-          &quot;*/status&quot;
+          &#34;*/status&#34;
         </code>
         matches all status subresources.
       </li>
@@ -1289,37 +1288,37 @@
     </code>
     specifies a scope to match. Valid values are
     <code>
-      &quot;Cluster&quot;
+      &#34;Cluster&#34;
     </code>
     ,
     <code>
-      &quot;Namespaced&quot;
+      &#34;Namespaced&#34;
     </code>
     , and
     <code>
-      &quot;*&quot;
+      &#34;*&#34;
     </code>
     . Subresources match the scope of their parent resource. Supported in v1.14+. Default is
     <code>
-      &quot;*&quot;
+      &#34;*&#34;
     </code>
     , matching pre-1.14 behavior.
     <ul>
       <li>
         <code>
-          &quot;Cluster&quot;
+          &#34;Cluster&#34;
         </code>
         means that only cluster-scoped resources will match this rule (Namespace API objects are cluster-scoped).
       </li>
       <li>
         <code>
-          &quot;Namespaced&quot;
+          &#34;Namespaced&#34;
         </code>
         means that only namespaced resources will match this rule.
       </li>
       <li>
         <code>
-          &quot;*&quot;
+          &#34;*&#34;
         </code>
         means that there are no scope restrictions.
       </li>
@@ -1327,7 +1326,7 @@
   </li>
 </ul>
 <p>
-  If an incoming request matches one of the specified operations, groups, versions, resources, and scope for any of a webhook&rsquo;s rules, the request is sent to the webhook.
+  If an incoming request matches one of the specified operations, groups, versions, resources, and scope for any of a webhook’s rules, the request is sent to the webhook.
 </p>
 <p>
   Here are other examples of rules that could be used to specify which resources should be intercepted.
@@ -1387,7 +1386,7 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="validatingwebhookconfiguration-rules-1-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of admissionregistration.k8s.io/v1</span><span style="color:#bbb">
@@ -1405,12 +1404,12 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#validatingwebhookconfiguration-rules-1").tabs();});
 </script>
-<p>
+</p><p>
   Match create requests for all resources (but not subresources) in all API groups and versions:
 </p>
 <div id="validatingwebhookconfiguration-rules-2">
@@ -1442,7 +1441,7 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="validatingwebhookconfiguration-rules-2-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of admissionregistration.k8s.io/v1</span><span style="color:#bbb">
@@ -1460,12 +1459,12 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#validatingwebhookconfiguration-rules-2").tabs();});
 </script>
-<p>
+</p><p>
   Match update requests for all
   <code>
     status
@@ -1501,7 +1500,7 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="validatingwebhookconfiguration-rules-3-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of admissionregistration.k8s.io/v1</span><span style="color:#bbb">
@@ -1519,12 +1518,12 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#validatingwebhookconfiguration-rules-3").tabs();});
 </script>
-<h3 id="matching-requests-objectselector">
+</p><h3 id="matching-requests-objectselector">
   Matching requests: objectSelector
 </h3>
 <p>
@@ -1596,7 +1595,7 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="objectselector-example-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of admissionregistration.k8s.io/v1</span><span style="color:#bbb">
@@ -1617,12 +1616,12 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#objectselector-example").tabs();});
 </script>
-<p>
+</p><p>
   See
   <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels">
     https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
@@ -1646,7 +1645,7 @@
     namespaceSelector
   </code>
   decides whether to run the webhook on a request for a namespaced resource
-  (or a Namespace object), based on whether the namespace&rsquo;s labels match the selector.
+  (or a Namespace object), based on whether the namespace’s labels match the selector.
   If the object itself is a namespace, the matching is performed on object.metadata.labels.
   If the object is a cluster scoped resource other than a Namespace,
   <code>
@@ -1660,7 +1659,7 @@
     CREATE
   </code>
   of any namespaced resource inside a namespace
-  that does not have a &ldquo;runlevel&rdquo; label of &ldquo;0&rdquo; or &ldquo;1&rdquo;:
+  that does not have a “runlevel” label of “0” or “1”:
 </p>
 <div id="mutatingwebhookconfiguration-namespaceselector-1">
 <ul>
@@ -1696,7 +1695,7 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="mutatingwebhookconfiguration-namespaceselector-1-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of admissionregistration.k8s.io/v1</span><span style="color:#bbb">
@@ -1719,18 +1718,18 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#mutatingwebhookconfiguration-namespaceselector-1").tabs();});
 </script>
-<p>
+</p><p>
   This example shows a validating webhook that matches a
   <code>
     CREATE
   </code>
   of any namespaced resource inside a namespace
-  that is associated with the &ldquo;environment&rdquo; of &ldquo;prod&rdquo; or &ldquo;staging&rdquo;:
+  that is associated with the “environment” of “prod” or “staging”:
 </p>
 <div id="validatingwebhookconfiguration-namespaceselector-2">
 <ul>
@@ -1766,7 +1765,7 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="validatingwebhookconfiguration-namespaceselector-2-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of admissionregistration.k8s.io/v1</span><span style="color:#bbb">
@@ -1789,12 +1788,12 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#validatingwebhookconfiguration-namespaceselector-2").tabs();});
 </script>
-<p>
+</p><p>
   See
   <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels">
     https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
@@ -1832,7 +1831,7 @@
 <p>
   For example, if a webhook only specified a rule for some API groups/versions (like
   <code>
-    apiGroups:[&quot;apps&quot;], apiVersions:[&quot;v1&quot;,&quot;v1beta1&quot;]
+    apiGroups:[&#34;apps&#34;], apiVersions:[&#34;v1&#34;,&#34;v1beta1&#34;]
   </code>
   ),
   and a request was made to modify the resource via another API group/version (like
@@ -1936,7 +1935,7 @@
 <p>
   Since that removal, a webhook with a
   <code>
-    apiGroups:[&quot;extensions&quot;], apiVersions:[&quot;v1beta1&quot;], resources:[&quot;deployments&quot;]
+    apiGroups:[&#34;extensions&#34;], apiVersions:[&#34;v1beta1&#34;], resources:[&#34;deployments&#34;]
   </code>
   rule
   does not intercept deployments created via
@@ -2028,7 +2027,7 @@
     </p>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#validatingwebhookconfiguration-matchpolicy").tabs();});
 </script>
@@ -2104,11 +2103,11 @@
   to turn up in a new cluster.
 </p>
 <p>
-  The scheme must be &ldquo;https&rdquo;; the URL must begin with &ldquo;https://&ldquo;.
+  The scheme must be “https”; the URL must begin with “https://“.
 </p>
 <p>
-  Attempting to use a user or basic auth (for example &ldquo;user:password@&ldquo;) is not allowed.
-  Fragments (&ldquo;#&hellip;&rdquo;) and query parameters (&ldquo;?&hellip;&rdquo;) are also not allowed.
+  Attempting to use a user or basic auth (for example “user:password@“) is not allowed.
+  Fragments (“#…”) and query parameters (“?…”) are also not allowed.
 </p>
 <p>
   Here is an example of a mutating webhook configured to call a URL
@@ -2139,7 +2138,7 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="mutatingwebhookconfiguration-url-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of admissionregistration.k8s.io/v1</span><span style="color:#bbb">
@@ -2153,12 +2152,12 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#mutatingwebhookconfiguration-url").tabs();});
 </script>
-<h4 id="service-reference">
+</p><h4 id="service-reference">
   Service reference
 </h4>
 <p>
@@ -2181,11 +2180,11 @@
   </code>
   .
   The service namespace and name are required. The port is optional and defaults to 443.
-  The path is optional and defaults to &ldquo;/&rdquo;.
+  The path is optional and defaults to “/”.
 </p>
 <p>
-  Here is an example of a mutating webhook configured to call a service on port &ldquo;1234&rdquo;
-  at the subpath &ldquo;/my-path&rdquo;, and to verify the TLS connection against the ServerName
+  Here is an example of a mutating webhook configured to call a service on port “1234”
+  at the subpath “/my-path”, and to verify the TLS connection against the ServerName
   <code>
     my-service-name.my-service-namespace.svc
   </code>
@@ -2221,7 +2220,7 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="mutatingwebhookconfiguration-service-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of admissionregistration.k8s.io/v1</span><span style="color:#bbb">
@@ -2240,12 +2239,12 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#mutatingwebhookconfiguration-service").tabs();});
 </script>
-<h3 id="side-effects">
+</p><h3 id="side-effects">
   Side effects
 </h3>
 <p>
@@ -2257,7 +2256,7 @@
   Some webhooks, however, make out-of-band changes as part of processing admission requests.
 </p>
 <p>
-  Webhooks that make out-of-band changes (&ldquo;side effects&rdquo;) must also have a reconciliation mechanism
+  Webhooks that make out-of-band changes (“side effects”) must also have a reconciliation mechanism
   (like a controller) that periodically determines the actual state of the world, and adjusts
   the out-of-band data modified by the admission webhook to reflect reality.
   This is because a call to an admission webhook does not guarantee the admitted object will be persisted as is, or at all.
@@ -2411,7 +2410,7 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="validatingwebhookconfiguration-sideeffects-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of admissionregistration.k8s.io/v1</span><span style="color:#bbb">
@@ -2424,12 +2423,12 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#validatingwebhookconfiguration-sideeffects").tabs();});
 </script>
-<h3 id="timeouts">
+</p><h3 id="timeouts">
   Timeouts
 </h3>
 <p>
@@ -2505,7 +2504,7 @@
     </p>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#validatingwebhookconfiguration-timeoutseconds").tabs();});
 </script>
@@ -2620,7 +2619,7 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="mutatingwebhookconfiguration-reinvocationpolicy-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># Deprecated in v1.16 in favor of admissionregistration.k8s.io/v1</span><span style="color:#bbb">
@@ -2633,12 +2632,12 @@
 </span><span style="color:#bbb">  </span>...</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#mutatingwebhookconfiguration-reinvocationpolicy").tabs();});
 </script>
-<p>
+</p><p>
   Mutating webhooks must be
   <a href="#idempotence">
     idempotent
@@ -2749,7 +2748,7 @@
     </p>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#mutatingwebhookconfiguration-failurepolicy").tabs();});
 </script>
@@ -2773,7 +2772,7 @@
   </li>
   <li>
     <p>
-      Which webhooks are frequently rejecting API requests? What&rsquo;s the reason for a
+      Which webhooks are frequently rejecting API requests? What’s the reason for a
       rejection?
     </p>
   </li>
@@ -2782,7 +2781,7 @@
   Mutating webhook auditing annotations
 </h3>
 <p>
-  Sometimes it&rsquo;s useful to know which mutating webhook mutated the object in a API request, and what change did the
+  Sometimes it’s useful to know which mutating webhook mutated the object in a API request, and what change did the
   webhook apply.
 </p>
 <p>
@@ -2815,7 +2814,7 @@
 </ul>
 <p>
   For example, the following annotation gets recorded for a webhook being reinvoked. The webhook is ordered the third in the
-  mutating webhook chain, and didn&rsquo;t mutated the request object during the invocation.
+  mutating webhook chain, and didn’t mutated the request object during the invocation.
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#080;font-style:italic"># the audit event recorded</span><span style="color:#bbb">
@@ -2841,7 +2840,7 @@
 </div>
 <p>
   The following annotation gets recorded for a webhook being invoked in the first round. The webhook is ordered the first in
-  <br />
+  <br/>
   the mutating webhook chain, and mutated the request object during the invocation.
 </p>
 <div class="highlight">
@@ -2928,7 +2927,7 @@
   API server admission webhook rejection count
 </h4>
 <p>
-  Sometimes it&rsquo;s useful to know which admission webhooks are frequently rejecting API requests, and the
+  Sometimes it’s useful to know which admission webhooks are frequently rejecting API requests, and the
   reason for a rejection.
 </p>
 <p>
@@ -2990,7 +2989,7 @@
           calling_webhook_error
         </code>
         : unrecognized errors or timeout errors from the admission webhook happened and the
-        webhook&rsquo;s
+        webhook’s
         <a href="#failure-policy">
           Failure policy
         </a>
@@ -3138,12 +3137,12 @@ apiserver_admission_webhook_rejection_count{error_type=&#34;no_error&#34;,name=&
       </code>
       pod request, reject if the pod has label
       <code>
-        &quot;env&quot;
+        &#34;env&#34;
       </code>
       set,
       otherwise add an
       <code>
-        &quot;env&quot;: &quot;prod&quot;
+        &#34;env&#34;: &#34;prod&#34;
       </code>
       label to the pod.
     </p>
@@ -3222,7 +3221,7 @@ apiserver_admission_webhook_rejection_count{error_type=&#34;no_error&#34;,name=&
   should use a validating admission webhook, since objects can be modified after being seen by mutating webhooks.
 </p>
 <p>
-  For example, a mutating admission webhook is configured to inject a sidecar container with name &ldquo;foo-sidecar&rdquo; on every
+  For example, a mutating admission webhook is configured to inject a sidecar container with name “foo-sidecar” on every
   <code>
     CREATE
   </code>
@@ -3235,7 +3234,7 @@ apiserver_admission_webhook_rejection_count{error_type=&#34;no_error&#34;,name=&
     CREATE
   </code>
   pod requests, and validate
-  that a container with name &ldquo;foo-sidecar&rdquo; with the expected configuration exists in the to-be-created object.
+  that a container with name “foo-sidecar” with the expected configuration exists in the to-be-created object.
 </p>
 <h3 id="avoiding-deadlocks-in-self-hosted-webhooks">
   Avoiding deadlocks in self-hosted webhooks
@@ -3252,18 +3251,18 @@ apiserver_admission_webhook_rejection_count{error_type=&#34;no_error&#34;,name=&
   pod requests only if a certain label is set in the
   pod (e.g.
   <code>
-    &quot;env&quot;: &quot;prod&quot;
+    &#34;env&#34;: &#34;prod&#34;
   </code>
-  ). The webhook server runs in a deployment which doesn&rsquo;t set the
+  ). The webhook server runs in a deployment which doesn’t set the
   <code>
-    &quot;env&quot;
+    &#34;env&#34;
   </code>
   label.
   When a node that runs the webhook server pods
   becomes unhealthy, the webhook deployment will try to reschedule the pods to another node. However the requests will
   get rejected by the existing webhook server since the
   <code>
-    &quot;env&quot;
+    &#34;env&#34;
   </code>
   label is unset, and the migration cannot happen.
 </p>
@@ -3292,7 +3291,7 @@ apiserver_admission_webhook_rejection_count{error_type=&#34;no_error&#34;,name=&
   <code>
     None
   </code>
-  if a webhook doesn&rsquo;t have any side effect.
+  if a webhook doesn’t have any side effect.
 </p>
 <p>
   If side effects are required during the admission evaluation, they must be suppressed when processing an
@@ -3342,7 +3341,7 @@ apiserver_admission_webhook_rejection_count{error_type=&#34;no_error&#34;,name=&
   </code>
   namespace may
   cause the control plane components to stop functioning or introduce unknown behavior.
-  If your admission webhooks don&rsquo;t intend to modify the behavior of the Kubernetes control
+  If your admission webhooks don’t intend to modify the behavior of the Kubernetes control
   plane, exclude the
   <code>
     kube-system
@@ -3354,4 +3353,4 @@ apiserver_admission_webhook_rejection_count{error_type=&#34;no_error&#34;,name=&
     </code>
   </a>
   .
-</p>
+</p></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></body></html>

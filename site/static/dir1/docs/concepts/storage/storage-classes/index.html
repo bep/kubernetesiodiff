@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Storage Classes
     </h1>
@@ -44,11 +43,11 @@
       Introduction
     </h2>
     <p>
-      A StorageClass provides a way for administrators to describe the &ldquo;classes&rdquo; of
+      A StorageClass provides a way for administrators to describe the “classes” of
       storage they offer. Different classes might map to quality-of-service levels,
       or to backup policies, or to arbitrary policies determined by the cluster
       administrators. Kubernetes itself is unopinionated about what classes
-      represent. This concept is sometimes called &ldquo;profiles&rdquo; in other storage
+      represent. This concept is sometimes called “profiles” in other storage
       systems.
     </p>
     <h2 id="the-storageclass-resource">
@@ -77,7 +76,7 @@
       be updated once they are created.
     </p>
     <p>
-      Administrators can specify a default StorageClass just for PVCs that don&rsquo;t
+      Administrators can specify a default StorageClass just for PVCs that don’t
       request any particular class to bind to: see the
       <a href="/docs/concepts/storage/persistent-volumes/#class-1">
         PersistentVolumeClaim section
@@ -125,7 +124,7 @@
             AWSElasticBlockStore
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#aws-ebs">
@@ -138,7 +137,7 @@
             AzureFile
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#azure-file">
@@ -151,7 +150,7 @@
             AzureDisk
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#azure-disk">
@@ -175,7 +174,7 @@
             Cinder
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#openstack-cinder">
@@ -210,7 +209,7 @@
             Flocker
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             -
@@ -221,7 +220,7 @@
             GCEPersistentDisk
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#gce-pd">
@@ -234,7 +233,7 @@
             Glusterfs
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#glusterfs">
@@ -258,7 +257,7 @@
             Quobyte
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#quobyte">
@@ -282,7 +281,7 @@
             RBD
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#ceph-rbd">
@@ -295,7 +294,7 @@
             VsphereVolume
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#vsphere">
@@ -308,7 +307,7 @@
             PortworxVolume
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#portworx-volume">
@@ -321,7 +320,7 @@
             ScaleIO
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#scaleio">
@@ -334,7 +333,7 @@
             StorageOS
           </td>
           <td align="center">
-            &#x2713;
+            ✓
           </td>
           <td align="center">
             <a href="#storageos">
@@ -358,8 +357,8 @@
       </tbody>
     </table>
     <p>
-      You are not restricted to specifying the &ldquo;internal&rdquo; provisioners
-      listed here (whose names are prefixed with &ldquo;kubernetes.io&rdquo; and shipped
+      You are not restricted to specifying the “internal” provisioners
+      listed here (whose names are prefixed with “kubernetes.io” and shipped
       alongside Kubernetes). You can also run and specify external provisioners,
       which are independent programs that follow a
       <a href="https://git.k8s.io/community/contributors/design-proposals/storage/volume-provisioning.md">
@@ -379,7 +378,7 @@
       .
     </p>
     <p>
-      For example, NFS doesn&rsquo;t provide an internal provisioner, but an external
+      For example, NFS doesn’t provide an internal provisioner, but an external
       provisioner can be used. There are also cases when 3rd party storage
       vendors provide their own external provisioner.
     </p>
@@ -420,7 +419,7 @@
       Allow Volume Expansion
     </h3>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -646,7 +645,7 @@
       mode indicates that volume binding and dynamic
       provisioning occurs once the PersistentVolumeClaim is created. For storage
       backends that are topology-constrained and not globally accessible from all Nodes
-      in the cluster, PersistentVolumes will be bound or provisioned without knowledge of the Pod&rsquo;s scheduling
+      in the cluster, PersistentVolumes will be bound or provisioned without knowledge of the Pod’s scheduling
       requirements. This may result in unschedulable Pods.
     </p>
     <p>
@@ -657,7 +656,7 @@
       mode which
       will delay the binding and provisioning of a PersistentVolume until a Pod using the PersistentVolumeClaim is created.
       PersistentVolumes will be selected or provisioned conforming to the topology that is
-      specified by the Pod&rsquo;s scheduling constraints. These include, but are not limited to,
+      specified by the Pod’s scheduling constraints. These include, but are not limited to,
       <a href="/docs/concepts/configuration/manage-compute-resources-container">
         resource
         requirements
@@ -777,7 +776,7 @@
         CSI volumes
       </a>
       are also supported with dynamic provisioning
-      and pre-created PVs, but you&rsquo;ll need to look at the documentation for a specific CSI driver
+      and pre-created PVs, but you’ll need to look at the documentation for a specific CSI driver
       to see its supported topology keys and examples.
     </p>
     <h3 id="allowed-topologies">
@@ -965,7 +964,7 @@
         .
         A string is expected here, i.e.
         <code>
-          &quot;10&quot;
+          &#34;10&#34;
         </code>
         , not
         <code>
@@ -979,7 +978,7 @@
         </code>
         : fsType that is supported by kubernetes. Default:
         <code>
-          &quot;ext4&quot;
+          &#34;ext4&#34;
         </code>
         .
       </li>
@@ -990,16 +989,16 @@
         : denotes whether the EBS volume should be encrypted or not.
         Valid values are
         <code>
-          &quot;true&quot;
+          &#34;true&#34;
         </code>
         or
         <code>
-          &quot;false&quot;
+          &#34;false&#34;
         </code>
         . A string is expected here,
         i.e.
         <code>
-          &quot;true&quot;
+          &#34;true&#34;
         </code>
         , not
         <code>
@@ -1265,7 +1264,7 @@
         : Gluster REST service authentication boolean that enables
         authentication to the REST server. If this value is
         <code>
-          &quot;true&quot;
+          &#34;true&#34;
         </code>
         ,
         <code>
@@ -1313,7 +1312,7 @@
         <code>
           restuserkey
         </code>
-        : Gluster REST service/Heketi user&rsquo;s password which will be used
+        : Gluster REST service/Heketi user’s password which will be used
         for authentication to the REST server. This parameter is deprecated in favor
         of
         <code>
@@ -1347,7 +1346,7 @@
           are omitted. The provided secret must have
           type
           <code>
-            &quot;kubernetes.io/glusterfs&quot;
+            &#34;kubernetes.io/glusterfs&#34;
           </code>
           , for example created in this way:
         </p>
@@ -1375,7 +1374,7 @@
           which will be used by Heketi when provisioning the volume. It can also be a
           list of clusterids, for example:
           <code>
-            &quot;8452344e2becec931ece4e33c4674e4e,42982310de6c63381718ccfa6d8cf397&quot;
+            &#34;8452344e2becec931ece4e33c4674e4e,42982310de6c63381718ccfa6d8cf397&#34;
           </code>
           . This
           is an optional parameter.
@@ -1403,7 +1402,7 @@
             volumetype
           </code>
           : The volume type and its parameters can be configured with this
-          optional value. If the volume type is not mentioned, it&rsquo;s up to the provisioner
+          optional value. If the volume type is not mentioned, it’s up to the provisioner
           to decide the volume type.
         </p>
         <p>
@@ -1415,14 +1414,14 @@
             <code>
               volumetype: replicate:3
             </code>
-            where &lsquo;3&rsquo; is replica count.
+            where ‘3’ is replica count.
           </li>
           <li>
             Disperse/EC volume:
             <code>
               volumetype: disperse:4:2
             </code>
-            where &lsquo;4&rsquo; is data and &lsquo;2&rsquo; is the redundancy count.
+            where ‘4’ is data and ‘2’ is the redundancy count.
           </li>
           <li>
             Distribute volume:
@@ -1535,7 +1534,7 @@
           the external cloud provider for OpenStack
         </a>
         .
-      </div>
+      </p></div>
     </blockquote>
     <h3 id="vsphere">
       vSphere
@@ -1572,7 +1571,7 @@
           </code>
           . Default:
           <code>
-            &quot;thin&quot;
+            &#34;thin&#34;
           </code>
           .
         </p>
@@ -1700,7 +1699,7 @@
           adminId
         </code>
         : Ceph client ID that is capable of creating images in the pool.
-        Default is &ldquo;admin&rdquo;.
+        Default is “admin”.
       </li>
       <li>
         <code>
@@ -1711,7 +1710,7 @@
           adminId
         </code>
         . This parameter is required.
-        The provided secret must have type &ldquo;kubernetes.io/rbd&rdquo;.
+        The provided secret must have type “kubernetes.io/rbd”.
       </li>
       <li>
         <code>
@@ -1721,13 +1720,13 @@
         <code>
           adminSecretName
         </code>
-        . Default is &ldquo;default&rdquo;.
+        . Default is “default”.
       </li>
       <li>
         <code>
           pool
         </code>
-        : Ceph RBD pool. Default is &ldquo;rbd&rdquo;.
+        : Ceph RBD pool. Default is “rbd”.
       </li>
       <li>
         <code>
@@ -1751,7 +1750,7 @@
           </code>
           to map RBD image. It
           must exist in the same namespace as PVCs. This parameter is required.
-          The provided secret must have type &ldquo;kubernetes.io/rbd&rdquo;, for example created in this
+          The provided secret must have type “kubernetes.io/rbd”, for example created in this
           way:
         </p>
         <div class="highlight">
@@ -1779,7 +1778,7 @@
           </code>
           : fsType that is supported by kubernetes. Default:
           <code>
-            &quot;ext4&quot;
+            &#34;ext4&#34;
           </code>
           .
         </p>
@@ -1789,7 +1788,7 @@
           <code>
             imageFormat
           </code>
-          : Ceph RBD image format, &ldquo;1&rdquo; or &ldquo;2&rdquo;. Default is &ldquo;2&rdquo;.
+          : Ceph RBD image format, “1” or “2”. Default is “2”.
         </p>
       </li>
       <li>
@@ -1802,12 +1801,12 @@
           <code>
             imageFormat
           </code>
-          to &ldquo;2&rdquo;. Currently supported features are
+          to “2”. Currently supported features are
           <code>
             layering
           </code>
           only.
-          Default is &ldquo;&rdquo;, and no features are turned on.
+          Default is “”, and no features are turned on.
         </p>
       </li>
     </ul>
@@ -1837,7 +1836,7 @@
         </code>
         : API Server of Quobyte in the format
         <code>
-          &quot;http(s)://api-server:7860&quot;
+          &#34;http(s)://api-server:7860&#34;
         </code>
       </li>
       <li>
@@ -1867,7 +1866,7 @@
           adminSecretName
         </code>
         .
-        Default is &ldquo;default&rdquo;.
+        Default is “default”.
       </li>
       <li>
         <p>
@@ -1876,7 +1875,7 @@
           </code>
           : secret that holds information about the Quobyte user and
           the password to authenticate against the API server. The provided secret
-          must have type &ldquo;kubernetes.io/quobyte&rdquo; and the keys
+          must have type “kubernetes.io/quobyte” and the keys
           <code>
             user
           </code>
@@ -1898,7 +1897,7 @@
           <code>
             user
           </code>
-          : maps all access to this user. Default is &ldquo;root&rdquo;.
+          : maps all access to this user. Default is “root”.
         </p>
       </li>
       <li>
@@ -1906,7 +1905,7 @@
           <code>
             group
           </code>
-          : maps all access to this group. Default is &ldquo;nfsnobody&rdquo;.
+          : maps all access to this group. Default is “nfsnobody”.
         </p>
       </li>
       <li>
@@ -1916,7 +1915,7 @@
           </code>
           : use the specified configuration to create the volume. You
           can create a new configuration or modify an existing one with the Web
-          console or the quobyte CLI. Default is &ldquo;BASE&rdquo;.
+          console or the quobyte CLI. Default is “BASE”.
         </p>
       </li>
       <li>
@@ -1926,7 +1925,7 @@
           </code>
           : use the specified tenant ID to create/delete the volume.
           This Quobyte tenant has to be already present in Quobyte.
-          Default is &ldquo;DEFAULT&rdquo;.
+          Default is “DEFAULT”.
         </p>
       </li>
     </ul>
@@ -2236,7 +2235,7 @@
         </code>
         ) A string is expected here i.e.
         <code>
-          &quot;1&quot;
+          &#34;1&#34;
         </code>
         and not
         <code>
@@ -2271,7 +2270,7 @@
         </code>
         ). A string is expected here i.e.
         <code>
-          &quot;70&quot;
+          &#34;70&#34;
         </code>
         and not
         <code>
@@ -2291,7 +2290,7 @@
         ). A string
         is expected here i.e.
         <code>
-          &quot;0&quot;
+          &#34;0&#34;
         </code>
         and not
         <code>
@@ -2322,7 +2321,7 @@
         </code>
         ). A string is expected here i.e.
         <code>
-          &quot;true&quot;
+          &#34;true&#34;
         </code>
         and not
         <code>
@@ -2601,9 +2600,9 @@
       volume binding mode.
     </p>
     <p>
-      Delaying volume binding allows the scheduler to consider all of a Pod&rsquo;s
+      Delaying volume binding allows the scheduler to consider all of a Pod’s
       scheduling constraints when choosing an appropriate PersistentVolume for a
       PersistentVolumeClaim.
     </p>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Ingress
     </h1>
@@ -12,7 +11,7 @@
       Ingress
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -137,7 +136,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -166,16 +165,16 @@
       </li>
       <li>
         Service: A Kubernetes
-        <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
           Service
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             A way to expose an application running on a set of Pods as a network service.
           </span>
         </a>
         that identifies a set of Pods using
-        <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/labels" target="_blank">
           label
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Tags objects with identifying attributes that are meaningful and relevant to users.
           </span>
         </a>
@@ -250,7 +249,7 @@
         <strong>
           Note:
         </strong>
-        Make sure you review your Ingress controller&rsquo;s documentation to understand the caveats of choosing it.
+        Make sure you review your Ingress controller’s documentation to understand the caveats of choosing it.
       </div>
     </blockquote>
     <h2 id="the-ingress-resource">
@@ -460,7 +459,7 @@
           </em>
           of the
           request path.
-          <blockquote class="note">
+          </p><blockquote class="note">
             <div>
               <strong>
                 Note:
@@ -481,7 +480,7 @@
               ).
             </div>
           </blockquote>
-        </p>
+        <p></p>
       </li>
     </ul>
     <h4 id="multiple-matches">
@@ -570,7 +569,7 @@
           Caution:
         </strong>
         If you have more than one IngressClass marked as the default for your cluster,
-        the admission controller prevents creating new Ingress objects that don&rsquo;t have
+        the admission controller prevents creating new Ingress objects that don’t have
         an
         <code>
           ingressClassName
@@ -606,7 +605,7 @@
                 service/networking/ingress.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-ingress-yaml')" title="Copy service/networking/ingress.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-ingress-yaml&#39;)" title="Copy service/networking/ingress.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -851,9 +850,9 @@ bar.foo.com --|                 |-&gt; bar.foo.com service2:80</code></pre>
     </h3>
     <p>
       You can secure an Ingress by specifying a
-      <a class='glossary-tooltip' href='/docs/concepts/configuration/secret/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/configuration/secret/" target="_blank">
         Secret
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Stores sensitive information, such as passwords, OAuth tokens, and ssh keys.
         </span>
       </a>
@@ -943,7 +942,7 @@ bar.foo.com --|                 |-&gt; bar.foo.com service2:80</code></pre>
       a Service.
     </p>
     <p>
-      It&rsquo;s also worth noting that even though health checks are not exposed directly
+      It’s also worth noting that even though health checks are not exposed directly
       through the Ingress, there exist parallel concepts in Kubernetes such as
       <a href="/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/">
         readiness probes
@@ -1077,7 +1076,7 @@ Events:
       Alternatives
     </h2>
     <p>
-      You can expose a Service in multiple ways that don&rsquo;t directly involve the Ingress resource:
+      You can expose a Service in multiple ways that don’t directly involve the Ingress resource:
     </p>
     <ul>
       <li>
@@ -1115,5 +1114,5 @@ Events:
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

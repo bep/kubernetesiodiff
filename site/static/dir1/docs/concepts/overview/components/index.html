@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Kubernetes Components
     </h1>
@@ -13,33 +12,33 @@
     </h1>
     <p>
       When you deploy Kubernetes, you get a cluster.
-      <p>
-        <p>
+      </p><p data-diff="">
+        </p><p>
           A Kubernetes cluster consists of a set of worker machines, called
-          <a class='glossary-tooltip' href='/docs/concepts/architecture/nodes/' target='_blank'>
+          <a class="glossary-tooltip" href="/docs/concepts/architecture/nodes/" target="_blank">
             nodes
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               A node is a worker machine in Kubernetes.
             </span>
           </a>
           ,
           that run containerized applications. Every cluster has at least one worker node.
         </p>
-      </p>
-    </p>
+      <p></p>
+    <p></p>
     <p>
       The worker node(s) host the
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         Pods
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
       that are
       the components of the application workload. The
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-control-plane' target='_blank'>
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-control-plane" target="_blank">
         control plane
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The container orchestration layer that exposes the API and interfaces to define, deploy, and manage the lifecycle of containers.
         </span>
       </a>
@@ -53,10 +52,10 @@
       a complete and working Kubernetes cluster.
     </p>
     <p>
-      Here&rsquo;s the diagram of a Kubernetes cluster with all the components tied together.
+      Here’s the diagram of a Kubernetes cluster with all the components tied together.
     </p>
     <p>
-      <img src="/images/docs/components-of-kubernetes.png" alt="Components of Kubernetes" />
+      <img src="/images/docs/components-of-kubernetes.png" alt="Components of Kubernetes"/>
     </p>
     <ul id="markdown-toc">
       <li>
@@ -76,7 +75,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -84,14 +83,14 @@
       Control Plane Components
     </h2>
     <p>
-      The Control Plane&rsquo;s components make global decisions about the cluster (for example, scheduling), as well as detecting and responding to cluster events (for example, starting up a new
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      The Control Plane’s components make global decisions about the cluster (for example, scheduling), as well as detecting and responding to cluster events (for example, starting up a new
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         pod
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
-      when a deployment&rsquo;s
+      when a deployment’s
       <code>
         replicas
       </code>
@@ -111,9 +110,9 @@
     </h3>
     <p>
       The API server is a component of the Kubernetes
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-control-plane' target='_blank'>
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-control-plane" target="_blank">
         control plane
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The container orchestration layer that exposes the API and interfaces to define, deploy, and manage the lifecycle of containers.
         </span>
       </a>
@@ -126,14 +125,14 @@
         kube-apiserver
       </a>
       .
-      kube-apiserver is designed to scale horizontally&mdash;that is, it scales by deploying more instances.
+      kube-apiserver is designed to scale horizontally—that is, it scales by deploying more instances.
       You can run several instances of kube-apiserver and balance traffic between those instances.
     </p>
     <h3 id="etcd">
       etcd
     </h3>
     <p>
-      Consistent and highly-available key value store used as Kubernetes&rsquo; backing store for all cluster data.
+      Consistent and highly-available key value store used as Kubernetes’ backing store for all cluster data.
     </p>
     <p>
       If your Kubernetes cluster uses etcd as its backing store, make sure you have a
@@ -155,16 +154,16 @@
     </h3>
     <p>
       Control plane component that watches for newly created
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         Pods
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
       with no assigned
-      <a class='glossary-tooltip' href='/docs/concepts/architecture/nodes/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/architecture/nodes/" target="_blank">
         node
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A node is a worker machine in Kubernetes.
         </span>
       </a>
@@ -182,9 +181,9 @@
     </h3>
     <p>
       Control Plane component that runs
-      <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/architecture/controller/" target="_blank">
         controller
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
         </span>
       </a>
@@ -192,9 +191,9 @@
     </p>
     <p>
       Logically, each
-      <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/architecture/controller/" target="_blank">
         controller
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
         </span>
       </a>
@@ -239,7 +238,7 @@
       when starting the kube-controller-manager.
     </p>
     <p>
-      cloud-controller-manager allows the cloud vendor&rsquo;s code and the Kubernetes code to evolve independently of each other. In prior releases, the core Kubernetes code was dependent upon cloud-provider-specific code for functionality. In future releases, code specific to cloud vendors should be maintained by the cloud vendor themselves, and linked to cloud-controller-manager while running Kubernetes.
+      cloud-controller-manager allows the cloud vendor’s code and the Kubernetes code to evolve independently of each other. In prior releases, the core Kubernetes code was dependent upon cloud-provider-specific code for functionality. In future releases, code specific to cloud vendors should be maintained by the cloud vendor themselves, and linked to cloud-controller-manager while running Kubernetes.
     </p>
     <p>
       The following controllers have cloud provider dependencies:
@@ -269,23 +268,23 @@
     </h3>
     <p>
       An agent that runs on each
-      <a class='glossary-tooltip' href='/docs/concepts/architecture/nodes/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/architecture/nodes/" target="_blank">
         node
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A node is a worker machine in Kubernetes.
         </span>
       </a>
       in the cluster. It makes sure that
-      <a class='glossary-tooltip' href='/docs/concepts/overview/what-is-kubernetes/#why-containers' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/what-is-kubernetes/#why-containers" target="_blank">
         containers
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A lightweight and portable executable image that contains software and all of its dependencies.
         </span>
       </a>
       are running in a
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         Pod
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
@@ -299,17 +298,17 @@
     </h3>
     <p>
       kube-proxy is a network proxy that runs on each
-      <a class='glossary-tooltip' href='/docs/concepts/architecture/nodes/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/architecture/nodes/" target="_blank">
         node
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A node is a worker machine in Kubernetes.
         </span>
       </a>
       in your cluster,
       implementing part of the Kubernetes
-      <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
         Service
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A way to expose an application running on a set of Pods as a network service.
         </span>
       </a>
@@ -325,7 +324,7 @@
     </p>
     <p>
       kube-proxy uses the operating system packet filtering layer if there is one
-      and it&rsquo;s available. Otherwise, kube-proxy forwards the traffic itself.
+      and it’s available. Otherwise, kube-proxy forwards the traffic itself.
     </p>
     <h3 id="container-runtime">
       Container Runtime
@@ -335,23 +334,23 @@
     </p>
     <p>
       Kubernetes supports several container runtimes:
-      <a class='glossary-tooltip' href='https://docs.docker.com/engine/' target='_blank'>
+      <a class="glossary-tooltip" href="https://docs.docker.com/engine/" target="_blank">
         Docker
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Docker is a software technology providing operating-system-level virtualization also known as containers.
         </span>
       </a>
       ,
-      <a class='glossary-tooltip' href='https://containerd.io/docs/' target='_blank'>
+      <a class="glossary-tooltip" href="https://containerd.io/docs/" target="_blank">
         containerd
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A container runtime with an emphasis on simplicity, robustness and portability
         </span>
       </a>
       ,
-      <a class='glossary-tooltip' href='https://cri-o.io/#what-is-cri-o' target='_blank'>
+      <a class="glossary-tooltip" href="https://cri-o.io/#what-is-cri-o" target="_blank">
         CRI-O
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A lightweight container runtime specifically for Kubernetes
         </span>
       </a>
@@ -368,16 +367,16 @@
     </h2>
     <p>
       Addons use Kubernetes resources (
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/daemonset' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/daemonset" target="_blank">
         DaemonSet
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Ensures a copy of a Pod is running across a set of nodes in a cluster.
         </span>
       </a>
       ,
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/deployment/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/deployment/" target="_blank">
         Deployment
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An API object that manages a replicated application.
         </span>
       </a>
@@ -467,11 +466,11 @@
         </a>
       </li>
       <li>
-        Read etcd&rsquo;s official
+        Read etcd’s official
         <a href="https://etcd.io/docs/">
           documentation
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1></h1>
     <p>
       <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_token_create.md" id="editPageButton" target="_blank">
@@ -12,7 +11,7 @@
         <li>
           <ul>
             <li>
-              <a href="#synopsis">
+              <a href="#synopsis" data-diff="">
                 Synopsis
               </a>
             </li>
@@ -35,11 +34,11 @@
     </h3>
     <p>
       This command will create a bootstrap token for you.
-      You can specify the usages for this token, the &ldquo;time to live&rdquo; and an optional human friendly description.
+      You can specify the usages for this token, the “time to live” and an optional human friendly description.
     </p>
     <p>
       The [token] is the actual token to write.
-      This should be a securely generated random token of the form &ldquo;[a-z0-9]{6}.[a-z0-9]{16}&quot;.
+      This should be a securely generated random token of the form “[a-z0-9]{6}.[a-z0-9]{16}&#34;.
       If no [token] is given, kubeadm will generate a random token instead.
     </p>
     <pre><code>kubeadm token create [token]</code></pre>
@@ -48,8 +47,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -60,7 +59,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            When used together with '--print-join-command', print the full 'kubeadm join' flag needed to join the cluster as a control-plane. To create a new certificate key you must use 'kubeadm init phase upload-certs --upload-certs'.
+            When used together with &#39;--print-join-command&#39;, print the full &#39;kubeadm join&#39; flag needed to join the cluster as a control-plane. To create a new certificate key you must use &#39;kubeadm init phase upload-certs --upload-certs&#39;.
           </td>
         </tr>
         <tr>
@@ -87,13 +86,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            --groups stringSlice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: [system:bootstrappers:kubeadm:default-node-token]
+            --groups stringSlice     Default: [system:bootstrappers:kubeadm:default-node-token]
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Extra groups that this token will authenticate as when used for authentication. Must match "\\Asystem:bootstrappers:[a-z0-9:-]{0,255}[a-z0-9]\\z"
+            Extra groups that this token will authenticate as when used for authentication. Must match &#34;\\Asystem:bootstrappers:[a-z0-9:-]{0,255}[a-z0-9]\\z&#34;
           </td>
         </tr>
         <tr>
@@ -115,23 +114,23 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Instead of printing only the token, print the full 'kubeadm join' flag needed to join the cluster using the token.
+            Instead of printing only the token, print the full &#39;kubeadm join&#39; flag needed to join the cluster using the token.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --ttl duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 24h0m0s
+            --ttl duration     Default: 24h0m0s
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The duration before the token is automatically deleted (e.g. 1s, 2m, 3h). If set to '0', the token will never expire
+            The duration before the token is automatically deleted (e.g. 1s, 2m, 3h). If set to &#39;0&#39;, the token will never expire
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --usages stringSlice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: [signing,authentication]
+            --usages stringSlice     Default: [signing,authentication]
           </td>
         </tr>
         <tr>
@@ -147,8 +146,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -164,7 +163,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -181,10 +180,10 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
     </table>
-  </body>
-</html>
+  
+</body></html>

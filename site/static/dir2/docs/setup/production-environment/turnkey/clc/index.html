@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Running Kubernetes on CenturyLink Cloud
     </h1>
@@ -14,7 +13,7 @@
     <nav id="TableOfContents">
       <ul>
         <li>
-          <a href="#find-help">
+          <a href="#find-help" data-diff="">
             Find Help
           </a>
         </li>
@@ -154,7 +153,7 @@
     </h2>
     <ul>
       <li>
-        We support Kubernetes clusters on both Virtual Machines or Physical Servers. If you want to use physical servers for the worker nodes (minions), simple use the &ndash;minion_type=bareMetal flag.
+        We support Kubernetes clusters on both Virtual Machines or Physical Servers. If you want to use physical servers for the worker nodes (minions), simple use the –minion_type=bareMetal flag.
       </li>
       <li>
         For more information on physical servers, visit:
@@ -465,8 +464,8 @@ order to access the CenturyLinkCloud API
           the log
           aggregation documentation
         </a>
-        . Note: We don&rsquo;t install this by default as
-        the footprint isn&rsquo;t trivial.
+        . Note: We don’t install this by default as
+        the footprint isn’t trivial.
       </li>
     </ul>
     <h2 id="cluster-management">
@@ -516,7 +515,7 @@ kubectl cluster-info</code></pre>
       Accessing the cluster programmatically
     </h3>
     <p>
-      It&rsquo;s possible to use the locally stored client certificates to access the apiserver. For example, you may want to use any of the
+      It’s possible to use the locally stored client certificates to access the apiserver. For example, you may want to use any of the
       <a href="/docs/reference/using-api/client-libraries/">
         Kubernetes API client libraries
       </a>
@@ -682,7 +681,7 @@ kubectl get --namespace<span style="color:#666">=</span>kube-system replicationc
       What Kubernetes features do not work on CenturyLink Cloud
     </h2>
     <p>
-      These are the known items that don&rsquo;t work on CenturyLink cloud but do work on other cloud providers:
+      These are the known items that don’t work on CenturyLink cloud but do work on other cloud providers:
     </p>
     <ul>
       <li>
@@ -722,5 +721,5 @@ kubectl get --namespace<span style="color:#666">=</span>kube-system replicationc
       for more details on administering
       and using a Kubernetes cluster.
     </p>
-  </body>
-</html>
+  
+</body></html>

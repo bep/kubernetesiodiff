@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Namespaces Walkthrough
     </h1>
@@ -13,9 +12,9 @@
     </h1>
     <p>
       Kubernetes
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/namespaces' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/namespaces" target="_blank">
         namespaces
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An abstraction used by Kubernetes to support multiple virtual clusters on the same physical cluster.
         </span>
       </a>
@@ -159,7 +158,7 @@ default   Active    13m</code></pre>
       For this exercise, we will create two additional Kubernetes namespaces to hold our content.
     </p>
     <p>
-      Let&rsquo;s imagine a scenario where an organization is using a shared Kubernetes cluster for development and production use cases.
+      Let’s imagine a scenario where an organization is using a shared Kubernetes cluster for development and production use cases.
     </p>
     <p>
       The development team would like to maintain a space in the cluster where they can get a view on the list of Pods, Services, and Deployments
@@ -182,7 +181,7 @@ default   Active    13m</code></pre>
       .
     </p>
     <p>
-      Let&rsquo;s create two new namespaces to hold our work.
+      Let’s create two new namespaces to hold our work.
     </p>
     <p>
       Use the file
@@ -206,7 +205,7 @@ default   Active    13m</code></pre>
                 admin/namespace-dev.json
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-namespace-dev-json')" title="Copy admin/namespace-dev.json to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-namespace-dev-json&#39;)" title="Copy admin/namespace-dev.json to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -261,7 +260,7 @@ default   Active    13m</code></pre>
                 admin/namespace-prod.json
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-namespace-prod-json')" title="Copy admin/namespace-prod.json to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-namespace-prod-json&#39;)" title="Copy admin/namespace-prod.json to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -285,7 +284,7 @@ default   Active    13m</code></pre>
       </tbody>
     </table>
     <p>
-      And then let&rsquo;s create the
+      And then let’s create the
       <code>
         production
       </code>
@@ -295,7 +294,7 @@ default   Active    13m</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://k8s.io/examples/admin/namespace-prod.json</code></pre>
     </div>
     <p>
-      To be sure things are right, let&rsquo;s list all of the namespaces in our cluster.
+      To be sure things are right, let’s list all of the namespaces in our cluster.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get namespaces --show-labels</code></pre>
@@ -314,7 +313,7 @@ production    Active    23s       name=production</code></pre>
       Users interacting with one namespace do not see the content in another namespace.
     </p>
     <p>
-      To demonstrate this, let&rsquo;s spin up a simple Deployment and Pods in the
+      To demonstrate this, let’s spin up a simple Deployment and Pods in the
       <code>
         development
       </code>
@@ -350,7 +349,7 @@ production    Active    23s       name=production</code></pre>
 </span><span style="color:#bbb"></span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>lithe-cocoa-92103_kubernetes-basic-auth<span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">user</span>:<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">password</span>:<span style="color:#bbb"> </span>h5M0FtUUIflBSdI7<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">username</span>:<span style="color:#bbb"> </span>admin<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">username</span>:<span style="color:#bbb"> </span>admin<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <div class="highlight">
@@ -358,7 +357,7 @@ production    Active    23s       name=production</code></pre>
     </div>
     <pre><code>lithe-cocoa-92103_kubernetes</code></pre>
     <p>
-      The next step is to define a context for the kubectl client to work in each namespace. The value of &ldquo;cluster&rdquo; and &ldquo;user&rdquo; fields are copied from the current context.
+      The next step is to define a context for the kubectl client to work in each namespace. The value of “cluster” and “user” fields are copied from the current context.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl config set-context dev --namespace<span style="color:#666">=</span>development <span style="color:#b62;font-weight:bold">\
@@ -421,7 +420,7 @@ kubectl config set-context prod --namespace<span style="color:#666">=</span>prod
 </span></code></pre>
     </div>
     <p>
-      Let&rsquo;s switch to operate in the
+      Let’s switch to operate in the
       <code>
         development
       </code>
@@ -445,7 +444,7 @@ kubectl config set-context prod --namespace<span style="color:#666">=</span>prod
       namespace.
     </p>
     <p>
-      Let&rsquo;s create some contents.
+      Let’s create some contents.
     </p>
     <table class="includecode" id="admin-snowflake-deployment-yaml">
       <thead>
@@ -456,7 +455,7 @@ kubectl config set-context prod --namespace<span style="color:#666">=</span>prod
                 admin/snowflake-deployment.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-snowflake-deployment-yaml')" title="Copy admin/snowflake-deployment.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-snowflake-deployment-yaml&#39;)" title="Copy admin/snowflake-deployment.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -522,7 +521,7 @@ snowflake-3968820950-vgc4n   1/1       Running   0          2m</code></pre>
       namespace.
     </p>
     <p>
-      Let&rsquo;s switch to the
+      Let’s switch to the
       <code>
         production
       </code>
@@ -543,7 +542,7 @@ snowflake-3968820950-vgc4n   1/1       Running   0          2m</code></pre>
 kubectl get pods</code></pre>
     </div>
     <p>
-      Production likes to run cattle, so let&rsquo;s create some cattle pods.
+      Production likes to run cattle, so let’s create some cattle pods.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl run cattle --image<span style="color:#666">=</span>k8s.gcr.io/serve_hostname --replicas<span style="color:#666">=</span><span style="color:#666">5</span>
@@ -568,5 +567,5 @@ cattle-2263376956-sxpth   1/1       Running   0          34s</code></pre>
       As the policy support in Kubernetes evolves, we will extend this scenario to show how you can provide different
       authorization rules for each namespace.
     </p>
-  </body>
-</html>
+  
+</body></html>

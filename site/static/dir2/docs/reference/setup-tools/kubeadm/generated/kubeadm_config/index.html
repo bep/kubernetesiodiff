@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1></h1>
     <p>
       <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_config.md" id="editPageButton" target="_blank">
@@ -12,7 +11,7 @@
         <li>
           <ul>
             <li>
-              <a href="#synopsis">
+              <a href="#synopsis" data-diff="">
                 Synopsis
               </a>
             </li>
@@ -34,10 +33,10 @@
       Synopsis
     </h3>
     <p>
-      There is a ConfigMap in the kube-system namespace called &ldquo;kubeadm-config&rdquo; that kubeadm uses to store internal configuration about the
-      cluster. kubeadm CLI v1.8.0+ automatically creates this ConfigMap with the config used with &lsquo;kubeadm init&rsquo;, but if you
-      initialized your cluster using kubeadm v1.7.x or lower, you must use the &lsquo;config upload&rsquo; command to create this
-      ConfigMap. This is required so that &lsquo;kubeadm upgrade&rsquo; can configure your upgraded cluster correctly.
+      There is a ConfigMap in the kube-system namespace called “kubeadm-config” that kubeadm uses to store internal configuration about the
+      cluster. kubeadm CLI v1.8.0+ automatically creates this ConfigMap with the config used with ‘kubeadm init’, but if you
+      initialized your cluster using kubeadm v1.7.x or lower, you must use the ‘config upload’ command to create this
+      ConfigMap. This is required so that ‘kubeadm upgrade’ can configure your upgraded cluster correctly.
     </p>
     <pre><code>kubeadm config [flags]</code></pre>
     <h3 id="options">
@@ -45,8 +44,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -62,7 +61,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -78,8 +77,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -90,10 +89,10 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
     </table>
-  </body>
-</html>
+  
+</body></html>

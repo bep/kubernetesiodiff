@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configure the Aggregation Layer
     </h1>
@@ -36,7 +35,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -85,7 +84,7 @@
             <strong>
               Caution:
             </strong>
-            Reusing the same CA for different client types can negatively impact the cluster&rsquo;s ability to function. For more information, see
+            Reusing the same CA for different client types can negatively impact the cluster’s ability to function. For more information, see
             <a href="#ca-reusage-and-conflicts">
               CA Reusage and Conflicts
             </a>
@@ -130,7 +129,7 @@
       The flow can be seen in the following diagram.
     </p>
     <p>
-      <img src="/images/docs/aggregation-api-auth-flow.png" alt="aggregation auth flows">
+      <img src="/images/docs/aggregation-api-auth-flow.png" alt="aggregation auth flows"/>
       .
     </p>
     <p>
@@ -199,11 +198,11 @@ note:
     <p>
       For an overview of authenticating to a Kubernetes cluster, see
       <a href="/docs/reference/access-authn-authz/authentication/">
-        &ldquo;Authenticating to a Cluster&rdquo;
+        “Authenticating to a Cluster”
       </a>
       . For an overview of authorization of access to Kubernetes cluster resources, see
       <a href="/docs/reference/access-authn-authz/authorization/">
-        &ldquo;Authorization Overview&rdquo;
+        “Authorization Overview”
       </a>
       .
     </p>
@@ -288,7 +287,7 @@ note:
         </strong>
         You can set this option to blank as
         <code>
-          --requestheader-allowed-names=&quot;&quot;
+          --requestheader-allowed-names=&#34;&#34;
         </code>
         . This will indicate to an extension apiserver that
         <em>
@@ -440,7 +439,7 @@ note:
       <code>
         system:auth-delegator
       </code>
-      that has the appropriate permissions. It can be granted to the extension apiserver&rsquo;s service account.
+      that has the appropriate permissions. It can be granted to the extension apiserver’s service account.
     </p>
     <h3 id="extension-apiserver-executes">
       Extension Apiserver Executes
@@ -606,7 +605,7 @@ note:
         <strong>
           not
         </strong>
-        reuse a CA that is used in a different context unless you understand the risks and the mechanisms to protect the CA&rsquo;s usage.
+        reuse a CA that is used in a different context unless you understand the risks and the mechanisms to protect the CA’s usage.
       </div>
     </blockquote>
     <p>
@@ -662,11 +661,11 @@ note:
       </code>
       stanza is a reference to the service for a extension apiserver.
       The service namespace and name are required. The port is optional and defaults to 443.
-      The path is optional and defaults to &ldquo;/&quot;.
+      The path is optional and defaults to “/&#34;.
     </p>
     <p>
-      Here is an example of an extension apiserver that is configured to be called on port &ldquo;1234&rdquo;
-      at the subpath &ldquo;/my-path&rdquo;, and to verify the TLS connection against the ServerName
+      Here is an example of an extension apiserver that is configured to be called on port “1234”
+      at the subpath “/my-path”, and to verify the TLS connection against the ServerName
       <code>
         my-service-name.my-service-namespace.svc
       </code>
@@ -711,5 +710,5 @@ note:
         .
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Creating Highly Available clusters with kubeadm
     </h1>
@@ -100,7 +99,7 @@
       <li>
         Three machines that meet
         <a href="/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin">
-          kubeadm&rsquo;s minimum requirements
+          kubeadm’s minimum requirements
         </a>
         for
         the masters
@@ -108,7 +107,7 @@
       <li>
         Three machines that meet
         <a href="/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin">
-          kubeadm&rsquo;s minimum
+          kubeadm’s minimum
           requirements
         </a>
         for the workers
@@ -203,7 +202,7 @@
           <li>
             <p>
               Make sure the address of the load balancer always matches
-              the address of kubeadm&rsquo;s
+              the address of kubeadm’s
               <code>
                 ControlPlaneEndpoint
               </code>
@@ -252,7 +251,7 @@
         <ul>
           <li>
             You can use the
-            <code>
+            <code data-diff="">
               --kubernetes-version
             </code>
             flag to set the Kubernetes version to use.
@@ -611,7 +610,7 @@ etcd:
       </li>
     </ol>
     <p>
-      <blockquote class="note">
+      </p><blockquote class="note">
         <div>
           <strong>
             Note:
@@ -629,7 +628,7 @@ etcd:
           In the case of the stacked etcd topology this is managed automatically.
         </div>
       </blockquote>
-    </p>
+    <p></p>
     <ul>
       <li>
         <p>
@@ -702,11 +701,11 @@ etcd:
         Make sure the first control plane node is fully initialized.
       </li>
       <li>
-        Join each control plane node with the join command you saved to a text file. It&rsquo;s recommended
+        Join each control plane node with the join command you saved to a text file. It’s recommended
         to join the control plane nodes one at a time.
       </li>
       <li>
-        Don&rsquo;t forget that the decryption key from
+        Don’t forget that the decryption key from
         <code>
           --certificate-key
         </code>
@@ -870,5 +869,5 @@ mv /home/<span style="color:#b68;font-weight:bold">${</span><span style="color:#
         </div>
       </li>
     </ol>
-  </body>
-</html>
+  
+</body></html>

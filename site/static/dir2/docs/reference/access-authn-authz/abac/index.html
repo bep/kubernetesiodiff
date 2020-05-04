@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Using ABAC Authorization
     </h1>
@@ -68,7 +67,7 @@
       should be no enclosing list or map, just one map per line.
     </p>
     <p>
-      Each line is a &ldquo;policy object&rdquo;, where each such object is a map with the following
+      Each line is a “policy object”, where each such object is a map with the following
       properties:
     </p>
     <ul>
@@ -79,13 +78,13 @@
             <code>
               apiVersion
             </code>
-            , type string; valid values are &ldquo;abac.authorization.kubernetes.io/v1beta1&rdquo;. Allows versioning and conversion of the policy format.
+            , type string; valid values are “abac.authorization.kubernetes.io/v1beta1”. Allows versioning and conversion of the policy format.
           </li>
           <li>
             <code>
               kind
             </code>
-            , type string: valid values are &ldquo;Policy&rdquo;. Allows versioning and conversion of the policy format.
+            , type string: valid values are “Policy”. Allows versioning and conversion of the policy format.
           </li>
         </ul>
       </li>
@@ -282,7 +281,7 @@
     <p>
       A property set to
       <code>
-        &quot;*&quot;
+        &#34;*&#34;
       </code>
       will match any value of the corresponding attribute.
     </p>
@@ -295,7 +294,7 @@
       To permit any authenticated user to do something, write a policy with the
       group property set to
       <code>
-        &quot;system:authenticated&quot;
+        &#34;system:authenticated&#34;
       </code>
       .
     </p>
@@ -303,7 +302,7 @@
       To permit any unauthenticated user to do something, write a policy with the
       group property set to
       <code>
-        &quot;system:unauthenticated&quot;
+        &#34;system:unauthenticated&#34;
       </code>
       .
     </p>
@@ -311,7 +310,7 @@
       To permit a user to do anything, write a policy with the apiGroup, namespace,
       resource, and nonResourcePath properties set to
       <code>
-        &quot;*&quot;
+        &#34;*&#34;
       </code>
       .
     </p>
@@ -418,7 +417,7 @@
       </li>
       <li>
         <p>
-          Bob can just read pods in namespace &ldquo;projectCaribou&rdquo;:
+          Bob can just read pods in namespace “projectCaribou”:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#008000;font-weight:bold">&#34;apiVersion&#34;</span>: <span style="color:#b44">&#34;abac.authorization.kubernetes.io/v1beta1&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;kind&#34;</span>: <span style="color:#b44">&#34;Policy&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;spec&#34;</span>: {<span style="color:#008000;font-weight:bold">&#34;user&#34;</span>: <span style="color:#b44">&#34;bob&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;namespace&#34;</span>: <span style="color:#b44">&#34;projectCaribou&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;resource&#34;</span>: <span style="color:#b44">&#34;pods&#34;</span>, <span style="color:#008000;font-weight:bold">&#34;readonly&#34;</span>: <span style="color:#a2f;font-weight:bold">true</span>}}</code></pre>
@@ -443,7 +442,7 @@
       A quick note on service accounts
     </h2>
     <p>
-      Every service account has a corresponding ABAC username, and that service account&rsquo;s user name is generated according to the naming convention:
+      Every service account has a corresponding ABAC username, and that service account’s user name is generated according to the naming convention:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">system:serviceaccount:&lt;namespace&gt;:&lt;serviceaccountname&gt;</code></pre>
@@ -468,5 +467,5 @@
     <p>
       The apiserver will need to be restarted to pickup the new policy lines.
     </p>
-  </body>
-</html>
+  
+</body></html>

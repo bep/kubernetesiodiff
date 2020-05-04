@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configure a Pod to Use a PersistentVolume for Storage
     </h1>
@@ -13,9 +12,9 @@
     </h1>
     <p>
       This page shows you how to configure a Pod to use a
-      <a class='glossary-tooltip' href='/docs/concepts/storage/persistent-volumes/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/storage/persistent-volumes/" target="_blank">
         PersistentVolumeClaim
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Claims storage resources defined in a PersistentVolume so that it can be mounted as a volume in a container.
         </span>
       </a>
@@ -80,7 +79,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -91,9 +90,9 @@
       <li>
         <p>
           You need to have a Kubernetes cluster that has only one Node, and the
-          <a class='glossary-tooltip' href='/docs/user-guide/kubectl-overview/' target='_blank'>
+          <a class="glossary-tooltip" href="/docs/user-guide/kubectl-overview/" target="_blank">
             kubectl
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               A command line tool for communicating with a Kubernetes API server.
             </span>
           </a>
@@ -227,7 +226,7 @@ sudo sh -c <span style="color:#b44">&#34;echo &#39;Hello from Kubernetes storage
                 pods/storage/pv-volume.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-storage-pv-volume-yaml')" title="Copy pods/storage/pv-volume.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-storage-pv-volume-yaml&#39;)" title="Copy pods/storage/pv-volume.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -261,7 +260,7 @@ sudo sh -c <span style="color:#b44">&#34;echo &#39;Hello from Kubernetes storage
         /mnt/data
       </code>
       on the
-      cluster&rsquo;s Node. The configuration also specifies a size of 10 gibibytes and
+      cluster’s Node. The configuration also specifies a size of 10 gibibytes and
       an access mode of
       <code>
         ReadWriteOnce
@@ -324,7 +323,7 @@ task-pv-volume   10Gi       RWO           Retain          Available             
                 pods/storage/pv-claim.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-storage-pv-claim-yaml')" title="Copy pods/storage/pv-claim.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-storage-pv-claim-yaml&#39;)" title="Copy pods/storage/pv-claim.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -355,7 +354,7 @@ task-pv-volume   10Gi       RWO           Retain          Available             
     <pre><code>kubectl apply -f https://k8s.io/examples/pods/storage/pv-claim.yaml</code></pre>
     <p>
       After you create the PersistentVolumeClaim, the Kubernetes control plane looks
-      for a PersistentVolume that satisfies the claim&rsquo;s requirements. If the control
+      for a PersistentVolume that satisfies the claim’s requirements. If the control
       plane finds a suitable PersistentVolume with the same StorageClass, it binds the
       claim to the volume.
     </p>
@@ -411,7 +410,7 @@ task-pv-claim   Bound     task-pv-volume   10Gi       RWO           manual      
                 pods/storage/pv-pod.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-storage-pv-pod-yaml')" title="Copy pods/storage/pv-pod.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-storage-pv-pod-yaml&#39;)" title="Copy pods/storage/pv-pod.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -446,8 +445,8 @@ task-pv-claim   Bound     task-pv-volume   10Gi       RWO           manual      
       </tbody>
     </table>
     <p>
-      Notice that the Pod&rsquo;s configuration file specifies a PersistentVolumeClaim, but
-      it does not specify a PersistentVolume. From the Pod&rsquo;s point of view, the claim
+      Notice that the Pod’s configuration file specifies a PersistentVolumeClaim, but
+      it does not specify a PersistentVolume. From the Pod’s point of view, the claim
       is a volume.
     </p>
     <p>
@@ -508,7 +507,7 @@ kubectl delete pvc task-pv-claim
 kubectl delete pv task-pv-volume</code></pre>
     </div>
     <p>
-      If you don&rsquo;t already have a shell open to the Node in your cluster,
+      If you don’t already have a shell open to the Node in your cluster,
       open a new shell the same way that you did earlier.
     </p>
     <p>
@@ -608,5 +607,5 @@ sudo rmdir /mnt/data</code></pre>
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

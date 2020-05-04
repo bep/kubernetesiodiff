@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1></h1>
 <p>
   <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_join_phase_control-plane-prepare_all.md" id="editPageButton" target="_blank">
@@ -12,7 +11,7 @@
     <li>
       <ul>
         <li>
-          <ul>
+          <ul data-diff="">
             <li>
               <a href="#synopsis">
                 Synopsis
@@ -45,30 +44,46 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  <p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;apiserver-advertise-address string
+      –apiserver-advertise-address string
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      If the node should host a new control plane instance, the IP address the API Server will advertise it&rsquo;s listening on. If not set the default network interface will be used.
+      If the node should host a new control plane instance, the IP address the API Server will advertise it’s listening on. If not set the default network interface will be used.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;apiserver-bind-port int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 6443
+      –apiserver-bind-port int32     Default: 6443
     </td>
   </tr>
   <tr>
@@ -77,11 +92,10 @@
       If the node should host a new control plane instance, the port for the API Server to bind to.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;certificate-key string
+      –certificate-key string
     </td>
   </tr>
   <tr>
@@ -90,11 +104,10 @@
       Use this key to decrypt the certificate secrets uploaded by init.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -103,11 +116,10 @@
       Path to kubeadm config file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;control-plane
+      –control-plane
     </td>
   </tr>
   <tr>
@@ -116,11 +128,10 @@
       Create a new control plane instance on this node
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;discovery-file string
+      –discovery-file string
     </td>
   </tr>
   <tr>
@@ -129,11 +140,10 @@
       For file-based discovery, a file or URL from which to load cluster information.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;discovery-token string
+      –discovery-token string
     </td>
   </tr>
   <tr>
@@ -142,37 +152,34 @@
       For token-based discovery, the token used to validate cluster information fetched from the API server.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;discovery-token-ca-cert-hash stringSlice
+      –discovery-token-ca-cert-hash stringSlice
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      For token-based discovery, validate that the root CA public key matches this hash (format: &ldquo;&lt;type&gt;:&lt;value&gt;&rdquo;).
+      For token-based discovery, validate that the root CA public key matches this hash (format: “&lt;type&gt;:&lt;value&gt;”).
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;discovery-token-unsafe-skip-ca-verification
+      –discovery-token-unsafe-skip-ca-verification
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      For token-based discovery, allow joining without &ndash;discovery-token-ca-cert-hash pinning.
+      For token-based discovery, allow joining without –discovery-token-ca-cert-hash pinning.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -k, &ndash;experimental-kustomize string
+      -k, –experimental-kustomize string
     </td>
   </tr>
   <tr>
@@ -181,11 +188,10 @@
       The path where kustomize patches for static pod manifests are stored.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -194,11 +200,10 @@
       help for all
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;node-name string
+      –node-name string
     </td>
   </tr>
   <tr>
@@ -207,11 +212,10 @@
       Specify the node name.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;tls-bootstrap-token string
+      –tls-bootstrap-token string
     </td>
   </tr>
   <tr>
@@ -220,11 +224,10 @@
       Specify the token used to temporarily authenticate with the Kubernetes Control Plane while joining the node.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;token string
+      –token string
     </td>
   </tr>
   <tr>
@@ -233,30 +236,26 @@
       Use this token for both discovery-token and tls-bootstrap-token when those values are not provided.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p></p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;rootfs string
+      –rootfs string
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
     </td>
   </tr>
-</p>
-<p>
+
+</tbody></table></p></body></html>

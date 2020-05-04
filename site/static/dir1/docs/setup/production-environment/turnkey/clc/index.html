@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Running Kubernetes on CenturyLink Cloud
     </h1>
@@ -14,7 +13,7 @@
     <nav id="TableOfContents">
       <ul>
         <li>
-          <ul>
+          <ul data-diff="">
             <li>
               <a href="#find-help">
                 Find Help
@@ -174,7 +173,7 @@
     </h2>
     <ul>
       <li>
-        We support Kubernetes clusters on both Virtual Machines or Physical Servers. If you want to use physical servers for the worker nodes (minions), simple use the &ndash;minion_type=bareMetal flag.
+        We support Kubernetes clusters on both Virtual Machines or Physical Servers. If you want to use physical servers for the worker nodes (minions), simple use the –minion_type=bareMetal flag.
       </li>
       <li>
         For more information on physical servers, visit:
@@ -474,8 +473,8 @@ order to access the CenturyLinkCloud API
           the log
           aggregation documentation
         </a>
-        . Note: We don&rsquo;t install this by default as
-        the footprint isn&rsquo;t trivial.
+        . Note: We don’t install this by default as
+        the footprint isn’t trivial.
       </li>
     </ul>
     <h2 id="cluster-management">
@@ -525,7 +524,7 @@ kubectl cluster-info</code></pre>
       Accessing the cluster programmatically
     </h3>
     <p>
-      It&rsquo;s possible to use the locally stored client certificates to access the apiserver. For example, you may want to use any of the
+      It’s possible to use the locally stored client certificates to access the apiserver. For example, you may want to use any of the
       <a href="/docs/reference/using-api/client-libraries/">
         Kubernetes API client libraries
       </a>
@@ -630,9 +629,9 @@ List existing nodes, pods, services and more, in all namespaces, or in just one:
     </ul>
     <p>
       kubectl get nodes
-      kubectl get &ndash;all-namespaces pods
-      kubectl get &ndash;all-namespaces services
-      kubectl get &ndash;namespace=kube-system replicationcontrollers
+      kubectl get –all-namespaces pods
+      kubectl get –all-namespaces services
+      kubectl get –namespace=kube-system replicationcontrollers
     </p>
     <pre><code>The Kubernetes API server exposes services on web URLs, which are protected by requiring
 client certificates.  If you run a kubectl proxy locally, ```kubectl``` will provide
@@ -653,7 +652,7 @@ the necessary certificates and serve locally over http.</code></pre>
       What Kubernetes features do not work on CenturyLink Cloud
     </h2>
     <p>
-      These are the known items that don&rsquo;t work on CenturyLink cloud but do work on other cloud providers:
+      These are the known items that don’t work on CenturyLink cloud but do work on other cloud providers:
     </p>
     <ul>
       <li>
@@ -693,5 +692,5 @@ the necessary certificates and serve locally over http.</code></pre>
       for more details on administering
       and using a Kubernetes cluster.
     </p>
-  </body>
-</html>
+  
+</body></html>

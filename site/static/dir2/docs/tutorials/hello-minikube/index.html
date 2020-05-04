@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Hello Minikube
 </h1>
@@ -25,7 +24,7 @@
     <strong>
       Note:
     </strong>
-    You can also follow this tutorial if you&rsquo;ve installed
+    You can also follow this tutorial if you’ve installed
     <a href="/docs/tasks/tools/install-minikube/">
       Minikube locally
     </a>
@@ -70,7 +69,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -103,7 +102,7 @@
           minikube/server.js
         </code>
       </a>
-      <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('minikube-server-js')" title="Copy minikube/server.js to clipboard">
+      <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;minikube-server-js&#39;)" title="Copy minikube/server.js to clipboard"/>
     </th>
   </tr>
 </thead>
@@ -112,18 +111,18 @@
     <td>
       <div class="highlight">
         <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a2f;font-weight:bold">var</span> http <span style="color:#666">=</span> require(<span style="color:#b44">&#39;http&#39;</span>);
-<p><span style="color:#a2f;font-weight:bold">var</span> handleRequest <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">function</span>(request, response) {
-console.log(<span style="color:#b44">'Received request for URL: '</span> <span style="color:#666">+</span> request.url);
+</code><p><code class="language-js" data-lang="js"><span style="color:#a2f;font-weight:bold">var</span> handleRequest <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">function</span>(request, response) {
+console.log(<span style="color:#b44">&#39;Received request for URL: &#39;</span> <span style="color:#666">+</span> request.url);
 response.writeHead(<span style="color:#666">200</span>);
-response.end(<span style="color:#b44">'Hello World!'</span>);
+response.end(<span style="color:#b44">&#39;Hello World!&#39;</span>);
 };
 <span style="color:#a2f;font-weight:bold">var</span> www <span style="color:#666">=</span> http.createServer(handleRequest);
-www.listen(<span style="color:#666">8080</span>);</code></pre>
+www.listen(<span style="color:#666">8080</span>);</code></p></pre>
       </div>
     </td>
   </tr>
 </tbody>
-<table class="includecode" id="minikube-dockerfile">
+</table><table class="includecode" id="minikube-dockerfile">
   <thead>
     <tr>
       <th>
@@ -132,7 +131,7 @@ www.listen(<span style="color:#666">8080</span>);</code></pre>
             minikube/Dockerfile
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('minikube-dockerfile')" title="Copy minikube/Dockerfile to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;minikube-dockerfile&#39;)" title="Copy minikube/Dockerfile to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -177,7 +176,7 @@ CMD [ &#34;node&#34;, &#34;server.js&#34; ]</code></pre>
   <button class="button" onclick="window.katacoda.init(); ">
     Launch Terminal
   </button>
-</p><pre><code>&lt;blockquote class=&quot;note&quot;&gt;</code></pre>
+</p><pre><code>&lt;blockquote class=&#34;note&#34;&gt;</code></pre>
 <div>
   <strong>
     Note:
@@ -239,7 +238,7 @@ CMD [ &#34;node&#34;, &#34;server.js&#34; ]</code></pre>
     </em>
   </a>
   checks on the health of your
-  Pod and restarts the Pod&rsquo;s Container if it terminates. Deployments are the
+  Pod and restarts the Pod’s Container if it terminates. Deployments are the
   recommended way to manage the creation and scaling of Pods.
 </p>
 <ol>
@@ -302,7 +301,7 @@ hello-node-5f76cf6ccf-br9b5   1/1       Running   0          1m</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl config view</code></pre>
     </div>
     <blockquote class="note">
-  </li>
+  </blockquote></li>
 </ol>
 <div>
   <strong>
@@ -415,7 +414,7 @@ kubernetes   ClusterIP      10.96.0.1       &lt;none&gt;        443/TCP         
       .
     </p>
     <p>
-      This opens up a browser window that serves your app and shows the &ldquo;Hello World&rdquo; message.
+      This opens up a browser window that serves your app and shows the “Hello World” message.
     </p>
   </li>
 </ol>
@@ -424,9 +423,9 @@ kubernetes   ClusterIP      10.96.0.1       &lt;none&gt;        443/TCP         
 </h2>
 <p>
   Minikube has a set of built-in
-  <a class='glossary-tooltip' href='/docs/concepts/cluster-administration/addons/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/cluster-administration/addons/" target="_blank">
     addons
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Resources that extend the functionality of Kubernetes.
     </span>
   </a>
@@ -570,4 +569,4 @@ kubectl delete deployment hello-node</code></pre>
     </a>
     .
   </li>
-</ul>
+</ul></body></html>

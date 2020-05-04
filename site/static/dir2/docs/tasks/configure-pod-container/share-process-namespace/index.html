@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Share Process Namespace between Containers in a Pod
 </h1>
@@ -12,7 +11,7 @@
   Share Process Namespace between Containers in a Pod
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -72,7 +71,7 @@
 </p>
 <p>
   You can use this feature to configure cooperating containers, such as a log
-  handler sidecar container, or to troubleshoot container images that don&rsquo;t
+  handler sidecar container, or to troubleshoot container images that don’t
   include debugging utilities like a shell.
 </p>
 <ul id="markdown-toc">
@@ -148,7 +147,7 @@
             pods/share-process-namespace.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-share-process-namespace-yaml')" title="Copy pods/share-process-namespace.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-share-process-namespace-yaml&#39;)" title="Copy pods/share-process-namespace.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -208,7 +207,7 @@
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl attach -it nginx -c shell</code></pre>
     </div>
     <p>
-      If you don&rsquo;t see a command prompt, try pressing enter.
+      If you don’t see a command prompt, try pressing enter.
     </p>
     <pre><code>/ # ps ax
 PID   USER     TIME  COMMAND
@@ -239,7 +238,7 @@ PID   USER     TIME  COMMAND
    22 101       0:00 nginx: worker process
    23 root      0:00 ps ax</code></pre>
 <p>
-  It&rsquo;s even possible to access another container image using the
+  It’s even possible to access another container image using the
   <code>
     /proc/$pid/root
   </code>
@@ -261,7 +260,7 @@ events {
 <p>
   Pods share many resources so it makes sense they would also share a process
   namespace. Some container images may expect to be isolated from other
-  containers, though, so it&rsquo;s important to understand these differences:
+  containers, though, so it’s important to understand these differences:
 </p>
 <ol>
   <li>
@@ -319,4 +318,4 @@ events {
       that filesystem secrets are protected only by filesystem permissions.
     </p>
   </li>
-</ol>
+</ol></div></body></html>

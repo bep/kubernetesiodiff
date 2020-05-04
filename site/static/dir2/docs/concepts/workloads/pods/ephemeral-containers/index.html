@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Ephemeral Containers
 </h1>
@@ -12,7 +11,7 @@
   Ephemeral Containers
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -77,9 +76,9 @@
 <p>
   This page provides an overview of ephemeral containers: a special type of container
   that runs temporarily in an existing
-  <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
     Pod
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
     </span>
   </a>
@@ -122,9 +121,9 @@
   Understanding ephemeral containers
 </h2>
 <p>
-  <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
     Pods
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
     </span>
   </a>
@@ -132,16 +131,16 @@
   block of Kubernetes applications. Since Pods are intended to be disposable and
   replaceable, you cannot add a container to a Pod once it has been created.
   Instead, you usually delete and replace Pods in a controlled fashion using
-  <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/deployment/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/deployment/" target="_blank">
     deployments
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       An API object that manages a replicated application.
     </span>
   </a>
   .
 </p>
 <p>
-  Sometimes it&rsquo;s necessary to inspect the state of an existing Pod, however, for
+  Sometimes it’s necessary to inspect the state of an existing Pod, however, for
   example to troubleshoot a hard-to-reproduce bug. In these cases you can run
   an ephemeral container in an existing Pod to inspect its state and run
   arbitrary commands.
@@ -202,7 +201,7 @@
   <code>
     pod.spec
   </code>
-  , so it&rsquo;s not
+  , so it’s not
   possible to add an ephemeral container using
   <code>
     kubectl edit
@@ -222,7 +221,7 @@
     kubectl exec
   </code>
   is insufficient because a container has crashed or a container image
-  doesn&rsquo;t include debugging utilities.
+  doesn’t include debugging utilities.
 </p>
 <p>
   In particular,
@@ -231,7 +230,7 @@
   </a>
   enable you to deploy minimal container images that reduce attack surface
   and exposure to bugs and vulnerabilities. Since distroless images do not include a
-  shell or any debugging utilities, it&rsquo;s difficult to troubleshoot distroless
+  shell or any debugging utilities, it’s difficult to troubleshoot distroless
   images using
   <code>
     kubectl exec
@@ -239,7 +238,7 @@
   alone.
 </p>
 <p>
-  When using ephemeral containers, it&rsquo;s helpful to enable
+  When using ephemeral containers, it’s helpful to enable
   <a href="/docs/tasks/configure-pod-container/share-process-namespace/">
     process namespace
     sharing
@@ -415,4 +414,4 @@ Ephemeral Containers:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl attach -it example-pod -c debugger</code></pre>
-</div>
+</div></div></body></html>

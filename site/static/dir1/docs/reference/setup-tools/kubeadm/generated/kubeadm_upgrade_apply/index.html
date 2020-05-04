@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1></h1>
 <p>
   <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_upgrade_apply.md" id="editPageButton" target="_blank">
@@ -12,7 +11,7 @@
     <li>
       <ul>
         <li>
-          <ul>
+          <ul data-diff="">
             <li>
               <a href="#synopsis">
                 Synopsis
@@ -45,17 +44,35 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  <p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;allow-experimental-upgrades
+      –allow-experimental-upgrades
     </td>
   </tr>
   <tr>
@@ -64,11 +81,10 @@
       Show unstable versions of Kubernetes as an upgrade alternative and allow upgrading to an alpha/beta/release candidate versions of Kubernetes.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;allow-release-candidate-upgrades
+      –allow-release-candidate-upgrades
     </td>
   </tr>
   <tr>
@@ -77,11 +93,10 @@
       Show release candidate versions of Kubernetes as an upgrade alternative and allow upgrading to a release candidate versions of Kubernetes.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;certificate-renewal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+      –certificate-renewal     Default: true
     </td>
   </tr>
   <tr>
@@ -90,11 +105,10 @@
       Perform the renewal of certificates used by component changed during upgrades.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -103,11 +117,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;dry-run
+      –dry-run
     </td>
   </tr>
   <tr>
@@ -116,11 +129,10 @@
       Do not change any state, just output what actions would be performed.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;etcd-upgrade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+      –etcd-upgrade     Default: true
     </td>
   </tr>
   <tr>
@@ -129,11 +141,10 @@
       Perform the upgrade of etcd.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -k, &ndash;experimental-kustomize string
+      -k, –experimental-kustomize string
     </td>
   </tr>
   <tr>
@@ -142,11 +153,10 @@
       The path where kustomize patches for static pod manifests are stored.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;feature-gates string
+      –feature-gates string
     </td>
   </tr>
   <tr>
@@ -159,11 +169,10 @@
       PublicKeysECDSA=true|false (ALPHA - default=false)
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -f, &ndash;force
+      -f, –force
     </td>
   </tr>
   <tr>
@@ -172,11 +181,10 @@
       Force upgrading although some requirements might not be met. This also implies non-interactive mode.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -185,24 +193,22 @@
       help for apply
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ignore-preflight-errors stringSlice
+      –ignore-preflight-errors stringSlice
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      A list of checks whose errors will be shown as warnings. Example: &lsquo;IsPrivilegedUser,Swap&rsquo;. Value &lsquo;all&rsquo; ignores errors from all checks.
+      A list of checks whose errors will be shown as warnings. Example: ‘IsPrivilegedUser,Swap’. Value ‘all’ ignores errors from all checks.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;image-pull-timeout duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 15m0s
+      –image-pull-timeout duration     Default: 15m0s
     </td>
   </tr>
   <tr>
@@ -211,11 +217,10 @@
       The maximum amount of time to wait for the control plane pods to be downloaded.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -224,11 +229,10 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;print-config
+      –print-config
     </td>
   </tr>
   <tr>
@@ -237,11 +241,10 @@
       Specifies whether the configuration file that will be used in the upgrade should be printed or not.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -y, &ndash;yes
+      -y, –yes
     </td>
   </tr>
   <tr>
@@ -250,30 +253,26 @@
       Perform the upgrade and do not prompt for confirmation (non-interactive mode).
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p></p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;rootfs string
+      –rootfs string
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
     </td>
   </tr>
-</p>
-<p>
+
+</tbody></table></p></body></html>

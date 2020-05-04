@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Pod Priority and Preemption
     </h1>
@@ -12,7 +11,7 @@
       Pod Priority and Preemption
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -120,7 +119,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -297,7 +296,7 @@
       <code>
         name
       </code>
-      field of the PriorityClass object&rsquo;s metadata. The value is
+      field of the PriorityClass object’s metadata. The value is
       specified in the required
       <code>
         value
@@ -541,7 +540,7 @@
       </code>
       will be scheduled
       ahead of other queued pods,
-      as soon as sufficient cluster resources &ldquo;naturally&rdquo; become free.
+      as soon as sufficient cluster resources “naturally” become free.
     </p>
     <h3 id="example-non-preempting-priorityclass">
       Example Non-preempting PriorityClass
@@ -607,7 +606,7 @@
       When Pods are created, they go to a queue and wait to be scheduled. The
       scheduler picks a Pod from the queue and tries to schedule it on a Node. If no
       Node is found that satisfies all the specified requirements of the Pod,
-      preemption logic is triggered for the pending Pod. Let&rsquo;s call the pending Pod P.
+      preemption logic is triggered for the pending Pod. Let’s call the pending Pod P.
       Preemption logic tries to find a Node where removal of one or more Pods with
       lower priority than P would enable P to be scheduled on that Node. If such a
       Node is found, one or more lower priority Pods get evicted from the Node. After
@@ -622,12 +621,12 @@
         nominatedNodeName
       </code>
       field of Pod
-      P&rsquo;s status is set to the name of Node N. This field helps scheduler track
+      P’s status is set to the name of Node N. This field helps scheduler track
       resources reserved for Pod P and also gives users information about preemptions
       in their clusters.
     </p>
     <p>
-      Please note that Pod P is not necessarily scheduled to the &ldquo;nominated Node&rdquo;.
+      Please note that Pod P is not necessarily scheduled to the “nominated Node”.
       After victim Pods are preempted, they get their graceful termination period. If
       another node becomes available while scheduler is waiting for the victim Pods to
       terminate, scheduler will use the other node to schedule Pod P. As a result
@@ -660,7 +659,7 @@
         graceful termination period
       </a>
       .
-      They have that much time to finish their work and exit. If they don&rsquo;t, they are
+      They have that much time to finish their work and exit. If they don’t, they are
       killed. This graceful termination period creates a time gap between the point
       that the scheduler preempts Pods and the time when the pending Pod (P) can be
       scheduled on the Node (N). In the meantime, the scheduler keeps scheduling other
@@ -690,8 +689,8 @@
     </h4>
     <p>
       A Node is considered for preemption only when the answer to this question is
-      yes: &ldquo;If all the Pods with lower priority than the pending Pod are removed from
-      the Node, can the pending Pod be scheduled on the Node?&rdquo;
+      yes: “If all the Pods with lower priority than the pending Pod are removed from
+      the Node, can the pending Pod be scheduled on the Node?”
     </p>
     <blockquote class="note">
       <div>
@@ -723,7 +722,7 @@
     <p>
       Suppose a Node N is being considered for preemption so that a pending Pod P can
       be scheduled on N. P might become feasible on N only if a Pod on another Node is
-      preempted. Here&rsquo;s an example:
+      preempted. Here’s an example:
     </p>
     <ul>
       <li>
@@ -776,7 +775,7 @@
       <code>
         priorityClassName
       </code>
-      field in the Pod&rsquo;s specification. The integer value for
+      field in the Pod’s specification. The integer value for
       priority is then resolved and populated to the
       <code>
         priority
@@ -857,14 +856,14 @@
     </h2>
     <p>
       Pod priority and
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-qos-class' target='_blank'>
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-qos-class" target="_blank">
         QoS class
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           QoS Class (Quality of Service Class) provides a way for Kubernetes to classify pods within the cluster into several classes and make decisions about scheduling and eviction.
         </span>
       </a>
       are two orthogonal features with few interactions and no default restrictions on
-      setting the priority of a Pod based on its QoS classes. The scheduler&rsquo;s
+      setting the priority of a Pod based on its QoS classes. The scheduler’s
       preemption logic does not consider QoS when choosing preemption targets.
       Preemption considers Pod priority and attempts to choose a set of targets with
       the lowest priority. Higher-priority Pods are considered for preemption only if
@@ -893,7 +892,7 @@
     <p>
       kubelet out-of-resource eviction does not evict Pods when their
       usage does not exceed their requests. If a Pod with lower priority is not
-      exceeding its requests, it won&rsquo;t be evicted. Another Pod with higher priority
+      exceeding its requests, it won’t be evicted. Another Pod with higher priority
       that exceeds its requests may be evicted.
     </p>
     <p></p>
@@ -908,5 +907,5 @@
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

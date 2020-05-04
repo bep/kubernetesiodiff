@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       TLS bootstrapping
     </h1>
@@ -106,7 +105,7 @@
       </li>
     </ol>
     <p>
-      Assuming that the kube-apiserver successfully validates the kubelet&rsquo;s credentials, it will treat the kubelet as a valid node, and begin to assign pods to it.
+      Assuming that the kube-apiserver successfully validates the kubelet’s credentials, it will treat the kubelet as a valid node, and begin to assign pods to it.
     </p>
     <p>
       Note that the above process depends upon:
@@ -175,7 +174,7 @@
         file
       </li>
       <li>
-        kubelet reads its bootstrap file, retrieving the URL of the API server and a limited usage &ldquo;token&rdquo;
+        kubelet reads its bootstrap file, retrieving the URL of the API server and a limited usage “token”
       </li>
       <li>
         kubelet connects to the API server, authenticates using the token
@@ -281,7 +280,7 @@
         /var/lib/kubernetes/ca-key.pem
       </code>
       (key).
-      We will refer to these as &ldquo;Kubernetes CA certificate and key&rdquo;.
+      We will refer to these as “Kubernetes CA certificate and key”.
     </p>
     <p>
       All Kubernetes components that use these certificates - kubelet, kube-apiserver, kube-controller-manager - assume the key and certificate to be PEM-encoded.
@@ -336,7 +335,7 @@
       that can authenticate the kubelet.
     </p>
     <p>
-      While any authentication strategy can be used for the kubelet&rsquo;s initial
+      While any authentication strategy can be used for the kubelet’s initial
       bootstrap credentials, the following two authenticators are recommended for ease
       of provisioning.
     </p>
@@ -389,7 +388,7 @@
       ) strictly to client
       requests related to certificate provisioning. With RBAC in place, scoping the
       tokens to a group allows for great flexibility. For example, you could disable a
-      particular bootstrap group&rsquo;s access when you are done provisioning the nodes.
+      particular bootstrap group’s access when you are done provisioning the nodes.
     </p>
     <h4 id="bootstrap-tokens">
       Bootstrap tokens
@@ -414,8 +413,8 @@
       </li>
     </ol>
     <p>
-      From the kubelet&rsquo;s perspective, one token is like another and has no special meaning.
-      From the kube-apiserver&rsquo;s perspective, however, the bootstrap token is special. Due to its
+      From the kubelet’s perspective, one token is like another and has no special meaning.
+      From the kube-apiserver’s perspective, however, the bootstrap token is special. Due to its
       <code>
         Type
       </code>
@@ -459,7 +458,7 @@
       on most modern Linux
       systems). There are multiple ways you can generate a token. For example:
     </p>
-    <pre><code>head -c 16 /dev/urandom | od -An -t x | tr -d ' '</code></pre>
+    <pre><code>head -c 16 /dev/urandom | od -An -t x | tr -d &#39; &#39;</code></pre>
     <p>
       will generate tokens that look like
       <code>
@@ -471,7 +470,7 @@
       The token file should look like the following example, where the first three
       values can be anything and the quoted group name should be as depicted:
     </p>
-    <pre><code>02b50b05283e98dd0fd71db496ef01e8,kubelet-bootstrap,10001,&quot;system:bootstrappers&quot;</code></pre>
+    <pre><code>02b50b05283e98dd0fd71db496ef01e8,kubelet-bootstrap,10001,&#34;system:bootstrappers&#34;</code></pre>
     <p>
       Add the
       <code>
@@ -561,7 +560,7 @@ roleRef:
     </p>
     <ul>
       <li>
-        access to the &ldquo;Kubernetes CA key and certificate&rdquo; that you created and distributed
+        access to the “Kubernetes CA key and certificate” that you created and distributed
       </li>
       <li>
         enabling CSR signing
@@ -590,11 +589,11 @@ roleRef:
     <p>
       To provide the Kubernetes CA key and certificate to kube-controller-manager, use the following flags:
     </p>
-    <pre><code>--cluster-signing-cert-file=&quot;/etc/path/to/kubernetes/ca/ca.crt&quot; --cluster-signing-key-file=&quot;/etc/path/to/kubernetes/ca/ca.key&quot;</code></pre>
+    <pre><code>--cluster-signing-cert-file=&#34;/etc/path/to/kubernetes/ca/ca.crt&#34; --cluster-signing-key-file=&#34;/etc/path/to/kubernetes/ca/ca.key&#34;</code></pre>
     <p>
       for example:
     </p>
-    <pre><code>--cluster-signing-cert-file=&quot;/var/lib/kubernetes/ca.pem&quot; --cluster-signing-key-file=&quot;/var/lib/kubernetes/ca-key.pem&quot;</code></pre>
+    <pre><code>--cluster-signing-cert-file=&#34;/var/lib/kubernetes/ca.pem&#34; --cluster-signing-key-file=&#34;/var/lib/kubernetes/ca-key.pem&#34;</code></pre>
     <p>
       The validity duration of signed certificates can be configured with flag:
     </p>
@@ -722,7 +721,7 @@ roleRef:
       to
       determine if a given user is authorized to request a CSR, then approves based on
       the authorization outcome. To prevent conflicts with other approvers, the
-      builtin approver doesn&rsquo;t explicitly deny CSRs. It only ignores unauthorized
+      builtin approver doesn’t explicitly deny CSRs. It only ignores unauthorized
       requests. The controller also prunes expired certificates as part of garbage
       collection.
     </p>
@@ -845,7 +844,7 @@ roleRef:
       </code>
       to generate it. To create the above example file:
     </p>
-    <pre><code>kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig set-cluster bootstrap --server='https://my.server.example.com:6443' --certificate-authority=/var/lib/kubernetes/ca.pem
+    <pre><code>kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig set-cluster bootstrap --server=&#39;https://my.server.example.com:6443&#39; --certificate-authority=/var/lib/kubernetes/ca.pem
 kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig set-credentials kubelet-bootstrap --token=07401b.f395accd246ae52d
 kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig set-context bootstrap --user=kubelet-bootstrap --cluster=bootstrap
 kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig use-context bootstrap</code></pre>
@@ -856,7 +855,7 @@ kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig use-context bo
       </code>
       , use the following kubelet flag:
     </p>
-    <pre><code>--bootstrap-kubeconfig=&quot;/var/lib/kubelet/bootstrap-kubeconfig&quot; --kubeconfig=&quot;/var/lib/kubelet/kubeconfig&quot;</code></pre>
+    <pre><code>--bootstrap-kubeconfig=&#34;/var/lib/kubelet/bootstrap-kubeconfig&#34; --kubeconfig=&#34;/var/lib/kubelet/kubeconfig&#34;</code></pre>
     <p>
       When starting the kubelet, if the file specified via
       <code>
@@ -1042,7 +1041,7 @@ kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig use-context bo
     </p>
     <p>
       The signing controller does not immediately sign all certificate requests.
-      Instead, it waits until they have been flagged with an &ldquo;Approved&rdquo; status by an
+      Instead, it waits until they have been flagged with an “Approved” status by an
       appropriately-privileged user. This flow is intended to allow for automated
       approval handled by an external approval controller or the approval controller
       implemented in the core controller-manager. However cluster administrators can
@@ -1093,5 +1092,5 @@ kubectl config --kubeconfig=/var/lib/kubelet/bootstrap-kubeconfig use-context bo
       </a>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

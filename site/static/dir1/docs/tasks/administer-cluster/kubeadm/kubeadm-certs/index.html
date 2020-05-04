@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Certificate Management with kubeadm
     </h1>
@@ -12,7 +11,7 @@
       Certificate Management with kubeadm
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -139,7 +138,7 @@
       <code>
         certificatesDir
       </code>
-      field of kubeadm&rsquo;s
+      field of kubeadm’s
       <code>
         ClusterConfiguration
       </code>
@@ -182,7 +181,7 @@
       </code>
       file (this is only available for the root CA file, not other cert pairs).
       If all other certificates and kubeconfig files are in place, kubeadm recognizes
-      this condition and activates the &ldquo;External CA&rdquo; mode. kubeadm will proceed without the
+      this condition and activates the “External CA” mode. kubeadm will proceed without the
       CA key on disk.
     </p>
     <p>
@@ -329,7 +328,7 @@ front-proxy-ca          Dec 28, 2029 23:36 UTC   9y              no</code></pre>
     </p>
     <p>
       This feature is designed for addressing the simplest use cases;
-      if you don&rsquo;t have specific requirements on certificate renewal and perform Kubernetes version upgrades regularly (less than 1 year in between each upgrade), kubeadm will take care of keeping your cluster up to date and reasonably secure.
+      if you don’t have specific requirements on certificate renewal and perform Kubernetes version upgrades regularly (less than 1 year in between each upgrade), kubeadm will take care of keeping your cluster up to date and reasonably secure.
     </p>
     <blockquote class="note">
       <div>
@@ -438,7 +437,7 @@ front-proxy-ca          Dec 28, 2029 23:36 UTC   9y              no</code></pre>
       </li>
       <li>
         <p>
-          It&rsquo;s also possible to renew a single certificate instead of all.
+          It’s also possible to renew a single certificate instead of all.
         </p>
       </li>
     </ul>
@@ -453,7 +452,7 @@ front-proxy-ca          Dec 28, 2029 23:36 UTC   9y              no</code></pre>
         <strong>
           Caution:
         </strong>
-        These are advanced topics for users who need to integrate their organization&rsquo;s certificate infrastructure into a kubeadm-built cluster. If the default kubeadm configuration satisfies your needs, you should let kubeadm manage certificates instead.
+        These are advanced topics for users who need to integrate their organization’s certificate infrastructure into a kubeadm-built cluster. If the default kubeadm configuration satisfies your needs, you should let kubeadm manage certificates instead.
       </div>
     </blockquote>
     <h3 id="set-up-a-signer">
@@ -488,7 +487,7 @@ front-proxy-ca          Dec 28, 2029 23:36 UTC   9y              no</code></pre>
       flags.
     </p>
     <p>
-      If you&rsquo;re creating a new cluster, you can use a kubeadm
+      If you’re creating a new cluster, you can use a kubeadm
       <a href="https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2">
         configuration file
       </a>
@@ -621,7 +620,7 @@ front-proxy-ca          Dec 28, 2029 23:36 UTC   9y              no</code></pre>
       flag.
     </p>
     <p>
-      A CSR contains a certificate&rsquo;s name, domains, and IPs, but it does not specify usages.
+      A CSR contains a certificate’s name, domains, and IPs, but it does not specify usages.
       It is the responsibility of the CA to specify
       <a href="/docs/setup/best-practices/certificates/#all-certificates">
         the correct cert usages
@@ -661,5 +660,5 @@ front-proxy-ca          Dec 28, 2029 23:36 UTC   9y              no</code></pre>
       </code>
       ).
     </p>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Securing a Cluster
     </h1>
@@ -51,7 +50,7 @@
           You need to have a Kubernetes cluster, and the kubectl command-line tool must
           be configured to communicate with your cluster. If you do not already have a
           cluster, you can create one by using
-          <a href="/docs/setup/learning-environment/minikube/">
+          <a href="/docs/setup/learning-environment/minikube/" data-diff="">
             Minikube
           </a>
           ,
@@ -158,7 +157,7 @@
       indirectly. Likewise, deleting a node from the API will result in the pods scheduled to that node
       being terminated and recreated on other nodes. The out of the box roles represent a balance
       between flexibility and the common use cases, but more limited roles should be carefully reviewed
-      to prevent accidental escalation. You can make roles specific to your use case if the out-of-box ones don&rsquo;t meet your needs.
+      to prevent accidental escalation. You can make roles specific to your use case if the out-of-box ones don’t meet your needs.
     </p>
     <p>
       Consult the
@@ -466,5 +465,5 @@ blacklist sctp</code></pre>
       </a>
       page for more on how to report vulnerabilities.
     </p>
-  </body>
-</html>
+  
+</body></html>

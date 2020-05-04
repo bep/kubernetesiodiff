@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Create static Pods
     </h1>
@@ -17,17 +16,17 @@
       </em>
       are managed directly by the kubelet daemon on a specific node,
       without the
-      <a class='glossary-tooltip' href='/docs/reference/generated/kube-apiserver/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/generated/kube-apiserver/" target="_blank">
         API server
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Control plane component that serves the Kubernetes API.
         </span>
       </a>
       observing them.
       Unlike Pods that are managed by the control plane (for example, a
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/deployment/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/deployment/" target="_blank">
         Deployment
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An API object that manages a replicated application.
         </span>
       </a>
@@ -36,9 +35,9 @@
     </p>
     <p>
       Static Pods are always bound to one
-      <a class='glossary-tooltip' href='/docs/reference/generated/kubelet' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/generated/kubelet" target="_blank">
         Kubelet
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An agent that runs on each node in the cluster. It makes sure that containers are running in a pod.
         </span>
       </a>
@@ -46,9 +45,9 @@
     </p>
     <p>
       The kubelet automatically tries to create a
-      <a class='glossary-tooltip' href='/dir2/docs/reference/glossary/?all=true#term-mirror-pod' target='_blank'>
+      <a class="glossary-tooltip" href="/dir2/docs/reference/glossary/?all=true#term-mirror-pod" target="_blank">
         mirror Pod
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An object in the API server that tracks a static pod on a kubelet.
         </span>
       </a>
@@ -63,9 +62,9 @@
         </strong>
         If you are running clustered Kubernetes and are using static
         Pods to run a Pod on every node, you should probably be using a
-        <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/daemonset' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/daemonset" target="_blank">
           DaemonSet
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Ensures a copy of a Pod is running across a set of nodes in a cluster.
           </span>
         </a>
@@ -127,10 +126,10 @@
       .
     </p>
     <p>
-      This page assumes you&rsquo;re using
-      <a class='glossary-tooltip' href='https://docs.docker.com/engine/' target='_blank'>
+      This page assumes you’re using
+      <a class="glossary-tooltip" href="https://docs.docker.com/engine/" target="_blank">
         Docker
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Docker is a software technology providing operating-system-level virtualization also known as containers.
         </span>
       </a>
@@ -173,7 +172,7 @@
     <ol>
       <li>
         <p>
-          Choose a node where you want to run the static Pod. In this example, it&rsquo;s
+          Choose a node where you want to run the static Pod. In this example, it’s
           <code>
             my-node1
           </code>
@@ -228,7 +227,7 @@ cat <span style="color:#b44">&lt;&lt;EOF &gt;/etc/kubelet.d/static-web.yaml
           </code>
           to include this line:
         </p>
-        <pre><code>KUBELET_ARGS=&quot;--cluster-dns=10.254.0.10 --cluster-domain=kube.local --pod-manifest-path=/etc/kubelet.d/&quot;</code></pre>
+        <pre><code>KUBELET_ARGS=&#34;--cluster-dns=10.254.0.10 --cluster-domain=kube.local --pod-manifest-path=/etc/kubelet.d/&#34;</code></pre>
         <p>
           or add the
           <code>
@@ -291,7 +290,7 @@ systemctl restart kubelet</code></pre>
 </span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">ports</span>:<span style="color:#bbb">
 </span><span style="color:#bbb">        </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>web<span style="color:#bbb">
 </span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">containerPort</span>:<span style="color:#bbb"> </span><span style="color:#666">80</span><span style="color:#bbb">
-</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#a2f;font-weight:bold">protocol</span>:<span style="color:#bbb"> </span>TCP<span style="color:#bbb" data-diff="">
 </span></code></pre>
         </div>
       </li>
@@ -307,7 +306,7 @@ systemctl restart kubelet</code></pre>
           </code>
           to include this line:
         </p>
-        <pre><code>KUBELET_ARGS=&quot;--cluster-dns=10.254.0.10 --cluster-domain=kube.local --manifest-url=&lt;manifest-url&gt;&quot;</code></pre>
+        <pre><code>KUBELET_ARGS=&#34;--cluster-dns=10.254.0.10 --cluster-domain=kube.local --manifest-url=&lt;manifest-url&gt;&#34;</code></pre>
       </li>
       <li>
         <p>
@@ -338,7 +337,7 @@ docker ps</code></pre>
       The output might be something like:
     </p>
     <pre><code>CONTAINER ID IMAGE         COMMAND  CREATED        STATUS         PORTS     NAMES
-f6d05272b57e nginx:latest  &quot;nginx&quot;  8 minutes ago  Up 8 minutes             k8s_web.6f802af4_static-web-fk-node1_default_67e24ed9466ba55986d120c867395f3c_378e5f3c</code></pre>
+f6d05272b57e nginx:latest  &#34;nginx&#34;  8 minutes ago  Up 8 minutes             k8s_web.6f802af4_static-web-fk-node1_default_67e24ed9466ba55986d120c867395f3c_378e5f3c</code></pre>
     <p>
       You can see the mirror Pod on the API server:
     </p>
@@ -360,17 +359,17 @@ static-web-my-node1        1/1       Running   0          2m</code></pre>
       </div>
     </blockquote>
     <p>
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/labels" target="_blank">
         Labels
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Tags objects with identifying attributes that are meaningful and relevant to users.
         </span>
       </a>
       from the static Pod are
       propagated into the mirror Pod. You can use those labels as normal via
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/labels/" target="_blank">
         selectors
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Allows users to filter a list of resources based on labels.
         </span>
       </a>
@@ -384,14 +383,14 @@ static-web-my-node1        1/1       Running   0          2m</code></pre>
       to delete the mirror Pod from the API server,
       the kubelet
       <em>
-        doesn&rsquo;t
+        doesn’t
       </em>
       remove the static Pod:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete pod static-web-my-node1</code></pre>
     </div>
-    <pre><code>pod &quot;static-web-my-node1&quot; deleted</code></pre>
+    <pre><code>pod &#34;static-web-my-node1&#34; deleted</code></pre>
     <p>
       You can see that the Pod is still running:
     </p>
@@ -403,7 +402,7 @@ static-web-my-node1        1/1       Running   0          12s</code></pre>
     <p>
       Back on your node where the kubelet is running, you can try to stop the Docker
       container manually.
-      You&rsquo;ll see that, after a time, the kubelet will notice and will restart the Pod
+      You’ll see that, after a time, the kubelet will notice and will restart the Pod
       automatically:
     </p>
     <div class="highlight">
@@ -413,7 +412,7 @@ sleep <span style="color:#666">20</span>
 docker ps</code></pre>
     </div>
     <pre><code>CONTAINER ID        IMAGE         COMMAND                CREATED       ...
-5b920cbaf8b1        nginx:latest  &quot;nginx -g 'daemon of   2 seconds ago ...</code></pre>
+5b920cbaf8b1        nginx:latest  &#34;nginx -g &#39;daemon of   2 seconds ago ...</code></pre>
     <h2 id="dynamic-addition-and-removal-of-static-pods">
       Dynamic addition and removal of static pods
     </h2>
@@ -437,6 +436,6 @@ sleep <span style="color:#666">20</span>
 docker ps</code></pre>
     </div>
     <pre><code>CONTAINER ID        IMAGE         COMMAND                CREATED           ...
-e7a62e3427f1        nginx:latest  &quot;nginx -g 'daemon of   27 seconds ago</code></pre>
-  </body>
-</html>
+e7a62e3427f1        nginx:latest  &#34;nginx -g &#39;daemon of   27 seconds ago</code></pre>
+  
+</body></html>

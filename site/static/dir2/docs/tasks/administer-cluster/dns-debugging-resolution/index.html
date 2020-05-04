@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Debugging DNS Resolution
 </h1>
@@ -43,7 +42,7 @@
   <li>
     <p>
     You need to have a Kubernetes cluster, and the kubectl command-line tool must
-  </li>
+  </p></li>
 </ul>
 <p>
   be configured to communicate with your cluster. If you do not already have a
@@ -104,7 +103,7 @@
             admin/dns/dnsutils.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-dns-dnsutils-yaml')" title="Copy admin/dns/dnsutils.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-dns-dnsutils-yaml&#39;)" title="Copy admin/dns/dnsutils.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -197,14 +196,14 @@ options ndots:5</code></pre>
 Server:    10.0.0.10
 Address 1: 10.0.0.10
 
-nslookup: can't resolve 'kubernetes.default'</code></pre>
+nslookup: can&#39;t resolve &#39;kubernetes.default&#39;</code></pre>
 <p>
   or
 </p><pre><code>kubectl exec -ti dnsutils -- nslookup kubernetes.default
 Server:    10.0.0.10
 Address 1: 10.0.0.10 kube-dns.kube-system.svc.cluster.local
 
-nslookup: can't resolve 'kubernetes.default'</code></pre>
+nslookup: can&#39;t resolve &#39;kubernetes.default&#39;</code></pre>
 <h3 id="check-if-the-dns-pod-is-running">
   Check if the DNS pod is running
 </h3>
@@ -276,19 +275,19 @@ kubectl logs --namespace<span style="color:#666">=</span>kube-system <span style
 kubectl logs --namespace<span style="color:#666">=</span>kube-system <span style="color:#a2f;font-weight:bold">$(</span>kubectl get pods --namespace<span style="color:#666">=</span>kube-system -l k8s-app<span style="color:#666">=</span>kube-dns -o name | head -1<span style="color:#a2f;font-weight:bold">)</span> -c sidecar</code></pre>
 </div>
 <p>
-  See if there are any suspicious error messages in the logs. In kube-dns, a &lsquo;
+  See if there are any suspicious error messages in the logs. In kube-dns, a ‘
   <code>
     W
   </code>
-  &rsquo;, &lsquo;
+  ’, ‘
   <code>
     E
   </code>
-  &rsquo; or &lsquo;
+  ’ or ‘
   <code>
     F
   </code>
-  &rsquo; at the beginning
+  ’ at the beginning
   of a line represents a Warning, Error or Failure. Please search for entries that have these
   as the logging level and use
   <a href="https://github.com/kubernetes/kubernetes/issues">
@@ -314,7 +313,7 @@ kube-dns     ClusterIP   10.0.0.10      &lt;none&gt;        53/UDP,53/TCP       
 ...</code></pre>
 </div>
 <p>
-  Note that the service name will be &ldquo;kube-dns&rdquo; for both CoreDNS and kube-dns deployments.
+  Note that the service name will be “kube-dns” for both CoreDNS and kube-dns deployments.
   If you have created the service or in the case it should be created by default
   but it does not appear, see
   <a href="/docs/tasks/debug-application-cluster/debug-service/">
@@ -365,7 +364,7 @@ kube-dns   10.180.3.17:53,10.180.3.17:53    1h</code></pre>
   <code>
     coredns
   </code>
-  . To edit it, use the command &hellip;
+  . To edit it, use the command …
 </p><pre><code>kubectl -n kube-system edit configmap coredns</code></pre>
 <p>
   Then add
@@ -412,7 +411,7 @@ CoreDNS-1.2.0
 linux/amd64, go1.10.3, 2e322f6
 2018/09/07 15:29:04 [INFO] plugin/reload: Running configuration MD5 = 162475cdf272d8aa601e6fe67a6ad42f
 2018/09/07 15:29:04 [INFO] Reloading complete
-172.17.0.18:41675 - [07/Sep/2018:15:29:11 +0000] 59925 &quot;A IN kubernetes.default.svc.cluster.local. udp 54 false 512&quot; NOERROR qr,aa,rd,ra 106 0.000066649s
+172.17.0.18:41675 - [07/Sep/2018:15:29:11 +0000] 59925 &#34;A IN kubernetes.default.svc.cluster.local. udp 54 false 512&#34; NOERROR qr,aa,rd,ra 106 0.000066649s
 </code></pre>
 <h2 id="known-issues">
   Known issues
@@ -424,7 +423,7 @@ linux/amd64, go1.10.3, 2e322f6
     /etc/resolv.conf
   </code>
   with a stub file that can cause a fatal forwarding
-  loop when resolving names in upstream servers. This can be fixed manually by using kubelet&rsquo;s
+  loop when resolving names in upstream servers. This can be fixed manually by using kubelet’s
   <code>
     --resolv-conf
   </code>
@@ -449,7 +448,7 @@ linux/amd64, go1.10.3, 2e322f6
   , and adjusts the kubelet flags accordingly.
 </p>
 <p>
-  Kubernetes installs do not configure the nodes&rsquo;
+  Kubernetes installs do not configure the nodes’
   <code>
     resolv.conf
   </code>
@@ -458,11 +457,11 @@ linux/amd64, go1.10.3, 2e322f6
   This should probably be implemented eventually.
 </p>
 <p>
-  Linux&rsquo;s libc (a.k.a. glibc) has a limit for the DNS
+  Linux’s libc (a.k.a. glibc) has a limit for the DNS
   <code>
     nameserver
   </code>
-  records to 3 by default. What&rsquo;s more, for the glibc versions which are older than glibc-2.17-222 (
+  records to 3 by default. What’s more, for the glibc versions which are older than glibc-2.17-222 (
   <a href="https://access.redhat.com/solutions/58028">
     the new versions update see this issue
   </a>
@@ -502,7 +501,7 @@ linux/amd64, go1.10.3, 2e322f6
   <code>
     nameserver
   </code>
-  entries. You can also use kubelet&rsquo;s
+  entries. You can also use kubelet’s
   <code>
     --resolv-conf
   </code>
@@ -537,7 +536,7 @@ linux/amd64, go1.10.3, 2e322f6
   </li>
 </ul>
 <h2 id="what-s-next">
-  What&rsquo;s next
+  What’s next
 </h2>
 <ul>
   <li>
@@ -546,4 +545,4 @@ linux/amd64, go1.10.3, 2e322f6
     </a>
     .
   </li>
-</ul>
+</ul></body></html>

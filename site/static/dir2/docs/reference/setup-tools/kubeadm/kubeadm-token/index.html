@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       kubeadm token
     </h1>
@@ -49,21 +48,21 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
     <h2 id="cmd-token-create">
       kubeadm token create
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre data-diff=""><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       This command will create a bootstrap token for you.
-      You can specify the usages for this token, the &ldquo;time to live&rdquo; and an optional human friendly description.
+      You can specify the usages for this token, the “time to live” and an optional human friendly description.
     </p>
     <p>
       The [token] is the actual token to write.
-      This should be a securely generated random token of the form &ldquo;[a-z0-9]{6}.[a-z0-9]{16}&quot;.
+      This should be a securely generated random token of the form “[a-z0-9]{6}.[a-z0-9]{16}&#34;.
       If no [token] is given, kubeadm will generate a random token instead.
     </p>
     <pre><code>kubeadm token create [token]</code></pre>
@@ -72,8 +71,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -84,7 +83,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            When used together with '--print-join-command', print the full 'kubeadm join' flag needed to join the cluster as a control-plane. To create a new certificate key you must use 'kubeadm init phase upload-certs --upload-certs'.
+            When used together with &#39;--print-join-command&#39;, print the full &#39;kubeadm join&#39; flag needed to join the cluster as a control-plane. To create a new certificate key you must use &#39;kubeadm init phase upload-certs --upload-certs&#39;.
           </td>
         </tr>
         <tr>
@@ -111,13 +110,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            --groups stringSlice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: [system:bootstrappers:kubeadm:default-node-token]
+            --groups stringSlice     Default: [system:bootstrappers:kubeadm:default-node-token]
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Extra groups that this token will authenticate as when used for authentication. Must match "\\Asystem:bootstrappers:[a-z0-9:-]{0,255}[a-z0-9]\\z"
+            Extra groups that this token will authenticate as when used for authentication. Must match &#34;\\Asystem:bootstrappers:[a-z0-9:-]{0,255}[a-z0-9]\\z&#34;
           </td>
         </tr>
         <tr>
@@ -139,23 +138,23 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Instead of printing only the token, print the full 'kubeadm join' flag needed to join the cluster using the token.
+            Instead of printing only the token, print the full &#39;kubeadm join&#39; flag needed to join the cluster using the token.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --ttl duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 24h0m0s
+            --ttl duration     Default: 24h0m0s
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The duration before the token is automatically deleted (e.g. 1s, 2m, 3h). If set to '0', the token will never expire
+            The duration before the token is automatically deleted (e.g. 1s, 2m, 3h). If set to &#39;0&#39;, the token will never expire
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --usages stringSlice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: [signing,authentication]
+            --usages stringSlice     Default: [signing,authentication]
           </td>
         </tr>
         <tr>
@@ -171,8 +170,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -188,7 +187,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -205,7 +204,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -213,13 +212,13 @@
     <h2 id="cmd-token-delete">
       kubeadm token delete
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       This command will delete a list of bootstrap tokens for you.
     </p>
     <p>
-      The [token-value] is the full Token of the form &ldquo;[a-z0-9]{6}.[a-z0-9]{16}&rdquo; or the
-      Token ID of the form &ldquo;[a-z0-9]{6}&rdquo; to delete.
+      The [token-value] is the full Token of the form “[a-z0-9]{6}.[a-z0-9]{16}” or the
+      Token ID of the form “[a-z0-9]{6}” to delete.
     </p>
     <pre><code>kubeadm token delete [token-value] ...</code></pre>
     <h3 id="options">
@@ -227,8 +226,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -249,8 +248,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -266,7 +265,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -283,7 +282,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -291,18 +290,18 @@
     <h2 id="cmd-token-generate">
       kubeadm token generate
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       This command will print out a randomly-generated bootstrap token that can be used with
-      the &ldquo;init&rdquo; and &ldquo;join&rdquo; commands.
+      the “init” and “join” commands.
     </p>
     <p>
-      You don&rsquo;t have to use this command in order to generate a token. You can do so
-      yourself as long as it is in the format &ldquo;[a-z0-9]{6}.[a-z0-9]{16}&quot;. This
+      You don’t have to use this command in order to generate a token. You can do so
+      yourself as long as it is in the format “[a-z0-9]{6}.[a-z0-9]{16}&#34;. This
       command is provided for convenience to generate tokens in the given format.
     </p>
     <p>
-      You can also use &ldquo;kubeadm init&rdquo; without specifying a token and it will
+      You can also use “kubeadm init” without specifying a token and it will
       generate and print one for you.
     </p>
     <pre><code>kubeadm token generate [flags]</code></pre>
@@ -311,8 +310,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -333,8 +332,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -350,7 +349,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -367,7 +366,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -375,7 +374,7 @@
     <h2 id="cmd-token-list">
       kubeadm token list
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       This command will list all bootstrap tokens for you.
     </p>
@@ -385,13 +384,13 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
           <td colspan="2">
-            --allow-missing-template-keys&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+            --allow-missing-template-keys     Default: true
           </td>
         </tr>
         <tr>
@@ -402,7 +401,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            -o, --experimental-output string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "text"
+            -o, --experimental-output string     Default: &#34;text&#34;
           </td>
         </tr>
         <tr>
@@ -429,8 +428,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -446,7 +445,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -463,7 +462,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -479,5 +478,5 @@
         to bootstrap a Kubernetes worker node and join it to the cluster
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

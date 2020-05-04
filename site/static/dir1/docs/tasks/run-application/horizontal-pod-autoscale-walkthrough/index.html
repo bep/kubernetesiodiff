@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Horizontal Pod Autoscaler Walkthrough
     </h1>
@@ -31,7 +30,7 @@
       </li>
       <li>
         <a href="#run-expose-php-apache-server">
-          Run & expose php-apache server
+          Run &amp; expose php-apache server
         </a>
       </li>
       <li>
@@ -135,7 +134,7 @@ RUN chmod a+rx index.php</code></pre>
                 application/php-apache.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-php-apache-yaml')" title="Copy application/php-apache.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-php-apache-yaml&#39;)" title="Copy application/php-apache.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -657,7 +656,7 @@ php-apache   1/1     1            1           27m</code></pre>
       Autoscaling on metrics not related to Kubernetes objects
     </h3>
     <p>
-      Applications running on Kubernetes may need to autoscale based on metrics that don&rsquo;t have an obvious
+      Applications running on Kubernetes may need to autoscale based on metrics that don’t have an obvious
       relationship to any object in the Kubernetes cluster, such as metrics describing a hosted service with
       no direct correlation to Kubernetes namespaces. In Kubernetes 1.10 and later, you can address this use case
       with
@@ -726,7 +725,7 @@ php-apache   1/1     1            1           27m</code></pre>
 </span><span style="color:#bbb">      </span><span style="color:#a2f;font-weight:bold">averageValue</span>:<span style="color:#bbb"> </span><span style="color:#666">30</span></code></pre>
     </div>
     <p>
-      When possible, it&rsquo;s preferable to use the custom metric target types instead of external metrics, since it&rsquo;s
+      When possible, it’s preferable to use the custom metric target types instead of external metrics, since it’s
       easier for cluster administrators to secure the custom metrics API.  The external metrics API potentially allows
       access to any metric, so cluster administrators should take care when exposing it.
     </p>
@@ -873,7 +872,7 @@ Events:</code></pre>
                 application/hpa/php-apache.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-hpa-php-apache-yaml')" title="Copy application/hpa/php-apache.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-hpa-php-apache-yaml&#39;)" title="Copy application/hpa/php-apache.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -907,5 +906,5 @@ Events:</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://k8s.io/examples/application/hpa/php-apache.yaml</code></pre>
     </div>
     <pre><code>horizontalpodautoscaler.autoscaling/php-apache created</code></pre>
-  </body>
-</html>
+  
+</body></html>

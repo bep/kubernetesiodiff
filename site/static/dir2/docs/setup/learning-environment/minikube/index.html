@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Installing Kubernetes with Minikube
     </h1>
@@ -326,7 +325,7 @@ Request Body:
         <p>
           The output is similar to this:
         </p>
-        <pre><code>service &quot;hello-minikube&quot; deleted</code></pre>
+        <pre><code>service &#34;hello-minikube&#34; deleted</code></pre>
       </li>
       <li>
         <p>
@@ -342,7 +341,7 @@ Request Body:
         <p>
           The output is similar to this:
         </p>
-        <pre><code>deployment.extensions &quot;hello-minikube&quot; deleted</code></pre>
+        <pre><code>deployment.extensions &#34;hello-minikube&#34; deleted</code></pre>
       </li>
       <li>
         <p>
@@ -354,8 +353,8 @@ Request Body:
         <p>
           The output is similar to this:
         </p>
-        <pre><code>Stopping &quot;minikube&quot;...
-&quot;minikube&quot; stopped.</code></pre>
+        <pre><code>Stopping &#34;minikube&#34;...
+&#34;minikube&#34; stopped.</code></pre>
         <p>
           For more information, see
           <a href="#stopping-a-cluster">
@@ -374,8 +373,8 @@ Request Body:
         <p>
           The output is similar to this:
         </p>
-        <pre><code>Deleting &quot;minikube&quot; ...
-The &quot;minikube&quot; cluster has been deleted.</code></pre>
+        <pre><code>Deleting &#34;minikube&#34; ...
+The &#34;minikube&#34; cluster has been deleted.</code></pre>
         <p>
           For more information, see
           <a href="#deleting-a-cluster">
@@ -423,7 +422,7 @@ The &quot;minikube&quot; cluster has been deleted.</code></pre>
           Unfortunately, setting the environment variables alone does not work.
         </p>
         <p>
-          Minikube also creates a &ldquo;minikube&rdquo; context, and sets it to default in kubectl.
+          Minikube also creates a “minikube” context, and sets it to default in kubectl.
           To switch back to this context, run this command:
           <code>
             kubectl config use-context minikube
@@ -535,9 +534,9 @@ The &quot;minikube&quot; cluster has been deleted.</code></pre>
       </li>
       <li>
         none (Runs the Kubernetes components on the host and not in a virtual machine. You need to be running Linux and to have
-        <a class='glossary-tooltip' href='https://docs.docker.com/engine/' target='_blank'>
+        <a class="glossary-tooltip" href="https://docs.docker.com/engine/" target="_blank">
           Docker
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Docker is a software technology providing operating-system-level virtualization also known as containers.
           </span>
         </a>
@@ -580,7 +579,7 @@ The &quot;minikube&quot; cluster has been deleted.</code></pre>
         </li>
       </ul>
       <div id="container-runtimes-0">
-        <pre><code>    &lt;p&gt;To use &lt;a href=&quot;https://github.com/containerd/containerd&quot;&gt;containerd&lt;/a&gt; as the container runtime, run:&lt;/p&gt;</code></pre>
+        <pre><code>    &lt;p&gt;To use &lt;a href=&#34;https://github.com/containerd/containerd&#34;&gt;containerd&lt;/a&gt; as the container runtime, run:&lt;/p&gt;</code></pre>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">minikube start <span style="color:#b62;font-weight:bold">\
 </span><span style="color:#b62;font-weight:bold"></span>    --network-plugin<span style="color:#666">=</span>cni <span style="color:#b62;font-weight:bold">\
@@ -602,7 +601,7 @@ The &quot;minikube&quot; cluster has been deleted.</code></pre>
         </div>
       </div>
       <div id="container-runtimes-1">
-        <pre><code>    &lt;p&gt;To use &lt;a href=&quot;https://cri-o.io/&quot;&gt;CRI-O&lt;/a&gt; as the container runtime, run:&lt;/p&gt;</code></pre>
+        <pre><code>    &lt;p&gt;To use &lt;a href=&#34;https://cri-o.io/&#34;&gt;CRI-O&lt;/a&gt; as the container runtime, run:&lt;/p&gt;</code></pre>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">minikube start <span style="color:#b62;font-weight:bold">\
 </span><span style="color:#b62;font-weight:bold"></span>    --network-plugin<span style="color:#666">=</span>cni <span style="color:#b62;font-weight:bold">\
@@ -631,7 +630,7 @@ The &quot;minikube&quot; cluster has been deleted.</code></pre>
       Use local images by re-using the Docker daemon
     </h4>
     <p>
-      When using a single VM for Kubernetes, it&rsquo;s useful to reuse Minikube&rsquo;s built-in Docker daemon. Reusing the built-in daemon means you don&rsquo;t have to build a Docker registry on your host machine and push the image into it. Instead, you can build inside the same Docker daemon as Minikube, which speeds up local experiments.
+      When using a single VM for Kubernetes, it’s useful to reuse Minikube’s built-in Docker daemon. Reusing the built-in daemon means you don’t have to build a Docker registry on your host machine and push the image into it. Instead, you can build inside the same Docker daemon as Minikube, which speeds up local experiments.
     </p>
     <blockquote class="note">
       <div>
@@ -674,9 +673,9 @@ The &quot;minikube&quot; cluster has been deleted.</code></pre>
         <p>
           On Centos 7, Docker may report the following error:
         </p>
-        <pre><code>Could not read CA certificate &quot;/etc/docker/ca.pem&quot;: open /etc/docker/ca.pem: no such file or directory</code></pre>
+        <pre><code>Could not read CA certificate &#34;/etc/docker/ca.pem&#34;: open /etc/docker/ca.pem: no such file or directory</code></pre>
         <p>
-          You can fix this by updating /etc/sysconfig/docker to ensure that Minikube&rsquo;s environment changes are respected:
+          You can fix this by updating /etc/sysconfig/docker to ensure that Minikube’s environment changes are respected:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&lt; <span style="color:#b8860b">DOCKER_CERT_PATH</span><span style="color:#666">=</span>/etc/docker
@@ -691,7 +690,7 @@ The &quot;minikube&quot; cluster has been deleted.</code></pre>
       Configuring Kubernetes
     </h3>
     <p>
-      Minikube has a &ldquo;configurator&rdquo; feature that allows users to configure the Kubernetes components with arbitrary values.
+      Minikube has a “configurator” feature that allows users to configure the Kubernetes components with arbitrary values.
       To use this feature, you can use the
       <code>
         --extra-config
@@ -861,7 +860,7 @@ The &quot;minikube&quot; cluster has been deleted.</code></pre>
       <a href="/docs/reference/generated/kubectl/kubectl-commands#-em-set-context-em-">
         kubectl context
       </a>
-      called &ldquo;minikube&rdquo;.
+      called “minikube”.
       This context contains the configuration to communicate with your Minikube cluster.
     </p>
     <p>
@@ -926,7 +925,7 @@ The &quot;minikube&quot; cluster has been deleted.</code></pre>
     </p>
     <p>
       <code>
-        kubectl get service $SERVICE --output='jsonpath=&quot;{.spec.ports[0].nodePort}&quot;'
+        kubectl get service $SERVICE --output=&#39;jsonpath=&#34;{.spec.ports[0].nodePort}&#34;&#39;
       </code>
     </p>
     <h2 id="persistent-volumes">
@@ -1280,7 +1279,7 @@ The &quot;minikube&quot; cluster has been deleted.</code></pre>
       <a href="https://groups.google.com/forum/#!forum/kubernetes-dev">
         kubernetes-dev Google Groups mailing list
       </a>
-      . If you are posting to the list please prefix your subject with &ldquo;minikube: &ldquo;.
+      . If you are posting to the list please prefix your subject with “minikube: “.
     </p>
-  </body>
-</html>
+  
+</body></html>

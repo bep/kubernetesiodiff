@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Guide for scheduling Windows containers in Kubernetes
     </h1>
@@ -293,13 +292,13 @@ kubectl get pods -o wide -w</code></pre>
         kubernetes.io/os = [windows|linux]
       </li>
       <li>
-        kubernetes.io/arch = [amd64|arm64|&hellip;]
+        kubernetes.io/arch = [amd64|arm64|…]
       </li>
     </ul>
     <p>
       If a Pod specification does not specify a nodeSelector like
       <code>
-        &quot;kubernetes.io/os&quot;: windows
+        &#34;kubernetes.io/os&#34;: windows
       </code>
       , it is possible the Pod can be scheduled on any host, Windows or Linux. This can be problematic since a Windows container can only run on Windows and a Linux container can only run on Linux. The best practice is to use a nodeSelector.
     </p>
@@ -309,7 +308,7 @@ kubectl get pods -o wide -w</code></pre>
     <p>
       For example:
       <code>
-        --register-with-taints='os=windows:NoSchedule'
+        --register-with-taints=&#39;os=windows:NoSchedule&#39;
       </code>
     </p>
     <p>
@@ -338,7 +337,7 @@ kubectl get pods -o wide -w</code></pre>
       <code>
         node.kubernetes.io/windows-build
       </code>
-      to simplify this. If you&rsquo;re running an older version, then it&rsquo;s recommended to add this label manually to Windows nodes.
+      to simplify this. If you’re running an older version, then it’s recommended to add this label manually to Windows nodes.
     </p>
     <p>
       This label reflects the Windows major, minor, and build number that need to match for compatibility. Here are values used today for each Windows Server version.
@@ -394,7 +393,7 @@ kubectl get pods -o wide -w</code></pre>
     <ol>
       <li>
         Save this file to
-        <code>
+        <code data-diff="">
           runtimeClasses.yml
         </code>
         . It includes the appropriate
@@ -486,5 +485,5 @@ kubectl get pods -o wide -w</code></pre>
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">app</span>:<span style="color:#bbb"> </span>iis<span style="color:#666">-2019</span><span style="color:#bbb">
 </span></code></pre>
     </div>
-  </body>
-</html>
+  
+</body></html>

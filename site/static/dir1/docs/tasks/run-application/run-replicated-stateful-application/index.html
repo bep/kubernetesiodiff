@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Run a Replicated Stateful Application
     </h1>
@@ -75,7 +74,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -105,7 +104,7 @@
           You need to have a Kubernetes cluster, and the kubectl command-line tool must
           be configured to communicate with your cluster. If you do not already have a
           cluster, you can create one by using
-          <a href="/docs/setup/learning-environment/minikube/">
+          <a href="/docs/setup/learning-environment/minikube/" data-diff="">
             Minikube
           </a>
           ,
@@ -206,7 +205,7 @@
                 application/mysql/mysql-configmap.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-mysql-mysql-configmap-yaml')" title="Copy application/mysql/mysql-configmap.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-mysql-mysql-configmap-yaml&#39;)" title="Copy application/mysql/mysql-configmap.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -247,12 +246,12 @@
       overrides that let you independently control
       configuration on the MySQL master and slaves.
       In this case, you want the master to be able to serve replication logs to slaves
-      and you want slaves to reject any writes that don&rsquo;t come via replication.
+      and you want slaves to reject any writes that don’t come via replication.
     </p>
     <p>
-      There&rsquo;s nothing special about the ConfigMap itself that causes different
+      There’s nothing special about the ConfigMap itself that causes different
       portions to apply to different Pods.
-      Each Pod decides which portion to look at as it&rsquo;s initializing,
+      Each Pod decides which portion to look at as it’s initializing,
       based on information provided by the StatefulSet controller.
     </p>
     <h3 id="services">
@@ -270,7 +269,7 @@
                 application/mysql/mysql-services.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-mysql-mysql-services-yaml')" title="Copy application/mysql/mysql-services.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-mysql-mysql-services-yaml&#39;)" title="Copy application/mysql/mysql-services.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -319,7 +318,7 @@
     </div>
     <p>
       The Headless Service provides a home for the DNS entries that the StatefulSet
-      controller creates for each Pod that&rsquo;s part of the set.
+      controller creates for each Pod that’s part of the set.
       Because the Headless Service is named
       <code>
         mysql
@@ -363,7 +362,7 @@
                 application/mysql/mysql-statefulset.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-mysql-mysql-statefulset-yaml')" title="Copy application/mysql/mysql-statefulset.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-mysql-mysql-statefulset-yaml&#39;)" title="Copy application/mysql/mysql-statefulset.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -565,7 +564,7 @@ mysql-2   2/2       Running   0          1m</code></pre>
         Ctrl+C
       </strong>
       to cancel the watch.
-      If you don&rsquo;t see any progress, make sure you have a dynamic PersistentVolume
+      If you don’t see any progress, make sure you have a dynamic PersistentVolume
       provisioner enabled as mentioned in the
       <a href="#before-you-begin">
         prerequisites
@@ -672,7 +671,7 @@ mysql-2   2/2       Running   0          1m</code></pre>
       </code>
       to be the master, and everyone
       else to be slaves.
-      Combined with the StatefulSet controller&rsquo;s
+      Combined with the StatefulSet controller’s
       <a href="/docs/concepts/workloads/controllers/statefulset/#deployment-and-scaling-guarantees/">
         deployment order guarantee
       </a>
@@ -746,7 +745,7 @@ mysql-2   2/2       Running   0          1m</code></pre>
         xtrabackup
       </code>
       sidecar looks at the cloned data files and determines if
-      it&rsquo;s necessary to initialize MySQL replication on the slave.
+      it’s necessary to initialize MySQL replication on the slave.
       If so, it waits for
       <code>
         mysqld
@@ -876,7 +875,7 @@ pod &#34;mysql-client&#34; deleted</code></pre>
       <strong>
         Ctrl+C
       </strong>
-      when you want to stop the loop, but it&rsquo;s useful to keep
+      when you want to stop the loop, but it’s useful to keep
       it running in another window so you can see the effects of the following steps.
     </p>
     <h2 id="simulating-pod-and-node-downtime">
@@ -905,7 +904,7 @@ pod &#34;mysql-client&#34; deleted</code></pre>
       </code>
       container runs the command
       <code>
-        mysql -h 127.0.0.1 -e 'SELECT 1'
+        mysql -h 127.0.0.1 -e &#39;SELECT 1&#39;
       </code>
       to make sure the server is up and able to execute queries.
     </p>
@@ -916,7 +915,7 @@ pod &#34;mysql-client&#34; deleted</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl <span style="color:#a2f">exec</span> mysql-2 -c mysql -- mv /usr/bin/mysql /usr/bin/mysql.off</code></pre>
     </div>
     <p>
-      This reaches into the actual container&rsquo;s filesystem for Pod
+      This reaches into the actual container’s filesystem for Pod
       <code>
         mysql-2
       </code>
@@ -925,7 +924,7 @@ pod &#34;mysql-client&#34; deleted</code></pre>
       <code>
         mysql
       </code>
-      command so the readiness probe can&rsquo;t find it.
+      command so the readiness probe can’t find it.
       After a few seconds, the Pod should report one of its containers as not Ready,
       which you can check by running:
     </p>
@@ -990,7 +989,7 @@ mysql-2   1/2       Running   0          3m</code></pre>
       Delete Pods
     </h3>
     <p>
-      The StatefulSet also recreates Pods if they&rsquo;re deleted, similar to what a
+      The StatefulSet also recreates Pods if they’re deleted, similar to what a
       ReplicaSet does for stateless Pods.
     </p>
     <div class="highlight">
@@ -1043,7 +1042,7 @@ mysql-2   2/2       Running   0          15m       10.244.5.27   kubernetes-node
       with the name of the Node you found in the last step.
     </p>
     <p>
-      This might impact other applications on the Node, so it&rsquo;s best to
+      This might impact other applications on the Node, so it’s best to
       <strong>
         only do this in a test cluster
       </strong>
@@ -1104,7 +1103,7 @@ mysql-2   2/2     Running         0          30s       10.244.5.32   kubernetes-
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -l <span style="color:#b8860b">app</span><span style="color:#666">=</span>mysql --watch</code></pre>
     </div>
     <p>
-      Once they&rsquo;re up, you should see server IDs
+      Once they’re up, you should see server IDs
       <code>
         103
       </code>
@@ -1163,7 +1162,7 @@ data-mysql-2   Bound     pvc-8ad69a6d-b103-11e6-93fa-42010a800002   10Gi       R
 data-mysql-3   Bound     pvc-50043c45-b1c5-11e6-93fa-42010a800002   10Gi       RWO           2m
 data-mysql-4   Bound     pvc-500a9957-b1c5-11e6-93fa-42010a800002   10Gi       RWO           2m</code></pre>
     <p>
-      If you don&rsquo;t intend to reuse the extra PVCs, you can delete them:
+      If you don’t intend to reuse the extra PVCs, you can delete them:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete pvc data-mysql-3
@@ -1209,7 +1208,7 @@ kubectl delete pvc data-mysql-4</code></pre>
       </li>
     </ol>
     <p>
-      You&rsquo;ll know the Pods have terminated when the above returns:
+      You’ll know the Pods have terminated when the above returns:
     </p>
     <pre><code>   No resources found.</code></pre>
     <ol>
@@ -1272,5 +1271,5 @@ kubectl delete pvc data-mysql-4</code></pre>
         for other stateful application examples.
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

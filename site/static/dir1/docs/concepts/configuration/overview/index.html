@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configuration Best Practices
     </h1>
@@ -15,7 +14,7 @@
       This document highlights and consolidates configuration best practices that are introduced throughout the user guide, Getting Started documentation, and examples.
     </p>
     <p>
-      This is a living document. If you think of something that is not on this list but might be useful to others, please don&rsquo;t hesitate to file an issue or submit a PR.
+      This is a living document. If you think of something that is not on this list but might be useful to others, please don’t hesitate to file an issue or submit a PR.
     </p>
     <ul id="markdown-toc">
       <li>
@@ -92,7 +91,7 @@
       </li>
       <li>
         <p>
-          Don&rsquo;t specify default values unnecessarily: simple, minimal configuration will make errors less likely.
+          Don’t specify default values unnecessarily: simple, minimal configuration will make errors less likely.
         </p>
       </li>
       <li>
@@ -102,12 +101,12 @@
       </li>
     </ul>
     <h2 id="naked-pods-vs-replicasets-deployments-and-jobs">
-      &ldquo;Naked&rdquo; Pods versus ReplicaSets, Deployments, and Jobs
+      “Naked” Pods versus ReplicaSets, Deployments, and Jobs
     </h2>
     <ul>
       <li>
-        Don&rsquo;t use naked Pods (that is, Pods not bound to a
-        <a href="/docs/concepts/workloads/controllers/replicaset/">
+        Don’t use naked Pods (that is, Pods not bound to a
+        <a href="/docs/concepts/workloads/controllers/replicaset/" data-diff="">
           ReplicaSet
         </a>
         or
@@ -199,7 +198,7 @@
       </li>
       <li>
         <p>
-          Don&rsquo;t specify a
+          Don’t specify a
           <code>
             hostPort
           </code>
@@ -219,7 +218,7 @@
           <code>
             protocol
           </code>
-          &gt; combination must be unique. If you don&rsquo;t specify the
+          &gt; combination must be unique. If you don’t specify the
           <code>
             hostIP
           </code>
@@ -261,7 +260,7 @@
       .
     </p>
     <p>
-      If you explicitly need to expose a Pod&rsquo;s port on the node, consider using a
+      If you explicitly need to expose a Pod’s port on the node, consider using a
       <a href="/docs/concepts/services-networking/service/#nodeport">
         NodePort
       </a>
@@ -300,7 +299,7 @@ services">
           <code>
             None
           </code>
-          ) for easy service discovery when you don&rsquo;t need
+          ) for easy service discovery when you don’t need
           <code>
             kube-proxy
           </code>
@@ -360,7 +359,7 @@ services">
     </p>
     <ul>
       <li>
-        You can manipulate labels for debugging. Because Kubernetes controllers (such as ReplicaSet) and Services match to Pods using selector labels, removing the relevant labels from a Pod will stop it from being considered by a controller or from being served traffic by a Service. If you remove the labels of an existing Pod, its controller will create a new Pod to take its place. This is a useful way to debug a previously &ldquo;live&rdquo; Pod in a &ldquo;quarantine&rdquo; environment. To interactively remove or add labels, use
+        You can manipulate labels for debugging. Because Kubernetes controllers (such as ReplicaSet) and Services match to Pods using selector labels, removing the relevant labels from a Pod will stop it from being considered by a controller or from being served traffic by a Service. If you remove the labels of an existing Pod, its controller will create a new Pod to take its place. This is a useful way to debug a previously “live” Pod in a “quarantine” environment. To interactively remove or add labels, use
         <a href="/docs/reference/generated/kubectl/kubectl-commands#label">
           <code>
             kubectl label
@@ -561,5 +560,5 @@ services">
         </p>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

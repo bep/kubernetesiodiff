@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1></h1>
     <p>
       <a href="https://github.com/kubernetes/website/edit/master/content/en/docs/reference/setup-tools/kubeadm/generated/kubeadm_init.md" id="editPageButton" target="_blank">
@@ -12,7 +11,7 @@
         <li>
           <ul>
             <li>
-              <a href="#synopsis">
+              <a href="#synopsis" data-diff="">
                 Synopsis
               </a>
             </li>
@@ -37,7 +36,7 @@
       Run this command in order to set up the Kubernetes control plane
     </p>
     <p>
-      The &ldquo;init&rdquo; command executes the following phases:
+      The “init” command executes the following phases:
     </p>
     <pre><code>preflight                    Run pre-flight checks
 kubelet-start                Write kubelet settings and (re)start the kubelet
@@ -81,8 +80,8 @@ addon                        Install required addons for passing Conformance tes
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -93,12 +92,12 @@ addon                        Install required addons for passing Conformance tes
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
+            The IP address the API Server will advertise it&#39;s listening on. If not set the default network interface will be used.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --apiserver-bind-port int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 6443
+            --apiserver-bind-port int32     Default: 6443
           </td>
         </tr>
         <tr>
@@ -120,7 +119,7 @@ addon                        Install required addons for passing Conformance tes
         </tr>
         <tr>
           <td colspan="2">
-            --cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/pki"
+            --cert-dir string     Default: &#34;/etc/kubernetes/pki&#34;
           </td>
         </tr>
         <tr>
@@ -181,7 +180,7 @@ addon                        Install required addons for passing Conformance tes
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Don't apply any changes; just output what would be done.
+            Don&#39;t apply any changes; just output what would be done.
           </td>
         </tr>
         <tr>
@@ -229,12 +228,12 @@ addon                        Install required addons for passing Conformance tes
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.
+            A list of checks whose errors will be shown as warnings. Example: &#39;IsPrivilegedUser,Swap&#39;. Value &#39;all&#39; ignores errors from all checks.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --image-repository string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "k8s.gcr.io"
+            --image-repository string     Default: &#34;k8s.gcr.io&#34;
           </td>
         </tr>
         <tr>
@@ -245,7 +244,7 @@ addon                        Install required addons for passing Conformance tes
         </tr>
         <tr>
           <td colspan="2">
-            --kubernetes-version string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "stable-1"
+            --kubernetes-version string     Default: &#34;stable-1&#34;
           </td>
         </tr>
         <tr>
@@ -278,7 +277,7 @@ addon                        Install required addons for passing Conformance tes
         </tr>
         <tr>
           <td colspan="2">
-            --service-cidr string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "10.96.0.0/12"
+            --service-cidr string     Default: &#34;10.96.0.0/12&#34;
           </td>
         </tr>
         <tr>
@@ -289,13 +288,13 @@ addon                        Install required addons for passing Conformance tes
         </tr>
         <tr>
           <td colspan="2">
-            --service-dns-domain string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "cluster.local"
+            --service-dns-domain string     Default: &#34;cluster.local&#34;
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Use alternative domain for services, e.g. "myorg.internal".
+            Use alternative domain for services, e.g. &#34;myorg.internal&#34;.
           </td>
         </tr>
         <tr>
@@ -306,7 +305,7 @@ addon                        Install required addons for passing Conformance tes
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Don't print the key used to encrypt the control-plane certificates.
+            Don&#39;t print the key used to encrypt the control-plane certificates.
           </td>
         </tr>
         <tr>
@@ -328,7 +327,7 @@ addon                        Install required addons for passing Conformance tes
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Skip printing of the default bootstrap token generated by 'kubeadm init'.
+            Skip printing of the default bootstrap token generated by &#39;kubeadm init&#39;.
           </td>
         </tr>
         <tr>
@@ -344,13 +343,13 @@ addon                        Install required addons for passing Conformance tes
         </tr>
         <tr>
           <td colspan="2">
-            --token-ttl duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 24h0m0s
+            --token-ttl duration     Default: 24h0m0s
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The duration before the token is automatically deleted (e.g. 1s, 2m, 3h). If set to '0', the token will never expire
+            The duration before the token is automatically deleted (e.g. 1s, 2m, 3h). If set to &#39;0&#39;, the token will never expire
           </td>
         </tr>
         <tr>
@@ -371,8 +370,8 @@ addon                        Install required addons for passing Conformance tes
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -383,10 +382,10 @@ addon                        Install required addons for passing Conformance tes
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
     </table>
-  </body>
-</html>
+  
+</body></html>

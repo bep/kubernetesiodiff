@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Coarse Parallel Processing Using a Work Queue
     </h1>
@@ -259,7 +258,7 @@ root@temp-loe07:/#</code></pre>
       Filling the Queue with tasks
     </h2>
     <p>
-      Now let&rsquo;s fill the queue with some &ldquo;tasks&rdquo;.  In our example, our tasks are just strings to be
+      Now let’s fill the queue with some “tasks”.  In our example, our tasks are just strings to be
       printed.
     </p>
     <p>
@@ -320,7 +319,7 @@ job1</code></pre>
       from the queue and run our actual program.  Here is a very simple
       example program:
     </p>
-    <table class="includecode" id="application-job-rabbitmq-worker-py">
+    <table class="includecode" id="application-job-rabbitmq-worker-py" data-diff="">
       <thead>
         <tr>
           <th>
@@ -329,7 +328,7 @@ job1</code></pre>
                 application/job/rabbitmq/worker.py
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-rabbitmq-worker-py')" title="Copy application/job/rabbitmq/worker.py to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-job-rabbitmq-worker-py&#39;)" title="Copy application/job/rabbitmq/worker.py to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -415,7 +414,7 @@ gcloud docker -- push gcr.io/&lt;project&gt;/job-wq-1</code></pre>
       Defining a Job
     </h2>
     <p>
-      Here is a job definition.  You&rsquo;ll need to make a copy of the Job and edit the
+      Here is a job definition.  You’ll need to make a copy of the Job and edit the
       image to match the name you used, and call it
       <code>
         ./job.yaml
@@ -431,7 +430,7 @@ gcloud docker -- push gcr.io/&lt;project&gt;/job-wq-1</code></pre>
                 application/job/rabbitmq/job.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-rabbitmq-job-yaml')" title="Copy application/job/rabbitmq/job.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-job-rabbitmq-job-yaml&#39;)" title="Copy application/job/rabbitmq/job.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -530,7 +529,7 @@ Events:
     </h2>
     <p>
       This approach has the advantage that you
-      do not need to modify your &ldquo;worker&rdquo; program to be aware that there is a work queue.
+      do not need to modify your “worker” program to be aware that there is a work queue.
     </p>
     <p>
       It does require that you run a message queue service.
@@ -584,5 +583,5 @@ Events:
       back to the api-server, then the Job will not appear to be complete, even though all items
       in the queue have been processed.
     </p>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Share a Cluster with Namespaces
     </h1>
@@ -13,9 +12,9 @@
     </h1>
     <p>
       This page shows how to view, work in, and delete
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/namespaces' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/namespaces" target="_blank">
         namespaces
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An abstraction used by Kubernetes to support multiple virtual clusters on the same physical cluster.
         </span>
       </a>
@@ -59,7 +58,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -101,7 +100,7 @@
     </h2>
     <ol>
       <li>
-        <p>
+        <p data-diff="">
           List the current namespaces in a cluster using:
         </p>
         <div class="highlight">
@@ -254,7 +253,7 @@ Resource Limits
       .
     </p>
     <p>
-      There&rsquo;s an optional field
+      There’s an optional field
       <code>
         finalizers
       </code>
@@ -355,7 +354,7 @@ default   Active    13m</code></pre>
           .
         </p>
         <p>
-          Let&rsquo;s create two new namespaces to hold our work.
+          Let’s create two new namespaces to hold our work.
         </p>
         <p>
           Create the
@@ -368,7 +367,7 @@ default   Active    13m</code></pre>
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create -f https://k8s.io/examples/admin/namespace-dev.json</code></pre>
         </div>
         <p>
-          And then let&rsquo;s create the
+          And then let’s create the
           <code>
             production
           </code>
@@ -399,7 +398,7 @@ production    Active    23s       name=production</code></pre>
           Users interacting with one namespace do not see the content in another namespace.
         </p>
         <p>
-          To demonstrate this, let&rsquo;s spin up a simple Deployment and Pods in the
+          To demonstrate this, let’s spin up a simple Deployment and Pods in the
           <code>
             development
           </code>
@@ -450,7 +449,7 @@ snowflake-3968820950-vgc4n   1/1       Running   0          2m</code></pre>
           namespace.
         </p>
         <p>
-          Let&rsquo;s switch to the
+          Let’s switch to the
           <code>
             production
           </code>
@@ -468,7 +467,7 @@ snowflake-3968820950-vgc4n   1/1       Running   0          2m</code></pre>
 kubectl get pods -n<span style="color:#666">=</span>production</code></pre>
         </div>
         <p>
-          Production likes to run cattle, so let&rsquo;s create some cattle pods.
+          Production likes to run cattle, so let’s create some cattle pods.
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl run cattle --image<span style="color:#666">=</span>k8s.gcr.io/serve_hostname --replicas<span style="color:#666">=</span><span style="color:#666">5</span> -n<span style="color:#666">=</span>production
@@ -499,7 +498,7 @@ cattle-2263376956-sxpth   1/1       Running   0          34s</code></pre>
       Understanding the motivation for using namespaces
     </h2>
     <p>
-      A single cluster should be able to satisfy the needs of multiple users or groups of users (henceforth a &lsquo;user community&rsquo;).
+      A single cluster should be able to satisfy the needs of multiple users or groups of users (henceforth a ‘user community’).
     </p>
     <p>
       Kubernetes
@@ -632,5 +631,5 @@ cattle-2263376956-sxpth   1/1       Running   0          34s</code></pre>
         .
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

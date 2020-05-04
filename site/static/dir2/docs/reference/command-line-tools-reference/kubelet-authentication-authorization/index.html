@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Kubelet authentication/authorization
     </h1>
@@ -14,7 +13,7 @@
     <nav id="TableOfContents">
       <ul>
         <li>
-          <a href="#overview">
+          <a href="#overview" data-diff="">
             Overview
           </a>
         </li>
@@ -34,17 +33,17 @@
       Overview
     </h2>
     <p>
-      A kubelet&rsquo;s HTTPS endpoint exposes APIs which give access to data of varying sensitivity,
+      A kubelet’s HTTPS endpoint exposes APIs which give access to data of varying sensitivity,
       and allow you to perform operations with varying levels of power on the node and within containers.
     </p>
     <p>
-      This document describes how to authenticate and authorize access to the kubelet&rsquo;s HTTPS endpoint.
+      This document describes how to authenticate and authorize access to the kubelet’s HTTPS endpoint.
     </p>
     <h2 id="kubelet-authentication">
       Kubelet authentication
     </h2>
     <p>
-      By default, requests to the kubelet&rsquo;s HTTPS endpoint that are not rejected by other configured
+      By default, requests to the kubelet’s HTTPS endpoint that are not rejected by other configured
       authentication methods are treated as anonymous requests, and given a username of
       <code>
         system:anonymous
@@ -72,7 +71,7 @@
       </li>
     </ul>
     <p>
-      To enable X509 client certificate authentication to the kubelet&rsquo;s HTTPS endpoint:
+      To enable X509 client certificate authentication to the kubelet’s HTTPS endpoint:
     </p>
     <ul>
       <li>
@@ -102,7 +101,7 @@
       </li>
     </ul>
     <p>
-      To enable API bearer tokens (including service account tokens) to be used to authenticate to the kubelet&rsquo;s HTTPS endpoint:
+      To enable API bearer tokens (including service account tokens) to be used to authenticate to the kubelet’s HTTPS endpoint:
     </p>
     <ul>
       <li>
@@ -146,10 +145,10 @@
     </p>
     <ul>
       <li>
-        anonymous auth is enabled, but anonymous users&rsquo; ability to call the kubelet API should be limited
+        anonymous auth is enabled, but anonymous users’ ability to call the kubelet API should be limited
       </li>
       <li>
-        bearer token auth is enabled, but arbitrary API users&rsquo; (like service accounts) ability to call the kubelet API should be limited
+        bearer token auth is enabled, but arbitrary API users’ (like service accounts) ability to call the kubelet API should be limited
       </li>
       <li>
         client certificate auth is enabled, but only some of the client certificates signed by the configured CA should be allowed to use the kubelet API
@@ -193,7 +192,7 @@
       approach as the apiserver.
     </p>
     <p>
-      The verb is determined from the incoming request&rsquo;s HTTP verb:
+      The verb is determined from the incoming request’s HTTP verb:
     </p>
     <table>
       <thead>
@@ -250,7 +249,7 @@
       </tbody>
     </table>
     <p>
-      The resource and subresource is determined from the incoming request&rsquo;s path:
+      The resource and subresource is determined from the incoming request’s path:
     </p>
     <table>
       <thead>
@@ -328,7 +327,7 @@
     </table>
     <p>
       The namespace and API group attributes are always an empty string, and
-      the resource name is always the name of the kubelet&rsquo;s
+      the resource name is always the name of the kubelet’s
       <code>
         Node
       </code>
@@ -362,5 +361,5 @@
         verb=*, resource=nodes, subresource=metrics
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

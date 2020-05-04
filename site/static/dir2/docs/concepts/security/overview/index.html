@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Overview of Cloud Native Security
     </h1>
@@ -13,7 +12,7 @@
     </h1>
     <p>
       Kubernetes Security (and security in general) is an immense topic that has many
-      highly interrelated parts. In today&rsquo;s era where open source software is
+      highly interrelated parts. In today’s era where open source software is
       integrated into many of the systems that help web applications run,
       there are some overarching concepts that can help guide your intuition about how you can
       think about security holistically. This guide will define a mental model
@@ -54,15 +53,15 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
     <h2 id="the-4c-s-of-cloud-native-security">
-      The 4C&rsquo;s of Cloud Native Security
+      The 4C’s of Cloud Native Security
     </h2>
     <p>
-      Let&rsquo;s start with a diagram that may help you understand how you can think about security in layers.
+      Let’s start with a diagram that may help you understand how you can think about security in layers.
     </p>
     <blockquote class="note">
       <div>
@@ -74,7 +73,7 @@
           defense in depth
         </a>
         approach to security, which is widely regarded as a best practice for securing
-        software systems. The 4C&rsquo;s are Cloud, Clusters, Containers, and Code.
+        software systems. The 4C’s are Cloud, Clusters, Containers, and Code.
       </div>
     </blockquote>
     <figure>
@@ -87,7 +86,7 @@
     </figure>
     <p>
       As you can see from the above figure,
-      each one of the 4C&rsquo;s depend on the security of the squares in which they fit. It
+      each one of the 4C’s depend on the security of the squares in which they fit. It
       is nearly impossibly to safeguard against poor security standards in Cloud, Containers, and Code
       by only addressing security at the code level. However, when these areas are dealt
       with appropriately, then adding security to your code augments an already strong
@@ -102,12 +101,12 @@
         trusted computing base
       </a>
       of a Kubernetes cluster. If these components themselves are vulnerable (or
-      configured in a vulnerable way) then there&rsquo;s no real way to guarantee the security
+      configured in a vulnerable way) then there’s no real way to guarantee the security
       of any components built on top of this base. Each cloud provider has extensive
       security recommendations they make to their customers on how to run workloads securely
       in their environment. It is out of the scope of this guide to give recommendations
       on cloud security since every cloud provider and workload is different. Here are some
-      links to some of the popular cloud providers&rsquo; documentation
+      links to some of the popular cloud providers’ documentation
       for security as well as give general guidance for securing the infrastructure that
       makes up a Kubernetes cluster.
     </p>
@@ -258,7 +257,7 @@
             etcd Encryption
           </td>
           <td>
-            Wherever possible it&rsquo;s a good practice to encrypt all drives at rest, but since etcd holds the state of the entire cluster (including Secrets) its disk should especially be encrypted at rest.
+            Wherever possible it’s a good practice to encrypt all drives at rest, but since etcd holds the state of the entire cluster (including Secrets) its disk should especially be encrypted at rest.
           </td>
         </tr>
       </tbody>
@@ -349,7 +348,7 @@
             <a href="https://kubernetes.io/docs/concepts/configuration/secret/">
               https://kubernetes.io/docs/concepts/configuration/secret/
             </a>
-            <br>
+            <br/>
             <a href="https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/">
               https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
             </a>
@@ -426,7 +425,7 @@
           <td>
             As part of an image build step or on a regular basis you should scan your containers for known vulnerabilities with a tool such as
             <a href="https://github.com/coreos/clair/">
-              CoreOS&rsquo;s Clair
+              CoreOS’s Clair
             </a>
           </td>
         </tr>
@@ -441,7 +440,7 @@
             </a>
             . On the enforcement piece,
             <a href="https://github.com/IBM/portieris">
-              IBM&rsquo;s Portieris
+              IBM’s Portieris
             </a>
             project is a tool that runs as a Kubernetes Dynamic Admission Controller to ensure that images are properly signed via Notary before being admitted to the Cluster.
           </td>
@@ -484,7 +483,7 @@
             Access over TLS only
           </td>
           <td>
-            If your code needs to communicate via TCP, ideally it would be performing a TLS handshake with the client ahead of time. With the exception of a few cases, the default behavior should be to encrypt everything in transit. Going one step further, even &ldquo;behind the firewall&rdquo; in our VPC&rsquo;s it&rsquo;s still a good idea to encrypt network traffic between services. This can be done through a process known as mutual or
+            If your code needs to communicate via TCP, ideally it would be performing a TLS handshake with the client ahead of time. With the exception of a few cases, the default behavior should be to encrypt everything in transit. Going one step further, even “behind the firewall” in our VPC’s it’s still a good idea to encrypt network traffic between services. This can be done through a process known as mutual or
             <a href="https://en.wikipedia.org/wiki/Mutual_authentication">
               mTLS
             </a>
@@ -512,7 +511,7 @@
             3rd Party Dependency Security
           </td>
           <td>
-            Since our applications tend to have dependencies outside of our own codebases, it is a good practice to regularly scan the code&rsquo;s dependencies to ensure that they are still secure with no vulnerabilities currently filed against them. Each language has a tool for performing this check automatically.
+            Since our applications tend to have dependencies outside of our own codebases, it is a good practice to regularly scan the code’s dependencies to ensure that they are still secure with no vulnerabilities currently filed against them. Each language has a tool for performing this check automatically.
           </td>
         </tr>
         <tr>
@@ -545,7 +544,7 @@
     <p>
       Most of the above mentioned suggestions can actually be automated in your code
       delivery pipeline as part of a series of checks in security. To learn about a
-      more &ldquo;Continuous Hacking&rdquo; approach to software delivery,
+      more “Continuous Hacking” approach to software delivery,
       <a href="https://thenewstack.io/beyond-ci-cd-how-continuous-hacking-of-docker-containers-and-pipeline-driven-security-keeps-ygrene-secure/">
         this article
       </a>
@@ -594,5 +593,5 @@
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

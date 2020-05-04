@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   kube-proxy
 </h1>
@@ -39,18 +38,60 @@
 <h2 id="options">
   Options
 </h2>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
+<p data-diff="">
+  <p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p></p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;azure-container-registry-config string
+      –azure-container-registry-config string
     </td>
   </tr>
   <tr>
@@ -59,24 +100,22 @@
       Path to the file containing Azure container registry configuration information.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;bind-address ip&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 0.0.0.0
+      –bind-address ip     Default: 0.0.0.0
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The IP address for the proxy server to serve on (set to &lsquo;0.0.0.0&rsquo; for all IPv4 interfaces and &lsquo;::&rsquo; for all IPv6 interfaces)
+      The IP address for the proxy server to serve on (set to ‘0.0.0.0’ for all IPv4 interfaces and ‘::’ for all IPv6 interfaces)
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cleanup
+      –cleanup
     </td>
   </tr>
   <tr>
@@ -85,11 +124,10 @@
       If true cleanup iptables and ipvs rules and exit.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cluster-cidr string
+      –cluster-cidr string
     </td>
   </tr>
   <tr>
@@ -98,11 +136,10 @@
       The CIDR range of pods in the cluster. When configured, traffic sent to a Service cluster IP from outside this range will be masqueraded and traffic sent from pods to an external LoadBalancer IP will be directed to the respective cluster IP instead
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -111,11 +148,10 @@
       The path to the configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config-sync-period duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 15m0s
+      –config-sync-period duration     Default: 15m0s
     </td>
   </tr>
   <tr>
@@ -124,11 +160,10 @@
       How often configuration from the apiserver is refreshed.  Must be greater than 0.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;conntrack-max-per-core int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 32768
+      –conntrack-max-per-core int32     Default: 32768
     </td>
   </tr>
   <tr>
@@ -137,11 +172,10 @@
       Maximum number of NAT connections to track per CPU core (0 to leave the limit as-is and ignore conntrack-min).
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;conntrack-min int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 131072
+      –conntrack-min int32     Default: 131072
     </td>
   </tr>
   <tr>
@@ -150,11 +184,10 @@
       Minimum number of conntrack entries to allocate, regardless of conntrack-max-per-core (set conntrack-max-per-core=0 to leave the limit as-is).
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;conntrack-tcp-timeout-close-wait duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 1h0m0s
+      –conntrack-tcp-timeout-close-wait duration     Default: 1h0m0s
     </td>
   </tr>
   <tr>
@@ -163,11 +196,10 @@
       NAT timeout for TCP connections in the CLOSE_WAIT state
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;conntrack-tcp-timeout-established duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 24h0m0s
+      –conntrack-tcp-timeout-established duration     Default: 24h0m0s
     </td>
   </tr>
   <tr>
@@ -176,11 +208,10 @@
       Idle timeout for established TCP connections (0 to leave as-is)
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;detect-local-mode LocalMode
+      –detect-local-mode LocalMode
     </td>
   </tr>
   <tr>
@@ -189,11 +220,10 @@
       Mode to use to detect local traffic
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;feature-gates mapStringBool
+      –feature-gates mapStringBool
     </td>
   </tr>
   <tr>
@@ -364,24 +394,22 @@
       WinOverlay=true|false (ALPHA - default=false)
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;healthz-bind-address ipport&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 0.0.0.0:10256
+      –healthz-bind-address ipport     Default: 0.0.0.0:10256
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The IP address with port for the health check server to serve on (set to &lsquo;0.0.0.0:10256&rsquo; for all IPv4 interfaces and &lsquo;[::]:10256&rsquo; for all IPv6 interfaces). Set empty to disable.
+      The IP address with port for the health check server to serve on (set to ‘0.0.0.0:10256’ for all IPv4 interfaces and ‘[::]:10256’ for all IPv6 interfaces). Set empty to disable.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -390,11 +418,10 @@
       help for kube-proxy
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;hostname-override string
+      –hostname-override string
     </td>
   </tr>
   <tr>
@@ -403,11 +430,10 @@
       If non-empty, will use this string as identification instead of the actual hostname.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;iptables-masquerade-bit int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 14
+      –iptables-masquerade-bit int32     Default: 14
     </td>
   </tr>
   <tr>
@@ -416,63 +442,58 @@
       If using the pure iptables proxy, the bit of the fwmark space to mark packets requiring SNAT with.  Must be within the range [0, 31].
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;iptables-min-sync-period duration
+      –iptables-min-sync-period duration
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The minimum interval of how often the iptables rules can be refreshed as endpoints and services change (e.g. &lsquo;5s&rsquo;, &lsquo;1m&rsquo;, &lsquo;2h22m&rsquo;).
+      The minimum interval of how often the iptables rules can be refreshed as endpoints and services change (e.g. ‘5s’, ‘1m’, ‘2h22m’).
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;iptables-sync-period duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 30s
+      –iptables-sync-period duration     Default: 30s
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The maximum interval of how often iptables rules are refreshed (e.g. &lsquo;5s&rsquo;, &lsquo;1m&rsquo;, &lsquo;2h22m&rsquo;).  Must be greater than 0.
+      The maximum interval of how often iptables rules are refreshed (e.g. ‘5s’, ‘1m’, ‘2h22m’).  Must be greater than 0.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ipvs-exclude-cidrs stringSlice
+      –ipvs-exclude-cidrs stringSlice
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      A comma-separated list of CIDR&rsquo;s which the ipvs proxier should not touch when cleaning up IPVS rules.
+      A comma-separated list of CIDR’s which the ipvs proxier should not touch when cleaning up IPVS rules.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ipvs-min-sync-period duration
+      –ipvs-min-sync-period duration
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The minimum interval of how often the ipvs rules can be refreshed as endpoints and services change (e.g. &lsquo;5s&rsquo;, &lsquo;1m&rsquo;, &lsquo;2h22m&rsquo;).
+      The minimum interval of how often the ipvs rules can be refreshed as endpoints and services change (e.g. ‘5s’, ‘1m’, ‘2h22m’).
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ipvs-scheduler string
+      –ipvs-scheduler string
     </td>
   </tr>
   <tr>
@@ -481,11 +502,10 @@
       The ipvs scheduler type when proxy mode is ipvs
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ipvs-strict-arp
+      –ipvs-strict-arp
     </td>
   </tr>
   <tr>
@@ -494,63 +514,58 @@
       Enable strict ARP by setting arp_ignore to 1 and arp_announce to 2
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ipvs-sync-period duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 30s
+      –ipvs-sync-period duration     Default: 30s
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The maximum interval of how often ipvs rules are refreshed (e.g. &lsquo;5s&rsquo;, &lsquo;1m&rsquo;, &lsquo;2h22m&rsquo;).  Must be greater than 0.
+      The maximum interval of how often ipvs rules are refreshed (e.g. ‘5s’, ‘1m’, ‘2h22m’).  Must be greater than 0.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ipvs-tcp-timeout duration
+      –ipvs-tcp-timeout duration
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The timeout for idle IPVS TCP connections, 0 to leave as-is. (e.g. &lsquo;5s&rsquo;, &lsquo;1m&rsquo;, &lsquo;2h22m&rsquo;).
+      The timeout for idle IPVS TCP connections, 0 to leave as-is. (e.g. ‘5s’, ‘1m’, ‘2h22m’).
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ipvs-tcpfin-timeout duration
+      –ipvs-tcpfin-timeout duration
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The timeout for IPVS TCP connections after receiving a FIN packet, 0 to leave as-is. (e.g. &lsquo;5s&rsquo;, &lsquo;1m&rsquo;, &lsquo;2h22m&rsquo;).
+      The timeout for IPVS TCP connections after receiving a FIN packet, 0 to leave as-is. (e.g. ‘5s’, ‘1m’, ‘2h22m’).
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;ipvs-udp-timeout duration
+      –ipvs-udp-timeout duration
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The timeout for IPVS UDP packets, 0 to leave as-is. (e.g. &lsquo;5s&rsquo;, &lsquo;1m&rsquo;, &lsquo;2h22m&rsquo;).
+      The timeout for IPVS UDP packets, 0 to leave as-is. (e.g. ‘5s’, ‘1m’, ‘2h22m’).
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kube-api-burst int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 10
+      –kube-api-burst int32     Default: 10
     </td>
   </tr>
   <tr>
@@ -559,11 +574,10 @@
       Burst to use while talking with kubernetes apiserver
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kube-api-content-type string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;application/vnd.kubernetes.protobuf&rdquo;
+      –kube-api-content-type string     Default: “application/vnd.kubernetes.protobuf”
     </td>
   </tr>
   <tr>
@@ -572,11 +586,10 @@
       Content type of requests sent to apiserver.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kube-api-qps float32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5
+      –kube-api-qps float32     Default: 5
     </td>
   </tr>
   <tr>
@@ -585,11 +598,10 @@
       QPS to use while talking with kubernetes apiserver
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string
+      –kubeconfig string
     </td>
   </tr>
   <tr>
@@ -598,11 +610,10 @@
       Path to kubeconfig file with authorization information (the master location is set by the master flag).
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;log-flush-frequency duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5s
+      –log-flush-frequency duration     Default: 5s
     </td>
   </tr>
   <tr>
@@ -611,11 +622,10 @@
       Maximum number of seconds between log flushes
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;masquerade-all
+      –masquerade-all
     </td>
   </tr>
   <tr>
@@ -624,11 +634,10 @@
       If using the pure iptables proxy, SNAT all traffic sent via Service cluster IPs (this not commonly needed)
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;master string
+      –master string
     </td>
   </tr>
   <tr>
@@ -637,24 +646,22 @@
       The address of the Kubernetes API server (overrides any value in kubeconfig)
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;metrics-bind-address ipport&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 127.0.0.1:10249
+      –metrics-bind-address ipport     Default: 127.0.0.1:10249
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The IP address with port for the metrics server to serve on (set to &lsquo;0.0.0.0:10249&rsquo; for all IPv4 interfaces and &lsquo;[::]:10249&rsquo; for all IPv6 interfaces). Set empty to disable.
+      The IP address with port for the metrics server to serve on (set to ‘0.0.0.0:10249’ for all IPv4 interfaces and ‘[::]:10249’ for all IPv6 interfaces). Set empty to disable.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;nodeport-addresses stringSlice
+      –nodeport-addresses stringSlice
     </td>
   </tr>
   <tr>
@@ -664,18 +671,17 @@
       <sup>
         4
       </sup>
-      &frasl;
+      ⁄
       <sub>
         32
       </sub>
       ). The default empty string slice ([]) means to use all local addresses.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;oom-score-adj int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: -999
+      –oom-score-adj int32     Default: -999
     </td>
   </tr>
   <tr>
@@ -684,11 +690,10 @@
       The oom-score-adj value for kube-proxy process. Values must be within the range [-1000, 1000]
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;profiling
+      –profiling
     </td>
   </tr>
   <tr>
@@ -697,24 +702,22 @@
       If true enables profiling via web interface on /debug/pprof handler.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;proxy-mode ProxyMode
+      –proxy-mode ProxyMode
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      Which proxy mode to use: &lsquo;userspace&rsquo; (older) or &lsquo;iptables&rsquo; (faster) or &lsquo;ipvs&rsquo;. If blank, use the best-available proxy (currently iptables).  If the iptables proxy is selected, regardless of how, but the system&rsquo;s kernel or iptables versions are insufficient, this always falls back to the userspace proxy.
+      Which proxy mode to use: ‘userspace’ (older) or ‘iptables’ (faster) or ‘ipvs’. If blank, use the best-available proxy (currently iptables).  If the iptables proxy is selected, regardless of how, but the system’s kernel or iptables versions are insufficient, this always falls back to the userspace proxy.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;proxy-port-range port-range
+      –proxy-port-range port-range
     </td>
   </tr>
   <tr>
@@ -723,37 +726,34 @@
       Range of host ports (beginPort-endPort, single port or beginPort+offset, inclusive) that may be consumed in order to proxy service traffic. If (unspecified, 0, or 0-0) then ports will be randomly chosen.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;show-hidden-metrics-for-version string
+      –show-hidden-metrics-for-version string
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      The previous version for which you want to show hidden metrics. Only the previous minor version is meaningful, other values will not be allowed. The format is &lt;major&gt;.&lt;minor&gt;, e.g.: &lsquo;1.16&rsquo;. The purpose of this format is make sure you have the opportunity to notice if the next release hides additional metrics, rather than being surprised when they are permanently removed in the release after that.
+      The previous version for which you want to show hidden metrics. Only the previous minor version is meaningful, other values will not be allowed. The format is &lt;major&gt;.&lt;minor&gt;, e.g.: ‘1.16’. The purpose of this format is make sure you have the opportunity to notice if the next release hides additional metrics, rather than being surprised when they are permanently removed in the release after that.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;udp-timeout duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 250ms
+      –udp-timeout duration     Default: 250ms
     </td>
   </tr>
   <tr>
     <td></td>
     <td style="line-height: 130%; word-wrap: break-word;">
-      How long an idle UDP connection will be kept open (e.g. &lsquo;250ms&rsquo;, &lsquo;2s&rsquo;).  Must be greater than 0. Only applicable for proxy-mode=userspace
+      How long an idle UDP connection will be kept open (e.g. ‘250ms’, ‘2s’).  Must be greater than 0. Only applicable for proxy-mode=userspace
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;version version[=true]
+      –version version[=true]
     </td>
   </tr>
   <tr>
@@ -762,11 +762,10 @@
       Print version information and quit
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;write-config-to string
+      –write-config-to string
     </td>
   </tr>
   <tr>
@@ -775,5 +774,5 @@
       If set, write the default configuration values to this file and exit.
     </td>
   </tr>
-</p>
-<p>
+
+</tbody></table></p></body></html>

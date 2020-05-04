@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Assigning Pods to Nodes
     </h1>
@@ -13,16 +12,16 @@
     </h1>
     <p>
       You can constrain a
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         Pod
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
       to only be able to run on particular
-      <a class='glossary-tooltip' href='/docs/concepts/architecture/nodes/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/architecture/nodes/" target="_blank">
         Node(s)
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A node is a worker machine in Kubernetes.
         </span>
       </a>
@@ -66,7 +65,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -86,7 +85,7 @@
       additional labels as well). The most common usage is one key-value pair.
     </p>
     <p>
-      Let&rsquo;s walk through an example of how to use
+      Let’s walk through an example of how to use
       <code>
         nodeSelector
       </code>
@@ -110,11 +109,11 @@
       <code>
         kubectl get nodes
       </code>
-      to get the names of your cluster&rsquo;s nodes. Pick out the one that you want to add a label to, and then run
+      to get the names of your cluster’s nodes. Pick out the one that you want to add a label to, and then run
       <code>
         kubectl label nodes &lt;node-name&gt; &lt;label-key&gt;=&lt;label-value&gt;
       </code>
-      to add a label to the node you&rsquo;ve chosen. For example, if my node name is &lsquo;kubernetes-foo-node-1.c.a-robinson.internal&rsquo; and my desired label is &lsquo;disktype=ssd&rsquo;, then I can run
+      to add a label to the node you’ve chosen. For example, if my node name is ‘kubernetes-foo-node-1.c.a-robinson.internal’ and my desired label is ‘disktype=ssd’, then I can run
       <code>
         kubectl label nodes kubernetes-foo-node-1.c.a-robinson.internal disktype=ssd
       </code>
@@ -127,7 +126,7 @@
       </code>
       and checking that the node now has a label. You can also use
       <code>
-        kubectl describe node &quot;nodename&quot;
+        kubectl describe node &#34;nodename&#34;
       </code>
       to see the full list of labels of the given node.
     </p>
@@ -161,7 +160,7 @@
                 pods/pod-nginx.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-nginx-yaml')" title="Copy pods/pod-nginx.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-pod-nginx-yaml&#39;)" title="Copy pods/pod-nginx.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -200,7 +199,7 @@
         kubectl get pods -o wide
       </code>
       and looking at the
-      &ldquo;NODE&rdquo; that the Pod was assigned to.
+      “NODE” that the Pod was assigned to.
     </p>
     <h2 id="built-in-node-labels">
       Interlude: built-in node labels
@@ -363,8 +362,8 @@
         besides exact matches created with a logical AND operation;
       </li>
       <li>
-        you can indicate that the rule is &ldquo;soft&rdquo;/&ldquo;preference&rdquo; rather than a hard requirement, so if the scheduler
-        can&rsquo;t satisfy it, the pod will still be scheduled;
+        you can indicate that the rule is “soft”/“preference” rather than a hard requirement, so if the scheduler
+        can’t satisfy it, the pod will still be scheduled;
       </li>
       <li>
         you can constrain against labels on other pods running on the node (or other topological domain),
@@ -372,7 +371,7 @@
       </li>
     </ol>
     <p>
-      The affinity feature consists of two types of affinity, &ldquo;node affinity&rdquo; and &ldquo;inter-pod affinity/anti-affinity&rdquo;.
+      The affinity feature consists of two types of affinity, “node affinity” and “inter-pod affinity/anti-affinity”.
       Node affinity is like the existing
       <code>
         nodeSelector
@@ -389,7 +388,7 @@
       <code>
         nodeSelector
       </code>
-      &ndash; it allows you to constrain which nodes your
+      – it allows you to constrain which nodes your
       pod is eligible to be scheduled on, based on labels on the node.
     </p>
     <p>
@@ -401,7 +400,7 @@
       <code>
         preferredDuringSchedulingIgnoredDuringExecution
       </code>
-      . You can think of them as &ldquo;hard&rdquo; and &ldquo;soft&rdquo; respectively,
+      . You can think of them as “hard” and “soft” respectively,
       in the sense that the former specifies rules that
       <em>
         must
@@ -415,7 +414,7 @@
         preferences
       </em>
       that the scheduler
-      will try to enforce but will not guarantee. The &ldquo;IgnoredDuringExecution&rdquo; part of the names means that, similar
+      will try to enforce but will not guarantee. The “IgnoredDuringExecution” part of the names means that, similar
       to how
       <code>
         nodeSelector
@@ -429,20 +428,20 @@
       <code>
         requiredDuringSchedulingIgnoredDuringExecution
       </code>
-      except that it will evict pods from nodes that cease to satisfy the pods&rsquo; node affinity requirements.
+      except that it will evict pods from nodes that cease to satisfy the pods’ node affinity requirements.
     </p>
     <p>
       Thus an example of
       <code>
         requiredDuringSchedulingIgnoredDuringExecution
       </code>
-      would be &ldquo;only run the pod on nodes with Intel CPUs&rdquo;
+      would be “only run the pod on nodes with Intel CPUs”
       and an example
       <code>
         preferredDuringSchedulingIgnoredDuringExecution
       </code>
-      would be &ldquo;try to run this set of pods in failure
-      zone XYZ, but if it&rsquo;s not possible, then allow some to run elsewhere&rdquo;.
+      would be “try to run this set of pods in failure
+      zone XYZ, but if it’s not possible, then allow some to run elsewhere”.
     </p>
     <p>
       Node affinity is specified as field
@@ -456,7 +455,7 @@
       in the PodSpec.
     </p>
     <p>
-      Here&rsquo;s an example of a pod that uses node affinity:
+      Here’s an example of a pod that uses node affinity:
     </p>
     <table class="includecode" id="pods-pod-with-node-affinity-yaml">
       <thead>
@@ -467,7 +466,7 @@
                 pods/pod-with-node-affinity.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-with-node-affinity-yaml')" title="Copy pods/pod-with-node-affinity.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-pod-with-node-affinity-yaml&#39;)" title="Copy pods/pod-with-node-affinity.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -629,7 +628,7 @@
       is satisfied.
     </p>
     <p>
-      If you remove or change the label of the node where the pod is scheduled, the pod won&rsquo;t be removed. In other words, the affinity selection works only at the time of scheduling the pod.
+      If you remove or change the label of the node where the pod is scheduled, the pod won’t be removed. In other words, the affinity selection works only at the time of scheduling the pod.
     </p>
     <p>
       The
@@ -640,7 +639,7 @@
       <code>
         preferredDuringSchedulingIgnoredDuringExecution
       </code>
-      is in the range 1-100. For each node that meets all of the scheduling requirements (resource request, RequiredDuringScheduling affinity expressions, etc.), the scheduler will compute a sum by iterating through the elements of this field and adding &ldquo;weight&rdquo; to the sum if the node matches the corresponding MatchExpressions. This score is then combined with the scores of other priority functions for the node. The node(s) with the highest total score are the most preferred.
+      is in the range 1-100. For each node that meets all of the scheduling requirements (resource request, RequiredDuringScheduling affinity expressions, etc.), the scheduler will compute a sum by iterating through the elements of this field and adding “weight” to the sum if the node matches the corresponding MatchExpressions. This score is then combined with the scores of other priority functions for the node. The node(s) with the highest total score are the most preferred.
     </p>
     <h3 id="inter-pod-affinity-and-anti-affinity">
       Inter-pod affinity and anti-affinity
@@ -652,7 +651,7 @@
         labels on pods that are already running on the node
       </em>
       rather than based on labels on nodes. The rules are of the form
-      &ldquo;this pod should (or, in the case of anti-affinity, should not) run in an X if that X is already running one or more pods that meet rule Y&rdquo;.
+      “this pod should (or, in the case of anti-affinity, should not) run in an X if that X is already running one or more pods that meet rule Y”.
       Y is expressed as a LabelSelector with an optional associated list of namespaces; unlike nodes, because pods are namespaced
       (and therefore the labels on pods are implicitly namespaced),
       a label selector over pod labels must specify which namespaces the selector should apply to. Conceptually X is a topology domain
@@ -703,20 +702,20 @@
       <code>
         preferredDuringSchedulingIgnoredDuringExecution
       </code>
-      which denote &ldquo;hard&rdquo; vs. &ldquo;soft&rdquo; requirements.
+      which denote “hard” vs. “soft” requirements.
       See the description in the node affinity section earlier.
       An example of
       <code>
         requiredDuringSchedulingIgnoredDuringExecution
       </code>
-      affinity would be &ldquo;co-locate the pods of service A and service B
-      in the same zone, since they communicate a lot with each other&rdquo;
+      affinity would be “co-locate the pods of service A and service B
+      in the same zone, since they communicate a lot with each other”
       and an example
       <code>
         preferredDuringSchedulingIgnoredDuringExecution
       </code>
-      anti-affinity would be &ldquo;spread the pods from this service across zones&rdquo;
-      (a hard requirement wouldn&rsquo;t make sense, since you probably have more pods than zones).
+      anti-affinity would be “spread the pods from this service across zones”
+      (a hard requirement wouldn’t make sense, since you probably have more pods than zones).
     </p>
     <p>
       Inter-pod affinity is specified as field
@@ -750,7 +749,7 @@
                 pods/pod-with-pod-affinity.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-with-pod-affinity-yaml')" title="Copy pods/pod-with-pod-affinity.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-pod-with-pod-affinity-yaml&#39;)" title="Copy pods/pod-with-pod-affinity.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -812,7 +811,7 @@
       </code>
       . The
       pod affinity rule says that the pod can be scheduled onto a node only if that node is in the same zone
-      as at least one already-running pod that has a label with key &ldquo;security&rdquo; and value &ldquo;S1&rdquo;. (More precisely, the pod is eligible to run
+      as at least one already-running pod that has a label with key “security” and value “S1”. (More precisely, the pod is eligible to run
       on node N if node N has a label with key
       <code>
         failure-domain.beta.kubernetes.io/zone
@@ -823,9 +822,9 @@
         failure-domain.beta.kubernetes.io/zone
       </code>
       and
-      value V that is running a pod that has a label with key &ldquo;security&rdquo; and value &ldquo;S1&rdquo;.) The pod anti-affinity
+      value V that is running a pod that has a label with key “security” and value “S1”.) The pod anti-affinity
       rule says that the pod prefers not to be scheduled onto a node if that node is already running a pod with label
-      having key &ldquo;security&rdquo; and value &ldquo;S2&rdquo;. (If the
+      having key “security” and value “S2”. (If the
       <code>
         topologyKey
       </code>
@@ -835,7 +834,7 @@
       </code>
       then
       it would mean that the pod cannot be scheduled onto a node if that node is in the same zone as a pod with
-      label having key &ldquo;security&rdquo; and value &ldquo;S2&rdquo;.) See the
+      label having key “security” and value “S2”.) See the
       <a href="https://git.k8s.io/community/contributors/design-proposals/scheduling/podaffinity.md">
         design doc
       </a>
@@ -1156,7 +1155,7 @@ web-server-1287567482-s330j    1/1       Running   0          7m        10.192.3
       </code>
       rule with
       <code>
-        topologyKey: &quot;kubernetes.io/hostname&quot;
+        topologyKey: &#34;kubernetes.io/hostname&#34;
       </code>
       to deploy the redis cluster so that
       no two instances are located on the same host.
@@ -1263,5 +1262,5 @@ web-server-1287567482-s330j    1/1       Running   0          7m        10.192.3
       can take part in node-level
       resource allocation decisions.
     </p>
-  </body>
-</html>
+  
+</body></html>

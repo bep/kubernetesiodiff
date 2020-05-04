@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Nodes
     </h1>
@@ -57,7 +56,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -65,7 +64,7 @@
       Node Status
     </h2>
     <p>
-      A node&rsquo;s status contains the following information:
+      A node’s status contains the following information:
     </p>
     <ul>
       <li>
@@ -106,7 +105,7 @@
     </p>
     <ul>
       <li>
-        HostName: The hostname as reported by the node&rsquo;s kernel. Can be overridden via the kubelet
+        HostName: The hostname as reported by the node’s kernel. Can be overridden via the kubelet
         <code>
           --hostname-override
         </code>
@@ -180,7 +179,7 @@
             <code>
               True
             </code>
-            if pressure exists on the node memory &ndash; that is, if the node memory is low; otherwise
+            if pressure exists on the node memory – that is, if the node memory is low; otherwise
             <code>
               False
             </code>
@@ -196,7 +195,7 @@
             <code>
               True
             </code>
-            if pressure exists on the processes &ndash; that is, if there are too many processes on the node; otherwise
+            if pressure exists on the processes – that is, if there are too many processes on the node; otherwise
             <code>
               False
             </code>
@@ -212,7 +211,7 @@
             <code>
               True
             </code>
-            if pressure exists on the disk size &ndash; that is, if the disk capacity is low; otherwise
+            if pressure exists on the disk size – that is, if the disk capacity is low; otherwise
             <code>
               False
             </code>
@@ -299,8 +298,8 @@
         taints
       </a>
       that represent conditions.
-      The scheduler takes the Node&rsquo;s taints into consideration when assigning a Pod to a Node.
-      Pods can also have tolerations which let them tolerate a Node&rsquo;s taints.
+      The scheduler takes the Node’s taints into consideration when assigning a Pod to a Node.
+      Pods can also have tolerations which let them tolerate a Node’s taints.
     </p>
     <h3 id="capacity">
       Capacity and Allocatable
@@ -367,8 +366,8 @@
       <code>
         metadata.name
       </code>
-      field. If the node is valid &ndash; that is, if all necessary
-      services are running &ndash; it is eligible to run a pod. Otherwise, it is
+      field. If the node is valid – that is, if all necessary
+      services are running – it is eligible to run a pod. Otherwise, it is
       ignored for any cluster activity until it becomes valid.
       The name of a Node object must be a valid
       <a href="/docs/concepts/overview/working-with-objects/names#dns-subdomain-names">
@@ -397,18 +396,18 @@
       aspects of nodes.
     </p>
     <p>
-      The node controller has multiple roles in a node&rsquo;s life. The first is assigning a
+      The node controller has multiple roles in a node’s life. The first is assigning a
       CIDR block to the node when it is registered (if CIDR assignment is turned on).
     </p>
     <p>
-      The second is keeping the node controller&rsquo;s internal list of nodes up to date with
-      the cloud provider&rsquo;s list of available machines. When running in a cloud
+      The second is keeping the node controller’s internal list of nodes up to date with
+      the cloud provider’s list of available machines. When running in a cloud
       environment, whenever a node is unhealthy, the node controller asks the cloud
       provider if the VM for that node is still available. If not, the node
       controller deletes the node from its list of nodes.
     </p>
     <p>
-      The third is monitoring the nodes&rsquo; health. The node controller is
+      The third is monitoring the nodes’ health. The node controller is
       responsible for updating the NodeReady condition of NodeStatus to
       ConditionUnknown when a node becomes unreachable (i.e. the node controller stops
       receiving heartbeats for some reason, for example due to the node being down), and then later evicting
@@ -432,7 +431,7 @@
       </code>
       and the
       <a href="/docs/reference/generated/kubernetes-api/v1.18
-/#lease-v1-coordination-k8s-io">
+/#lease-v1-coordination-k8s-io" data-diff="">
         Lease object
       </a>
       .
@@ -440,9 +439,9 @@
       <code>
         kube-node-lease
       </code>
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/namespaces' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/namespaces" target="_blank">
         namespace
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An abstraction used by Kubernetes to support multiple virtual clusters on the same physical cluster.
         </span>
       </a>
@@ -497,7 +496,7 @@
       <code>
         --node-eviction-rate
       </code>
-      (default 0.1) per second, meaning it won&rsquo;t evict pods
+      (default 0.1) per second, meaning it won’t evict pods
       from more than 1 node per 10 seconds.
     </p>
     <p>
@@ -534,7 +533,7 @@
       </code>
       .  The corner case is when all zones are
       completely unhealthy (i.e. there are no healthy nodes in the cluster). In such a
-      case, the node controller assumes that there&rsquo;s some problem with master
+      case, the node controller assumes that there’s some problem with master
       connectivity and stops all evictions until some connectivity is restored.
     </p>
     <p>
@@ -694,7 +693,7 @@
         <code>
           kubectl cordon
         </code>
-        marks a node as &lsquo;unschedulable&rsquo;, which has the side effect of the service
+        marks a node as ‘unschedulable’, which has the side effect of the service
         controller removing the node from any LoadBalancer node target lists it was previously
         eligible for, effectively removing incoming load balancer traffic from the cordoned node(s).
       </div>
@@ -833,5 +832,5 @@
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       kubeadm join
     </h1>
@@ -17,11 +16,11 @@
     <ul id="markdown-toc">
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre data-diff=""><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       When joining a kubeadm initialized cluster, we need to establish
       bidirectional trust. This is split into discovery (having the Node
@@ -33,27 +32,27 @@
       token along with the IP address of the API server. The second is to
       provide a file - a subset of the standard kubeconfig file. This file
       can be a local file or downloaded via an HTTPS URL. The forms are
-      kubeadm join &ndash;discovery-token abcdef.1234567890abcdef 1.2.3.4:6443,
-      kubeadm join &ndash;discovery-file path/to/file.conf, or kubeadm join
-      &ndash;discovery-file https://url/file.conf. Only one form can be used. If
+      kubeadm join –discovery-token abcdef.1234567890abcdef 1.2.3.4:6443,
+      kubeadm join –discovery-file path/to/file.conf, or kubeadm join
+      –discovery-file https://url/file.conf. Only one form can be used. If
       the discovery information is loaded from a URL, HTTPS must be used.
       Also, in that case the host installed CA bundle is used to verify
       the connection.
     </p>
     <p>
       If you use a shared token for discovery, you should also pass the
-      &ndash;discovery-token-ca-cert-hash flag to validate the public key of the
+      –discovery-token-ca-cert-hash flag to validate the public key of the
       root certificate authority (CA) presented by the Kubernetes Control Plane.
-      The value of this flag is specified as &ldquo;&lt;hash-type&gt;:&lt;hex-encoded-value&gt;&quot;,
-      where the supported hash type is &ldquo;sha256&rdquo;. The hash is calculated over
+      The value of this flag is specified as “&lt;hash-type&gt;:&lt;hex-encoded-value&gt;&#34;,
+      where the supported hash type is “sha256”. The hash is calculated over
       the bytes of the Subject Public Key Info (SPKI) object (as in RFC7469).
-      This value is available in the output of &ldquo;kubeadm init&rdquo; or can be
-      calculated using standard tools. The &ndash;discovery-token-ca-cert-hash flag
+      This value is available in the output of “kubeadm init” or can be
+      calculated using standard tools. The –discovery-token-ca-cert-hash flag
       may be repeated multiple times to allow more than one public key.
     </p>
     <p>
       If you cannot know the CA public key hash ahead of time, you can pass
-      the &ndash;discovery-token-unsafe-skip-ca-verification flag to disable this
+      the –discovery-token-unsafe-skip-ca-verification flag to disable this
       verification. This weakens the kubeadm security model since other nodes
       can potentially impersonate the Kubernetes Control Plane.
     </p>
@@ -63,14 +62,14 @@
       certificate signing request (CSR) for a locally created key pair. By
       default, kubeadm will set up the Kubernetes Control Plane to automatically
       approve these signing requests. This token is passed in with the
-      &ndash;tls-bootstrap-token abcdef.1234567890abcdef flag.
+      –tls-bootstrap-token abcdef.1234567890abcdef flag.
     </p>
     <p>
       Often times the same token is used for both parts. In this case, the
-      &ndash;token flag can be used instead of specifying each token individually.
+      –token flag can be used instead of specifying each token individually.
     </p>
     <p>
-      The &ldquo;join [api-server-endpoint]&rdquo; command executes the following phases:
+      The “join [api-server-endpoint]” command executes the following phases:
     </p>
     <pre><code>preflight              Run join pre-flight checks
 control-plane-prepare  Prepare the machine for serving a control plane
@@ -89,8 +88,8 @@ control-plane-join     Join a machine as a control plane instance
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -101,12 +100,12 @@ control-plane-join     Join a machine as a control plane instance
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            If the node should host a new control plane instance, the IP address the API Server will advertise it's listening on. If not set the default network interface will be used.
+            If the node should host a new control plane instance, the IP address the API Server will advertise it&#39;s listening on. If not set the default network interface will be used.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --apiserver-bind-port int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 6443
+            --apiserver-bind-port int32     Default: 6443
           </td>
         </tr>
         <tr>
@@ -189,7 +188,7 @@ control-plane-join     Join a machine as a control plane instance
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            For token-based discovery, validate that the root CA public key matches this hash (format: "&lt;type&gt;:&lt;value&gt;").
+            For token-based discovery, validate that the root CA public key matches this hash (format: &#34;&lt;type&gt;:&lt;value&gt;&#34;).
           </td>
         </tr>
         <tr>
@@ -233,7 +232,7 @@ control-plane-join     Join a machine as a control plane instance
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.
+            A list of checks whose errors will be shown as warnings. Example: &#39;IsPrivilegedUser,Swap&#39;. Value &#39;all&#39; ignores errors from all checks.
           </td>
         </tr>
         <tr>
@@ -287,8 +286,8 @@ control-plane-join     Join a machine as a control plane instance
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -299,7 +298,7 @@ control-plane-join     Join a machine as a control plane instance
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -677,7 +676,7 @@ control-plane-join     Join a machine as a control plane instance
     </h4>
     <p>
       By default, there is a CSR auto-approver enabled that basically approves any client certificate request
-      for a kubelet when a Bootstrap Token was used when authenticating. If you don&rsquo;t want the cluster to
+      for a kubelet when a Bootstrap Token was used when authenticating. If you don’t want the cluster to
       automatically approve kubelet client certs, you can turn it off by executing this command:
     </p>
     <div class="highlight">
@@ -704,7 +703,7 @@ node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ   18s       system:bootstra
     <p>
       The output is similar to this:
     </p>
-    <pre><code>certificatesigningrequest &quot;node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ&quot; approved</code></pre>
+    <pre><code>certificatesigningrequest &#34;node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ&#34; approved</code></pre>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get csr</code></pre>
     </div>
@@ -729,7 +728,7 @@ node-csr-c69HXe7aYcqkS1bKmH4faEnHAWxn6i2bHZ2mD04jZyQ   1m        system:bootstra
     </h4>
     <p>
       In order to achieve the joining flow using the token as the only piece of validation information, a
-      ConfigMap with some data needed for validation of the control-plane node&rsquo;s identity is exposed publicly by
+      ConfigMap with some data needed for validation of the control-plane node’s identity is exposed publicly by
       default. While there is no private data in this ConfigMap, some users might wish to turn
       it off regardless. Doing so will disable the ability to use the
       <code>
@@ -762,9 +761,9 @@ clusters:
 - cluster:
     certificate-authority-data: &lt;ca-cert&gt;
     server: https://&lt;ip&gt;:&lt;port&gt;
-  name: &quot;&quot;
+  name: &#34;&#34;
 contexts: []
-current-context: &quot;&quot;
+current-context: &#34;&#34;
 preferences: {}
 users: []</code></pre>
     <ul>
@@ -817,7 +816,7 @@ users: []</code></pre>
       </div>
     </blockquote>
     <p>
-      It&rsquo;s possible to configure
+      It’s possible to configure
       <code>
         kubeadm join
       </code>
@@ -888,5 +887,5 @@ users: []</code></pre>
         </code>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

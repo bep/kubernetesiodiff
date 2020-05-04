@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Overview of kubectl
     </h1>
@@ -76,7 +75,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -148,7 +147,7 @@
           </a>
           . Resource types are case-insensitive and you can specify the singular, plural, or abbreviated forms. For example, the following commands produce the same output:
         </p>
-        <pre><code>```shell
+        <pre data-diff=""><code>```shell
 kubectl get pod pod1
 kubectl get pods pod1
 kubectl get po pod1
@@ -293,7 +292,7 @@ kubectl get po pod1
           </td>
           <td>
             <code>
-              kubectl annotate (-f FILENAME | TYPE NAME | TYPE/NAME) KEY_1=VAL_1 &hellip; KEY_N=VAL_N [&ndash;overwrite] [&ndash;all] [&ndash;resource-version=version] [flags]
+              kubectl annotate (-f FILENAME | TYPE NAME | TYPE/NAME) KEY_1=VAL_1 … KEY_N=VAL_N [–overwrite] [–all] [–resource-version=version] [flags]
             </code>
           </td>
           <td>
@@ -353,7 +352,7 @@ kubectl get po pod1
           </td>
           <td>
             <code>
-              kubectl autoscale (-f FILENAME | TYPE NAME | TYPE/NAME) [&ndash;min=MINPODS] &ndash;max=MAXPODS [&ndash;cpu-percent=CPU] [flags]
+              kubectl autoscale (-f FILENAME | TYPE NAME | TYPE/NAME) [–min=MINPODS] –max=MAXPODS [–cpu-percent=CPU] [flags]
             </code>
           </td>
           <td>
@@ -413,7 +412,7 @@ kubectl get po pod1
           </td>
           <td>
             <code>
-              kubectl delete (-f FILENAME | TYPE [NAME | /NAME | -l label | &ndash;all]) [flags]
+              kubectl delete (-f FILENAME | TYPE [NAME | /NAME | -l label | –all]) [flags]
             </code>
           </td>
           <td>
@@ -503,7 +502,7 @@ kubectl get po pod1
           </td>
           <td>
             <code>
-              kubectl expose (-f FILENAME | TYPE NAME | TYPE/NAME) [&ndash;port=port] [&ndash;protocol=TCP|UDP] [&ndash;target-port=number-or-name] [&ndash;name=name] [&ndash;external-ip=external-ip-of-service] [&ndash;type=type] [flags]
+              kubectl expose (-f FILENAME | TYPE NAME | TYPE/NAME) [–port=port] [–protocol=TCP|UDP] [–target-port=number-or-name] [–name=name] [–external-ip=external-ip-of-service] [–type=type] [flags]
             </code>
           </td>
           <td>
@@ -518,7 +517,7 @@ kubectl get po pod1
           </td>
           <td>
             <code>
-              kubectl get (-f FILENAME | TYPE [NAME | /NAME | -l label]) [&ndash;watch] [&ndash;sort-by=FIELD] [[-o | &ndash;output]=OUTPUT_FORMAT] [flags]
+              kubectl get (-f FILENAME | TYPE [NAME | /NAME | -l label]) [–watch] [–sort-by=FIELD] [[-o | –output]=OUTPUT_FORMAT] [flags]
             </code>
           </td>
           <td>
@@ -533,7 +532,7 @@ kubectl get po pod1
           </td>
           <td>
             <code>
-              kubectl label (-f FILENAME | TYPE NAME | TYPE/NAME) KEY_1=VAL_1 &hellip; KEY_N=VAL_N [&ndash;overwrite] [&ndash;all] [&ndash;resource-version=version] [flags]
+              kubectl label (-f FILENAME | TYPE NAME | TYPE/NAME) KEY_1=VAL_1 … KEY_N=VAL_N [–overwrite] [–all] [–resource-version=version] [flags]
             </code>
           </td>
           <td>
@@ -563,7 +562,7 @@ kubectl get po pod1
           </td>
           <td>
             <code>
-              kubectl patch (-f FILENAME | TYPE NAME | TYPE/NAME) &ndash;patch PATCH [flags]
+              kubectl patch (-f FILENAME | TYPE NAME | TYPE/NAME) –patch PATCH [flags]
             </code>
           </td>
           <td>
@@ -623,7 +622,7 @@ kubectl get po pod1
           </td>
           <td>
             <code>
-              kubectl run NAME --image=image [--env=&quot;key=value&quot;] [--port=port] [--replicas=replicas] [--dry-run=server|client|none] [--overrides=inline-json] [flags]
+              kubectl run NAME --image=image [--env=&#34;key=value&#34;] [--port=port] [--replicas=replicas] [--dry-run=server|client|none] [--overrides=inline-json] [flags]
             </code>
           </td>
           <td>
@@ -638,7 +637,7 @@ kubectl get po pod1
           </td>
           <td>
             <code>
-              kubectl scale (-f FILENAME | TYPE NAME | TYPE/NAME) &ndash;replicas=COUNT [&ndash;resource-version=version] [&ndash;current-replicas=count] [flags]
+              kubectl scale (-f FILENAME | TYPE NAME | TYPE/NAME) –replicas=COUNT [–resource-version=version] [–current-replicas=count] [flags]
             </code>
           </td>
           <td>
@@ -2131,7 +2130,7 @@ sudo mv ./kubectl-hello /usr/local/bin
 kubectl hello</code></pre>
     </div>
     <pre><code>hello world</code></pre>
-    <pre><code># we can &quot;uninstall&quot; a plugin, by simply removing it from our PATH
+    <pre><code># we can &#34;uninstall&#34; a plugin, by simply removing it from our PATH
 sudo rm /usr/local/bin/kubectl-hello</code></pre>
     <p>
       In order to view all of the plugins that are available to
@@ -2209,5 +2208,5 @@ Current user: plugins-user</code></pre>
       </a>
       commands.
     </p>
-  </body>
-</html>
+  
+</body></html>

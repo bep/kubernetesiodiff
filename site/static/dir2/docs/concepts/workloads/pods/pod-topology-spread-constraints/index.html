@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Pod Topology Spread Constraints
 </h1>
@@ -12,7 +11,7 @@
   Pod Topology Spread Constraints
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -85,9 +84,9 @@
     topology spread constraints
   </em>
   to control how
-  <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
     Pods
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
     </span>
   </a>
@@ -130,18 +129,18 @@
     feature gate
   </a>
   must be enabled for the
-  <a class='glossary-tooltip' href='/docs/reference/generated/kube-apiserver/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/reference/generated/kube-apiserver/" target="_blank">
     API Server
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Control plane component that serves the Kubernetes API.
     </span>
   </a>
   <strong>
     and
   </strong>
-  <a class='glossary-tooltip' href='/docs/reference/generated/kube-scheduler/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/reference/generated/kube-scheduler/" target="_blank">
     scheduler
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Control plane component that watches for newly created pods with no assigned node, and selects a node for them to run on.
     </span>
   </a>
@@ -215,7 +214,7 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
     <strong>
       maxSkew
     </strong>
-    describes the degree to which Pods may be unevenly distributed. It&rsquo;s the maximum permitted difference between the number of matching Pods in any two topology domains of a given topology type. It must be greater than zero.
+    describes the degree to which Pods may be unevenly distributed. It’s the maximum permitted difference between the number of matching Pods in any two topology domains of a given topology type. It must be greater than zero.
   </li>
   <li>
     <strong>
@@ -227,7 +226,7 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
     <strong>
       whenUnsatisfiable
     </strong>
-    indicates how to deal with a Pod if it doesn&rsquo;t satisfy the spread constraint:
+    indicates how to deal with a Pod if it doesn’t satisfy the spread constraint:
     <ul>
       <li>
         <code>
@@ -293,7 +292,7 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
             pods/topology-spread-constraints/one-constraint.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-topology-spread-constraints-one-constraint-yaml')" title="Copy pods/topology-spread-constraints/one-constraint.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-topology-spread-constraints-one-constraint-yaml&#39;)" title="Copy pods/topology-spread-constraints/one-constraint.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -327,20 +326,20 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
   <code>
     topologyKey: zone
   </code>
-  implies the even distribution will only be applied to the nodes which have label pair &ldquo;zone:
-  <any value>
-  &rdquo; present.
+  implies the even distribution will only be applied to the nodes which have label pair “zone:
+  <any value="">
+  ” present.
   <code>
     whenUnsatisfiable: DoNotSchedule
   </code>
   tells the scheduler to let it stay pending if the incoming Pod can’t satisfy the constraint.
-</p>
+</any></p>
 <p>
-  If the scheduler placed this incoming Pod into &ldquo;zoneA&rdquo;, the Pods distribution would become [3, 1], hence the actual skew is 2 (3 - 1) - which violates
+  If the scheduler placed this incoming Pod into “zoneA”, the Pods distribution would become [3, 1], hence the actual skew is 2 (3 - 1) - which violates
   <code>
     maxSkew: 1
   </code>
-  . In this example, the incoming Pod can only be placed onto &ldquo;zoneB&rdquo;:
+  . In this example, the incoming Pod can only be placed onto “zoneB”:
 </p><pre><code>+---------------+---------------+      +---------------+---------------+
 |     zoneA     |     zoneB     |      |     zoneA     |     zoneB     |
 +-------+-------+-------+-------+      +-------+-------+-------+-------+
@@ -357,18 +356,18 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
     <code>
       maxSkew
     </code>
-    to a bigger value like &ldquo;2&rdquo; so that the incoming Pod can be placed onto &ldquo;zoneA&rdquo; as well.
+    to a bigger value like “2” so that the incoming Pod can be placed onto “zoneA” as well.
   </li>
   <li>
     Change
     <code>
       topologyKey
     </code>
-    to &ldquo;node&rdquo; so as to distribute the Pods evenly across nodes instead of zones. In the above example, if
+    to “node” so as to distribute the Pods evenly across nodes instead of zones. In the above example, if
     <code>
       maxSkew
     </code>
-    remains &ldquo;1&rdquo;, the incoming Pod can only be placed onto &ldquo;node4&rdquo;.
+    remains “1”, the incoming Pod can only be placed onto “node4”.
   </li>
   <li>
     Change
@@ -414,7 +413,7 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
             pods/topology-spread-constraints/two-constraints.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-topology-spread-constraints-two-constraints-yaml')" title="Copy pods/topology-spread-constraints/two-constraints.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-topology-spread-constraints-two-constraints-yaml&#39;)" title="Copy pods/topology-spread-constraints/two-constraints.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -451,7 +450,7 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
   </tbody>
 </table>
 <p>
-  In this case, to match the first constraint, the incoming Pod can only be placed onto &ldquo;zoneB&rdquo;; while in terms of the second constraint, the incoming Pod can only be placed onto &ldquo;node4&rdquo;. Then the results of 2 constraints are ANDed, so the only viable option is to place on &ldquo;node4&rdquo;.
+  In this case, to match the first constraint, the incoming Pod can only be placed onto “zoneB”; while in terms of the second constraint, the incoming Pod can only be placed onto “node4”. Then the results of 2 constraints are ANDed, so the only viable option is to place on “node4”.
 </p>
 <p>
   Multiple constraints can lead to conflicts. Suppose you have a 3-node cluster across 2 zones:
@@ -463,11 +462,11 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
 |  P P  |   P   |  P P  |
 +-------+-------+-------+</code></pre>
 <p>
-  If you apply &ldquo;two-constraints.yaml&rdquo; to this cluster, you will notice &ldquo;mypod&rdquo; stays in
+  If you apply “two-constraints.yaml” to this cluster, you will notice “mypod” stays in
   <code>
     Pending
   </code>
-  state. This is because: to satisfy the first constraint, &ldquo;mypod&rdquo; can only be put to &ldquo;zoneB&rdquo;; while in terms of the second constraint, &ldquo;mypod&rdquo; can only put to &ldquo;node2&rdquo;. Then a joint result of &ldquo;zoneB&rdquo; and &ldquo;node2&rdquo; returns nothing.
+  state. This is because: to satisfy the first constraint, “mypod” can only be put to “zoneB”; while in terms of the second constraint, “mypod” can only put to “node2”. Then a joint result of “zoneB” and “node2” returns nothing.
 </p>
 <p>
   To overcome this situation, you can either increase the
@@ -506,14 +505,14 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
         <code>
           maxSkew
         </code>
-        calculation - in the above example, suppose &ldquo;node1&rdquo; does not have label &ldquo;zone&rdquo;, then the 2 Pods will be disregarded, hence the incomingPod will be scheduled into &ldquo;zoneA&rdquo;.
+        calculation - in the above example, suppose “node1” does not have label “zone”, then the 2 Pods will be disregarded, hence the incomingPod will be scheduled into “zoneA”.
       </li>
       <li>
-        the incoming Pod has no chances to be scheduled onto this kind of nodes - in the above example, suppose a &ldquo;node5&rdquo; carrying label
+        the incoming Pod has no chances to be scheduled onto this kind of nodes - in the above example, suppose a “node5” carrying label
         <code>
           {zone-typo: zoneC}
         </code>
-        joins the cluster, it will be bypassed due to the absence of label key &ldquo;zone&rdquo;.
+        joins the cluster, it will be bypassed due to the absence of label key “zone”.
       </li>
     </ol>
   </li>
@@ -523,7 +522,7 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
       <code>
         topologySpreadConstraints[*].labelSelector
       </code>
-      doesn’t match its own labels. In the above example, if we remove the incoming Pod’s labels, it can still be placed onto &ldquo;zoneB&rdquo; since the constraints are still satisfied. However, after the placement, the degree of imbalance of the cluster remains unchanged - it’s still zoneA having 2 Pods which hold label {foo:bar}, and zoneB having 1 Pod which holds label {foo:bar}. So if this is not what you expect, we recommend the workload’s
+      doesn’t match its own labels. In the above example, if we remove the incoming Pod’s labels, it can still be placed onto “zoneB” since the constraints are still satisfied. However, after the placement, the degree of imbalance of the cluster remains unchanged - it’s still zoneA having 2 Pods which hold label {foo:bar}, and zoneB having 1 Pod which holds label {foo:bar}. So if this is not what you expect, we recommend the workload’s
       <code>
         topologySpreadConstraints[*].labelSelector
       </code>
@@ -553,7 +552,7 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
 |   P   |   P   |   P   |       |       |
 +-------+-------+-------+-------+-------+</code></pre>
     <p>
-      and you know that &ldquo;zoneC&rdquo; must be excluded. In this case, you can compose the yaml as below, so that &ldquo;mypod&rdquo; will be placed onto &ldquo;zoneB&rdquo; instead of &ldquo;zoneC&rdquo;. Similarly
+      and you know that “zoneC” must be excluded. In this case, you can compose the yaml as below, so that “mypod” will be placed onto “zoneB” instead of “zoneC”. Similarly
       <code>
         spec.nodeSelector
       </code>
@@ -570,7 +569,7 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
             pods/topology-spread-constraints/one-constraint-with-nodeaffinity.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-topology-spread-constraints-one-constraint-with-nodeaffinity-yaml')" title="Copy pods/topology-spread-constraints/one-constraint-with-nodeaffinity.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-topology-spread-constraints-one-constraint-with-nodeaffinity-yaml&#39;)" title="Copy pods/topology-spread-constraints/one-constraint-with-nodeaffinity.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -681,7 +680,7 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
 </p>
 <ul>
   <li>
-    It doesn&rsquo;t define any constraints in its
+    It doesn’t define any constraints in its
     <code>
       .spec.topologySpreadConstraints
     </code>
@@ -756,7 +755,7 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
   Comparison with PodAffinity/PodAntiAffinity
 </h2>
 <p>
-  In Kubernetes, directives related to &ldquo;Affinity&rdquo; control how Pods are
+  In Kubernetes, directives related to “Affinity” control how Pods are
   scheduled - more packed or more scattered.
 </p>
 <ul>
@@ -778,7 +777,7 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
   </li>
 </ul>
 <p>
-  The &ldquo;EvenPodsSpread&rdquo; feature provides flexible options to distribute Pods evenly across different
+  The “EvenPodsSpread” feature provides flexible options to distribute Pods evenly across different
   topology domains - to achieve high availability or cost-saving. This can also help on rolling update
   workloads and scaling out replicas smoothly.
   See
@@ -803,4 +802,4 @@ node4   Ready    &lt;none&gt;   2m43s   v1.16.0   node=node4,zone=zoneB</code></
       Issue 80921
     </a>
   </li>
-</ul>
+</ul></div></div></body></html>

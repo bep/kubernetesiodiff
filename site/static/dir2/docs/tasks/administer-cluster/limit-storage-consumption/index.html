@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Limit Storage Consumption
 </h1>
@@ -64,7 +63,7 @@
   <li>
     <p>
     You need to have a Kubernetes cluster, and the kubectl command-line tool must
-  </li>
+  </p></li>
 </ul>
 <p>
   be configured to communicate with your cluster. If you do not already have a
@@ -165,13 +164,13 @@ metadata:
   name: storagequota
 spec:
   hard:
-    persistentvolumeclaims: &quot;5&quot;
-    requests.storage: &quot;5Gi&quot;</code></pre>
+    persistentvolumeclaims: &#34;5&#34;
+    requests.storage: &#34;5Gi&#34;</code></pre>
 <h2 id="summary">
   Summary
 </h2>
 <p>
   A limit range can put a ceiling on how much storage is requested while a resource quota can effectively cap the storage
   consumed by a namespace through claim counts and cumulative storage capacity. The allows a cluster-admin to plan their
-  cluster&rsquo;s storage budget without risk of any one project going over their allotment.
-</p>
+  cluster’s storage budget without risk of any one project going over their allotment.
+</p></body></html>

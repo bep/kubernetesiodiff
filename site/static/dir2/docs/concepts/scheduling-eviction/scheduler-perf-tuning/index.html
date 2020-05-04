@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Scheduler Performance Tuning
 </h1>
@@ -12,7 +11,7 @@
   Scheduler Performance Tuning
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -129,7 +128,7 @@
   </li>
 </ul>
 <p>
-  In large clusters, you can tune the scheduler&rsquo;s behaviour balancing
+  In large clusters, you can tune the scheduler’s behaviour balancing
   scheduling outcomes between latency (new Pods are placed quickly) and
   accuracy (the scheduler rarely makes poor placement decisions).
 </p>
@@ -208,7 +207,7 @@ scheduler            Healthy   ok
   Default threshold
 </h3>
 <p>
-  If you don&rsquo;t specify a threshold, Kubernetes calculates a figure using a
+  If you don’t specify a threshold, Kubernetes calculates a figure using a
   linear formula that yields 50% for a 100-node cluster and yields 10%
   for a 5000-node cluster. The lower bound for the automatic value is 5%.
 </p>
@@ -267,7 +266,7 @@ scheduler            Healthy   ok
     <p>
       In clusters with less than 50 feasible nodes, the scheduler still
       checks all the nodes, simply because there are not enough feasible nodes to stop
-      the scheduler&rsquo;s search early.
+      the scheduler’s search early.
     </p>
     <p>
       In a small cluster, if you set a low value for
@@ -280,7 +279,7 @@ scheduler            Healthy   ok
     <p>
       If your cluster has several hundred Nodes or fewer, leave this configuration option
       at its default value. Making changes is unlikely to improve the
-      scheduler&rsquo;s performance significantly.
+      scheduler’s performance significantly.
     </p>
   </div>
 </blockquote>
@@ -298,7 +297,7 @@ scheduler            Healthy   ok
   </code>
   very low so that kube-scheduler
   does not make frequent, poor Pod placement decisions. Avoid setting the
-  percentage to anything below 10%, unless the scheduler&rsquo;s throughput is critical
+  percentage to anything below 10%, unless the scheduler’s throughput is critical
   for your application and the score of nodes is not important. In other words, you
   prefer to run the Pod on any Node as long as it is feasible.
 </p>
@@ -333,4 +332,4 @@ Zone 2: Node 5, Node 6</code></pre>
 </p><pre><code>Node 1, Node 5, Node 2, Node 6, Node 3, Node 4</code></pre>
 <p>
   After going over all the Nodes, it goes back to Node 1.
-</p>
+</p></div></body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Docs smoke test page
     </h1>
@@ -14,7 +13,7 @@
     <nav id="TableOfContents">
       <ul>
         <li>
-          <a href="#heading-levels">
+          <a href="#heading-levels" data-diff="">
             Heading levels
           </a>
           <ul>
@@ -128,7 +127,7 @@
         Demonstrate how the Kubernetes documentation uses Markdown
       </li>
       <li>
-        Provide a &ldquo;smoke test&rdquo; document we can use to test HTML, CSS, and template
+        Provide a “smoke test” document we can use to test HTML, CSS, and template
         changes that affect the overall documentation.
       </li>
     </ul>
@@ -249,7 +248,7 @@
       Lists
     </h2>
     <p>
-      Markdown doesn&rsquo;t have strict rules about how to process lists. When we moved
+      Markdown doesn’t have strict rules about how to process lists. When we moved
       from Jekyll to Hugo, we broke some lists. To fix them, keep the following in
       mind:
     </p>
@@ -268,7 +267,7 @@
       <li>
         <p>
           To end a list and start another, you need a HTML comment block on a new line
-          between the lists, flush with the left-hand border. The first list won&rsquo;t end
+          between the lists, flush with the left-hand border. The first list won’t end
           otherwise, no matter how many blank lines you put between it and the second.
         </p>
       </li>
@@ -414,7 +413,7 @@ ls -l
         <ul>
           <li>
             And a sub-list after some block-level content. This is at the same
-            &ldquo;level&rdquo; as the paragraph and code block above, despite being indented
+            “level” as the paragraph and code block above, despite being indented
             more.
           </li>
         </ul>
@@ -497,11 +496,11 @@ ls -l
     </p>
     <ul>
       <li>
-        <input disabled="" type="checkbox">
+        <input disabled="" type="checkbox"/>
         This is a checklist item
       </li>
       <li>
-        <input checked="" disabled="" type="checkbox">
+        <input checked="" disabled="" type="checkbox"/>
         This is a selected checklist item
       </li>
     </ul>
@@ -626,7 +625,7 @@ ls -l
       characters. The following example illustrates this (view the Markdown
       source for this page).
     </p>
-    <pre><code class="language-none" data-lang="none">{{&lt; codenew file=&quot;pods/storage/gce-volume.yaml&quot; &gt;}}</code></pre>
+    <pre><code class="language-none" data-lang="none">{{&lt; codenew file=&#34;pods/storage/gce-volume.yaml&#34; &gt;}}</code></pre>
     <h2 id="links">
       Links
     </h2>
@@ -659,12 +658,12 @@ ls -l
       <code>
         !
       </code>
-      character. The square brackets contain the image&rsquo;s alt text. Try to always use
+      character. The square brackets contain the image’s alt text. Try to always use
       alt text so that people using screen readers can get some benefit from the
       image.
     </p>
     <p>
-      <img src="/static/images/pencil.png" alt="pencil icon">
+      <img src="/static/images/pencil.png" alt="pencil icon"/>
     </p>
     <p>
       To specify extended attributes, such as width, title, caption, etc, use the
@@ -685,8 +684,7 @@ ls -l
       figure in Markdown link syntax as shown below.
     </p>
     <figure>
-      <img src="/static/images/pencil.png"
-         alt="Image used to illustrate the figure shortcode" width="200px"/>
+      <img src="/static/images/pencil.png" alt="Image used to illustrate the figure shortcode" width="200px"/>
       <figcaption>
         <h4>
           Pencil icon
@@ -703,14 +701,14 @@ ls -l
     </p>
     <p>
       <a href="https://kubernetes.io">
-        <img src="/static/images/pencil.png" alt="pencil icon">
+        <img src="/static/images/pencil.png" alt="pencil icon"/>
       </a>
     </p>
     <p>
       You can also use HTML for images, but it is not preferred.
     </p>
     <p>
-      <img src="/static/images/pencil.png" alt="pencil icon" />
+      <img src="/static/images/pencil.png" alt="pencil icon"/>
     </p>
     <h2 id="tables">
       Tables
@@ -827,7 +825,7 @@ ls -l
           Note:
         </strong>
         <p>
-          Notes catch the reader&rsquo;s attention without a sense of urgency.
+          Notes catch the reader’s attention without a sense of urgency.
         </p>
         <p>
           You can have multiple paragraphs and block-level elements inside an admonition.
@@ -896,5 +894,5 @@ ls -l
     <button class="button" onclick="window.katacoda.init(); ">
       Launch Terminal
     </button>
-  </body>
-</html>
+  
+</body></html>

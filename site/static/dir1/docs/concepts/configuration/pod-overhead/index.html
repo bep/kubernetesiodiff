@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Pod Overhead
     </h1>
@@ -12,7 +11,7 @@
       Pod Overhead
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -105,16 +104,16 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
     <p>
-      In Kubernetes, the Pod&rsquo;s overhead is set at
+      In Kubernetes, the Pod’s overhead is set at
       <a href="/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks">
         admission
       </a>
-      time according to the overhead associated with the Pod&rsquo;s
+      time according to the overhead associated with the Pod’s
       <a href="/docs/concepts/containers/runtime-class/">
         RuntimeClass
       </a>
@@ -210,7 +209,7 @@
       <a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/">
         admission controller
       </a>
-      updates the workload&rsquo;s PodSpec to include the
+      updates the workload’s PodSpec to include the
       <code>
         overhead
       </code>
@@ -240,7 +239,7 @@
       field are counted.
     </p>
     <p>
-      When the kube-scheduler is deciding which node should run a new Pod, the scheduler considers that Pod&rsquo;s
+      When the kube-scheduler is deciding which node should run a new Pod, the scheduler considers that Pod’s
       <code>
         overhead
       </code>
@@ -249,9 +248,9 @@
     </p>
     <p>
       Once a Pod is scheduled to a node, the kubelet on that node creates a new
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-cgroup' target='_blank'>
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-cgroup" target="_blank">
         cgroup
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A group of Linux processes with optional resource isolation, accounting and limits.
         </span>
       </a>
@@ -304,7 +303,7 @@
       Verify Pod cgroup limits
     </h2>
     <p>
-      Check the Pod&rsquo;s memory cgroups on the node where the workload is running. In the following example,
+      Check the Pod’s memory cgroups on the node where the workload is running. In the following example,
       <a href="https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md">
         <code>
           crictl
@@ -329,7 +328,7 @@
 sudo crictl inspectp -o<span style="color:#666">=</span>json <span style="color:#b8860b">$POD_ID</span> | grep cgroupsPath</code></pre>
     </div>
     <p>
-      The resulting cgroup path includes the Pod&rsquo;s
+      The resulting cgroup path includes the Pod’s
       <code>
         pause
       </code>
@@ -384,5 +383,5 @@ sudo crictl inspectp -o<span style="color:#666">=</span>json <span style="color:
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

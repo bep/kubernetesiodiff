@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Taints and Tolerations
     </h1>
@@ -26,7 +25,7 @@
         attracts
       </em>
       them to a set of nodes (either as a
-      preference or a hard requirement). Taints are the opposite &ndash; they allow a
+      preference or a hard requirement). Taints are the opposite – they allow a
       <em>
         node
       </em>
@@ -110,7 +109,7 @@
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl taint nodes node1 key:NoSchedule-</code></pre>
     </div>
     <p>
-      You specify a toleration for a pod in the PodSpec. Both of the following tolerations &ldquo;match&rdquo; the
+      You specify a toleration for a pod in the PodSpec. Both of the following tolerations “match” the
       taint created by the
       <code>
         kubectl taint
@@ -147,7 +146,7 @@
                 pods/pod-with-toleration.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-with-toleration-yaml')" title="Copy pods/pod-with-toleration.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-pod-with-toleration-yaml&#39;)" title="Copy pods/pod-with-toleration.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -177,7 +176,7 @@
       </tbody>
     </table>
     <p>
-      A toleration &ldquo;matches&rdquo; a taint if the keys are the same and the effects are the same, and:
+      A toleration “matches” a taint if the keys are the same and the effects are the same, and:
     </p>
     <ul>
       <li>
@@ -231,7 +230,7 @@
         </p>
         <ul>
           <li>
-            <p>
+            <p data-diff="">
               An empty
               <code>
                 key
@@ -287,11 +286,11 @@
         PreferNoSchedule
       </code>
       .
-      This is a &ldquo;preference&rdquo; or &ldquo;soft&rdquo; version of
+      This is a “preference” or “soft” version of
       <code>
         NoSchedule
       </code>
-      &ndash; the system will
+      – the system will
       <em>
         try
       </em>
@@ -309,7 +308,7 @@
     <p>
       You can put multiple taints on the same node and multiple tolerations on the same pod.
       The way Kubernetes processes multiple taints and tolerations is like a filter: start
-      with all of a node&rsquo;s taints, then ignore the ones for which the pod has a matching toleration; the
+      with all of a node’s taints, then ignore the ones for which the pod has a matching toleration; the
       remaining un-ignored taints have the indicated effects on the pod. In particular,
     </p>
     <ul>
@@ -416,7 +415,7 @@ kubectl taint nodes node1 <span style="color:#b8860b">key2</span><span style="co
         away
       </em>
       from nodes or evict
-      pods that shouldn&rsquo;t be running. A few of the use cases are
+      pods that shouldn’t be running. A few of the use cases are
     </p>
     <ul>
       <li>
@@ -464,7 +463,7 @@ kubectl taint nodes node1 <span style="color:#b8860b">key2</span><span style="co
             Nodes with Special Hardware
           </strong>
           : In a cluster where a small subset of nodes have specialized
-          hardware (for example GPUs), it is desirable to keep pods that don&rsquo;t need the specialized
+          hardware (for example GPUs), it is desirable to keep pods that don’t need the specialized
           hardware off of those nodes, thus leaving room for later-arriving pods that do need the
           specialized hardware. This can be done by tainting the nodes that have the specialized
           hardware (e.g.
@@ -501,7 +500,7 @@ kubectl taint nodes node1 <span style="color:#b8860b">key2</span><span style="co
           admission controller will
           automatically add the correct toleration to the pod and that pod will schedule
           on the special hardware nodes. This will make sure that these special hardware
-          nodes are dedicated for pods requesting such hardware and you don&rsquo;t have to
+          nodes are dedicated for pods requesting such hardware and you don’t have to
           manually add tolerations to your pods.
         </p>
       </li>
@@ -615,11 +614,11 @@ kubectl taint nodes node1 <span style="color:#b8860b">key2</span><span style="co
         <code>
           Ready
         </code>
-        being &ldquo;
+        being “
         <code>
           False
         </code>
-        &rdquo;.
+        ”.
       </li>
       <li>
         <code>
@@ -630,11 +629,11 @@ kubectl taint nodes node1 <span style="color:#b8860b">key2</span><span style="co
         <code>
           Ready
         </code>
-        being &ldquo;
+        being “
         <code>
           Unknown
         </code>
-        &rdquo;.
+        ”.
       </li>
       <li>
         <code>
@@ -658,7 +657,7 @@ kubectl taint nodes node1 <span style="color:#b8860b">key2</span><span style="co
         <code>
           node.kubernetes.io/network-unavailable
         </code>
-        : Node&rsquo;s network is unavailable.
+        : Node’s network is unavailable.
       </li>
       <li>
         <code>
@@ -671,7 +670,7 @@ kubectl taint nodes node1 <span style="color:#b8860b">key2</span><span style="co
           node.cloudprovider.kubernetes.io/uninitialized
         </code>
         : When the kubelet is started
-        with &ldquo;external&rdquo; cloud provider, this taint is set on a node to mark it
+        with “external” cloud provider, this taint is set on a node to mark it
         as unusable. After a controller from the cloud-controller-manager initializes
         this node, the kubelet removes this taint.
       </li>
@@ -800,7 +799,7 @@ kubectl taint nodes node1 <span style="color:#b8860b">key2</span><span style="co
         NoSchedule
       </code>
       effect.
-      Similarly the scheduler does not check Node conditions; instead the scheduler checks taints. This assures that Node conditions don&rsquo;t affect what&rsquo;s scheduled onto the Node. The user can choose to ignore some of the Node&rsquo;s problems (represented as Node conditions) by adding appropriate Pod tolerations.
+      Similarly the scheduler does not check Node conditions; instead the scheduler checks taints. This assures that Node conditions don’t affect what’s scheduled onto the Node. The user can choose to ignore some of the Node’s problems (represented as Node conditions) by adding appropriate Pod tolerations.
     </p>
     <p>
       Starting in Kubernetes 1.8, the DaemonSet controller automatically adds the
@@ -853,5 +852,5 @@ kubectl taint nodes node1 <span style="color:#b8860b">key2</span><span style="co
       Adding these tolerations ensures backward compatibility. You can also add
       arbitrary tolerations to DaemonSets.
     </p>
-  </body>
-</html>
+  
+</body></html>

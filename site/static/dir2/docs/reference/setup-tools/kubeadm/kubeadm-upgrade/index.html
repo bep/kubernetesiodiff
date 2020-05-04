@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       kubeadm upgrade
     </h1>
@@ -46,7 +45,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -122,7 +121,7 @@
     <h2 id="cmd-upgrade-plan">
       kubeadm upgrade plan
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre data-diff=""><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       Check which versions are available to upgrade to and validate whether your current cluster is upgradeable. To skip the internet check, pass in the optional [version] parameter
     </p>
@@ -132,8 +131,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -203,12 +202,12 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.
+            A list of checks whose errors will be shown as warnings. Example: &#39;IsPrivilegedUser,Swap&#39;. Value &#39;all&#39; ignores errors from all checks.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -235,8 +234,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -247,7 +246,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -255,7 +254,7 @@
     <h2 id="cmd-upgrade-apply">
       kubeadm upgrade apply
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       Upgrade your Kubernetes cluster to the specified version
     </p>
@@ -265,8 +264,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -293,7 +292,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --certificate-renewal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+            --certificate-renewal     Default: true
           </td>
         </tr>
         <tr>
@@ -326,7 +325,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --etcd-upgrade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+            --etcd-upgrade     Default: true
           </td>
         </tr>
         <tr>
@@ -391,12 +390,12 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.
+            A list of checks whose errors will be shown as warnings. Example: &#39;IsPrivilegedUser,Swap&#39;. Value &#39;all&#39; ignores errors from all checks.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --image-pull-timeout duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 15m0s
+            --image-pull-timeout duration     Default: 15m0s
           </td>
         </tr>
         <tr>
@@ -407,7 +406,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -445,8 +444,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -457,7 +456,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -465,9 +464,9 @@
     <h2 id="cmd-upgrade-diff">
       kubeadm upgrade diff
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
-      Show what differences would be applied to existing static pod manifests. See also: kubeadm upgrade apply &ndash;dry-run
+      Show what differences would be applied to existing static pod manifests. See also: kubeadm upgrade apply –dry-run
     </p>
     <pre><code>kubeadm upgrade diff [version] [flags]</code></pre>
     <h3 id="options">
@@ -475,13 +474,13 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
           <td colspan="2">
-            --api-server-manifest string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/manifests/kube-apiserver.yaml"
+            --api-server-manifest string     Default: &#34;/etc/kubernetes/manifests/kube-apiserver.yaml&#34;
           </td>
         </tr>
         <tr>
@@ -503,7 +502,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            -c, --context-lines int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 3
+            -c, --context-lines int     Default: 3
           </td>
         </tr>
         <tr>
@@ -514,7 +513,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --controller-manager-manifest string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/manifests/kube-controller-manager.yaml"
+            --controller-manager-manifest string     Default: &#34;/etc/kubernetes/manifests/kube-controller-manager.yaml&#34;
           </td>
         </tr>
         <tr>
@@ -536,7 +535,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -547,7 +546,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --scheduler-manifest string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/manifests/kube-scheduler.yaml"
+            --scheduler-manifest string     Default: &#34;/etc/kubernetes/manifests/kube-scheduler.yaml&#34;
           </td>
         </tr>
         <tr>
@@ -563,8 +562,8 @@
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -575,7 +574,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -583,12 +582,12 @@
     <h2 id="cmd-upgrade-node">
       kubeadm upgrade node
     </h2>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
       Upgrade commands for a node in the cluster
     </p>
     <p>
-      The &ldquo;node&rdquo; command executes the following phases:
+      The “node” command executes the following phases:
     </p>
     <pre><code>control-plane   Upgrade the control plane instance deployed on this node, if any
 kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
@@ -598,13 +597,13 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
           <td colspan="2">
-            --certificate-renewal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+            --certificate-renewal     Default: true
           </td>
         </tr>
         <tr>
@@ -626,7 +625,7 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
         </tr>
         <tr>
           <td colspan="2">
-            --etcd-upgrade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+            --etcd-upgrade     Default: true
           </td>
         </tr>
         <tr>
@@ -659,7 +658,7 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -686,8 +685,8 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -698,7 +697,7 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -717,5 +716,5 @@ kubelet-config  Upgrade the kubelet configuration for this node</code></pre>
         </code>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Running Automated Tasks with a CronJob
     </h1>
@@ -13,16 +12,16 @@
     </h1>
     <p>
       You can use a
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/cron-jobs/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/cron-jobs/" target="_blank">
         CronJob
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Manages a Job that runs on a periodic schedule.
         </span>
       </a>
       to run
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/jobs-run-to-completion' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/jobs-run-to-completion" target="_blank">
         Jobs
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A finite or batch task that runs to completion.
         </span>
       </a>
@@ -80,7 +79,7 @@
           You need to have a Kubernetes cluster, and the kubectl command-line tool must
           be configured to communicate with your cluster. If you do not already have a
           cluster, you can create one by using
-          <a href="/docs/setup/learning-environment/minikube/">
+          <a href="/docs/setup/learning-environment/minikube/" data-diff="">
             Minikube
           </a>
           ,
@@ -120,7 +119,7 @@
                 application/job/cronjob.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-cronjob-yaml')" title="Copy application/job/cronjob.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-job-cronjob-yaml&#39;)" title="Copy application/job/cronjob.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -198,7 +197,7 @@ hello-4111706356   0/1                      0s
 hello-4111706356   0/1           0s         0s
 hello-4111706356   1/1           5s         5s</code></pre>
     <p>
-      Now you&rsquo;ve seen one running job scheduled by the &ldquo;hello&rdquo; cron job.
+      Now you’ve seen one running job scheduled by the “hello” cron job.
       You can stop watching the job and view the cron job again to see that it scheduled the job:
     </p>
     <div class="highlight">
@@ -250,7 +249,7 @@ Hello from the Kubernetes cluster</code></pre>
       Deleting a Cron Job
     </h2>
     <p>
-      When you don&rsquo;t need a cron job any more, delete it with
+      When you don’t need a cron job any more, delete it with
       <code>
         kubectl delete cronjob &lt;cronjob name&gt;
       </code>
@@ -362,7 +361,7 @@ Hello from the Kubernetes cluster</code></pre>
         <code>
           /&lt;number&gt;
         </code>
-        specifies skips  of the number&rsquo;s value through the
+        specifies skips  of the number’s value through the
         range.  For example,
         <code>
           0-23/2
@@ -373,7 +372,7 @@ Hello from the Kubernetes cluster</code></pre>
           0,2,4,6,8,10,12,14,16,18,20,22
         </code>
         ).  Steps are also permitted after an
-        asterisk, so if you want to say &ldquo;every two hours&rdquo;, just use
+        asterisk, so if you want to say “every two hours”, just use
         <code>
           */2
         </code>
@@ -458,7 +457,7 @@ Hello from the Kubernetes cluster</code></pre>
       <code>
         status.lastScheduleTime
       </code>
-      of the cronjob is 5:00am, but now it&rsquo;s 7:00am. That means 120 schedules were missed, so the cron job is no longer scheduled.
+      of the cronjob is 5:00am, but now it’s 7:00am. That means 120 schedules were missed, so the cron job is no longer scheduled.
     </p>
     <p>
       If the
@@ -501,13 +500,13 @@ Hello from the Kubernetes cluster</code></pre>
         <code>
           Forbid
         </code>
-        : The cron job does not allow concurrent runs; if it is time for a new job run and the previous job run hasn&rsquo;t finished yet, the cron job skips the new job run
+        : The cron job does not allow concurrent runs; if it is time for a new job run and the previous job run hasn’t finished yet, the cron job skips the new job run
       </li>
       <li>
         <code>
           Replace
         </code>
-        : If it is time for a new job run and the previous job run hasn&rsquo;t finished yet, the cron job replaces the currently running job run with a new job run
+        : If it is time for a new job run and the previous job run hasn’t finished yet, the cron job replaces the currently running job run with a new job run
       </li>
     </ul>
     <p>
@@ -576,5 +575,5 @@ Hello from the Kubernetes cluster</code></pre>
       </code>
       corresponds to keeping none of the corresponding kind of jobs after they finish.
     </p>
-  </body>
-</html>
+  
+</body></html>

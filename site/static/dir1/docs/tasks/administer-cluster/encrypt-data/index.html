@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Encrypting Secret Data at Rest
     </h1>
@@ -65,7 +64,7 @@
           You need to have a Kubernetes cluster, and the kubectl command-line tool must
           be configured to communicate with your cluster. If you do not already have a
           cluster, you can create one by using
-          <a href="/docs/setup/learning-environment/minikube/">
+          <a href="/docs/setup/learning-environment/minikube/" data-diff="">
             Minikube
           </a>
           ,
@@ -400,7 +399,7 @@
     <ol>
       <li>
         <p>
-          Generate a 32 byte random key and base64 encode it. If you&rsquo;re on Linux or macOS, run the following command:
+          Generate a 32 byte random key and base64 encode it. If you’re on Linux or macOS, run the following command:
         </p>
         <pre><code>head -c 32 /dev/urandom | base64</code></pre>
       </li>
@@ -612,5 +611,5 @@
       </code>
       to force all secrets to be decrypted.
     </p>
-  </body>
-</html>
+  
+</body></html>

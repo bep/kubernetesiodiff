@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configure Your Cloud Provider&#39;s Firewalls
     </h1>
@@ -164,10 +163,10 @@
         </strong>
         <p>
           GCE firewalls are defined per-vm, rather than per-ip address. This means that
-          when you open a firewall for a service&rsquo;s ports, anything that serves on that
-          port on that VM&rsquo;s host IP address may potentially serve traffic. Note that this
+          when you open a firewall for a service’s ports, anything that serves on that
+          port on that VM’s host IP address may potentially serve traffic. Note that this
           is not a problem for other Kubernetes services, as they listen on IP addresses
-          that are different than the host node&rsquo;s external IP address.
+          that are different than the host node’s external IP address.
         </p>
         <p>
           Consider:
@@ -184,7 +183,7 @@
           <li>
             You start an nginx server, running on port 80 on the host virtual machine
             (IP Address 2.3.4.5).  This nginx is also exposed to the internet on
-            the VM&rsquo;s external IP address.
+            the VM’s external IP address.
           </li>
         </ul>
         <p>
@@ -194,5 +193,5 @@
         </p>
       </div>
     </blockquote>
-  </body>
-</html>
+  
+</body></html>

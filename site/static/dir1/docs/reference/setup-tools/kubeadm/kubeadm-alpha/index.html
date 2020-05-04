@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   kubeadm alpha
 </h1>
@@ -14,7 +13,7 @@
 <nav id="TableOfContents">
   <ul>
     <li>
-      <ul>
+      <ul data-diff="">
         <li>
           <a href="#cmd-certs-renew">
             kubeadm alpha certs renew
@@ -47,7 +46,7 @@
         </li>
         <li>
           <a href="#what-s-next">
-            What&rsquo;s next
+            What’s next
           </a>
         </li>
       </ul>
@@ -156,17 +155,21 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  <p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -175,34 +178,11 @@
       help for renew
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-certs-renew-1">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-certs-renew-1">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -214,17 +194,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -233,11 +241,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -246,11 +253,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-dir string
+      –csr-dir string
     </td>
   </tr>
   <tr>
@@ -259,11 +265,10 @@
       The path to output the CSRs and private keys to
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-only
+      –csr-only
     </td>
   </tr>
   <tr>
@@ -272,11 +277,10 @@
       Create CSRs instead of generating certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -285,11 +289,10 @@
       help for all
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -298,34 +301,11 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-certs-renew-2">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-certs-renew-2">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -346,17 +326,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -365,11 +373,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -378,11 +385,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-dir string
+      –csr-dir string
     </td>
   </tr>
   <tr>
@@ -391,11 +397,10 @@
       The path to output the CSRs and private keys to
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-only
+      –csr-only
     </td>
   </tr>
   <tr>
@@ -404,11 +409,10 @@
       Create CSRs instead of generating certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -417,11 +421,10 @@
       help for admin.conf
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -430,34 +433,11 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-certs-renew-3">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-certs-renew-3">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -478,17 +458,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -497,11 +505,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -510,11 +517,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-dir string
+      –csr-dir string
     </td>
   </tr>
   <tr>
@@ -523,11 +529,10 @@
       The path to output the CSRs and private keys to
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-only
+      –csr-only
     </td>
   </tr>
   <tr>
@@ -536,11 +541,10 @@
       Create CSRs instead of generating certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -549,11 +553,10 @@
       help for apiserver-etcd-client
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -562,34 +565,11 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-certs-renew-4">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-certs-renew-4">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -610,17 +590,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -629,11 +637,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -642,11 +649,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-dir string
+      –csr-dir string
     </td>
   </tr>
   <tr>
@@ -655,11 +661,10 @@
       The path to output the CSRs and private keys to
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-only
+      –csr-only
     </td>
   </tr>
   <tr>
@@ -668,11 +673,10 @@
       Create CSRs instead of generating certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -681,11 +685,10 @@
       help for apiserver-kubelet-client
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -694,34 +697,11 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-certs-renew-5">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-certs-renew-5">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -742,17 +722,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -761,11 +769,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -774,11 +781,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-dir string
+      –csr-dir string
     </td>
   </tr>
   <tr>
@@ -787,11 +793,10 @@
       The path to output the CSRs and private keys to
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-only
+      –csr-only
     </td>
   </tr>
   <tr>
@@ -800,11 +805,10 @@
       Create CSRs instead of generating certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -813,11 +817,10 @@
       help for apiserver
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -826,34 +829,11 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-certs-renew-6">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-certs-renew-6">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -874,17 +854,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -893,11 +901,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -906,11 +913,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-dir string
+      –csr-dir string
     </td>
   </tr>
   <tr>
@@ -919,11 +925,10 @@
       The path to output the CSRs and private keys to
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-only
+      –csr-only
     </td>
   </tr>
   <tr>
@@ -932,11 +937,10 @@
       Create CSRs instead of generating certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -945,11 +949,10 @@
       help for controller-manager.conf
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -958,34 +961,11 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-certs-renew-7">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-certs-renew-7">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -1006,17 +986,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -1025,11 +1033,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -1038,11 +1045,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-dir string
+      –csr-dir string
     </td>
   </tr>
   <tr>
@@ -1051,11 +1057,10 @@
       The path to output the CSRs and private keys to
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-only
+      –csr-only
     </td>
   </tr>
   <tr>
@@ -1064,11 +1069,10 @@
       Create CSRs instead of generating certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -1077,11 +1081,10 @@
       help for etcd-healthcheck-client
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -1090,34 +1093,11 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-certs-renew-8">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-certs-renew-8">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -1138,17 +1118,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -1157,11 +1165,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -1170,11 +1177,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-dir string
+      –csr-dir string
     </td>
   </tr>
   <tr>
@@ -1183,11 +1189,10 @@
       The path to output the CSRs and private keys to
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-only
+      –csr-only
     </td>
   </tr>
   <tr>
@@ -1196,11 +1201,10 @@
       Create CSRs instead of generating certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -1209,11 +1213,10 @@
       help for etcd-peer
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -1222,34 +1225,11 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-certs-renew-9">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-certs-renew-9">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -1270,17 +1250,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -1289,11 +1297,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -1302,11 +1309,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-dir string
+      –csr-dir string
     </td>
   </tr>
   <tr>
@@ -1315,11 +1321,10 @@
       The path to output the CSRs and private keys to
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-only
+      –csr-only
     </td>
   </tr>
   <tr>
@@ -1328,11 +1333,10 @@
       Create CSRs instead of generating certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -1341,11 +1345,10 @@
       help for etcd-server
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -1354,34 +1357,11 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-certs-renew-10">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-certs-renew-10">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -1402,17 +1382,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -1421,11 +1429,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -1434,11 +1441,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-dir string
+      –csr-dir string
     </td>
   </tr>
   <tr>
@@ -1447,11 +1453,10 @@
       The path to output the CSRs and private keys to
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-only
+      –csr-only
     </td>
   </tr>
   <tr>
@@ -1460,11 +1465,10 @@
       Create CSRs instead of generating certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -1473,11 +1477,10 @@
       help for front-proxy-client
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -1486,34 +1489,11 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-certs-renew-11">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-certs-renew-11">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -1534,17 +1514,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -1553,11 +1561,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -1566,11 +1573,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-dir string
+      –csr-dir string
     </td>
   </tr>
   <tr>
@@ -1579,11 +1585,10 @@
       The path to output the CSRs and private keys to
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;csr-only
+      –csr-only
     </td>
   </tr>
   <tr>
@@ -1592,11 +1597,10 @@
       Create CSRs instead of generating certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -1605,11 +1609,10 @@
       help for scheduler.conf
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -1618,40 +1621,16 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
 <script>
   $(function(){$("#tab-certs-renew").tabs();});
 </script>
-<h2 id="cmd-certs-certificate-key">
+</p><h2 id="cmd-certs-certificate-key">
   kubeadm alpha certs certificate-key
-</h2>
-<p>
+</h2><p>
   This command can be used to generate a new control-plane certificate key.
   The key can be passed as
   <code>
@@ -1666,8 +1645,7 @@
     kubeadm join
   </code>
   to enable the automatic copy of certificates when joining additional control-plane nodes.
-</p>
-<div id="tab-certs-certificate-key">
+</p><div id="tab-certs-certificate-key">
 <ul>
   <li>
     <a href="#tab-certs-certificate-key-0">
@@ -1681,10 +1659,10 @@
 </h3>
 <p>
   This command will print out a secure randomly-generated certificate key that can be used with
-  the &ldquo;init&rdquo; command.
+  the “init” command.
 </p>
 <p>
-  You can also use &ldquo;kubeadm init &ndash;upload-certs&rdquo; without specifying a certificate key and it will
+  You can also use “kubeadm init –upload-certs” without specifying a certificate key and it will
   generate and print one for you.
 </p>
 <pre><code>kubeadm alpha certs certificate-key [flags]</code></pre>
@@ -1692,17 +1670,42 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -1711,48 +1714,23 @@
       help for certificate-key
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
 <script>
   $(function(){$("#tab-certs-certificate-key").tabs();});
 </script>
-<h2 id="cmd-certs-check-expiration">
+</p><h2 id="cmd-certs-check-expiration">
   kubeadm alpha certs check-expiration
-</h2>
-<p>
+</h2><p>
   This command checks expiration for the certificates in the local PKI managed by kubeadm.
   For more details about certificate expiration and renewal see the
   <a href="/docs/tasks/administer-cluster/kubeadm/kubeadm-certs/">
     certificate management documentation
   </a>
   .
-</p>
-<div id="tab-certs-check-expiration">
+</p><div id="tab-certs-check-expiration">
 <ul>
   <li>
     <a href="#tab-certs-check-expiration-0">
@@ -1772,17 +1750,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -1791,11 +1797,10 @@
       The path where to save the certificates
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -1804,11 +1809,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -1817,11 +1821,10 @@
       help for check-expiration
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -1830,47 +1833,22 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
 <script>
   $(function(){$("#tab-certs-check-expiration").tabs();});
 </script>
-<h2 id="cmd-phase-kubeconfig">
+</p><h2 id="cmd-phase-kubeconfig">
   kubeadm alpha kubeconfig user
-</h2>
-<p>
+</h2><p>
   The
   <code>
     user
   </code>
   subcommand can be used for the creation of kubeconfig files for additional users.
-</p>
-<div id="tab-kubeconfig">
+</p><div id="tab-kubeconfig">
 <ul>
   <li>
     <a href="#tab-kubeconfig-0">
@@ -1897,17 +1875,42 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -1916,34 +1919,11 @@
       help for kubeconfig
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-kubeconfig-1">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-kubeconfig-1">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -1963,17 +1943,46 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;apiserver-advertise-address string
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –apiserver-advertise-address string
     </td>
   </tr>
   <tr>
@@ -1982,11 +1991,10 @@
       The IP address the API server is accessible on
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;apiserver-bind-port int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 6443
+      –apiserver-bind-port int32     Default: 6443
     </td>
   </tr>
   <tr>
@@ -1995,11 +2003,10 @@
       The port the API server is accessible on
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -2008,11 +2015,10 @@
       The path where certificates are stored
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;client-name string
+      –client-name string
     </td>
   </tr>
   <tr>
@@ -2021,11 +2027,10 @@
       The name of user. It will be used as the CN if client certificates are created
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -2034,11 +2039,10 @@
       help for user
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;org stringSlice
+      –org stringSlice
     </td>
   </tr>
   <tr>
@@ -2047,11 +2051,10 @@
       The orgnizations of the client certificate. It will be used as the O if client certificates are created
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;token string
+      –token string
     </td>
   </tr>
   <tr>
@@ -2060,44 +2063,19 @@
       The token that should be used as the authentication mechanism for this kubeconfig, instead of client certificates
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
 <script>
   $(function(){$("#tab-kubeconfig").tabs();});
 </script>
-<h2 id="cmd-phase-kubelet">
+</p><h2 id="cmd-phase-kubelet">
   kubeadm alpha kubelet config
-</h2>
-<p>
+</h2><p>
   Use the following commands to either download the kubelet configuration from the cluster or
   to enable the DynamicKubeletConfiguration feature.
-</p>
-<div id="tab-kubelet">
+</p><div id="tab-kubelet">
 <ul>
   <li>
     <a href="#tab-kubelet-0">
@@ -2126,17 +2104,42 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -2145,39 +2148,16 @@
       help for kubelet
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-kubelet-1">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-kubelet-1">
   <h3 id="synopsis">
     Synopsis
   </h3>
   <p>
-    Download the kubelet configuration from a ConfigMap of the form &ldquo;kubelet-config-1.X&rdquo; in the cluster, where X is the minor version of the kubelet. Either kubeadm autodetects the kubelet version by exec-ing &ldquo;kubelet &ndash;version&rdquo; or respects the &ndash;kubelet-version parameter.
+    Download the kubelet configuration from a ConfigMap of the form “kubelet-config-1.X” in the cluster, where X is the minor version of the kubelet. Either kubeadm autodetects the kubelet version by exec-ing “kubelet –version” or respects the –kubelet-version parameter.
   </p>
   <p>
     Alpha Disclaimer: this command is currently alpha.
@@ -2194,10 +2174,29 @@
   <h3 id="options">
     Options
   </h3>
-  <table style="width: 100%; table-layout: fixed;">
+  </div><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><table style="width: 100%; table-layout: fixed;">
     <colgroup>
-      <col span="1" style="width: 10px;" />
-      <col span="1" />
+      <col span="1" style="width: 10px;"/>
+      <col span="1"/>
     </colgroup>
     <tbody>
       <tr>
@@ -2213,7 +2212,7 @@
       </tr>
       <tr>
         <td colspan="2">
-          --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
         </td>
       </tr>
       <tr>
@@ -2230,18 +2229,18 @@
       <tr>
         <td></td>
         <td style="line-height: 130%; word-wrap: break-word;">
-          The desired version for the kubelet. Defaults to being autodetected from 'kubelet --version'.
+          The desired version for the kubelet. Defaults to being autodetected from &#39;kubelet --version&#39;.
         </td>
       </tr>
     </tbody>
   </table>
-  <h3 id="options-inherited-from-parent-commands">
+  </p><h3 id="options-inherited-from-parent-commands">
     Options inherited from parent commands
   </h3>
   <table style="width: 100%; table-layout: fixed;">
     <colgroup>
-      <col span="1" style="width: 10px;" />
-      <col span="1" />
+      <col span="1" style="width: 10px;"/>
+      <col span="1"/>
     </colgroup>
     <tbody>
       <tr>
@@ -2252,7 +2251,7 @@
       <tr>
         <td></td>
         <td style="line-height: 130%; word-wrap: break-word;">
-          [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
         </td>
       </tr>
     </tbody>
@@ -2263,7 +2262,7 @@
     Synopsis
   </h3>
   <p>
-    Download the kubelet configuration from a ConfigMap of the form &ldquo;kubelet-config-1.X&rdquo; in the cluster, where X is the minor version of the kubelet. Either kubeadm autodetects the kubelet version by exec-ing &ldquo;kubelet &ndash;version&rdquo; or respects the &ndash;kubelet-version parameter.
+    Download the kubelet configuration from a ConfigMap of the form “kubelet-config-1.X” in the cluster, where X is the minor version of the kubelet. Either kubeadm autodetects the kubelet version by exec-ing “kubelet –version” or respects the –kubelet-version parameter.
   </p>
   <p>
     Alpha Disclaimer: this command is currently alpha.
@@ -2282,8 +2281,8 @@
   </h3>
   <table style="width: 100%; table-layout: fixed;">
     <colgroup>
-      <col span="1" style="width: 10px;" />
-      <col span="1" />
+      <col span="1" style="width: 10px;"/>
+      <col span="1"/>
     </colgroup>
     <tbody>
       <tr>
@@ -2299,7 +2298,7 @@
       </tr>
       <tr>
         <td colspan="2">
-          --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+          --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
         </td>
       </tr>
       <tr>
@@ -2316,7 +2315,7 @@
       <tr>
         <td></td>
         <td style="line-height: 130%; word-wrap: break-word;">
-          The desired version for the kubelet. Defaults to being autodetected from 'kubelet --version'.
+          The desired version for the kubelet. Defaults to being autodetected from &#39;kubelet --version&#39;.
         </td>
       </tr>
     </tbody>
@@ -2326,8 +2325,8 @@
   </h3>
   <table style="width: 100%; table-layout: fixed;">
     <colgroup>
-      <col span="1" style="width: 10px;" />
-      <col span="1" />
+      <col span="1" style="width: 10px;"/>
+      <col span="1"/>
     </colgroup>
     <tbody>
       <tr>
@@ -2338,7 +2337,7 @@
       <tr>
         <td></td>
         <td style="line-height: 130%; word-wrap: break-word;">
-          [EXPERIMENTAL] The path to the 'real' host root filesystem.
+          [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
         </td>
       </tr>
     </tbody>
@@ -2386,17 +2385,21 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  <p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -2405,34 +2408,11 @@
       help for selfhosting
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="selfhosting-1">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="selfhosting-1">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -2456,17 +2436,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/pki&rdquo;
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –cert-dir string     Default: “/etc/kubernetes/pki”
     </td>
   </tr>
   <tr>
@@ -2475,11 +2483,10 @@
       The path where certificates are stored
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;config string
+      –config string
     </td>
   </tr>
   <tr>
@@ -2488,11 +2495,10 @@
       Path to a kubeadm configuration file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -f, &ndash;force
+      -f, –force
     </td>
   </tr>
   <tr>
@@ -2501,11 +2507,10 @@
       Pivot the cluster without prompting for confirmation
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -2514,11 +2519,10 @@
       help for pivot
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -2527,11 +2531,10 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -s, &ndash;store-certs-in-secrets
+      -s, –store-certs-in-secrets
     </td>
   </tr>
   <tr>
@@ -2540,40 +2543,16 @@
       Enable storing certs in secrets
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
 <script>
   $(function(){$("#selfhosting").tabs();});
 </script>
-<h2 id="what-s-next">
-  What&rsquo;s next
-</h2>
-<ul>
+</p><h2 id="what-s-next">
+  What’s next
+</h2><ul>
   <li>
     <a href="/docs/reference/setup-tools/kubeadm/kubeadm-init/">
       kubeadm init
@@ -2599,4 +2578,24 @@
       kubeadm join
     </code>
   </li>
-</ul>
+</ul><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+
+</tbody></table></p></div></div></div></body></html>

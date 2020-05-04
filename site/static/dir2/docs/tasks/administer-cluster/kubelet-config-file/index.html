@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Set Kubelet parameters via a config file
 </h1>
@@ -12,7 +11,7 @@
   Set Kubelet parameters via a config file
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -80,7 +79,7 @@
   <p>});
 </script>
 <p>
-  A subset of the Kubelet&rsquo;s configuration parameters may be
+  A subset of the Kubelet’s configuration parameters may be
   set via an on-disk config file, as a substitute for command-line flags.
   This functionality is considered beta in v1.10.
 </p>
@@ -122,7 +121,7 @@
   Create the config file
 </h2>
 <p>
-  The subset of the Kubelet&rsquo;s configuration that can be configured via a file
+  The subset of the Kubelet’s configuration that can be configured via a file
   is defined by the
   <code>
     KubeletConfiguration
@@ -142,7 +141,7 @@
 </p><pre><code>apiVersion: kubelet.config.k8s.io/v1beta1
 kind: KubeletConfiguration
 evictionHard:
-    memory.available:  &quot;200Mi&quot;</code></pre>
+    memory.available:  &#34;200Mi&#34;</code></pre>
 <p>
   In the example, the Kubelet is configured to evict Pods when available memory drops below 200Mi.
   All other Kubelet configuration values are left at their built-in defaults, unless overridden
@@ -151,7 +150,7 @@ evictionHard:
 <p>
   For a trick to generate a configuration file from a live node, see
   <a href="/docs/tasks/administer-cluster/reconfigure-kubelet">
-    Reconfigure a Node&rsquo;s Kubelet in a Live Cluster
+    Reconfigure a Node’s Kubelet in a Live Cluster
   </a>
   .
 </p>
@@ -163,7 +162,7 @@ evictionHard:
   <code>
     --config
   </code>
-  flag set to the path of the Kubelet&rsquo;s config file.
+  flag set to the path of the Kubelet’s config file.
   The Kubelet will then load its config from this file.
 </p>
 <p>
@@ -173,7 +172,7 @@ evictionHard:
 <p>
   Note that relative file paths in the Kubelet config file are resolved relative to the
   location of the Kubelet config file, whereas relative paths in command line flags are resolved
-  relative to the Kubelet&rsquo;s current working directory.
+  relative to the Kubelet’s current working directory.
 </p>
 <p>
   Note that some default values differ between command-line flags and the Kubelet config file.
@@ -206,5 +205,5 @@ evictionHard:
     --config
   </code>
   and any flags which override these values
-  is considered the default &ldquo;last known good&rdquo; configuration by the automatic rollback mechanism.
-</p>
+  is considered the default “last known good” configuration by the automatic rollback mechanism.
+</p></div></body></html>

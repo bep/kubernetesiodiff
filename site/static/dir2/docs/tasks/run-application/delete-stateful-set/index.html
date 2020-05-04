@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Delete a StatefulSet
     </h1>
@@ -13,9 +12,9 @@
     </h1>
     <p>
       This task shows you how to delete a
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/statefulset/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/statefulset/" target="_blank">
         StatefulSet
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.
         </span>
       </a>
@@ -34,7 +33,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -77,7 +76,7 @@
       .
     </p>
     <div class="highlight">
-      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete -f &lt;file.yaml&gt; --cascade<span style="color:#666">=</span><span style="color:#a2f">false</span></code></pre>
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete -f &lt;file.yaml&gt; --cascade<span style="color:#666">=</span><span style="color:#a2f" data-diff="">false</span></code></pre>
     </div>
     <p>
       By passing
@@ -139,7 +138,7 @@ kubectl delete pvc -l <span style="color:#b8860b">app</span><span style="color:#
       Force deletion of StatefulSet pods
     </h3>
     <p>
-      If you find that some pods in your StatefulSet are stuck in the &lsquo;Terminating&rsquo; or &lsquo;Unknown&rsquo; states for an extended period of time, you may need to manually intervene to forcefully delete the pods from the apiserver. This is a potentially dangerous task. Refer to
+      If you find that some pods in your StatefulSet are stuck in the ‘Terminating’ or ‘Unknown’ states for an extended period of time, you may need to manually intervene to forcefully delete the pods from the apiserver. This is a potentially dangerous task. Refer to
       <a href="/docs/tasks/run-application/force-delete-stateful-set-pod/">
         Force Delete StatefulSet Pods
       </a>
@@ -155,5 +154,5 @@ kubectl delete pvc -l <span style="color:#b8860b">app</span><span style="color:#
       </a>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

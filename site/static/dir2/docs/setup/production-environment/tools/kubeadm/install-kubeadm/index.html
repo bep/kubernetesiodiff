@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Installing kubeadm
 </h1>
@@ -12,7 +11,7 @@
   Installing kubeadm
 </h1>
 <p>
-  <img src="https://raw.githubusercontent.com/kubernetes/kubeadm/master/logos/stacked/color/kubeadm-stacked-color.png" align="right" width="150px">
+  <img src="https://raw.githubusercontent.com/kubernetes/kubeadm/master/logos/stacked/color/kubeadm-stacked-color.png" align="right" width="150px"/>
   This page shows how to install the
   <code>
     kubeadm
@@ -72,7 +71,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -179,7 +178,7 @@
   Letting iptables see bridged traffic
 </h2>
 <p>
-  As a requirement for your Linux Node&rsquo;s iptables to correctly see bridged traffic, you should ensure
+  As a requirement for your Linux Node’s iptables to correctly see bridged traffic, you should ensure
   <code>
     net.bridge.bridge-nf-call-iptables
   </code>
@@ -417,9 +416,9 @@ sysctl --system</code></pre>
 </h2>
 <p>
   To run containers in Pods, Kubernetes uses a
-  <a class='glossary-tooltip' href='/docs/setup/production-environment/container-runtimes' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/setup/production-environment/container-runtimes" target="_blank">
     container runtime
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       The container runtime is the software that is responsible for running containers.
     </span>
   </a>
@@ -439,11 +438,11 @@ sysctl --system</code></pre>
   </li>
 </ul>
 <div id="container-runtime-0">
-<pre><code>    &lt;p&gt;By default, Kubernetes uses the</code></pre>
+<pre data-diff=""><code>    &lt;p&gt;By default, Kubernetes uses the</code></pre>
 <p>
-  <a class='glossary-tooltip' href='/docs/concepts/overview/components/#container-runtime' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/overview/components/#container-runtime" target="_blank">
     Container Runtime Interface
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       An API for container runtimes to integrate with kubelet
     </span>
   </a>
@@ -451,7 +450,7 @@ sysctl --system</code></pre>
   to interface with your chosen container runtime.
 </p>
 <p>
-  If you don&rsquo;t specify a runtime, kubeadm automatically tries to detect an installed
+  If you don’t specify a runtime, kubeadm automatically tries to detect an installed
   container runtime by scanning through a list of well known Unix domain sockets.
   The following table lists container runtimes and their associated socket paths:
 </p>
@@ -503,7 +502,7 @@ sysctl --system</code></pre>
   </tbody>
 </table>
 <p>
-  <br />
+  <br/>
   If both Docker and containerd are detected, Docker takes precedence. This is
   needed because Docker 18.09 ships with containerd and both are detectable even if you only
   installed Docker.
@@ -524,7 +523,7 @@ sysctl --system</code></pre>
   for more information.
 </p>
 <div id="container-runtime-1">
-<pre><code>    &lt;p&gt;By default, kubeadm uses &lt;a class='glossary-tooltip' href='https://docs.docker.com/engine/' target='_blank'&gt;Docker&lt;span class='tooltip-text'&gt;Docker is a software technology providing operating-system-level virtualization also known as containers.&lt;/span&gt;</code></pre>
+<pre><code>    &lt;p&gt;By default, kubeadm uses &lt;a class=&#39;glossary-tooltip&#39; href=&#39;https://docs.docker.com/engine/&#39; target=&#39;_blank&#39;&gt;Docker&lt;span class=&#39;tooltip-text&#39;&gt;Docker is a software technology providing operating-system-level virtualization also known as containers.&lt;/span&gt;</code></pre>
 <p>
 as the container runtime.
 The kubelet integrates with Docker through the built-in
@@ -532,7 +531,7 @@ The kubelet integrates with Docker through the built-in
   dockershim
 </code>
 CRI implementation.
-<p>
+</p><p>
   See
   <a href="/docs/setup/production-environment/container-runtimes/">
     container runtimes
@@ -660,7 +659,7 @@ CRI implementation.
   </li>
 </ul>
 <div id="k8s-install-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get update &lt;span style=&quot;color:#666&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get install -y apt-transport-https curl</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get update &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get install -y apt-transport-https curl</code></pre>
 <p>
 curl -s
 <a href="https://packages.cloud.google.com/apt/doc/apt-key.gpg">
@@ -684,8 +683,8 @@ cat
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
-<div id="k8s-install-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cat &lt;span style=&quot;color:#b44&quot;&gt;&amp;lt;&amp;lt;EOF &amp;gt; /etc/yum.repos.d/kubernetes.repo</code></pre>
+</p><div id="k8s-install-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cat &lt;span style=&#34;color:#b44&#34;&gt;&amp;lt;&amp;lt;EOF &amp;gt; /etc/yum.repos.d/kubernetes.repo</code></pre>
 <p>
 <span style="color:#b44">
   [kubernetes]
@@ -717,7 +716,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 <span style="color:#b44">
   EOF
 </span>
-<p>
+</p><p>
   <span style="color:#080;font-style:italic">
     # Set SELinux in permissive mode (effectively disabling it)
   </span>
@@ -727,12 +726,12 @@ sudo apt-mark hold kubelet kubeadm kubectl
   </span>
   sed -i
   <span style="color:#b44">
-    's/^SELINUX=enforcing$/SELINUX=permissive/'
+    &#39;s/^SELINUX=enforcing$/SELINUX=permissive/&#39;
   </span>
   /etc/selinux/config
 </p>
 <p>
-  yum install -y kubelet kubeadm kubectl &ndash;disableexcludes
+  yum install -y kubelet kubeadm kubectl –disableexcludes
   <span style="color:#666">
     =
   </span>
@@ -743,8 +742,8 @@ systemctl
 <span style="color:#a2f">
   enable
 </span>
-&ndash;now kubelet
-<p>
+–now kubelet
+</p><p>
   <strong>
     Note:
   </strong>
@@ -802,12 +801,12 @@ curl -L <span style="color:#b44">&#34;https://github.com/kubernetes-sigs/cri-too
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#b8860b">RELEASE</span><span style="color:#666">=</span><span style="color:#b44">&#34;</span><span style="color:#a2f;font-weight:bold">$(</span>curl -sSL https://dl.k8s.io/release/stable.txt<span style="color:#a2f;font-weight:bold">)</span><span style="color:#b44">&#34;</span>
 <p>mkdir -p /opt/bin
 <span style="color:#a2f">cd</span> /opt/bin
-curl -L &ndash;remote-name-all <a href="https://storage.googleapis.com/kubernetes-release/release/">https://storage.googleapis.com/kubernetes-release/release/</a><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">RELEASE</span><span style="color:#b68;font-weight:bold">}</span>/bin/linux/amd64/<span style="color:#666">{</span>kubeadm,kubelet,kubectl<span style="color:#666">}</span>
+curl -L –remote-name-all <a href="https://storage.googleapis.com/kubernetes-release/release/">https://storage.googleapis.com/kubernetes-release/release/</a><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">RELEASE</span><span style="color:#b68;font-weight:bold">}</span>/bin/linux/amd64/<span style="color:#666">{</span>kubeadm,kubelet,kubectl<span style="color:#666">}</span>
 chmod +x <span style="color:#666">{</span>kubeadm,kubelet,kubectl<span style="color:#666">}</span></p>
-<p><span style="color:#b8860b">RELEASE_VERSION</span><span style="color:#666">=</span><span style="color:#b44">&quot;v0.2.7&quot;</span>
-curl -sSL <span style="color:#b44">&quot;https://raw.githubusercontent.com/kubernetes/release/</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">RELEASE_VERSION</span><span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">/cmd/kubepkg/templates/latest/deb/kubelet/lib/systemd/system/kubelet.service&quot;</span> | sed <span style="color:#b44">&quot;s:/usr/bin:/opt/bin:g&quot;</span> &gt; /etc/systemd/system/kubelet.service
+</code><p><code class="language-bash" data-lang="bash"><span style="color:#b8860b">RELEASE_VERSION</span><span style="color:#666">=</span><span style="color:#b44">&#34;v0.2.7&#34;</span>
+curl -sSL <span style="color:#b44">&#34;https://raw.githubusercontent.com/kubernetes/release/</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">RELEASE_VERSION</span><span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">/cmd/kubepkg/templates/latest/deb/kubelet/lib/systemd/system/kubelet.service&#34;</span> | sed <span style="color:#b44">&#34;s:/usr/bin:/opt/bin:g&#34;</span> &gt; /etc/systemd/system/kubelet.service
 mkdir -p /etc/systemd/system/kubelet.service.d
-curl -sSL <span style="color:#b44">&quot;https://raw.githubusercontent.com/kubernetes/release/</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">RELEASE_VERSION</span><span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">/cmd/kubepkg/templates/latest/deb/kubeadm/10-kubeadm.conf&quot;</span> | sed <span style="color:#b44">&quot;s:/usr/bin:/opt/bin:g&quot;</span> &gt; /etc/systemd/system/kubelet.service.d/10-kubeadm.conf</code></pre>
+curl -sSL <span style="color:#b44">&#34;https://raw.githubusercontent.com/kubernetes/release/</span><span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">RELEASE_VERSION</span><span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">/cmd/kubepkg/templates/latest/deb/kubeadm/10-kubeadm.conf&#34;</span> | sed <span style="color:#b44">&#34;s:/usr/bin:/opt/bin:g&#34;</span> &gt; /etc/systemd/system/kubelet.service.d/10-kubeadm.conf</code></p></pre>
 </div>
 <p>
   Enable and start
@@ -909,4 +908,4 @@ systemctl restart kubelet</code></pre>
       Using kubeadm to Create a Cluster
     </a>
   </li>
-</ul>
+</ul></div></div></div></div></div></div></div></body></html>

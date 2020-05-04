@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Using RBAC Authorization
     </h1>
@@ -52,9 +51,9 @@
       <code>
         rbac.authorization.k8s.io
       </code>
-      <a class='glossary-tooltip' href='/docs/concepts/overview/kubernetes-api/#api-groups' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/kubernetes-api/#api-groups" target="_blank">
         API group
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A set of related paths in the Kubernetes API.
         </span>
       </a>
@@ -63,9 +62,9 @@
     </p>
     <p>
       To enable RBAC, start the
-      <a class='glossary-tooltip' href='/docs/reference/generated/kube-apiserver/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/generated/kube-apiserver/" target="_blank">
         API server
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Control plane component that serves the Kubernetes API.
         </span>
       </a>
@@ -140,13 +139,13 @@
         ClusterRole
       </em>
       contains rules that represent a set of permissions.
-      Permissions are purely additive (there are no &ldquo;deny&rdquo; rules).
+      Permissions are purely additive (there are no “deny” rules).
     </p>
     <p>
       A Role always sets permissions within a particular
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/namespaces' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/namespaces" target="_blank">
         namespace
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An abstraction used by Kubernetes to support multiple virtual clusters on the same physical cluster.
         </span>
       </a>
@@ -156,7 +155,7 @@
     <p>
       ClusterRole, by contrast, is a non-namespaced resource. The resources have different names (Role
       and ClusterRole) because a Kubernetes object always has to be either namespaced or not namespaced;
-      it can&rsquo;t be both.
+      it can’t be both.
     </p>
     <p>
       ClusterRoles have several uses. You can use a ClusterRole to:
@@ -180,10 +179,10 @@
       Role example
     </h4>
     <p>
-      Here&rsquo;s an example Role in the &ldquo;default&rdquo; namespace that can be used to grant read access to
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+      Here’s an example Role in the “default” namespace that can be used to grant read access to
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
         pods
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
         </span>
       </a>
@@ -210,9 +209,9 @@
     <ul>
       <li>
         cluster-scoped resources (like
-        <a class='glossary-tooltip' href='/docs/concepts/architecture/nodes/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/architecture/nodes/" target="_blank">
           nodes
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             A node is a worker machine in Kubernetes.
           </span>
         </a>
@@ -236,9 +235,9 @@
     </ul>
     <p>
       Here is an example of a ClusterRole that can be used to grant read access to
-      <a class='glossary-tooltip' href='/docs/concepts/configuration/secret/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/configuration/secret/" target="_blank">
         secrets
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Stores sensitive information, such as passwords, OAuth tokens, and ssh keys.
         </span>
       </a>
@@ -301,9 +300,9 @@
       RoleBinding examples
     </h4>
     <p>
-      Here is an example of a RoleBinding that grants the &ldquo;pod-reader&rdquo; Role to the user &ldquo;jane&rdquo;
-      within the &ldquo;default&rdquo; namespace.
-      This allows &ldquo;jane&rdquo; to read pods in the &ldquo;default&rdquo; namespace.
+      Here is an example of a RoleBinding that grants the “pod-reader” Role to the user “jane”
+      within the “default” namespace.
+      This allows “jane” to read pods in the “default” namespace.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>rbac.authorization.k8s.io/v1<span style="color:#bbb">
@@ -326,14 +325,14 @@
     </div>
     <p>
       A RoleBinding can also reference a ClusterRole to grant the permissions defined in that
-      ClusterRole to resources inside the RoleBinding&rsquo;s namespace. This kind of reference
+      ClusterRole to resources inside the RoleBinding’s namespace. This kind of reference
       lets you define a set of common roles across your cluster, then reuse them within
       multiple namespaces.
     </p>
     <p>
       For instance, even though the following RoleBinding refers to a ClusterRole,
-      &ldquo;dave&rdquo; (the subject, case sensitive) will only be able to read Secrets in the &ldquo;development&rdquo;
-      namespace, because the RoleBinding&rsquo;s namespace (in its metadata) is &ldquo;development&rdquo;.
+      “dave” (the subject, case sensitive) will only be able to read Secrets in the “development”
+      namespace, because the RoleBinding’s namespace (in its metadata) is “development”.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>rbac.authorization.k8s.io/v1<span style="color:#bbb">
@@ -360,7 +359,7 @@
     </h4>
     <p>
       To grant permissions across a whole cluster, you can use a ClusterRoleBinding.
-      The following ClusterRoleBinding allows any user in the group &ldquo;manager&rdquo; to read
+      The following ClusterRoleBinding allows any user in the group “manager” to read
       secrets in any namespace.
     </p>
     <div class="highlight">
@@ -380,7 +379,7 @@
     </div>
     <p>
       After you create a binding, you cannot change the Role or ClusterRole that it refers to.
-      If you try to change a binding&rsquo;s
+      If you try to change a binding’s
       <code>
         roleRef
       </code>
@@ -417,7 +416,7 @@
         </code>
         ensures the full list of subjects in the binding is intended to be granted
         the new role (as opposed to enabling accidentally modifying just the roleRef
-        without verifying all of the existing subjects should be given the new role&rsquo;s
+        without verifying all of the existing subjects should be given the new role’s
         permissions).
       </li>
     </ol>
@@ -449,7 +448,7 @@
       <em>
         subresource
       </em>
-      , such as the logs for a Pod. A request for a Pod&rsquo;s logs looks like:
+      , such as the logs for a Pod. A request for a Pod’s logs looks like:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-http" data-lang="http"><span style="">GET /api/v1/namespaces/{namespace}/pods/{name}/log</span></code></pre>
@@ -511,9 +510,9 @@
         update
       </code>
       a
-      <a class='glossary-tooltip' href='/docs/tasks/configure-pod-container/configure-pod-configmap/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/tasks/configure-pod-container/configure-pod-configmap/" target="_blank">
         ConfigMap
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An API object used to store non-confidential data in key-value pairs. Can be consumed as environment variables, command-line arguments, or config files in a volume.
         </span>
       </a>
@@ -578,9 +577,9 @@
         aggregationRule
       </code>
       defines a label
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/labels/" target="_blank">
         selector
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Allows users to filter a list of resources based on labels.
         </span>
       </a>
@@ -608,7 +607,7 @@
     <p>
       If you create a new ClusterRole that matches the label selector of an existing aggregated ClusterRole,
       that change triggers adding the new rules into the aggregated ClusterRole.
-      Here is an example that adds rules to the &ldquo;monitoring&rdquo; ClusterRole, by creating another
+      Here is an example that adds rules to the “monitoring” ClusterRole, by creating another
       ClusterRole labeled
       <code>
         rbac.example.com/aggregate-to-monitoring: true
@@ -636,20 +635,20 @@
       </a>
       use ClusterRole aggregation. This lets you,
       as a cluster administrator, include rules for custom resources, such as those served by
-      <a class='glossary-tooltip' href='/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/" target="_blank">
         CustomResourceDefinitions
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Custom code that defines a resource to add to your Kubernetes API server without building a complete custom server.
         </span>
       </a>
       or aggregated API servers, to extend the default roles.
     </p>
     <p>
-      For example: the following ClusterRoles let the &ldquo;admin&rdquo; and &ldquo;edit&rdquo; default roles manage the custom resource
-      named CronTab, whereas the &ldquo;view&rdquo; role can perform just read actions on CronTab resources.
+      For example: the following ClusterRoles let the “admin” and “edit” default roles manage the custom resource
+      named CronTab, whereas the “view” role can perform just read actions on CronTab resources.
       You can assume that CronTab objects are named
       <code>
-        &quot;crontabs&quot;
+        &#34;crontabs&#34;
       </code>
       in URLs as seen by the API server.
     </p>
@@ -693,12 +692,12 @@
     <p>
       Allow reading
       <code>
-        &quot;pods&quot;
+        &#34;pods&#34;
       </code>
       resources in the core
-      <a class='glossary-tooltip' href='/docs/concepts/overview/kubernetes-api/#api-groups' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/kubernetes-api/#api-groups" target="_blank">
         API Group
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A set of related paths in the Kubernetes API.
         </span>
       </a>
@@ -716,15 +715,15 @@
     <p>
       Allow reading/writing Deployments (at the HTTP level: objects with
       <code>
-        &quot;deployments&quot;
+        &#34;deployments&#34;
       </code>
       in the resource part of their URL) in both the
       <code>
-        &quot;extensions&quot;
+        &#34;extensions&#34;
       </code>
       and
       <code>
-        &quot;apps&quot;
+        &#34;apps&#34;
       </code>
       API groups:
     </p>
@@ -741,11 +740,11 @@
       Allow reading Pods in the core API group, as well as reading or writing Job
       resources in the
       <code>
-        &quot;batch&quot;
+        &#34;batch&#34;
       </code>
       or
       <code>
-        &quot;extensions&quot;
+        &#34;extensions&#34;
       </code>
       API groups:
     </p>
@@ -765,7 +764,7 @@
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">verbs</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#34;get&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;list&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;watch&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;create&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;update&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;patch&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;delete&#34;</span>]</code></pre>
     </div>
     <p>
-      Allow reading a ConfigMap named &ldquo;my-config&rdquo; (must be bound with a
+      Allow reading a ConfigMap named “my-config” (must be bound with a
       RoleBinding to limit to a single ConfigMap in a single namespace):
     </p>
     <div class="highlight">
@@ -781,7 +780,7 @@
     <p>
       Allow reading the resource
       <code>
-        &quot;nodes&quot;
+        &#34;nodes&#34;
       </code>
       in the core group (because a
       Node is cluster-scoped, this must be in a ClusterRole bound with a
@@ -816,9 +815,9 @@
     <p>
       A RoleBinding or ClusterRoleBinding binds a role to subjects.
       Subjects can be groups, users or
-      <a class='glossary-tooltip' href='/docs/tasks/configure-pod-container/configure-service-account/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/tasks/configure-pod-container/configure-service-account/" target="_blank">
         ServiceAccounts
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Provides an identity for processes that run in a Pod.
         </span>
       </a>
@@ -826,7 +825,7 @@
     </p>
     <p>
       Kubernetes represents usernames as strings.
-      These can be: plain names, such as &ldquo;alice&rdquo;; email-style names, like &ldquo;bob@example.com&rdquo;;
+      These can be: plain names, such as “alice”; email-style names, like “bob@example.com”;
       or numeric user IDs represented as a string.  It is up to you as a cluster administrator
       to configure the
       <a href="/docs/reference/access-authn-authz/authentication/">
@@ -844,7 +843,7 @@
           system:
         </code>
         is reserved for Kubernetes system use, so you should ensure
-        that you don&rsquo;t have users or groups with names that start with
+        that you don’t have users or groups with names that start with
         <code>
           system:
         </code>
@@ -941,7 +940,7 @@
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">apiGroup</span>:<span style="color:#bbb"> </span>rbac.authorization.k8s.io</code></pre>
     </div>
     <p>
-      For the default service account in the &ldquo;kube-system&rdquo; namespace:
+      For the default service account in the “kube-system” namespace:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">subjects</span>:<span style="color:#bbb">
@@ -950,7 +949,7 @@
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">namespace</span>:<span style="color:#bbb"> </span>kube-system</code></pre>
     </div>
     <p>
-      For all service accounts in the &ldquo;qa&rdquo; namespace:
+      For all service accounts in the “qa” namespace:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">subjects</span>:<span style="color:#bbb">
@@ -1091,11 +1090,11 @@
         Kubernetes RBAC API discovery roles
       </caption>
       <colgroup>
-        <col width="25%" />
-        <col width="25%" />
-        <col />
+        <col width="25%"/>
+        <col width="25%"/>
+        <col/>
       </colgroup>
-      <tr>
+      <tbody><tr>
         <th>
           Default ClusterRole
         </th>
@@ -1166,7 +1165,7 @@
           Allows read-only access to non-sensitive information about the cluster. Introduced in Kubernetes v1.14.
         </td>
       </tr>
-    </table>
+    </tbody></table>
     <h3 id="user-facing-roles">
       User-facing roles
     </h3>
@@ -1224,13 +1223,13 @@
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">rbac.authorization.k8s.io/aggregate-to-edit</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;true&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">rbac.authorization.k8s.io/aggregate-to-view</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;true&#34;</span></code></pre>
     </div>
-    <table>
+    <table data-diff="">
       <colgroup>
-        <col width="25%">
-        <col width="25%">
-        <col>
+        <col width="25%"/>
+        <col width="25%"/>
+        <col/>
       </colgroup>
-      <tr>
+      <tbody><tr>
         <th>
           Default ClusterRole
         </th>
@@ -1264,7 +1263,7 @@
           <b>
             RoleBinding
           </b>
-          , it gives full control over every resource in the role binding's namespace, including the namespace itself.
+          , it gives full control over every resource in the role binding&#39;s namespace, including the namespace itself.
         </td>
       </tr>
       <tr>
@@ -1328,17 +1327,17 @@
           in the namespace (a form of privilege escalation).
         </td>
       </tr>
-    </table>
+    </tbody></table>
     <h3 id="core-component-roles">
       Core component roles
     </h3>
     <table>
       <colgroup>
-        <col width="25%">
-        <col width="25%">
-        <col>
+        <col width="25%"/>
+        <col width="25%"/>
+        <col/>
       </colgroup>
-      <tr>
+      <tbody><tr>
         <th>
           Default ClusterRole
         </th>
@@ -1363,9 +1362,9 @@
         </td>
         <td>
           Allows access to the resources required by the
-          <a class='glossary-tooltip' href='/docs/reference/generated/kube-scheduler/' target='_blank'>
+          <a class="glossary-tooltip" href="/docs/reference/generated/kube-scheduler/" target="_blank">
             scheduler
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               Control plane component that watches for newly created pods with no assigned node, and selects a node for them to run on.
             </span>
           </a>
@@ -1402,9 +1401,9 @@
         </td>
         <td>
           Allows access to the resources required by the
-          <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-controller-manager/' target='_blank'>
+          <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-controller-manager/" target="_blank">
             controller manager
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               Control Plane component that runs controller processes.
             </span>
           </a>
@@ -1467,26 +1466,26 @@
         </td>
         <td>
           Allows access to the resources required by the
-          <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-proxy/' target='_blank'>
+          <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-proxy/" target="_blank">
             kube-proxy
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               kube-proxy is a network proxy that runs on each node in the cluster.
             </span>
           </a>
           component.
         </td>
       </tr>
-    </table>
+    </tbody></table>
     <h3 id="other-component-roles">
       Other component roles
     </h3>
     <table>
       <colgroup>
-        <col width="25%">
-        <col width="25%">
-        <col>
+        <col width="25%"/>
+        <col width="25%"/>
+        <col/>
       </colgroup>
-      <tr>
+      <tbody><tr>
         <th>
           Default ClusterRole
         </th>
@@ -1633,22 +1632,22 @@
           .
         </td>
       </tr>
-    </table>
+    </tbody></table>
     <h3 id="controller-roles">
       Roles for built-in controllers
     </h3>
     <p>
       The Kubernetes
-      <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-controller-manager/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-controller-manager/" target="_blank">
         controller manager
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Control Plane component that runs controller processes.
         </span>
       </a>
       runs
-      <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/architecture/controller/" target="_blank">
         controllers
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
         </span>
       </a>
@@ -1994,7 +1993,7 @@
     </p>
     <ul>
       <li>
-        Use a credential with the &ldquo;system:masters&rdquo; group, which is bound to the &ldquo;cluster-admin&rdquo; super-user role by the default bindings.
+        Use a credential with the “system:masters” group, which is bound to the “cluster-admin” super-user role by the default bindings.
       </li>
       <li>
         If your API server runs with the insecure port enabled (
@@ -2018,7 +2017,7 @@
     <ul>
       <li>
         <p>
-          Create a Role named &ldquo;pod-reader&rdquo; that allows users to perform
+          Create a Role named “pod-reader” that allows users to perform
           <code>
             get
           </code>
@@ -2038,7 +2037,7 @@
       </li>
       <li>
         <p>
-          Create a Role named &ldquo;pod-reader&rdquo; with resourceNames specified:
+          Create a Role named “pod-reader” with resourceNames specified:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create role pod-reader --verb<span style="color:#666">=</span>get --resource<span style="color:#666">=</span>pods --resource-name<span style="color:#666">=</span>readablepod --resource-name<span style="color:#666">=</span>anotherpod</code></pre>
@@ -2046,7 +2045,7 @@
       </li>
       <li>
         <p>
-          Create a Role named &ldquo;foo&rdquo; with apiGroups specified:
+          Create a Role named “foo” with apiGroups specified:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create role foo --verb<span style="color:#666">=</span>get,list,watch --resource<span style="color:#666">=</span>replicasets.apps</code></pre>
@@ -2054,7 +2053,7 @@
       </li>
       <li>
         <p>
-          Create a Role named &ldquo;foo&rdquo; with subresource permissions:
+          Create a Role named “foo” with subresource permissions:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create role foo --verb<span style="color:#666">=</span>get,list,watch --resource<span style="color:#666">=</span>pods,pods/status</code></pre>
@@ -2062,7 +2061,7 @@
       </li>
       <li>
         <p>
-          Create a Role named &ldquo;my-component-lease-holder&rdquo; with permissions to get/update a resource with a specific name:
+          Create a Role named “my-component-lease-holder” with permissions to get/update a resource with a specific name:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create role my-component-lease-holder --verb<span style="color:#666">=</span>get,list,watch,update --resource<span style="color:#666">=</span>lease --resource-name<span style="color:#666">=</span>my-component</code></pre>
@@ -2080,7 +2079,7 @@
     <ul>
       <li>
         <p>
-          Create a ClusterRole named &ldquo;pod-reader&rdquo; that allows user to perform
+          Create a ClusterRole named “pod-reader” that allows user to perform
           <code>
             get
           </code>
@@ -2100,7 +2099,7 @@
       </li>
       <li>
         <p>
-          Create a ClusterRole named &ldquo;pod-reader&rdquo; with resourceNames specified:
+          Create a ClusterRole named “pod-reader” with resourceNames specified:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create clusterrole pod-reader --verb<span style="color:#666">=</span>get --resource<span style="color:#666">=</span>pods --resource-name<span style="color:#666">=</span>readablepod --resource-name<span style="color:#666">=</span>anotherpod</code></pre>
@@ -2108,7 +2107,7 @@
       </li>
       <li>
         <p>
-          Create a ClusterRole named &ldquo;foo&rdquo; with apiGroups specified:
+          Create a ClusterRole named “foo” with apiGroups specified:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create clusterrole foo --verb<span style="color:#666">=</span>get,list,watch --resource<span style="color:#666">=</span>replicasets.apps</code></pre>
@@ -2116,7 +2115,7 @@
       </li>
       <li>
         <p>
-          Create a ClusterRole named &ldquo;foo&rdquo; with subresource permissions:
+          Create a ClusterRole named “foo” with subresource permissions:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create clusterrole foo --verb<span style="color:#666">=</span>get,list,watch --resource<span style="color:#666">=</span>pods,pods/status</code></pre>
@@ -2124,7 +2123,7 @@
       </li>
       <li>
         <p>
-          Create a ClusterRole named &ldquo;foo&rdquo; with nonResourceURL specified:
+          Create a ClusterRole named “foo” with nonResourceURL specified:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create clusterrole <span style="color:#b44">&#34;foo&#34;</span> --verb<span style="color:#666">=</span>get --non-resource-url<span style="color:#666">=</span>/logs/*</code></pre>
@@ -2132,7 +2131,7 @@
       </li>
       <li>
         <p>
-          Create a ClusterRole named &ldquo;monitoring&rdquo; with an aggregationRule specified:
+          Create a ClusterRole named “monitoring” with an aggregationRule specified:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create clusterrole monitoring --aggregation-rule<span style="color:#666">=</span><span style="color:#b44">&#34;rbac.example.com/aggregate-to-monitoring=true&#34;</span></code></pre>
@@ -2150,7 +2149,7 @@
     <ul>
       <li>
         <p>
-          Within the namespace &ldquo;acme&rdquo;, grant the permissions in the &ldquo;admin&rdquo; ClusterRole to a user named &ldquo;bob&rdquo;:
+          Within the namespace “acme”, grant the permissions in the “admin” ClusterRole to a user named “bob”:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create rolebinding bob-admin-binding --clusterrole<span style="color:#666">=</span>admin --user<span style="color:#666">=</span>bob --namespace<span style="color:#666">=</span>acme</code></pre>
@@ -2158,7 +2157,7 @@
       </li>
       <li>
         <p>
-          Within the namespace &ldquo;acme&rdquo;, grant the permissions in the &ldquo;view&rdquo; ClusterRole to the service account in the namespace &ldquo;acme&rdquo; named &ldquo;myapp&rdquo;:
+          Within the namespace “acme”, grant the permissions in the “view” ClusterRole to the service account in the namespace “acme” named “myapp”:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create rolebinding myapp-view-binding --clusterrole<span style="color:#666">=</span>view --serviceaccount<span style="color:#666">=</span>acme:myapp --namespace<span style="color:#666">=</span>acme</code></pre>
@@ -2166,7 +2165,7 @@
       </li>
       <li>
         <p>
-          Within the namespace &ldquo;acme&rdquo;, grant the permissions in the &ldquo;view&rdquo; ClusterRole to a service account in the namespace &ldquo;myappnamespace&rdquo; named &ldquo;myapp&rdquo;:
+          Within the namespace “acme”, grant the permissions in the “view” ClusterRole to a service account in the namespace “myappnamespace” named “myapp”:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create rolebinding myappnamespace-myapp-view-binding --clusterrole<span style="color:#666">=</span>view --serviceaccount<span style="color:#666">=</span>myappnamespace:myapp --namespace<span style="color:#666">=</span>acme</code></pre>
@@ -2184,7 +2183,7 @@
     <ul>
       <li>
         <p>
-          Across the entire cluster, grant the permissions in the &ldquo;cluster-admin&rdquo; ClusterRole to a user named &ldquo;root&rdquo;:
+          Across the entire cluster, grant the permissions in the “cluster-admin” ClusterRole to a user named “root”:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create clusterrolebinding root-cluster-admin-binding --clusterrole<span style="color:#666">=</span>cluster-admin --user<span style="color:#666">=</span>root</code></pre>
@@ -2192,7 +2191,7 @@
       </li>
       <li>
         <p>
-          Across the entire cluster, grant the permissions in the &ldquo;system:node-proxier&rdquo; ClusterRole to a user named &ldquo;system:kube-proxy&rdquo;:
+          Across the entire cluster, grant the permissions in the “system:node-proxier” ClusterRole to a user named “system:kube-proxy”:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create clusterrolebinding kube-proxy-binding --clusterrole<span style="color:#666">=</span>system:node-proxier --user<span style="color:#666">=</span>system:kube-proxy</code></pre>
@@ -2200,7 +2199,7 @@
       </li>
       <li>
         <p>
-          Across the entire cluster, grant the permissions in the &ldquo;view&rdquo; ClusterRole to a service account named &ldquo;myapp&rdquo; in the namespace &ldquo;acme&rdquo;:
+          Across the entire cluster, grant the permissions in the “view” ClusterRole to a service account named “myapp” in the namespace “acme”:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create clusterrolebinding myapp-view-binding --clusterrole<span style="color:#666">=</span>view --serviceaccount<span style="color:#666">=</span>acme:myapp</code></pre>
@@ -2308,7 +2307,7 @@
           , etc.).
         </p>
         <p>
-          For example, grant read-only permission within &ldquo;my-namespace&rdquo; to the &ldquo;my-sa&rdquo; service account:
+          For example, grant read-only permission within “my-namespace” to the “my-sa” service account:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create rolebinding my-sa-view <span style="color:#b62;font-weight:bold">\
@@ -2319,21 +2318,21 @@
       </li>
       <li>
         <p>
-          Grant a role to the &ldquo;default&rdquo; service account in a namespace
+          Grant a role to the “default” service account in a namespace
         </p>
         <p>
           If an application does not specify a
           <code>
             serviceAccountName
           </code>
-          , it uses the &ldquo;default&rdquo; service account.
+          , it uses the “default” service account.
         </p>
         <blockquote class="note">
           <div>
             <strong>
               Note:
             </strong>
-            Permissions given to the &ldquo;default&rdquo; service account are available to any pod
+            Permissions given to the “default” service account are available to any pod
             in the namespace that does not specify a
             <code>
               serviceAccountName
@@ -2342,7 +2341,7 @@
           </div>
         </blockquote>
         <p>
-          For example, grant read-only permission within &ldquo;my-namespace&rdquo; to the &ldquo;default&rdquo; service account:
+          For example, grant read-only permission within “my-namespace” to the “default” service account:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create rolebinding default-view <span style="color:#b62;font-weight:bold">\
@@ -2356,13 +2355,13 @@
             add-ons
           </a>
           run as the
-          &ldquo;default&rdquo; service account in the
+          “default” service account in the
           <code>
             kube-system
           </code>
           namespace.
           To allow those add-ons to run with super-user access, grant cluster-admin
-          permissions to the &ldquo;default&rdquo; service account in the
+          permissions to the “default” service account in the
           <code>
             kube-system
           </code>
@@ -2378,7 +2377,7 @@
               kube-system
             </code>
             namespace contains Secrets
-            that grant super-user access to your cluster&rsquo;s API.
+            that grant super-user access to your cluster’s API.
           </div>
         </blockquote>
         <div class="highlight">
@@ -2396,7 +2395,7 @@
           you can grant a role to the service account group for that namespace.
         </p>
         <p>
-          For example, grant read-only permission within &ldquo;my-namespace&rdquo; to all service accounts in that namespace:
+          For example, grant read-only permission within “my-namespace” to all service accounts in that namespace:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl create rolebinding serviceaccounts-view <span style="color:#b62;font-weight:bold">\
@@ -2410,7 +2409,7 @@
           Grant a limited role to all service accounts cluster-wide (discouraged)
         </p>
         <p>
-          If you don&rsquo;t want to manage permissions per-namespace, you can grant a cluster-wide role to all service accounts.
+          If you don’t want to manage permissions per-namespace, you can grant a cluster-wide role to all service accounts.
         </p>
         <p>
           For example, grant read-only permission across all namespaces to all service accounts in the cluster:
@@ -2426,7 +2425,7 @@
           Grant super-user access to all service accounts cluster-wide (strongly discouraged)
         </p>
         <p>
-          If you don&rsquo;t care about partitioning permissions at all, you can grant super-user access to all service accounts.
+          If you don’t care about partitioning permissions at all, you can grant super-user access to all service accounts.
         </p>
         <blockquote class="warning">
           <div>
@@ -2552,5 +2551,5 @@
       After you have transitioned to use RBAC, you should adjust the access controls
       for your cluster to ensure that these meet your information security needs.
     </p>
-  </body>
-</html>
+  
+</body></html>

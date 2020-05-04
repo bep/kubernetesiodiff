@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Connecting Applications with Services
     </h1>
@@ -15,13 +14,13 @@
       The Kubernetes model for connecting containers
     </h2>
     <p>
-      Now that you have a continuously running, replicated application you can expose it on a network. Before discussing the Kubernetes approach to networking, it is worthwhile to contrast it with the &ldquo;normal&rdquo; way networking works with Docker.
+      Now that you have a continuously running, replicated application you can expose it on a network. Before discussing the Kubernetes approach to networking, it is worthwhile to contrast it with the “normal” way networking works with Docker.
     </p>
     <p>
       By default, Docker uses host-private networking, so containers can talk to other containers only if they are on the same machine. In order for Docker containers to communicate across nodes, there must be allocated ports on the machine’s own IP address, which are then forwarded or proxied to the containers. This obviously means that containers must either coordinate which ports they use very carefully or ports must be allocated dynamically.
     </p>
     <p>
-      Coordinating port allocations across multiple developers or teams that provide containers is very difficult to do at scale, and exposes users to cluster-level issues outside of their control. Kubernetes assumes that pods can communicate with other pods, regardless of which host they land on. Kubernetes gives every pod its own cluster-private IP address, so you do not need to explicitly create links between pods or map container ports to host ports. This means that containers within a Pod can all reach each other&rsquo;s ports on localhost, and all pods in a cluster can see each other without NAT. The rest of this document elaborates on how you can run reliable services on such a networking model.
+      Coordinating port allocations across multiple developers or teams that provide containers is very difficult to do at scale, and exposes users to cluster-level issues outside of their control. Kubernetes assumes that pods can communicate with other pods, regardless of which host they land on. Kubernetes gives every pod its own cluster-private IP address, so you do not need to explicitly create links between pods or map container ports to host ports. This means that containers within a Pod can all reach each other’s ports on localhost, and all pods in a cluster can see each other without NAT. The rest of this document elaborates on how you can run reliable services on such a networking model.
     </p>
     <p>
       This guide uses a simple nginx server to demonstrate proof of concept. The same principles are embodied in a more complete
@@ -58,7 +57,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -66,7 +65,7 @@
       Exposing pods to the cluster
     </h2>
     <p>
-      We did this in a previous example, but let&rsquo;s do it once again and focus on the networking perspective.
+      We did this in a previous example, but let’s do it once again and focus on the networking perspective.
       Create an nginx Pod, and note that it has a container port specification:
     </p>
     <table class="includecode" id="service-networking-run-my-nginx-yaml">
@@ -78,7 +77,7 @@
                 service/networking/run-my-nginx.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-run-my-nginx-yaml')" title="Copy service/networking/run-my-nginx.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-run-my-nginx-yaml&#39;)" title="Copy service/networking/run-my-nginx.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -123,7 +122,7 @@ kubectl get pods -l <span style="color:#b8860b">run</span><span style="color:#66
 my-nginx-3800858182-jr4a2   1/1       Running   0          13s       10.244.3.4    kubernetes-minion-905m
 my-nginx-3800858182-kna2y   1/1       Running   0          13s       10.244.2.5    kubernetes-minion-ljyd</code></pre>
     <p>
-      Check your pods&rsquo; IPs:
+      Check your pods’ IPs:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get pods -l <span style="color:#b8860b">run</span><span style="color:#666">=</span>my-nginx -o yaml | grep podIP
@@ -135,14 +134,14 @@ my-nginx-3800858182-kna2y   1/1       Running   0          13s       10.244.2.5 
       <em>
         not
       </em>
-      using port 80 on the node, nor are there any special NAT rules to route traffic to the pod. This means you can run multiple nginx pods on the same node all using the same containerPort and access them from any other pod or node in your cluster using IP. Like Docker, ports can still be published to the host node&rsquo;s interfaces, but the need for this is radically diminished because of the networking model.
+      using port 80 on the node, nor are there any special NAT rules to route traffic to the pod. This means you can run multiple nginx pods on the same node all using the same containerPort and access them from any other pod or node in your cluster using IP. Like Docker, ports can still be published to the host node’s interfaces, but the need for this is radically diminished because of the networking model.
     </p>
     <p>
       You can read more about
       <a href="/docs/concepts/cluster-administration/networking/#how-to-achieve-this">
         how we achieve this
       </a>
-      if you&rsquo;re curious.
+      if you’re curious.
     </p>
     <h2 id="creating-a-service">
       Creating a Service
@@ -180,7 +179,7 @@ my-nginx-3800858182-kna2y   1/1       Running   0          13s       10.244.2.5 
                 service/networking/nginx-svc.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-nginx-svc-yaml')" title="Copy service/networking/nginx-svc.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-nginx-svc-yaml&#39;)" title="Copy service/networking/nginx-svc.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -242,14 +241,14 @@ my-nginx   ClusterIP   10.0.162.149   &lt;none&gt;        80/TCP    21s</code></
       <code>
         endpoints
       </code>
-      . The Service&rsquo;s selector will be evaluated continuously
+      . The Service’s selector will be evaluated continuously
       and the results will be POSTed to an Endpoints object also named
       <code>
         my-nginx
       </code>
       .
       When a Pod dies, it is automatically removed from the endpoints, and new Pods
-      matching the Service&rsquo;s selector will automatically get added to the endpoints.
+      matching the Service’s selector will automatically get added to the endpoints.
       Check the endpoints, and note that the IPs are the same as the Pods created in
       the first step:
     </p>
@@ -279,7 +278,7 @@ my-nginx   10.244.2.5:80,10.244.3.4:80   1m</code></pre>
       </code>
       from
       any node in your cluster. Note that the Service IP is completely virtual, it
-      never hits the wire. If you&rsquo;re curious about how this works you can read more
+      never hits the wire. If you’re curious about how this works you can read more
       about the
       <a href="/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies">
         service proxy
@@ -333,7 +332,7 @@ my-nginx   10.244.2.5:80,10.244.3.4:80   1m</code></pre>
 KUBERNETES_SERVICE_PORT=443
 KUBERNETES_SERVICE_PORT_HTTPS=443</code></pre>
     <p>
-      Note there&rsquo;s no mention of your Service. This is because you created the replicas
+      Note there’s no mention of your Service. This is because you created the replicas
       before the Service. Another disadvantage of doing this is that the scheduler might
       put both Pods on the same machine, which will take your entire Service down if
       it dies. We can do this the right way by killing the 2 Pods and waiting for the
@@ -369,7 +368,7 @@ KUBERNETES_SERVICE_PORT_HTTPS=443</code></pre>
       DNS
     </h3>
     <p>
-      Kubernetes offers a DNS cluster addon Service that automatically assigns dns names to other Services. You can check if it&rsquo;s running on your cluster:
+      Kubernetes offers a DNS cluster addon Service that automatically assigns dns names to other Services. You can check if it’s running on your cluster:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get services kube-dns --namespace<span style="color:#666">=</span>kube-system</code></pre>
@@ -386,7 +385,7 @@ kube-dns   ClusterIP   10.0.0.10    &lt;none&gt;        53/UDP,53/TCP   8m</code
       <code>
         gethostbyname()
       </code>
-      ). If CoreDNS isn&rsquo;t running, you can enable it referring to the
+      ). If CoreDNS isn’t running, you can enable it referring to the
       <a href="https://github.com/coredns/deployment/tree/master/kubernetes">
         CoreDNS README
       </a>
@@ -394,7 +393,7 @@ kube-dns   ClusterIP   10.0.0.10    &lt;none&gt;        53/UDP,53/TCP   8m</code
       <a href="/docs/tasks/administer-cluster/coredns/#installing-coredns">
         Installing CoreDNS
       </a>
-      . Let&rsquo;s run another curl application to test this:
+      . Let’s run another curl application to test this:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl run curl --image<span style="color:#666">=</span>radial/busyboxplus:curl -i --tty</code></pre>
@@ -442,7 +441,7 @@ Address 1: 10.0.162.149</code></pre>
       <a href="https://github.com/kubernetes/examples/tree/master/staging/https-nginx/">
         nginx https example
       </a>
-      . This requires having go and make tools installed. If you don&rsquo;t want to install those, then follow the manual steps later. In short:
+      . This requires having go and make tools installed. If you don’t want to install those, then follow the manual steps later. In short:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make keys <span style="color:#b8860b">KEY</span><span style="color:#666">=</span>/tmp/nginx.key <span style="color:#b8860b">CERT</span><span style="color:#666">=</span>/tmp/nginx.crt
@@ -514,7 +513,7 @@ nginxsecret           kubernetes.io/tls                     2         1m</code><
                 service/networking/nginx-secure-app.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-nginx-secure-app-yaml')" title="Copy service/networking/nginx-secure-app.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-nginx-secure-app-yaml&#39;)" title="Copy service/networking/nginx-secure-app.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -625,9 +624,9 @@ node $ curl -k https://10.244.3.5
       <code>
         -k
       </code>
-      parameter to curl in the last step, this is because we don&rsquo;t know anything about the pods running nginx at certificate generation time,
+      parameter to curl in the last step, this is because we don’t know anything about the pods running nginx at certificate generation time,
       so we have to tell curl to ignore the CName mismatch. By creating a Service we linked the CName used in the certificate with the actual DNS name used by pods during Service lookup.
-      Let&rsquo;s test this from a pod (the same secret is being reused for simplicity, the pod only needs nginx.crt to access the Service):
+      Let’s test this from a pod (the same secret is being reused for simplicity, the pod only needs nginx.crt to access the Service):
     </p>
     <table class="includecode" id="service-networking-curlpod-yaml">
       <thead>
@@ -638,7 +637,7 @@ node $ curl -k https://10.244.3.5
                 service/networking/curlpod.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-curlpod-yaml')" title="Copy service/networking/curlpod.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-curlpod-yaml&#39;)" title="Copy service/networking/curlpod.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -741,7 +740,7 @@ $ curl https://&lt;EXTERNAL-IP&gt;:&lt;NODE-PORT&gt; -k
 &lt;h1&gt;Welcome to nginx!&lt;/h1&gt;</code></pre>
     </div>
     <p>
-      Let&rsquo;s now recreate the Service to use a cloud load balancer, just change the
+      Let’s now recreate the Service to use a cloud load balancer, just change the
       <code>
         Type
       </code>
@@ -786,16 +785,16 @@ my-nginx   ClusterIP   10.0.162.149   162.222.184.144    80/TCP,81/TCP,82/TCP  2
         LoadBalancer
       </code>
       creates an ELB, which uses a (long)
-      hostname, not an IP.  It&rsquo;s too long to fit in the standard
+      hostname, not an IP.  It’s too long to fit in the standard
       <code>
         kubectl get svc
       </code>
-      output, in fact, so you&rsquo;ll need to do
+      output, in fact, so you’ll need to do
       <code>
         kubectl describe service my-nginx
       </code>
       to
-      see it.  You&rsquo;ll see something like this:
+      see it.  You’ll see something like this:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl describe service my-nginx
@@ -826,5 +825,5 @@ LoadBalancer Ingress:   a320587ffd19711e5a37606cf4a74574-1142138393.us-east-1.el
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       v1.18 Release Notes
     </h1>
@@ -22,7 +21,7 @@
               <a href="#downloads-for-v1-18-0">
                 Downloads for v1.18.0
               </a>
-              <ul>
+              <ul data-diff="">
                 <li>
                   <a href="#client-binaries">
                     Client Binaries
@@ -1185,7 +1184,7 @@
         parameter previously silently defaulted to caching 1000 keys. In Kubernetes 1.18, this now returns a config validation error. To disable caching, you can specify a negative cacheSize value in Kubernetes 1.18+.
       </li>
       <li>
-        consumers of the &lsquo;certificatesigningrequests/approval&rsquo; API must now have permission to &lsquo;approve&rsquo; CSRs for the specific signer requested by the CSR. More information on the new signerName field and the required authorization can be found at
+        consumers of the ‘certificatesigningrequests/approval’ API must now have permission to ‘approve’ CSRs for the specific signer requested by the CSR. More information on the new signerName field and the required authorization can be found at
         <a href="https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests#authorization">
           https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests#authorization
         </a>
@@ -1250,7 +1249,7 @@
         ) [SIG Instrumentation, Node and Testing]
       </li>
       <li>
-        Promote CSIMigrationOpenStack to Beta (off by default since it requires installation of the OpenStack Cinder CSI Driver. The in-tree AWS OpenStack Cinder driver &ldquo;kubernetes.io/cinder&rdquo; was deprecated in 1.16 and will be removed in 1.20. Users should enable CSIMigration + CSIMigrationOpenStack features and install the OpenStack Cinder CSI Driver (
+        Promote CSIMigrationOpenStack to Beta (off by default since it requires installation of the OpenStack Cinder CSI Driver. The in-tree AWS OpenStack Cinder driver “kubernetes.io/cinder” was deprecated in 1.16 and will be removed in 1.20. Users should enable CSIMigration + CSIMigrationOpenStack features and install the OpenStack Cinder CSI Driver (
         <a href="https://github.com/kubernetes-sigs/cloud-provider-openstack">
           https://github.com/kubernetes-sigs/cloud-provider-openstack
         </a>
@@ -1364,7 +1363,7 @@
           <code>
             context.Context
           </code>
-          as a first argument. Signatures of Create, Update, and Patch methods have been updated to accept CreateOptions, UpdateOptions and PatchOptions respectively. Signatures of Delete and DeleteCollection methods now accept DeleteOptions by value instead of by reference. Generated clientsets with the previous interface have been added in new &ldquo;deprecated&rdquo; packages to allow incremental migration to the new APIs. The deprecated packages will be removed in the 1.21 release. A tool is available at
+          as a first argument. Signatures of Create, Update, and Patch methods have been updated to accept CreateOptions, UpdateOptions and PatchOptions respectively. Signatures of Delete and DeleteCollection methods now accept DeleteOptions by value instead of by reference. Generated clientsets with the previous interface have been added in new “deprecated” packages to allow incremental migration to the new APIs. The deprecated packages will be removed in the 1.21 release. A tool is available at
           <a href="http://sigs.k8s.io/clientgofix">
             http://sigs.k8s.io/clientgofix
           </a>
@@ -1840,22 +1839,22 @@
         :
         <ul>
           <li>
-            scrape_error &ndash;&gt; scrape_error
+            scrape_error –&gt; scrape_error
           </li>
           <li>
-            node_cpu_usage_seconds_total &ndash;&gt; node_cpu_usage_seconds
+            node_cpu_usage_seconds_total –&gt; node_cpu_usage_seconds
           </li>
           <li>
-            node_memory_working_set_bytes &ndash;&gt; node_memory_working_set_bytes
+            node_memory_working_set_bytes –&gt; node_memory_working_set_bytes
           </li>
           <li>
-            container_cpu_usage_seconds_total &ndash;&gt; container_cpu_usage_seconds
+            container_cpu_usage_seconds_total –&gt; container_cpu_usage_seconds
           </li>
           <li>
-            container_memory_working_set_bytes &ndash;&gt; container_memory_working_set_bytes
+            container_memory_working_set_bytes –&gt; container_memory_working_set_bytes
           </li>
           <li>
-            scrape_error &ndash;&gt; scrape_error
+            scrape_error –&gt; scrape_error
             (
             <a href="https://github.com/kubernetes/kubernetes/pull/86282">
               #86282
@@ -1927,7 +1926,7 @@
     </h4>
     <ul>
       <li>
-        command line option &ldquo;kubelet-version&rdquo; for
+        command line option “kubelet-version” for
         <code>
           kubeadm upgrade node
         </code>
@@ -1942,7 +1941,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        deprecate the usage of the experimental flag &lsquo;&ndash;use-api&rsquo; under the &lsquo;kubeadm alpha certs renew&rsquo; command. (
+        deprecate the usage of the experimental flag ‘–use-api’ under the ‘kubeadm alpha certs renew’ command. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88827">
           #88827
         </a>
@@ -2000,7 +1999,7 @@
     </h4>
     <ul>
       <li>
-        the boolean and unset values for the &ndash;dry-run flag are deprecated and a value &ndash;dry-run=server|client|none will be required in a future version. (
+        the boolean and unset values for the –dry-run flag are deprecated and a value –dry-run=server|client|none will be required in a future version. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87580">
           #87580
         </a>
@@ -2014,7 +2013,7 @@
         <code>
           kubectl apply --server-dry-run
         </code>
-        is deprecated and replaced with &ndash;dry-run=server (
+        is deprecated and replaced with –dry-run=server (
         <a href="https://github.com/kubernetes/kubernetes/pull/87580">
           #87580
         </a>
@@ -2071,11 +2070,11 @@
         </code>
         metrics are deprecated, replaced by
         <code>
-          framework_extension_point_duration_seconds[extension_point=&quot;Filter&quot;]
+          framework_extension_point_duration_seconds[extension_point=&#34;Filter&#34;]
         </code>
         and
         <code>
-          framework_extension_point_duration_seconds[extension_point=&quot;Score&quot;]
+          framework_extension_point_duration_seconds[extension_point=&#34;Score&#34;]
         </code>
         . (
         <a href="https://github.com/kubernetes/kubernetes/pull/86584">
@@ -2118,7 +2117,7 @@
         ) [SIG Node and Release]
       </li>
       <li>
-        Removed the &lsquo;client&rsquo; label from apiserver_request_total. (
+        Removed the ‘client’ label from apiserver_request_total. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87669">
           #87669
         </a>
@@ -2495,7 +2494,7 @@
         <code>
           --detect-local-mode
         </code>
-        flag to kube-proxy. Valid values are &ldquo;ClusterCIDR&rdquo; (default matching previous behavior) and &ldquo;NodeCIDR&rdquo; (
+        flag to kube-proxy. Valid values are “ClusterCIDR” (default matching previous behavior) and “NodeCIDR” (
         <a href="https://github.com/kubernetes/kubernetes/pull/87748">
           #87748
         </a>
@@ -2669,7 +2668,7 @@
         ) [SIG Storage]
       </li>
       <li>
-        Added a config-mode flag in azure auth module to enable getting AAD token without spn: prefix in audience claim. When it&rsquo;s not specified, the default behavior doesn&rsquo;t change. (
+        Added a config-mode flag in azure auth module to enable getting AAD token without spn: prefix in audience claim. When it’s not specified, the default behavior doesn’t change. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87630">
           #87630
         </a>
@@ -2691,7 +2690,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Allow user to specify resource using &ndash;filename flag when invoking kubectl exec (
+        Allow user to specify resource using –filename flag when invoking kubectl exec (
         <a href="https://github.com/kubernetes/kubernetes/pull/88460">
           #88460
         </a>
@@ -2702,7 +2701,7 @@
         ) [SIG CLI and Testing]
       </li>
       <li>
-        Apiserver added a new flag &ndash;goaway-chance which is the fraction of requests that will be closed gracefully(GOAWAY) to prevent HTTP/2 clients from getting stuck on a single apiserver. (
+        Apiserver added a new flag –goaway-chance which is the fraction of requests that will be closed gracefully(GOAWAY) to prevent HTTP/2 clients from getting stuck on a single apiserver. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88567">
           #88567
         </a>
@@ -2742,25 +2741,25 @@
         Azure cloud provider cache TTL is configurable, list of the azure cloud provider is as following:
         <ul>
           <li>
-            &ldquo;availabilitySetNodesCacheTTLInSeconds&rdquo;
+            “availabilitySetNodesCacheTTLInSeconds”
           </li>
           <li>
-            &ldquo;vmssCacheTTLInSeconds&rdquo;
+            “vmssCacheTTLInSeconds”
           </li>
           <li>
-            &ldquo;vmssVirtualMachinesCacheTTLInSeconds&rdquo;
+            “vmssVirtualMachinesCacheTTLInSeconds”
           </li>
           <li>
-            &ldquo;vmCacheTTLInSeconds&rdquo;
+            “vmCacheTTLInSeconds”
           </li>
           <li>
-            &ldquo;loadBalancerCacheTTLInSeconds&rdquo;
+            “loadBalancerCacheTTLInSeconds”
           </li>
           <li>
-            &ldquo;nsgCacheTTLInSeconds&rdquo;
+            “nsgCacheTTLInSeconds”
           </li>
           <li>
-            &ldquo;routeTableCacheTTLInSeconds&rdquo;
+            “routeTableCacheTTLInSeconds”
             (
             <a href="https://github.com/kubernetes/kubernetes/pull/86266">
               #86266
@@ -2774,7 +2773,7 @@
         </ul>
       </li>
       <li>
-        Azure global rate limit is switched to per-client. A set of new rate limit configure options are introduced, including routeRateLimit, SubnetsRateLimit, InterfaceRateLimit, RouteTableRateLimit, LoadBalancerRateLimit, PublicIPAddressRateLimit, SecurityGroupRateLimit, VirtualMachineRateLimit, StorageAccountRateLimit, DiskRateLimit, SnapshotRateLimit, VirtualMachineScaleSetRateLimit and VirtualMachineSizeRateLimit. The original rate limit options would be default values for those new client&rsquo;s rate limiter. (
+        Azure global rate limit is switched to per-client. A set of new rate limit configure options are introduced, including routeRateLimit, SubnetsRateLimit, InterfaceRateLimit, RouteTableRateLimit, LoadBalancerRateLimit, PublicIPAddressRateLimit, SecurityGroupRateLimit, VirtualMachineRateLimit, StorageAccountRateLimit, DiskRateLimit, SnapshotRateLimit, VirtualMachineScaleSetRateLimit and VirtualMachineSizeRateLimit. The original rate limit options would be default values for those new client’s rate limiter. (
         <a href="https://github.com/kubernetes/kubernetes/pull/86515">
           #86515
         </a>
@@ -2829,7 +2828,7 @@
         ) [SIG Scheduling]
       </li>
       <li>
-        DisableAvailabilitySetNodes is added to avoid VM list for VMSS clusters. It should only be used when vmType is &ldquo;vmss&rdquo; and all the nodes (including control plane nodes) are VMSS virtual machines. (
+        DisableAvailabilitySetNodes is added to avoid VM list for VMSS clusters. It should only be used when vmType is “vmss” and all the nodes (including control plane nodes) are VMSS virtual machines. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87685">
           #87685
         </a>
@@ -2900,7 +2899,7 @@
       </li>
       <li>
         Kubeadm: add the experimental feature gate PublicKeysECDSA that can be used to create a
-        cluster with ECDSA certificates from &ldquo;kubeadm init&rdquo;. Renewal of existing ECDSA certificates is also supported using &ldquo;kubeadm alpha certs renew&rdquo;, but not switching between the RSA and ECDSA algorithms on the fly or during upgrades. (
+        cluster with ECDSA certificates from “kubeadm init”. Renewal of existing ECDSA certificates is also supported using “kubeadm alpha certs renew”, but not switching between the RSA and ECDSA algorithms on the fly or during upgrades. (
         <a href="https://github.com/kubernetes/kubernetes/pull/86953">
           #86953
         </a>
@@ -2911,7 +2910,7 @@
         ) [SIG API Machinery, Auth and Cluster Lifecycle]
       </li>
       <li>
-        Kubeadm: implemented structured output of &lsquo;kubeadm config images list&rsquo; command in JSON, YAML, Go template and JsonPath formats (
+        Kubeadm: implemented structured output of ‘kubeadm config images list’ command in JSON, YAML, Go template and JsonPath formats (
         <a href="https://github.com/kubernetes/kubernetes/pull/86810">
           #86810
         </a>
@@ -3009,19 +3008,19 @@
         </code>
         is added to azure cloud provider for the pre-configured load balancers, possible values:
         <code>
-          &quot;&quot;
+          &#34;&#34;
         </code>
         ,
         <code>
-          &quot;internal&quot;
+          &#34;internal&#34;
         </code>
         ,
         <code>
-          &quot;external&quot;
+          &#34;external&#34;
         </code>
         ,
         <code>
-          &quot;all&quot;
+          &#34;all&#34;
         </code>
         (
         <a href="https://github.com/kubernetes/kubernetes/pull/86338">
@@ -3100,7 +3099,7 @@
         ) [SIG Scheduling]
       </li>
       <li>
-        The kubectl &ndash;dry-run flag now accepts the values &lsquo;client&rsquo;, &lsquo;server&rsquo;, and &lsquo;none&rsquo;, to support client-side and server-side dry-run strategies. The boolean and unset values for the &ndash;dry-run flag are deprecated and a value will be required in a future version. (
+        The kubectl –dry-run flag now accepts the values ‘client’, ‘server’, and ‘none’, to support client-side and server-side dry-run strategies. The boolean and unset values for the –dry-run flag are deprecated and a value will be required in a future version. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87580">
           #87580
         </a>
@@ -3111,7 +3110,7 @@
         ) [SIG CLI]
       </li>
       <li>
-        Support server-side dry-run in kubectl with &ndash;dry-run=server for commands including apply, patch, create, run, annotate, label, set, autoscale, drain, rollout undo, and expose. (
+        Support server-side dry-run in kubectl with –dry-run=server for commands including apply, patch, create, run, annotate, label, set, autoscale, drain, rollout undo, and expose. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87714">
           #87714
         </a>
@@ -3122,7 +3121,7 @@
         ) [SIG API Machinery, CLI and Testing]
       </li>
       <li>
-        Add &ndash;dry-run=server|client to kubectl delete, taint, replace (
+        Add –dry-run=server|client to kubectl delete, taint, replace (
         <a href="https://github.com/kubernetes/kubernetes/pull/88292">
           #88292
         </a>
@@ -3207,7 +3206,7 @@
         ) [SIG API Machinery, Auth, Node and Testing]
       </li>
       <li>
-        When deleting objects using kubectl with the &ndash;force flag, you are no longer required to also specify &ndash;grace-period=0. (
+        When deleting objects using kubectl with the –force flag, you are no longer required to also specify –grace-period=0. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87776">
           #87776
         </a>
@@ -3229,7 +3228,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        You can now pass &ldquo;&ndash;node-ip ::&rdquo; to kubelet to indicate that it should autodetect an IPv6 address to use as the node&rsquo;s primary address. (
+        You can now pass “–node-ip ::” to kubelet to indicate that it should autodetect an IPv6 address to use as the node’s primary address. (
         <a href="https://github.com/kubernetes/kubernetes/pull/85850">
           #85850
         </a>
@@ -3258,7 +3257,7 @@
         ) [SIG CLI]
       </li>
       <li>
-        TLS Server Name overrides can now be specified in a kubeconfig file and via &ndash;tls-server-name in kubectl (
+        TLS Server Name overrides can now be specified in a kubeconfig file and via –tls-server-name in kubectl (
         <a href="https://github.com/kubernetes/kubernetes/pull/88769">
           #88769
         </a>
@@ -3461,7 +3460,7 @@
         ) [SIG Apps and Network]
       </li>
       <li>
-        Fixed &ldquo;kubectl describe statefulsets.apps&rdquo; printing garbage for rolling update partition (
+        Fixed “kubectl describe statefulsets.apps” printing garbage for rolling update partition (
         <a href="https://github.com/kubernetes/kubernetes/pull/85846">
           #85846
         </a>
@@ -3527,7 +3526,7 @@
         ) [SIG Cluster Lifecycle and Instrumentation]
       </li>
       <li>
-        Adds &ldquo;volume.beta.kubernetes.io/migrated-to&rdquo; annotation to PV&rsquo;s and PVC&rsquo;s when they are migrated to signal external provisioners to pick up those objects for Provisioning and Deleting. (
+        Adds “volume.beta.kubernetes.io/migrated-to” annotation to PV’s and PVC’s when they are migrated to signal external provisioners to pick up those objects for Provisioning and Deleting. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87098">
           #87098
         </a>
@@ -3626,7 +3625,7 @@
         ) [SIG Cluster Lifecycle, Instrumentation and Windows]
       </li>
       <li>
-        Bug fixes: Make sure we include latest packages node &#35;351 (@caseydavenport) (
+        Bug fixes: Make sure we include latest packages node #351 (@caseydavenport) (
         <a href="https://github.com/kubernetes/kubernetes/pull/84163">
           #84163
         </a>
@@ -3670,7 +3669,7 @@
         ) [SIG API Machinery and Auth]
       </li>
       <li>
-        Cloud provider config CloudProviderBackoffMode has been removed since it won&rsquo;t be used anymore. (
+        Cloud provider config CloudProviderBackoffMode has been removed since it won’t be used anymore. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88463">
           #88463
         </a>
@@ -3692,7 +3691,7 @@
         ) [SIG Cluster Lifecycle, Release and Testing]
       </li>
       <li>
-        Deprecate &ndash;generator flag from kubectl create commands (
+        Deprecate –generator flag from kubectl create commands (
         <a href="https://github.com/kubernetes/kubernetes/pull/88655">
           #88655
         </a>
@@ -3751,7 +3750,7 @@
         ) [SIG API Machinery]
       </li>
       <li>
-        Fix /readyz to return error immediately after a shutdown is initiated, before the &ndash;shutdown-delay-duration has elapsed. (
+        Fix /readyz to return error immediately after a shutdown is initiated, before the –shutdown-delay-duration has elapsed. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88911">
           #88911
         </a>
@@ -3986,7 +3985,7 @@
         ) [SIG CLI]
       </li>
       <li>
-        Fix missing &ldquo;apiVersion&rdquo; for &ldquo;involvedObject&rdquo; in Events for Nodes. (
+        Fix missing “apiVersion” for “involvedObject” in Events for Nodes. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87537">
           #87537
         </a>
@@ -4041,7 +4040,7 @@
         ) [SIG Node and Storage]
       </li>
       <li>
-        Fix the bug PIP&rsquo;s DNS is deleted if no DNS label service annotation isn&rsquo;t set. (
+        Fix the bug PIP’s DNS is deleted if no DNS label service annotation isn’t set. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87246">
           #87246
         </a>
@@ -4173,7 +4172,7 @@
         ) [SIG Cloud Provider and Storage]
       </li>
       <li>
-        Fixed &ldquo;requested device X but found Y&rdquo; attach error on AWS. (
+        Fixed “requested device X but found Y” attach error on AWS. (
         <a href="https://github.com/kubernetes/kubernetes/pull/85675">
           #85675
         </a>
@@ -4335,7 +4334,7 @@
         ) [SIG API Machinery]
       </li>
       <li>
-        Fixes issue where AAD token obtained by kubectl is incompatible with on-behalf-of flow and oidc. The audience claim before this fix has &ldquo;spn:&rdquo; prefix. After this fix, &ldquo;spn:&rdquo; prefix is omitted. (
+        Fixes issue where AAD token obtained by kubectl is incompatible with on-behalf-of flow and oidc. The audience claim before this fix has “spn:” prefix. After this fix, “spn:” prefix is omitted. (
         <a href="https://github.com/kubernetes/kubernetes/pull/86412">
           #86412
         </a>
@@ -4346,7 +4345,7 @@
         ) [SIG API Machinery, Auth and Cloud Provider]
       </li>
       <li>
-        Fixes an issue where you can&rsquo;t attach more than 15 GCE Persistent Disks to c2, n2, m1, m2 machine types. (
+        Fixes an issue where you can’t attach more than 15 GCE Persistent Disks to c2, n2, m1, m2 machine types. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88602">
           #88602
         </a>
@@ -4390,7 +4389,7 @@
         ) [SIG Auth]
       </li>
       <li>
-        Fixes v1.17.0 regression in &ndash;service-cluster-ip-range handling with IPv4 ranges larger than 65536 IP addresses (
+        Fixes v1.17.0 regression in –service-cluster-ip-range handling with IPv4 ranges larger than 65536 IP addresses (
         <a href="https://github.com/kubernetes/kubernetes/pull/86534">
           #86534
         </a>
@@ -4448,7 +4447,7 @@
         <code>
           Get-kube.sh
         </code>
-        uses the gcloud&rsquo;s current local GCP service account for auth when the provider is GCE or GKE instead of the metadata server default (
+        uses the gcloud’s current local GCP service account for auth when the provider is GCE or GKE instead of the metadata server default (
         <a href="https://github.com/kubernetes/kubernetes/pull/88383">
           #88383
         </a>
@@ -4617,7 +4616,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Kubeadm:  &lsquo;kubeadm alpha kubelet config download&rsquo; has been removed, please use &lsquo;kubeadm upgrade node phase kubelet-config&rsquo; instead (
+        Kubeadm:  ‘kubeadm alpha kubelet config download’ has been removed, please use ‘kubeadm upgrade node phase kubelet-config’ instead (
         <a href="https://github.com/kubernetes/kubernetes/pull/87944">
           #87944
         </a>
@@ -4639,7 +4638,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Kubeadm: add support for the &ldquo;ci/k8s-master&rdquo; version label as a replacement for &ldquo;ci-cross/*&ldquo;, which no longer exists. (
+        Kubeadm: add support for the “ci/k8s-master” version label as a replacement for “ci-cross/*“, which no longer exists. (
         <a href="https://github.com/kubernetes/kubernetes/pull/86609">
           #86609
         </a>
@@ -4650,7 +4649,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Kubeadm: apply further improvements to the tentative support for concurrent etcd member join. Fixes a bug where multiple members can receive the same hostname. Increase the etcd client dial timeout and retry timeout for add/remove/&hellip; operations. (
+        Kubeadm: apply further improvements to the tentative support for concurrent etcd member join. Fixes a bug where multiple members can receive the same hostname. Increase the etcd client dial timeout and retry timeout for add/remove/… operations. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87505">
           #87505
         </a>
@@ -4661,7 +4660,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Kubeadm: don&rsquo;t write the kubelet environment file on &ldquo;upgrade apply&rdquo; (
+        Kubeadm: don’t write the kubelet environment file on “upgrade apply” (
         <a href="https://github.com/kubernetes/kubernetes/pull/85412">
           #85412
         </a>
@@ -4672,7 +4671,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Kubeadm: fix potential panic when executing &ldquo;kubeadm reset&rdquo; with a corrupted kubelet.conf file (
+        Kubeadm: fix potential panic when executing “kubeadm reset” with a corrupted kubelet.conf file (
         <a href="https://github.com/kubernetes/kubernetes/pull/86216">
           #86216
         </a>
@@ -4683,7 +4682,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Kubeadm: fix the bug that &lsquo;kubeadm upgrade&rsquo; hangs in single node cluster (
+        Kubeadm: fix the bug that ‘kubeadm upgrade’ hangs in single node cluster (
         <a href="https://github.com/kubernetes/kubernetes/pull/88434">
           #88434
         </a>
@@ -4705,7 +4704,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Kubeadm: remove &lsquo;kubeadm upgrade node config&rsquo; command since it was deprecated in v1.15, please use &lsquo;kubeadm upgrade node phase kubelet-config&rsquo; instead (
+        Kubeadm: remove ‘kubeadm upgrade node config’ command since it was deprecated in v1.15, please use ‘kubeadm upgrade node phase kubelet-config’ instead (
         <a href="https://github.com/kubernetes/kubernetes/pull/87975">
           #87975
         </a>
@@ -4716,7 +4715,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Kubeadm: remove the deprecated CoreDNS feature-gate. It was set to &ldquo;true&rdquo; since v1.11 when the feature went GA. In v1.13 it was marked as deprecated and hidden from the CLI. (
+        Kubeadm: remove the deprecated CoreDNS feature-gate. It was set to “true” since v1.11 when the feature went GA. In v1.13 it was marked as deprecated and hidden from the CLI. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87400">
           #87400
         </a>
@@ -4775,7 +4774,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Kubectl cluster-info dump &ndash;output-directory=xxx now generates files with an extension depending on the output format. (
+        Kubectl cluster-info dump –output-directory=xxx now generates files with an extension depending on the output format. (
         <a href="https://github.com/kubernetes/kubernetes/pull/82070">
           #82070
         </a>
@@ -4795,11 +4794,11 @@
         </code>
         will return a message saying
         <code>
-          &quot;No resources found&quot;
+          &#34;No resources found&#34;
         </code>
         or
         <code>
-          &quot;No resources found in &lt;namespace&gt; namespace&quot;
+          &#34;No resources found in &lt;namespace&gt; namespace&#34;
         </code>
         if there are no results to display. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87527">
@@ -4936,7 +4935,7 @@
         ) [SIG Cloud Provider]
       </li>
       <li>
-        Pause image contains &ldquo;Architecture&rdquo; in non-amd64 images (
+        Pause image contains “Architecture” in non-amd64 images (
         <a href="https://github.com/kubernetes/kubernetes/pull/87954">
           #87954
         </a>
@@ -4977,7 +4976,7 @@
         <code>
           PreScore
         </code>
-        &rsquo;s interface. (
+        ’s interface. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88189">
           #88189
         </a>
@@ -5186,7 +5185,7 @@
         <code>
           kubectl diff
         </code>
-        now returns 1 only on diff finding changes, and &gt;1 on kubectl errors. The &ldquo;exit status code 1&rdquo; message has also been muted. (
+        now returns 1 only on diff finding changes, and &gt;1 on kubectl errors. The “exit status code 1” message has also been muted. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87437">
           #87437
         </a>
@@ -6146,7 +6145,7 @@
         <code>
           KUBERNETES_MASTER
         </code>
-        if you were relying on that behavior and you&rsquo;re a client-go user. Set
+        if you were relying on that behavior and you’re a client-go user. Set
         <code>
           --server
         </code>
@@ -6219,7 +6218,7 @@
         ) [SIG Network]
       </li>
       <li>
-        Kubeadm: deprecate the usage of the experimental flag &lsquo;&ndash;use-api&rsquo; under the &lsquo;kubeadm alpha certs renew&rsquo; command. (
+        Kubeadm: deprecate the usage of the experimental flag ‘–use-api’ under the ‘kubeadm alpha certs renew’ command. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88827">
           #88827
         </a>
@@ -6368,7 +6367,7 @@
         ) [SIG API Machinery, Apps, Node, Scheduling and Testing]
       </li>
       <li>
-        New flag &ndash;endpointslice-updates-batch-period in kube-controller-manager can be used to reduce number of endpointslice updates generated by pod changes. (
+        New flag –endpointslice-updates-batch-period in kube-controller-manager can be used to reduce number of endpointslice updates generated by pod changes. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88745">
           #88745
         </a>
@@ -6390,7 +6389,7 @@
         ) [SIG Release, Scheduling and Testing]
       </li>
       <li>
-        The apiserver/v1alph1&#35;EgressSelectorConfiguration API is now beta. (
+        The apiserver/v1alph1#EgressSelectorConfiguration API is now beta. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88502">
           #88502
         </a>
@@ -6443,7 +6442,7 @@
         ) [SIG API Machinery, Cluster Lifecycle and Instrumentation]
       </li>
       <li>
-        Allow user to specify resource using &ndash;filename flag when invoking kubectl exec (
+        Allow user to specify resource using –filename flag when invoking kubectl exec (
         <a href="https://github.com/kubernetes/kubernetes/pull/88460">
           #88460
         </a>
@@ -6454,13 +6453,13 @@
         ) [SIG CLI and Testing]
       </li>
       <li>
-        Apiserver add a new flag &ndash;goaway-chance which is the fraction of requests that will be closed gracefully(GOAWAY) to prevent HTTP/2 clients from getting stuck on a single apiserver.
-        After the connection closed(received GOAWAY), the client&rsquo;s other in-flight requests won&rsquo;t be affected, and the client will reconnect.
+        Apiserver add a new flag –goaway-chance which is the fraction of requests that will be closed gracefully(GOAWAY) to prevent HTTP/2 clients from getting stuck on a single apiserver.
+        After the connection closed(received GOAWAY), the client’s other in-flight requests won’t be affected, and the client will reconnect.
         The flag min value is 0 (off), max is .02 (
         <sup>
           1
         </sup>
-        &frasl;
+        ⁄
         <sub>
           50
         </sub>
@@ -6468,12 +6467,12 @@
         <sup>
           1
         </sup>
-        &frasl;
+        ⁄
         <sub>
           1000
         </sub>
         ) is a recommended starting point.
-        Clusters with single apiservers, or which don&rsquo;t use a load balancer, should NOT enable this. (
+        Clusters with single apiservers, or which don’t use a load balancer, should NOT enable this. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88567">
           #88567
         </a>
@@ -6617,7 +6616,7 @@
         ) [SIG API Machinery, Auth, Node and Testing]
       </li>
       <li>
-        When deleting objects using kubectl with the &ndash;force flag, you are no longer required to also specify &ndash;grace-period=0. (
+        When deleting objects using kubectl with the –force flag, you are no longer required to also specify –grace-period=0. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87776">
           #87776
         </a>
@@ -6736,7 +6735,7 @@
         ) [SIG Cluster Lifecycle, Release and Testing]
       </li>
       <li>
-        Deprecate &ndash;generator flag from kubectl create commands (
+        Deprecate –generator flag from kubectl create commands (
         <a href="https://github.com/kubernetes/kubernetes/pull/88655">
           #88655
         </a>
@@ -6758,7 +6757,7 @@
         ) [SIG API Machinery and Auth]
       </li>
       <li>
-        Fix /readyz to return error immediately after a shutdown is initiated, before the &ndash;shutdown-delay-duration has elapsed. (
+        Fix /readyz to return error immediately after a shutdown is initiated, before the –shutdown-delay-duration has elapsed. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88911">
           #88911
         </a>
@@ -6813,7 +6812,7 @@
         ) [SIG CLI]
       </li>
       <li>
-        Fix missing &ldquo;apiVersion&rdquo; for &ldquo;involvedObject&rdquo; in Events for Nodes. (
+        Fix missing “apiVersion” for “involvedObject” in Events for Nodes. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87537">
           #87537
         </a>
@@ -6879,7 +6878,7 @@
         ) [SIG Node and Storage]
       </li>
       <li>
-        Fixes issue where you can&rsquo;t attach more than 15 GCE Persistent Disks to c2, n2, m1, m2 machine types. (
+        Fixes issue where you can’t attach more than 15 GCE Persistent Disks to c2, n2, m1, m2 machine types. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88602">
           #88602
         </a>
@@ -6950,7 +6949,7 @@
       </li>
       <li>
         Specifying PluginConfig for the same plugin more than once fails scheduler startup.
-        <br />
+        <br/>
       </li>
     </ul>
     <p>
@@ -6963,7 +6962,7 @@
         @alculquicondor
       </a>
       ) [SIG Scheduling]
-      - Support TLS Server Name overrides in kubeconfig file and via &ndash;tls-server-name in kubectl (
+      - Support TLS Server Name overrides in kubeconfig file and via –tls-server-name in kubectl (
       <a href="https://github.com/kubernetes/kubernetes/pull/88769">
         #88769
       </a>
@@ -7008,7 +7007,7 @@
         @ialidzhikov
       </a>
       ) [SIG Release and Testing]
-      - Validate kube-proxy flags &ndash;ipvs-tcp-timeout, &ndash;ipvs-tcpfin-timeout, &ndash;ipvs-udp-timeout (
+      - Validate kube-proxy flags –ipvs-tcp-timeout, –ipvs-tcpfin-timeout, –ipvs-udp-timeout (
       <a href="https://github.com/kubernetes/kubernetes/pull/88657">
         #88657
       </a>
@@ -7519,8 +7518,8 @@
         ) [SIG API Machinery]
       </li>
       <li>
-        Introduces optional &ndash;detect-local flag to kube-proxy.
-        Currently the only supported value is &ldquo;cluster-cidr&rdquo;,
+        Introduces optional –detect-local flag to kube-proxy.
+        Currently the only supported value is “cluster-cidr”,
         which is the default if not specified. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87748">
           #87748
@@ -7563,7 +7562,7 @@
     </h3>
     <ul>
       <li>
-        Add &ndash;dry-run to kubectl delete, taint, replace (
+        Add –dry-run to kubectl delete, taint, replace (
         <a href="https://github.com/kubernetes/kubernetes/pull/88292">
           #88292
         </a>
@@ -7574,7 +7573,7 @@
         ) [SIG CLI and Testing]
       </li>
       <li>
-        Add huge page stats to Allocated resources in &ldquo;kubectl describe node&rdquo; (
+        Add huge page stats to Allocated resources in “kubectl describe node” (
         <a href="https://github.com/kubernetes/kubernetes/pull/80605">
           #80605
         </a>
@@ -7613,8 +7612,8 @@
       </li>
       <li>
         Kubeadm: add the experimental feature gate PublicKeysECDSA that can be used to create a
-        cluster with ECDSA certificates from &ldquo;kubeadm init&rdquo;. Renewal of existing ECDSA certificates is
-        also supported using &ldquo;kubeadm alpha certs renew&rdquo;, but not switching between the RSA and
+        cluster with ECDSA certificates from “kubeadm init”. Renewal of existing ECDSA certificates is
+        also supported using “kubeadm alpha certs renew”, but not switching between the RSA and
         ECDSA algorithms on the fly or during upgrades. (
         <a href="https://github.com/kubernetes/kubernetes/pull/86953">
           #86953
@@ -7723,7 +7722,7 @@
         ) [SIG Node, Testing and Windows]
       </li>
       <li>
-        Cloud provider config CloudProviderBackoffMode has been removed since it won&rsquo;t be used anymore. (
+        Cloud provider config CloudProviderBackoffMode has been removed since it won’t be used anymore. (
         <a href="https://github.com/kubernetes/kubernetes/pull/88463">
           #88463
         </a>
@@ -7782,7 +7781,7 @@
         ) [SIG Storage]
       </li>
       <li>
-        Get-kube.sh uses the gcloud&rsquo;s current local GCP service account for auth when the provider is GCE or GKE instead of the metadata server default (
+        Get-kube.sh uses the gcloud’s current local GCP service account for auth when the provider is GCE or GKE instead of the metadata server default (
         <a href="https://github.com/kubernetes/kubernetes/pull/88383">
           #88383
         </a>
@@ -7815,7 +7814,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Kubeadm: fix the bug that &lsquo;kubeadm upgrade&rsquo; hangs in single node cluster (
+        Kubeadm: fix the bug that ‘kubeadm upgrade’ hangs in single node cluster (
         <a href="https://github.com/kubernetes/kubernetes/pull/88434">
           #88434
         </a>
@@ -8212,7 +8211,7 @@
     </h3>
     <ul>
       <li>
-        Kubeadm: command line option &ldquo;kubelet-version&rdquo; for
+        Kubeadm: command line option “kubelet-version” for
         <code>
           kubeadm upgrade node
         </code>
@@ -8258,7 +8257,7 @@
         <code>
           context.Context
         </code>
-        as a first argument. Signatures of generated Create, Update, and Patch methods have been updated to accept CreateOptions, UpdateOptions and PatchOptions respectively. Clientsets that with the previous interface have been added in new &ldquo;deprecated&rdquo; packages to allow incremental migration to the new APIs. The deprecated packages will be removed in the 1.21 release. (
+        as a first argument. Signatures of generated Create, Update, and Patch methods have been updated to accept CreateOptions, UpdateOptions and PatchOptions respectively. Clientsets that with the previous interface have been added in new “deprecated” packages to allow incremental migration to the new APIs. The deprecated packages will be removed in the 1.21 release. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87299">
           #87299
         </a>
@@ -8307,7 +8306,7 @@
         ) [SIG Storage]
       </li>
       <li>
-        Added a config-mode flag in azure auth module to enable getting AAD token without spn: prefix in audience claim. When it&rsquo;s not specified, the default behavior doesn&rsquo;t change. (
+        Added a config-mode flag in azure auth module to enable getting AAD token without spn: prefix in audience claim. When it’s not specified, the default behavior doesn’t change. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87630">
           #87630
         </a>
@@ -8341,7 +8340,7 @@
       </li>
       <li>
         Promote CSIMigrationOpenStack to Beta (off by default since it requires installation of the OpenStack Cinder CSI Driver)
-        The in-tree AWS OpenStack Cinder &ldquo;kubernetes.io/cinder&rdquo; was already deprecated a while ago and will be removed in 1.20. Users should enable CSIMigration + CSIMigrationOpenStack features and install the OpenStack Cinder CSI Driver (
+        The in-tree AWS OpenStack Cinder “kubernetes.io/cinder” was already deprecated a while ago and will be removed in 1.20. Users should enable CSIMigration + CSIMigrationOpenStack features and install the OpenStack Cinder CSI Driver (
         <a href="https://github.com/kubernetes-sigs/cloud-provider-openstack">
           https://github.com/kubernetes-sigs/cloud-provider-openstack
         </a>
@@ -8362,7 +8361,7 @@
     </h3>
     <ul>
       <li>
-        The scheduler Permit extension point doesn&rsquo;t return a boolean value in its Allow() and Reject() functions. (
+        The scheduler Permit extension point doesn’t return a boolean value in its Allow() and Reject() functions. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87936">
           #87936
         </a>
@@ -8378,7 +8377,7 @@
     </h3>
     <ul>
       <li>
-        Adds &ldquo;volume.beta.kubernetes.io/migrated-to&rdquo; annotation to PV&rsquo;s and PVC&rsquo;s when they are migrated to signal external provisioners to pick up those objects for Provisioning and Deleting. (
+        Adds “volume.beta.kubernetes.io/migrated-to” annotation to PV’s and PVC’s when they are migrated to signal external provisioners to pick up those objects for Provisioning and Deleting. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87098">
           #87098
         </a>
@@ -8488,7 +8487,7 @@
         ) [SIG API Machinery, Cluster Lifecycle and Network]
       </li>
       <li>
-        Kubeadm:  &lsquo;kubeadm alpha kubelet config download&rsquo; has been removed, please use &lsquo;kubeadm upgrade node phase kubelet-config&rsquo; instead (
+        Kubeadm:  ‘kubeadm alpha kubelet config download’ has been removed, please use ‘kubeadm upgrade node phase kubelet-config’ instead (
         <a href="https://github.com/kubernetes/kubernetes/pull/87944">
           #87944
         </a>
@@ -8499,7 +8498,7 @@
         ) [SIG Cluster Lifecycle]
       </li>
       <li>
-        Kubeadm: remove &lsquo;kubeadm upgrade node config&rsquo; command since it was deprecated in v1.15, please use &lsquo;kubeadm upgrade node phase kubelet-config&rsquo; instead (
+        Kubeadm: remove ‘kubeadm upgrade node config’ command since it was deprecated in v1.15, please use ‘kubeadm upgrade node phase kubelet-config’ instead (
         <a href="https://github.com/kubernetes/kubernetes/pull/87975">
           #87975
         </a>
@@ -8512,9 +8511,9 @@
       <li>
         Kubectl describe
         <type>
-        and kubectl top pod will return a message saying &ldquo;No resources found&rdquo; or &ldquo;No resources found in
+        and kubectl top pod will return a message saying “No resources found” or “No resources found in
         <namespace>
-        namespace&rdquo; if there are no results to display. (
+        namespace” if there are no results to display. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87527">
           #87527
         </a>
@@ -8523,7 +8522,7 @@
           @brianpursley
         </a>
         ) [SIG CLI]
-      </li>
+      </namespace></type></li>
       <li>
         Kubelet metrics gathered through metrics-server or prometheus should no longer timeout for Windows nodes running more than 3 pods. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87730">
@@ -8570,7 +8569,7 @@
         ) [SIG Cloud Provider]
       </li>
       <li>
-        Pause image contains &ldquo;Architecture&rdquo; in non-amd64 images (
+        Pause image contains “Architecture” in non-amd64 images (
         <a href="https://github.com/kubernetes/kubernetes/pull/87954">
           #87954
         </a>
@@ -8581,7 +8580,7 @@
         ) [SIG Release]
       </li>
       <li>
-        Pods that are considered for preemption and haven&rsquo;t started don&rsquo;t produce an error log. (
+        Pods that are considered for preemption and haven’t started don’t produce an error log. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87900">
           #87900
         </a>
@@ -9057,7 +9056,7 @@
         ) [SIG Scheduling]
       </li>
       <li>
-        &ndash;enable-cadvisor-endpoints is now disabled by default. If you need access to the cAdvisor v1 Json API please enable it explicitly in the kubelet command line. Please note that this flag was deprecated in 1.15 and will be removed in 1.19. (
+        –enable-cadvisor-endpoints is now disabled by default. If you need access to the cAdvisor v1 Json API please enable it explicitly in the kubelet command line. Please note that this flag was deprecated in 1.15 and will be removed in 1.19. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87440">
           #87440
         </a>
@@ -9096,13 +9095,13 @@
       </li>
       <li>
         API request throttling (due to a high rate of requests) is now reported in client-go logs at log level 2.  The messages are of the form
-        <br />
+        <br/>
       </li>
     </ul>
     <p>
       Throttling request took 1.50705208s, request: GET:
-      <URL>
-    </p>
+      <url>
+    </url></p>
     <p>
       The presence of these messages, may indicate to the administrator the need to tune the cluster accordingly. (
       <a href="https://github.com/kubernetes/kubernetes/pull/87740">
@@ -9122,7 +9121,7 @@
         @neolit123
       </a>
       ) [SIG Cluster Lifecycle]
-      - disableAvailabilitySetNodes is added to avoid VM list for VMSS clusters. It should only be used when vmType is &ldquo;vmss&rdquo; and all the nodes (including masters) are VMSS virtual machines. (
+      - disableAvailabilitySetNodes is added to avoid VM list for VMSS clusters. It should only be used when vmType is “vmss” and all the nodes (including masters) are VMSS virtual machines. (
       <a href="https://github.com/kubernetes/kubernetes/pull/87685">
         #87685
       </a>
@@ -9131,7 +9130,7 @@
         @feiskyer
       </a>
       ) [SIG Cloud Provider]
-      - The kubectl &ndash;dry-run flag now accepts the values &lsquo;client&rsquo;, &lsquo;server&rsquo;, and &lsquo;none&rsquo;, to support client-side and server-side dry-run strategies. The boolean and unset values for the &ndash;dry-run flag are deprecated and a value will be required in a future version. (
+      - The kubectl –dry-run flag now accepts the values ‘client’, ‘server’, and ‘none’, to support client-side and server-side dry-run strategies. The boolean and unset values for the –dry-run flag are deprecated and a value will be required in a future version. (
       <a href="https://github.com/kubernetes/kubernetes/pull/87580">
         #87580
       </a>
@@ -9214,7 +9213,7 @@
         <code>
           kubectl diff
         </code>
-        now returns 1 only on diff finding changes, and &gt;1 on kubectl errors. The &ldquo;exit status code 1&rdquo; message as also been muted. (
+        now returns 1 only on diff finding changes, and &gt;1 on kubectl errors. The “exit status code 1” message as also been muted. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87437">
           #87437
         </a>
@@ -9269,7 +9268,7 @@
         ) [SIG Auth]
       </li>
       <li>
-        Removed the &lsquo;client&rsquo; label from apiserver_request_total. (
+        Removed the ‘client’ label from apiserver_request_total. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87669">
           #87669
         </a>
@@ -9281,19 +9280,19 @@
       </li>
       <li>
         <code>
-          (*&quot;k8s.io/client-go/rest&quot;.Request).{Do,DoRaw,Stream,Watch}
+          (*&#34;k8s.io/client-go/rest&#34;.Request).{Do,DoRaw,Stream,Watch}
         </code>
         now require callers to pass a
         <code>
           context.Context
         </code>
-        as an argument. The context is used for timeout and cancellation signaling and to pass supplementary information to round trippers in the wrapped transport chain. If you don&rsquo;t need any of this functionality, it is sufficient to pass a context created with
+        as an argument. The context is used for timeout and cancellation signaling and to pass supplementary information to round trippers in the wrapped transport chain. If you don’t need any of this functionality, it is sufficient to pass a context created with
         <code>
           context.Background()
         </code>
         to these functions. The
         <code>
-          (*&quot;k8s.io/client-go/rest&quot;.Request).Context
+          (*&#34;k8s.io/client-go/rest&#34;.Request).Context
         </code>
         method is removed now that all methods that execute a request accept a context directly. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87597">
@@ -9317,7 +9316,7 @@
         ) [SIG Apps, SIG Node, and SIG Storage]
       </li>
       <li>
-        kubeadm: apply further improvements to the tentative support for concurrent etcd member join. Fixes a bug where multiple members can receive the same hostname. Increase the etcd client dial timeout and retry timeout for add/remove/&hellip; operations. (
+        kubeadm: apply further improvements to the tentative support for concurrent etcd member join. Fixes a bug where multiple members can receive the same hostname. Increase the etcd client dial timeout and retry timeout for add/remove/… operations. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87505">
           #87505
         </a>
@@ -9350,7 +9349,7 @@
         ) [SIG Cluster Lifecycle, and SIG Release]
       </li>
       <li>
-        kubeadm: remove the deprecated CoreDNS feature-gate. It was set to &ldquo;true&rdquo; since v1.11 when the feature went GA. In v1.13 it was marked as deprecated and hidden from the CLI. (
+        kubeadm: remove the deprecated CoreDNS feature-gate. It was set to “true” since v1.11 when the feature went GA. In v1.13 it was marked as deprecated and hidden from the CLI. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87400">
           #87400
         </a>
@@ -9383,7 +9382,7 @@
         ) [SIG API Machinery, SIG Apps, and SIG Auth]
       </li>
       <li>
-        &ldquo;kubectl describe statefulsets.apps&rdquo; prints garbage for rolling update partition (
+        “kubectl describe statefulsets.apps” prints garbage for rolling update partition (
         <a href="https://github.com/kubernetes/kubernetes/pull/85846">
           #85846
         </a>
@@ -9833,7 +9832,7 @@
         )
       </li>
       <li>
-        Fix the bug PIP&rsquo;s DNS is deleted if no DNS label service annotation isn&rsquo;t set. (
+        Fix the bug PIP’s DNS is deleted if no DNS label service annotation isn’t set. (
         <a href="https://github.com/kubernetes/kubernetes/pull/87246">
           #87246
         </a>
@@ -9984,27 +9983,27 @@
             :
           </li>
           <li>
-            - scrape_error &ndash;&gt; scrape_error
+            - scrape_error –&gt; scrape_error
           </li>
           <li>
-            - node_cpu_usage_seconds_total &ndash;&gt; node_cpu_usage_seconds
+            - node_cpu_usage_seconds_total –&gt; node_cpu_usage_seconds
           </li>
           <li>
-            - node_memory_working_set_bytes &ndash;&gt; node_memory_working_set_bytes
+            - node_memory_working_set_bytes –&gt; node_memory_working_set_bytes
           </li>
           <li>
-            - container_cpu_usage_seconds_total &ndash;&gt; container_cpu_usage_seconds
+            - container_cpu_usage_seconds_total –&gt; container_cpu_usage_seconds
           </li>
           <li>
-            - container_memory_working_set_bytes &ndash;&gt; container_memory_working_set_bytes
+            - container_memory_working_set_bytes –&gt; container_memory_working_set_bytes
           </li>
           <li>
-            - scrape_error &ndash;&gt; scrape_error
+            - scrape_error –&gt; scrape_error
           </li>
         </ul>
       </li>
       <li>
-        You can now pass &ldquo;&ndash;node-ip ::&rdquo; to kubelet to indicate that it should autodetect an IPv6 address to use as the node&rsquo;s primary address. (
+        You can now pass “–node-ip ::” to kubelet to indicate that it should autodetect an IPv6 address to use as the node’s primary address. (
         <a href="https://github.com/kubernetes/kubernetes/pull/85850">
           #85850
         </a>
@@ -10253,7 +10252,7 @@
         )
       </li>
       <li>
-        Marked scheduler&rsquo;s metrics scheduling_algorithm_predicate_evaluation_seconds and (
+        Marked scheduler’s metrics scheduling_algorithm_predicate_evaluation_seconds and (
         <a href="https://github.com/kubernetes/kubernetes/pull/86584">
           #86584
         </a>
@@ -10264,12 +10263,12 @@
         )
         <ul>
           <li>
-            scheduling_algorithm_priority_evaluation_seconds as deprecated. Those are replaced by framework_extension_point_duration_seconds[extenstion_point=&ldquo;Filter&rdquo;] and framework_extension_point_duration_seconds[extenstion_point=&ldquo;Score&rdquo;] respectively.
+            scheduling_algorithm_priority_evaluation_seconds as deprecated. Those are replaced by framework_extension_point_duration_seconds[extenstion_point=“Filter”] and framework_extension_point_duration_seconds[extenstion_point=“Score”] respectively.
           </li>
         </ul>
       </li>
       <li>
-        Marked scheduler&rsquo;s scheduling_duration_seconds Summary metric as deprecated (
+        Marked scheduler’s scheduling_duration_seconds Summary metric as deprecated (
         <a href="https://github.com/kubernetes/kubernetes/pull/86586">
           #86586
         </a>
@@ -10313,7 +10312,7 @@
         )
       </li>
       <li>
-        kubeadm: add support for the &ldquo;ci/k8s-master&rdquo; version label as a replacement for &ldquo;ci-cross/*&ldquo;, which no longer exists. (
+        kubeadm: add support for the “ci/k8s-master” version label as a replacement for “ci-cross/*“, which no longer exists. (
         <a href="https://github.com/kubernetes/kubernetes/pull/86609">
           #86609
         </a>
@@ -10357,7 +10356,7 @@
         )
       </li>
       <li>
-        Fixes v1.17.0 regression in &ndash;service-cluster-ip-range handling with IPv4 ranges larger than 65536 IP addresses (
+        Fixes v1.17.0 regression in –service-cluster-ip-range handling with IPv4 ranges larger than 65536 IP addresses (
         <a href="https://github.com/kubernetes/kubernetes/pull/86534">
           #86534
         </a>
@@ -10390,7 +10389,7 @@
         )
         <ul>
           <li>
-            The original rate limit options would be default values for those new client&rsquo;s rate limiter.
+            The original rate limit options would be default values for those new client’s rate limiter.
           </li>
         </ul>
       </li>
@@ -10441,17 +10440,17 @@
         </code>
         is added to azure cloud provider for the pre-configured load balancers, possible values:
         <code>
-          &quot;&quot;
+          &#34;&#34;
         </code>
         ,
         <code>
-          &quot;internal&quot;
+          &#34;internal&#34;
         </code>
-        , &ldquo;external&rdquo;
+        , “external”
         <code>
           ,
         </code>
-        &ldquo;all&rdquo;` (
+        “all”` (
         <a href="https://github.com/kubernetes/kubernetes/pull/86338">
           #86338
         </a>
@@ -10484,7 +10483,7 @@
         )
         <ul>
           <li>
-            The audience claim before this fix has &ldquo;spn:&rdquo; prefix. After this fix, &ldquo;spn:&rdquo; prefix is omitted.
+            The audience claim before this fix has “spn:” prefix. After this fix, “spn:” prefix is omitted.
           </li>
         </ul>
       </li>
@@ -10902,7 +10901,7 @@
             2. CacheSize type was changed from int32 to *int32. This allows defaulting logic to differentiate between cases where users explicitly supplied 0 vs. not supplied any value.
           </li>
           <li>
-            3. KMS Provider&rsquo;s endpoint (path to Unix socket) is now validated when the EncryptionConfiguration files is loaded. This used to be handled by the GRPCService.
+            3. KMS Provider’s endpoint (path to Unix socket) is now validated when the EncryptionConfiguration files is loaded. This used to be handled by the GRPCService.
           </li>
         </ul>
       </li>
@@ -10971,7 +10970,7 @@
         )
       </li>
       <li>
-        add kube-proxy flags &ndash;ipvs-tcp-timeout, &ndash;ipvs-tcpfin-timeout, &ndash;ipvs-udp-timeout to configure IPVS connection timeouts. (
+        add kube-proxy flags –ipvs-tcp-timeout, –ipvs-tcpfin-timeout, –ipvs-udp-timeout to configure IPVS connection timeouts. (
         <a href="https://github.com/kubernetes/kubernetes/pull/85517">
           #85517
         </a>
@@ -11041,25 +11040,25 @@
         )
         <ul>
           <li>
-            - &ldquo;availabilitySetNodesCacheTTLInSeconds&rdquo;
+            - “availabilitySetNodesCacheTTLInSeconds”
           </li>
           <li>
-            - &ldquo;vmssCacheTTLInSeconds&rdquo;
+            - “vmssCacheTTLInSeconds”
           </li>
           <li>
-            - &ldquo;vmssVirtualMachinesCacheTTLInSeconds&rdquo;
+            - “vmssVirtualMachinesCacheTTLInSeconds”
           </li>
           <li>
-            - &ldquo;vmCacheTTLInSeconds&rdquo;
+            - “vmCacheTTLInSeconds”
           </li>
           <li>
-            - &ldquo;loadBalancerCacheTTLInSeconds&rdquo;
+            - “loadBalancerCacheTTLInSeconds”
           </li>
           <li>
-            - &ldquo;nsgCacheTTLInSeconds&rdquo;
+            - “nsgCacheTTLInSeconds”
           </li>
           <li>
-            - &ldquo;routeTableCacheTTLInSeconds&rdquo;
+            - “routeTableCacheTTLInSeconds”
           </li>
         </ul>
       </li>
@@ -11168,7 +11167,7 @@
         instead
       </li>
       <li>
-        kubeadm: fix potential panic when executing &ldquo;kubeadm reset&rdquo; with a corrupted kubelet.conf file (
+        kubeadm: fix potential panic when executing “kubeadm reset” with a corrupted kubelet.conf file (
         <a href="https://github.com/kubernetes/kubernetes/pull/86216">
           #86216
         </a>
@@ -11298,8 +11297,8 @@
         <ul>
           <li>
             Throttling request took 1.50705208s, request: GET:
-            <URL>
-          </li>
+            <url>
+          </url></li>
           <li>
             The presence of large numbers of these messages, particularly with long delay times, may indicate to the administrator the need to tune the cluster accordingly.
           </li>
@@ -11501,7 +11500,7 @@
         )
       </li>
       <li>
-        kubectl drain node &ndash;dry-run will list pods that would be evicted or deleted (
+        kubectl drain node –dry-run will list pods that would be evicted or deleted (
         <a href="https://github.com/kubernetes/kubernetes/pull/82660">
           #82660
         </a>
@@ -11572,7 +11571,7 @@
         )
       </li>
       <li>
-        kubelet now exports a &ldquo;server_expiration_renew_failure&rdquo; and &ldquo;client_expiration_renew_failure&rdquo; metric counter if the certificate rotations cannot be performed. (
+        kubelet now exports a “server_expiration_renew_failure” and “client_expiration_renew_failure” metric counter if the certificate rotations cannot be performed. (
         <a href="https://github.com/kubernetes/kubernetes/pull/84614">
           #84614
         </a>
@@ -11583,7 +11582,7 @@
         )
       </li>
       <li>
-        kubeadm: don&rsquo;t write the kubelet environment file on &ldquo;upgrade apply&rdquo; (
+        kubeadm: don’t write the kubelet environment file on “upgrade apply” (
         <a href="https://github.com/kubernetes/kubernetes/pull/85412">
           #85412
         </a>
@@ -11638,7 +11637,7 @@
         )
       </li>
       <li>
-        Fixed &ldquo;requested device X but found Y&rdquo; attach error on AWS. (
+        Fixed “requested device X but found Y” attach error on AWS. (
         <a href="https://github.com/kubernetes/kubernetes/pull/85675">
           #85675
         </a>
@@ -11713,7 +11712,7 @@
         <ul>
           <li>
             kubectl set subject will no longer return an error if passed an empty change for a resource.
-            <br />
+            <br/>
           </li>
         </ul>
       </li>
@@ -11821,5 +11820,5 @@
         )
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

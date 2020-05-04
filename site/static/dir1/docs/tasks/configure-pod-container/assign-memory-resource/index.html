@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Assign Memory Resources to Containers and Pods
     </h1>
@@ -72,7 +71,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -168,7 +167,7 @@ v1beta1.metrics.k8s.io</code></pre>
         resources:requests
       </code>
       field
-      in the Container&rsquo;s resource manifest. To specify a memory limit, include
+      in the Container’s resource manifest. To specify a memory limit, include
       <code>
         resources:limits
       </code>
@@ -176,7 +175,7 @@ v1beta1.metrics.k8s.io</code></pre>
     </p>
     <p>
       In this exercise, you create a Pod that has one Container. The Container has a memory
-      request of 100 MiB and a memory limit of 200 MiB. Here&rsquo;s the configuration file
+      request of 100 MiB and a memory limit of 200 MiB. Here’s the configuration file
       for the Pod:
     </p>
     <table class="includecode" id="pods-resource-memory-request-limit-yaml">
@@ -188,7 +187,7 @@ v1beta1.metrics.k8s.io</code></pre>
                 pods/resource/memory-request-limit.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-resource-memory-request-limit-yaml')" title="Copy pods/resource/memory-request-limit.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-resource-memory-request-limit-yaml&#39;)" title="Copy pods/resource/memory-request-limit.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -226,7 +225,7 @@ v1beta1.metrics.k8s.io</code></pre>
       section in the configuration file provides arguments for the Container when it starts.
       The
       <code>
-        &quot;--vm-bytes&quot;, &quot;150M&quot;
+        &#34;--vm-bytes&#34;, &#34;150M&#34;
       </code>
       arguments tell the Container to attempt to allocate 150 MiB of memory.
     </p>
@@ -273,8 +272,8 @@ v1beta1.metrics.k8s.io</code></pre>
     </div>
     <p>
       The output shows that the Pod is using about 162,900,000 bytes of memory, which
-      is about 150 MiB. This is greater than the Pod&rsquo;s 100 MiB request, but within the
-      Pod&rsquo;s 200 MiB limit.
+      is about 150 MiB. This is greater than the Pod’s 100 MiB request, but within the
+      Pod’s 200 MiB limit.
     </p>
     <pre><code>NAME                        CPU(cores)   MEMORY(bytes)
 memory-demo                 &lt;something&gt;  162856960</code></pre>
@@ -285,7 +284,7 @@ memory-demo                 &lt;something&gt;  162856960</code></pre>
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete pod memory-demo --namespace<span style="color:#666">=</span>mem-example</code></pre>
     </div>
     <h2 id="exceed-a-container-s-memory-limit">
-      Exceed a Container&rsquo;s memory limit
+      Exceed a Container’s memory limit
     </h2>
     <p>
       A Container can exceed its memory request if the Node has memory available. But a Container
@@ -308,7 +307,7 @@ memory-demo                 &lt;something&gt;  162856960</code></pre>
                 pods/resource/memory-request-limit-2.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-resource-memory-request-limit-2-yaml')" title="Copy pods/resource/memory-request-limit-2.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-resource-memory-request-limit-2-yaml&#39;)" title="Copy pods/resource/memory-request-limit-2.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -409,7 +408,7 @@ memory-demo-2   1/1       Running   2          40s</code></pre>
     <pre><code>... Normal  Created   Created container with id 66a3a20aa7980e61be4922780bf9d24d1a1d8b7395c09861225b0eba1b1f8511
 ... Warning BackOff   Back-off restarting failed container</code></pre>
     <p>
-      View detailed information about your cluster&rsquo;s Nodes:
+      View detailed information about your cluster’s Nodes:
     </p>
     <pre><code>kubectl describe nodes</code></pre>
     <p>
@@ -433,7 +432,7 @@ memory-demo-2   1/1       Running   2          40s</code></pre>
     </p>
     <p>
       Pod scheduling is based on requests. A Pod is scheduled to run on a Node only if the Node
-      has enough available memory to satisfy the Pod&rsquo;s memory request.
+      has enough available memory to satisfy the Pod’s memory request.
     </p>
     <p>
       In this exercise, you create a Pod that has a memory request so big that it exceeds the
@@ -450,7 +449,7 @@ memory-demo-2   1/1       Running   2          40s</code></pre>
                 pods/resource/memory-request-limit-3.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-resource-memory-request-limit-3-yaml')" title="Copy pods/resource/memory-request-limit-3.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-resource-memory-request-limit-3-yaml&#39;)" title="Copy pods/resource/memory-request-limit-3.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -559,8 +558,8 @@ memory-demo-3   0/1       Pending   0          25s</code></pre>
     </h2>
     <p>
       By configuring memory requests and limits for the Containers that run in your
-      cluster, you can make efficient use of the memory resources available on your cluster&rsquo;s
-      Nodes. By keeping a Pod&rsquo;s memory request low, you give the Pod a good chance of being
+      cluster, you can make efficient use of the memory resources available on your cluster’s
+      Nodes. By keeping a Pod’s memory request low, you give the Pod a good chance of being
       scheduled. By having a memory limit that is greater than the memory request, you accomplish two things:
     </p>
     <ul>
@@ -656,5 +655,5 @@ memory-demo-3   0/1       Pending   0          25s</code></pre>
         </p>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

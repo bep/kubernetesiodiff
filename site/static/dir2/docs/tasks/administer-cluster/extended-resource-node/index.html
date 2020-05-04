@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Advertise Extended Resources for a Node
     </h1>
@@ -44,7 +43,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -95,7 +94,7 @@
     <p>
       To advertise a new extended resource on a Node, send an HTTP PATCH request to
       the Kubernetes API server. For example, suppose one of your Nodes has four dongles
-      attached. Here&rsquo;s an example of a PATCH request that advertises four dongle resources
+      attached. Here’s an example of a PATCH request that advertises four dongle resources
       for your Node.
     </p>
     <div class="highlight">
@@ -158,10 +157,10 @@ Host: k8s-master:8080
     <p>
       The output shows that the Node has a capacity of 4 dongles:
     </p>
-    <pre><code>&quot;capacity&quot;: {
-  &quot;cpu&quot;: &quot;2&quot;,
-  &quot;memory&quot;: &quot;2049008Ki&quot;,
-  &quot;example.com/dongle&quot;: &quot;4&quot;,</code></pre>
+    <pre><code>&#34;capacity&#34;: {
+  &#34;cpu&#34;: &#34;2&#34;,
+  &#34;memory&#34;: &#34;2049008Ki&#34;,
+  &#34;example.com/dongle&#34;: &#34;4&#34;,</code></pre>
     <p>
       Describe your Node:
     </p>
@@ -173,7 +172,7 @@ Host: k8s-master:8080
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">Capacity</span>:<span style="color:#bbb">
 </span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb">  </span><span style="color:#666">2</span><span style="color:#bbb">
 </span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">memory</span>:<span style="color:#bbb">  </span>2049008Ki<span style="color:#bbb">
-</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">example.com/dongle</span>:<span style="color:#bbb">  </span><span style="color:#666">4</span><span style="color:#bbb">
+</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">example.com/dongle</span>:<span style="color:#bbb">  </span><span style="color:#666">4</span><span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <p>
@@ -244,8 +243,8 @@ Host: k8s-master:8080
 
 [
   {
-    &quot;op&quot;: &quot;remove&quot;,
-    &quot;path&quot;: &quot;/status/capacity/example.com~1dongle&quot;,
+    &#34;op&#34;: &#34;remove&#34;,
+    &#34;path&#34;: &#34;/status/capacity/example.com~1dongle&#34;,
   }
 ]</code></pre>
     <p>
@@ -303,5 +302,5 @@ Host: k8s-master:8080
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

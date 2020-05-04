@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Determine the Reason for Pod Failure
     </h1>
@@ -45,7 +44,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -98,7 +97,7 @@
                 debug/termination.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('debug-termination-yaml')" title="Copy debug/termination.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;debug-termination-yaml&#39;)" title="Copy debug/termination.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -138,13 +137,13 @@
             args
           </code>
           fields, you can see that the
-          container sleeps for 10 seconds and then writes &ldquo;Sleep expired&rdquo; to
+          container sleeps for 10 seconds and then writes “Sleep expired” to
           the
           <code>
             /dev/termination-log
           </code>
           file. After the container writes
-          the &ldquo;Sleep expired&rdquo; message, it terminates.
+          the “Sleep expired” message, it terminates.
         </p>
       </li>
       <li>
@@ -162,7 +161,7 @@
         </p>
         <pre><code> kubectl get pod termination-demo --output=yaml</code></pre>
         <p>
-          The output includes the &ldquo;Sleep expired&rdquo; message:
+          The output includes the “Sleep expired” message:
         </p>
         <pre><code> apiVersion: v1
  kind: Pod
@@ -181,7 +180,7 @@
           Use a Go template to filter the output so that it includes
           only the termination message:
         </p>
-        <pre><code> kubectl get pod termination-demo -o go-template=&quot;{{range .status.containerStatuses}}{{.lastState.terminated.message}}{{end}}&quot;</code></pre>
+        <pre><code> kubectl get pod termination-demo -o go-template=&#34;{{range .status.containerStatuses}}{{.lastState.terminated.message}}{{end}}&#34;</code></pre>
       </li>
     </ol>
     <h2 id="customizing-the-termination-message">
@@ -200,7 +199,7 @@
       </code>
       . By customizing this field, you can tell Kubernetes
       to use a different file. Kubernetes use the contents from the specified file to
-      populate the Container&rsquo;s status message on both success and failure.
+      populate the Container’s status message on both success and failure.
     </p>
     <p>
       In the following example, the container writes termination messages to
@@ -218,7 +217,7 @@
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">containers</span>:<span style="color:#bbb">
 </span><span style="color:#bbb">  </span>- <span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>msg-path-demo-container<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>debian<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">terminationMessagePath</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;/tmp/my-log&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">terminationMessagePath</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;/tmp/my-log&#34;</span><span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <p>
@@ -227,20 +226,20 @@
         terminationMessagePolicy
       </code>
       field of a Container for
-      further customization. This field defaults to &ldquo;
+      further customization. This field defaults to “
       <code>
         File
       </code>
-      &rdquo; which means the termination
+      ” which means the termination
       messages are retrieved only from the termination message file. By setting the
       <code>
         terminationMessagePolicy
       </code>
-      to &ldquo;
+      to “
       <code>
         FallbackToLogsOnError
       </code>
-      &rdquo;, you can tell Kubernetes
+      ”, you can tell Kubernetes
       to use the last chunk of container log output if the termination message file
       is empty and the container exited with an error. The log output is limited to
       2048 bytes or 80 lines, whichever is smaller.
@@ -275,5 +274,5 @@
         .
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

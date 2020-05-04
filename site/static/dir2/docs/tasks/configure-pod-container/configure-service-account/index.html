@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Configure Service Accounts for Pods
 </h1>
@@ -81,7 +80,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -242,7 +241,7 @@ metadata:
   creationTimestamp: 2015-06-16T00:12:59Z
   name: build-robot
   namespace: default
-  resourceVersion: &quot;272500&quot;
+  resourceVersion: &#34;272500&#34;
   uid: 721ab723-13bc-11e5-aec2-42010af0021e
 secrets:
 - name: build-robot-token-bvbk5</code></pre>
@@ -279,7 +278,7 @@ secrets:
   Manually create a service account API token.
 </h2>
 <p>
-  Suppose we have an existing service account named &ldquo;build-robot&rdquo; as mentioned above, and we create
+  Suppose we have an existing service account named “build-robot” as mentioned above, and we create
   a new secret manually.
 </p>
 <div class="highlight">
@@ -294,7 +293,7 @@ secrets:
 </span><span style="color:#b44">EOF</span></code></pre>
 </div>
 <p>
-  Now you can confirm that the newly built secret is populated with an API token for the &ldquo;build-robot&rdquo; service account.
+  Now you can confirm that the newly built secret is populated with an API token for the “build-robot” service account.
 </p>
 <p>
   Any tokens for non-existent service accounts will be cleaned up by the token controller.
@@ -446,7 +445,7 @@ TODO: Test and explain how to use additional non-K8s secrets with an existing se
   Service Account Token Volume Projection
 </h2>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -558,7 +557,7 @@ TODO: Test and explain how to use additional non-K8s secrets with an existing se
     ServiceAccountToken
   </a>
   . To provide a
-  pod with a token with an audience of &ldquo;vault&rdquo; and a validity duration of two
+  pod with a token with an audience of “vault” and a validity duration of two
   hours, you would configure the following in your PodSpec:
 </p>
 <table class="includecode" id="pods-pod-projected-svc-token-yaml">
@@ -570,7 +569,7 @@ TODO: Test and explain how to use additional non-K8s secrets with an existing se
             pods/pod-projected-svc-token.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-pod-projected-svc-token-yaml')" title="Copy pods/pod-projected-svc-token.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-pod-projected-svc-token-yaml&#39;)" title="Copy pods/pod-projected-svc-token.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -815,7 +814,7 @@ TODO: Test and explain how to use additional non-K8s secrets with an existing se
     jwks_uri
   </code>
   in the OpenID Provider Configuration so that it points
-  to the public endpoint, rather than the API server&rsquo;s address, by passing the
+  to the public endpoint, rather than the API server’s address, by passing the
   <code>
     --service-account-jwks-uri
   </code>
@@ -848,4 +847,4 @@ TODO: Test and explain how to use additional non-K8s secrets with an existing se
       OIDC Discovery Spec
     </a>
   </li>
-</ul>
+</ul></div></div></body></html>

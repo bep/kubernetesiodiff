@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Operating etcd clusters for Kubernetes
     </h1>
@@ -12,10 +11,10 @@
       Operating etcd clusters for Kubernetes
     </h1>
     <p>
-      <p>
-        etcd is a  consistent and highly-available key value store used as Kubernetes&rsquo; backing store for all cluster data.
+      </p><p>
+        etcd is a  consistent and highly-available key value store used as Kubernetes’ backing store for all cluster data.
       </p>
-    </p>
+    <p></p>
     <p>
       If your Kubernetes cluster uses etcd as its backing store, make sure you have a
       <a href="/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster">
@@ -161,7 +160,7 @@
         </p>
       </li>
     </ul>
-    <h2 id="resource-requirements">
+    <h2 id="resource-requirements" data-diff="">
       Resource requirements
     </h2>
     <p>
@@ -485,8 +484,8 @@
           </code>
           :
         </p>
-        <pre><code> export ETCD_NAME=&quot;member4&quot;
- export ETCD_INITIAL_CLUSTER=&quot;member2=http://10.0.0.2:2380,member3=http://10.0.0.3:2380,member4=http://10.0.0.4:2380&quot;
+        <pre><code> export ETCD_NAME=&#34;member4&#34;
+ export ETCD_INITIAL_CLUSTER=&#34;member2=http://10.0.0.2:2380,member3=http://10.0.0.3:2380,member4=http://10.0.0.4:2380&#34;
  export ETCD_INITIAL_CLUSTER_STATE=existing
  etcd [flags]</code></pre>
       </li>
@@ -691,7 +690,7 @@
       The process for migrating from etcd2 to etcd3 is highly dependent on how the
       etcd cluster was deployed and configured, as well as how the Kubernetes
       cluster was deployed and configured. We recommend that you consult your cluster
-      provider&rsquo;s documentation to see if there is a predefined solution.
+      provider’s documentation to see if there is a predefined solution.
     </p>
     <p>
       If your cluster was created via
@@ -748,9 +747,9 @@
     <p>
       See
       <a href="https://github.com/kubernetes/kubernetes/issues/72102">
-        &ldquo;kube-apiserver 1.13.x refuses to work when first etcd-server is not available&rdquo;
+        “kube-apiserver 1.13.x refuses to work when first etcd-server is not available”
       </a>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

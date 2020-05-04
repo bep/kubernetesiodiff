@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Garbage Collection
     </h1>
@@ -33,7 +32,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -82,7 +81,7 @@
       field.
     </p>
     <p>
-      Here&rsquo;s a configuration file for a ReplicaSet that has three Pods:
+      Here’s a configuration file for a ReplicaSet that has three Pods:
     </p>
     <table class="includecode" id="controllers-replicaset-yaml">
       <thead>
@@ -93,7 +92,7 @@
                 controllers/replicaset.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('controllers-replicaset-yaml')" title="Copy controllers/replicaset.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;controllers-replicaset-yaml&#39;)" title="Copy controllers/replicaset.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -151,7 +150,7 @@ kubectl get pods --output<span style="color:#666">=</span>yaml</code></pre>
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">kind</span>:<span style="color:#bbb"> </span>ReplicaSet<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>my-repset<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">uid</span>:<span style="color:#bbb"> </span>d9607e19-f88f<span style="color:#666">-11e6</span>-a518-42010a800195<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>...<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>...<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <blockquote class="note">
@@ -178,7 +177,7 @@ kubectl get pods --output<span style="color:#666">=</span>yaml</code></pre>
       Controlling how the garbage collector deletes dependents
     </h2>
     <p>
-      When you delete an object, you can specify whether the object&rsquo;s dependents are
+      When you delete an object, you can specify whether the object’s dependents are
       also deleted automatically. Deleting dependents automatically is called
       <em>
         cascading
@@ -215,7 +214,7 @@ kubectl get pods --output<span style="color:#666">=</span>yaml</code></pre>
         foreground cascading deletion
       </em>
       , the root object first
-      enters a &ldquo;deletion in progress&rdquo; state. In the &ldquo;deletion in progress&rdquo; state,
+      enters a “deletion in progress” state. In the “deletion in progress” state,
       the following things are true:
     </p>
     <ul>
@@ -223,24 +222,24 @@ kubectl get pods --output<span style="color:#666">=</span>yaml</code></pre>
         The object is still visible via the REST API
       </li>
       <li>
-        The object&rsquo;s
+        The object’s
         <code>
           deletionTimestamp
         </code>
         is set
       </li>
       <li>
-        The object&rsquo;s
+        The object’s
         <code>
           metadata.finalizers
         </code>
-        contains the value &ldquo;foregroundDeletion&rdquo;.
+        contains the value “foregroundDeletion”.
       </li>
     </ul>
     <p>
-      Once the &ldquo;deletion in progress&rdquo; state is set, the garbage
-      collector deletes the object&rsquo;s dependents. Once the garbage collector has deleted all
-      &ldquo;blocking&rdquo; dependents (objects with
+      Once the “deletion in progress” state is set, the garbage
+      collector deletes the object’s dependents. Once the garbage collector has deleted all
+      “blocking” dependents (objects with
       <code>
         ownerReference.blockOwnerDeletion=true
       </code>
@@ -248,7 +247,7 @@ kubectl get pods --output<span style="color:#666">=</span>yaml</code></pre>
       the owner object.
     </p>
     <p>
-      Note that in the &ldquo;foregroundDeletion&rdquo;, only dependents with
+      Note that in the “foregroundDeletion”, only dependents with
       <code>
         ownerReference.blockOwnerDeletion=true
       </code>
@@ -265,7 +264,7 @@ kubectl get pods --output<span style="color:#666">=</span>yaml</code></pre>
       unauthorized dependents cannot delay deletion of an owner object.
     </p>
     <p>
-      If an object&rsquo;s
+      If an object’s
       <code>
         ownerReferences
       </code>
@@ -296,8 +295,8 @@ kubectl get pods --output<span style="color:#666">=</span>yaml</code></pre>
       <code>
         deleteOptions
       </code>
-      argument when deleting an Object. Possible values include &ldquo;Orphan&rdquo;,
-      &ldquo;Foreground&rdquo;, or &ldquo;Background&rdquo;.
+      argument when deleting an Object. Possible values include “Orphan”,
+      “Foreground”, or “Background”.
     </p>
     <p>
       Prior to Kubernetes 1.9, the default garbage collection policy for many controller resources was
@@ -326,7 +325,7 @@ kubectl get pods --output<span style="color:#666">=</span>yaml</code></pre>
       group version, dependent objects are deleted by default.
     </p>
     <p>
-      Here&rsquo;s an example that deletes dependents in background:
+      Here’s an example that deletes dependents in background:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl proxy --port<span style="color:#666">=</span><span style="color:#666">8080</span>
@@ -335,7 +334,7 @@ curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-rep
 </span><span style="color:#b62;font-weight:bold"></span>  -H <span style="color:#b44">&#34;Content-Type: application/json&#34;</span></code></pre>
     </div>
     <p>
-      Here&rsquo;s an example that deletes dependents in foreground:
+      Here’s an example that deletes dependents in foreground:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl proxy --port<span style="color:#666">=</span><span style="color:#666">8080</span>
@@ -344,7 +343,7 @@ curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-rep
 </span><span style="color:#b62;font-weight:bold"></span>  -H <span style="color:#b44">&#34;Content-Type: application/json&#34;</span></code></pre>
     </div>
     <p>
-      Here&rsquo;s an example that orphans dependents:
+      Here’s an example that orphans dependents:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl proxy --port<span style="color:#666">=</span><span style="color:#666">8080</span>
@@ -370,7 +369,7 @@ curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-rep
       is true.
     </p>
     <p>
-      Here&rsquo;s an example that orphans the dependents of a ReplicaSet:
+      Here’s an example that orphans the dependents of a ReplicaSet:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl delete replicaset my-repset --cascade<span style="color:#666">=</span><span style="color:#a2f">false</span></code></pre>
@@ -420,5 +419,5 @@ curl -X DELETE localhost:8080/apis/apps/v1/namespaces/default/replicasets/my-rep
         Design Doc 2
       </a>
     </p>
-  </body>
-</html>
+  
+</body></html>

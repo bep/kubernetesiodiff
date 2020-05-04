@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Cloud Providers
     </h1>
@@ -235,7 +234,7 @@
         </code>
         : Used on the service to specify a comma-separated list of key-value pairs which will be recorded as additional tags in the ELB. For example:
         <code>
-          &quot;Key1=Val1,Key2=Val2,KeyNoVal1=,KeyNoVal2&quot;
+          &#34;Key1=Val1,Key2=Val2,KeyNoVal1=,KeyNoVal2&#34;
         </code>
         .
       </li>
@@ -259,7 +258,7 @@
         <code>
           tcp
         </code>
-        , a &ldquo;raw&rdquo; SSL listener is used. If set to
+        , a “raw” SSL listener is used. If set to
         <code>
           http
         </code>
@@ -526,7 +525,7 @@
     </p>
     <p>
       ‡ Identity V2 API support is deprecated and will be removed from the provider in
-      a future release. As of the &ldquo;Queens&rdquo; release, OpenStack will no longer expose the
+      a future release. As of the “Queens” release, OpenStack will no longer expose the
       Identity V2 API.
     </p>
     <p>
@@ -557,7 +556,7 @@
     </h4>
     <p>
       This is an example of a typical configuration that touches the values that most
-      often need to be set. It points the provider at the OpenStack cloud&rsquo;s Keystone
+      often need to be set. It points the provider at the OpenStack cloud’s Keystone
       endpoint, provides details for how to authenticate with it, and configures the
       load balancer:
     </p>
@@ -628,7 +627,7 @@
           trust-id
         </code>
         (Optional): Used to specify the identifier of the trust to use for
-        authorization. A trust represents a user&rsquo;s (the trustor) authorization to
+        authorization. A trust represents a user’s (the trustor) authorization to
         delegate roles to another user (the trustee), and optionally allow the trustee
         to impersonate the trustor. Available trusts are found under the
         <code>
@@ -830,7 +829,7 @@
           monitor-delay
         </code>
         (Optional): The time between sending probes to
-        members of the load balancer. Ensure that you specify a valid time unit. The valid time units are &ldquo;ns&rdquo;, &ldquo;us&rdquo; (or &ldquo;µs&rdquo;), &ldquo;ms&rdquo;, &ldquo;s&rdquo;, &ldquo;m&rdquo;, &ldquo;h&rdquo;
+        members of the load balancer. Ensure that you specify a valid time unit. The valid time units are “ns”, “us” (or “µs”), “ms”, “s”, “m”, “h”
       </li>
       <li>
         <code>
@@ -838,14 +837,14 @@
         </code>
         (Optional): Maximum time for a monitor to wait
         for a ping reply before it times out. The value must be less than the delay
-        value. Ensure that you specify a valid time unit. The valid time units are &ldquo;ns&rdquo;, &ldquo;us&rdquo; (or &ldquo;µs&rdquo;), &ldquo;ms&rdquo;, &ldquo;s&rdquo;, &ldquo;m&rdquo;, &ldquo;h&rdquo;
+        value. Ensure that you specify a valid time unit. The valid time units are “ns”, “us” (or “µs”), “ms”, “s”, “m”, “h”
       </li>
       <li>
         <code>
           monitor-max-retries
         </code>
         (Optional): Number of permissible ping failures before
-        changing the load balancer member&rsquo;s status to INACTIVE. Must be a number
+        changing the load balancer member’s status to INACTIVE. Must be a number
         between 1 and 10.
       </li>
       <li>
@@ -1037,7 +1036,7 @@
     </p>
     <ul>
       <li>
-        <p>
+        <p data-diff="">
           <code>
             search-order
           </code>
@@ -1106,7 +1105,7 @@
         <code>
           router-id
         </code>
-        (Optional): If the underlying cloud&rsquo;s Neutron deployment supports
+        (Optional): If the underlying cloud’s Neutron deployment supports
         the
         <code>
           extraroutes
@@ -1296,5 +1295,5 @@
       ) as the name of the Kubernetes Node object.
       Note that the Kubernetes Node name must match the Tencent VM private IP.
     </p>
-  </body>
-</html>
+  
+</body></html>

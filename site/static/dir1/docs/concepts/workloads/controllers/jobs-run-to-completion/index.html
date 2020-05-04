@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Jobs - Run to Completion
     </h1>
@@ -88,7 +87,7 @@
                 controllers/job.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('controllers-job-yaml')" title="Copy controllers/job.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;controllers-job-yaml&#39;)" title="Copy controllers/job.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -320,7 +319,7 @@ Events:
     <ol>
       <li>
         Non-parallel Jobs
-        <ul>
+        <ul data-diff="">
           <li>
             normally, only one Pod is started, unless the Pod fails.
           </li>
@@ -491,13 +490,13 @@ Events:
         <em>
           work queue
         </em>
-        Jobs, no new Pods are started after any Pod has succeeded &ndash; remaining Pods are allowed to complete, however.
+        Jobs, no new Pods are started after any Pod has succeeded – remaining Pods are allowed to complete, however.
       </li>
       <li>
         If the Job
-        <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/architecture/controller/" target="_blank">
           Controller
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
           </span>
         </a>
@@ -526,13 +525,13 @@ Events:
       a non-zero exit code, or the container was killed for exceeding a memory limit, etc.  If this
       happens, and the
       <code>
-        .spec.template.spec.restartPolicy = &quot;OnFailure&quot;
+        .spec.template.spec.restartPolicy = &#34;OnFailure&#34;
       </code>
       , then the Pod stays
       on the node, but the container is re-run.  Therefore, your program needs to handle the case when it is
       restarted locally, or else specify
       <code>
-        .spec.template.spec.restartPolicy = &quot;Never&quot;
+        .spec.template.spec.restartPolicy = &#34;Never&#34;
       </code>
       .
       See
@@ -549,7 +548,7 @@ Events:
       An entire Pod can also fail, for a number of reasons, such as when the pod is kicked off the node
       (node is upgraded, rebooted, deleted, etc.), or if a container of the Pod fails and the
       <code>
-        .spec.template.spec.restartPolicy = &quot;Never&quot;
+        .spec.template.spec.restartPolicy = &#34;Never&#34;
       </code>
       .  When a Pod fails, then the Job controller
       starts a new Pod.  This means that your application needs to handle the case when it is restarted in a new
@@ -567,7 +566,7 @@ Events:
       </code>
       and
       <code>
-        .spec.template.spec.restartPolicy = &quot;Never&quot;
+        .spec.template.spec.restartPolicy = &#34;Never&#34;
       </code>
       , the same program may
       sometimes be started twice.
@@ -597,8 +596,8 @@ Events:
       to specify the number of retries before
       considering a Job as failed. The back-off limit is set by default to 6. Failed
       Pods associated with the Job are recreated by the Job controller with an
-      exponential back-off delay (10s, 20s, 40s &hellip;) capped at six minutes. The
-      back-off count is reset if no new failed Pods appear before the Job&rsquo;s next
+      exponential back-off delay (10s, 20s, 40s …) capped at six minutes. The
+      back-off count is reset if no new failed Pods appear before the Job’s next
       status check.
     </p>
     <blockquote class="note">
@@ -620,12 +619,12 @@ Events:
         </strong>
         If your job has
         <code>
-          restartPolicy = &quot;OnFailure&quot;
+          restartPolicy = &#34;OnFailure&#34;
         </code>
         , keep in mind that your container running the Job
-        will be terminated once the job backoff limit has been reached. This can make debugging the Job&rsquo;s executable more difficult. We suggest setting
+        will be terminated once the job backoff limit has been reached. This can make debugging the Job’s executable more difficult. We suggest setting
         <code>
-          restartPolicy = &quot;Never&quot;
+          restartPolicy = &#34;Never&#34;
         </code>
         when debugging the Job or using a logging system to ensure output
         from failed Jobs is not lost inadvertently.
@@ -702,7 +701,7 @@ Events:
       .
     </p>
     <p>
-      Note that a Job&rsquo;s
+      Note that a Job’s
       <code>
         .spec.activeDeadlineSeconds
       </code>
@@ -911,7 +910,7 @@ Events:
         0
       </code>
       , the Job will be eligible to be automatically deleted
-      immediately after it finishes. If the field is unset, this Job won&rsquo;t be cleaned
+      immediately after it finishes. If the field is unset, this Job won’t be cleaned
       up by the TTL controller after it finishes.
     </p>
     <p>
@@ -943,7 +942,7 @@ Events:
     </p>
     <p>
       In a complex system, there may be multiple different sets of work items.  Here we are just
-      considering one set of work items that the user wants to manage together &mdash; a
+      considering one set of work items that the user wants to manage together — a
       <em>
         batch job
       </em>
@@ -1382,5 +1381,5 @@ spec:
       </code>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

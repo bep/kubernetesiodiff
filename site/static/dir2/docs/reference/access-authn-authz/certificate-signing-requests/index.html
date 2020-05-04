@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Certificate Signing Requests
 </h1>
@@ -12,7 +11,7 @@
   Certificate Signing Requests
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -87,9 +86,9 @@
   credential provisioning by providing
   a programmatic interface for clients of the Kubernetes API to request and obtain
   X.509
-  <a class='glossary-tooltip' href='/docs/tasks/tls/managing-tls-in-a-cluster/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/tasks/tls/managing-tls-in-a-cluster/" target="_blank">
     certificates
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A cryptographically secure file used to validate access to the Kubernetes cluster.
     </span>
   </a>
@@ -118,7 +117,7 @@
   </li>
   <li>
     <a href="#approval-rejection">
-      Approval & rejection
+      Approval &amp; rejection
     </a>
   </li>
   <li>
@@ -128,7 +127,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -162,9 +161,9 @@
   Once created, a CertificateSigningRequest must be approved before it can be signed.
   Depending on the signer selected, a CertificateSigningRequest may be automatically approved
   by a
-  <a class='glossary-tooltip' href='/docs/concepts/architecture/controller/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/architecture/controller/" target="_blank">
     controller
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A control loop that watches the shared state of the cluster through the apiserver and makes changes attempting to move the current state towards the desired state.
     </span>
   </a>
@@ -295,9 +294,9 @@
       </code>
       : signs certificates that will be honored as client-certs by the kube-apiserver.
       Never auto-approved by
-      <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-controller-manager/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-controller-manager/" target="_blank">
         kube-controller-manager
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Control Plane component that runs controller processes.
         </span>
       </a>
@@ -322,7 +321,7 @@
         Permitted x509 extensions - honors subjectAltName and key usage extensions and discards other extensions.
       </li>
       <li>
-        Permitted key usages - must include []string{&ldquo;client auth&rdquo;}. Must not include key usages beyond []string{&ldquo;digital signature&rdquo;, &ldquo;key encipherment&rdquo;, &ldquo;client auth&rdquo;}
+        Permitted key usages - must include []string{“client auth”}. Must not include key usages beyond []string{“digital signature”, “key encipherment”, “client auth”}
       </li>
       <li>
         Expiration/certificate lifetime - minimum of CSR signer or request. The signer is responsible for checking that the certificate lifetime is valid and permissible.
@@ -340,9 +339,9 @@
       : signs client certificates that will be honored as client-certs by the
       kube-apiserver.
       May be auto-approved by
-      <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-controller-manager/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-controller-manager/" target="_blank">
         kube-controller-manager
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Control Plane component that runs controller processes.
         </span>
       </a>
@@ -356,11 +355,11 @@
       <li>
         Permitted subjects - organizations are exactly
         <code>
-          []string{&quot;system:nodes&quot;}
+          []string{&#34;system:nodes&#34;}
         </code>
         , common name starts with
         <code>
-          &quot;system:node:&quot;
+          &#34;system:node:&#34;
         </code>
       </li>
       <li>
@@ -369,7 +368,7 @@
       <li>
         Permitted key usages - exactly
         <code>
-          []string{&quot;key encipherment&quot;, &quot;digital signature&quot;, &quot;client auth&quot;}
+          []string{&#34;key encipherment&#34;, &#34;digital signature&#34;, &#34;client auth&#34;}
         </code>
       </li>
       <li>
@@ -388,9 +387,9 @@
       : signs serving certificates that are honored as a valid kubelet serving certificate
       by the kube-apiserver, but has no other guarantees.
       Never auto-approved by
-      <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-controller-manager/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-controller-manager/" target="_blank">
         kube-controller-manager
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Control Plane component that runs controller processes.
         </span>
       </a>
@@ -404,11 +403,11 @@
       <li>
         Permitted subjects - organizations are exactly
         <code>
-          []string{&quot;system:nodes&quot;}
+          []string{&#34;system:nodes&#34;}
         </code>
         , common name starts with
         <code>
-          &quot;system:node:&quot;
+          &#34;system:node:&#34;
         </code>
       </li>
       <li>
@@ -417,7 +416,7 @@
       <li>
         Permitted key usages - exactly
         <code>
-          []string{&quot;key encipherment&quot;, &quot;digital signature&quot;, &quot;server auth&quot;}
+          []string{&#34;key encipherment&#34;, &#34;digital signature&#34;, &#34;server auth&#34;}
         </code>
       </li>
       <li>
@@ -436,9 +435,9 @@
       :  has no guarantees for trust at all. Some distributions may honor these as client
       certs, but that behavior is not standard Kubernetes behavior.
       Never auto-approved by
-      <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-controller-manager/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-controller-manager/" target="_blank">
         kube-controller-manager
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Control Plane component that runs controller processes.
         </span>
       </a>
@@ -792,9 +791,9 @@
     approval
   </code>
   subresource of the CSR to be approved. For example, you could write an
-  <a class='glossary-tooltip' href='/docs/concepts/extend-kubernetes/operator/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/extend-kubernetes/operator/" target="_blank">
     operator
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A specialized controller used to manage a custom resource
     </span>
   </a>
@@ -851,7 +850,7 @@
 </span></code></pre>
 </div>
 <p>
-  It&rsquo;s usual to set
+  It’s usual to set
   <code>
     status.condtions.reason
   </code>
@@ -939,4 +938,4 @@
       RFC 2986
     </a>
   </li>
-</ul>
+</ul></div></body></html>

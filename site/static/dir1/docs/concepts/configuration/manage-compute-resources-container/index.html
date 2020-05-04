@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Managing Compute Resources for Containers
     </h1>
@@ -80,7 +79,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -101,7 +100,7 @@
       </em>
       . A resource type has a base unit.
       CPU is specified in units of cores, and memory is specified in units of bytes.
-      If you&rsquo;re using Kubernetes v1.14 or newer, you can specify
+      If you’re using Kubernetes v1.14 or newer, you can specify
       <em>
         huge page
       </em>
@@ -245,8 +244,8 @@
       <code>
         100m
       </code>
-      , which can be read as &ldquo;one hundred millicpu&rdquo;. Some people say
-      &ldquo;one hundred millicores&rdquo;, and this is understood to mean the same thing. A
+      , which can be read as “one hundred millicpu”. Some people say
+      “one hundred millicores”, and this is understood to mean the same thing. A
       request with a decimal point, like
       <code>
         0.1
@@ -288,7 +287,7 @@
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">128974848, 129e6, 129M, 123Mi</code></pre>
     </div>
     <p>
-      Here&rsquo;s an example.
+      Here’s an example.
       The following Pod has two Containers. Each Container has a request of 0.25 cpu
       and 64MiB (2
       <sup>
@@ -385,8 +384,8 @@
         </p>
       </li>
     </ul>
-    <p>
-      <blockquote class="note">
+    <p data-diff="">
+      </p><blockquote class="note">
         <div>
           <strong>
             Note:
@@ -394,7 +393,7 @@
           The default quota period is 100ms. The minimum resolution of CPU quota is 1ms.
         </div>
       </blockquote>
-    </p>
+    <p></p>
     <ul>
       <li>
         The
@@ -472,7 +471,7 @@
   FirstSeen LastSeen   Count  From          Subobject   PathReason      Message
   36s   5s     6      {scheduler }              FailedScheduling  Failed for reason PodExceedsFreeCPU and possibly others</code></pre>
     <p>
-      In the preceding example, the Pod named &ldquo;frontend&rdquo; fails to be scheduled due to
+      In the preceding example, the Pod named “frontend” fails to be scheduled due to
       insufficient CPU resource on the node. Similar error messages can also suggest
       failure due to insufficient memory (PodExceedsFreeMemory). In general, if a Pod
       is pending with a message of this type, there are several things to try:
@@ -731,7 +730,7 @@ LastState: map[terminated:map[exitCode:137 reason:OOM Killed startedAt:2015-07-0
       <em>
         ephemeral-storage
       </em>
-      for managing local ephemeral storage. In each Kubernetes node, kubelet&rsquo;s root directory (/var/lib/kubelet by default) and log directory (/var/log) are stored on the root partition of the node. This partition is also shared and consumed by Pods via emptyDir volumes, container logs, image layers and container writable layers.
+      for managing local ephemeral storage. In each Kubernetes node, kubelet’s root directory (/var/lib/kubelet by default) and log directory (/var/log) are stored on the root partition of the node. This partition is also shared and consumed by Pods via emptyDir volumes, container logs, image layers and container writable layers.
     </p>
     <p>
       This partition is “ephemeral” and applications cannot expect any performance SLAs (Disk IOPS for example) from this partition. Local ephemeral storage management only applies for the root partition; the optional partition for image layer and writable layer is out of scope.
@@ -810,7 +809,7 @@ LastState: map[terminated:map[exitCode:137 reason:OOM Killed startedAt:2015-07-0
       When you create a Pod, the Kubernetes scheduler selects a node for the Pod to
       run on. Each node has a maximum amount of local ephemeral storage it can provide for Pods. For more information, see
       <a href="/docs/tasks/administer-cluster/reserve-compute-resources/#node-allocatable">
-        &ldquo;Node Allocatable&rdquo;
+        “Node Allocatable”
       </a>
       .
     </p>
@@ -821,7 +820,7 @@ LastState: map[terminated:map[exitCode:137 reason:OOM Killed startedAt:2015-07-0
       How Pods with ephemeral-storage limits run
     </h3>
     <p>
-      For container-level isolation, if a Container&rsquo;s writable layer and logs usage exceeds its storage limit, the Pod will be evicted. For pod-level isolation, if the sum of the local ephemeral storage usage from all containers and also the Pod&rsquo;s emptyDir volumes exceeds the limit, the Pod will be evicted.
+      For container-level isolation, if a Container’s writable layer and logs usage exceeds its storage limit, the Pod will be evicted. For pod-level isolation, if the sum of the local ephemeral storage usage from all containers and also the Pod’s emptyDir volumes exceeds the limit, the Pod will be evicted.
     </p>
     <h3 id="monitoring-ephemeral-storage-consumption">
       Monitoring ephemeral-storage consumption
@@ -831,7 +830,7 @@ LastState: map[terminated:map[exitCode:137 reason:OOM Killed startedAt:2015-07-0
       basis by the kubelet.  The monitoring is performed by scanning each
       emptyDir volume, log directories, and writable layers on a periodic
       basis.  Starting with Kubernetes 1.15, emptyDir volumes (but not log
-      directories or writable layers) may, at the cluster operator&rsquo;s option,
+      directories or writable layers) may, at the cluster operator’s option,
       be managed by use of
       <a href="http://xfs.org/docs/xfsdocs-xml-dev/XFS_User_Guide/tmp/en-US/html/xfs-quotas.html">
         project
@@ -987,7 +986,7 @@ LastState: map[terminated:map[exitCode:137 reason:OOM Killed startedAt:2015-07-0
         status.capacity
       </code>
       for a node in the cluster. After this
-      operation, the node&rsquo;s
+      operation, the node’s
       <code>
         status.capacity
       </code>
@@ -1015,7 +1014,7 @@ LastState: map[terminated:map[exitCode:137 reason:OOM Killed startedAt:2015-07-0
         curl
       </code>
       to form an HTTP request that
-      advertises five &ldquo;example.com/foo&rdquo; resources on node
+      advertises five “example.com/foo” resources on node
       <code>
         k8s-node-1
       </code>
@@ -1076,13 +1075,13 @@ LastState: map[terminated:map[exitCode:137 reason:OOM Killed startedAt:2015-07-0
     </p>
     <p>
       The following configuration for a scheduler policy indicates that the
-      cluster-level extended resource &ldquo;example.com/foo&rdquo; is handled by the scheduler
+      cluster-level extended resource “example.com/foo” is handled by the scheduler
       extender.
     </p>
     <ul>
       <li>
         The scheduler sends a Pod to the scheduler extender only if the Pod requests
-        &ldquo;example.com/foo&rdquo;.
+        “example.com/foo”.
       </li>
       <li>
         <p>
@@ -1091,7 +1090,7 @@ LastState: map[terminated:map[exitCode:137 reason:OOM Killed startedAt:2015-07-0
             ignoredByScheduler
           </code>
           field specifies that the scheduler does not check
-          the &ldquo;example.com/foo&rdquo; resource in its
+          the “example.com/foo” resource in its
           <code>
             PodFitsResources
           </code>
@@ -1202,7 +1201,7 @@ LastState: map[terminated:map[exitCode:137 reason:OOM Killed startedAt:2015-07-0
       </strong>
     </p>
     <p>
-      The Pod below requests 2 CPUs and 1 &ldquo;example.com/foo&rdquo; (an extended resource).
+      The Pod below requests 2 CPUs and 1 “example.com/foo” (an extended resource).
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
@@ -1257,5 +1256,5 @@ LastState: map[terminated:map[exitCode:137 reason:OOM Killed startedAt:2015-07-0
         </p>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

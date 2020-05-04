@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Volume Snapshot Classes
     </h1>
@@ -52,13 +51,13 @@
       <code>
         StorageClass
       </code>
-      provides a way for administrators to describe the &ldquo;classes&rdquo;
+      provides a way for administrators to describe the “classes”
       of storage they offer when provisioning a volume,
       <code>
         VolumeSnapshotClass
       </code>
       provides a
-      way to describe the &ldquo;classes&rdquo; of storage when provisioning a volume snapshot.
+      way to describe the “classes” of storage when provisioning a volume snapshot.
     </p>
     <h2 id="the-volumesnapshotclass-resource">
       The VolumeSnapshotClass Resource
@@ -108,7 +107,7 @@
         VolumeSnapshotClass
       </code>
       just for VolumeSnapshots
-      that don&rsquo;t request any particular class to bind to.
+      that don’t request any particular class to bind to.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>snapshot.storage.k8s.io/v1beta1<span style="color:#bbb">
@@ -117,7 +116,7 @@
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">name</span>:<span style="color:#bbb"> </span>csi-hostpath-snapclass<span style="color:#bbb">
 </span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">driver</span>:<span style="color:#bbb"> </span>hostpath.csi.k8s.io<span style="color:#bbb"> 
 </span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">deletionPolicy</span>:<span style="color:#bbb"> </span>Delete<span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">parameters</span>:<span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold" data-diff="">parameters</span>:<span style="color:#bbb">
 </span></code></pre>
     </div>
     <h3 id="driver">
@@ -179,5 +178,5 @@
       </code>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

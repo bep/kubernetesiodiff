@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Auditing with Falco
     </h1>
@@ -54,7 +53,7 @@
 </span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">listen_port</span>:<span style="color:#bbb"> </span><span style="color:#666">8765</span><span style="color:#bbb">
 </span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">k8s_audit_endpoint</span>:<span style="color:#bbb"> </span>/k8s_audit<span style="color:#bbb">
 </span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">ssl_enabled</span>:<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">false</span><span style="color:#bbb">
-</span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">ssl_certificate</span>:<span style="color:#bbb"> </span>/etc/falco/falco.pem<span style="color:#bbb">
+</span><span style="color:#bbb">   </span><span style="color:#a2f;font-weight:bold">ssl_certificate</span>:<span style="color:#bbb"> </span>/etc/falco/falco.pem<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <p>
@@ -94,7 +93,7 @@
  contexts:
  - context:
      cluster: falco
-     user: &quot;&quot;
+     user: &#34;&#34;
    name: default-context
  current-context: default-context
  preferences: {}
@@ -208,5 +207,5 @@
       </a>
       in the Falco documentation.
     </p>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Install Minikube
 </h1>
@@ -36,7 +35,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -62,7 +61,7 @@
     </li>
   </ul>
   <div id="minikube-before-you-begin-0">
-    <p>
+    <p data-diff="">
       To check if virtualization is supported on Linux, run the following command and verify that the output is non-empty:
     </p>
     <pre><code>grep -E --color &#39;vmx|svm&#39; /proc/cpuinfo</code></pre>
@@ -98,7 +97,7 @@
     <pre><code>Hyper-V Requirements:     A hypervisor has been detected. Features required for Hyper-V will not be displayed.</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <script>
   $(function(){$("#minikube-before-you-begin").tabs();});
 </script>
@@ -166,7 +165,7 @@
     and a Linux environment but not a hypervisor.
   </p>
   <p>
-    If you&rsquo;re using the
+    If you’re using the
     <code>
       none
     </code>
@@ -235,20 +234,20 @@
       experimental
     </em>
     packages for Minikube available; you can find Linux (AMD64) packages
-    from Minikube&rsquo;s
+    from Minikube’s
     <a href="https://github.com/kubernetes/minikube/releases">
       releases
     </a>
     page on GitHub.
   </p>
   <p>
-    Use your Linux&rsquo;s distribution&rsquo;s package tool to install a suitable package.
+    Use your Linux’s distribution’s package tool to install a suitable package.
   </p>
   <h3 id="install-minikube-via-direct-download">
     Install Minikube via direct download
   </h3>
   <p>
-    If you&rsquo;re not installing via a package, you can download a stand-alone
+    If you’re not installing via a package, you can download a stand-alone
     binary and use that.
   </p>
   <div class="highlight">
@@ -256,7 +255,7 @@
 </span><span style="color:#b62;font-weight:bold"></span>  <span style="color:#666">&amp;&amp;</span> chmod +x minikube</code></pre>
   </div>
   <p>
-    Here&rsquo;s an easy way to add the Minikube executable to your path:
+    Here’s an easy way to add the Minikube executable to your path:
   </p>
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo mkdir -p /usr/local/bin/
@@ -276,7 +275,7 @@ sudo install minikube /usr/local/bin/</code></pre>
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">brew install minikube</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="tab-with-md-1">
   <h3 id="install-kubectl">
     Install kubectl
@@ -333,13 +332,13 @@ sudo install minikube /usr/local/bin/</code></pre>
 </span><span style="color:#b62;font-weight:bold"></span>  <span style="color:#666">&amp;&amp;</span> chmod +x minikube</code></pre>
   </div>
   <p>
-    Here&rsquo;s an easy way to add the Minikube executable to your path:
+    Here’s an easy way to add the Minikube executable to your path:
   </p>
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo mv minikube /usr/local/bin</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="tab-with-md-2">
   <h3 id="install-kubectl">
     Install kubectl
@@ -430,7 +429,7 @@ sudo install minikube /usr/local/bin/</code></pre>
 <script>
   $(function(){$("#tab-with-md").tabs();});
 </script>
-<h2 id="confirm-installation">
+</p><h2 id="confirm-installation">
   Confirm Installation
 </h2>
 <p>
@@ -510,7 +509,7 @@ kubeconfig: Configured</code></pre>
   returned an error:
 </p><pre><code>machine does not exist</code></pre>
 <p>
-  then you need to clear minikube&rsquo;s local state:
+  then you need to clear minikube’s local state:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">minikube delete</code></pre>
@@ -524,4 +523,4 @@ kubeconfig: Configured</code></pre>
       Running Kubernetes Locally via Minikube
     </a>
   </li>
-</ul>
+</ul></div></body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Troubleshooting kubeadm
     </h1>
@@ -346,7 +345,7 @@ misconfiguration: kubelet cgroup driver: <span style="color:#b44">&#34;systemd&#
         </p>
       </li>
     </ul>
-    <ol>
+    <ol data-diff="">
       <li>
         <p>
           Install Docker again following instructions
@@ -479,9 +478,9 @@ sudo kubeadm reset</code></pre>
           kube-dns
         </code>
         ),
-        it&rsquo;s very likely that the Pod Network solution that you installed is somehow broken.
+        it’s very likely that the Pod Network solution that you installed is somehow broken.
         You might have to grant it more RBAC privileges or use a newer version. Please file
-        an issue in the Pod Network providers&rsquo; issue tracker and get the issue triaged there.
+        an issue in the Pod Network providers’ issue tracker and get the issue triaged there.
       </li>
       <li>
         If you install a version of Docker older than 1.12.1, remove the
@@ -643,7 +642,7 @@ sudo kubeadm reset</code></pre>
       The following error indicates a possible certificate mismatch.
     </p>
     <pre><code class="language-none" data-lang="none"># kubectl get pods
-Unable to connect to the server: x509: certificate signed by unknown authority (possibly because of &quot;crypto/rsa: verification error&quot; while trying to verify candidate authority certificate &quot;kubernetes&quot;)</code></pre>
+Unable to connect to the server: x509: certificate signed by unknown authority (possibly because of &#34;crypto/rsa: verification error&#34; while trying to verify candidate authority certificate &#34;kubernetes&#34;)</code></pre>
     <ul>
       <li>
         <p>
@@ -693,7 +692,7 @@ Unable to connect to the server: x509: certificate signed by unknown authority (
           <code>
             kubeconfig
           </code>
-          for the &ldquo;admin&rdquo; user:
+          for the “admin” user:
         </p>
         <div class="highlight">
           <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">mv  <span style="color:#b8860b">$HOME</span>/.kube <span style="color:#b8860b">$HOME</span>/.kube.bak
@@ -715,7 +714,7 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
     <ul>
       <li>
         <p>
-          If you&rsquo;re using flannel as the pod network inside Vagrant, then you will have to specify the default interface name for flannel.
+          If you’re using flannel as the pod network inside Vagrant, then you will have to specify the default interface name for flannel.
         </p>
         <p>
           Vagrant typically assigns two interfaces to all VMs. The first, for which all hosts are assigned the IP address
@@ -766,7 +765,7 @@ sudo chown <span style="color:#a2f;font-weight:bold">$(</span>id -u<span style="
           <code>
             kubelet
           </code>
-          will pick the latter as the node&rsquo;s
+          will pick the latter as the node’s
           <code>
             InternalIP
           </code>
@@ -930,7 +929,7 @@ systemctl restart kubelet</code></pre>
     <p>
       If you encounter the following error:
     </p>
-    <pre><code>rpc error: code = 2 desc = oci runtime error: exec failed: container_linux.go:247: starting container process caused &quot;process_linux.go:110: decoding init error from pipe caused \&quot;read parent: connection reset by peer\&quot;&quot;</code></pre>
+    <pre><code>rpc error: code = 2 desc = oci runtime error: exec failed: container_linux.go:247: starting container process caused &#34;process_linux.go:110: decoding init error from pipe caused \&#34;read parent: connection reset by peer\&#34;&#34;</code></pre>
     <p>
       this issue appears if you run CentOS 7 with Docker 1.13.1.84.
       This version of Docker can prevent the kubelet from executing into the etcd container.
@@ -979,7 +978,7 @@ yum install docker-ce-18.06.1.ce-3.el7.x86_64</code></pre>
     <p>
       If you decide to pass an argument that supports multiple, comma-separated values such as
       <code>
-        --apiserver-extra-args &quot;enable-admission-plugins=LimitRanger,NamespaceExists&quot;
+        --apiserver-extra-args &#34;enable-admission-plugins=LimitRanger,NamespaceExists&#34;
       </code>
       this flag will fail with
       <code>
@@ -1007,7 +1006,7 @@ yum install docker-ce-18.06.1.ce-3.el7.x86_64</code></pre>
       </code>
       pairs like so:
       <code>
-        --apiserver-extra-args &quot;enable-admission-plugins=LimitRanger,enable-admission-plugins=NamespaceExists&quot;
+        --apiserver-extra-args &#34;enable-admission-plugins=LimitRanger,enable-admission-plugins=NamespaceExists&#34;
       </code>
       but this will result in the key
       <code>
@@ -1032,7 +1031,7 @@ yum install docker-ce-18.06.1.ce-3.el7.x86_64</code></pre>
     <p>
       In cloud provider scenarios, kube-proxy can end up being scheduled on new worker nodes before
       the cloud-controller-manager has initialized the node addresses. This causes kube-proxy to fail
-      to pick up the node&rsquo;s IP address properly and has knock-on effects to the proxy function managing
+      to pick up the node’s IP address properly and has knock-on effects to the proxy function managing
       load balancers.
     </p>
     <p>
@@ -1045,7 +1044,7 @@ proxier.go:340] invalid nodeIP, initializing kube-proxy with 127.0.0.1 as nodeIP
       nodes regardless of their conditions, keeping it off of other nodes until their initial guarding
       conditions abate:
     </p>
-    <pre><code>kubectl -n kube-system patch ds kube-proxy -p='{ &quot;spec&quot;: { &quot;template&quot;: { &quot;spec&quot;: { &quot;tolerations&quot;: [ { &quot;key&quot;: &quot;CriticalAddonsOnly&quot;, &quot;operator&quot;: &quot;Exists&quot; }, { &quot;effect&quot;: &quot;NoSchedule&quot;, &quot;key&quot;: &quot;node-role.kubernetes.io/master&quot; } ] } } } }'</code></pre>
+    <pre><code>kubectl -n kube-system patch ds kube-proxy -p=&#39;{ &#34;spec&#34;: { &#34;template&#34;: { &#34;spec&#34;: { &#34;tolerations&#34;: [ { &#34;key&#34;: &#34;CriticalAddonsOnly&#34;, &#34;operator&#34;: &#34;Exists&#34; }, { &#34;effect&#34;: &#34;NoSchedule&#34;, &#34;key&#34;: &#34;node-role.kubernetes.io/master&#34; } ] } } } }&#39;</code></pre>
     <p>
       The tracking issue for this problem is
       <a href="https://github.com/kubernetes/kubeadm/issues/1027">
@@ -1187,5 +1186,5 @@ proxier.go:340] invalid nodeIP, initializing kube-proxy with 127.0.0.1 as nodeIP
       mount writeable, but please
       be advised that this is modifying a design principle of the Linux distribution.
     </p>
-  </body>
-</html>
+  
+</body></html>

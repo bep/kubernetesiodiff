@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Change the Reclaim Policy of a PersistentVolume
     </h1>
@@ -33,7 +32,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -76,20 +75,20 @@
       <code>
         PersistentVolumes
       </code>
-      can have various reclaim policies, including &ldquo;Retain&rdquo;,
-      &ldquo;Recycle&rdquo;, and &ldquo;Delete&rdquo;. For dynamically provisioned
+      can have various reclaim policies, including “Retain”,
+      “Recycle”, and “Delete”. For dynamically provisioned
       <code>
         PersistentVolumes
       </code>
       ,
-      the default reclaim policy is &ldquo;Delete&rdquo;. This means that a dynamically provisioned
+      the default reclaim policy is “Delete”. This means that a dynamically provisioned
       volume is automatically deleted when a user deletes the corresponding
       <code>
         PersistentVolumeClaim
       </code>
       . This automatic behavior might be inappropriate if the volume
-      contains precious data. In that case, it is more appropriate to use the &ldquo;Retain&rdquo;
-      policy. With the &ldquo;Retain&rdquo; policy, if a user deletes a
+      contains precious data. In that case, it is more appropriate to use the “Retain”
+      policy. With the “Retain” policy, if a user deletes a
       <code>
         PersistentVolumeClaim
       </code>
@@ -142,7 +141,7 @@ pvc-bb3ca71d-b7b5-11e6-9d58-0ed433a7dd94   4Gi        RWO           Delete      
           is the name of your chosen PersistentVolume.
         </p>
         <blockquote class="note">
-          <div>
+          <div data-diff="">
             <strong>
               Note:
             </strong>
@@ -236,5 +235,5 @@ pvc-bb3ca71d-b7b5-11e6-9d58-0ed433a7dd94   4Gi        RWO           Retain      
         .
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

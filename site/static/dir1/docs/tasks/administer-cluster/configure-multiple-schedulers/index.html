@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Configure Multiple Schedulers
     </h1>
@@ -19,7 +18,7 @@
       .
       If the default scheduler does not suit your needs you can implement your own scheduler.
       Not just that, you can even run multiple schedulers simultaneously alongside the default
-      scheduler and instruct Kubernetes what scheduler to use for each of your pods. Let&rsquo;s
+      scheduler and instruct Kubernetes what scheduler to use for each of your pods. Let’s
       learn how to run multiple schedulers in Kubernetes with an example.
     </p>
     <p>
@@ -94,7 +93,7 @@
     </h2>
     <p>
       Package your scheduler binary into a container image. For the purposes of this example,
-      let&rsquo;s just use the default scheduler (kube-scheduler) as our second scheduler as well.
+      let’s just use the default scheduler (kube-scheduler) as our second scheduler as well.
       Clone the
       <a href="https://github.com/kubernetes/kubernetes">
         Kubernetes source code from GitHub
@@ -144,7 +143,7 @@ gcloud docker -- push gcr.io/my-gcp-project/my-kube-scheduler:1.0</code></pre>
     <p>
       Now that we have our scheduler in a container image, we can just create a pod
       config for it and run it in our Kubernetes cluster. But instead of creating a pod
-      directly in the cluster, let&rsquo;s use a
+      directly in the cluster, let’s use a
       <a href="/docs/concepts/workloads/controllers/deployment/">
         Deployment
       </a>
@@ -173,7 +172,7 @@ gcloud docker -- push gcr.io/my-gcp-project/my-kube-scheduler:1.0</code></pre>
                 admin/sched/my-scheduler.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-sched-my-scheduler-yaml')" title="Copy admin/sched/my-scheduler.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-sched-my-scheduler-yaml&#39;)" title="Copy admin/sched/my-scheduler.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -306,7 +305,7 @@ gcloud docker -- push gcr.io/my-gcp-project/my-kube-scheduler:1.0</code></pre>
 my-scheduler-lnf4s-4744f                       1/1       Running   0          2m
 ...</code></pre>
     <p>
-      You should see a &ldquo;Running&rdquo; my-scheduler pod, in addition to the default kube-scheduler
+      You should see a “Running” my-scheduler pod, in addition to the default kube-scheduler
       pod in this list.
     </p>
     <p>
@@ -367,13 +366,13 @@ my-scheduler-lnf4s-4744f                       1/1       Running   0          2m
       Specify schedulers for pods
     </h2>
     <p>
-      Now that our second scheduler is running, let&rsquo;s create some pods, and direct them to be scheduled by either the default scheduler or the one we just deployed. In order to schedule a given pod using a specific scheduler, we specify the name of the
-      scheduler in that pod spec. Let&rsquo;s look at three examples.
+      Now that our second scheduler is running, let’s create some pods, and direct them to be scheduled by either the default scheduler or the one we just deployed. In order to schedule a given pod using a specific scheduler, we specify the name of the
+      scheduler in that pod spec. Let’s look at three examples.
     </p>
     <ul>
       <li>
         Pod spec without any scheduler name
-        <br />
+        <br data-diff=""/>
       </li>
     </ul>
     <table class="includecode" id="admin-sched-pod1-yaml">
@@ -385,7 +384,7 @@ my-scheduler-lnf4s-4744f                       1/1       Running   0          2m
                 admin/sched/pod1.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-sched-pod1-yaml')" title="Copy admin/sched/pod1.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-sched-pod1-yaml&#39;)" title="Copy admin/sched/pod1.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -428,7 +427,7 @@ my-scheduler-lnf4s-4744f                       1/1       Running   0          2m
         <code>
           default-scheduler
         </code>
-        <br />
+        <br/>
       </li>
     </ul>
     <table class="includecode" id="admin-sched-pod2-yaml">
@@ -440,7 +439,7 @@ my-scheduler-lnf4s-4744f                       1/1       Running   0          2m
                 admin/sched/pod2.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-sched-pod2-yaml')" title="Copy admin/sched/pod2.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-sched-pod2-yaml&#39;)" title="Copy admin/sched/pod2.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -493,7 +492,7 @@ my-scheduler-lnf4s-4744f                       1/1       Running   0          2m
         <code>
           my-scheduler
         </code>
-        <br />
+        <br/>
       </li>
     </ul>
     <table class="includecode" id="admin-sched-pod3-yaml">
@@ -505,7 +504,7 @@ my-scheduler-lnf4s-4744f                       1/1       Running   0          2m
                 admin/sched/pod3.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('admin-sched-pod3-yaml')" title="Copy admin/sched/pod3.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;admin-sched-pod3-yaml&#39;)" title="Copy admin/sched/pod3.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -571,7 +570,7 @@ my-scheduler-lnf4s-4744f                       1/1       Running   0          2m
       <code>
         annotation-second-scheduler
       </code>
-      remains in &ldquo;Pending&rdquo; state forever
+      remains in “Pending” state forever
       while the other two pods get scheduled. Once we submit the scheduler deployment config
       and our new scheduler starts running, the
       <code>
@@ -581,11 +580,11 @@ my-scheduler-lnf4s-4744f                       1/1       Running   0          2m
       scheduled as well.
     </p>
     <p>
-      Alternatively, one could just look at the &ldquo;Scheduled&rdquo; entries in the event logs to
+      Alternatively, one could just look at the “Scheduled” entries in the event logs to
       verify that the pods were scheduled by the desired schedulers.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl get events</code></pre>
     </div>
-  </body>
-</html>
+  
+</body></html>

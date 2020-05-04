@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Create an External Load Balancer
     </h1>
@@ -92,7 +91,7 @@
           You need to have a Kubernetes cluster, and the kubectl command-line tool must
           be configured to communicate with your cluster. If you do not already have a
           cluster, you can create one by using
-          <a href="/docs/setup/learning-environment/minikube/">
+          <a href="/docs/setup/learning-environment/minikube/" data-diff="">
             Minikube
           </a>
           ,
@@ -270,8 +269,8 @@
         <code>
           healthCheckNodePort
         </code>
-        isn&rsquo;t specified,
-        the service controller allocates a port from your cluster&rsquo;s NodePort range. You
+        isn’t specified,
+        the service controller allocates a port from your cluster’s NodePort range. You
         can configure that range by setting an API server command line option,
         <code>
           --service-node-port-range
@@ -442,5 +441,5 @@
     <p>
       Internal pod to pod traffic should behave similar to ClusterIP services, with equal probability across all pods.
     </p>
-  </body>
-</html>
+  
+</body></html>

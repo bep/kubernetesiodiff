@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Run a Single-Instance Stateful Application
 </h1>
@@ -49,7 +48,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -74,7 +73,7 @@
   <li>
     <p>
     You need to have a Kubernetes cluster, and the kubectl command-line tool must
-  </li>
+  </p></li>
 </ul>
 <p>
   be configured to communicate with your cluster. If you do not already have a
@@ -108,7 +107,7 @@
   <li>
     <p>
     You need to either have a dynamic PersistentVolume provisioner with a default
-  </li>
+  </p></li>
 </ul>
 <p>
   <a href="/docs/concepts/storage/storage-classes/">
@@ -154,7 +153,7 @@
             application/mysql/mysql-deployment.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-mysql-mysql-deployment-yaml')" title="Copy application/mysql/mysql-deployment.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-mysql-mysql-deployment-yaml&#39;)" title="Copy application/mysql/mysql-deployment.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -220,7 +219,7 @@
             application/mysql/mysql-pv.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-mysql-mysql-pv-yaml')" title="Copy application/mysql/mysql-pv.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-mysql-mysql-pv-yaml&#39;)" title="Copy application/mysql/mysql-pv.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -353,8 +352,8 @@
     clusterIP: None
   </code>
   lets the Service DNS name resolve directly to the
-  Pod&rsquo;s IP address. This is optimal when you have only one Pod
-  behind a Service and you don&rsquo;t intend to increase the number of Pods.
+  Pod’s IP address. This is optimal when you have only one Pod
+  behind a Service and you don’t intend to increase the number of Pods.
 </p>
 <p>
   Run a MySQL client to connect to the server:
@@ -364,7 +363,7 @@
   and connects it to the server through the Service. If it connects, you
   know your stateful MySQL database is up and running.
 </p><pre><code>Waiting for pod default/mysql-client-274442439-zyp6i to be running, status is Pending, pod ready: false
-If you don't see a command prompt, try pressing enter.
+If you don&#39;t see a command prompt, try pressing enter.
 
 mysql&gt;</code></pre>
 <h2 id="updating">
@@ -381,7 +380,7 @@ mysql&gt;</code></pre>
 </p>
 <ul>
   <li>
-    Don&rsquo;t scale the app. This setup is for single-instance apps
+    Don’t scale the app. This setup is for single-instance apps
     only. The underlying PersistentVolume can only be mounted to one
     Pod. For clustered stateful apps, see the
     <a href="/docs/concepts/workloads/controllers/statefulset/">
@@ -467,4 +466,4 @@ kubectl delete pv mysql-pv-volume</code></pre>
       </a>
     </p>
   </li>
-</ul>
+</ul></body></html>

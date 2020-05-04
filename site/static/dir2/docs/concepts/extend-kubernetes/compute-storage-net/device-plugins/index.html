@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Device Plugins
 </h1>
@@ -12,7 +11,7 @@
   Device Plugins
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -85,9 +84,9 @@
     device plugin framework
   </a>
   that you can use to advertise system hardware resources to the
-  <a class='glossary-tooltip' href='/docs/reference/generated/kubelet' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/reference/generated/kubelet" target="_blank">
     Kubelet
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       An agent that runs on each node in the cluster. It makes sure that containers are running in a pod.
     </span>
   </a>
@@ -96,9 +95,9 @@
 <p>
   Instead of customizing the code for Kubernetes itself, vendors can implement a
   device plugin that you deploy either manually or as a
-  <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/daemonset' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/daemonset" target="_blank">
     DaemonSet
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Ensures a copy of a Pod is running across a set of nodes in a cluster.
     </span>
   </a>
@@ -145,7 +144,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -337,7 +336,7 @@
   Device plugin deployment
 </h2>
 <p>
-  You can deploy a device plugin as a DaemonSet, as a package for your node&rsquo;s operating system,
+  You can deploy a device plugin as a DaemonSet, as a package for your node’s operating system,
   or manually.
 </p>
 <p>
@@ -347,25 +346,25 @@
   </code>
   requires privileged access,
   so a device plugin must run in a privileged security context.
-  If you&rsquo;re deploying a device plugin as a DaemonSet,
+  If you’re deploying a device plugin as a DaemonSet,
   <code>
     /var/lib/kubelet/device-plugins
   </code>
   must be mounted as a
-  <a class='glossary-tooltip' href='/docs/concepts/storage/volumes/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/storage/volumes/" target="_blank">
     Volume
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A directory containing data, accessible to the containers in a pod.
     </span>
   </a>
-  in the plugin&rsquo;s
+  in the plugin’s
   <a href="/docs/reference/generated/kubernetes-api/v1.18/#podspec-v1-core">
     PodSpec
   </a>
   .
 </p>
 <p>
-  If you choose the DaemonSet approach you can rely on Kubernetes to: place the device plugin&rsquo;s
+  If you choose the DaemonSet approach you can rely on Kubernetes to: place the device plugin’s
   Pod onto Nodes, to restart the daemon Pod after failure, and to help automate upgrades.
 </p>
 <h2 id="api-compatibility">
@@ -513,20 +512,20 @@ service PodResourcesLister {
     /var/lib/kubelet/pod-resources
   </code>
   must be mounted as a
-  <a class='glossary-tooltip' href='/docs/concepts/storage/volumes/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/storage/volumes/" target="_blank">
     Volume
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A directory containing data, accessible to the containers in a pod.
     </span>
   </a>
-  in the plugin&rsquo;s
+  in the plugin’s
   <a href="/docs/reference/generated/kubernetes-api/v1.18/#podspec-v1-core">
     PodSpec
   </a>
   .
 </p>
 <p>
-  Support for the &ldquo;PodResources service&rdquo; requires
+  Support for the “PodResources service” requires
   <code>
     KubeletPodResources
   </code>
@@ -637,7 +636,7 @@ message NUMANode {
     TopologyInfo
   </code>
   struct populated for a device by a Device Plugin:
-</p><pre><code>pluginapi.Device{ID: &quot;25102017&quot;, Health: pluginapi.Healthy, Topology:&amp;pluginapi.TopologyInfo{Nodes: []*pluginapi.NUMANode{&amp;pluginapi.NUMANode{ID: 0,},}}}</code></pre>
+</p><pre><code>pluginapi.Device{ID: &#34;25102017&#34;, Health: pluginapi.Healthy, Topology:&amp;pluginapi.TopologyInfo{Nodes: []*pluginapi.NUMANode{&amp;pluginapi.NUMANode{ID: 0,},}}}</code></pre>
 <h2 id="examples">
   Device plugin examples
 </h2>
@@ -741,4 +740,4 @@ message NUMANode {
   <li>
     Learn about the [Topology Manager] (/docs/tasks/adminster-cluster/topology-manager/)
   </li>
-</ul>
+</ul></div></div></div></body></html>

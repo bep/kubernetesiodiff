@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Accessing Clusters
     </h1>
@@ -302,7 +301,7 @@ curl <span style="color:#b8860b">$APISERVER</span>/api --header <span style="col
       <li>
         Write an application atop of the client-go clients. Note that client-go defines its own API objects, so if needed, please import API definitions from client-go rather than from the main repository, e.g.,
         <code>
-          import &quot;k8s.io/client-go/kubernetes&quot;
+          import &#34;k8s.io/client-go/kubernetes&#34;
         </code>
         is correct.
       </li>
@@ -603,7 +602,7 @@ heapster is running at https://104.197.5.247/api/v1/namespaces/kube-system/servi
       <code>
         kubectl cluster-info
       </code>
-      command to retrieve the service&rsquo;s proxy URL. To create proxy URLs that include service endpoints, suffixes, and parameters, you simply append to the service&rsquo;s proxy URL:
+      command to retrieve the service’s proxy URL. To create proxy URLs that include service endpoints, suffixes, and parameters, you simply append to the service’s proxy URL:
       <code>
         http://
       </code>
@@ -633,7 +632,7 @@ heapster is running at https://104.197.5.247/api/v1/namespaces/kube-system/servi
       </code>
     </p>
     <p>
-      If you haven&rsquo;t specified a name for your port, you don&rsquo;t have to specify
+      If you haven’t specified a name for your port, you don’t have to specify
       <em>
         port_name
       </em>
@@ -718,7 +717,7 @@ heapster is running at https://104.197.5.247/api/v1/namespaces/kube-system/servi
       </li>
       <li>
         To access the Elasticsearch cluster health information
-        <code>
+        <code data-diff="">
           _cluster/health?pretty=true
         </code>
         , you would use:
@@ -780,7 +779,7 @@ heapster is running at https://104.197.5.247/api/v1/namespaces/kube-system/servi
         </p>
         <ul>
           <li>
-            runs on a user&rsquo;s desktop or in a pod
+            runs on a user’s desktop or in a pod
           </li>
           <li>
             proxies from a localhost address to the Kubernetes apiserver
@@ -900,5 +899,5 @@ heapster is running at https://104.197.5.247/api/v1/namespaces/kube-system/servi
       Kubernetes users will typically not need to worry about anything other than the first two types.  The cluster admin
       will typically ensure that the latter types are setup correctly.
     </p>
-  </body>
-</html>
+  
+</body></html>

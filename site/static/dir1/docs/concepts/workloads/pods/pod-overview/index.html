@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Pod Overview
     </h1>
@@ -36,7 +35,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -48,24 +47,24 @@
       <em>
         Pod
       </em>
-      is the basic execution unit of a Kubernetes application&ndash;the smallest and simplest unit in the Kubernetes object model that you create or deploy. A Pod represents processes running on your
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-cluster' target='_blank'>
+      is the basic execution unit of a Kubernetes application–the smallest and simplest unit in the Kubernetes object model that you create or deploy. A Pod represents processes running on your
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-cluster" target="_blank">
         Cluster
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A set of worker machines, called nodes, that run containerized applications. Every cluster has at least one worker node.
         </span>
       </a>
       .
     </p>
     <p>
-      A Pod encapsulates an application&rsquo;s container (or, in some cases, multiple containers), storage resources, a unique network IP, and options that govern how the container(s) should run. A Pod represents a unit of deployment:
+      A Pod encapsulates an application’s container (or, in some cases, multiple containers), storage resources, a unique network IP, and options that govern how the container(s) should run. A Pod represents a unit of deployment:
       <em>
         a single instance of an application in Kubernetes
       </em>
       , which might consist of either a single
-      <a class='glossary-tooltip' href='/docs/concepts/overview/what-is-kubernetes/#why-containers' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/what-is-kubernetes/#why-containers" target="_blank">
         container
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A lightweight and portable executable image that contains software and all of its dependencies.
         </span>
       </a>
@@ -86,17 +85,17 @@
     </p>
     <ul>
       <li>
-        <strong>
+        <strong data-diff="">
           Pods that run a single container
         </strong>
-        . The &ldquo;one-container-per-Pod&rdquo; model is the most common Kubernetes use case; in this case, you can think of a Pod as a wrapper around a single container, and Kubernetes manages the Pods rather than the containers directly.
+        . The “one-container-per-Pod” model is the most common Kubernetes use case; in this case, you can think of a Pod as a wrapper around a single container, and Kubernetes manages the Pods rather than the containers directly.
       </li>
       <li>
         <p>
           <strong>
             Pods that run multiple containers that need to work together
           </strong>
-          . A Pod might encapsulate an application composed of multiple co-located containers that are tightly coupled and need to share resources. These co-located containers might form a single cohesive unit of service&ndash;one container serving files from a shared volume to the public, while a separate &ldquo;sidecar&rdquo; container refreshes or updates those files. The Pod wraps these containers and storage resources together as a single manageable entity.
+          . A Pod might encapsulate an application composed of multiple co-located containers that are tightly coupled and need to share resources. These co-located containers might form a single cohesive unit of service–one container serving files from a shared volume to the public, while a separate “sidecar” container refreshes or updates those files. The Pod wraps these containers and storage resources together as a single manageable entity.
           The
           <a href="https://kubernetes.io/blog">
             Kubernetes Blog
@@ -135,24 +134,23 @@
       Pods are designed to support multiple cooperating processes (as containers) that form a cohesive unit of service. The containers in a Pod are automatically co-located and co-scheduled on the same physical or virtual machine in the cluster. The containers can share resources and dependencies, communicate with one another, and coordinate when and how they are terminated.
     </p>
     <p>
-      Note that grouping multiple co-located and co-managed containers in a single Pod is a relatively advanced use case. You should use this pattern only in specific instances in which your containers are tightly coupled. For example, you might have a container that acts as a web server for files in a shared volume, and a separate &ldquo;sidecar&rdquo; container that updates those files from a remote source, as in the following diagram:
+      Note that grouping multiple co-located and co-managed containers in a single Pod is a relatively advanced use case. You should use this pattern only in specific instances in which your containers are tightly coupled. For example, you might have a container that acts as a web server for files in a shared volume, and a separate “sidecar” container that updates those files from a remote source, as in the following diagram:
     </p>
     <figure>
-      <img src="/images/docs/pod.svg"
-         alt="example pod diagram" width="50%"/>
+      <img src="/images/docs/pod.svg" alt="example pod diagram" width="50%"/>
     </figure>
     <p>
       Some Pods have
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-init-container' target='_blank'>
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-init-container" target="_blank">
         init containers
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           One or more initialization containers that must run to completion before any app containers run.
         </span>
       </a>
       as well as
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-app-container' target='_blank'>
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-app-container" target="_blank">
         app containers
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A container used to run part of a workload. Compare with init container.
         </span>
       </a>
@@ -192,9 +190,9 @@
     </h4>
     <p>
       A Pod can specify a set of shared storage
-      <a class='glossary-tooltip' href='/docs/concepts/storage/volumes/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/storage/volumes/" target="_blank">
         Volumes
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A directory containing data, accessible to the containers in a pod.
         </span>
       </a>
@@ -208,10 +206,10 @@
       Working with Pods
     </h2>
     <p>
-      You&rsquo;ll rarely create individual Pods directly in Kubernetes&ndash;even singleton Pods. This is because Pods are designed as relatively ephemeral, disposable entities. When a Pod gets created (directly by you, or indirectly by a Controller), it is scheduled to run on a
-      <a class='glossary-tooltip' href='/docs/concepts/architecture/nodes/' target='_blank'>
+      You’ll rarely create individual Pods directly in Kubernetes–even singleton Pods. This is because Pods are designed as relatively ephemeral, disposable entities. When a Pod gets created (directly by you, or indirectly by a Controller), it is scheduled to run on a
+      <a class="glossary-tooltip" href="/docs/concepts/architecture/nodes/" target="_blank">
         Node
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A node is a worker machine in Kubernetes.
         </span>
       </a>
@@ -230,11 +228,11 @@
       </div>
     </blockquote>
     <p>
-      Pods do not, by themselves, self-heal. If a Pod is scheduled to a Node that fails, or if the scheduling operation itself fails, the Pod is deleted; likewise, a Pod won&rsquo;t survive an eviction due to a lack of resources or Node maintenance. Kubernetes uses a higher-level abstraction, called a
+      Pods do not, by themselves, self-heal. If a Pod is scheduled to a Node that fails, or if the scheduling operation itself fails, the Pod is deleted; likewise, a Pod won’t survive an eviction due to a lack of resources or Node maintenance. Kubernetes uses a higher-level abstraction, called a
       <em>
         Controller
       </em>
-      , that handles the work of managing the relatively disposable Pod instances. Thus, while it is possible to use Pod directly, it&rsquo;s far more common in Kubernetes to manage your pods using a Controller. See
+      , that handles the work of managing the relatively disposable Pod instances. Thus, while it is possible to use Pod directly, it’s far more common in Kubernetes to manage your pods using a Controller. See
       <a href="#pods-and-controllers">
         Pods and Controllers
       </a>
@@ -303,7 +301,7 @@
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">command</span>:<span style="color:#bbb"> </span>[<span style="color:#b44">&#39;sh&#39;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#39;-c&#39;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#39;echo Hello Kubernetes! &amp;&amp; sleep 3600&#39;</span>]</code></pre>
     </div>
     <p>
-      Rather than specifying the current desired state of all replicas, pod templates are like cookie cutters. Once a cookie has been cut, the cookie has no relationship to the cutter. There is no &ldquo;quantum entanglement&rdquo;. Subsequent changes to the template or even switching to a new template has no direct effect on the pods already created. Similarly, pods created by a replication controller may subsequently be updated directly. This is in deliberate contrast to pods, which do specify the current desired state of all containers belonging to the pod. This approach radically simplifies system semantics and increases the flexibility of the primitive.
+      Rather than specifying the current desired state of all replicas, pod templates are like cookie cutters. Once a cookie has been cut, the cookie has no relationship to the cutter. There is no “quantum entanglement”. Subsequent changes to the template or even switching to a new template has no direct effect on the pods already created. Similarly, pods created by a replication controller may subsequently be updated directly. This is in deliberate contrast to pods, which do specify the current desired state of all containers belonging to the pod. This approach radically simplifies system semantics and increases the flexibility of the primitive.
     </p>
     <h2 id="what-s-next">
       What&#39;s next
@@ -331,5 +329,5 @@
         </ul>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

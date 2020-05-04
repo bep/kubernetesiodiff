@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Scheduling Framework
 </h1>
@@ -12,7 +11,7 @@
   Scheduling Framework
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -76,10 +75,10 @@
 </script>
 <p>
   The scheduling framework is a pluggable architecture for Kubernetes Scheduler
-  that makes scheduler customizations easy. It adds a new set of &ldquo;plugin&rdquo; APIs to
+  that makes scheduler customizations easy. It adds a new set of “plugin” APIs to
   the existing scheduler. Plugins are compiled into the scheduler. The APIs
   allow most scheduling features to be implemented as plugins, while keeping the
-  scheduling &ldquo;core&rdquo; simple and maintainable. Refer to the
+  scheduling “core” simple and maintainable. Refer to the
   <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-scheduling/20180409-scheduling-framework.md">
     design proposal of the
     scheduling framework
@@ -90,7 +89,7 @@
 <ul id="markdown-toc">
   <li>
     <a href="#scheduling-cycle-binding-cycle">
-      Scheduling Cycle & Binding Cycle
+      Scheduling Cycle &amp; Binding Cycle
     </a>
   </li>
   <li>
@@ -135,7 +134,7 @@
 <p>
   The scheduling cycle selects a node for the Pod, and the binding cycle applies
   that decision to the cluster. Together, a scheduling cycle and binding cycle are
-  referred to as a &ldquo;scheduling context&rdquo;.
+  referred to as a “scheduling context”.
 </p>
 <p>
   Scheduling cycles are run serially, while binding cycles may run concurrently.
@@ -150,8 +149,8 @@
 </h2>
 <p>
   The following picture shows the scheduling context of a Pod and the extension
-  points that the scheduling framework exposes. In this picture &ldquo;Filter&rdquo; is
-  equivalent to &ldquo;Predicate&rdquo; and &ldquo;Scoring&rdquo; is equivalent to &ldquo;Priority function&rdquo;.
+  points that the scheduling framework exposes. In this picture “Filter” is
+  equivalent to “Predicate” and “Scoring” is equivalent to “Priority function”.
 </p>
 <p>
   One plugin may register at multiple extension points to perform more complex or
@@ -198,7 +197,7 @@
   PreScore
 </h3>
 <p>
-  These plugins are used to perform &ldquo;pre-scoring&rdquo; work, which generates a sharable
+  These plugins are used to perform “pre-scoring” work, which generates a sharable
   state for Score plugins to use. If a PreScore plugin returns an error, the
   scheduling cycle is aborted.
 </p>
@@ -273,7 +272,7 @@
     <strong>
       Note:
     </strong>
-    Plugins wishing to perform &ldquo;pre-reserve&rdquo; work should use the
+    Plugins wishing to perform “pre-reserve” work should use the
     NormalizeScore extension point.
   </div>
 </blockquote>
@@ -282,7 +281,7 @@
 </h3>
 <p>
   This is an informational extension point. Plugins which maintain runtime state
-  (aka &ldquo;stateful plugins&rdquo;) should use this extension point to be notified by the
+  (aka “stateful plugins”) should use this extension point to be notified by the
   scheduler when resources on a node are being reserved for a given Pod. This
   happens before the scheduler actually binds the Pod to the Node, and it exists
   to prevent race conditions while the scheduler waits for the bind to succeed.
@@ -316,7 +315,7 @@
       <strong>
         approve
       </strong>
-      <br>
+      <br/>
       Once all Permit plugins approve a Pod, it is sent for binding.
     </p>
   </li>
@@ -325,7 +324,7 @@
       <strong>
         deny
       </strong>
-      <br>
+      <br/>
       If any Permit plugin denies a Pod, it is returned to the scheduling queue.
       This will trigger
       <a href="#unreserve">
@@ -340,8 +339,8 @@
         wait
       </strong>
       (with a timeout)
-      <br>
-      If a Permit plugin returns &ldquo;wait&rdquo;, then the Pod is kept in an internal &ldquo;waiting&rdquo;
+      <br/>
+      If a Permit plugin returns “wait”, then the Pod is kept in an internal “waiting”
       Pods list, and the binding cycle of this Pod starts but directly blocks until it
       gets
       <a href="#frameworkhandle">
@@ -368,7 +367,7 @@
     <strong>
       Note:
     </strong>
-    While any plugin can access the list of &ldquo;waiting&rdquo; Pods and approve them
+    While any plugin can access the list of “waiting” Pods and approve them
     (see
     <a href="#frameworkhandle">
       <code>
@@ -376,7 +375,7 @@
       </code>
     </a>
     ), we expect only the permit
-    plugins to approve binding of reserved Pods that are in &ldquo;waiting&rdquo; state. Once a Pod
+    plugins to approve binding of reserved Pods that are in “waiting” state. Once a Pod
     is approved, it is sent to the
     <a href="#pre-bind">
       PreBind
@@ -491,4 +490,4 @@
     multiple profiles
   </a>
   .
-</p>
+</p></div></body></html>

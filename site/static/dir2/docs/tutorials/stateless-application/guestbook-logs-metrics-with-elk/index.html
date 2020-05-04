@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Example: Add logging and metrics to the PHP / Redis Guestbook example
     </h1>
@@ -105,7 +104,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -280,9 +279,9 @@ kube-state-metrics-89d656bf8-vdthm   2/2     Running     <span style="color:#666
     </h2>
     <p>
       A Kubernetes
-      <a class='glossary-tooltip' href='/docs/concepts/configuration/secret/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/configuration/secret/" target="_blank">
         Secret
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Stores sensitive information, such as passwords, OAuth tokens, and ssh keys.
         </span>
       </a>
@@ -318,7 +317,7 @@ kube-state-metrics-89d656bf8-vdthm   2/2     Running     <span style="color:#666
         </li>
       </ul>
       <div id="tab-with-md-0">
-        <pre><code>    &lt;h3 id=&quot;self-managed&quot;&gt;Self managed&lt;/h3&gt;</code></pre>
+        <pre><code>    &lt;h3 id=&#34;self-managed&#34;&gt;Self managed&lt;/h3&gt;</code></pre>
         <p>
           Switch to the
           <strong>
@@ -489,7 +488,7 @@ kube-state-metrics-89d656bf8-vdthm   2/2     Running     <span style="color:#666
   --namespace=kube-system</code></pre>
       </div>
       <div id="tab-with-md-1">
-        <pre><code>    &lt;h2 id=&quot;managed-service&quot;&gt;Managed service&lt;/h2&gt;</code></pre>
+        <pre><code>    &lt;h2 id=&#34;managed-service&#34;&gt;Managed service&lt;/h2&gt;</code></pre>
         <p>
           This tab is for Elasticsearch Service in Elastic Cloud only, if you have already created a secret for a self managed Elasticsearch and Kibana deployment, then continue with
           <a href="#deploy-the-beats">
@@ -566,9 +565,9 @@ vi ELASTIC_CLOUD_AUTH</code></pre>
     </h3>
     <p>
       Filebeat will collect logs from the Kubernetes nodes and the containers running in each pod running on those nodes.  Filebeat is deployed as a
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/daemonset' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/daemonset" target="_blank">
         DaemonSet
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Ensures a copy of a Pod is running across a set of nodes in a cluster.
         </span>
       </a>
@@ -799,7 +798,7 @@ redis-slave     2/2     <span style="color:#666">2</span>            <span style
     </h2>
     <p>
       See the screenshot, add the indicated filters and then add the columns to the view.  You can see the ScalingReplicaSet entry that is marked, following from there to the top of the list of events shows the image being pulled, the volumes mounted, the pod starting, etc.
-      <img src="https://raw.githubusercontent.com/elastic/examples/master/beats-k8s-send-anywhere/scaling-discover.png" alt="Kibana Discover">
+      <img src="https://raw.githubusercontent.com/elastic/examples/master/beats-k8s-send-anywhere/scaling-discover.png" alt="Kibana Discover"/>
     </p>
     <h2 id="cleaning-up">
       Cleaning up
@@ -865,5 +864,5 @@ kubectl delete secret dynamic-logging -n kube-system</code></pre>
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

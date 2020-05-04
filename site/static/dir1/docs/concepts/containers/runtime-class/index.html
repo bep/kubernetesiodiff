@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Runtime Class
 </h1>
@@ -12,7 +11,7 @@
   Runtime Class
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-  <b>
+  <b data-diff="">
     FEATURE STATE:
   </b>
   <code>
@@ -83,7 +82,7 @@
 </p>
 <p>
   RuntimeClass is a feature for selecting the container runtime configuration. The container runtime
-  configuration is used to run a Pod&rsquo;s containers.
+  configuration is used to run a Pod’s containers.
 </p>
 <ul id="markdown-toc">
   <li>
@@ -108,7 +107,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -119,7 +118,7 @@
   You can set a different RuntimeClass between different Pods to provide a balance of
   performance versus security. For example, if part of your workload deserves a high
   level of information security assurance, you might choose to schedule those Pods so
-  that they run in a container runtime that uses hardware virtualization. You&rsquo;d then
+  that they run in a container runtime that uses hardware virtualization. You’d then
   benefit from the extra isolation of the alternative runtime, at the expense of some
   additional overhead.
 </p>
@@ -307,42 +306,42 @@
   Kubernetes built-in dockershim CRI does not support runtime handlers.
 </p>
 <h4 id="a-class-glossary-tooltip-href-https-containerd-io-docs-target-blank-containerd-span-class-tooltip-text-a-container-runtime-with-an-emphasis-on-simplicity-robustness-and-portability-span">
-  <a class='glossary-tooltip' href='https://containerd.io/docs/' target='_blank'>
+  <a class="glossary-tooltip" href="https://containerd.io/docs/" target="_blank">
   containerd
-  <span class='tooltip-text'>
+  <span class="tooltip-text">
     A container runtime with an emphasis on simplicity, robustness and portability
   </span>
-</h4>
+</a></h4><a class="glossary-tooltip" href="https://containerd.io/docs/" target="_blank">
 <p>
-<p>
-  Runtime handlers are configured through containerd&rsquo;s configuration at
+</p><p>
+  Runtime handlers are configured through containerd’s configuration at
   <code>
     /etc/containerd/config.toml
   </code>
   . Valid handlers are configured under the runtimes section:
 </p><pre><code>[plugins.cri.containerd.runtimes.${HANDLER_NAME}]</code></pre>
-<p>
-  See containerd&rsquo;s config documentation for more details:
-  <a href="https://github.com/containerd/cri/blob/master/docs/config.md">
+</a><p><a class="glossary-tooltip" href="https://containerd.io/docs/" target="_blank">
+  See containerd’s config documentation for more details:
+  </a><a href="https://github.com/containerd/cri/blob/master/docs/config.md">
     https://github.com/containerd/cri/blob/master/docs/config.md
   </a>
 </p>
 <h4 id="a-class-glossary-tooltip-href-https-cri-o-io-what-is-cri-o-target-blank-cri-o-span-class-tooltip-text-a-lightweight-container-runtime-specifically-for-kubernetes-span">
-  <a class='glossary-tooltip' href='https://cri-o.io/#what-is-cri-o' target='_blank'>
+  <a class="glossary-tooltip" href="https://cri-o.io/#what-is-cri-o" target="_blank">
   CRI-O
-  <span class='tooltip-text'>
+  <span class="tooltip-text">
     A lightweight container runtime specifically for Kubernetes
   </span>
-</h4>
+</a></h4><a class="glossary-tooltip" href="https://cri-o.io/#what-is-cri-o" target="_blank">
 <p>
-<p>
-  Runtime handlers are configured through CRI-O&rsquo;s configuration at
+</p></a><p><a class="glossary-tooltip" href="https://cri-o.io/#what-is-cri-o" target="_blank">
+  Runtime handlers are configured through CRI-O’s configuration at
   <code>
     /etc/crio/crio.conf
   </code>
   . Valid
   handlers are configured under the
-  <a href="https://github.com/cri-o/cri-o/blob/master/docs/crio.conf.5.md#crioruntime-table">
+  </a><a href="https://github.com/cri-o/cri-o/blob/master/docs/crio.conf.5.md#crioruntime-table">
     crio.runtime
     table
   </a>
@@ -350,7 +349,7 @@
 </p><pre><code>[crio.runtime.runtimes.${HANDLER_NAME}]
   runtime_path = &#34;${PATH_TO_BINARY}&#34;</code></pre>
 <p>
-  See CRI-O&rsquo;s
+  See CRI-O’s
   <a href="https://raw.githubusercontent.com/cri-o/cri-o/9f11d1d/docs/crio.conf.5.md">
     config documentation
   </a>
@@ -446,7 +445,7 @@
     runtimeclass.scheduling.nodeSelector
   </code>
   field. The
-  RuntimeClass&rsquo;s nodeSelector is merged with the pod&rsquo;s nodeSelector in admission, effectively taking
+  RuntimeClass’s nodeSelector is merged with the pod’s nodeSelector in admission, effectively taking
   the intersection of the set of nodes selected by each. If there is a conflict, the pod will be
   rejected.
 </p>
@@ -461,7 +460,7 @@
     nodeSelector
   </code>
   , the tolerations are merged
-  with the pod&rsquo;s tolerations in admission, effectively taking the union of the set of nodes tolerated
+  with the pod’s tolerations in admission, effectively taking the union of the set of nodes tolerated
   by each.
 </p>
 <p>
@@ -549,7 +548,7 @@
   </em>
   resources that are associated with running a Pod. Declaring overhead allows
   the cluster (including the scheduler) to account for it when making decisions about Pods and resources.
-  <br />
+  <br/>
   To use Pod overhead, you must have the PodOverhead
   <a href="/docs/reference/command-line-tools-reference/feature-gates/">
     feature gate
@@ -592,4 +591,4 @@
       PodOverhead Feature Design
     </a>
   </li>
-</ul>
+</ul></body></html>

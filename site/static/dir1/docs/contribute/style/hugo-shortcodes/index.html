@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Custom Hugo Shortcodes
 </h1>
@@ -44,7 +43,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -69,7 +68,7 @@
   Renders to:
 </p>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-  <b>
+  <b data-diff="">
     FEATURE STATE:
   </b>
   <code>
@@ -489,9 +488,9 @@
 </h3>
 <p>
   For example, the following include within the markdown renders to
-  <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-cluster' target='_blank'>
+  <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-cluster" target="_blank">
     cluster
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A set of worker machines, called nodes, that run containerized applications. Every cluster has at least one worker node.
     </span>
   </a>
@@ -525,7 +524,7 @@
   </div>
 </blockquote>
 <p>
-  Here&rsquo;s an example:
+  Here’s an example:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go-html-template" data-lang="go-html-template"><span style="color:#080">{{</span><span style="">&lt;</span><span style="color:#bbb"> </span>table<span style="color:#bbb"> </span>caption<span style="">=</span><span style="color:#b44">&#34;Configuration parameters&#34;</span><span style="color:#bbb"> </span><span style="">&gt;</span><span style="color:#080">}}</span>
@@ -640,13 +639,13 @@ Parameter | Description | Default
     <a href="https://gohugo.io/content-management/page-bundles/#leaf-bundles">
       leaf bundle
     </a>
-    , the file &ndash; which can be any MIME type supported by Hugo &ndash; is looked up in the bundle itself. If not, the content page that needs to be included is looked up relative to the current page. Note that with the
+    , the file – which can be any MIME type supported by Hugo – is looked up in the bundle itself. If not, the content page that needs to be included is looked up relative to the current page. Note that with the
     <code>
       include
     </code>
     , you do not have any shortcode inner content and must use the self-closing syntax. For example,
     <code>
-      {{&lt; tab name=&ldquo;Content File #1&rdquo; include=&ldquo;example1&rdquo; /&gt;}}
+      {{&lt; tab name=“Content File #1” include=“example1” /&gt;}}
     </code>
     . The language needs to be specified under
     <code>
@@ -661,7 +660,7 @@ Parameter | Description | Default
     </code>
     -delimiter to surround the tab. For example,
     <code>
-      {{% tab name=&quot;Tab 1&quot; %}}This is **markdown**{{% /tab %}}
+      {{% tab name=&#34;Tab 1&#34; %}}This is **markdown**{{% /tab %}}
     </code>
   </li>
   <li>
@@ -722,19 +721,19 @@ println &#34;This is tab 2.&#34;
 <span style="color:#a2f">echo</span> <span style="color:#b44">&#34;This is tab 1.&#34;</span></code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="tab-with-code-1">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
 println <span style="color:#b44">&#34;This is tab 2.&#34;</span></code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#tab-with-code").tabs();});
 </script>
-<h3 id="tabs-demo-inline-markdown-and-html">
+</p><h3 id="tabs-demo-inline-markdown-and-html">
   Tabs demo: Inline Markdown and HTML
 </h3>
 <div class="highlight">
@@ -799,12 +798,12 @@ It can even contain shortcodes.
     </p>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#tab-with-md").tabs();});
 </script>
-<h3 id="tabs-demo-file-include">
+</p><h3 id="tabs-demo-file-include">
   Tabs demo: File include
 </h3>
 <div class="highlight">
@@ -895,12 +894,12 @@ It can even contain shortcodes.
   }</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#tab-with-file-include").tabs();});
 </script>
-<h2 id="what-s-next">
+</p><h2 id="what-s-next">
   What&#39;s next
 </h2>
 <ul>
@@ -938,4 +937,4 @@ It can even contain shortcodes.
     </a>
     .
   </li>
-</ul>
+</ul></div></div></div></body></html>

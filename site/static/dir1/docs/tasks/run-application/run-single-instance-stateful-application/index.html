@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Run a Single-Instance Stateful Application
     </h1>
@@ -49,7 +48,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -76,7 +75,7 @@
           You need to have a Kubernetes cluster, and the kubectl command-line tool must
           be configured to communicate with your cluster. If you do not already have a
           cluster, you can create one by using
-          <a href="/docs/setup/learning-environment/minikube/">
+          <a href="/docs/setup/learning-environment/minikube/" data-diff="">
             Minikube
           </a>
           ,
@@ -152,7 +151,7 @@
                 application/mysql/mysql-deployment.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-mysql-mysql-deployment-yaml')" title="Copy application/mysql/mysql-deployment.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-mysql-mysql-deployment-yaml&#39;)" title="Copy application/mysql/mysql-deployment.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -218,7 +217,7 @@
                 application/mysql/mysql-pv.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-mysql-mysql-pv-yaml')" title="Copy application/mysql/mysql-pv.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-mysql-mysql-pv-yaml&#39;)" title="Copy application/mysql/mysql-pv.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -351,8 +350,8 @@ Events:       &lt;none&gt;</code></pre>
         clusterIP: None
       </code>
       lets the Service DNS name resolve directly to the
-      Pod&rsquo;s IP address. This is optimal when you have only one Pod
-      behind a Service and you don&rsquo;t intend to increase the number of Pods.
+      Pod’s IP address. This is optimal when you have only one Pod
+      behind a Service and you don’t intend to increase the number of Pods.
     </p>
     <p>
       Run a MySQL client to connect to the server:
@@ -381,7 +380,7 @@ mysql&gt;</code></pre>
     </p>
     <ul>
       <li>
-        Don&rsquo;t scale the app. This setup is for single-instance apps
+        Don’t scale the app. This setup is for single-instance apps
         only. The underlying PersistentVolume can only be mounted to one
         Pod. For clustered stateful apps, see the
         <a href="/docs/concepts/workloads/controllers/statefulset/">
@@ -469,5 +468,5 @@ kubectl delete pv mysql-pv-volume</code></pre>
         </p>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

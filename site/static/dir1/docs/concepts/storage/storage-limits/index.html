@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Node-specific Volume Limits
     </h1>
@@ -46,7 +45,7 @@
       that can be attached to a Node:
     </p>
     <table>
-      <tr>
+      <tbody><tr>
         <th>
           Cloud service
         </th>
@@ -84,7 +83,7 @@
           16
         </td>
       </tr>
-    </table>
+    </tbody></table>
     <h2 id="custom-limits">
       Custom limits
     </h2>
@@ -99,7 +98,7 @@
     </p>
     <p>
       Use caution if you set a limit that is higher than the default limit. Consult
-      the cloud provider&rsquo;s documentation to make sure that Nodes can actually support
+      the cloud provider’s documentation to make sure that Nodes can actually support
       the limit you set.
     </p>
     <p>
@@ -109,7 +108,7 @@
       Dynamic volume limits
     </h2>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -225,9 +224,9 @@
             NodeGetInfo
           </code>
           ), the
-          <a class='glossary-tooltip' href='/docs/reference/generated/kube-scheduler/' target='_blank'>
+          <a class="glossary-tooltip" href="/docs/reference/generated/kube-scheduler/" target="_blank">
             kube-scheduler
-            <span class='tooltip-text'>
+            <span class="tooltip-text">
               Control plane component that watches for newly created pods with no assigned node, and selects a node for them to run on.
             </span>
           </a>
@@ -245,5 +244,5 @@
         </p>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

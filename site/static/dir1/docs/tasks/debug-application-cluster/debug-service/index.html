@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Debug Services
     </h1>
@@ -13,10 +12,10 @@
     </h1>
     <p>
       An issue that comes up rather frequently for new installations of Kubernetes is
-      that a Service is not working properly.  You&rsquo;ve run your Pods through a
+      that a Service is not working properly.  You’ve run your Pods through a
       Deployment (or other workload controller) and created a Service, but you
       get no response when you try to access it.  This document will hopefully help
-      you to figure out what&rsquo;s going wrong.
+      you to figure out what’s going wrong.
     </p>
     <ul id="markdown-toc">
       <li>
@@ -71,7 +70,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -88,7 +87,7 @@
         <strong>
           Note:
         </strong>
-        If you don&rsquo;t see a command prompt, try pressing enter.
+        If you don’t see a command prompt, try pressing enter.
       </div>
     </blockquote>
     <p>
@@ -102,7 +101,7 @@
       Setup
     </h2>
     <p>
-      For the purposes of this walk-through, let&rsquo;s run some Pods.  Since you&rsquo;re
+      For the purposes of this walk-through, let’s run some Pods.  Since you’re
       probably debugging your own Service you can substitute your own details, or you
       can follow along and get a second data point.
     </p>
@@ -146,7 +145,7 @@
 </span><span style="color:#bbb">        </span><span style="color:#a2f;font-weight:bold">image</span>:<span style="color:#bbb"> </span>k8s.gcr.io/serve_hostname</code></pre>
         </div>
         <p>
-          The label &ldquo;run&rdquo; is automatically set by
+          The label “run” is automatically set by
           <code>
             kubectl run
           </code>
@@ -178,7 +177,7 @@ hostnames-632524106-tlaok   1/1       Running   0          2m</code></pre>
 10.244.0.7</code></pre>
     <p>
       The example container used for this walk-through simply serves its own hostname
-      via HTTP on port 9376, but if you are debugging your own app, you&rsquo;ll want to
+      via HTTP on port 9376, but if you are debugging your own app, you’ll want to
       use whatever port number your Pods are listening on.
     </p>
     <p>
@@ -212,7 +211,7 @@ hostnames-yp2kp</code></pre>
     </p>
     <p>
       Assuming everything has gone to plan so far, you can start to investigate why
-      your Service doesn&rsquo;t work.
+      your Service doesn’t work.
     </p>
     <h2 id="does-the-service-exist">
       Does the Service exist?
@@ -241,8 +240,8 @@ wget: unable to resolve host address &#39;hostnames&#39;</code></pre>
     <pre><code class="language-none" data-lang="none">No resources found.
 Error from server (NotFound): services &#34;hostnames&#34; not found</code></pre>
     <p>
-      Let&rsquo;s create the Service.  As before, this is for the walk-through - you can
-      use your own Service&rsquo;s details here.
+      Let’s create the Service.  As before, this is for the walk-through - you can
+      use your own Service’s details here.
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">kubectl expose deployment hostnames --port<span style="color:#666">=</span><span style="color:#666">80</span> --target-port<span style="color:#666">=</span><span style="color:#666">9376</span></code></pre>
@@ -317,7 +316,7 @@ Address 1: 10.0.1.175 hostnames.default.svc.cluster.local</code></pre>
 Name:      hostnames.default
 Address 1: 10.0.1.175 hostnames.default.svc.cluster.local</code></pre>
     <p>
-      If this works, you&rsquo;ll need to adjust your app to use a cross-namespace name, or
+      If this works, you’ll need to adjust your app to use a cross-namespace name, or
       run your app and Service in the same Namespace.  If this still fails, try a
       fully-qualified name:
     </p>
@@ -329,9 +328,9 @@ Address 1: 10.0.1.175 hostnames.default.svc.cluster.local</code></pre>
 Name:      hostnames.default.svc.cluster.local
 Address 1: 10.0.1.175 hostnames.default.svc.cluster.local</code></pre>
     <p>
-      Note the suffix here: &ldquo;default.svc.cluster.local&rdquo;.  The &ldquo;default&rdquo; is the
-      Namespace you&rsquo;re operating in.  The &ldquo;svc&rdquo; denotes that this is a Service.
-      The &ldquo;cluster.local&rdquo; is your cluster domain, which COULD be different in your
+      Note the suffix here: “default.svc.cluster.local”.  The “default” is the
+      Namespace you’re operating in.  The “svc” denotes that this is a Service.
+      The “cluster.local” is your cluster domain, which COULD be different in your
       own cluster.
     </p>
     <p>
@@ -342,7 +341,7 @@ Address 1: 10.0.1.175 hostnames.default.svc.cluster.local</code></pre>
         <strong>
           Note:
         </strong>
-        10.0.0.10 is the cluster&rsquo;s DNS Service IP, yours might be different.
+        10.0.0.10 is the cluster’s DNS Service IP, yours might be different.
       </div>
     </blockquote>
     <div class="highlight">
@@ -376,7 +375,7 @@ options ndots:5</code></pre>
       <code>
         nameserver
       </code>
-      line must indicate your cluster&rsquo;s DNS Service.  This is
+      line must indicate your cluster’s DNS Service.  This is
       passed into
       <code>
         kubelet
@@ -394,8 +393,8 @@ options ndots:5</code></pre>
       </code>
       line must include an appropriate suffix for you to find the
       Service name.  In this case it is looking for Services in the local
-      Namespace (&ldquo;default.svc.cluster.local&rdquo;), Services in all Namespaces
-      (&ldquo;svc.cluster.local&rdquo;), and lastly for names in the cluster (&ldquo;cluster.local&rdquo;).
+      Namespace (“default.svc.cluster.local”), Services in all Namespaces
+      (“svc.cluster.local”), and lastly for names in the cluster (“cluster.local”).
       Depending on your own install you might have additional records after that (up
       to 6 total).  The cluster suffix is passed into
       <code>
@@ -406,7 +405,7 @@ options ndots:5</code></pre>
         --cluster-domain
       </code>
       flag.  Throughout this document, the cluster suffix is
-      assumed to be &ldquo;cluster.local&rdquo;.  Your own clusters might be configured
+      assumed to be “cluster.local”.  Your own clusters might be configured
       differently, in which case you should change that in all of the previous
       commands.
     </p>
@@ -454,7 +453,7 @@ Address 1: 10.0.0.1 kubernetes.default.svc.cluster.local</code></pre>
     <p>
       Assuming you have confirmed that DNS works, the next thing to test is whether your
       Service works by its IP address.  From a Pod in your cluster, access the
-      Service&rsquo;s IP (from
+      Service’s IP (from
       <code>
         kubectl get
       </code>
@@ -480,7 +479,7 @@ hostnames-yp2kp</code></pre>
     </h2>
     <p>
       It might sound silly, but you should really double and triple check that your
-      Service is correct and matches your Pod&rsquo;s port.  Read back your Service
+      Service is correct and matches your Pod’s port.  Read back your Service
       and verify it:
     </p>
     <div class="highlight">
@@ -538,13 +537,13 @@ hostnames-yp2kp</code></pre>
         correct for your Pods (some Pods use a different port than the Service)?
       </li>
       <li>
-        If you meant to use a numeric port, is it a number (9376) or a string &ldquo;9376&rdquo;?
+        If you meant to use a numeric port, is it a number (9376) or a string “9376”?
       </li>
       <li>
         If you meant to use a named port, do your Pods expose a port with the same name?
       </li>
       <li>
-        Is the port&rsquo;s
+        Is the port’s
         <code>
           protocol
         </code>
@@ -556,7 +555,7 @@ hostnames-yp2kp</code></pre>
     </h2>
     <p>
       If you got this far, you have confirmed that your Service is correctly
-      defined and is resolved by DNS.  Now let&rsquo;s check that the Pods you ran are
+      defined and is resolved by DNS.  Now let’s check that the Pods you ran are
       actually being selected by the Service.
     </p>
     <p>
@@ -578,11 +577,11 @@ hostnames-yp2kp   1/1       Running   0          1h</code></pre>
       has.
     </p>
     <p>
-      The &ldquo;AGE&rdquo; column says that these Pods are about an hour old, which implies that
+      The “AGE” column says that these Pods are about an hour old, which implies that
       they are running fine and not crashing.
     </p>
     <p>
-      The &ldquo;RESTARTS&rdquo; column says that these pods are not crashing frequently or being
+      The “RESTARTS” column says that these pods are not crashing frequently or being
       restarted.  Frequent restarts could lead to intermittent connectivity issues.
       If the restart count is high, read more about how to
       <a href="/docs/tasks/debug-application-cluster/debug-pod-replication-controller/#debugging-pods">
@@ -637,7 +636,7 @@ hostnames   10.244.0.5:9376,10.244.0.6:9376,10.244.0.7:9376</code></pre>
     <p>
       At this point, you know that your Service exists and has selected your Pods.
       At the beginning of this walk-through, you verified the Pods themselves.
-      Let&rsquo;s check again that the Pods are actually working - you can bypass the
+      Let’s check again that the Pods are actually working - you can bypass the
       Service mechanism and go straight to the Pods, as listed by the Endpoints
       above.
     </p>
@@ -666,7 +665,7 @@ hostnames-yp2kp</code></pre>
     <p>
       You expect each Pod in the Endpoints list to return its own hostname.  If
       this is not what happens (or whatever the correct behavior is for your own
-      Pods), you should investigate what&rsquo;s happening there.
+      Pods), you should investigate what’s happening there.
     </p>
     <h2 id="is-the-kube-proxy-working">
       Is the kube-proxy working?
@@ -674,7 +673,7 @@ hostnames-yp2kp</code></pre>
     <p>
       If you get here, your Service is running, has Endpoints, and your Pods
       are actually serving.  At this point, the whole Service proxy mechanism is
-      suspect.  Let&rsquo;s confirm it, piece by piece.
+      suspect.  Let’s confirm it, piece by piece.
     </p>
     <p>
       The default implementation of Services, and the one used on most clusters, is
@@ -700,7 +699,7 @@ hostnames-yp2kp</code></pre>
     <pre><code class="language-none" data-lang="none">root  4194  0.4  0.1 101864 17696 ?    Sl Jul04  25:43 /usr/local/bin/kube-proxy --master=https://kubernetes-master --kubeconfig=/var/lib/kube-proxy/kubeconfig --v=2</code></pre>
     <p>
       Next, confirm that it is not failing something obvious, like contacting the
-      master.  To do this, you&rsquo;ll have to look at the logs.  Accessing the logs
+      master.  To do this, you’ll have to look at the logs.  Accessing the logs
       depends on your Node OS.  On some OSes it is a file, such as
       /var/log/kube-proxy.log, while other OSes use
       <code>
@@ -754,14 +753,14 @@ I1027 22:14:54.040223    5063 proxier.go:294] Adding new service &#34;kube-syste
         Using iptables Proxier
       </code>
       indicates that kube-proxy is running in
-      &ldquo;iptables&rdquo; mode.  The most common other mode is &ldquo;ipvs&rdquo;.  The older &ldquo;userspace&rdquo;
+      “iptables” mode.  The most common other mode is “ipvs”.  The older “userspace”
       mode has largely been replaced by these.
     </p>
     <h4 id="iptables-mode">
       Iptables mode
     </h4>
     <p>
-      In &ldquo;iptables&rdquo; mode, you should see something like the following on a Node:
+      In “iptables” mode, you should see something like the following on a Node:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">iptables-save | grep hostnames</code></pre>
@@ -803,7 +802,7 @@ I1027 22:14:54.040223    5063 proxier.go:294] Adding new service &#34;kube-syste
       IPVS mode
     </h4>
     <p>
-      In &ldquo;ipvs&rdquo; mode, you should see something like the following on a Node:
+      In “ipvs” mode, you should see something like the following on a Node:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ipvsadm -ln</code></pre>
@@ -842,7 +841,7 @@ TCP  10.0.1.175:80 rr
       Userspace mode
     </h4>
     <p>
-      In rare cases, you may be using &ldquo;userspace&rdquo; mode.  From your Node:
+      In rare cases, you may be using “userspace” mode.  From your Node:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">iptables-save | grep hostnames</code></pre>
@@ -851,10 +850,10 @@ TCP  10.0.1.175:80 rr
 -A KUBE-PORTALS-HOST -d 10.0.1.175/32 -p tcp -m comment --comment &#34;default/hostnames:default&#34; -m tcp --dport 80 -j DNAT --to-destination 10.240.115.247:48577</code></pre>
     <p>
       There should be 2 rules for each port of your Service (just one in this
-      example) - a &ldquo;KUBE-PORTALS-CONTAINER&rdquo; and a &ldquo;KUBE-PORTALS-HOST&rdquo;.
+      example) - a “KUBE-PORTALS-CONTAINER” and a “KUBE-PORTALS-HOST”.
     </p>
     <p>
-      Almost nobody should be using the &ldquo;userspace&rdquo; mode any more, so you won&rsquo;t spend
+      Almost nobody should be using the “userspace” mode any more, so you won’t spend
       more time on it here.
     </p>
     <h3 id="is-kube-proxy-proxying">
@@ -883,7 +882,7 @@ TCP  10.0.1.175:80 rr
         kube-proxy
       </code>
       is using for your Service.  In the above
-      examples it is &ldquo;48577&rdquo;.  Now connect to that:
+      examples it is “48577”.  Now connect to that:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl localhost:48577</code></pre>
@@ -898,7 +897,7 @@ TCP  10.0.1.175:80 rr
     </p>
     <pre><code class="language-none" data-lang="none">Setting endpoints for default/hostnames:default to [10.244.0.5:9376 10.244.0.6:9376 10.244.0.7:9376]</code></pre>
     <p>
-      If you don&rsquo;t see those, try restarting
+      If you don’t see those, try restarting
       <code>
         kube-proxy
       </code>
@@ -916,7 +915,7 @@ TCP  10.0.1.175:80 rr
       This might sound unlikely, but it does happen and it is supposed to work.
     </p>
     <p>
-      This can happen when the network is not properly configured for &ldquo;hairpin&rdquo;
+      This can happen when the network is not properly configured for “hairpin”
       traffic, usually when
       <code>
         kube-proxy
@@ -957,7 +956,7 @@ TCP  10.0.1.175:80 rr
     </p>
     <ul>
       <li>
-        <p>
+        <p data-diff="">
           Confirm
           <code>
             hairpin-mode
@@ -992,7 +991,7 @@ TCP  10.0.1.175:80 rr
           <code>
             hairpin-mode
           </code>
-          . To do this, you&rsquo;ll have to look at
+          . To do this, you’ll have to look at
           kubelet log. Accessing the logs depends on your Node OS. On some OSes it
           is a file, such as /var/log/kubelet.log, while other OSes use
           <code>
@@ -1106,5 +1105,5 @@ TCP  10.0.1.175:80 rr
       </a>
       for more information.
     </p>
-  </body>
-</html>
+  
+</body></html>

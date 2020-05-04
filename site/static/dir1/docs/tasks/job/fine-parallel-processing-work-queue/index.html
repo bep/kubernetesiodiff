@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Fine Parallel Processing Using a Work Queue
     </h1>
@@ -173,7 +172,7 @@
       Filling the Queue with tasks
     </h2>
     <p>
-      Now let&rsquo;s fill the queue with some &ldquo;tasks&rdquo;.  In our example, our tasks are just strings to be
+      Now let’s fill the queue with some “tasks”.  In our example, our tasks are just strings to be
       printed.
     </p>
     <p>
@@ -250,10 +249,10 @@ redis:6379&gt; lrange job2 0 -1
       ).
     </p>
     <p>
-      The &ldquo;worker&rdquo; program in each Pod of the Job uses the work queue
+      The “worker” program in each Pod of the Job uses the work queue
       client library to get work.  Here it is:
     </p>
-    <table class="includecode" id="application-job-redis-worker-py">
+    <table class="includecode" id="application-job-redis-worker-py" data-diff="">
       <thead>
         <tr>
           <th>
@@ -262,7 +261,7 @@ redis:6379&gt; lrange job2 0 -1
                 application/job/redis/worker.py
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-redis-worker-py')" title="Copy application/job/redis/worker.py to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-job-redis-worker-py&#39;)" title="Copy application/job/redis/worker.py to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -382,7 +381,7 @@ gcloud docker -- push gcr.io/&lt;project&gt;/job-wq-2</code></pre>
                 application/job/redis/job.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-job-redis-job-yaml')" title="Copy application/job/redis/job.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-job-redis-job-yaml&#39;)" title="Copy application/job/redis/job.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -501,5 +500,5 @@ Working on lemon</code></pre>
       </a>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

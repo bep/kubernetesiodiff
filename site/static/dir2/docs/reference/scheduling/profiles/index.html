@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Scheduling Profiles
 </h1>
@@ -12,7 +11,7 @@
   Scheduling Profiles
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -77,9 +76,9 @@
 <p>
   A scheduling Profile allows you to configure the different stages of scheduling
   in the
-  <a class='glossary-tooltip' href='/docs/reference/generated/kube-scheduler/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/reference/generated/kube-scheduler/" target="_blank">
     kube-scheduler
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Control plane component that watches for newly created pods with no assigned node, and selects a node for them to run on.
     </span>
   </a>
@@ -135,7 +134,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -244,23 +243,23 @@
       DefaultTopologySpread
     </code>
     : Favors spreading across nodes for Pods that belong to
-    <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+    <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
       Services
-      <span class='tooltip-text'>
+      <span class="tooltip-text">
         A way to expose an application running on a set of Pods as a network service.
       </span>
     </a>
     ,
-    <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/replicaset/' target='_blank'>
+    <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/replicaset/" target="_blank">
       ReplicaSets
-      <span class='tooltip-text'>
+      <span class="tooltip-text">
         ReplicaSet ensures that a specified number of Pod replicas are running at one time
       </span>
     </a>
     and
-    <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/statefulset/' target='_blank'>
+    <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/statefulset/" target="_blank">
       StatefulSets
-      <span class='tooltip-text'>
+      <span class="tooltip-text">
         Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.
       </span>
     </a>
@@ -340,9 +339,9 @@
       NodePreferAvoidPods
     </code>
     : Scores nodes according to the node
-    <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/annotations' target='_blank'>
+    <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/annotations" target="_blank">
       annotation
-      <span class='tooltip-text'>
+      <span class="tooltip-text">
         A key-value pair that is used to attach arbitrary non-identifying metadata to objects.
       </span>
     </a>
@@ -467,9 +466,9 @@
       VolumeBinding
     </code>
     : Checks if the node has or if it can bind the requested
-    <a class='glossary-tooltip' href='/docs/concepts/storage/volumes/' target='_blank'>
+    <a class="glossary-tooltip" href="/docs/concepts/storage/volumes/" target="_blank">
       volumes
-      <span class='tooltip-text'>
+      <span class="tooltip-text">
         A directory containing data, accessible to the containers in a pod.
       </span>
     </a>
@@ -661,9 +660,9 @@
       NodeLabel
     </code>
     : Filters and / or scores a node according to configured
-    <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels' target='_blank'>
+    <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/labels" target="_blank">
       label(s)
-      <span class='tooltip-text'>
+      <span class="tooltip-text">
         Tags objects with identifying attributes that are meaningful and relevant to users.
       </span>
     </a>
@@ -683,9 +682,9 @@
       ServiceAffinity
     </code>
     : Checks that Pods that belong to a
-    <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+    <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
       Service
-      <span class='tooltip-text'>
+      <span class="tooltip-text">
         A way to expose an application running on a set of Pods as a network service.
       </span>
     </a>
@@ -730,7 +729,7 @@
   than one profile, a unique scheduler name for each of them is required.
 </p>
 <p>
-  If a Pod doesn&rsquo;t specify a scheduler name, kube-apiserver will set it to
+  If a Pod doesn’t specify a scheduler name, kube-apiserver will set it to
   <code>
     default-scheduler
   </code>
@@ -742,7 +741,7 @@
     <strong>
       Note:
     </strong>
-    Pod&rsquo;s scheduling events have
+    Pod’s scheduling events have
     <code>
       .spec.schedulerName
     </code>
@@ -771,4 +770,4 @@
       scheduling
     </a>
   </li>
-</ul>
+</ul></div></body></html>

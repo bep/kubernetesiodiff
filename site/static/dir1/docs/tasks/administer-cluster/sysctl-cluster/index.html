@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Using sysctls in a Kubernetes Cluster
     </h1>
@@ -12,7 +11,7 @@
       Using sysctls in a Kubernetes Cluster
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -81,9 +80,9 @@
     <p>
       This document describes how to configure and use kernel parameters within a
       Kubernetes cluster using the
-      <a class='glossary-tooltip' href='/docs/tasks/administer-cluster/sysctl-cluster/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/tasks/administer-cluster/sysctl-cluster/" target="_blank">
         sysctl
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An interface for getting and setting Unix kernel parameters
         </span>
       </a>
@@ -236,7 +235,7 @@
         must not have any influence on any other pod on the node
       </li>
       <li>
-        must not allow to harm the node&rsquo;s health
+        must not allow to harm the node’s health
       </li>
       <li>
         must not allow to gain CPU or memory resources outside of the resource limits
@@ -330,9 +329,9 @@
     </div>
     <p>
       For
-      <a class='glossary-tooltip' href='/docs/setup/learning-environment/minikube/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/setup/learning-environment/minikube/" target="_blank">
         Minikube
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A tool for running Kubernetes locally.
         </span>
       </a>
@@ -360,7 +359,7 @@
       <em>
         namespaced
       </em>
-      in today&rsquo;s Linux kernels. This means that
+      in today’s Linux kernels. This means that
       they can be set independently for each pod on a node. Only namespaced sysctls
       are configurable via the pod securityContext within Kubernetes.
     </p>
@@ -416,7 +415,7 @@
         node-level
       </em>
       sysctls. If you need to set
-      them, you must manually configure them on each node&rsquo;s operating system, or by
+      them, you must manually configure them on each node’s operating system, or by
       using a DaemonSet with privileged containers.
     </p>
     <p>
@@ -663,5 +662,5 @@
 </span><span style="color:#bbb">  </span>- kernel.shm_rmid_forced<span style="color:#bbb">
 </span><span style="color:#bbb"> </span>...</code></pre>
     </div>
-  </body>
-</html>
+  
+</body></html>

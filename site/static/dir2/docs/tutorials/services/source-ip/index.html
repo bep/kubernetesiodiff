@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Using Source IP
     </h1>
@@ -64,7 +63,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -115,9 +114,9 @@
       </dt>
       <dd>
         replacing the destination IP on a packet; in this page, that usually means replacing with the IP address of a
-        <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
           Pod
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
           </span>
         </a>
@@ -129,9 +128,9 @@
       </dt>
       <dd>
         a virtual IP address, such as the one assigned to every
-        <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
           Service
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             A way to expose an application running on a set of Pods as a network service.
           </span>
         </a>
@@ -189,8 +188,8 @@
       </code>
     </h2>
     <p>
-      Packets sent to ClusterIP from within the cluster are never source NAT&rsquo;d if
-      you&rsquo;re running kube-proxy in
+      Packets sent to ClusterIP from within the cluster are never source NAT’d if
+      you’re running kube-proxy in
       <a href="/docs/concepts/services-networking/service/#proxy-mode-iptables">
         iptables mode
       </a>
@@ -252,7 +251,7 @@ clusterip    ClusterIP   10.0.170.92   &lt;none&gt;        80/TCP    51s</code><
       The output is similar to this:
     </p>
     <pre><code>Waiting for pod default/busybox to be running, status is Pending, pod ready: false
-If you don't see a command prompt, try pressing enter.
+If you don&#39;t see a command prompt, try pressing enter.
 </code></pre>
     <p>
       You can then run a command inside that Pod:
@@ -293,7 +292,7 @@ command=GET
       <code>
         client_address
       </code>
-      is always the client pod&rsquo;s IP address, whether the client pod and server pod are in the same node or in different nodes.
+      is always the client pod’s IP address, whether the client pod and server pod are in the same node or in different nodes.
     </p>
     <h2 id="source-ip-for-services-with-type-nodeport">
       Source IP for Services with
@@ -308,7 +307,7 @@ command=GET
           Type=NodePort
         </code>
       </a>
-      are source NAT&rsquo;d by default. You can test this by creating a
+      are source NAT’d by default. You can test this by creating a
       <code>
         NodePort
       </code>
@@ -326,7 +325,7 @@ command=GET
 <span style="color:#b8860b">NODES</span><span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">$(</span>kubectl get nodes -o <span style="color:#b8860b">jsonpath</span><span style="color:#666">=</span><span style="color:#b44">&#39;{ $.items[*].status.addresses[?(@.type==&#34;ExternalIP&#34;)].address }&#39;</span><span style="color:#a2f;font-weight:bold">)</span></code></pre>
     </div>
     <p>
-      If you&rsquo;re running on a cloud provider, you may need to open up a firewall-rule
+      If you’re running on a cloud provider, you may need to open up a firewall-rule
       for the
       <code>
         nodes:nodeport
@@ -345,7 +344,7 @@ command=GET
 client_address=10.240.0.5
 client_address=10.240.0.3</code></pre>
     <p>
-      Note that these are not the correct client IPs, they&rsquo;re cluster internal IPs. This is what happens:
+      Note that these are not the correct client IPs, they’re cluster internal IPs. This is what happens:
     </p>
     <ul>
       <li>
@@ -370,10 +369,10 @@ client_address=10.240.0.3</code></pre>
         packet is routed to node 1, and then to the endpoint
       </li>
       <li>
-        the pod&rsquo;s reply is routed back to node2
+        the pod’s reply is routed back to node2
       </li>
       <li>
-        the pod&rsquo;s reply is sent back to the client
+        the pod’s reply is sent back to the client
       </li>
     </ul>
     <p>
@@ -451,7 +450,7 @@ client_address=10.240.0.3</code></pre>
         <code>
           node2:nodePort
         </code>
-        , which doesn&rsquo;t have any endpoints
+        , which doesn’t have any endpoints
       </li>
       <li>
         packet is dropped
@@ -496,7 +495,7 @@ client_address=10.240.0.3</code></pre>
           Type=LoadBalancer
         </code>
       </a>
-      are source NAT&rsquo;d by default, because all schedulable Kubernetes nodes in the
+      are source NAT’d by default, because all schedulable Kubernetes nodes in the
       <code>
         Ready
       </code>
@@ -529,7 +528,7 @@ client_address=10.240.0.3</code></pre>
     <pre><code>NAME           TYPE           CLUSTER-IP    EXTERNAL-IP       PORT(S)   AGE
 loadbalancer   LoadBalancer   10.0.65.118   203.0.113.140     80/TCP    5m</code></pre>
     <p>
-      Next, send a request to this Service&rsquo;s external-ip:
+      Next, send a request to this Service’s external-ip:
     </p>
     <div class="highlight">
       <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl 203.0.113.140</code></pre>
@@ -541,7 +540,7 @@ loadbalancer   LoadBalancer   10.0.65.118   203.0.113.140     80/TCP    5m</code
 client_address=10.240.0.5
 ...</code></pre>
     <p>
-      However, if you&rsquo;re running on Google Kubernetes Engine/GCE, setting the same
+      However, if you’re running on Google Kubernetes Engine/GCE, setting the same
       <code>
         service.spec.externalTrafficPolicy
       </code>
@@ -590,7 +589,7 @@ health check ---&gt;   node 1   node 2 &lt;--- health check
       The output is similar to this:
     </p>
     <div class="highlight">
-      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">healthCheckNodePort</span>:<span style="color:#bbb"> </span><span style="color:#666">32122</span><span style="color:#bbb">
+      <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">healthCheckNodePort</span>:<span style="color:#bbb"> </span><span style="color:#666">32122</span><span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <p>
@@ -639,9 +638,9 @@ curl localhost:32122/healthz</code></pre>
     <pre><code>No Service Endpoints Found</code></pre>
     <p>
       A controller running on the
-      <a class='glossary-tooltip' href='/dir2/docs/reference/glossary/?all=true#term-control-plane' target='_blank'>
+      <a class="glossary-tooltip" href="/dir2/docs/reference/glossary/?all=true#term-control-plane" target="_blank">
         control plane
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           The container orchestration layer that exposes the API and interfaces to define, deploy, and manage the lifecycle of containers.
         </span>
       </a>
@@ -674,7 +673,7 @@ client_address=198.51.100.79
         Type=LoadBalancer
       </code>
       .
-      The cloud provider you&rsquo;re running on might fulfill the request for a loadbalancer
+      The cloud provider you’re running on might fulfill the request for a loadbalancer
       in a few different ways:
     </p>
     <ol>
@@ -749,5 +748,5 @@ client_address=198.51.100.79
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

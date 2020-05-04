@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Declarative Management of Kubernetes Objects Using Configuration Files
     </h1>
@@ -94,7 +93,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -241,7 +240,7 @@
     <p>
       This sets the
       <code>
-        kubectl.kubernetes.io/last-applied-configuration: '{...}'
+        kubectl.kubernetes.io/last-applied-configuration: &#39;{...}&#39;
       </code>
       annotation on each object. The annotation contains the contents of the object
       configuration file that was used to create the object.
@@ -259,7 +258,7 @@
       </div>
     </blockquote>
     <p>
-      Here&rsquo;s an example of an object configuration file:
+      Here’s an example of an object configuration file:
     </p>
     <table class="includecode" id="application-simple-deployment-yaml">
       <thead>
@@ -270,7 +269,7 @@
                 application/simple_deployment.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-simple-deployment-yaml')" title="Copy application/simple_deployment.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-simple-deployment-yaml&#39;)" title="Copy application/simple_deployment.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -442,7 +441,7 @@
         Sets fields that appear in the configuration file in the live configuration.
       </li>
       <li>
-        <p>
+        <p data-diff="">
           Clears fields removed from the configuration file in the live configuration.
         </p>
         <div class="highlight">
@@ -464,7 +463,7 @@ kubectl apply -f &lt;directory&gt;/</code></pre>
       </div>
     </blockquote>
     <p>
-      Here&rsquo;s an example configuration file:
+      Here’s an example configuration file:
     </p>
     <table class="includecode" id="application-simple-deployment-yaml">
       <thead>
@@ -475,7 +474,7 @@ kubectl apply -f &lt;directory&gt;/</code></pre>
                 application/simple_deployment.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-simple-deployment-yaml')" title="Copy application/simple_deployment.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-simple-deployment-yaml&#39;)" title="Copy application/simple_deployment.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -692,7 +691,7 @@ kubectl apply -f &lt;directory&gt;/</code></pre>
                 application/update_deployment.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-update-deployment-yaml')" title="Copy application/update_deployment.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-update-deployment-yaml&#39;)" title="Copy application/update_deployment.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -1052,11 +1051,11 @@ kubectl apply -f https://k8s.io/examples/application/update_deployment.yaml</cod
         and missing from the configuration file.
       </li>
       <li>
-        Calculate the fields to add or set. These are the fields present in the configuration file whose values don&rsquo;t match the live configuration.
+        Calculate the fields to add or set. These are the fields present in the configuration file whose values don’t match the live configuration.
       </li>
     </ol>
     <p>
-      Here&rsquo;s an example. Suppose this is the configuration file for a Deployment object:
+      Here’s an example. Suppose this is the configuration file for a Deployment object:
     </p>
     <table class="includecode" id="application-update-deployment-yaml">
       <thead>
@@ -1067,7 +1066,7 @@ kubectl apply -f https://k8s.io/examples/application/update_deployment.yaml</cod
                 application/update_deployment.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-update-deployment-yaml')" title="Copy application/update_deployment.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-update-deployment-yaml&#39;)" title="Copy application/update_deployment.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -1380,7 +1379,7 @@ kubectl apply -f https://k8s.io/examples/application/update_deployment.yaml</cod
         <code>
           -
         </code>
-        is used for &ldquo;not applicable&rdquo; because the value is not used.
+        is used for “not applicable” because the value is not used.
       </div>
     </blockquote>
     <table>
@@ -1473,7 +1472,7 @@ kubectl apply -f https://k8s.io/examples/application/update_deployment.yaml</cod
         <code>
           -
         </code>
-        is used for &ldquo;not applicable&rdquo; because the value is not used.
+        is used for “not applicable” because the value is not used.
       </div>
     </blockquote>
     <table>
@@ -1726,11 +1725,11 @@ kubectl apply -f https://k8s.io/examples/application/update_deployment.yaml</cod
     </p>
     <ul>
       <li>
-        The container named &ldquo;nginx-helper-a&rdquo; was deleted because no container
-        named &ldquo;nginx-helper-a&rdquo; appeared in the configuration file.
+        The container named “nginx-helper-a” was deleted because no container
+        named “nginx-helper-a” appeared in the configuration file.
       </li>
       <li>
-        The container named &ldquo;nginx-helper-b&rdquo; retained the changes to
+        The container named “nginx-helper-b” retained the changes to
         <code>
           args
         </code>
@@ -1739,8 +1738,8 @@ kubectl apply -f https://k8s.io/examples/application/update_deployment.yaml</cod
           kubectl apply
         </code>
         was able to identify
-        that &ldquo;nginx-helper-b&rdquo; in the live configuration was the same
-        &ldquo;nginx-helper-b&rdquo; as in the configuration file, even though their fields
+        that “nginx-helper-b” in the live configuration was the same
+        “nginx-helper-b” as in the configuration file, even though their fields
         had different values (no
         <code>
           args
@@ -1753,12 +1752,12 @@ kubectl apply -f https://k8s.io/examples/application/update_deployment.yaml</cod
         field value (name) was identical in both.
       </li>
       <li>
-        The container named &ldquo;nginx-helper-c&rdquo; was added because no container
+        The container named “nginx-helper-c” was added because no container
         with that name appeared in the live configuration, but one with
         that name appeared in the configuration file.
       </li>
       <li>
-        The container named &ldquo;nginx-helper-d&rdquo; was retained because
+        The container named “nginx-helper-d” was retained because
         no element with that name appeared in the last-applied-configuration.
       </li>
     </ul>
@@ -1798,7 +1797,7 @@ kubectl apply -f https://k8s.io/examples/application/update_deployment.yaml</cod
       not specified when the object is created.
     </p>
     <p>
-      Here&rsquo;s a configuration file for a Deployment. The file does not specify
+      Here’s a configuration file for a Deployment. The file does not specify
       <code>
         strategy
       </code>
@@ -1813,7 +1812,7 @@ kubectl apply -f https://k8s.io/examples/application/update_deployment.yaml</cod
                 application/simple_deployment.yaml
               </code>
             </a>
-            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('application-simple-deployment-yaml')" title="Copy application/simple_deployment.yaml to clipboard">
+            <img src="/dir1/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;application-simple-deployment-yaml&#39;)" title="Copy application/simple_deployment.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -2293,5 +2292,5 @@ kubectl apply -f https://k8s.io/examples/application/update_deployment.yaml</cod
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

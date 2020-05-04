@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Service
 </h1>
@@ -13,16 +12,16 @@
 </h1>
 <p>
   An abstract way to expose an application running on a set of
-  <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
     Pods
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
     </span>
   </a>
   as a network service.
 </p>
 <p>
-  With Kubernetes you don&rsquo;t need to modify your application to use an unfamiliar service discovery mechanism.
+  With Kubernetes you don’t need to modify your application to use an unfamiliar service discovery mechanism.
   Kubernetes gives Pods their own IP addresses and a single DNS name for a set of Pods,
   and can load-balance across them.
 </p>
@@ -94,7 +93,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -103,18 +102,18 @@
 </h2>
 <p>
   Kubernetes
-  <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
     Pods
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
     </span>
   </a>
   are mortal.
   They are born and when they die, they are not resurrected.
   If you use a
-  <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/deployment/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/deployment/" target="_blank">
     Deployment
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       An API object that manages a replicated application.
     </span>
   </a>
@@ -147,9 +146,9 @@
   and a policy by which to access them (sometimes this pattern is called
   a micro-service). The set of Pods targeted by a Service is usually determined
   by a
-  <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/labels/" target="_blank">
     selector
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Allows users to filter a list of resources based on labels.
     </span>
   </a>
@@ -165,7 +164,7 @@
 </p>
 <p>
   For example, consider a stateless image-processing backend which is running with
-  3 replicas.  Those replicas are fungible&mdash;frontends do not care which backend
+  3 replicas.  Those replicas are fungible—frontends do not care which backend
   they use.  While the actual Pods that compose the backend set may change, the
   frontend clients should not need to be aware of that, nor should they need to keep
   track of the set of backends themselves.
@@ -177,11 +176,11 @@
   Cloud-native service discovery
 </h3>
 <p>
-  If you&rsquo;re able to use Kubernetes APIs for service discovery in your application,
+  If you’re able to use Kubernetes APIs for service discovery in your application,
   you can query the
-  <a class='glossary-tooltip' href='/docs/reference/generated/kube-apiserver/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/reference/generated/kube-apiserver/" target="_blank">
     API server
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Control plane component that serves the Kubernetes API.
     </span>
   </a>
@@ -238,7 +237,7 @@
   label.
 </p>
 <p>
-  Kubernetes assigns this Service an IP address (sometimes called the &ldquo;cluster IP&rdquo;),
+  Kubernetes assigns this Service an IP address (sometimes called the “cluster IP”),
   which is used by the Service proxies
   (see
   <a href="#virtual-ips-and-service-proxies">
@@ -323,9 +322,9 @@
   </li>
   <li>
     You want to point your Service to a Service in a different
-    <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/namespaces' target='_blank'>
+    <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/namespaces" target="_blank">
       Namespace
-      <span class='tooltip-text'>
+      <span class="tooltip-text">
         An abstraction used by Kubernetes to support multiple virtual clusters on the same physical cluster.
       </span>
     </a>
@@ -361,7 +360,7 @@
     not
   </em>
   created automatically. You can manually map the Service to the network address and port
-  where it&rsquo;s running, by adding an Endpoint object manually:
+  where it’s running, by adding an Endpoint object manually:
 </p>
 <div class="highlight">
   <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#a2f;font-weight:bold">apiVersion</span>:<span style="color:#bbb"> </span>v1<span style="color:#bbb">
@@ -392,10 +391,10 @@
         must not
       </em>
       be: loopback (127.0.0.0/8 for IPv4, ::
-      <sup>
+      <sup data-diff="">
         1
       </sup>
-      &frasl;
+      ⁄
       <sub>
         128
       </sub>
@@ -405,13 +404,13 @@
     <p>
       Endpoint IP addresses cannot be the cluster IPs of other Kubernetes Services,
       because
-      <a class='glossary-tooltip' href='/docs/reference/command-line-tools-reference/kube-proxy/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/command-line-tools-reference/kube-proxy/" target="_blank">
         kube-proxy
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           kube-proxy is a network proxy that runs on each node in the cluster.
         </span>
       </a>
-      doesn&rsquo;t support virtual IPs
+      doesn’t support virtual IPs
       as a destination.
     </p>
   </div>
@@ -507,7 +506,7 @@
   EndpointSlices are an API resource that can provide a more scalable alternative
   to Endpoints. Although conceptually quite similar to Endpoints, EndpointSlices
   allow for distributing network endpoints across multiple resources. By default,
-  an EndpointSlice is considered &ldquo;full&rdquo; once it reaches 100 endpoints, at which
+  an EndpointSlice is considered “full” once it reaches 100 endpoints, at which
   point additional EndpointSlices will be created to store any additional
   endpoints.
 </p>
@@ -659,9 +658,9 @@
 <p>
   In this mode, kube-proxy watches the Kubernetes master for the addition and
   removal of Service and Endpoint objects. For each Service it opens a
-  port (randomly chosen) on the local node.  Any connections to this &ldquo;proxy port&rdquo;
+  port (randomly chosen) on the local node.  Any connections to this “proxy port”
   are
-  proxied to one of the Service&rsquo;s backend Pods (as reported via
+  proxied to one of the Service’s backend Pods (as reported via
   Endpoints). kube-proxy takes the
   <code>
     SessionAffinity
@@ -671,7 +670,7 @@
 </p>
 <p>
   Lastly, the user-space proxy installs iptables rules which capture traffic to
-  the Service&rsquo;s
+  the Service’s
   <code>
     clusterIP
   </code>
@@ -686,7 +685,7 @@
   By default, kube-proxy in userspace mode chooses a backend via a round-robin algorithm.
 </p>
 <p>
-  <img src="/images/docs/services-userspace-overview.svg" alt="Services overview diagram for userspace proxy" />
+  <img src="/images/docs/services-userspace-overview.svg" alt="Services overview diagram for userspace proxy"/>
 </p>
 <h3 id="proxy-mode-iptables">
   <code>
@@ -697,7 +696,7 @@
 <p>
   In this mode, kube-proxy watches the Kubernetes control plane for the addition and
   removal of Service and Endpoint objects. For each Service, it installs
-  iptables rules, which capture traffic to the Service&rsquo;s
+  iptables rules, which capture traffic to the Service’s
   <code>
     clusterIP
   </code>
@@ -706,7 +705,7 @@
     port
   </code>
   ,
-  and redirect that traffic to one of the Service&rsquo;s
+  and redirect that traffic to one of the Service’s
   backend sets.  For each Endpoint object, it installs iptables rules which
   select a backend Pod.
 </p>
@@ -719,7 +718,7 @@
   kernel space. This approach is also likely to be more reliable.
 </p>
 <p>
-  If kube-proxy is running in iptables mode and the first Pod that&rsquo;s selected
+  If kube-proxy is running in iptables mode and the first Pod that’s selected
   does not respond, the connection fails. This is different from userspace
   mode: in that scenario, kube-proxy would detect that the connection to the first
   Pod had failed and would automatically retry with a different backend Pod.
@@ -731,10 +730,10 @@
   </a>
   to verify that backend Pods are working OK, so that kube-proxy in iptables mode
   only sees backends that test out as healthy. Doing this means you avoid
-  having traffic sent via kube-proxy to a Pod that&rsquo;s known to have failed.
+  having traffic sent via kube-proxy to a Pod that’s known to have failed.
 </p>
 <p>
-  <img src="/images/docs/services-iptables-overview.svg" alt="Services overview diagram for iptables proxy" />
+  <img src="/images/docs/services-iptables-overview.svg" alt="Services overview diagram for iptables proxy"/>
 </p>
 <h3 id="proxy-mode-ipvs">
   IPVS proxy mode
@@ -876,7 +875,7 @@
   </div>
 </blockquote>
 <p>
-  <img src="/images/docs/services-ipvs-overview.svg" alt="Services overview diagram for IPVS proxy" />
+  <img src="/images/docs/services-ipvs-overview.svg" alt="Services overview diagram for IPVS proxy"/>
 </p>
 <p>
   In these proxy models, the traffic bound for the Service’s IP:Port is
@@ -886,12 +885,12 @@
 <p>
   If you want to make sure that connections from a particular client
   are passed to the same Pod each time, you can select the session affinity based
-  on the client&rsquo;s IP addresses by setting
+  on the client’s IP addresses by setting
   <code>
     service.spec.sessionAffinity
   </code>
-  to &ldquo;ClientIP&rdquo;
-  (the default is &ldquo;None&rdquo;).
+  to “ClientIP”
+  (the default is “None”).
   You can also set the maximum session sticky time by setting
   <code>
     service.spec.sessionAffinityConfig.clientIP.timeoutSeconds
@@ -934,9 +933,9 @@
     </strong>
     <p>
       As with Kubernetes
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/names' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/names" target="_blank">
         names
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A client-provided string that refers to an object in a resource URL, such as /api/v1/pods/some-name.
         </span>
       </a>
@@ -993,7 +992,7 @@
   </code>
   CIDR range that is configured for the API server.
   If you try to create a Service with an invalid clusterIP address value, the API
-  server will return a 422 HTTP status code to indicate that there&rsquo;s a problem.
+  server will return a 422 HTTP status code to indicate that there’s a problem.
 </p>
 <h2 id="discovering-services">
   Discovering services
@@ -1031,7 +1030,7 @@
 <p>
   For example, the Service
   <code>
-    &quot;redis-master&quot;
+    &#34;redis-master&#34;
   </code>
   which exposes TCP port 6379 and has been
   allocated cluster IP address 10.0.0.11, produces the following environment
@@ -1059,10 +1058,10 @@
         before
       </em>
       the client Pods come into existence.
-      Otherwise, those client Pods won&rsquo;t have their environment variables populated.
+      Otherwise, those client Pods won’t have their environment variables populated.
     </p>
     <p>
-      If you only use DNS to discover the cluster IP for a Service, you don&rsquo;t need to
+      If you only use DNS to discover the cluster IP for a Service, you don’t need to
       worry about this ordering issue.
     </p>
   </div>
@@ -1087,21 +1086,21 @@
 <p>
   For example, if you have a Service called
   <code>
-    &quot;my-service&quot;
+    &#34;my-service&#34;
   </code>
   in a Kubernetes
   Namespace
   <code>
-    &quot;my-ns&quot;
+    &#34;my-ns&#34;
   </code>
   , the control plane and the DNS Service acting together
   create a DNS record for
   <code>
-    &quot;my-service.my-ns&quot;
+    &#34;my-service.my-ns&#34;
   </code>
   . Pods in the
   <code>
-    &quot;my-ns&quot;
+    &#34;my-ns&#34;
   </code>
   Namespace
   should be able to find it by simply doing a name lookup for
@@ -1110,7 +1109,7 @@
   </code>
   (
   <code>
-    &quot;my-service.my-ns&quot;
+    &#34;my-service.my-ns&#34;
   </code>
   would also work).
 </p>
@@ -1125,11 +1124,11 @@
 <p>
   Kubernetes also supports DNS SRV (Service) records for named ports.  If the
   <code>
-    &quot;my-service.my-ns&quot;
+    &#34;my-service.my-ns&#34;
   </code>
   Service has a port named
   <code>
-    &quot;http&quot;
+    &#34;http&#34;
   </code>
   with the protocol set to
   <code>
@@ -1142,7 +1141,7 @@
   to discover
   the port number for
   <code>
-    &quot;http&quot;
+    &#34;http&#34;
   </code>
   , as well as the IP address.
 </p>
@@ -1166,11 +1165,11 @@
   Headless Services
 </h2>
 <p>
-  Sometimes you don&rsquo;t need load-balancing and a single Service IP.  In
+  Sometimes you don’t need load-balancing and a single Service IP.  In
   this case, you can create what are termed “headless” Services, by explicitly
   specifying
   <code>
-    &quot;None&quot;
+    &#34;None&#34;
   </code>
   for the cluster IP (
   <code>
@@ -1180,7 +1179,7 @@
 </p>
 <p>
   You can use a headless Service to interface with other service discovery mechanisms,
-  without being tied to Kubernetes&rsquo; implementation.
+  without being tied to Kubernetes’ implementation.
 </p>
 <p>
   For headless
@@ -1247,7 +1246,7 @@
 </h2>
 <p>
   For some parts of your application (for example, frontends) you may want to expose a
-  Service onto an external IP address, that&rsquo;s outside of your cluster.
+  Service onto an external IP address, that’s outside of your cluster.
 </p>
 <p>
   Kubernetes
@@ -1286,7 +1285,7 @@
         NodePort
       </code>
     </a>
-    : Exposes the Service on each Node&rsquo;s IP at a static port
+    : Exposes the Service on each Node’s IP at a static port
     (the
     <code>
       NodePort
@@ -1300,7 +1299,7 @@
       NodePort
     </code>
     Service
-    routes, is automatically created.  You&rsquo;ll be able to contact the
+    routes, is automatically created.  You’ll be able to contact the
     <code>
       NodePort
     </code>
@@ -1319,7 +1318,7 @@
       </code>
     </a>
     : Exposes the Service externally using a cloud
-    provider&rsquo;s load balancer.
+    provider’s load balancer.
     <code>
       NodePort
     </code>
@@ -1353,7 +1352,7 @@
     </p>
     <p>
       with its value. No proxying of any kind is set up.
-      <blockquote class="note">
+      </p><blockquote class="note">
         <div>
           <strong>
             Note:
@@ -1365,7 +1364,7 @@
           type.
         </div>
       </blockquote>
-    </p>
+    <p></p>
   </li>
 </ul>
 <p>
@@ -1417,7 +1416,7 @@
   <code>
     --nodeport-addresses
   </code>
-  is an empty list. This means that kube-proxy should consider all available network interfaces for NodePort. (That&rsquo;s also compatible with earlier Kubernetes releases).
+  is an empty list. This means that kube-proxy should consider all available network interfaces for NodePort. (That’s also compatible with earlier Kubernetes releases).
 </p>
 <p>
   If you want a specific port number, you can specify a value in the
@@ -1427,13 +1426,13 @@
   field. The control plane will either allocate you that port or report that
   the API transaction failed.
   This means that you need to take care of possible port collisions yourself.
-  You also have to use a valid port number, one that&rsquo;s inside the range configured
+  You also have to use a valid port number, one that’s inside the range configured
   for NodePort use.
 </p>
 <p>
   Using a NodePort gives you the freedom to set up your own load balancing solution,
   to configure environments that are not fully supported by Kubernetes, or even
-  to just expose one or more nodes&rsquo; IPs directly.
+  to just expose one or more nodes’ IPs directly.
 </p>
 <p>
   Note that this Service is visible as
@@ -1449,9 +1448,9 @@
     --nodeport-addresses
   </code>
   flag in kube-proxy is set,
-  <NodeIP>
+  <nodeip>
   would be filtered NodeIP(s).)
-</p>
+</nodeip></p>
 <p>
   For example:
 </p>
@@ -1486,7 +1485,7 @@
   </code>
   provisions a load balancer for your Service.
   The actual creation of the load balancer happens asynchronously, and
-  information about the provisioned balancer is published in the Service&rsquo;s
+  information about the provisioned balancer is published in the Service’s
   <code>
     .status.loadBalancer
   </code>
@@ -1563,7 +1562,7 @@
     <strong>
       Note:
     </strong>
-    If you&rsquo;re using SCTP, see the
+    If you’re using SCTP, see the
     <a href="#caveat-sctp-loadbalancer-service-type">
       caveat
     </a>
@@ -1626,7 +1625,7 @@
 </p>
 <p>
   You can achieve this by adding one the following annotations to a Service.
-  The annotation to add depends on the cloud Service provider you&rsquo;re using.
+  The annotation to add depends on the cloud Service provider you’re using.
 </p>
 <div id="service-tabs">
 <ul>
@@ -1681,7 +1680,7 @@
 </span><span style="color:#bbb"></span>[...]</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="service-tabs-2">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">[...]<span style="color:#bbb">
@@ -1692,7 +1691,7 @@
 </span><span style="color:#bbb"></span>[...]</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="service-tabs-3">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">[...]<span style="color:#bbb">
@@ -1703,7 +1702,7 @@
 </span><span style="color:#bbb"></span>[...]</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="service-tabs-4">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">[...]<span style="color:#bbb">
@@ -1714,7 +1713,7 @@
 </span><span style="color:#bbb"></span>[...]</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="service-tabs-5">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">[...]<span style="color:#bbb">
@@ -1725,7 +1724,7 @@
 </span><span style="color:#bbb"></span>[...]</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <div id="service-tabs-6">
   <div class="highlight">
     <pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">[...]<span style="color:#bbb">
@@ -1735,12 +1734,12 @@
 </span><span style="color:#bbb"></span>[...]</code></pre>
   </div>
   <p>
-</div>
+</p></div>
 <p>
 <script>
   $(function(){$("#service-tabs").tabs();});
 </script>
-<h4 id="ssl-support-on-aws">
+</p><h4 id="ssl-support-on-aws">
   TLS support on AWS
 </h4>
 <p>
@@ -1779,7 +1778,7 @@
   <code>
     X-Forwarded-For
   </code>
-  header with the user&rsquo;s IP address (Pods only see the IP address of the
+  header with the user’s IP address (Pods only see the IP address of the
   ELB at the other end of its connection) when forwarding requests.
 </p>
 <p>
@@ -1842,11 +1841,11 @@
 </div>
 <p>
   You can then specify any one of those policies using the
-  &ldquo;
+  “
   <code>
     service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy
   </code>
-  &ldquo;
+  “
   annotation; for example:
 </p>
 <div class="highlight">
@@ -1936,7 +1935,7 @@
   set
   to the value of
   <code>
-    &quot;true&quot;
+    &#34;true&#34;
   </code>
   . The annotation
   <code>
@@ -2092,7 +2091,7 @@
 </blockquote>
 <p>
   Unlike Classic Elastic Load Balancers, Network Load Balancers (NLBs) forward the
-  client&rsquo;s IP address through to the node. If a Service&rsquo;s
+  client’s IP address through to the node. If a Service’s
   <code>
     .spec.externalTrafficPolicy
   </code>
@@ -2100,7 +2099,7 @@
   <code>
     Cluster
   </code>
-  , the client&rsquo;s IP address is not propagated to the end
+  , the client’s IP address is not propagated to the end
   Pods.
 </p>
 <p>
@@ -2115,7 +2114,7 @@
   , the client IP addresses is
   propagated to the end Pods, but this could result in uneven distribution of
   traffic. Nodes without any Pods for a particular LoadBalancer Service will fail
-  the NLB Target Group&rsquo;s health check on the auto-assigned
+  the NLB Target Group’s health check on the auto-assigned
   <code>
     .spec.healthCheckNodePort
   </code>
@@ -2236,7 +2235,7 @@
   </tbody>
 </table>
 <p>
-  In order to limit which client IP&rsquo;s can access the Network Load Balancer,
+  In order to limit which client IP’s can access the Network Load Balancer,
   specify
   <code>
     loadBalancerSourceRanges
@@ -2383,7 +2382,7 @@
   difference that redirection happens at the DNS level rather than via proxying or
   forwarding. Should you later decide to move your database into your cluster, you
   can start its Pods, add appropriate selectors or endpoints, and change the
-  Service&rsquo;s
+  Service’s
   <code>
     type
   </code>
@@ -2449,15 +2448,15 @@
     ServiceTypes
   </code>
   .
-  In the example below, &ldquo;
+  In the example below, “
   <code>
     my-service
   </code>
-  &rdquo; can be accessed by clients on &ldquo;
+  ” can be accessed by clients on “
   <code>
     80.11.12.10:80
   </code>
-  &rdquo; (
+  ” (
   <code>
     externalIP:port
   </code>
@@ -2534,7 +2533,7 @@
   exposed to situations that could cause your actions to fail through no fault
   of your own. For the design of the Service resource, this means not making
   you choose your own port number if that choice might collide with
-  someone else&rsquo;s choice.  That is an isolation failure.
+  someone else’s choice.  That is an isolation failure.
 </p>
 <p>
   In order to allow you to choose a port number for your Services, we must
@@ -2544,10 +2543,10 @@
 <p>
   To ensure each Service receives a unique IP, an internal allocator atomically
   updates a global allocation map in
-  <a class='glossary-tooltip' href='/docs/tasks/administer-cluster/configure-upgrade-etcd/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/tasks/administer-cluster/configure-upgrade-etcd/" target="_blank">
     etcd
-    <span class='tooltip-text'>
-      Consistent and highly-available key value store used as Kubernetes&rsquo; backing store for all cluster data.
+    <span class="tooltip-text">
+      Consistent and highly-available key value store used as Kubernetes’ backing store for all cluster data.
     </span>
   </a>
   prior to creating each Service. The map object must exist in the registry for
@@ -2575,10 +2574,10 @@
   which are transparently redirected as needed.  When clients connect to the
   VIP, their traffic is automatically transported to an appropriate endpoint.
   The environment variables and DNS for Services are actually populated in
-  terms of the Service&rsquo;s virtual IP address (and port).
+  terms of the Service’s virtual IP address (and port).
 </p>
 <p>
-  kube-proxy supports three proxy modes&mdash;userspace, iptables and IPVS&mdash;which
+  kube-proxy supports three proxy modes—userspace, iptables and IPVS—which
   each operate slightly differently.
 </p>
 <h4 id="userspace">
@@ -2594,8 +2593,8 @@
   connections on it.
 </p>
 <p>
-  When a client connects to the Service&rsquo;s virtual IP address, the iptables
-  rule kicks in, and redirects the packets to the proxy&rsquo;s own port.
+  When a client connects to the Service’s virtual IP address, the iptables
+  rule kicks in, and redirects the packets to the proxy’s own port.
   The “Service proxy” chooses a backend, and starts proxying traffic from the client to the backend.
 </p>
 <p>
@@ -2617,7 +2616,7 @@
   to the backends.
 </p>
 <p>
-  When a client connects to the Service&rsquo;s virtual IP address the iptables rule kicks in.
+  When a client connects to the Service’s virtual IP address the iptables rule kicks in.
   A backend is chosen (either based on session affinity or randomly) and packets are
   redirected to the backend.  Unlike the userspace proxy, packets are never
   copied to userspace, the kube-proxy does not have to be running for the virtual
@@ -2653,7 +2652,7 @@
   TCP
 </h3>
 <p>
-  You can use TCP for any kind of Service, and it&rsquo;s the default network protocol.
+  You can use TCP for any kind of Service, and it’s the default network protocol.
 </p>
 <h3 id="udp">
   UDP
@@ -2676,9 +2675,9 @@
       Note:
     </strong>
     You can also use
-    <a class='glossary-tooltip' href='/docs/concepts/services-networking/ingress/' target='_blank'>
+    <a class="glossary-tooltip" href="/docs/concepts/services-networking/ingress/" target="_blank">
       Ingress
-      <span class='tooltip-text'>
+      <span class="tooltip-text">
         An API object that manages external access to the services in a cluster, typically HTTP.
       </span>
     </a>
@@ -2835,7 +2834,7 @@
     <code>
       protocol
     </code>
-    SCTP if the cloud provider&rsquo;s load balancer implementation supports SCTP as a protocol. Otherwise, the Service creation request is rejected. The current set of cloud load balancer providers (Azure, AWS, CloudStack, GCE, OpenStack) all lack support for SCTP.
+    SCTP if the cloud provider’s load balancer implementation supports SCTP as a protocol. Otherwise, the Service creation request is rejected. The current set of cloud load balancer providers (Azure, AWS, CloudStack, GCE, OpenStack) all lack support for SCTP.
   </div>
 </blockquote>
 <h5 id="caveat-sctp-windows-os">
@@ -2882,4 +2881,4 @@
       EndpointSlices
     </a>
   </li>
-</ul>
+</ul></div></body></html>

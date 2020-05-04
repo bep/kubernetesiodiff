@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       kubeadm reset
     </h1>
@@ -25,16 +24,16 @@
     <ul id="markdown-toc">
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
-    <pre><code>&lt;h3 id=&quot;synopsis&quot;&gt;Synopsis&lt;/h3&gt;</code></pre>
+    <pre data-diff=""><code>&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;</code></pre>
     <p>
-      Performs a best effort revert of changes made to this host by &lsquo;kubeadm init&rsquo; or &lsquo;kubeadm join&rsquo;
+      Performs a best effort revert of changes made to this host by ‘kubeadm init’ or ‘kubeadm join’
     </p>
     <p>
-      The &ldquo;reset&rdquo; command executes the following phases:
+      The “reset” command executes the following phases:
     </p>
     <pre><code>preflight              Run reset pre-flight checks
 update-cluster-status  Remove this node from the ClusterStatus object.
@@ -46,13 +45,13 @@ cleanup-node           Run cleanup node.</code></pre>
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
           <td colspan="2">
-            --cert-dir string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/pki"
+            --cert-dir string     Default: &#34;/etc/kubernetes/pki&#34;
           </td>
         </tr>
         <tr>
@@ -102,12 +101,12 @@ cleanup-node           Run cleanup node.</code></pre>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            A list of checks whose errors will be shown as warnings. Example: 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.
+            A list of checks whose errors will be shown as warnings. Example: &#39;IsPrivilegedUser,Swap&#39;. Value &#39;all&#39; ignores errors from all checks.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "/etc/kubernetes/admin.conf"
+            --kubeconfig string     Default: &#34;/etc/kubernetes/admin.conf&#34;
           </td>
         </tr>
         <tr>
@@ -134,8 +133,8 @@ cleanup-node           Run cleanup node.</code></pre>
     </h3>
     <table style="width: 100%; table-layout: fixed;">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -146,7 +145,7 @@ cleanup-node           Run cleanup node.</code></pre>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            [EXPERIMENTAL] The path to the 'real' host root filesystem.
+            [EXPERIMENTAL] The path to the &#39;real&#39; host root filesystem.
           </td>
         </tr>
       </tbody>
@@ -172,7 +171,7 @@ cleanup-node           Run cleanup node.</code></pre>
         reset
       </code>
       also removes the local stacked
-      etcd member of this node from the etcd cluster and also removes this node&rsquo;s information from the kubeadm
+      etcd member of this node from the etcd cluster and also removes this node’s information from the kubeadm
       <code>
         ClusterStatus
       </code>
@@ -245,5 +244,5 @@ cleanup-node           Run cleanup node.</code></pre>
         to bootstrap a Kubernetes worker node and join it to the cluster
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

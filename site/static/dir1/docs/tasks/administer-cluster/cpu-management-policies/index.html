@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Control CPU Management Policies on the Node
     </h1>
@@ -12,7 +11,7 @@
       Control CPU Management Policies on the Node
     </h1>
     <div style="margin-top: 10px; margin-bottom: 10px;">
-      <b>
+      <b data-diff="">
         FEATURE STATE:
       </b>
       <code>
@@ -245,7 +244,7 @@
         <strong>
           Note:
         </strong>
-        CPU Manager doesn&rsquo;t support offlining and onlining of
+        CPU Manager doesn’t support offlining and onlining of
         CPUs at runtime. Also, if the set of online CPUs changes on the node,
         the node must be drained and CPU manager manually reset by deleting the
         state file
@@ -467,7 +466,7 @@
         limits
       </code>
       .
-      And the container&rsquo;s resource limit for the CPU resource is an integer greater than
+      And the container’s resource limit for the CPU resource is an integer greater than
       or equal to one. The
       <code>
         nginx
@@ -501,7 +500,7 @@
         limits
       </code>
       .
-      But the container&rsquo;s resource limit for the CPU resource is a fraction. It runs in
+      But the container’s resource limit for the CPU resource is a fraction. It runs in
       the shared pool.
     </p>
     <div class="highlight">
@@ -533,12 +532,12 @@
         limits
       </code>
       when not explicitly specified. And the
-      container&rsquo;s resource limit for the CPU resource is an integer greater than or
+      container’s resource limit for the CPU resource is an integer greater than or
       equal to one. The
       <code>
         nginx
       </code>
       container is granted 2 exclusive CPUs.
     </p>
-  </body>
-</html>
+  
+</body></html>

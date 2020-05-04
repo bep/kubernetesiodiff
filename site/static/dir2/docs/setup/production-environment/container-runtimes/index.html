@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Container runtimes
 </h1>
@@ -12,7 +11,7 @@
   Container runtimes
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -149,7 +148,7 @@
     cgroup
   </code>
   ) and acts as a cgroup manager. Systemd has a tight
-  integration with cgroups and will allocate cgroups per process. It&rsquo;s possible to configure your
+  integration with cgroups and will allocate cgroups per process. It’s possible to configure your
   container runtime and the kubelet to use
   <code>
     cgroupfs
@@ -215,17 +214,17 @@
 <ul>
   <li>
     <a href="#tab-cri-docker-installation-0">
-      Ubuntu 16.04&#43;
+      Ubuntu 16.04+
     </a>
   </li>
   <li>
     <a href="#tab-cri-docker-installation-1">
-      CentOS/RHEL 7.4&#43;
+      CentOS/RHEL 7.4+
     </a>
   </li>
 </ul>
 <div id="tab-cri-docker-installation-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;</code></pre>
 <p>
   <span style="color:#080;font-style:italic">
     # Install Docker CE
@@ -242,7 +241,7 @@
   </span>
   apt-get install -y
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
   apt-transport-https ca-certificates curl software-properties-common gnupg2
@@ -263,15 +262,15 @@
   </span>
   add-apt-repository
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
   <span style="color:#b44">
-    &quot;deb [arch=amd64]
+    &#34;deb [arch=amd64]
     <a href="https://download.docker.com/linux/ubuntu">
       https://download.docker.com/linux/ubuntu
     </a>
-    <br>
+    <br/>
   </span>
   <span style="color:#b44"></span>
   <span style="color:#a2f;font-weight:bold">
@@ -282,10 +281,10 @@
     )
   </span>
   <span style="color:#b44">
-    <br>
+    <br/>
   </span>
   <span style="color:#b44">
-    stable&quot;
+    stable&#34;
   </span>
 </p>
 <p>
@@ -298,7 +297,7 @@
   </span>
   apt-get install -y
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
   containerd.io
@@ -307,7 +306,7 @@
   </span>
   1.2.13-1
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
   docker-ce
@@ -323,7 +322,7 @@
     )
   </span>
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
   docker-ce-cli
@@ -351,22 +350,22 @@
     {
   </span>
   <span style="color:#b44">
-    &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],
+    &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;],
   </span>
   <span style="color:#b44">
-    &quot;log-driver&quot;: &quot;json-file&quot;,
+    &#34;log-driver&#34;: &#34;json-file&#34;,
   </span>
   <span style="color:#b44">
-    &quot;log-opts&quot;: {
+    &#34;log-opts&#34;: {
   </span>
   <span style="color:#b44">
-    &quot;max-size&quot;: &quot;100m&quot;
+    &#34;max-size&#34;: &#34;100m&#34;
   </span>
   <span style="color:#b44">
     },
   </span>
   <span style="color:#b44">
-    &quot;storage-driver&quot;: &quot;overlay2&quot;
+    &#34;storage-driver&#34;: &#34;overlay2&#34;
   </span>
   <span style="color:#b44">
     }
@@ -384,8 +383,8 @@
 </span>
 systemctl daemon-reload
 systemctl restart docker
-<div id="tab-cri-docker-installation-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;</code></pre>
+</p><div id="tab-cri-docker-installation-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;</code></pre>
 <p>
   <span style="color:#080;font-style:italic">
     # Install Docker CE
@@ -402,9 +401,9 @@ systemctl restart docker
   <span style="color:#080;font-style:italic">
     ### Add Docker repository.
   </span>
-  yum-config-manager &ndash;add-repo
+  yum-config-manager –add-repo
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
   <a href="https://download.docker.com/linux/centos/docker-ce.repo">
@@ -421,17 +420,17 @@ systemctl restart docker
   </span>
   yum install -y
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
   containerd.io-1.2.13
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
   docker-ce-19.03.8
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
   docker-ce-cli-19.03.8
@@ -454,28 +453,28 @@ systemctl restart docker
     {
   </span>
   <span style="color:#b44">
-    &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],
+    &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;],
   </span>
   <span style="color:#b44">
-    &quot;log-driver&quot;: &quot;json-file&quot;,
+    &#34;log-driver&#34;: &#34;json-file&#34;,
   </span>
   <span style="color:#b44">
-    &quot;log-opts&quot;: {
+    &#34;log-opts&#34;: {
   </span>
   <span style="color:#b44">
-    &quot;max-size&quot;: &quot;100m&quot;
+    &#34;max-size&#34;: &#34;100m&#34;
   </span>
   <span style="color:#b44">
     },
   </span>
   <span style="color:#b44">
-    &quot;storage-driver&quot;: &quot;overlay2&quot;,
+    &#34;storage-driver&#34;: &#34;overlay2&#34;,
   </span>
   <span style="color:#b44">
-    &quot;storage-opts&quot;: [
+    &#34;storage-opts&#34;: [
   </span>
   <span style="color:#b44">
-    &quot;overlay2.override_kernel_check=true&quot;
+    &#34;overlay2.override_kernel_check=true&#34;
   </span>
   <span style="color:#b44">
     ]
@@ -499,7 +498,7 @@ systemctl restart docker
 <script>
   $(function(){$("#tab-cri-docker-installation").tabs();});
 </script>
-<p>
+</p><p>
   Refer to the
   <a href="https://docs.docker.com/engine/installation/">
     official Docker installation guides
@@ -562,7 +561,7 @@ sysctl --system</code></pre>
   </li>
   <li>
     <a href="#tab-cri-cri-o-installation-2">
-      CentOS/RHEL 7.4&#43;
+      CentOS/RHEL 7.4+
     </a>
   </li>
   <li>
@@ -572,7 +571,7 @@ sysctl --system</code></pre>
   </li>
 </ul>
 <div id="tab-cri-cri-o-installation-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;</code></pre>
 <p>
   <span style="color:#080;font-style:italic">
     # Debian Unstable/Sid
@@ -581,11 +580,11 @@ sysctl --system</code></pre>
     echo
   </span>
   <span style="color:#b44">
-    'deb
+    &#39;deb
     <a href="http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_Unstable/">
       http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_Unstable/
     </a>
-    /'
+    /&#39;
   </span>
   &gt; /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
   wget -nv
@@ -602,11 +601,11 @@ sysctl --system</code></pre>
     echo
   </span>
   <span style="color:#b44">
-    'deb
+    &#39;deb
     <a href="http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_Testing/">
       http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_Testing/
     </a>
-    /'
+    /&#39;
   </span>
   &gt; /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
   wget -nv
@@ -623,11 +622,11 @@ sysctl --system</code></pre>
     echo
   </span>
   <span style="color:#b44">
-    'deb
+    &#39;deb
     <a href="http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/">
       http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/
     </a>
-    /'
+    /&#39;
   </span>
   &gt; /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
   wget -nv
@@ -644,11 +643,11 @@ sysctl --system</code></pre>
     echo
   </span>
   <span style="color:#b44">
-    'deb
+    &#39;deb
     <a href="http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Raspbian_10/">
       http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Raspbian_10/
     </a>
-    /'
+    /&#39;
   </span>
   &gt; /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
   wget -nv
@@ -662,8 +661,8 @@ sysctl --system</code></pre>
   # Install CRI-O
 </span>
 sudo apt-get install cri-o-1.17
-<div id="tab-cri-cri-o-installation-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;</code></pre>
+</p><div id="tab-cri-cri-o-installation-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;</code></pre>
 <p>
   <span style="color:#080;font-style:italic">
     # Setup repository
@@ -671,7 +670,7 @@ sudo apt-get install cri-o-1.17
   . /etc/os-release
   sudo sh -c
   <span style="color:#b44">
-    &quot;echo 'deb
+    &#34;echo &#39;deb
     <a href="http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x">
       http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x
     </a>
@@ -698,7 +697,7 @@ sudo apt-get install cri-o-1.17
     }
   </span>
   <span style="color:#b44">
-    / /' &gt; /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list&quot;
+    / /&#39; &gt; /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list&#34;
   </span>
   wget -nv
   <a href="https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/x">
@@ -731,13 +730,13 @@ sudo apt-get install cri-o-1.17
   # Install CRI-O
 </span>
 sudo apt-get install cri-o-1.17
-<div id="tab-cri-cri-o-installation-2">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;</code></pre>
+</p><div id="tab-cri-cri-o-installation-2">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;</code></pre>
 <p>
   <span style="color:#080;font-style:italic">
     # Install prerequisites
   </span>
-  yum-config-manager &ndash;add-repo
+  yum-config-manager –add-repo
   <span style="color:#666">
     =
   </span>
@@ -749,15 +748,15 @@ sudo apt-get install cri-o-1.17
 <span style="color:#080;font-style:italic">
   # Install CRI-O
 </span>
-yum install &ndash;nogpgcheck -y cri-o
-<div id="tab-cri-cri-o-installation-3">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;</code></pre>
+yum install –nogpgcheck -y cri-o
+</p><div id="tab-cri-cri-o-installation-3">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;</code></pre>
 <p>
 sudo zypper install cri-o
 <script>
   $(function(){$("#tab-cri-cri-o-installation").tabs();});
 </script>
-<h3 id="start-cri-o">
+</p><h3 id="start-cri-o">
   Start CRI-O
 </h3><pre><code>systemctl daemon-reload
 systemctl start crio</code></pre>
@@ -814,12 +813,12 @@ sysctl --system</code></pre>
   </li>
   <li>
     <a href="#tab-cri-containerd-installation-1">
-      CentOS/RHEL 7.4&#43;
+      CentOS/RHEL 7.4+
     </a>
   </li>
 </ul>
 <div id="tab-cri-containerd-installation-0">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;</code></pre>
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;</code></pre>
 <p>
   <span style="color:#080;font-style:italic">
     # Install containerd
@@ -852,15 +851,15 @@ sysctl --system</code></pre>
   </span>
   add-apt-repository
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
   <span style="color:#b44">
-    &quot;deb [arch=amd64]
+    &#34;deb [arch=amd64]
     <a href="https://download.docker.com/linux/ubuntu">
       https://download.docker.com/linux/ubuntu
     </a>
-    <br>
+    <br/>
   </span>
   <span style="color:#b44"></span>
   <span style="color:#a2f;font-weight:bold">
@@ -871,10 +870,10 @@ sysctl --system</code></pre>
     )
   </span>
   <span style="color:#b44">
-    <br>
+    <br/>
   </span>
   <span style="color:#b44">
-    stable&quot;
+    stable&#34;
   </span>
 </p>
 <p>
@@ -899,8 +898,8 @@ sysctl --system</code></pre>
   # Restart containerd
 </span>
 systemctl restart containerd
-<div id="tab-cri-containerd-installation-1">
-<pre><code>    &lt;div class=&quot;highlight&quot;&gt;&lt;pre style=&quot;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;</code></pre>
+</p><div id="tab-cri-containerd-installation-1">
+<pre><code>    &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;</code></pre>
 <p>
   <span style="color:#080;font-style:italic">
     # Install containerd
@@ -919,12 +918,12 @@ systemctl restart containerd
   </span>
   yum-config-manager
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
-  &ndash;add-repo
+  –add-repo
   <span style="color:#b62;font-weight:bold">
-    <br>
+    <br/>
   </span>
   <span style="color:#b62;font-weight:bold"></span>
   <a href="https://download.docker.com/linux/centos/docker-ce.repo">
@@ -956,7 +955,7 @@ systemctl restart containerd
 <script>
   $(function(){$("#tab-cri-containerd-installation").tabs();});
 </script>
-<h3 id="systemd">
+</p><h3 id="systemd">
   systemd
 </h3>
 <p>
@@ -987,4 +986,4 @@ systemctl restart containerd
     Frakti QuickStart guide
   </a>
   for more information.
-</p>
+</p></div></div></div></div></div></div></div></div></div></div></div></div></body></html>

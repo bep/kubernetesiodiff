@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   IPv4/IPv6 dual-stack
 </h1>
@@ -12,7 +11,7 @@
   IPv4/IPv6 dual-stack
 </h1>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -76,16 +75,16 @@
 </script>
 <p>
   IPv4/IPv6 dual-stack enables the allocation of both IPv4 and IPv6 addresses to
-  <a class='glossary-tooltip' href='/docs/concepts/workloads/pods/pod-overview/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/workloads/pods/pod-overview/" target="_blank">
     Pods
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.
     </span>
   </a>
   and
-  <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
     Services
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A way to expose an application running on a set of Pods as a network service.
     </span>
   </a>
@@ -127,7 +126,7 @@
   </li>
   <li>
     <a href="#what-s-next">
-      What's next
+      What&#39;s next
     </a>
   </li>
 </ul>
@@ -187,7 +186,7 @@
     <ul>
       <li>
         <code>
-          --feature-gates=&quot;IPv6DualStack=true&quot;
+          --feature-gates=&#34;IPv6DualStack=true&#34;
         </code>
       </li>
       <li>
@@ -217,7 +216,7 @@
     <ul>
       <li>
         <code>
-          --feature-gates=&quot;IPv6DualStack=true&quot;
+          --feature-gates=&#34;IPv6DualStack=true&#34;
         </code>
       </li>
     </ul>
@@ -237,7 +236,7 @@
       </li>
       <li>
         <code>
-          --feature-gates=&quot;IPv6DualStack=true&quot;
+          --feature-gates=&#34;IPv6DualStack=true&#34;
         </code>
       </li>
     </ul>
@@ -260,13 +259,13 @@
 </h2>
 <p>
   If your cluster has IPv4/IPv6 dual-stack networking enabled, you can create
-  <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
     Services
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A way to expose an application running on a set of Pods as a network service.
     </span>
   </a>
-  with either an IPv4 or an IPv6 address. You can choose the address family for the Service&rsquo;s cluster IP by setting a field,
+  with either an IPv4 or an IPv6 address. You can choose the address family for the Service’s cluster IP by setting a field,
   <code>
     .spec.ipFamily
   </code>
@@ -276,16 +275,16 @@
     .spec.ipFamily
   </code>
   field is optional and should only be used if you plan to enable IPv4 and IPv6
-  <a class='glossary-tooltip' href='/docs/concepts/services-networking/service/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/services-networking/service/" target="_blank">
     Services
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       A way to expose an application running on a set of Pods as a network service.
     </span>
   </a>
   and
-  <a class='glossary-tooltip' href='/docs/concepts/services-networking/ingress/' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/services-networking/ingress/" target="_blank">
     Ingresses
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       An API object that manages external access to the services in a cluster, typically HTTP.
     </span>
   </a>
@@ -347,7 +346,7 @@
   <code>
     ipFamily
   </code>
-  field. Kubernetes will assign an IP address (also known as a &ldquo;cluster IP&rdquo;) from the first configured
+  field. Kubernetes will assign an IP address (also known as a “cluster IP”) from the first configured
   <code>
     service-cluster-ip-range
   </code>
@@ -362,7 +361,7 @@
             service/networking/dual-stack-default-svc.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-dual-stack-default-svc-yaml')" title="Copy service/networking/dual-stack-default-svc.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-dual-stack-default-svc-yaml&#39;)" title="Copy service/networking/dual-stack-default-svc.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -391,7 +390,7 @@
   <code>
     ipFamily
   </code>
-  field. Kubernetes will assign an IPv6 address (also known as a &ldquo;cluster IP&rdquo;) from the configured
+  field. Kubernetes will assign an IPv6 address (also known as a “cluster IP”) from the configured
   <code>
     service-cluster-ip-range
   </code>
@@ -406,7 +405,7 @@
             service/networking/dual-stack-ipv6-svc.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-dual-stack-ipv6-svc-yaml')" title="Copy service/networking/dual-stack-ipv6-svc.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-dual-stack-ipv6-svc-yaml&#39;)" title="Copy service/networking/dual-stack-ipv6-svc.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -432,7 +431,7 @@
   </tbody>
 </table>
 <p>
-  For comparison, the following Service specification will be assigned an IPv4 address (also known as a &ldquo;cluster IP&rdquo;) from the configured
+  For comparison, the following Service specification will be assigned an IPv4 address (also known as a “cluster IP”) from the configured
   <code>
     service-cluster-ip-range
   </code>
@@ -447,7 +446,7 @@
             service/networking/dual-stack-ipv4-svc.yaml
           </code>
         </a>
-        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('service-networking-dual-stack-ipv4-svc-yaml')" title="Copy service/networking/dual-stack-ipv4-svc.yaml to clipboard">
+        <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;service-networking-dual-stack-ipv4-svc-yaml&#39;)" title="Copy service/networking/dual-stack-ipv4-svc.yaml to clipboard"/>
       </th>
     </tr>
   </thead>
@@ -499,9 +498,9 @@
 </h2>
 <p>
   The use of publicly routable and non-publicly routable IPv6 address blocks is acceptable provided the underlying
-  <a class='glossary-tooltip' href='/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni' target='_blank'>
+  <a class="glossary-tooltip" href="/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni" target="_blank">
     CNI
-    <span class='tooltip-text'>
+    <span class="tooltip-text">
       Container network interface (CNI) plugins are a type of Network plugin that adheres to the appc/CNI specification.
     </span>
   </a>
@@ -516,7 +515,7 @@
 </h2>
 <ul>
   <li>
-    Kubenet forces IPv4,IPv6 positional reporting of IPs (&ndash;cluster-cidr)
+    Kubenet forces IPv4,IPv6 positional reporting of IPs (–cluster-cidr)
   </li>
 </ul>
 <h2 id="what-s-next">
@@ -529,4 +528,4 @@
     </a>
     networking
   </li>
-</ul>
+</ul></div></body></html>

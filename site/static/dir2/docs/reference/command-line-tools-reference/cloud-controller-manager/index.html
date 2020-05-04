@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       cloud-controller-manager
     </h1>
@@ -34,10 +33,10 @@
     <h2 id="options">
       Options
     </h2>
-    <table style="width: 100%; table-layout: fixed;">
+    <table style="width: 100%; table-layout: fixed;" data-diff="">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -81,7 +80,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            kubeconfig file pointing at the 'core' kubernetes server with enough rights to create tokenreviews.authentication.k8s.io. This is optional. If empty, all token requests are considered to be anonymous and no client CA is looked up in the cluster.
+            kubeconfig file pointing at the &#39;core&#39; kubernetes server with enough rights to create tokenreviews.authentication.k8s.io. This is optional. If empty, all token requests are considered to be anonymous and no client CA is looked up in the cluster.
           </td>
         </tr>
         <tr>
@@ -97,7 +96,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --authentication-token-webhook-cache-ttl duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 10s
+            --authentication-token-webhook-cache-ttl duration     Default: 10s
           </td>
         </tr>
         <tr>
@@ -119,13 +118,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            --authorization-always-allow-paths stringSlice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: [/healthz]
+            --authorization-always-allow-paths stringSlice     Default: [/healthz]
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            A list of HTTP paths to skip during authorization, i.e. these are authorized without contacting the 'core' kubernetes server.
+            A list of HTTP paths to skip during authorization, i.e. these are authorized without contacting the &#39;core&#39; kubernetes server.
           </td>
         </tr>
         <tr>
@@ -136,29 +135,29 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            kubeconfig file pointing at the 'core' kubernetes server with enough rights to create subjectaccessreviews.authorization.k8s.io. This is optional. If empty, all requests not skipped by authorization are forbidden.
+            kubeconfig file pointing at the &#39;core&#39; kubernetes server with enough rights to create subjectaccessreviews.authorization.k8s.io. This is optional. If empty, all requests not skipped by authorization are forbidden.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --authorization-webhook-cache-authorized-ttl duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 10s
+            --authorization-webhook-cache-authorized-ttl duration     Default: 10s
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The duration to cache 'authorized' responses from the webhook authorizer.
+            The duration to cache &#39;authorized&#39; responses from the webhook authorizer.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --authorization-webhook-cache-unauthorized-ttl duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 10s
+            --authorization-webhook-cache-unauthorized-ttl duration     Default: 10s
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The duration to cache 'unauthorized' responses from the webhook authorizer.
+            The duration to cache &#39;unauthorized&#39; responses from the webhook authorizer.
           </td>
         </tr>
         <tr>
@@ -174,7 +173,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --bind-address ip&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 0.0.0.0
+            --bind-address ip     Default: 0.0.0.0
           </td>
         </tr>
         <tr>
@@ -196,7 +195,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --cidr-allocator-type string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "RangeAllocator"
+            --cidr-allocator-type string     Default: &#34;RangeAllocator&#34;
           </td>
         </tr>
         <tr>
@@ -240,24 +239,24 @@
         </tr>
         <tr>
           <td colspan="2">
-            --cloud-provider-gce-l7lb-src-cidrs cidrs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 130.211.0.0/22,35.191.0.0/16
+            --cloud-provider-gce-l7lb-src-cidrs cidrs     Default: 130.211.0.0/22,35.191.0.0/16
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            CIDRs opened in GCE firewall for L7 LB traffic proxy & health checks
+            CIDRs opened in GCE firewall for L7 LB traffic proxy &amp; health checks
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --cloud-provider-gce-lb-src-cidrs cidrs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 130.211.0.0/22,209.85.152.0/22,209.85.204.0/22,35.191.0.0/16
+            --cloud-provider-gce-lb-src-cidrs cidrs     Default: 130.211.0.0/22,209.85.152.0/22,209.85.204.0/22,35.191.0.0/16
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            CIDRs opened in GCE firewall for L4 LB traffic proxy & health checks
+            CIDRs opened in GCE firewall for L4 LB traffic proxy &amp; health checks
           </td>
         </tr>
         <tr>
@@ -273,7 +272,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --cluster-name string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "kubernetes"
+            --cluster-name string     Default: &#34;kubernetes&#34;
           </td>
         </tr>
         <tr>
@@ -284,7 +283,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --concurrent-service-syncs int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 1
+            --concurrent-service-syncs int32     Default: 1
           </td>
         </tr>
         <tr>
@@ -295,7 +294,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --configure-cloud-routes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+            --configure-cloud-routes     Default: true
           </td>
         </tr>
         <tr>
@@ -328,13 +327,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            --controllers stringSlice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: [*]
+            --controllers stringSlice     Default: [*]
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            A list of controllers to enable. '*' enables all on-by-default controllers, 'foo' enables the controller named 'foo', '-foo' disables the controller named 'foo'.
+            A list of controllers to enable. &#39;*&#39; enables all on-by-default controllers, &#39;foo&#39; enables the controller named &#39;foo&#39;, &#39;-foo&#39; disables the controller named &#39;foo&#39;.
             <br/>
             All controllers: cloud-node, cloud-node-lifecycle, route, service
             <br/>
@@ -544,12 +543,12 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The limit that the server gives to clients for the maximum number of streams in an HTTP/2 connection. Zero means to use golang's default.
+            The limit that the server gives to clients for the maximum number of streams in an HTTP/2 connection. Zero means to use golang&#39;s default.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --kube-api-burst int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 30
+            --kube-api-burst int32     Default: 30
           </td>
         </tr>
         <tr>
@@ -560,7 +559,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kube-api-content-type string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "application/vnd.kubernetes.protobuf"
+            --kube-api-content-type string     Default: &#34;application/vnd.kubernetes.protobuf&#34;
           </td>
         </tr>
         <tr>
@@ -571,7 +570,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kube-api-qps float32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 20
+            --kube-api-qps float32     Default: 20
           </td>
         </tr>
         <tr>
@@ -593,7 +592,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --leader-elect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+            --leader-elect     Default: true
           </td>
         </tr>
         <tr>
@@ -604,7 +603,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --leader-elect-lease-duration duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 15s
+            --leader-elect-lease-duration duration     Default: 15s
           </td>
         </tr>
         <tr>
@@ -615,7 +614,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --leader-elect-renew-deadline duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 10s
+            --leader-elect-renew-deadline duration     Default: 10s
           </td>
         </tr>
         <tr>
@@ -626,7 +625,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --leader-elect-resource-lock endpoints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "endpointsleases"
+            --leader-elect-resource-lock endpoints     Default: &#34;endpointsleases&#34;
           </td>
         </tr>
         <tr>
@@ -637,7 +636,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --leader-elect-resource-name string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "cloud-controller-manager"
+            --leader-elect-resource-name string     Default: &#34;cloud-controller-manager&#34;
           </td>
         </tr>
         <tr>
@@ -648,7 +647,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --leader-elect-resource-namespace string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "kube-system"
+            --leader-elect-resource-namespace string     Default: &#34;kube-system&#34;
           </td>
         </tr>
         <tr>
@@ -659,7 +658,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --leader-elect-retry-period duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 2s
+            --leader-elect-retry-period duration     Default: 2s
           </td>
         </tr>
         <tr>
@@ -670,7 +669,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --log-backtrace-at traceLocation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: :0
+            --log-backtrace-at traceLocation     Default: :0
           </td>
         </tr>
         <tr>
@@ -703,7 +702,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --log-file-max-size uint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 1800
+            --log-file-max-size uint     Default: 1800
           </td>
         </tr>
         <tr>
@@ -714,7 +713,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --log-flush-frequency duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5s
+            --log-flush-frequency duration     Default: 5s
           </td>
         </tr>
         <tr>
@@ -725,7 +724,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --logtostderr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+            --logtostderr     Default: true
           </td>
         </tr>
         <tr>
@@ -747,7 +746,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --min-resync-period duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 12h0m0s
+            --min-resync-period duration     Default: 12h0m0s
           </td>
         </tr>
         <tr>
@@ -758,7 +757,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --node-monitor-period duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5s
+            --node-monitor-period duration     Default: 5s
           </td>
         </tr>
         <tr>
@@ -769,18 +768,18 @@
         </tr>
         <tr>
           <td colspan="2">
-            --node-status-update-frequency duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5m0s
+            --node-status-update-frequency duration     Default: 5m0s
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Specifies how often the controller updates nodes' status.
+            Specifies how often the controller updates nodes&#39; status.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --profiling&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+            --profiling     Default: true
           </td>
         </tr>
         <tr>
@@ -813,7 +812,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --requestheader-extra-headers-prefix stringSlice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: [x-remote-extra-]
+            --requestheader-extra-headers-prefix stringSlice     Default: [x-remote-extra-]
           </td>
         </tr>
         <tr>
@@ -824,7 +823,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --requestheader-group-headers stringSlice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: [x-remote-group]
+            --requestheader-group-headers stringSlice     Default: [x-remote-group]
           </td>
         </tr>
         <tr>
@@ -835,7 +834,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --requestheader-username-headers stringSlice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: [x-remote-user]
+            --requestheader-username-headers stringSlice     Default: [x-remote-user]
           </td>
         </tr>
         <tr>
@@ -846,7 +845,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --route-reconciliation-period duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 10s
+            --route-reconciliation-period duration     Default: 10s
           </td>
         </tr>
         <tr>
@@ -857,13 +856,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            --secure-port int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 10258
+            --secure-port int     Default: 10258
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The port on which to serve HTTPS with authentication and authorization. If 0, don't serve HTTPS at all.
+            The port on which to serve HTTPS with authentication and authorization. If 0, don&#39;t serve HTTPS at all.
           </td>
         </tr>
         <tr>
@@ -890,7 +889,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --stderrthreshold severity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 2
+            --stderrthreshold severity     Default: 2
           </td>
         </tr>
         <tr>
@@ -945,13 +944,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            --tls-sni-cert-key namedCertKey&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: []
+            --tls-sni-cert-key namedCertKey     Default: []
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            A pair of x509 certificate and private key file paths, optionally suffixed with a list of domain patterns which are fully qualified domain names, possibly with prefixed wildcard segments. The domain patterns also allow IP addresses, but IPs should only be used if the apiserver has visibility to the IP address requested by a client. If no domain patterns are provided, the names of the certificate are extracted. Non-wildcard matches trump over wildcard matches, explicit domain patterns trump over extracted names. For multiple key/certificate pairs, use the --tls-sni-cert-key multiple times. Examples: "example.crt,example.key" or "foo.crt,foo.key:*.foo.com,foo.com".
+            A pair of x509 certificate and private key file paths, optionally suffixed with a list of domain patterns which are fully qualified domain names, possibly with prefixed wildcard segments. The domain patterns also allow IP addresses, but IPs should only be used if the apiserver has visibility to the IP address requested by a client. If no domain patterns are provided, the names of the certificate are extracted. Non-wildcard matches trump over wildcard matches, explicit domain patterns trump over extracted names. For multiple key/certificate pairs, use the --tls-sni-cert-key multiple times. Examples: &#34;example.crt,example.key&#34; or &#34;foo.crt,foo.key:*.foo.com,foo.com&#34;.
           </td>
         </tr>
         <tr>
@@ -1000,5 +999,5 @@
         </tr>
       </tbody>
     </table>
-  </body>
-</html>
+  
+</body></html>

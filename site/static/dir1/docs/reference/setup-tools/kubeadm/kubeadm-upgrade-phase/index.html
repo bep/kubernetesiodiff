@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   kubeadm upgrade phase
 </h1>
@@ -14,7 +13,7 @@
 <nav id="TableOfContents">
   <ul>
     <li>
-      <ul>
+      <ul data-diff="">
         <li>
           <a href="#cmd-node-phase">
             kubeadm upgrade node phase
@@ -22,7 +21,7 @@
         </li>
         <li>
           <a href="#what-s-next">
-            What&rsquo;s next
+            What’s next
           </a>
         </li>
       </ul>
@@ -87,17 +86,21 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  <p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -106,34 +109,11 @@
       help for phase
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-phase-1">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-phase-1">
 <h3 id="synopsis">
   Synopsis
 </h3>
@@ -145,17 +125,45 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;certificate-renewal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –certificate-renewal     Default: true
     </td>
   </tr>
   <tr>
@@ -164,11 +172,10 @@
       Perform the renewal of certificates used by component changed during upgrades.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;dry-run
+      –dry-run
     </td>
   </tr>
   <tr>
@@ -177,11 +184,10 @@
       Do not change any state, just output the actions that would be performed.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;etcd-upgrade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: true
+      –etcd-upgrade     Default: true
     </td>
   </tr>
   <tr>
@@ -190,11 +196,10 @@
       Perform the upgrade of etcd.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -k, &ndash;experimental-kustomize string
+      -k, –experimental-kustomize string
     </td>
   </tr>
   <tr>
@@ -203,11 +208,10 @@
       The path where kustomize patches for static pod manifests are stored.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -216,11 +220,10 @@
       help for control-plane
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -229,39 +232,16 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
-<div id="tab-phase-2">
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+</p><div id="tab-phase-2">
 <h3 id="synopsis">
   Synopsis
 </h3>
 <p>
-  Download the kubelet configuration from a ConfigMap of the form &ldquo;kubelet-config-1.X&rdquo; in the cluster, where X is the minor version of the kubelet. kubeadm uses the KuberneteVersion field in the kubeadm-config ConfigMap to determine what the
+  Download the kubelet configuration from a ConfigMap of the form “kubelet-config-1.X” in the cluster, where X is the minor version of the kubelet. kubeadm uses the KuberneteVersion field in the kubeadm-config ConfigMap to determine what the
   <em>
     desired
   </em>
@@ -272,17 +252,42 @@
   Options
 </h3>
 <p>
-  <table style="width: 100%; table-layout: fixed;">
+  </p></div><table style="width: 100%; table-layout: fixed;">
   <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
   </colgroup>
   <tbody>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;dry-run
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+  </p><p></p><p>
+</p><h3 id="options-inherited-from-parent-commands">
+  Options inherited from parent commands
+</h3><p>
+  </p><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –dry-run
     </td>
   </tr>
   <tr>
@@ -291,11 +296,10 @@
       Do not change any state, just output the actions that would be performed.
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      -h, &ndash;help
+      -h, –help
     </td>
   </tr>
   <tr>
@@ -304,11 +308,10 @@
       help for kubelet-config
     </td>
   </tr>
-</p>
-<p>
-  <tr>
+
+<tr>
     <td colspan="2">
-      &ndash;kubeconfig string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: &ldquo;/etc/kubernetes/admin.conf&rdquo;
+      –kubeconfig string     Default: “/etc/kubernetes/admin.conf”
     </td>
   </tr>
   <tr>
@@ -317,40 +320,16 @@
       The kubeconfig file to use when talking to the cluster. If the flag is not set, a set of standard locations can be searched for an existing kubeconfig file.
     </td>
   </tr>
-</p>
-<p>
-<h3 id="options-inherited-from-parent-commands">
-  Options inherited from parent commands
-</h3>
-<p>
-  <table style="width: 100%; table-layout: fixed;">
-  <colgroup>
-    <col span="1" style="width: 10px;" />
-    <col span="1" />
-  </colgroup>
-  <tbody>
-</p>
-<p>
-  <tr>
-    <td colspan="2">
-      &ndash;rootfs string
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td style="line-height: 130%; word-wrap: break-word;">
-      [EXPERIMENTAL] The path to the &lsquo;real&rsquo; host root filesystem.
-    </td>
-  </tr>
-</p>
-<p>
+
+
+</tbody></table><p></p><p>
+  </p><p></p><p>
 <script>
   $(function(){$("#tab-phase").tabs();});
 </script>
-<h2 id="what-s-next">
-  What&rsquo;s next
-</h2>
-<ul>
+</p><h2 id="what-s-next">
+  What’s next
+</h2><ul>
   <li>
     <a href="/docs/reference/setup-tools/kubeadm/kubeadm-init/">
       kubeadm init
@@ -388,4 +367,24 @@
     </a>
     to try experimental functionality
   </li>
-</ul>
+</ul><table style="width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col span="1" style="width: 10px;"/>
+    <col span="1"/>
+  </colgroup>
+  <tbody>
+
+<tr>
+    <td colspan="2">
+      –rootfs string
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="line-height: 130%; word-wrap: break-word;">
+      [EXPERIMENTAL] The path to the ‘real’ host root filesystem.
+    </td>
+  </tr>
+
+
+</tbody></table></p></div></div></body></html>

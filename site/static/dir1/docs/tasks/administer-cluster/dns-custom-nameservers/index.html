@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Customizing DNS Service
     </h1>
@@ -70,7 +69,7 @@
           You need to have a Kubernetes cluster, and the kubectl command-line tool must
           be configured to communicate with your cluster. If you do not already have a
           cluster, you can create one by using
-          <a href="/docs/setup/learning-environment/minikube/">
+          <a href="/docs/setup/learning-environment/minikube/" data-diff="">
             Minikube
           </a>
           ,
@@ -163,16 +162,16 @@
       .
     </p>
     <p>
-      If a Pod&rsquo;s
+      If a Pod’s
       <code>
         dnsPolicy
       </code>
-      is set to &ldquo;
+      is set to “
       <code>
         default
       </code>
-      &rdquo;, it inherits the name resolution
-      configuration from the node that the Pod runs on. The Pod&rsquo;s DNS resolution
+      ”, it inherits the name resolution
+      configuration from the node that the Pod runs on. The Pod’s DNS resolution
       should behave the same as the node.
       But see
       <a href="/docs/tasks/administer-cluster/dns-debugging-resolution/#known-issues">
@@ -181,12 +180,12 @@
       .
     </p>
     <p>
-      If you don&rsquo;t want this, or if you want a different DNS config for pods, you can
-      use the kubelet&rsquo;s
+      If you don’t want this, or if you want a different DNS config for pods, you can
+      use the kubelet’s
       <code>
         --resolv-conf
       </code>
-      flag.  Set this flag to &ldquo;&rdquo; to prevent Pods from
+      flag.  Set this flag to “” to prevent Pods from
       inheriting DNS. Set it to a valid file path to specify a file other than
       <code>
         /etc/resolv.conf
@@ -308,7 +307,7 @@
         <code>
           pods disabled
         </code>
-        option can be used if you don&rsquo;t use pod records.
+        option can be used if you don’t use pod records.
       </p>
     </blockquote>
     <ul>
@@ -449,27 +448,27 @@
     </p>
     <ul>
       <li>
-        &ldquo;
+        “
         <code>
           kubedns
         </code>
-        &ldquo;: watches the Kubernetes master for changes
+        “: watches the Kubernetes master for changes
         in Services and Endpoints, and maintains in-memory lookup structures to serve
         DNS requests.
       </li>
       <li>
-        &ldquo;
+        “
         <code>
           dnsmasq
         </code>
-        &ldquo;: adds DNS caching to improve performance.
+        “: adds DNS caching to improve performance.
       </li>
       <li>
-        &ldquo;
+        “
         <code>
           sidecar
         </code>
-        &ldquo;: provides a single health check endpoint
+        “: provides a single health check endpoint
         to perform healthchecks for
         <code>
           dnsmasq
@@ -571,26 +570,26 @@
       <code>
         dnsPolicy
       </code>
-      set to &ldquo;
+      set to “
       <code>
         Default
       </code>
-      &rdquo; or &ldquo;
+      ” or “
       <code>
         None
       </code>
-      &rdquo;.
+      ”.
     </p>
     <p>
-      If a Pod&rsquo;s
+      If a Pod’s
       <code>
         dnsPolicy
       </code>
-      is set to &ldquo;
+      is set to “
       <code>
         ClusterFirst
       </code>
-      &rdquo;, its name resolution is
+      ”, its name resolution is
       handled differently, depending on whether stub-domain and upstream DNS servers
       are configured.
     </p>
@@ -599,7 +598,7 @@
         Without custom configurations
       </strong>
       : Any query that does not match the configured
-      cluster domain suffix, such as &ldquo;www.kubernetes.io&rdquo;, is forwarded to the upstream
+      cluster domain suffix, such as “www.kubernetes.io”, is forwarded to the upstream
       nameserver inherited from the node.
     </p>
     <p>
@@ -627,7 +626,7 @@
               <em>
                 Names with the cluster suffix
               </em>
-              , for example &ldquo;.cluster.local&rdquo;:
+              , for example “.cluster.local”:
               The request is sent to kube-dns.
             </p>
           </li>
@@ -636,7 +635,7 @@
               <em>
                 Names with the stub domain suffix
               </em>
-              , for example &ldquo;.acme.local&rdquo;:
+              , for example “.acme.local”:
               The request is sent to the configured custom DNS resolver, listening for example at 1.2.3.4.
             </p>
           </li>
@@ -645,7 +644,7 @@
               <em>
                 Names without a matching suffix
               </em>
-              , for example &ldquo;widget.com&rdquo;:
+              , for example “widget.com”:
               The request is forwarded to the upstream DNS,
               for example Google public DNS servers at 8.8.8.8 and 8.8.4.4.
             </p>
@@ -654,7 +653,7 @@
       </li>
     </ol>
     <p>
-      <img src="/docs/tasks/administer-cluster/dns-custom-nameservers/dns.png" alt="DNS lookup flow" />
+      <img src="/docs/tasks/administer-cluster/dns-custom-nameservers/dns.png" alt="DNS lookup flow"/>
     </p>
     <h3 id="configmap-options">
       ConfigMap options
@@ -893,7 +892,7 @@
       .
     </p>
     <h2 id="what-s-next">
-      What&rsquo;s next
+      What’s next
     </h2>
     <ul>
       <li>
@@ -903,5 +902,5 @@
         .
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

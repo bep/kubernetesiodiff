@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Debug Pods and ReplicationControllers
     </h1>
@@ -166,7 +165,7 @@ kubectl get nodes -o json | jq <span style="color:#b44">&#39;.items[] | {name: .
         </div>
       </li>
     </ul>
-    <p>
+    <p data-diff="">
       The
       <a href="/docs/concepts/policy/resource-quotas/">
         resource quota
@@ -205,7 +204,7 @@ kubectl get nodes -o json | jq <span style="color:#b44">&#39;.items[] | {name: .
         Waiting
       </code>
       state, then it has been scheduled to a
-      worker node, but it can&rsquo;t run on that machine. Again, the information from
+      worker node, but it can’t run on that machine. Again, the information from
       <code>
         kubectl describe ...
       </code>
@@ -246,7 +245,7 @@ kubectl get nodes -o json | jq <span style="color:#b44">&#39;.items[] | {name: .
     </h2>
     <p>
       ReplicationControllers are fairly straightforward. They can either create pods
-      or they can&rsquo;t. If they can&rsquo;t create pods, then please refer to the
+      or they can’t. If they can’t create pods, then please refer to the
       <a href="#debugging-pods">
         instructions above
       </a>
@@ -260,5 +259,5 @@ kubectl get nodes -o json | jq <span style="color:#b44">&#39;.items[] | {name: .
       to inspect events
       related to the replication controller.
     </p>
-  </body>
-</html>
+  
+</body></html>

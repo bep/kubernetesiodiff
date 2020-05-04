@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       kube-proxy
     </h1>
@@ -39,10 +38,10 @@
     <h2 id="options">
       Options
     </h2>
-    <table style="width: 100%; table-layout: fixed;">
+    <table style="width: 100%; table-layout: fixed;" data-diff="">
       <colgroup>
-        <col span="1" style="width: 10px;" />
-        <col span="1" />
+        <col span="1" style="width: 10px;"/>
+        <col span="1"/>
       </colgroup>
       <tbody>
         <tr>
@@ -58,13 +57,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            --bind-address ip&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 0.0.0.0
+            --bind-address ip     Default: 0.0.0.0
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The IP address for the proxy server to serve on (set to '0.0.0.0' for all IPv4 interfaces and '::' for all IPv6 interfaces)
+            The IP address for the proxy server to serve on (set to &#39;0.0.0.0&#39; for all IPv4 interfaces and &#39;::&#39; for all IPv6 interfaces)
           </td>
         </tr>
         <tr>
@@ -102,7 +101,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --config-sync-period duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 15m0s
+            --config-sync-period duration     Default: 15m0s
           </td>
         </tr>
         <tr>
@@ -113,7 +112,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --conntrack-max-per-core int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 32768
+            --conntrack-max-per-core int32     Default: 32768
           </td>
         </tr>
         <tr>
@@ -124,7 +123,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --conntrack-min int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 131072
+            --conntrack-min int32     Default: 131072
           </td>
         </tr>
         <tr>
@@ -135,7 +134,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --conntrack-tcp-timeout-close-wait duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 1h0m0s
+            --conntrack-tcp-timeout-close-wait duration     Default: 1h0m0s
           </td>
         </tr>
         <tr>
@@ -146,7 +145,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --conntrack-tcp-timeout-established duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 24h0m0s
+            --conntrack-tcp-timeout-established duration     Default: 24h0m0s
           </td>
         </tr>
         <tr>
@@ -341,13 +340,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            --healthz-bind-address ipport&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 0.0.0.0:10256
+            --healthz-bind-address ipport     Default: 0.0.0.0:10256
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The IP address with port for the health check server to serve on (set to '0.0.0.0:10256' for all IPv4 interfaces and '[::]:10256' for all IPv6 interfaces). Set empty to disable.
+            The IP address with port for the health check server to serve on (set to &#39;0.0.0.0:10256&#39; for all IPv4 interfaces and &#39;[::]:10256&#39; for all IPv6 interfaces). Set empty to disable.
           </td>
         </tr>
         <tr>
@@ -374,7 +373,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --iptables-masquerade-bit int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 14
+            --iptables-masquerade-bit int32     Default: 14
           </td>
         </tr>
         <tr>
@@ -391,18 +390,18 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The minimum interval of how often the iptables rules can be refreshed as endpoints and services change (e.g. '5s', '1m', '2h22m').
+            The minimum interval of how often the iptables rules can be refreshed as endpoints and services change (e.g. &#39;5s&#39;, &#39;1m&#39;, &#39;2h22m&#39;).
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --iptables-sync-period duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 30s
+            --iptables-sync-period duration     Default: 30s
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The maximum interval of how often iptables rules are refreshed (e.g. '5s', '1m', '2h22m').  Must be greater than 0.
+            The maximum interval of how often iptables rules are refreshed (e.g. &#39;5s&#39;, &#39;1m&#39;, &#39;2h22m&#39;).  Must be greater than 0.
           </td>
         </tr>
         <tr>
@@ -413,7 +412,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            A comma-separated list of CIDR's which the ipvs proxier should not touch when cleaning up IPVS rules.
+            A comma-separated list of CIDR&#39;s which the ipvs proxier should not touch when cleaning up IPVS rules.
           </td>
         </tr>
         <tr>
@@ -424,7 +423,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The minimum interval of how often the ipvs rules can be refreshed as endpoints and services change (e.g. '5s', '1m', '2h22m').
+            The minimum interval of how often the ipvs rules can be refreshed as endpoints and services change (e.g. &#39;5s&#39;, &#39;1m&#39;, &#39;2h22m&#39;).
           </td>
         </tr>
         <tr>
@@ -451,13 +450,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            --ipvs-sync-period duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 30s
+            --ipvs-sync-period duration     Default: 30s
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The maximum interval of how often ipvs rules are refreshed (e.g. '5s', '1m', '2h22m').  Must be greater than 0.
+            The maximum interval of how often ipvs rules are refreshed (e.g. &#39;5s&#39;, &#39;1m&#39;, &#39;2h22m&#39;).  Must be greater than 0.
           </td>
         </tr>
         <tr>
@@ -468,7 +467,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The timeout for idle IPVS TCP connections, 0 to leave as-is. (e.g. '5s', '1m', '2h22m').
+            The timeout for idle IPVS TCP connections, 0 to leave as-is. (e.g. &#39;5s&#39;, &#39;1m&#39;, &#39;2h22m&#39;).
           </td>
         </tr>
         <tr>
@@ -479,7 +478,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The timeout for IPVS TCP connections after receiving a FIN packet, 0 to leave as-is. (e.g. '5s', '1m', '2h22m').
+            The timeout for IPVS TCP connections after receiving a FIN packet, 0 to leave as-is. (e.g. &#39;5s&#39;, &#39;1m&#39;, &#39;2h22m&#39;).
           </td>
         </tr>
         <tr>
@@ -490,12 +489,12 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The timeout for IPVS UDP packets, 0 to leave as-is. (e.g. '5s', '1m', '2h22m').
+            The timeout for IPVS UDP packets, 0 to leave as-is. (e.g. &#39;5s&#39;, &#39;1m&#39;, &#39;2h22m&#39;).
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --kube-api-burst int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 10
+            --kube-api-burst int32     Default: 10
           </td>
         </tr>
         <tr>
@@ -506,7 +505,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kube-api-content-type string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: "application/vnd.kubernetes.protobuf"
+            --kube-api-content-type string     Default: &#34;application/vnd.kubernetes.protobuf&#34;
           </td>
         </tr>
         <tr>
@@ -517,7 +516,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --kube-api-qps float32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5
+            --kube-api-qps float32     Default: 5
           </td>
         </tr>
         <tr>
@@ -539,7 +538,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --log-flush-frequency duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5s
+            --log-flush-frequency duration     Default: 5s
           </td>
         </tr>
         <tr>
@@ -572,13 +571,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            --metrics-bind-address ipport&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 127.0.0.1:10249
+            --metrics-bind-address ipport     Default: 127.0.0.1:10249
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The IP address with port for the metrics server to serve on (set to '0.0.0.0:10249' for all IPv4 interfaces and '[::]:10249' for all IPv6 interfaces). Set empty to disable.
+            The IP address with port for the metrics server to serve on (set to &#39;0.0.0.0:10249&#39; for all IPv4 interfaces and &#39;[::]:10249&#39; for all IPv6 interfaces). Set empty to disable.
           </td>
         </tr>
         <tr>
@@ -594,7 +593,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            --oom-score-adj int32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: -999
+            --oom-score-adj int32     Default: -999
           </td>
         </tr>
         <tr>
@@ -622,7 +621,7 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            Which proxy mode to use: 'userspace' (older) or 'iptables' (faster) or 'ipvs'. If blank, use the best-available proxy (currently iptables).  If the iptables proxy is selected, regardless of how, but the system's kernel or iptables versions are insufficient, this always falls back to the userspace proxy.
+            Which proxy mode to use: &#39;userspace&#39; (older) or &#39;iptables&#39; (faster) or &#39;ipvs&#39;. If blank, use the best-available proxy (currently iptables).  If the iptables proxy is selected, regardless of how, but the system&#39;s kernel or iptables versions are insufficient, this always falls back to the userspace proxy.
           </td>
         </tr>
         <tr>
@@ -644,18 +643,18 @@
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            The previous version for which you want to show hidden metrics. Only the previous minor version is meaningful, other values will not be allowed. The format is &lt;major&gt;.&lt;minor&gt;, e.g.: '1.16'. The purpose of this format is make sure you have the opportunity to notice if the next release hides additional metrics, rather than being surprised when they are permanently removed in the release after that.
+            The previous version for which you want to show hidden metrics. Only the previous minor version is meaningful, other values will not be allowed. The format is &lt;major&gt;.&lt;minor&gt;, e.g.: &#39;1.16&#39;. The purpose of this format is make sure you have the opportunity to notice if the next release hides additional metrics, rather than being surprised when they are permanently removed in the release after that.
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            --udp-timeout duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 250ms
+            --udp-timeout duration     Default: 250ms
           </td>
         </tr>
         <tr>
           <td></td>
           <td style="line-height: 130%; word-wrap: break-word;">
-            How long an idle UDP connection will be kept open (e.g. '250ms', '2s').  Must be greater than 0. Only applicable for proxy-mode=userspace
+            How long an idle UDP connection will be kept open (e.g. &#39;250ms&#39;, &#39;2s&#39;).  Must be greater than 0. Only applicable for proxy-mode=userspace
           </td>
         </tr>
         <tr>
@@ -682,5 +681,5 @@
         </tr>
       </tbody>
     </table>
-  </body>
-</html>
+  
+</body></html>

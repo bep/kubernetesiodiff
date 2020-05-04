@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Building large clusters
     </h1>
@@ -35,7 +34,7 @@
         No more than 100 pods per node
       </li>
     </ul>
-    <br>
+    <br data-diff=""/>
     <nav id="TableOfContents">
       <ul>
         <li>
@@ -81,7 +80,7 @@
       Setup
     </h2>
     <p>
-      A cluster is a set of nodes (physical or virtual machines) running Kubernetes agents, managed by a &ldquo;master&rdquo; (the cluster-level control plane).
+      A cluster is a set of nodes (physical or virtual machines) running Kubernetes agents, managed by a “master” (the cluster-level control plane).
     </p>
     <p>
       Normally the number of nodes in a cluster is controlled by the value
@@ -94,7 +93,7 @@
       </code>
       file (for example, see
       <a href="http://releases.k8s.io/master/cluster/gce/config-default.sh">
-        GCE&rsquo;s
+        GCE’s
         <code>
           config-default.sh
         </code>
@@ -122,7 +121,7 @@
             <a href="https://cloud.google.com/compute/docs/resource-quotas">
               GCE, for example,
             </a>
-            you&rsquo;ll want to increase the quota for:
+            you’ll want to increase the quota for:
             <ul>
               <li>
                 CPUs
@@ -337,7 +336,7 @@
       </li>
     </ul>
     <p>
-      Heapster&rsquo;s resource limits are set dynamically based on the initial size of your cluster (see
+      Heapster’s resource limits are set dynamically based on the initial size of your cluster (see
       <a href="http://issue.k8s.io/16185">
         #16185
       </a>
@@ -413,5 +412,5 @@
       </code>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

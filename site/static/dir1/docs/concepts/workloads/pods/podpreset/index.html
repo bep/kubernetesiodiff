@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Pod Preset
     </h1>
@@ -34,7 +33,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -122,7 +121,7 @@
         </code>
         . The annotation is of the form
         <code>
-          podpreset.admission.kubernetes.io/podpreset-&lt;pod-preset name&gt;: &quot;&lt;resource version&gt;&quot;
+          podpreset.admission.kubernetes.io/podpreset-&lt;pod-preset name&gt;: &#34;&lt;resource version&gt;&#34;
         </code>
         .
       </li>
@@ -164,7 +163,7 @@
         </strong>
         A Pod Preset is capable of modifying the following fields in a Pod spec when appropriate:
         - The
-        <code>
+        <code data-diff="">
           .spec.containers
         </code>
         field.
@@ -183,7 +182,7 @@
       Preset mutations. In these cases, you can add an annotation in the Pod Spec
       of the form:
       <code>
-        podpreset.admission.kubernetes.io/exclude: &quot;true&quot;
+        podpreset.admission.kubernetes.io/exclude: &#34;true&#34;
       </code>
       .
     </p>
@@ -262,5 +261,5 @@
         </a>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

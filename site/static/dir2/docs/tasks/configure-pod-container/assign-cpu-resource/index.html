@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Assign CPU Resources to Containers and Pods
     </h1>
@@ -68,7 +67,7 @@
       </li>
       <li>
         <a href="#what-s-next">
-          What's next
+          What&#39;s next
         </a>
       </li>
     </ul>
@@ -117,9 +116,9 @@
     </p>
     <p>
       If you are running
-      <a class='glossary-tooltip' href='/docs/setup/learning-environment/minikube/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/setup/learning-environment/minikube/" target="_blank">
         Minikube
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           A tool for running Kubernetes locally.
         </span>
       </a>
@@ -155,9 +154,9 @@ v1beta1.metrics.k8s.io</code></pre>
     </h2>
     <p>
       Create a
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/namespaces' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/namespaces" target="_blank">
         Namespace
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An abstraction used by Kubernetes to support multiple virtual clusters on the same physical cluster.
         </span>
       </a>
@@ -195,7 +194,7 @@ v1beta1.metrics.k8s.io</code></pre>
                 pods/resource/cpu-request-limit.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-resource-cpu-request-limit-yaml')" title="Copy pods/resource/cpu-request-limit.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-resource-cpu-request-limit-yaml&#39;)" title="Copy pods/resource/cpu-request-limit.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -234,7 +233,7 @@ v1beta1.metrics.k8s.io</code></pre>
       section of the configuration file provides arguments for the container when it starts.
       The
       <code>
-        -cpus &quot;2&quot;
+        -cpus &#34;2&#34;
       </code>
       argument tells the Container to attempt to use 2 CPUs.
     </p>
@@ -265,7 +264,7 @@ v1beta1.metrics.k8s.io</code></pre>
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">limits</span>:<span style="color:#bbb">
 </span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span><span style="color:#b44">&#34;1&#34;</span><span style="color:#bbb">
 </span><span style="color:#bbb">  </span><span style="color:#a2f;font-weight:bold">requests</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span>500m<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#a2f;font-weight:bold">cpu</span>:<span style="color:#bbb"> </span>500m<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <p>
@@ -287,9 +286,9 @@ cpu-demo                    974m         &lt;something&gt;</code></pre>
     <p>
       Recall that by setting
       <code>
-        -cpu &quot;2&quot;
+        -cpu &#34;2&#34;
       </code>
-      , you configured the Container to attempt to use 2 CPUs, but the Container is only being allowed to use about 1 CPU. The container&rsquo;s CPU use is being throttled, because the container is attempting to use more CPU resources than its limit.
+      , you configured the Container to attempt to use 2 CPUs, but the Container is only being allowed to use about 1 CPU. The container’s CPU use is being throttled, because the container is attempting to use more CPU resources than its limit.
     </p>
     <blockquote class="note">
       <div>
@@ -369,7 +368,7 @@ cpu-demo                    974m         &lt;something&gt;</code></pre>
                 pods/resource/cpu-request-limit-2.yaml
               </code>
             </a>
-            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode('pods-resource-cpu-request-limit-2-yaml')" title="Copy pods/resource/cpu-request-limit-2.yaml to clipboard">
+            <img src="/dir2/images/copycode.svg" style="max-height:24px; cursor: pointer" onclick="copyCode(&#39;pods-resource-cpu-request-limit-2-yaml&#39;)" title="Copy pods/resource/cpu-request-limit-2.yaml to clipboard"/>
           </th>
         </tr>
       </thead>
@@ -567,5 +566,5 @@ cpu-demo-2   0/1       Pending   0          7m</code></pre>
         </p>
       </li>
     </ul>
-  </body>
-</html>
+  
+</body></html>

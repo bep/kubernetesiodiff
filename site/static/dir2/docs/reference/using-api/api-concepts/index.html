@@ -1,5 +1,4 @@
-<html>
-<body>
+<html><head></head><body>
 <h1>
   Kubernetes API Concepts
 </h1>
@@ -68,7 +67,7 @@
 </ul>
 <p>
   The Kubernetes API is a resource-based (RESTful) programmatic interface provided via HTTP. It supports retrieving, creating,
-  updating, and deleting primary resources via the standard HTTP verbs (POST, PUT, PATCH, DELETE, GET), includes additional subresources for many objects that allow fine grained authorization (such as binding a pod to a node), and can accept and serve those resources in different representations for convenience or efficiency. It also supports efficient change notifications on resources via &ldquo;watches&rdquo; and consistent lists to allow other components to effectively cache and synchronize the state of resources.
+  updating, and deleting primary resources via the standard HTTP verbs (POST, PUT, PATCH, DELETE, GET), includes additional subresources for many objects that allow fine grained authorization (such as binding a pod to a node), and can accept and serve those resources in different representations for convenience or efficiency. It also supports efficient change notifications on resources via “watches” and consistent lists to allow other components to effectively cache and synchronize the state of resources.
 </p>
 <h2 id="standard-api-terminology">
   Standard API terminology
@@ -78,7 +77,7 @@
   <a href="/docs/concepts/overview/working-with-objects/kubernetes-objects/#kubernetes-objects">
     objects
   </a>
-  : they represent a concrete instance of a concept on the cluster, like a pod or namespace. A smaller number of API resource types are &ldquo;virtual&rdquo; - they often represent operations rather than objects, such as a permission check (use a POST with a JSON-encoded body of
+  : they represent a concrete instance of a concept on the cluster, like a pod or namespace. A smaller number of API resource types are “virtual” - they often represent operations rather than objects, such as a permission check (use a POST with a JSON-encoded body of
   <code>
     SubjectAccessReview
   </code>
@@ -268,10 +267,10 @@
  200 OK
  Content-Type: application/json
  {
-   &quot;kind&quot;: &quot;PodList&quot;,
-   &quot;apiVersion&quot;: &quot;v1&quot;,
-   &quot;metadata&quot;: {&quot;resourceVersion&quot;:&quot;10245&quot;},
-   &quot;items&quot;: [...]
+   &#34;kind&#34;: &#34;PodList&#34;,
+   &#34;apiVersion&#34;: &#34;v1&#34;,
+   &#34;metadata&#34;: {&#34;resourceVersion&#34;:&#34;10245&#34;},
+   &#34;items&#34;: [...]
  }</code></pre>
   </li>
   <li>
@@ -284,12 +283,12 @@
  Transfer-Encoding: chunked
  Content-Type: application/json
  {
-   &quot;type&quot;: &quot;ADDED&quot;,
-   &quot;object&quot;: {&quot;kind&quot;: &quot;Pod&quot;, &quot;apiVersion&quot;: &quot;v1&quot;, &quot;metadata&quot;: {&quot;resourceVersion&quot;: &quot;10596&quot;, ...}, ...}
+   &#34;type&#34;: &#34;ADDED&#34;,
+   &#34;object&#34;: {&#34;kind&#34;: &#34;Pod&#34;, &#34;apiVersion&#34;: &#34;v1&#34;, &#34;metadata&#34;: {&#34;resourceVersion&#34;: &#34;10596&#34;, ...}, ...}
  }
  {
-   &quot;type&quot;: &quot;MODIFIED&quot;,
-   &quot;object&quot;: {&quot;kind&quot;: &quot;Pod&quot;, &quot;apiVersion&quot;: &quot;v1&quot;, &quot;metadata&quot;: {&quot;resourceVersion&quot;: &quot;11020&quot;, ...}, ...}
+   &#34;type&#34;: &#34;MODIFIED&#34;,
+   &#34;object&#34;: {&#34;kind&#34;: &#34;Pod&#34;, &#34;apiVersion&#34;: &#34;v1&#34;, &#34;metadata&#34;: {&#34;resourceVersion&#34;: &#34;11020&#34;, ...}, ...}
  }
  ...</code></pre>
   </li>
@@ -337,13 +336,13 @@
     Transfer-Encoding: chunked
     Content-Type: application/json
     {
-      &quot;type&quot;: &quot;ADDED&quot;,
-      &quot;object&quot;: {&quot;kind&quot;: &quot;Pod&quot;, &quot;apiVersion&quot;: &quot;v1&quot;, &quot;metadata&quot;: {&quot;resourceVersion&quot;: &quot;10596&quot;, ...}, ...}
+      &#34;type&#34;: &#34;ADDED&#34;,
+      &#34;object&#34;: {&#34;kind&#34;: &#34;Pod&#34;, &#34;apiVersion&#34;: &#34;v1&#34;, &#34;metadata&#34;: {&#34;resourceVersion&#34;: &#34;10596&#34;, ...}, ...}
     }
     ...
     {
-      &quot;type&quot;: &quot;BOOKMARK&quot;,
-      &quot;object&quot;: {&quot;kind&quot;: &quot;Pod&quot;, &quot;apiVersion&quot;: &quot;v1&quot;, &quot;metadata&quot;: {&quot;resourceVersion&quot;: &quot;12746&quot;} }
+      &#34;type&#34;: &#34;BOOKMARK&#34;,
+      &#34;object&#34;: {&#34;kind&#34;: &#34;Pod&#34;, &#34;apiVersion&#34;: &#34;v1&#34;, &#34;metadata&#34;: {&#34;resourceVersion&#34;: &#34;12746&#34;} }
     }</code></pre>
 <p>
   <code>
@@ -353,7 +352,7 @@
   <code>
     allowWatchBookmarks=true
   </code>
-  option in watch requests, but clients shouldn&rsquo;t assume bookmarks are returned at any specific interval, nor may they assume the server will send any
+  option in watch requests, but clients shouldn’t assume bookmarks are returned at any specific interval, nor may they assume the server will send any
   <code>
     bookmark
   </code>
@@ -432,14 +431,14 @@
  200 OK
  Content-Type: application/json
  {
-   &quot;kind&quot;: &quot;PodList&quot;,
-   &quot;apiVersion&quot;: &quot;v1&quot;,
-   &quot;metadata&quot;: {
-     &quot;resourceVersion&quot;:&quot;10245&quot;,
-     &quot;continue&quot;: &quot;ENCODED_CONTINUE_TOKEN&quot;,
+   &#34;kind&#34;: &#34;PodList&#34;,
+   &#34;apiVersion&#34;: &#34;v1&#34;,
+   &#34;metadata&#34;: {
+     &#34;resourceVersion&#34;:&#34;10245&#34;,
+     &#34;continue&#34;: &#34;ENCODED_CONTINUE_TOKEN&#34;,
      ...
    },
-   &quot;items&quot;: [...] // returns pods 1-500
+   &#34;items&#34;: [...] // returns pods 1-500
  }</code></pre>
   </li>
   <li>
@@ -451,14 +450,14 @@
  200 OK
  Content-Type: application/json
  {
-   &quot;kind&quot;: &quot;PodList&quot;,
-   &quot;apiVersion&quot;: &quot;v1&quot;,
-   &quot;metadata&quot;: {
-     &quot;resourceVersion&quot;:&quot;10245&quot;,
-     &quot;continue&quot;: &quot;ENCODED_CONTINUE_TOKEN_2&quot;,
+   &#34;kind&#34;: &#34;PodList&#34;,
+   &#34;apiVersion&#34;: &#34;v1&#34;,
+   &#34;metadata&#34;: {
+     &#34;resourceVersion&#34;:&#34;10245&#34;,
+     &#34;continue&#34;: &#34;ENCODED_CONTINUE_TOKEN_2&#34;,
      ...
    },
-   &quot;items&quot;: [...] // returns pods 501-1000
+   &#34;items&#34;: [...] // returns pods 501-1000
  }</code></pre>
   </li>
   <li>
@@ -470,14 +469,14 @@
  200 OK
  Content-Type: application/json
  {
-   &quot;kind&quot;: &quot;PodList&quot;,
-   &quot;apiVersion&quot;: &quot;v1&quot;,
-   &quot;metadata&quot;: {
-     &quot;resourceVersion&quot;:&quot;10245&quot;,
-     &quot;continue&quot;: &quot;&quot;, // continue token is empty because we have reached the end of the list
+   &#34;kind&#34;: &#34;PodList&#34;,
+   &#34;apiVersion&#34;: &#34;v1&#34;,
+   &#34;metadata&#34;: {
+     &#34;resourceVersion&#34;:&#34;10245&#34;,
+     &#34;continue&#34;: &#34;&#34;, // continue token is empty because we have reached the end of the list
      ...
    },
-   &quot;items&quot;: [...] // returns pods 1001-1253
+   &#34;items&#34;: [...] // returns pods 1001-1253
  }</code></pre>
   </li>
 </ol>
@@ -539,17 +538,17 @@
  200 OK
  Content-Type: application/json
  {
-     &quot;kind&quot;: &quot;Table&quot;,
-     &quot;apiVersion&quot;: &quot;meta.k8s.io/v1beta1&quot;,
+     &#34;kind&#34;: &#34;Table&#34;,
+     &#34;apiVersion&#34;: &#34;meta.k8s.io/v1beta1&#34;,
      ...
-     &quot;columnDefinitions&quot;: [
+     &#34;columnDefinitions&#34;: [
          ...
      ]
  }</code></pre>
   </li>
 </ol>
 <p>
-  For API resource types that do not have a custom Table definition on the server, a default Table response is returned by the server, consisting of the resource&rsquo;s
+  For API resource types that do not have a custom Table definition on the server, a default Table response is returned by the server, consisting of the resource’s
   <code>
     name
   </code>
@@ -565,18 +564,18 @@
     Content-Type: application/json
     ...
     {
-        &quot;kind&quot;: &quot;Table&quot;,
-        &quot;apiVersion&quot;: &quot;meta.k8s.io/v1beta1&quot;,
+        &#34;kind&#34;: &#34;Table&#34;,
+        &#34;apiVersion&#34;: &#34;meta.k8s.io/v1beta1&#34;,
         ...
-        &quot;columnDefinitions&quot;: [
+        &#34;columnDefinitions&#34;: [
             {
-                &quot;name&quot;: &quot;Name&quot;,
-                &quot;type&quot;: &quot;string&quot;,
+                &#34;name&#34;: &#34;Name&#34;,
+                &#34;type&#34;: &#34;string&#34;,
                 ...
             },
             {
-                &quot;name&quot;: &quot;Created At&quot;,
-                &quot;type&quot;: &quot;date&quot;,
+                &#34;name&#34;: &#34;Created At&#34;,
+                &#34;type&#34;: &#34;date&#34;,
                 ...
             }
         ]
@@ -657,8 +656,8 @@
  200 OK
  Content-Type: application/json
  {
-   &quot;kind&quot;: &quot;Pod&quot;,
-   &quot;apiVersion&quot;: &quot;v1&quot;,
+   &#34;kind&#34;: &#34;Pod&#34;,
+   &#34;apiVersion&#34;: &#34;v1&#34;,
    ...
  }</code></pre>
   </li>
@@ -681,11 +680,11 @@
   The wrapper format is:
 </p>
 <pre><code>A four byte magic number prefix:
-  Bytes 0-3: &quot;k8s\x00&quot; [0x6b, 0x38, 0x73, 0x00]
+  Bytes 0-3: &#34;k8s\x00&#34; [0x6b, 0x38, 0x73, 0x00]
 
 An encoded Protobuf message with the following IDL:
   message Unknown {
-    // typeMeta should have the string values for &quot;kind&quot; and &quot;apiVersion&quot; as set on the JSON object
+    // typeMeta should have the string values for &#34;kind&#34; and &#34;apiVersion&#34; as set on the JSON object
     optional TypeMeta typeMeta = 1;
 
     // raw will hold the complete serialized object in protobuf. See the protobuf definitions in the client libraries for a given kind.
@@ -694,7 +693,7 @@ An encoded Protobuf message with the following IDL:
     // contentEncoding is encoding used for the raw data. Unspecified means no encoding.
     optional string contentEncoding = 3;
 
-    // contentType is the serialization method used to serialize 'raw'. Unspecified means application/vnd.kubernetes.protobuf and is usually
+    // contentType is the serialization method used to serialize &#39;raw&#39;. Unspecified means application/vnd.kubernetes.protobuf and is usually
     // omitted.
     optional string contentType = 4;
   }
@@ -777,7 +776,7 @@ An encoded Protobuf message with the following IDL:
   Dry-run
 </h2>
 <div style="margin-top: 10px; margin-bottom: 10px;">
-<p>
+<p data-diff="">
   <b>
     FEATURE STATE:
   </b>
@@ -876,7 +875,7 @@ An encoded Protobuf message with the following IDL:
     <a href="/docs/reference/generated/kubernetes-api/v1.13/#webhook-v1beta1-admissionregistration-k8s-io">
       configuration object
     </a>
-    that they do not have side effects by setting the sideEffects field to &ldquo;None&rdquo;. If a webhook actually does have side effects, then the sideEffects field should be set to &ldquo;NoneOnDryRun&rdquo;, and the webhook should also be modified to understand the
+    that they do not have side effects by setting the sideEffects field to “None”. If a webhook actually does have side effects, then the sideEffects field should be set to “NoneOnDryRun”, and the webhook should also be modified to understand the
     <code>
       DryRun
     </code>
@@ -1081,25 +1080,25 @@ An encoded Protobuf message with the following IDL:
 </p>
 <p>
   This model of specifying intent makes it difficult to remove existing fields.
-  When a field is removed from one&rsquo;s config and applied, the value will be kept
-  (the system assumes that you don&rsquo;t care about that value anymore). If an item is
+  When a field is removed from one’s config and applied, the value will be kept
+  (the system assumes that you don’t care about that value anymore). If an item is
   removed from a list or a map, it will be removed if no other appliers care about
   its presence.
 </p>
 <p>
-  Changes to an object&rsquo;s fields are tracked through a &ldquo;
+  Changes to an object’s fields are tracked through a “
   <a href="#field-management">
     field management
   </a>
-  &rdquo;
-  mechanism. When a field&rsquo;s value changes, ownership moves from its current
+  ”
+  mechanism. When a field’s value changes, ownership moves from its current
   manager to the manager making the change. When trying to apply an object, fields
   that have a different value and are owned by another manager will result in a
   <a href="#conflicts">
     conflict
   </a>
   . This is done in order to signal that the operation might undo another
-  collaborator&rsquo;s changes. Conflicts can be forced, in which case the value will be
+  collaborator’s changes. Conflicts can be forced, in which case the value will be
   overridden, and the ownership will be transferred.
 </p>
 <p>
@@ -1123,8 +1122,8 @@ An encoded Protobuf message with the following IDL:
     kubectl
   </code>
   , Server Side
-  Apply uses a more declarative approach, which tracks a user&rsquo;s field management,
-  rather than a user&rsquo;s last applied state. This means that as a side effect of
+  Apply uses a more declarative approach, which tracks a user’s field management,
+  rather than a user’s last applied state. This means that as a side effect of
   using Server Side Apply, information about which field manager manages each
   field in an object also becomes available.
 </p>
@@ -1159,7 +1158,7 @@ An encoded Protobuf message with the following IDL:
     managedFields
   </code>
   field that is
-  part of an object&rsquo;s
+  part of an object’s
   <a href="/docs/reference/generated/kubernetes-api/v1.16/#objectmeta-v1-meta">
     <code>
       metadata
@@ -1266,26 +1265,26 @@ An encoded Protobuf message with the following IDL:
     </code>
     query parameter to true and make the request
     again. This forces the operation to succeed, changes the value of the field,
-    and removes the field from all other managers&rsquo; entries in managedFields.
+    and removes the field from all other managers’ entries in managedFields.
   </li>
   <li>
     <strong>
-      Don&rsquo;t overwrite value, give up management claim:
+      Don’t overwrite value, give up management claim:
     </strong>
-    If the applier doesn&rsquo;t
+    If the applier doesn’t
     care about the value of the field anymore, they can remove it from their
     config and make the request again. This leaves the value unchanged, and causes
-    the field to be removed from the applier&rsquo;s entry in managedFields.
+    the field to be removed from the applier’s entry in managedFields.
   </li>
   <li>
     <strong>
-      Don&rsquo;t overwrite value, become shared manager:
+      Don’t overwrite value, become shared manager:
     </strong>
     If the applier still cares
-    about the value of the field, but doesn&rsquo;t want to overwrite it, they can
+    about the value of the field, but doesn’t want to overwrite it, they can
     change the value of the field in their config to match the value of the object
     on the server, and make the request again. This leaves the value unchanged,
-    and causes the field&rsquo;s management to be shared by the applier and all other
+    and causes the field’s management to be shared by the applier and all other
     field managers that already claimed to manage it.
   </li>
 </ul>
@@ -1407,7 +1406,7 @@ An encoded Protobuf message with the following IDL:
     kube-controller-manager
   </code>
   . The update changed a value in the data field which
-  caused the field&rsquo;s management to change to the
+  caused the field’s management to change to the
   <code>
     kube-controller-manager
   </code>
@@ -1437,12 +1436,12 @@ An encoded Protobuf message with the following IDL:
   the same object by causing less unexpected interference.
 </p>
 <p>
-  When a user sends a &ldquo;fully-specified intent&rdquo; object to the Server Side Apply
+  When a user sends a “fully-specified intent” object to the Server Side Apply
   endpoint, the server merges it with the live object favoring the value in the
   applied config if it is specified in both places. If the set of items present in
   the applied config is not a superset of the items applied by the same user last
   time, each missing item not managed by any other appliers is removed. For
-  more information about how an object&rsquo;s schema is used to make decisions when
+  more information about how an object’s schema is used to make decisions when
   merging, see
   <a href="https://sigs.k8s.io/structured-merge-diff">
     sigs.k8s.io/structured-merge-diff
@@ -1538,7 +1537,7 @@ An encoded Protobuf message with the following IDL:
       <td>
         Slice of map keys that uniquely identify entries for example
         <code>
-          [&quot;port&quot;, &quot;protocol&quot;]
+          [&#34;port&#34;, &#34;protocol&#34;]
         </code>
       </td>
       <td>
@@ -1642,20 +1641,20 @@ An encoded Protobuf message with the following IDL:
     the applied object must contain all the fields that the controller cares about.
   </li>
   <li>
-    there are no way to remove fields that haven&rsquo;t been applied by the controller
+    there are no way to remove fields that haven’t been applied by the controller
     before (controller can still send a PATCH/UPDATE for these use-cases).
   </li>
   <li>
-    the object doesn&rsquo;t have to be read beforehand,
+    the object doesn’t have to be read beforehand,
     <code>
       resourceVersion
     </code>
-    doesn&rsquo;t have
+    doesn’t have
     to be specified.
   </li>
 </ul>
 <p>
-  It is strongly recommended for controllers to always &ldquo;force&rdquo; conflicts, since they
+  It is strongly recommended for controllers to always “force” conflicts, since they
   might not be able to resolve or act on these conflicts.
 </p>
 <h3 id="comparison-with-client-side-apply">
@@ -1664,16 +1663,16 @@ An encoded Protobuf message with the following IDL:
 <p>
   A consequence of the conflict detection and resolution implemented by Server
   Side Apply is that an applier always has up to date field values in their local
-  state. If they don&rsquo;t, they get a conflict the next time they apply. Any of the
+  state. If they don’t, they get a conflict the next time they apply. Any of the
   three options to resolve conflicts results in the applied config being an up to
-  date subset of the object on the server&rsquo;s fields.
+  date subset of the object on the server’s fields.
 </p>
 <p>
   This is different from Client Side Apply, where outdated values which have been
-  overwritten by other users are left in an applier&rsquo;s local config. These values
+  overwritten by other users are left in an applier’s local config. These values
   only become accurate when the user updates that specific field, if ever, and an
   applier has no way of knowing whether their next apply will overwrite other
-  users&rsquo; changes.
+  users’ changes.
 </p>
 <p>
   Another difference is that an applier using Client Side Apply is unable to
@@ -1754,9 +1753,9 @@ An encoded Protobuf message with the following IDL:
       Caution:
     </strong>
     Server Side Apply does not correctly track ownership on
-    sub-resources that don&rsquo;t receive the resource object type. If you are
+    sub-resources that don’t receive the resource object type. If you are
     using Server Side Apply with such a sub-resource, the changed fields
-    won&rsquo;t be tracked.
+    won’t be tracked.
   </div>
 </blockquote>
 <h3 id="disabling-the-feature">
@@ -1788,7 +1787,7 @@ An encoded Protobuf message with the following IDL:
   Resource Versions
 </h2>
 <p>
-  Resource versions are strings that identify the server&rsquo;s internal version of an object. Resource versions can be used by clients to determine when objects have changed, or to express data consistency requirements when getting, listing and watching resources. Resource versions must be treated as opaque by clients and passed unmodified back to the server. For example, clients must not assume resource versions are numeric, and may only compare two resource version for equality (i.e. must not compare resource versions for greater-than or less-than relationships).
+  Resource versions are strings that identify the server’s internal version of an object. Resource versions can be used by clients to determine when objects have changed, or to express data consistency requirements when getting, listing and watching resources. Resource versions must be treated as opaque by clients and passed unmodified back to the server. For example, clients must not assume resource versions are numeric, and may only compare two resource version for equality (i.e. must not compare resource versions for greater-than or less-than relationships).
 </p>
 <h3 id="resourceversion-in-metadata">
   ResourceVersion in metadata
@@ -1886,10 +1885,10 @@ An encoded Protobuf message with the following IDL:
         resourceVersion unset
       </th>
       <th>
-        resourceVersion=&quot;0&rdquo;
+        resourceVersion=&#34;0”
       </th>
       <th>
-        resourceVersion=&rdquo;{value other than 0}&rdquo;
+        resourceVersion=”{value other than 0}”
       </th>
     </tr>
   </thead>
@@ -1910,7 +1909,7 @@ An encoded Protobuf message with the following IDL:
     </tr>
     <tr>
       <td>
-        limit=&quot;n&rdquo;, continue unset
+        limit=&#34;n”, continue unset
       </td>
       <td>
         Most Recent
@@ -1924,10 +1923,10 @@ An encoded Protobuf message with the following IDL:
     </tr>
     <tr>
       <td>
-        limit=&quot;n&rdquo;, continue=&quot;
+        limit=&#34;n”, continue=&#34;
         <token>
-        &rdquo;
-      </td>
+        ”
+      </token></td>
       <td>
         Continue Token, Exact
       </td>
@@ -1997,10 +1996,10 @@ An encoded Protobuf message with the following IDL:
         resourceVersion unset
       </th>
       <th>
-        resourceVersion=&quot;0&rdquo;
+        resourceVersion=&#34;0”
       </th>
       <th>
-        resourceVersion=&rdquo;{value other than 0}&rdquo;
+        resourceVersion=”{value other than 0}”
       </th>
     </tr>
   </thead>
@@ -2038,11 +2037,11 @@ An encoded Protobuf message with the following IDL:
     <strong>
       Start at Exact:
     </strong>
-    Start a watch at an exact resource version. The watch events are for all changes after the provided resource version. Unlike &ldquo;Get State and Start at Most Recent&rdquo; and &ldquo;Get State and Start at Any&rdquo;, the watch is not started with synthetic &ldquo;Added&rdquo; events for the provided resource version. The client is assumed to already have the initial state at the starting resource version since the client provided the resource version.
+    Start a watch at an exact resource version. The watch events are for all changes after the provided resource version. Unlike “Get State and Start at Most Recent” and “Get State and Start at Any”, the watch is not started with synthetic “Added” events for the provided resource version. The client is assumed to already have the initial state at the starting resource version since the client provided the resource version.
   </li>
 </ul>
 <h3 id="410-gone-responses">
-  &ldquo;410 Gone&rdquo; responses
+  “410 Gone” responses
 </h3>
 <p>
   Servers are not required to serve all older resource versions and may return a HTTP
@@ -2082,5 +2081,5 @@ An encoded Protobuf message with the following IDL:
   <code>
     Retry-After
   </code>
-  response header indicating how many seconds a client should wait before retrying the request. Currently the kube-apiserver also identifies these responses with a &ldquo;Too large resource version&rdquo; message. Watch requests for a unrecognized resource version may wait indefinitely (until the request timeout) for the resource version to become available.
-</p>
+  response header indicating how many seconds a client should wait before retrying the request. Currently the kube-apiserver also identifies these responses with a “Too large resource version” message. Watch requests for a unrecognized resource version may wait indefinitely (until the request timeout) for the resource version to become available.
+</p></div></div></body></html>

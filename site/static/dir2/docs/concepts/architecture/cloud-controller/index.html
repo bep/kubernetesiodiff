@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Concepts Underlying the Cloud Controller Manager
     </h1>
@@ -15,16 +14,16 @@
       The cloud controller manager (CCM) concept (not to be confused with the binary) was originally created to allow cloud specific vendor code and the Kubernetes core to evolve independent of one another. The cloud controller manager runs alongside other master components such as the Kubernetes controller manager, the API server, and scheduler. It can also be started as a Kubernetes addon, in which case it runs on top of Kubernetes.
     </p>
     <p>
-      The cloud controller manager&rsquo;s design is based on a plugin mechanism that allows new cloud providers to integrate with Kubernetes easily by using plugins. There are plans in place for on-boarding new cloud providers on Kubernetes and for migrating cloud providers from the old model to the new CCM model.
+      The cloud controller manager’s design is based on a plugin mechanism that allows new cloud providers to integrate with Kubernetes easily by using plugins. There are plans in place for on-boarding new cloud providers on Kubernetes and for migrating cloud providers from the old model to the new CCM model.
     </p>
     <p>
       This document discusses the concepts behind the cloud controller manager and gives details about its associated functions.
     </p>
     <p>
-      Here&rsquo;s the architecture of a Kubernetes cluster without the cloud controller manager:
+      Here’s the architecture of a Kubernetes cluster without the cloud controller manager:
     </p>
     <p>
-      <img src="/images/docs/pre-ccm-arch.png" alt="Pre CCM Kube Arch">
+      <img src="/images/docs/pre-ccm-arch.png" alt="Pre CCM Kube Arch"/>
     </p>
     <ul id="markdown-toc">
       <li>
@@ -84,7 +83,7 @@
       The CCM consolidates all of the cloud-dependent logic from the preceding three components to create a single point of integration with the cloud. The new architecture with the CCM looks like this:
     </p>
     <p>
-      <img src="/images/docs/post-ccm-arch.png" alt="CCM Kube Arch">
+      <img src="/images/docs/post-ccm-arch.png" alt="CCM Kube Arch"/>
     </p>
     <h2 id="components-of-the-ccm">
       Components of the CCM
@@ -152,7 +151,7 @@
       1. Kubernetes controller manager
     </h3>
     <p>
-      The majority of the CCM&rsquo;s functions are derived from the KCM. As mentioned in the previous section, the CCM runs the following control loops:
+      The majority of the CCM’s functions are derived from the KCM. As mentioned in the previous section, the CCM runs the following control loops:
     </p>
     <ul>
       <li>
@@ -179,7 +178,7 @@
         Initialize a node with cloud specific instance details, for example, type and size.
       </li>
       <li>
-        Obtain the node&rsquo;s network addresses and hostname.
+        Obtain the node’s network addresses and hostname.
       </li>
       <li>
         In case a node becomes unresponsive, check the cloud to see if the node has been deleted from the cloud.
@@ -401,7 +400,7 @@
 </span><span style="color:#bbb">  </span>- get<span style="color:#bbb">
 </span><span style="color:#bbb">  </span>- list<span style="color:#bbb">
 </span><span style="color:#bbb">  </span>- watch<span style="color:#bbb">
-</span><span style="color:#bbb">  </span>- update<span style="color:#bbb">
+</span><span style="color:#bbb">  </span>- update<span style="color:#bbb" data-diff="">
 </span></code></pre>
     </div>
     <h2 id="vendor-implementations">
@@ -477,5 +476,5 @@
       </a>
       .
     </p>
-  </body>
-</html>
+  
+</body></html>

@@ -1,5 +1,4 @@
-<html>
-  <body>
+<html><head></head><body>
     <h1>
       Create static Pods
     </h1>
@@ -17,17 +16,17 @@
       </em>
       are managed directly by the kubelet daemon on a specific node,
       without the
-      <a class='glossary-tooltip' href='/docs/reference/generated/kube-apiserver/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/generated/kube-apiserver/" target="_blank">
         API server
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Control plane component that serves the Kubernetes API.
         </span>
       </a>
       observing them.
       Unlike Pods that are managed by the control plane (for example, a
-      <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/deployment/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/deployment/" target="_blank">
         Deployment
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An API object that manages a replicated application.
         </span>
       </a>
@@ -36,9 +35,9 @@
     </p>
     <p>
       Static Pods are always bound to one
-      <a class='glossary-tooltip' href='/docs/reference/generated/kubelet' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/reference/generated/kubelet" target="_blank">
         Kubelet
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An agent that runs on each node in the cluster. It makes sure that containers are running in a pod.
         </span>
       </a>
@@ -46,9 +45,9 @@
     </p>
     <p>
       The kubelet automatically tries to create a
-      <a class='glossary-tooltip' href='/dir1/docs/reference/glossary/?all=true#term-mirror-pod' target='_blank'>
+      <a class="glossary-tooltip" href="/dir1/docs/reference/glossary/?all=true#term-mirror-pod" target="_blank">
         mirror Pod
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           An object in the API server that tracks a static pod on a kubelet.
         </span>
       </a>
@@ -63,9 +62,9 @@
         </strong>
         If you are running clustered Kubernetes and are using static
         Pods to run a Pod on every node, you should probably be using a
-        <a class='glossary-tooltip' href='/docs/concepts/workloads/controllers/daemonset' target='_blank'>
+        <a class="glossary-tooltip" href="/docs/concepts/workloads/controllers/daemonset" target="_blank">
           DaemonSet
-          <span class='tooltip-text'>
+          <span class="tooltip-text">
             Ensures a copy of a Pod is running across a set of nodes in a cluster.
           </span>
         </a>
@@ -127,10 +126,10 @@
       .
     </p>
     <p>
-      This page assumes you&rsquo;re using
-      <a class='glossary-tooltip' href='https://docs.docker.com/engine/' target='_blank'>
+      This page assumes you’re using
+      <a class="glossary-tooltip" href="https://docs.docker.com/engine/" target="_blank">
         Docker
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Docker is a software technology providing operating-system-level virtualization also known as containers.
         </span>
       </a>
@@ -173,7 +172,7 @@
     <ol>
       <li>
         <p>
-          Choose a node where you want to run the static Pod. In this example, it&rsquo;s
+          Choose a node where you want to run the static Pod. In this example, it’s
           <code>
             my-node1
           </code>
@@ -359,17 +358,17 @@ static-web-my-node1        1/1       Running   0          2m</code></pre>
       </div>
     </blockquote>
     <p>
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/labels" target="_blank">
         Labels
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Tags objects with identifying attributes that are meaningful and relevant to users.
         </span>
       </a>
       from the static Pod are
       propagated into the mirror Pod. You can use those labels as normal via
-      <a class='glossary-tooltip' href='/docs/concepts/overview/working-with-objects/labels/' target='_blank'>
+      <a class="glossary-tooltip" href="/docs/concepts/overview/working-with-objects/labels/" target="_blank">
         selectors
-        <span class='tooltip-text'>
+        <span class="tooltip-text">
           Allows users to filter a list of resources based on labels.
         </span>
       </a>
@@ -383,7 +382,7 @@ static-web-my-node1        1/1       Running   0          2m</code></pre>
       to delete the mirror Pod from the API server,
       the kubelet
       <em>
-        doesn&rsquo;t
+        doesn’t
       </em>
       remove the static Pod:
     </p>
@@ -402,7 +401,7 @@ static-web-my-node1        1/1       Running   0          12s</code></pre>
     <p>
       Back on your node where the kubelet is running, you can try to stop the Docker
       container manually.
-      You&rsquo;ll see that, after a time, the kubelet will notice and will restart the Pod
+      You’ll see that, after a time, the kubelet will notice and will restart the Pod
       automatically:
     </p>
     <div class="highlight">
@@ -437,5 +436,5 @@ docker ps</code></pre>
     </div>
     <pre><code>CONTAINER ID        IMAGE         COMMAND                CREATED           ...
 e7a62e3427f1        nginx:latest  &#34;nginx -g &#39;daemon of   27 seconds ago</code></pre>
-  </body>
-</html>
+  
+</body></html>
